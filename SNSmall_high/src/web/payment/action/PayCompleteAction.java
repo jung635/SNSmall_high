@@ -6,8 +6,8 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
-import web.client.db.ClientBean;
 import web.payment.db.PaymentBean;
 import web.payment.db.PaymentDAO;
 import web.product.db.ProductBean;
@@ -17,7 +17,9 @@ public class PayCompleteAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		String id = "test";
+		System.out.println("payComlete");
+		HttpSession session = request.getSession();
+		String id = (String)session.getAttribute("id");
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html; charset=utf-8");
 		PrintWriter out = response.getWriter();
@@ -32,7 +34,9 @@ public class PayCompleteAction implements Action {
 		String[] product = product_str.split(",");
 		int point = Integer.parseInt(request.getParameter("point"));
 		String snsId_str = request.getParameter("snsId_str");
+		System.out.println(snsId_str);
 		String[] sns_id = snsId_str.split(",");
+		System.out.println(sns_id[0]);
 		String message = request.getParameter("message");
 		String option1_str = request.getParameter("option1_str");
 		String[] option1 = option1_str.split(",");

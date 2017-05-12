@@ -72,7 +72,7 @@
 						if(type.equals("client")){ %>
 						<li class="scroll"><a href="MyPage.cl">MyPage</a></li>
 						<%}else if(type.equals("vendor")){ %>
-						<li class="scroll"><a href="MyPage.pr">MyPage</a></li>
+						<li class="scroll"><a href="MyPage.ve">MyPage</a></li>
 						<%}else if(type.equals("sns")){%>
 						<li class="scroll"><a href="#">MyPage</a></li>
 						<%}} %>

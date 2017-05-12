@@ -86,7 +86,7 @@ function more() {
 <body>
 <jsp:include page="../inc/header.jsp"/>
 <%
-String id = "test";
+String id = (String)session.getAttribute("id");
 /* ClientDAO cdao = new ClientDAO();
 ClientBean cb = cdao.getMember(id);
 PaymentDAO pdao = new PaymentDAO();

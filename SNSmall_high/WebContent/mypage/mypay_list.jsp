@@ -73,7 +73,7 @@ function more() {
 <body>
 <jsp:include page="../inc/header.jsp"/>
 <%
-String id = "test";
+String id = (String)session.getAttribute("id");
 %>
 <!-- Page Content -->
 <div class="container">

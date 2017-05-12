@@ -17,6 +17,7 @@ public class PayDepositDoneAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
+
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html; charset=utf-8");
 		PrintWriter out = response.getWriter();
@@ -32,7 +33,12 @@ public class PayDepositDoneAction implements Action {
 		String[] product = product_str.split(",");
 		int point = Integer.parseInt(request.getParameter("point"));
 		String snsId_str = request.getParameter("snsId_str");
-		String[] sns_id = snsId_str.split(",");
+		String[] sns_id = {};
+		if(snsId_str.equals(",")){
+			sns_id[0]=" ";
+		}else{
+			sns_id = snsId_str.split(",");
+		}
 		String message = request.getParameter("message");
 		String option1_str = request.getParameter("option1_str");
 		String[] option1 = option1_str.split(",");
@@ -54,14 +60,11 @@ public class PayDepositDoneAction implements Action {
 		int usedPoint_each = usedPoint;
 		List<PaymentBean> list_pb = new ArrayList<>();
 		for (int i = 0; i < amount.length; i++) {
-			System.out.println("test1");
+			System.out.println(sns_id[i]);
 			int point_each = 0;
-			System.out.println((Integer.parseInt(product[i])));
 			prob = prodao.getProduct((Integer.parseInt(product[i])));
-			System.out.println(option1[i]);
 			pb = new PaymentBean();
 			pb.setAmount(Integer.parseInt(amount[i]));
-			System.out.println(pb.getAmount());
 			pb.setClient_id(id);
 			pb.setMessage(message);
 			pb.setOrder_num(merchant_uid);

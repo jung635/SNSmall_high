@@ -1,5 +1,6 @@
 package web.payment.action;
 
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,6 +18,9 @@ public class PayCompleteAction implements Action {
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String id = "test";
+		request.setCharacterEncoding("utf-8");
+		response.setContentType("text/html; charset=utf-8");
+		PrintWriter out = response.getWriter();
 		String merchant_uid = request.getParameter("merchant_uid");
 		String vendorId_str = request.getParameter("vendorId_str");
 		String[] vendor_id = vendorId_str.split(",");
@@ -74,11 +78,22 @@ public class PayCompleteAction implements Action {
 			pb.setUsedPoint(point_each);
 			list_pb.add(pb);
 			pdao.subPoint(point_each, id);
-			int profit = (int)((double)prob.getPrice()*(Double.parseDouble(amount[i])*0.01));
-			pdao.addSnsPay(profit, sns_id[i]);
-			pdao.addVendorProfit(profit, vendor_id[i]);
-			pdao.addPoint(profit, id);
-			pdao.subAmount(Integer.parseInt(amount[i]), Integer.parseInt(product[i]));
+			
+			if(method.equals("card")){
+				int profit = (int)((double)prob.getPrice()*(Double.parseDouble(amount[i])*0.01));
+				pdao.addSnsPay(profit, sns_id[i]);
+				pdao.addVendorProfit(profit, vendor_id[i]);
+				pdao.addPoint(profit, id);
+				pdao.subAmount(Integer.parseInt(amount[i]), Integer.parseInt(product[i]));
+			}
+		}
+		
+		if(method.equals("deposit")){
+			out.println("<script>");
+			out.println("alert('주문이 완료되었습니다.');");
+			out.println("window.opener.location.href='PayDone.pa?merchant_uid=" + merchant_uid + "';");
+			out.println("window.close();");
+			out.println("</script>");
 		}
 		pdao.insertPay(list_pb, state);
 

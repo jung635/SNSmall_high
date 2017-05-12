@@ -122,7 +122,7 @@ List<PaymentBean> pay_list_reult = new ArrayList<PaymentBean>();
 							//판매자 일때 취소 및 환불
 							if(type.equals("vendor")){
 								if(pb.getState().equals("cancelHold")){
-									%><input type="button" value="취소 확인" onclick="location.href='payCancel.ve?num=<%=pb.getNum()%>'"><%
+									%><input type="button" value="취소 확인" onclick="location.href='PayCancel.ve?num=<%=pb.getNum()%>'"><%
 								}else if(pb.getState().equals("cancel")){
 									%>취소 된 주문<%
 								}else if(pb.getState().equals("delivery")){

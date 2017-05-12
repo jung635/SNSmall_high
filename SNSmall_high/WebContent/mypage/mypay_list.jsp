@@ -73,6 +73,8 @@ function more() {
 <body>
 <jsp:include page="../inc/header.jsp"/>
 <%
+String type = (String)session.getAttribute("type");
+System.out.println(type);
 String id = (String)session.getAttribute("id");
 %>
 <!-- Page Content -->
@@ -82,7 +84,11 @@ String id = (String)session.getAttribute("id");
         <div class="row">
             <div class="col-md-3">
                 <p class="lead"><%=id %></p>
+                <%if(type.equals("clinet")){ %>
                 <jsp:include page="../inc/myinfo_left.jsp"/>
+                <%}else if(type.equals("vendor")){ %>
+                <jsp:include page="../inc/myinfo_vendor_left.jsp"/>
+                <%} %>
             </div>
             <div class="col-md-9">
 				<form action=""> 

@@ -40,9 +40,10 @@ public class VendorFrontController extends HttpServlet{
 			forward.setRedirect(false);
 			
 		}else if (command.equals("/MyPage.ve")) {
-			forward = new ActionForward();
-			forward.setPath("./mypage/mypage_vendor.jsp");
-			forward.setRedirect(false);
+			action = new mypage_vendor();
+			try{
+				forward = action.execute(request, response);
+			}catch(Exception e){e.printStackTrace();}
 			
 		}else if(command.equals("/vendorView.ve")){
 			action = new vendorView();

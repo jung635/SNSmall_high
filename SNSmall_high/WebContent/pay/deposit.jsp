@@ -25,7 +25,6 @@ function deposit_pay(){
 	option1_str=window.opener.fr.option1_str.value;
 	option2_str=window.opener.fr.option2_str.value;
 	option3_str=window.opener.fr.option3_str.value;
-	alert(snsId_str);
 	location.href="PayCompleteAction.pa?message=<%=message%>&price_result=<%=price_result%>&price=<%=price%>&point=<%=point%>&merchant_uid=<%=merchant_uid%>&method=<%=method%>"+"&amount_str="+amount_str+"&product_str="+product_str+"&vendorId_str="+vendorId_str+"&snsId_str="+snsId_str+"&option1_str="+option1_str+"&option2_str="+option2_str+"&option3_str="+option3_str;
 }
 </script>

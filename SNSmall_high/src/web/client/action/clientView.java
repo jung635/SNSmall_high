@@ -17,8 +17,11 @@ public class clientView implements Action{
 		ClientDAO cldao = new ClientDAO();
 		ClientBean clb = cldao.getMember(id);
 		String postcode = clb.getAddress().split("/")[0];
+		System.out.println(postcode);
 		String address = clb.getAddress().split("/")[1];
+		System.out.println(address);
 		String address2 = clb.getAddress().split("/")[2];
+		System.out.println(address2);
 		
 		request.setAttribute("postcode", postcode);
 		request.setAttribute("address", address);

@@ -26,7 +26,7 @@ public class CartAdd implements Action{
 //			return forward;
 //		} // 로그인이 되어있지 않으면 로그인 페이지로 이동
 		
-		id = "abc";
+		
 		System.out.println("subject : "+request.getParameter("subject"));
 		System.out.println("pro_num : "+request.getParameter("product_num"));
 		System.out.println("vendor_id : "+request.getParameter("vendor_id"));

@@ -5,7 +5,10 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import javax.websocket.Session;
 
+import sun.print.resources.serviceui;
 import web.client.db.ClientBean;
 import web.payment.db.PaymentBean;
 import web.payment.db.PaymentDAO;
@@ -16,7 +19,8 @@ public class PayCompleteAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		String id = "test";
+		HttpSession session = request.getSession();
+		String id = (String)session.getAttribute("id");
 		String merchant_uid = request.getParameter("merchant_uid");
 		String vendorId_str = request.getParameter("vendorId_str");
 		String[] vendor_id = vendorId_str.split(",");

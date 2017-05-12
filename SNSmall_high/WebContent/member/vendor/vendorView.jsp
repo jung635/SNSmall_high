@@ -84,7 +84,7 @@
 							<input type="hidden" name="id" value="<%=id%>">
 							
 							<div id="buttons">
-								<input type="button" value="확인" class="cancel" onclick="location.href='./MyPage.pr'">
+								<input type="button" value="확인" class="cancel" onclick="location.href='./MyPage.ve'">
 
 							</div>
 						

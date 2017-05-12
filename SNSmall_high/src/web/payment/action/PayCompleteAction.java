@@ -28,7 +28,9 @@ public class PayCompleteAction implements Action {
 		String[] product = product_str.split(",");
 		int point = Integer.parseInt(request.getParameter("point"));
 		String snsId_str = request.getParameter("snsId_str");
+		System.out.println(snsId_str);
 		String[] sns_id = snsId_str.split(",");
+		System.out.println(sns_id.length);
 		String message = request.getParameter("message");
 		String option1_str = request.getParameter("option1_str");
 		String[] option1 = option1_str.split(",");

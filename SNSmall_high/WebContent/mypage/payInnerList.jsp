@@ -81,8 +81,10 @@ List<PaymentBean> pay_list_reult = new ArrayList<PaymentBean>();
 						</tr>
 						<%}%>
 					</table>
+					<%if(type.equals("client")){ %>
 					<input type="button" value="일괄 조회" onclick="location.href='PayDone.pa?merchant_uid=<%=merchant_uid%>'"> 
 					<input type="button" value="일괄 취소" onclick="location.href='PayMultipleCancel.pa?order_num=<%=merchant_uid%>'">
+				<%} %>
 				</div>
 				<%} %>
 		

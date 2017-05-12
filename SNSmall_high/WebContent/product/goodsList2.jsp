@@ -61,7 +61,11 @@
 		%>
             <div class="col-md-4 portfolio-item" id="product_list_img">
                 <a href="./ProductDetail.pr?product_num=<%=pb.getProduct_num() %>&pageNum=<%=pageNum%>">
+                    <%if(pb.getMain_img()==null){ %>
+                    <img class="img-responsive" src="./qna_img/imgX.jpg">
+                    <%} else{%>
                     <img class="img-responsive" src="./vendor_img/<%=pb.getMain_img() %>" alt="">
+                    <%} %>
                 </a>
                 <h3>
                     <a href="./ProductDetail.pr?product_num=<%=pb.getProduct_num() %>&pageNum=<%=pageNum%>"><%=pb.getSubject() %></a>

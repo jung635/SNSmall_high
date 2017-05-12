@@ -58,7 +58,7 @@
 
 							<div id="buttons">
 								<input type="submit" value="확인" class="submit"> <input
-									type="reset" value="취소" class="cancel" onclick="location.href='./MyPage.pr'">
+									type="reset" value="취소" class="cancel" onclick="location.href='./MyPage.ve'">
 							</div>
 						</form>
 				</div>

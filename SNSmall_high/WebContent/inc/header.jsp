@@ -1,16 +1,32 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<header id="navigation"> 
+<header id="navigation">
+<%
+	String id = (String) session.getAttribute("id");
+	String name = (String) session.getAttribute("name");
+	String type = (String) session.getAttribute("type");
+%> 
 		<div class="navbar navbar-inverse navbar-fixed-top" role="banner"> 
-			<div class="container"> 
-				<div style="float: right;">
-				<span>Join: <a href="sns_join2.sn">snsStar</a> 
-				| <a href="clientJoin2.cl">client</a> 
-				| <a href="vendorJoin2.ve">vendor</a></span>
+			<div class="container">
+			
+			<!-- 로그인/조인 부분 수정 --> 
+				<%if(id==null){ %>
+				<div style="float: right;;">				|
+				<span><a href="./common_join.sn">Join</a> </span> 
 				</div>
-				<div style="float: right;">
-				<span>Login: <a href="login2.cl">client</a> </span>
+				<div style="float: right;;">
+				<span><a href="./login.cl">Login &nbsp;</a></span>
 				</div>
+				<%}else{ %>
+				<div style="float: right;;">				|
+				<span><a href="./logOut.cl">Logout</a></span> 
+				</div>
+				<div style="float: right;;">
+				<span><a href="#"><%=name %>&nbsp;</a> </span>				
+				</div>
+				<%} %>
+			<!-- 로그인/조인 부분 수정 -->
+			
 				<div class="navbar-header"> 
 					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"> 
 						<span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> 
@@ -47,11 +63,21 @@
 						if(pageNum == null){pageNum="1";}
 						int product_num = 9;
 						request.setAttribute("product_num", product_num);
-						String id = (String)session.getAttribute("id");
 						%> 
 						<li class="scroll"><a href="Service.cl">Our Service</a></li>
 						<li class="scroll"><a href="./ProductDetail.pr?product_num=<%=product_num %>&pageNum=<%=pageNum%>">Detail</a></li> 
-						<li class="scroll"><a href="MyPage.pa">MyPage</a></li>
+					
+					<!-- vendor,client,sns mypage 구분 -->
+						<%if(type !=null){
+						if(type.equals("client")){ %>
+						<li class="scroll"><a href="MyPage.cl">MyPage</a></li>
+						<%}else if(type.equals("vendor")){ %>
+						<li class="scroll"><a href="MyPage.ve">MyPage</a></li>
+						<%}else if(type.equals("sns")){%>
+						<li class="scroll"><a href="#">MyPage</a></li>
+						<%}} %>
+					<!-- vendor,client,sns mypage 구분 -->
+					
 						<li class="scroll"><a href="#">Contact</a></li>
 					</ul> 
 				</div> 

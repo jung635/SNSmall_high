@@ -10,7 +10,7 @@
 		</div>
 	</div>
 	<a href="PayList.pa" class="list-group-item">주문 내역</a>
-	<a href="#" class="list-group-item">찜 목록</a>
+	<a href="ZzimList.zz" class="list-group-item">찜 목록</a>
 	<a href="CartList.ca" class="list-group-item">장바구니</a>
 	<a href="SnsSale.sn" class="list-group-item">SNS 판매내역</a>
 	<a href="CancelList.ve" class="list-group-item">취소 내역(vendor)</a>

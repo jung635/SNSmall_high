@@ -16,6 +16,7 @@
 	<link href="./css/main.css" rel="stylesheet">
 	<link href="./css/responsive.css" rel="stylesheet"> 
 	<link href="./css/header.css" rel="stylesheet"> 
+	<link href="./css/member.css" rel="stylesheet"> 
 	<!--[if lt IE 9]> <script src="js/html5shiv.js"></script> 
 	<script src="js/respond.min.js"></script> <![endif]--> 
 	<link rel="shortcut icon" href="images/ico/favicon.png"> 
@@ -23,6 +24,31 @@
 	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="images/ico/apple-touch-icon-114-precomposed.png"> 
 	<link rel="apple-touch-icon-precomposed" sizes="72x72" href="images/ico/apple-touch-icon-72-precomposed.png"> 
 	<link rel="apple-touch-icon-precomposed" href="images/ico/apple-touch-icon-57-precomposed.png">
+	
+	<script type="text/javascript">
+	
+	//Id,pass제어 
+	function confirmSubmit() {
+	if(document.fr.id.value == "") {
+		alert("ID를 입력하세요");
+		document.fr.id.focus();
+		if(err_empty_id.style.display == 'none'){
+			err_empty_id.style.display = 'block'
+			err_empty_pw.style.display = 'none'}
+		return false;
+	}else if(document.fr.pass.value == ""){
+		alert("Password를 입력하세요");
+		document.fr.pass.focus();
+		if(err_empty_pw.style.display == 'none'){
+			err_empty_pw.style.display = 'block'
+			err_empty_id.style.display = 'none'}
+		return false;
+	}
+	
+}
+
+	</script>
+	
 </head><!--/head-->
 <body>
 	<div class="preloader">
@@ -43,31 +69,63 @@
 <section id="about-us">
 	<div class="container">
 		<div class="text-center">
-			<div class="col-sm-8 col-sm-offset-2">
-				<h2 class="title-one">Why With Us?</h2>
-				<form action="./loginAction.cl" id="join">
-					<fieldset>
-						<legend>Login Info</legend>
-						<label>User ID</label> <input type="text" name="id"><br>
-						<label>Password</label> <input type="password" name="pass"><br>
-					</fieldset>
-
-					<div class="clear"></div>
-					<div id="buttons">
-						<input type="submit" value="Submit" class="submit"> <input
-							type="button" value="Cancel" class="cancel"
-							onclick="history.back()">
+			<div class="col-sm-3"></div>
+			<div class="col-sm-6">
+			
+				 <div class="login_subject">comming soon Logo</div> 
+		
+				<form action="./loginAction.cl" id="join" name="fr" onsubmit="return confirmSubmit()">
+			
+					<fieldset class="login_form">
+					
+					<div class="input_row" id="id_area">
+						<span class="input_box1">
+							<label for="id" id="label_id_area" class="lbl"   >아이디</label>
+							<input type="text" id="id" name="id" tabindex="7" accesskey="L" placeholder="아이디" class="int" maxlength="41" value="">
+						</span>
+<!-- 						<button type="button" disabled="" title="delete" id="id_clear" class="wrg">삭제</button> -->
 					</div>
+					<div  id="err_empty_id" class="error" style="display:none; ">아이디를 입력해주세요.</div>
+					<div class="input_row" id="pw_area">
+						<span class="input_box">
+							<label for="pw" id="label_pw_area"  class="lbl">비밀번호</label>
+							<input type="password" id="pass" name="pass" tabindex="8" placeholder="비밀번호" class="int" maxlength="16">
+						</span>
+			
+<!-- 						<button type="button" disabled="" title="delete" id="pw_clear" class="wrg">삭제</button> -->
+						<div class="ly_v2" id="err_capslock" style="display:none;">
+							<div class="ly_box">
+								<p><strong>Caps Lock</strong>이 켜져 있습니다.</p>							</div>
+							<span class="sp ly_point"></span>
+						</div>
+					</div>
+					<div class="error" id="err_empty_pw" style="display:none;">비밀번호를 입력해주세요.</div>
+					<input type="submit" title="로그인" alt="로그인" tabindex="12" value="로그인" class="btn_global" onclick="nclks('log.login',this,event)">
+					
+				</fieldset>
+
+					<legend class="blind"></legend>
+					
+					<div class="sub_member">
+					<a href="#" >회원가입</a>&nbsp;|
+					<a href="#">아이디 찾기</a>&nbsp;|
+					<a href="#">비밀번호 찾기</a>
+					</div>
+					
+					<div class="clear"></div>
 				</form>
 			</div>
+			
+			<div class="col-sm-3"></div>
 		</div>
 	</div>
 	</section><!--/#about-us-->
 
 	<footer id="footer"> 
+	
 		<div class="container"> 
 			<div class="text-center"> 
-				<p>Copyright &copy; 2014 - <a href="http://mostafiz.me/">Mostafiz</a> | All Rights Reserved</p> 
+				<p>Copyright &copy; 2017 - <a href="http://mostafiz.me/">Mostafiz</a> | All Rights Reserved</p> 
 			</div> 
 		</div> 
 	</footer> <!--/#footer--> 

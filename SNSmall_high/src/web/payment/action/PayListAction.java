@@ -16,7 +16,7 @@ public class PayListAction implements Action {
 		String client_id = "test";
 		String vendor_id = "vendor_id";
 		String method = request.getParameter("method");
-		String type = "client";
+		String type = "vendor";
 		PaymentDAO pdao = new PaymentDAO();
 		int page = Integer.parseInt(request.getParameter("page"));
 		request.setAttribute("type", type);

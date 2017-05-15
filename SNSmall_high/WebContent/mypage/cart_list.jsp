@@ -55,7 +55,7 @@ function myfunction(){
 <%
 List<CartBean> cblist = new ArrayList<CartBean>();
 %>
-<form action="Pay.pa" method="post" name="form1" enctype="multipart/form-data">
+<form action="Pay.pa" method="post" name="form1">
 
 <%
 int sum=0;
@@ -83,7 +83,7 @@ for(int i=0;i<cl.size();i++){
 <!-- 장바구니 정보 -->
 <a href="Detail2.pr">
 물품 번호:<%=cb.getProduct_num() %>
-이미지:<input type="file" value="<%=cb.getMain_img() %>">
+이미지:<%=cb.getMain_img() %>
 품명:<%=cb.getSubject()%>
 <%if(cb.getOption1()!=null){
 	%>/<%=cb.getOption1()%>

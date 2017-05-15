@@ -158,7 +158,8 @@ public class SnsDAO {
 
 			con = getConnection();
 
-			sql = "insert into sns(sns_id,pass,name,content,profile_img,sns_profit,date,type,detail_img,category) values(?,?,?,?,?,?,now(),?,?,?)";
+			sql = "insert into sns(sns_id,pass,name,content,profile_img,sns_profit,date,type,detail_img,category,Instagram,facebook,twitter,blog,etc,rank) "
+					+ "values(?,?,?,?,?,?,now(),?,?,?,?,?,?,?,?,?)";
 			pstmt = con.prepareStatement(sql);
 
 			pstmt.setString(1, sb.getSns_id());
@@ -170,7 +171,13 @@ public class SnsDAO {
 			pstmt.setString(7, "sns");
 			pstmt.setString(8, sb.getDetail_img());
 			pstmt.setString(9, sb.getCategory());
-
+			pstmt.setString(10, sb.getInstagram());
+			pstmt.setString(11, sb.getFacebook());
+			pstmt.setString(12, sb.getTwitter());
+			pstmt.setString(13, sb.getBlog());
+			pstmt.setString(14, sb.getEtc());
+			pstmt.setString(15, "basic");
+			
 			pstmt.executeUpdate();
 
 		} catch (Exception e) {e.printStackTrace();

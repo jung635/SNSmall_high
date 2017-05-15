@@ -263,19 +263,19 @@
 			dp_twit.style.display='block';
 		}else if(document.fr.ckb3.checked==false){
 			dp_twit.style.display='none';
-			document.fr.instagram_ac.value="";
+			document.fr.twitter_ac.value="";
 		}
 		if(document.fr.ckb4.checked==true){
 			dp_blog.style.display='block';
 		}else if(document.fr.ckb4.checked==false){
 			dp_blog.style.display='none';
-			document.fr.instagram_ac.value="";
+			document.fr.blog_ac.value="";
 		}
 		if(document.fr.ckb5.checked==true){
 			dp_etc.style.display='block';
 		}else if(document.fr.ckb5.checked==false){
 			dp_etc.style.display='none';
-			document.fr.instagram_ac.value="";
+			document.fr.etc_ac.value="";
 		}
 	}
 	

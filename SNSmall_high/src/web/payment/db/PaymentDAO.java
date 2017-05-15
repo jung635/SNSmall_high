@@ -375,7 +375,7 @@ Connection con = null;
 		try {
 			con = getConnection();
 			if (method.equals("payDone")) {
-				sql.append("state = 'payDone' or state = 'delivery' or state = 'cancelHold' or state = 'waiting'");
+				sql.append("state = 'payDone' or state = 'delivery' or state = 'cancelHold' or state = 'waiting' or state = 'cancel'");
 			} else if (method.equals("done")) {
 				sql.append("state = 'done'");
 			} else if (method.equals("delivery")) {
@@ -423,7 +423,7 @@ Connection con = null;
 		try {
 			con = getConnection();
 			if (method.equals("payDone")) {
-				sql.append("state = 'payDone' or state = 'delivery' or state = 'cancelHold' or state = 'waiting'");
+				sql.append("state = 'payDone' or state = 'delivery' or state = 'cancelHold' or state = 'waiting' or state = 'cancel'");
 			} else if (method.equals("done")) {
 				sql.append("state = 'done'");
 			} else if (method.equals("delivery")) {

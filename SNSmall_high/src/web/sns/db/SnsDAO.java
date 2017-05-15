@@ -355,5 +355,9 @@ public class SnsDAO {
 			
 			return paymentList;
 		}//getPaymentList()
+		
+		
+
+		
 	
 }

@@ -157,8 +157,7 @@ function sendSns(sns, url, txt)
       }
  
     </script>
-    ²¥¸£¸£ Å×½ºÆ®
-<button onclick="sendSns('facebook', 'http://sunju635.cafe24.com/SNSmall/index.jsp', '¾È³ç')">ÆäºÏÆäºÏ</button>
+<button onclick="sendSns('facebook', 'http://sunju635.cafe24.com/SNSmall/index.jsp', '¾È³ç')">ÆäÀÌ½ººÏ</button>
 <button onclick="sendSns('kakaotalk', 'http://localhost:8080/Test/sns_test.jsp', '¾È³ç')">Ä«Ä«¿À</button>
 <button onclick="sendSns('twitter', 'http://localhost:8080/Test/sns_test.jsp', '¾È³ç')">Æ®À§ÅÍ</button>
 <button onclick="sendSns('me2day', 'http://localhost:8080/Test/sns_test.jsp', '¾È³ç')">me2day</button>

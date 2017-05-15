@@ -335,17 +335,23 @@ public class SnsDAO {
 		SnsBean sb = null;
 		try {
 			con = getConnection();
-				sql = "select * from payment";
-				pstmt = con.prepareStatement(sql);
-				rs = pstmt.executeQuery();
-				while (rs.next()) {
+			sql = "select * from payment";
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				try{
+					System.out.println(rs.getString("sns_id"));
 					sb = sdao.getSnsDetail(rs.getString("sns_id"));
-					if(sb.getCategory().equals(category)){
+					if (category.equals(sb.getCategory())) {
 						pb = new PaymentBean();
 						pb.setProduct_num(rs.getInt("product_num"));
 						pb.setAmount(rs.getInt("amount"));
 						list.add(pb);
 					}
+				}catch(Exception e){
+					e.printStackTrace();
+				}
+					
 			}
 		}catch(Exception e){e.printStackTrace();}
 		finally{if(rs!=null){try{rs.close();}catch(SQLException ex){}}

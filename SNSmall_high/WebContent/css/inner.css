@@ -298,3 +298,10 @@ a.list-group-item:hover, a.list-group-item:focus {
     background-color: #dedede !important;
 }
 
+/* Price */
+#standard{
+	display: block;
+    font-size: 25px;
+    line-height: 50px;
+}
+

@@ -126,6 +126,10 @@ List<Integer> popular_list= (List<Integer>)request.getAttribute("popular_list");
 int popular_size = (popular_list.size()>4) ? 4:popular_list.size();
 ProductDAO pdao = new ProductDAO();
 ProductBean pb;
+int all_price_rank = (Integer)request.getAttribute("all_price_rank");
+int cat_price_rank = (Integer)request.getAttribute("cat_price_rank");
+int all_amount_rank = (Integer)request.getAttribute("all_amount_rank");
+int cat_amount_rank = (Integer)request.getAttribute("cat_amount_rank");
 %>
 <!-- Page Content -->
 <div class="container">
@@ -209,27 +213,27 @@ ProductBean pb;
 			<div class="col-sm-6">
 				<h3>Star Skills</h3>
 				<div class="skill-bar">
-					<div class="skillbar clearfix " data-percent="90%">
+					<div class="skillbar clearfix " data-percent="<%=all_price_rank%>%">
 						<div class="skillbar-title">
 							<span>전체 판매액</span>
 						</div>
 						<div class="skillbar-bar"></div>
-						<div class="skill-bar-percent">90%</div>
+						<div class="skill-bar-percent"><%=all_price_rank%>%</div>
 					</div> <!-- End Skill Bar -->
-					<div class="skillbar clearfix" data-percent="85%">
+					<div class="skillbar clearfix" data-percent="<%=all_amount_rank%>%">
 						<div class="skillbar-title"><span>전체 판매량</span></div>
 						<div class="skillbar-bar"></div>
-						<div class="skill-bar-percent">85%</div>
+						<div class="skill-bar-percent"><%=all_amount_rank%>%</div>
 					</div> <!-- End Skill Bar -->
-					<div class="skillbar clearfix " data-percent="70%">
+					<div class="skillbar clearfix " data-percent="<%=cat_price_rank%>%">
 						<div class="skillbar-title"><span>주력 카테고리 내 판매액</span></div>
 						<div class="skillbar-bar"></div>
-						<div class="skill-bar-percent">70%</div>
+						<div class="skill-bar-percent"><%=cat_price_rank%>%</div>
 					</div>	
-					<div class="skillbar clearfix " data-percent="60%">
+					<div class="skillbar clearfix " data-percent="<%=cat_amount_rank%>%">
 						<div class="skillbar-title"><span>주력 카테고리 내 판매량</span></div>
 						<div class="skillbar-bar"></div>
-						<div class="skill-bar-percent">60%</div>
+						<div class="skill-bar-percent"><%=cat_amount_rank%>%</div>
 					</div>	
 					<div class="skillbar clearfix " data-percent="75%">
 						<div class="skillbar-title"><span>등급</span></div>

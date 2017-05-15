@@ -279,6 +279,82 @@ public class SnsDAO {
 		return list;
 
 	}
+	// sns 스타가 판매한 물품  return product_num
+	public List<PaymentBean> snsProductList(String sns_id) {
+		List<PaymentBean> list = new ArrayList<PaymentBean>();
+		PaymentBean pb;
+		try {
+			con = getConnection();
+				sql = "select * from payment where sns_id=?";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, sns_id);
+				rs = pstmt.executeQuery();
+				while (rs.next()) {
+					pb = new PaymentBean();
+					pb.setProduct_num(rs.getInt("product_num"));
+					pb.setAmount(rs.getInt("amount"));
+					list.add(pb);
+			}
+		}catch(Exception e){e.printStackTrace();}
+		finally{if(rs!=null){try{rs.close();}catch(SQLException ex){}}
+		if(pstmt!=null){try{pstmt.close();}catch(SQLException ex){}}
+		if(con!=null){try{con.close();}catch(SQLException ex){}}}
+		return list;
+		
+	}
+	
+	// 모든 sns 스타가 판매한 물품
+	public List<PaymentBean> snsProductList() {
+		List<PaymentBean> list = new ArrayList<PaymentBean>();
+		PaymentBean pb;
+		try {
+			con = getConnection();
+				sql = "select * from payment";
+				pstmt = con.prepareStatement(sql);
+				rs = pstmt.executeQuery();
+				while (rs.next()) {
+					pb = new PaymentBean();
+					pb.setProduct_num(rs.getInt("product_num"));
+					pb.setAmount(rs.getInt("amount"));
+					list.add(pb);
+			}
+		}catch(Exception e){e.printStackTrace();}
+		finally{if(rs!=null){try{rs.close();}catch(SQLException ex){}}
+		if(pstmt!=null){try{pstmt.close();}catch(SQLException ex){}}
+		if(con!=null){try{con.close();}catch(SQLException ex){}}}
+		return list;
+		
+	}
+	
+
+	//해당 카테고리 sns star list
+	public List<PaymentBean> snsProductListByCat(String category) {
+		List<PaymentBean> list = new ArrayList<PaymentBean>();
+		PaymentBean pb;
+		SnsDAO sdao = new SnsDAO();
+		SnsBean sb = null;
+		try {
+			con = getConnection();
+				sql = "select * from payment";
+				pstmt = con.prepareStatement(sql);
+				rs = pstmt.executeQuery();
+				while (rs.next()) {
+					sb = sdao.getSnsDetail(rs.getString("sns_id"));
+					if(sb.getCategory().equals(category)){
+						pb = new PaymentBean();
+						pb.setProduct_num(rs.getInt("product_num"));
+						pb.setAmount(rs.getInt("amount"));
+						list.add(pb);
+					}
+			}
+		}catch(Exception e){e.printStackTrace();}
+		finally{if(rs!=null){try{rs.close();}catch(SQLException ex){}}
+		if(pstmt!=null){try{pstmt.close();}catch(SQLException ex){}}
+		if(con!=null){try{con.close();}catch(SQLException ex){}}}
+		return list;
+	}
+		
+	
 	
 	public void SnsUpdate(SnsBean sb,String id){
 		

@@ -74,7 +74,6 @@ function more() {
 <jsp:include page="../inc/header.jsp"/>
 <%
 String type = (String)session.getAttribute("type");
-System.out.println(type);
 String id = (String)session.getAttribute("id");
 %>
 <!-- Page Content -->

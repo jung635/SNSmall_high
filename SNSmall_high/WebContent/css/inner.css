@@ -134,7 +134,7 @@ a{
     background: #ffffff;
     color: #0073E9;
 }
-#tab #m_proInfo.active{
+#tab #t_policy_info.active{
 	border: 2px solid #0073E9;
     border-bottom-color: #ffffff;
     margin-bottom: -2px;
@@ -158,6 +158,7 @@ a{
 	overflow: hidden;
 	margin: 100px 0;
 	min-height: 380px;
+	border: solid 1px black;
 }
 #skill{
 	overflow: hidden;
@@ -253,6 +254,7 @@ a{
 .socials{
     margin-top: 30px;
 }
+
 /* pay */
 #buyer, #product, #pay{
     width: 900px;

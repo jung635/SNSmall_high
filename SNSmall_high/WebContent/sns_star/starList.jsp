@@ -84,7 +84,7 @@ List<SnsBean> list = (List<SnsBean>)request.getAttribute("list");
 						</div>
 						<div id="star_list_detail">
 							<h3><a href="SnsDetailAction.sn?sns_id=<%=sb.getSns_id()%>"><%=sb.getName() %></a>
-							<small><%=sb.getCategory() %></small></h3>
+							<small><%=sb.getCategory() %>/<%=sb.getRank() %></small></h3>
 							<p><%=sb.getContent() %></p>
 						</div>
 						<div class="socials">

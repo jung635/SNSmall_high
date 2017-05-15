@@ -29,6 +29,7 @@ public class SnsDetailAction implements Action{
 		int cat_price_rank = 0;
 		int all_amount_rank = 0;
 		int cat_amount_rank = 0;
+		int rank_percent = 0;
 		
 		SnsDAO sdao = new SnsDAO();
 	
@@ -62,21 +63,26 @@ public class SnsDetailAction implements Action{
 		
 		//카테고리 내 가격, 총 량 랭크 계산
 		List<PaymentBean> payment_list_catstar = sdao.snsProductListByCat(sb.getCategory());
-		System.out.println(payment_list_catstar.size());
 		for(int i=0; i<payment_list_catstar.size(); i++){
 			pb = payment_list_catstar.get(i);
 			ProductBean prob = pdao.getProduct(pb.getProduct_num());
 			all_price_catstar += prob.getPrice()*pb.getAmount();
 			all_amount_catstar += pb.getAmount();
 		}
-		System.out.println(all_price_catstar);
-		System.out.println(all_price);
-		System.out.println(all_amount_catstar);
 		
 		all_price_rank = (int)((double)all_price/(double)all_price_allstar*100);
 		cat_price_rank = (int)((double)all_price/(double)all_price_catstar*100);
 		all_amount_rank = (int)((double)all_amount/(double)all_amount_allstar*100);
 		cat_amount_rank = (int)((double)all_amount/(double)all_amount_catstar*100);
+		
+		//rank 퍼센트
+		if(sb.getRank().equals("basic")){
+			rank_percent = 30;
+		}else if(sb.getRank().equals("plus")){
+			rank_percent = 70;
+		}else{
+			rank_percent = 100;
+		}
 		
 
 		request.setAttribute("sb", sb);
@@ -86,6 +92,7 @@ public class SnsDetailAction implements Action{
 		request.setAttribute("cat_amount_rank", cat_amount_rank);
 		request.setAttribute("latest_list", latest_list);
 		request.setAttribute("popular_list", popular_list);
+		request.setAttribute("rank_percent", rank_percent);
 		
 		ActionForward forward = new ActionForward();
 		forward.setPath("./sns_star/detail.jsp");

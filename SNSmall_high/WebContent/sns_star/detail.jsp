@@ -130,6 +130,7 @@ int all_price_rank = (Integer)request.getAttribute("all_price_rank");
 int cat_price_rank = (Integer)request.getAttribute("cat_price_rank");
 int all_amount_rank = (Integer)request.getAttribute("all_amount_rank");
 int cat_amount_rank = (Integer)request.getAttribute("cat_amount_rank");
+int rank_percent = (Integer)request.getAttribute("rank_percent");
 %>
 <!-- Page Content -->
 <div class="container">
@@ -138,7 +139,7 @@ int cat_amount_rank = (Integer)request.getAttribute("cat_amount_rank");
         <div class="row">
 			<div class="col-lg-12">
                 <h1 class="page-header"><%=sb.getName() %>
-                    <small><%=sb.getCategory() %></small>
+                    <small><%=sb.getCategory() %>/<%=sb.getRank() %></small>
                 </h1>
             </div>
         </div>
@@ -152,8 +153,8 @@ int cat_amount_rank = (Integer)request.getAttribute("cat_amount_rank");
                 <h3>상세 정보</h3>
                 <ul>
                     <li>이름:<%=sb.getName()  %></li>
-                    <li>Dolor Sit Amet</li>
-                    <li>Consectetur</li>
+                    <li>주력 카테고리: <%=sb.getCategory() %></li>
+                    <li>등급: <%=sb.getRank() %></li>
                     <li>Adipiscing Elit</li>
                 </ul>
                  <h3>자기 소개</h3>
@@ -235,10 +236,10 @@ int cat_amount_rank = (Integer)request.getAttribute("cat_amount_rank");
 						<div class="skillbar-bar"></div>
 						<div class="skill-bar-percent"><%=cat_amount_rank%>%</div>
 					</div>	
-					<div class="skillbar clearfix " data-percent="75%">
+					<div class="skillbar clearfix " data-percent=<%=rank_percent%>%>
 						<div class="skillbar-title"><span>등급</span></div>
 						<div class="skillbar-bar"></div>
-						<div class="skill-bar-percent">75%</div>
+						<div class="skill-bar-percent"><%=rank_percent%>%</div>
 					</div> <!-- End Skill Bar -->
 				</div>
 			</div>

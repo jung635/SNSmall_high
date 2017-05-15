@@ -55,6 +55,7 @@ public class SnsDAO {
 				sb.setTwitter(rs.getString("twitter"));
 				sb.setBlog(rs.getString("blog"));
 				sb.setEtc(rs.getString("etc"));
+				sb.setRank(rs.getString("rank"));
 			}
 		} catch (Exception e) {e.printStackTrace();
 		} finally {if (rs != null) {try {rs.close();} catch (Exception ex) {}}
@@ -191,6 +192,7 @@ public class SnsDAO {
 				sb.setTwitter(rs.getString("twitter"));
 				sb.setBlog(rs.getString("blog"));
 				sb.setEtc(rs.getString("etc"));
+				sb.setRank(rs.getString("rank"));
 
 				list.add(sb);
 			}
@@ -260,6 +262,7 @@ public class SnsDAO {
 				sb.setTwitter(rs.getString("twitter"));
 				sb.setBlog(rs.getString("blog"));
 				sb.setEtc(rs.getString("etc"));
+				sb.setRank(rs.getString("rank"));
 
 				list.add(sb);
 			}
@@ -450,7 +453,6 @@ public class SnsDAO {
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
 				try{
-					System.out.println(rs.getString("sns_id"));
 					sb = sdao.getSnsDetail(rs.getString("sns_id"));
 					if (category.equals(sb.getCategory())) {
 						pb = new PaymentBean();

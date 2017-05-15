@@ -50,6 +50,11 @@ public class SnsDAO {
 				sb.setSell(rs.getInt("sell"));
 				sb.setSns_profit(rs.getInt("sns_profit"));
 				sb.setCategory(rs.getString("category"));
+				sb.setFacebook(rs.getString("facebook"));
+				sb.setInstagram(rs.getString("instagram"));
+				sb.setTwitter(rs.getString("twitter"));
+				sb.setBlog(rs.getString("blog"));
+				sb.setEtc(rs.getString("etc"));
 			}
 		} catch (Exception e) {e.printStackTrace();
 		} finally {if (rs != null) {try {rs.close();} catch (Exception ex) {}}
@@ -140,6 +145,11 @@ public class SnsDAO {
 				sb.setSns_id(rs.getString("sns_id"));
 				sb.setSns_profit(rs.getInt("sns_profit"));
 				sb.setCategory(rs.getString("category"));
+				sb.setFacebook(rs.getString("facebook"));
+				sb.setInstagram(rs.getString("instagram"));
+				sb.setTwitter(rs.getString("twitter"));
+				sb.setBlog(rs.getString("blog"));
+				sb.setEtc(rs.getString("etc"));
 
 				list.add(sb);
 			}
@@ -269,6 +279,88 @@ public class SnsDAO {
 		return list;
 
 	}
+	// sns 스타가 판매한 물품  return product_num
+	public List<PaymentBean> snsProductList(String sns_id) {
+		List<PaymentBean> list = new ArrayList<PaymentBean>();
+		PaymentBean pb;
+		try {
+			con = getConnection();
+				sql = "select * from payment where sns_id=?";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, sns_id);
+				rs = pstmt.executeQuery();
+				while (rs.next()) {
+					pb = new PaymentBean();
+					pb.setProduct_num(rs.getInt("product_num"));
+					pb.setAmount(rs.getInt("amount"));
+					list.add(pb);
+			}
+		}catch(Exception e){e.printStackTrace();}
+		finally{if(rs!=null){try{rs.close();}catch(SQLException ex){}}
+		if(pstmt!=null){try{pstmt.close();}catch(SQLException ex){}}
+		if(con!=null){try{con.close();}catch(SQLException ex){}}}
+		return list;
+		
+	}
+	
+	// 모든 sns 스타가 판매한 물품
+	public List<PaymentBean> snsProductList() {
+		List<PaymentBean> list = new ArrayList<PaymentBean>();
+		PaymentBean pb;
+		try {
+			con = getConnection();
+				sql = "select * from payment";
+				pstmt = con.prepareStatement(sql);
+				rs = pstmt.executeQuery();
+				while (rs.next()) {
+					pb = new PaymentBean();
+					pb.setProduct_num(rs.getInt("product_num"));
+					pb.setAmount(rs.getInt("amount"));
+					list.add(pb);
+			}
+		}catch(Exception e){e.printStackTrace();}
+		finally{if(rs!=null){try{rs.close();}catch(SQLException ex){}}
+		if(pstmt!=null){try{pstmt.close();}catch(SQLException ex){}}
+		if(con!=null){try{con.close();}catch(SQLException ex){}}}
+		return list;
+		
+	}
+	
+
+	//해당 카테고리 sns star list
+	public List<PaymentBean> snsProductListByCat(String category) {
+		List<PaymentBean> list = new ArrayList<PaymentBean>();
+		PaymentBean pb;
+		SnsDAO sdao = new SnsDAO();
+		SnsBean sb = null;
+		try {
+			con = getConnection();
+			sql = "select * from payment";
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				try{
+					System.out.println(rs.getString("sns_id"));
+					sb = sdao.getSnsDetail(rs.getString("sns_id"));
+					if (category.equals(sb.getCategory())) {
+						pb = new PaymentBean();
+						pb.setProduct_num(rs.getInt("product_num"));
+						pb.setAmount(rs.getInt("amount"));
+						list.add(pb);
+					}
+				}catch(Exception e){
+					e.printStackTrace();
+				}
+					
+			}
+		}catch(Exception e){e.printStackTrace();}
+		finally{if(rs!=null){try{rs.close();}catch(SQLException ex){}}
+		if(pstmt!=null){try{pstmt.close();}catch(SQLException ex){}}
+		if(con!=null){try{con.close();}catch(SQLException ex){}}}
+		return list;
+	}
+		
+	
 	
 	public void SnsUpdate(SnsBean sb,String id){
 		
@@ -345,5 +437,9 @@ public class SnsDAO {
 			
 			return paymentList;
 		}//getPaymentList()
+		
+		
+
+		
 	
 }

@@ -134,7 +134,7 @@ a{
     background: #ffffff;
     color: #0073E9;
 }
-#tab #m_proInfo.active{
+#tab #t_policy_info.active{
 	border: 2px solid #0073E9;
     border-bottom-color: #ffffff;
     margin-bottom: -2px;
@@ -147,10 +147,18 @@ a{
 #sell_latest_box{
 	overflow: hidden;
 	margin: 100px 0;
+	min-height: 380px;
 }
 #sell_popular_box{
 	overflow: hidden;
 	margin: 100px 0;
+	min-height: 380px;
+}
+#policy_info_box{
+	overflow: hidden;
+	margin: 100px 0;
+	min-height: 380px;
+	border: solid 1px black;
 }
 #skill{
 	overflow: hidden;
@@ -207,13 +215,13 @@ a{
 #our-team .socials a .fa-twitter {
     background: #29C5F6 !important;
 }
-#our-team .socials a .fa-google-plus {
+#our-team .socials a .fa-instagram {
     background: #D13D2F !important;
 }
-#our-team .socials a .fa-dribbble {
+#our-team .socials a .fa-bold {
     background: #FF5C93 !important;
 }
-#our-team .socials a .fa-linkedin {
+#our-team .socials a .fa-smile-o {
     background: #006DC0 !important;
 }
 #our-team .socials a .fa-facebook:hover {
@@ -224,15 +232,15 @@ a{
     border-radius: 0px;
     border: solid 1px !important;
 }
-#our-team .socials a .fa-google-plus:hover {
+#our-team .socials a .fa-instagram:hover {
     border-radius: 0px;
     border: solid 1px !important;
 }
-#our-team .socials a .fa-dribbble:hover {
+#our-team .socials a .fa-bold:hover {
     border-radius: 0px;
     border: solid 1px !important;
 }
-#our-team .socials a .fa-linkedin:hover {
+#our-team .socials a .fa-smile-o:hover {
     border-radius: 0px;
     border: solid 1px !important;
 }
@@ -246,6 +254,7 @@ a{
 .socials{
     margin-top: 30px;
 }
+
 /* pay */
 #buyer, #product, #pay{
     width: 900px;
@@ -281,12 +290,18 @@ a{
 }
 #showbtn:hover #show_content{
      display: block; 
-    /* display: none; */
 }
 .list-group {
     position: relative;
 }
 a.list-group-item:hover, a.list-group-item:focus {
     background-color: #dedede !important;
+}
+
+/* Price */
+#standard{
+	display: block;
+    font-size: 25px;
+    line-height: 50px;
 }
 

@@ -7,6 +7,9 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import web.payment.db.PaymentBean;
+import web.product.db.ProductBean;
+import web.product.db.ProductDAO;
 import web.sns.db.SnsBean;
 import web.sns.db.SnsDAO;
 
@@ -15,16 +18,72 @@ public class SnsDetailAction implements Action{
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String sns_id = request.getParameter("sns_id");
+
+		int all_price = 0;
+		int all_amount = 0;
+		int all_price_allstar = 0;
+		int all_price_catstar = 0;
+		int all_amount_allstar = 0;
+		int all_amount_catstar = 0;
+		int all_price_rank = 0;
+		int cat_price_rank = 0;
+		int all_amount_rank = 0;
+		int cat_amount_rank = 0;
 		
 		SnsDAO sdao = new SnsDAO();
+	
+		//디테일 정보
 		SnsBean sb = sdao.getSnsDetail(sns_id);
+		
+		//최근, 가장 많이 판매한 리스트
 		List<Integer> latest_list = sdao.snsProductList(sns_id, "date");
 		List<Integer> popular_list = sdao.snsProductList(sns_id, "sell");
-		//System.out.println("size: "+popular_list.size());
-		for(int i=0; i<popular_list.size(); i++){
-		//System.out.println("popular_get: "+popular_list.get(i));
+		
+		//전체 가격, 총 량 랭크 계산
+		List<PaymentBean> payment_list = sdao.snsProductList(sns_id);
+		ProductDAO pdao = new ProductDAO();
+		PaymentBean pb;
+		for(int i=0; i<payment_list.size(); i++){
+			pb = payment_list.get(i);
+			ProductBean prob = pdao.getProduct(pb.getProduct_num());
+			all_price += prob.getPrice()*pb.getAmount();
+			all_amount += pb.getAmount();
 		}
+
+		List<PaymentBean> payment_list_allstar = sdao.snsProductList();
+		for(int i=0; i<payment_list_allstar.size(); i++){
+			pb = payment_list_allstar.get(i);
+			ProductBean prob = pdao.getProduct(pb.getProduct_num());
+			all_price_allstar += prob.getPrice()*pb.getAmount();
+			all_amount_allstar += pb.getAmount();
+		}
+		
+
+		
+		//카테고리 내 가격, 총 량 랭크 계산
+		List<PaymentBean> payment_list_catstar = sdao.snsProductListByCat(sb.getCategory());
+		System.out.println(payment_list_catstar.size());
+		for(int i=0; i<payment_list_catstar.size(); i++){
+			pb = payment_list_catstar.get(i);
+			ProductBean prob = pdao.getProduct(pb.getProduct_num());
+			all_price_catstar += prob.getPrice()*pb.getAmount();
+			all_amount_catstar += pb.getAmount();
+		}
+		System.out.println(all_price_catstar);
+		System.out.println(all_price);
+		System.out.println(all_amount_catstar);
+		
+		all_price_rank = (int)((double)all_price/(double)all_price_allstar*100);
+		cat_price_rank = (int)((double)all_price/(double)all_price_catstar*100);
+		all_amount_rank = (int)((double)all_amount/(double)all_amount_allstar*100);
+		cat_amount_rank = (int)((double)all_amount/(double)all_amount_catstar*100);
+		
+
 		request.setAttribute("sb", sb);
+		request.setAttribute("all_price_rank", all_price_rank);
+		request.setAttribute("cat_price_rank", cat_price_rank);
+		request.setAttribute("all_amount_rank", all_amount_rank);
+		request.setAttribute("cat_amount_rank", cat_amount_rank);
 		request.setAttribute("latest_list", latest_list);
 		request.setAttribute("popular_list", popular_list);
 		

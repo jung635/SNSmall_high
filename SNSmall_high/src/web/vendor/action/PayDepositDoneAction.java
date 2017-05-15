@@ -26,7 +26,7 @@ public class PayDepositDoneAction implements Action{
 		pdao.addPoint((int)(prob.getPrice()*0.01), pb.getClient_id());
 		
 		ActionForward forward = new ActionForward();
-		forward.setPath("DepositList.ve");
+		forward.setPath("PayList.pa");
 		forward.setRedirect(false);
 		return forward;
 	}

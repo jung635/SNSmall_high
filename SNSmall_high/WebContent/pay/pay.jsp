@@ -74,7 +74,6 @@ function card(){
 	price = document.getElementById('price').innerText;
 	point = document.getElementById('myPoint').innerText;
 	message = document.getElementById('message').value;
-
 	IMP.init('imp29540450');
 	IMP.request_pay({
 	    pg : 'danal_tpay', //아임포트 관리자에서 danal_tpay를 기본PG로 설정하신 경우는 생략 가능
@@ -172,13 +171,13 @@ int list_size = product_list.size();
 int price=0;
 %>
 <form action="" name="fr">
-<input type="hidden" name="amount_str" value=<%=amount_str %>>
-<input type="hidden" name="product_str" value=<%=product_str %>>
-<input type="hidden" name="vendorId_str" value=<%=vendorId_str %>>
-<input type="hidden" name="snsId_str" value=<%=snsId_str %>>
-<input type="hidden" name="option1_str" value=<%=option1_str %>>
-<input type="hidden" name="option2_str" value=<%=option2_str %>>
-<input type="hidden" name="option3_str" value=<%=option3_str %>>
+<input type="hidden" name="amount_str" value='<%=amount_str %>'>
+<input type="hidden" name="product_str" value='<%=product_str %>'>
+<input type="hidden" name="vendorId_str" value='<%=vendorId_str %>'>
+<input type="text" name="snsId_str" value='<%=snsId_str %>'>
+<input type="hidden" name="option1_str" value='<%=option1_str %>'>
+<input type="hidden" name="option2_str" value='<%=option2_str %>'>
+<input type="hidden" name="option3_str" value='<%=option3_str %>'>
 </form>
 <div class="container">
 	<div class="content">

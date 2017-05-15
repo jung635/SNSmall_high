@@ -30,7 +30,7 @@ public class PayCancelAction implements Action {
 		pdao.addPoint(pb.getUsedPoint(), pb.getClient_id());
 		out.println("<script>");
 		out.println("alert('취소가 완료되었습니다.');");
-		out.println("location.href='CancelList.ve';");
+		out.println("location.href='PayList.pa';");
 		out.println("</script>");
 		return null;
 	}

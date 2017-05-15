@@ -48,9 +48,10 @@ public class SearchSnsListAction implements Action{
 	 	request.setAttribute("endPage", endPage);
 	 	request.setAttribute("category", category);
 	 	request.setAttribute("order", order);
+	 	request.setAttribute("search", search);
 	 	
 	 	ActionForward forward = new ActionForward();
-	 	forward.setPath("./sns_star/starList.jsp");
+	 	forward.setPath("./sns_star/searchStarList.jsp");
 	 	forward.setRedirect(false);
 		return forward;
 	}

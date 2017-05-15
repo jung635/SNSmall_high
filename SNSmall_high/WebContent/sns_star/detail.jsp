@@ -37,7 +37,7 @@ function changePos() {
 	var nav_y = $('#navigation .navbar').height()+8;
 	var sell_popular_y = $('#sell_popular_box').offset().top + $('#sell_popular_box').height()-100;
 	var sell_latest_y = $('#sell_latest_box').offset().top + $('#sell_latest_box').height()-100;
-	/*var proInfo_y = $('#product_info').offset().top + $('#product_info').height()-100; */
+	var policy_info_y = $('#policy_info_box').offset().top + $('#policy_info_box').height()-100; 
     var tab = document.getElementById("tab");
     if (window.pageYOffset > 750) {
         tab.style.position = "absolute";
@@ -58,11 +58,11 @@ function changePos() {
         }else{
         	$('#t_sell_latest').removeClass('active');
         }
-        /* if (window.pageYOffset > sell_latest_y&&window.pageYOffset<proInfo_y) {
-        	$('#m_proInfo').addClass('active');
+         if (window.pageYOffset > (sell_latest_y)&&window.pageYOffset<policy_info_y) {
+        	$('#t_policy_info').addClass('active');
         }else{
-        	$('#m_proInfo').removeClass('active');
-        } */
+        	$('#t_policy_info').removeClass('active');
+        } 
     } else {
         tab.style.position = "";
         tab.style.top = "";
@@ -157,11 +157,17 @@ ProductBean pb;
             </div>
             <section id="our-team">
 				<div class="socials">
-					<a href="#"><i class="fa fa-facebook"></i></a>
-					<a href="#"><i class="fa fa-twitter"></i></a>
-					<a href="#"><i class="fa fa-instagram"></i></a>
-					<a href="#"><i class="fa fa-bold"></i></a>
-					<a href="#"><i class="fa fa-smile-o"></i></a>
+							<%if(sb.getFacebook()!=null){%>
+								<a href="<%=sb.getFacebook()%>"><i class="fa fa-facebook"></i></a>
+							<%}if(sb.getTwitter()!=null){%>							
+							<a href="<%=sb.getTwitter()%>"><i class="fa fa-twitter"></i></a>
+							<%}if(sb.getInstagram()!=null){%>			
+							<a href="<%=sb.getInstagram()%>"><i class="fa fa-instagram"></i></a>
+							<%}if(sb.getBlog()!=null){%>	
+							<a href="<%=sb.getBlog()%>"><i class="fa fa-bold"></i></a>
+							<%}if(sb.getEtc()!=null){%>	
+							<a href="<%=sb.getEtc()%>"><i class="fa fa-smile-o"></i></a>
+							<%} %>
 				</div>
 			</section>
         </div>
@@ -192,7 +198,7 @@ ProductBean pb;
 			<a href="#skill" id="t_skill">스타 스킬 확인</a>
 			<a href="#sell_popular" id="t_sell_popular">많이 판매한 상품</a>
 			<a href="#sell_latest" id="t_sell_latest">최근 판매한 상품</a>
-			<a href="#product_info" id="m_proInfo">구매 사항 확인</a>
+			<a href="#policy_info" id="t_policy_info">안내사항 확인</a>
 		</div>
         <div id="bigimg_active">
         	<img src="" id="big_img">
@@ -267,6 +273,22 @@ ProductBean pb;
                	</div>
             </div> <%} %>
 		</div>
+		
+		<a name="policy_info"></a>
+		<div class="well" id="policy_info_box">
+			<div><h3>최근 판매한 상품</h3></div>
+			<%for(int i=0; i<latest_size; i++){
+				pb = pdao.getProduct(latest_list.get(i));%>
+			<div class="col-sm-3 col-xs-6">
+				<a href="#">
+					<img class="img-responsive portfolio-item" id="sns_imgs" src="./vendor_img/<%=pb.getMain_img() %>" alt="" onclick="view(this)">
+               	 </a>
+               	 <div>
+               		이름: <%=pb.getSubject() %><br>
+               		가격: <%=pb.getPrice() %>
+               	</div>
+            </div> <%} %>
+		</div>		
         <!-- /.row -->
         <hr>
         <!-- Footer -->

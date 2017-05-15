@@ -50,6 +50,11 @@ public class SnsDAO {
 				sb.setSell(rs.getInt("sell"));
 				sb.setSns_profit(rs.getInt("sns_profit"));
 				sb.setCategory(rs.getString("category"));
+				sb.setFacebook(rs.getString("facebook"));
+				sb.setInstagram(rs.getString("instagram"));
+				sb.setTwitter(rs.getString("twitter"));
+				sb.setBlog(rs.getString("blog"));
+				sb.setEtc(rs.getString("etc"));
 			}
 		} catch (Exception e) {e.printStackTrace();
 		} finally {if (rs != null) {try {rs.close();} catch (Exception ex) {}}
@@ -140,6 +145,11 @@ public class SnsDAO {
 				sb.setSns_id(rs.getString("sns_id"));
 				sb.setSns_profit(rs.getInt("sns_profit"));
 				sb.setCategory(rs.getString("category"));
+				sb.setFacebook(rs.getString("facebook"));
+				sb.setInstagram(rs.getString("instagram"));
+				sb.setTwitter(rs.getString("twitter"));
+				sb.setBlog(rs.getString("blog"));
+				sb.setEtc(rs.getString("etc"));
 
 				list.add(sb);
 			}

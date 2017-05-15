@@ -147,10 +147,17 @@ a{
 #sell_latest_box{
 	overflow: hidden;
 	margin: 100px 0;
+	min-height: 380px;
 }
 #sell_popular_box{
 	overflow: hidden;
 	margin: 100px 0;
+	min-height: 380px;
+}
+#policy_info_box{
+	overflow: hidden;
+	margin: 100px 0;
+	min-height: 380px;
 }
 #skill{
 	overflow: hidden;

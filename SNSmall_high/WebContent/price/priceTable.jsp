@@ -52,12 +52,12 @@
                     </div>
 
                     <ul class="list-group">
-                        <li class="list-group-item"><span id="standard"><strong>100만원 이상</strong></span> 판매액</li>
+                        <li class="list-group-item"><span id="standard"><strong>기본</strong></span> 판매액</li>
                         <li class="list-group-item"><strong>5%</strong> Profit</li>
 <!--                         <li class="list-group-item"><strong>Unlimited</strong> Email Accounts</li>
                         <li class="list-group-item"><strong>10GB</strong> Disk Space</li>
                         <li class="list-group-item"><strong>100GB</strong> Monthly Bandwidth</li>
- -->                        <li class="list-group-item"><a href="#" class="btn btn-primary">Basic SNS스타 보기</a>
+ -->                        <li class="list-group-item"><a href="snsList.sn?category=basic&order=sell" class="btn btn-primary">Basic SNS스타 보기</a>
                         </li>
                     </ul>
                 </div>
@@ -70,7 +70,7 @@
                     <ul class="list-group">
                         <li class="list-group-item"><span id="standard"><strong>500만원 이상</strong></span> 판매액</li>
                         <li class="list-group-item"><strong>10%</strong> Profit</li>
-                        <li class="list-group-item"><a href="#" class="btn btn-primary">Plus SNS스타 보기</a>
+                        <li class="list-group-item"><a href="snsList.sn?category=plus&order=sell" class="btn btn-primary">Plus SNS스타 보기</a>
                         </li>
                     </ul>
                 </div>
@@ -83,7 +83,7 @@
                     <ul class="list-group">
                         <li class="list-group-item"><span id="standard"><strong>1000만원 이상</strong></span> 판매액</li>
                         <li class="list-group-item"><strong>20%</strong> Profit</li>
-                        <li class="list-group-item"><a href="#" class="btn btn-primary">Premium SNS스타 보기</a>
+                        <li class="list-group-item"><a href="snsList.sn?category=premium&order=sell" class="btn btn-primary">Premium SNS스타 보기</a>
                         </li>
                     </ul>
                 </div>

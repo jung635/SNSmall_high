@@ -254,6 +254,23 @@ a{
 .socials{
     margin-top: 30px;
 }
+.dropdown-content-rank {
+    display: none;
+    position: absolute;
+    z-index: 1;
+    background: #fff;
+}
+.dropdown-content-rank a{
+    line-height: 30px;
+    padding: 7px 30% !important;
+	text-align: center;
+}
+.dropdown-content-rank a:hover {
+	background-color: #ddd !important;
+}
+.dropbtn:hover .dropdown-content-rank{
+    display: block;
+}
 
 /* pay */
 #buyer, #product, #pay{

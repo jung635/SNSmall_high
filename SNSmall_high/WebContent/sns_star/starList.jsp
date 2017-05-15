@@ -61,9 +61,20 @@ List<SnsBean> list = (List<SnsBean>)request.getAttribute("list");
 			<div id="order"><ul id="order_option"><li style="font-weight: bold;color: darkblue;">정렬방법</li>
           	<li><a href="snsList.sn?category=<%=category %>&order=date">최신순</a></li>
           	<li><a href="snsList.sn?category=<%=category %>&order=sell">판매량순</a></li>
-          	<li><a href="snsList.sn?category=<%=category %>&order=sns_profit">판매액순</a></li></ul>
+          	<li><a href="snsList.sn?category=<%=category %>&order=sns_profit">판매액순</a></li>
+          	<li class="dropbtn"><a href="snsList.sn?category=<%=category %>&order=sns_profit">등급별</a>
+  				<div class="dropdown-content-rank">
+  				<a href="snsList.sn?category=basic&order=sell">basic</a>
+  				<a href="snsList.sn?category=plus&order=sell">plus</a>
+  				<a href="snsList.sn?category=premium&order=sell">premium</a>
+				</div>
+			</li>
+          	</ul>
           	</div>
           	<div id="our-team">
+          	<%if(list==null){ %>
+          		리스트가 없습니다.
+          	<%}else{ %>
 	            <% for(int i=0; i<list.size(); i++){
 	            	SnsBean sb = list.get(i);%>
 	            <div class="col-sm-6 col-md-3">
@@ -91,8 +102,8 @@ List<SnsBean> list = (List<SnsBean>)request.getAttribute("list");
 						</div>
 					</div>
 				</div>
-	            <%}%>
-	            <div class="clear"></div>
+	            <%}}%>
+        		<div class="clear"></div>
 				<div class="row text-center">
 					<div class="col-lg-12">
 	                	<ul class="pagination">
@@ -132,7 +143,15 @@ List<SnsBean> list = (List<SnsBean>)request.getAttribute("list");
 	                    	<%}} %>
 	                	</ul>
 	            	</div>
+		   			<div class="clear"></div>
+		            <div>
+		        		<form action="SearchSnsList.sn">
+		        			<input type="text" name="search">
+		        			<input type="submit" value="검색">
+	        			</form>
+	        		</div>
 	        	</div>
+
         	</div>
 		</div>
         <hr>

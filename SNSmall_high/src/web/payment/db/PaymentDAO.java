@@ -182,13 +182,14 @@ Connection con = null;
 		return usedPoint;
 	}
 
-	public void addSnsPay(int profit, String sns_id) {
+	public void addSnsPay(int profit, int amount, String sns_id) {
 		try {
 			con = getConnection();
-			sql = "update sns set sns_profit=sns_profit+?, sell=sell+1 where sns_id=? ";
+			sql = "update sns set sns_profit=sns_profit+?, sell=sell+? where sns_id=? ";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, profit);
-			pstmt.setString(2, sns_id);
+			pstmt.setInt(2, amount);
+			pstmt.setString(3, sns_id);
 			pstmt.executeUpdate();
 
 		} catch(Exception e){e.printStackTrace();}
@@ -197,12 +198,13 @@ Connection con = null;
 		if(con!=null){try{con.close();}catch(SQLException ex){}}}
 	}
 
-	public void subSnsPay(int profit, String sns_id) {
+	public void subSnsPay(int profit, int amount, String sns_id) {
 		try {
 			con = getConnection();
-			sql = "update sns set sns_profit=sns_profit-?, sell=sell-1 where sns_id=? ";
+			sql = "update sns set sns_profit=sns_profit-?, sell=sell-? where sns_id=? ";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, profit);
+			pstmt.setInt(2, amount);
 			pstmt.setString(2, sns_id);
 			pstmt.executeUpdate();
 
@@ -241,7 +243,7 @@ Connection con = null;
 		if(con!=null){try{con.close();}catch(SQLException ex){}}}
 	}
 
-	public void subAmount(int amount, int product_num) {
+	public void calAmount(int amount, int product_num) {
 		try {
 			con = getConnection();
 			sql = "update product set amount=amount-?, count=count+? where product_num=? ";
@@ -249,6 +251,32 @@ Connection con = null;
 			pstmt.setInt(1, amount);
 			pstmt.setInt(2, amount);
 			pstmt.setInt(3, product_num);
+			pstmt.executeUpdate();
+		} catch(Exception e){e.printStackTrace();}
+		finally{if(rs!=null){try{rs.close();}catch(SQLException ex){}}
+		if(pstmt!=null){try{pstmt.close();}catch(SQLException ex){}}
+		if(con!=null){try{con.close();}catch(SQLException ex){}}}
+	}
+	public void subAmount(int amount, int product_num) {
+		try {
+			con = getConnection();
+			sql = "update product set amount=amount-? where product_num=? ";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, amount);
+			pstmt.setInt(2, product_num);
+			pstmt.executeUpdate();
+		} catch(Exception e){e.printStackTrace();}
+		finally{if(rs!=null){try{rs.close();}catch(SQLException ex){}}
+		if(pstmt!=null){try{pstmt.close();}catch(SQLException ex){}}
+		if(con!=null){try{con.close();}catch(SQLException ex){}}}
+	}
+	public void addCount(int count, int product_num) {
+		try {
+			con = getConnection();
+			sql = "update product set amount=amount+? where product_num=? ";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, count);
+			pstmt.setInt(2, product_num);
 			pstmt.executeUpdate();
 		} catch(Exception e){e.printStackTrace();}
 		finally{if(rs!=null){try{rs.close();}catch(SQLException ex){}}

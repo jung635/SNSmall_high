@@ -90,6 +90,8 @@ public class PayCompleteAction implements Action {
 			list_pb.add(pb);
 			//사용한 포인트 빼기
 			pdao.subPoint(point_each, id);
+			//amount 빼기
+			pdao.subAmount(Integer.parseInt(amount[i]), Integer.parseInt(product[i]));
 
 			
 			if(method.equals("card")){
@@ -110,13 +112,13 @@ public class PayCompleteAction implements Action {
 				System.out.println("company_profit: "+company_profit);
 				System.out.println("add_point:" + add_point);
 				//sns profit 주기
-				pdao.addSnsPay(sns_profit, sns_id[i]);
+				pdao.addSnsPay(sns_profit, Integer.parseInt(amount[i]), sns_id[i]);
 				//vendor profit 주기
 				pdao.addVendorProfit(vendor_profit, vendor_id[i]);
 				//포인트 더하기
 				pdao.addPoint(add_point, id);
 				//amount 정리
-				pdao.subAmount(Integer.parseInt(amount[i]), Integer.parseInt(product[i]));
+				pdao.calAmount(Integer.parseInt(amount[i]), Integer.parseInt(product[i]));
 			}
 		}
 		

@@ -134,6 +134,19 @@ Connection con = null;
 		if(pstmt!=null){try{pstmt.close();}catch(SQLException ex){}}
 		if(con!=null){try{con.close();}catch(SQLException ex){}}}
 	}
+	
+	public void deletePayRequestWaiting(int num) {
+		try {
+			con = getConnection();
+			sql = "update payment set state='w_cancelHold' where num=? ";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, num);
+			pstmt.executeUpdate();
+		} catch(Exception e){e.printStackTrace();}
+		finally{if(rs!=null){try{rs.close();}catch(SQLException ex){}}
+		if(pstmt!=null){try{pstmt.close();}catch(SQLException ex){}}
+		if(con!=null){try{con.close();}catch(SQLException ex){}}}
+	}
 
 	public void subPoint(int point, String id) {
 		try {
@@ -182,14 +195,14 @@ Connection con = null;
 		return usedPoint;
 	}
 
-	public void addSnsPay(int price, String sns_id) {
+	public void addSnsPay(int profit, int amount, String sns_id) {
 		try {
 			con = getConnection();
-			int profit = (int) (price * 0.01);
-			sql = "update sns set sns_profit=sns_profit+?, sell=sell+1 where sns_id=? ";
+			sql = "update sns set sns_profit=sns_profit+?, sell=sell+? where sns_id=? ";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, profit);
-			pstmt.setString(2, sns_id);
+			pstmt.setInt(2, amount);
+			pstmt.setString(3, sns_id);
 			pstmt.executeUpdate();
 
 		} catch(Exception e){e.printStackTrace();}
@@ -198,13 +211,14 @@ Connection con = null;
 		if(con!=null){try{con.close();}catch(SQLException ex){}}}
 	}
 
-	public void subSnsPay(int profit, String sns_id) {
+	public void subSnsPay(int profit, int amount, String sns_id) {
 		try {
 			con = getConnection();
-			sql = "update sns set sns_profit=sns_profit-?, sell=sell-1 where sns_id=? ";
+			sql = "update sns set sns_profit=sns_profit-?, sell=sell-? where sns_id=? ";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, profit);
-			pstmt.setString(2, sns_id);
+			pstmt.setInt(2, amount);
+			pstmt.setString(3, sns_id);
 			pstmt.executeUpdate();
 
 		} catch(Exception e){e.printStackTrace();}
@@ -242,7 +256,7 @@ Connection con = null;
 		if(con!=null){try{con.close();}catch(SQLException ex){}}}
 	}
 
-	public void subAmount(int amount, int product_num) {
+	public void calAmount(int amount, int product_num) {
 		try {
 			con = getConnection();
 			sql = "update product set amount=amount-?, count=count+? where product_num=? ";
@@ -250,6 +264,59 @@ Connection con = null;
 			pstmt.setInt(1, amount);
 			pstmt.setInt(2, amount);
 			pstmt.setInt(3, product_num);
+			pstmt.executeUpdate();
+		} catch(Exception e){e.printStackTrace();}
+		finally{if(rs!=null){try{rs.close();}catch(SQLException ex){}}
+		if(pstmt!=null){try{pstmt.close();}catch(SQLException ex){}}
+		if(con!=null){try{con.close();}catch(SQLException ex){}}}
+	}
+	public void calAmountCancel(int amount, int product_num) {
+		try {
+			con = getConnection();
+			sql = "update product set amount=amount+?, count=count-? where product_num=? ";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, amount);
+			pstmt.setInt(2, amount);
+			pstmt.setInt(3, product_num);
+			pstmt.executeUpdate();
+		} catch(Exception e){e.printStackTrace();}
+		finally{if(rs!=null){try{rs.close();}catch(SQLException ex){}}
+		if(pstmt!=null){try{pstmt.close();}catch(SQLException ex){}}
+		if(con!=null){try{con.close();}catch(SQLException ex){}}}
+	}
+	public void subAmount(int amount, int product_num) {
+		try {
+			con = getConnection();
+			sql = "update product set amount=amount-? where product_num=? ";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, amount);
+			pstmt.setInt(2, product_num);
+			pstmt.executeUpdate();
+		} catch(Exception e){e.printStackTrace();}
+		finally{if(rs!=null){try{rs.close();}catch(SQLException ex){}}
+		if(pstmt!=null){try{pstmt.close();}catch(SQLException ex){}}
+		if(con!=null){try{con.close();}catch(SQLException ex){}}}
+	}
+	public void addAmount(int amount, int product_num) {
+		try {
+			con = getConnection();
+			sql = "update product set amount=amount+? where product_num=? ";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, amount);
+			pstmt.setInt(2, product_num);
+			pstmt.executeUpdate();
+		} catch(Exception e){e.printStackTrace();}
+		finally{if(rs!=null){try{rs.close();}catch(SQLException ex){}}
+		if(pstmt!=null){try{pstmt.close();}catch(SQLException ex){}}
+		if(con!=null){try{con.close();}catch(SQLException ex){}}}
+	}
+	public void addCount(int count, int product_num) {
+		try {
+			con = getConnection();
+			sql = "update product set count=count+? where product_num=? ";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, count);
+			pstmt.setInt(2, product_num);
 			pstmt.executeUpdate();
 		} catch(Exception e){e.printStackTrace();}
 		finally{if(rs!=null){try{rs.close();}catch(SQLException ex){}}
@@ -329,6 +396,40 @@ Connection con = null;
 
 		return pb;
 	}
+	public PaymentBean getPaymentByOrderNum(String order_num) {
+		PaymentBean pb = null;
+		try {
+			con = getConnection();
+			sql = "select * from payment where order_num = ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, order_num);
+			rs = pstmt.executeQuery();
+			
+			while (rs.next()) {
+				pb = new PaymentBean();
+				pb.setAmount(rs.getInt("amount"));
+				pb.setDate(rs.getDate("date"));
+				pb.setMessage(rs.getString("message"));
+				pb.setProduct_num(rs.getInt("product_num"));
+				pb.setOption1(rs.getString("option1"));
+				pb.setOption2(rs.getString("option2"));
+				pb.setOption3(rs.getString("option3"));
+				pb.setOrder_num(rs.getString("order_num"));
+				pb.setSns_id(rs.getString("sns_id"));
+				pb.setVendor_id(rs.getString("vendor_id"));
+				pb.setState(rs.getString("state"));
+				pb.setNum(rs.getInt("num"));
+				pb.setUsedPoint(rs.getInt("usedPoint"));
+				pb.setClient_id(rs.getString("client_id"));
+			}
+			
+		} catch(Exception e){e.printStackTrace();}
+		finally{if(rs!=null){try{rs.close();}catch(SQLException ex){}}
+		if(pstmt!=null){try{pstmt.close();}catch(SQLException ex){}}
+		if(con!=null){try{con.close();}catch(SQLException ex){}}}
+		
+		return pb;
+	}
 
 	public List<PaymentBean> getPaymentById(String client_id) {
 		List<PaymentBean> list = new ArrayList<>();
@@ -375,13 +476,13 @@ Connection con = null;
 		try {
 			con = getConnection();
 			if (method.equals("payDone")) {
-				sql.append("state = 'payDone' or state = 'delivery' or state = 'cancelHold' or state = 'waiting'");
+				sql.append("state = 'payDone' or state = 'delivery' or state = 'cancelHold' or state = 'waiting' or state = 'cancel' or state = 'w_cancelHold'");
 			} else if (method.equals("done")) {
 				sql.append("state = 'done'");
 			} else if (method.equals("delivery")) {
 				sql.append("state = 'delivery'");
 			} else if (method.equals("cancelHold")) {
-				sql.append("state = 'cancelHold'");
+				sql.append("state = 'cancelHold' or state = 'cancel' or state = 'w_cancelHold'");
 			} else if (method.equals("waiting")) {
 				sql.append("state = 'waiting'");
 			}
@@ -423,13 +524,13 @@ Connection con = null;
 		try {
 			con = getConnection();
 			if (method.equals("payDone")) {
-				sql.append("state = 'payDone' or state = 'delivery' or state = 'cancelHold' or state = 'waiting'");
+				sql.append("state = 'payDone' or state = 'delivery' or state = 'cancelHold' or state = 'waiting' or state = 'cancel' or state = 'w_cancelHold' ");
 			} else if (method.equals("done")) {
 				sql.append("state = 'done'");
 			} else if (method.equals("delivery")) {
 				sql.append("state = 'delivery'");
 			} else if (method.equals("cancelHold")) {
-				sql.append("state = 'cancelHold'");
+				sql.append("state = 'cancelHold' or state = 'cancel' or state = 'w_cancelHold'");
 			} else if (method.equals("waiting")) {
 				sql.append("state = 'waiting'");
 			}
@@ -544,17 +645,15 @@ Connection con = null;
 		try {
 			con = getConnection();
 			if (method.equals("payDone")) {
-				sql.append("state = 'payDone' or state = 'delivery' or state = 'cancelHold' or state = 'waiting'");
+				sql.append("state = 'payDone' or state = 'delivery' or state = 'cancelHold' or state = 'waiting' or state = 'cancel' or state = 'w_cancelHold' ");
 			} else if (method.equals("done")) {
 				sql.append("state = 'done'");
 			} else if (method.equals("delivery")) {
 				sql.append("state = 'delivery'");
 			} else if (method.equals("cancelHold")) {
-				sql.append("state = 'cancelHold'");
+				sql.append("state = 'cancelHold' or state = 'cancel' or state = 'w_cancelHold'");
 			} else if (method.equals("waiting")) {
 				sql.append("state = 'waiting'");
-			}else if (method.equals("cancel")) {
-				sql.append("state = 'cancel'");
 			}
 			sql.append(" order by date desc limit ? ");
 			pstmt = con.prepareStatement(sql.toString());
@@ -594,17 +693,15 @@ Connection con = null;
 		try {
 			con = getConnection();
 			if (method.equals("payDone")) {
-				sql.append("state = 'payDone' or state = 'delivery' or state = 'cancelHold' or state = 'waiting' or state = 'cancel'");
+				sql.append("state = 'payDone' or state = 'delivery' or state = 'cancelHold' or state = 'waiting' or state = 'cancel' or state = 'w_cancelHold'");
 			} else if (method.equals("done")) {
 				sql.append("state = 'done'");
 			} else if (method.equals("delivery")) {
 				sql.append("state = 'delivery'");
 			} else if (method.equals("cancelHold")) {
-				sql.append("state = 'cancelHold'");
+				sql.append("state = 'cancelHold' or state = 'cancel' or state = 'w_cancelHold'");
 			} else if (method.equals("waiting")) {
 				sql.append("state = 'waiting'");
-			}else if (method.equals("cancel")) {
-				sql.append("state = 'cancel'");
 			}
 			sql.append(" group by order_num order by date desc limit ? ");
 			pstmt = con.prepareStatement(sql.toString());

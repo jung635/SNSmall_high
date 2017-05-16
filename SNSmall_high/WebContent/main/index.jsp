@@ -59,8 +59,8 @@ function sns_search_exe(){
 						<div> 
 							<h2 class="heading animated bounceInDown">'Himu' Onepage HTML Template</h2> 
 							<p class="animated bounceInUp">Fully Professional one page template</p> 
-<!-- 							<a class="btn btn-default slider-btn animated fadeIn" href="#">상품 검색</a> 
-							<a class="btn btn-default slider-btn animated fadeIn" href="#">SNS STAR 검색</a>  -->
+ 							<!-- <a class="btn btn-default slider-btn animated fadeIn" href="#">상품 검색</a> 
+							<a class="btn btn-default slider-btn animated fadeIn" href="#">SNS STAR 검색</a>   -->
 						</div> 
 					</div> 
 				</div>
@@ -83,20 +83,27 @@ function sns_search_exe(){
 					</div> 
 				</div> 
 			</div>
+
+			
 		</div><!--/.carousel-inner-->
+
+ 
+		<a class="carousel-left member-carousel-control hidden-xs" href="#main-carousel" data-slide="prev"><i class="fa fa-angle-left"></i></a>
+		<a class="carousel-right member-carousel-control hidden-xs" href="#main-carousel" data-slide="next"><i class="fa fa-angle-right"></i></a>
+		<div class="carousel-caption"> 
 		<div id="search">
 			<div id="product_search">
 				<input type="text" id="product_name">
 				<a class="btn btn-default slider-btn animated fadeIn" href="#">상품 검색</a> 
 			</div>
 			<div id="sns_search">
-			<input type="text" id="sns_id">
-			<a href="snsList.sn" class="btn btn-default slider-btn animated fadeIn">SNS STAR 검색</a> 
+				<input type="text" id="sns_id">
+				<a href="snsList.sn" class="btn btn-default slider-btn animated fadeIn">SNS STAR 검색</a> 
 			</div>
 		</div>
-		<a class="carousel-left member-carousel-control hidden-xs" href="#main-carousel" data-slide="prev"><i class="fa fa-angle-left"></i></a>
-		<a class="carousel-right member-carousel-control hidden-xs" href="#main-carousel" data-slide="next"><i class="fa fa-angle-right"></i></a>
+		</div>
 	</div> 
+
 
 </section><!--/#home-->
 

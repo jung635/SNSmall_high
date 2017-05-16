@@ -102,7 +102,7 @@ System.out.println(pay_list.size()); */
         <div class="row">
             <div class="col-md-3">
                 <p class="lead"><%=id %></p>
-                <jsp:include page="../inc/myinfo_left.jsp"/>
+                <jsp:include page="../inc/myinfo_sns_left.jsp"/>
             </div>
             <div class="col-md-9">
 <!--             <form action=""> 

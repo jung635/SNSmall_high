@@ -90,6 +90,7 @@ function sns_search_exe(){
  
 		<a class="carousel-left member-carousel-control hidden-xs" href="#main-carousel" data-slide="prev"><i class="fa fa-angle-left"></i></a>
 		<a class="carousel-right member-carousel-control hidden-xs" href="#main-carousel" data-slide="next"><i class="fa fa-angle-right"></i></a>
+		<div class="carousel-caption"> 
 		<div id="search">
 			<div id="product_search">
 				<input type="text" id="product_name">
@@ -99,6 +100,7 @@ function sns_search_exe(){
 				<input type="text" id="sns_id">
 				<a href="snsList.sn" class="btn btn-default slider-btn animated fadeIn">SNS STAR °Ë»ö</a> 
 			</div>
+		</div>
 		</div>
 	</div> 
 

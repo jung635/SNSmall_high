@@ -57,13 +57,12 @@ public class PayDepositDoneAction implements Action{
 		pdao.subAmount(pb.getAmount(), pb.getProduct_num());
 		out.println("<script>");
 		out.println("alert('주문이 완료 되었습니다.');");
-		out.println("window.location.href='PayList.pa;'");
+		out.println("location.href='PayList.pa';");
 		out.println("</script>");
-		ActionForward forward = new ActionForward();
-		forward.setPath("PayList.pa");
-		forward.setRedirect(false);
-		return forward;
+		
+		return null;
 	}
+	
 	
 
 }

@@ -26,7 +26,7 @@ public class ProductSearchListAction implements Action{
 		
 		ProductDAO prdao = new ProductDAO();
 		int count = prdao.getSearchProductCount(search);
-		
+
 		int currentPage = Integer.parseInt(pageNum);
 		int pageSize = 12;
 		int pageBlock = 10;

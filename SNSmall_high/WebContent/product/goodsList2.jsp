@@ -1,11 +1,11 @@
 <%@page import="web.product.db.ProductBean"%>
 <%@page import="java.util.List"%>
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+    pageEncoding="utf-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
 	<meta name="description" content="Creative One Page Parallax Template">
 	<meta name="keywords" content="Creative, Onepage, Parallax, HTML5, Bootstrap, Popular, custom, personal, portfolio" /> 
@@ -23,17 +23,13 @@
 	String category = (String)request.getAttribute("category");
 	String order = (String)request.getAttribute("order");
 	int count = ((Integer)request.getAttribute("count")).intValue();
-	int pageCount = ((Integer)request.getAttribute("pageCount")).intValue();
-	int pageBlock = ((Integer)request.getAttribute("pageBlock")).intValue();
-	int startPage = ((Integer)request.getAttribute("startPage")).intValue();
-	int endPage = ((Integer)request.getAttribute("endPage")).intValue();
+	int currentPage = Integer.parseInt(pageNum);
 	List productList = (List)request.getAttribute("productList");
 %>
 	<jsp:include page="../inc/header.jsp"/>
   <!-- Page Content -->
   <div class="container">
     <div class="content">
-    <!-- Page Content -->
 
         <!-- Page Header -->
         <div class="row" style="margin-top: 43px">
@@ -44,22 +40,22 @@
            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sint, explicabo dolores ipsam aliquam inventore corrupti eveniet quisquam quod totam laudantium repudiandae obcaecati ea consectetur debitis velit facere nisi expedita vel?</p>
             </div>
         </div>
-        <!-- /.row -->
         
         <!-- Team Members Row -->
         <div class="row">
-          <div id="order"><ul id="order_option"><li style="font-weight: bold;color: darkblue;">¡§∑ƒπÊπ˝</li>
-          <li><a href="./ProductList.pr?category=<%=category %>&order=date">√÷Ω≈º¯</a></li>
-          <li><a href="./ProductList.pr?category=<%=category %>&order=count">¿Œ±‚º¯</a></li>
-          <li><a href="./ProductList.pr?category=<%=category %>&order=price">∞°∞›º¯</a></li></ul></div>
+			<div id="order"><ul id="order_option"><li style="font-weight: bold;color: darkblue;">Ï†ïÎ†¨Î∞©Î≤ï</li>
+				<li><a href="./ProductList.pr?category=<%=category %>&order=date">ÏµúÏã†Ïàú</a></li>
+				<li><a href="./ProductList.pr?category=<%=category %>&order=count">Ïù∏Í∏∞Ïàú</a></li>
+				<li><a href="./ProductList.pr?category=<%=category %>&order=price">Í∞ÄÍ≤©Ïàú</a></li></ul>
+			</div>
 
         <!-- Projects Row -->
-        <div class="row"  id="product_list_row">
+        <div id="our-team">
         <%
 		for(int i=0; i<productList.size(); i++){
 			ProductBean pb = (ProductBean)productList.get(i);
 		%>
-            <div class="col-md-4 portfolio-item" id="product_list_img">
+            <div class="col-md-4 portfolio-item">
                 <a href="./ProductDetail.pr?product_num=<%=pb.getProduct_num() %>&pageNum=<%=pageNum%>">
                     <%if(pb.getMain_img()==null){ %>
                     <img class="img-responsive" src="./qna_img/imgX.jpg">
@@ -70,39 +66,61 @@
                 <h3>
                     <a href="./ProductDetail.pr?product_num=<%=pb.getProduct_num() %>&pageNum=<%=pageNum%>"><%=pb.getSubject() %></a>
                 </h3>
-                <p><%=pb.getPrice() %>ø¯</p>
+                <p><%=pb.getPrice() %>Ïõê</p>
                 <p><%=pb.getDate() %></p>
             </div>
 		<%} %>
-         </div>
-<!--         /.row -->
 
-        <hr>
-
-        <!-- Pagination -->
+		<div class="clear"></div>
         <div class="row text-center">
             <div class="col-lg-12">
                 <ul class="pagination">
+                <%
+                if(count!=0){
+                	int pageCount = ((Integer)request.getAttribute("pageCount")).intValue();
+                	int pageBlock = ((Integer)request.getAttribute("pageBlock")).intValue();
+                	int startPage = ((Integer)request.getAttribute("startPage")).intValue();
+                	int endPage = ((Integer)request.getAttribute("endPage")).intValue();
+					if(currentPage<=10){%>
                     <li>
-                    <%if(endPage > pageBlock){ %>
+                    	<a>&laquo;</a>
+                    </li>
+                    <%}else{ %>
+                    <li>
                         <a href="./ProductList.pr?pageNum=<%=startPage-pageBlock%>&category=<%=category %>&order=<%=order%>">&laquo;</a>
+                 	</li>	
                  	<%} %>
+			<%for(int i=startPage; i<=endPage; i++){
+						if(i==currentPage){%>
+					<li class="active">
+                        <a href="#"><%=i%></a>
                     </li>
-                    <li class="active">
-                    <%for(int i=startPage; i<=endPage; i++){ %>
-                        <a href="./ProductList.pr?pageNum=<%=i%>&category=<%=category %>&order=<%=order%>"><%=i%></a>
-                    </li><li>
-                    <%} %>
+				<%}else{ %>
                     <li>
-                    <%if(endPage<pageCount){%>
-                        <a href="./ProductList.pr?pageNum=<%=startPage+pageBlock%>&category=<%=category %>&order=<%=order%>">&raquo;</a>
-                 	<%} %>
-                    </li>
+                        <a href="./ProductList.pr?pageNum=<%=i%>&category=<%=category %>&order=<%=order%>"><%=i %></a>
+					</li>
+                 	<%}} %>
+                 <%if(endPage<pageCount){%>
+                 	<li>
+                 		<a>&laquo;</a>
+                 	</li>
+               	<%}else{ %>
+                 	<li>
+                 		<a href="./ProductList.pr?pageNum=<%=startPage+pageBlock%>&category=<%=category %>&order=<%=order%>">&raquo;</a>
+                 	</li>
+                 <%}} %>
                 </ul>
-            </div>
-        </div>
-        <!-- /.row -->
-
+			</div>
+			<div class="clear"></div>
+			<div>
+				<form action="./ProductSearchList.pr">
+					<input type="text" name="search">
+					<input type="submit" value="Í≤ÄÏÉâ">
+	    	   	</form>
+			</div>
+			</div>
+		</div>
+	</div>
         <hr>
 
         <!-- Footer -->

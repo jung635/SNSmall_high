@@ -34,7 +34,7 @@ public class PayCancelPointAction implements Action {
 		ProductBean prob = prodao.getProduct(pb.getProduct_num());
 		int cancel_price = prob.getPrice()*pb.getAmount();
 		int cancel_point = (int)(((double)cancel_price/(double)price)*pb.getUsedPoint());
-		pdao.subSnsPay(prob.getPrice(), pb.getSns_id());
+		pdao.subSnsPay(prob.getPrice(), pb.getAmount(), pb.getSns_id());
 		pdao.subVendorProfit(prob.getPrice(), pb.getVendor_id());
 		pdao.subAmount(pb.getAmount(), pb.getProduct_num());
 		pdao.deletePay(payNum);

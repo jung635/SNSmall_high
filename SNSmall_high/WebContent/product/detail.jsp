@@ -93,6 +93,7 @@
             </div>
 			
 			<form action="" method="post" name="gfr">
+			<input type="hidden" name="subject" value="<%=productbean.getSubject()%>">
 			<input type="hidden" name="product_num" value="<%=productbean.getProduct_num()%>">
 			<input type="hidden" name="sns_id" value="<%=sns_id%>">
 			<input type="hidden" name="vendor_id" value="<%=productbean.getVendor_id()%>">
@@ -139,7 +140,7 @@
                 		}
                 	}
                 	function gocart(){
-                		window.document.gfr.action="";
+                		window.document.gfr.action="./CartAdd.ca";
                 		window.document.gfr.method="post";
                 		window.document.gfr.submit();
                 	}
@@ -158,7 +159,7 @@
 				수량: <input type="text" name="amount" value="1">
 				<button type="button" onclick="plus()">+</button>
 				<button type="button" onclick="minus()">-</button><br>
-				가격: <input type="text" id="allprice" value="<%=productbean.getPrice()%>">
+				가격: <input type="text" id="allprice" name="allprice" value="<%=productbean.getPrice()%>">
 				
 				
 				<br>
@@ -166,6 +167,7 @@
                 <a class="btn btn-success" onclick="gobuy()">Get it</a>
                 <% if(!(type.equals("client"))){%>
                 <a class="btn btn-success" onclick="goshare()">Share</a>
+               
                 <%} %>
             </div>
 			</form>

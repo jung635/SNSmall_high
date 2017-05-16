@@ -51,19 +51,18 @@ public class PayDepositDoneAction implements Action{
 		System.out.println("vendor_profit: "+vendor_profit);
 		System.out.println("company_profit: "+company_profit);
 		System.out.println("add_point:" + add_point);
-		pdao.addSnsPay(sns_profit, pb.getSns_id());
+		pdao.addSnsPay(sns_profit, pb.getAmount(), pb.getSns_id());
 		pdao.addVendorProfit(vendor_profit, pb.getVendor_id());
 		pdao.addPoint(add_point, id);
-		pdao.subAmount(pb.getAmount(), pb.getProduct_num());
+		pdao.addCount(pb.getAmount(), pb.getProduct_num());
 		out.println("<script>");
 		out.println("alert('주문이 완료 되었습니다.');");
-		out.println("window.location.href='PayList.pa;'");
+		out.println("location.href='PayList.pa';");
 		out.println("</script>");
-		ActionForward forward = new ActionForward();
-		forward.setPath("PayList.pa");
-		forward.setRedirect(false);
-		return forward;
+		
+		return null;
 	}
+	
 	
 
 }

@@ -40,12 +40,15 @@ List<PaymentBean> pay_list_reult = new ArrayList<PaymentBean>();
 						<%for(int j=0; j<pay_list_reult.size(); j++){
 							PaymentBean pb = pay_list_reult.get(j);
 							merchant_uid = pb.getOrder_num();
-							ProductBean prob = prodao.getProduct(pb.getProduct_num()); %>
+							ProductBean prob = prodao.getProduct(pb.getProduct_num()); 
+							int price = pb.getAmount()*prob.getPrice();
+							%>
+							
 						<tr>
 							<td><img src="./vendor_img/<%=prob.getMain_img() %>" style="width: 130px; height: 90px"></td>
 							<td><%=prob.getSubject() %></td>
 							<td><%=prob.getContent() %></td>
-							<td><%=prob.getPrice() %></td>
+							<td><%=price %></td>
 							<td><%=pb.getDate() %></td>
 							<td><%=pb.getState() %></td>
 							<td><%=pb.getOrder_num() %></td>
@@ -55,7 +58,7 @@ List<PaymentBean> pay_list_reult = new ArrayList<PaymentBean>();
 							if(type.equals("client")){
 								if(pb.getState().equals("delivery")){
 									%>배송중일때는 취소요청이 불가 합니다<%
-								}else if(pb.getState().equals("cancelHold")){
+								}else if(pb.getState().equals("cancelHold")||pb.getState().equals("w_cancelHold")){
 									%>취소 대기중<%
 								}else{
 									%><input type="button" onclick="location.href='PayCancel.pa?num=<%=pb.getNum() %>'" value="주문 취소"><%
@@ -64,7 +67,7 @@ List<PaymentBean> pay_list_reult = new ArrayList<PaymentBean>();
 							}	
 							//판매자 일때 취소 및 환불
 							if(type.equals("vendor")){
-								if(pb.getState().equals("cancelHold")){
+								if(pb.getState().equals("cancelHold")||pb.getState().equals("w_cancelHold")){
 									%><input type="button" value="취소 확인" onclick="location.href='PayCancel.ve?num=<%=pb.getNum()%>'"><%
 								}else if(pb.getState().equals("cancel")){
 									%>취소 된 주문<%
@@ -114,7 +117,7 @@ List<PaymentBean> pay_list_reult = new ArrayList<PaymentBean>();
 							if(type.equals("client")){
 								if(pb.getState().equals("delivery")){
 									%>배송중일때는 취소요청이 불가 합니다<%
-								}else if(pb.getState().equals("cancelHold")){
+								}else if(pb.getState().equals("cancelHold")||pb.getState().equals("w_cancelHold")){
 									%>취소 대기중<%
 								}else{
 									%><input type="button" onclick="location.href='PayCancel.pa?num=<%=pb.getNum() %>'" value="주문 취소"><%
@@ -123,7 +126,7 @@ List<PaymentBean> pay_list_reult = new ArrayList<PaymentBean>();
 							}	
 							//판매자 일때 취소 및 환불
 							if(type.equals("vendor")){
-								if(pb.getState().equals("cancelHold")){
+								if(pb.getState().equals("cancelHold")||pb.getState().equals("w_cancelHold")){
 									%><input type="button" value="취소 확인" onclick="location.href='PayCancel.ve?num=<%=pb.getNum()%>'"><%
 								}else if(pb.getState().equals("cancel")){
 									%>취소 된 주문<%

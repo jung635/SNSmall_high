@@ -17,17 +17,7 @@
 	<link href="./css/inner.css" rel="stylesheet">
 	<link href="./css/main.css" rel="stylesheet">
 	
-	<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
-	<script type="text/javascript">
-	$(document).ready(function() {
-		$('.scroll').click(function(){
-			//alert('hi');
-			  //$('.active').removeClass('active');
-			  $(this).addClass('active');  
-			});
-	}); 
-	
-	</script>
+	<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>	
 </head>
 <body>
 
@@ -63,6 +53,21 @@
                 </div>
             </div>                     
 		</div>
+		
+		<!-- 테이블 모양 테스트 -->
+		<div class="row">
+            <div class="col-md-8">
+                <div class="panel panel-default text-center">
+                    <table>
+                    	<tr style="border-bottom: 1px double gray;"><th>구분</th><th>제목</th><th>글쓴이</th><th>등록일</th></tr>
+						<tr><td>sns</td><td>나 유명해 쪽지줘나 유명해나 유명해나 유명해나 유명해나 유명해나 유명해나 유명해나 유명해나 유명해나 유명해</td><td>김허세</td><td>오늘</td></tr>
+						<tr><td>판매자</td><td>팔꺼많아</td><td>다팜</td><td>어저께</td></tr>
+					</table>
+                    
+                </div>
+            </div>                     
+		</div>
+						
         <hr>
         <!-- Footer -->
         <footer>

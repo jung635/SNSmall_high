@@ -17,11 +17,26 @@ public class ContactFrontController extends HttpServlet{
 		ActionForward forward = null;
 		Action action = null;
 		
-		if(command.equals("")){
-			
+		// 가상주소 판단 시작
+		if(command.equals("/Contact.co")){
+			forward = new ActionForward();
+			forward.setPath("./contact/contactBoard.jsp");
+			forward.setRedirect(false);
 		}
+		// 가상주소 판단 끝
+		
+		// 이동 시작
+		if(forward!=null){
+			if (forward.isRedirect()) {
+				response.sendRedirect(forward.getPath());
+			} else {
+				RequestDispatcher dispatcher = request.getRequestDispatcher(forward.getPath());
+				dispatcher.forward(request, response);
+			}
+		}
+		// 이동 끝
 	}
-
+	
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doProcess(request, response);

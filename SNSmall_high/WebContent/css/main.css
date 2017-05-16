@@ -685,12 +685,14 @@ h1, h2, h3, h4, h5, h6 {
 
 .single-member {
 	height:430px;
-	background-color:#43484E;
-	border: 1px solid #43484E;
-	color: #f6f6f6;
-	padding: 25px;
+	background-color:#9a9999;
+	border: 2px solid #fc4300;
+	color: black;
+	padding: 18px;
 	text-align:center;
 	overflow:hidden;
+	margin-bottom: 16px;
+	height: 375px ;
 }
 
 .single-member img {
@@ -1545,10 +1547,6 @@ h1, h2, h3, h4, h5, h6 {
     padding-top: 525px;
 }
 
-#sns_search, #product_search{
-    float: right;
-    margin: 20px;
-}
 #profile_img_wrap{
     min-height: 140px;
     max-height: 169px;
@@ -1604,13 +1602,12 @@ h1, h2, h3, h4, h5, h6 {
 .socials{
     margin-top: 30px;
 }
-.single-member {
-    background-color: #ececec !important;
-    border: 2px solid #fc4300; !important;
-    color: #333 !important;
-    margin-bottom: 16px !important;
-    padding: 18px !important;
-    height: 375px !important;
+
+.single-member a{
+	color: rgb(255, 210, 106);
+}
+.single-member small{
+    color: #fbfbfb;
 }
 #ranking_sns{
 	display: inline;

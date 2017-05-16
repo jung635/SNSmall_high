@@ -28,8 +28,8 @@
 </head><!--/head-->
 <script type="text/javascript">
 function snsSearch_exe(){
-	sns_id = document.getElementById('sns_id').value;
-	location.href = 'SearchSnsList.sn?search='+sns_id;
+	search = document.getElementById('search').value;
+	location.href = 'SearchSnsList.sn?search='+search;
 }
 </script>
 <body>
@@ -94,14 +94,9 @@ function snsSearch_exe(){
 		<a class="carousel-right member-carousel-control hidden-xs" href="#main-carousel" data-slide="next"><i class="fa fa-angle-right"></i></a>
 		<div class="carousel-caption"> 
 		<div id="search">
-			<div id="product_search">
-				<input type="text" id="product_name">
-				<a class="btn btn-default slider-btn animated fadeIn" href="#">상품 검색</a> 
-			</div>
-			<div id="sns_search">
-				<input type="text" id="sns_id">
-				<a href="#" class="btn btn-default slider-btn animated fadeIn" onclick="snsSearch_exe();">SNS STAR 검색</a> 
-			</div>
+			<input type="text" id="product_name">
+			<a href="#" class="btn btn-default slider-btn animated fadeIn" onclick="snsSearch_exe();">SNS STAR 검색</a> 
+			<a class="btn btn-default slider-btn animated fadeIn" href="#">상품 검색</a> 
 		</div>
 		</div>
 	</div> 
@@ -260,15 +255,15 @@ function snsSearch_exe(){
 											<p><%=sb.getContent() %></p>
 										</div>
 										<div class="socials">
-											<%if(sb.getFacebook()!=null){%>
+											<%if(sb.getFacebook().trim().length()!=0){%>
 												<a href="<%=sb.getFacebook()%>"><i class="fa fa-facebook"></i></a>
-											<%}if(sb.getTwitter()!=null){%>							
+											<%}if(sb.getTwitter().trim().length()!=0){%>							
 											<a href="<%=sb.getTwitter()%>"><i class="fa fa-twitter"></i></a>
-											<%}if(sb.getInstagram()!=null){%>			
+											<%}if(sb.getInstagram().trim().length()!=0){%>			
 											<a href="<%=sb.getInstagram()%>"><i class="fa fa-instagram"></i></a>
-											<%}if(sb.getBlog()!=null){%>	
+											<%}if(sb.getBlog().trim().length()!=0){%>	
 											<a href="<%=sb.getBlog()%>"><i class="fa fa-bold"></i></a>
-											<%}if(sb.getEtc()!=null){%>	
+											<%}if(sb.getEtc().trim().length()!=0){%>	
 											<a href="<%=sb.getEtc()%>"><i class="fa fa-smile-o"></i></a>
 											<%} %>
 										</div>
@@ -295,15 +290,15 @@ function snsSearch_exe(){
 											<p><%=sb.getContent() %></p>
 										</div>
 										<div class="socials">
-											<%if(sb.getFacebook()!=null){%>
+											<%if(sb.getFacebook().trim().length()!=0){%>
 												<a href="<%=sb.getFacebook()%>"><i class="fa fa-facebook"></i></a>
-											<%}if(sb.getTwitter()!=null){%>							
+											<%}if(sb.getTwitter().trim().length()!=0){%>							
 											<a href="<%=sb.getTwitter()%>"><i class="fa fa-twitter"></i></a>
-											<%}if(sb.getInstagram()!=null){%>			
+											<%}if(sb.getInstagram().trim().length()!=0){%>			
 											<a href="<%=sb.getInstagram()%>"><i class="fa fa-instagram"></i></a>
-											<%}if(sb.getBlog()!=null){%>	
+											<%}if(sb.getBlog().trim().length()!=0){%>	
 											<a href="<%=sb.getBlog()%>"><i class="fa fa-bold"></i></a>
-											<%}if(sb.getEtc()!=null){%>	
+											<%}if(sb.getEtc().trim().length()!=0){%>	
 											<a href="<%=sb.getEtc()%>"><i class="fa fa-smile-o"></i></a>
 											<%} %>
 										</div>

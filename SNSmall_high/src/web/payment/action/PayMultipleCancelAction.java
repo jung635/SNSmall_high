@@ -20,11 +20,44 @@ public class PayMultipleCancelAction implements Action {
 		PrintWriter out = response.getWriter();
 		PaymentDAO pdao = new PaymentDAO();
 		String order_num = request.getParameter("order_num");
-		pdao.deletePayRequest(order_num);
-		out.println("<script>");
+		List<PaymentBean> pb_list = pdao.getPayment(order_num);
+		PaymentBean pb = null;
+		if(pb_list.get(0).getUsedPoint()>0){
+			for(int i=0; i<pb_list.size(); i++){
+				pb = pb_list.get(i);
+					if(pb.getState().equals("waiting")){
+						pdao.deletePayRequestWaiting(pb.getNum());
+					}else{
+						pdao.deletePayRequest(pb.getNum());
+					}
+			}
+			out.println("<script>");
+			out.println("alert('포인트를 사용한 배송은 해당 상품 퍼센트에 해당하는 포인트만 돌려받을 수 있습니다.');");
+			out.println("location.href='PayPointCancel.pa?merchant_uid=" + pb.getOrder_num() + "&num="+pb.getProduct_num()+"';");
+			out.println("</script>");
+		}else{
+			for(int i=0; i<pb_list.size(); i++){
+				pb = pb_list.get(i);
+					if(pb.getState().equals("waiting")){
+						pdao.deletePayRequestWaiting(pb.getNum());
+					}else{
+						pdao.deletePayRequest(pb.getNum());
+					}
+			}
+			out.println("<script>");
+			out.println("alert('취소 신청이 완료되었습니다.');");
+			out.println("location.href='PayList.pa';");
+			out.println("</script>");
+		}
+		
+		
+
+
+		//pdao.deletePayRequest(order_num);
+/*		out.println("<script>");
 		out.println("alert('취소 신청이 완료되었습니다.');");
 		out.println("location.href='PayList.pa';");
-		out.println("</script>");
+		out.println("</script>");*/
 
 		return null;
 	}

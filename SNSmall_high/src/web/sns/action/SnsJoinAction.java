@@ -19,7 +19,7 @@ public class SnsJoinAction implements Action{
 		
 		request.setCharacterEncoding("utf-8");
 		
-		String realPate = request.getRealPath("SNSmall/member/sns/sns_pro_upload");
+		String realPate = request.getRealPath("/sns_pro_upload");
 		System.out.println(realPate);
 		int maxSize=5*1024*1024;
 		MultipartRequest multi= new MultipartRequest(request, realPate,maxSize,"utf-8",new DefaultFileRenamePolicy());
@@ -40,6 +40,7 @@ public class SnsJoinAction implements Action{
 			out.println("</script>");
 			return null;
 		}		
+		
 		SnsBean sb= new SnsBean();
 		
 		sb.setSns_id(multi.getParameter("sns_id"));
@@ -49,6 +50,14 @@ public class SnsJoinAction implements Action{
 		sb.setDetail_img(multi.getParameter("file_names"));
 		sb.setCategory(multi.getParameter("myselect"));
 		sb.setContent(multi.getParameter("content"));
+		sb.setInstagram(multi.getParameter("instagram_ac"));
+		sb.setFacebook(multi.getParameter("facebook_ac"));
+		sb.setTwitter(multi.getParameter("twitter_ac"));
+		sb.setBlog(multi.getParameter("blog_ac"));
+		sb.setEtc(multi.getParameter("etc_ac"));
+		
+		
+		
 		sdao.insertMember_sns(sb);
 				
 		ActionForward forward = new ActionForward();

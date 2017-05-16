@@ -51,7 +51,7 @@ public class SnsFrontController extends HttpServlet{
 	 		forward.setPath("./member/common_join.jsp");
 	 		forward.setRedirect(false);
 	 		
-		}else if(command.equals("/SnsInfo.sn")){
+		}else if(command.equals("/MyPage.sn")){
 			action = new Snsinfo();
 	 		try{
 	 			forward=action.execute(request, response);
@@ -87,6 +87,12 @@ public class SnsFrontController extends HttpServlet{
 	 		
 		}else if(command.equals("/SnsSale.sn")){
 			action = new SnsSale();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {e.printStackTrace();}
+			
+		}else if(command.equals("/SearchSnsList.sn")){
+			action = new SearchSnsListAction();
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {e.printStackTrace();}

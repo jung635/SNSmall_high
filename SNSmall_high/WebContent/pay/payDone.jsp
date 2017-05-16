@@ -55,8 +55,12 @@ ProductDAO prodao = new ProductDAO();
 ProductBean prob = prodao.getProduct(product_num);
 price += prob.getPrice()*pb.getAmount();
 usedPoint += pb.getUsedPoint();
+if(pb.getOption1() != null && !pb.getOption1().equals("") && !pb.getOption1().equals("null")) option_all += pb.getOption1()+"/";
+if(pb.getOption2() != null && !pb.getOption2().equals("") && !pb.getOption2().equals("null")) option_all += pb.getOption2()+"/";
+if(pb.getOption3() != null && !pb.getOption3().equals("") && !pb.getOption3().equals("null")) option_all += pb.getOption3()+"/";
+if(option_all.length()>0) option_all = option_all.substring(0,option_all.length()-1);
 %>
- <tr><td><%=prob.getSubject() %></td><td><%=prob.getPrice() %></td><td><%=prob.getAmount() %></td></tr>
+ <tr><td><%=prob.getSubject() %> (<%=option_all %>)</td><td><%=prob.getPrice() %></td><td><%=prob.getAmount() %></td></tr>
  <%} %>
  <tr><td colspan="4" style="text-align: right;">사용한 포인트: <%=usedPoint %></td></tr>
  <tr><td colspan="4" style="text-align: right;">총 결제 금액: <%=price-usedPoint %></td></tr>

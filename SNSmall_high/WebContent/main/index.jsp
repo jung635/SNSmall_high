@@ -25,9 +25,9 @@
 	<link rel="apple-touch-icon-precomposed" href="images/ico/apple-touch-icon-57-precomposed.png">
 </head><!--/head-->
 <script type="text/javascript">
-function sns_search_exe(){
-	sns_id = document.getElementById('sns_id').innerText;
-	alert(sns_id);
+function snsSearch_exe(){
+	sns_id = document.getElementById('sns_id').value;
+	location.href = 'SearchSnsList.sn?search='+sns_id;
 }
 </script>
 <body>
@@ -98,7 +98,7 @@ function sns_search_exe(){
 			</div>
 			<div id="sns_search">
 				<input type="text" id="sns_id">
-				<a href="snsList.sn" class="btn btn-default slider-btn animated fadeIn">SNS STAR 검색</a> 
+				<a href="#" class="btn btn-default slider-btn animated fadeIn" onclick="snsSearch_exe();">SNS STAR 검색</a> 
 			</div>
 		</div>
 		</div>

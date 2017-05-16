@@ -15,7 +15,7 @@ public class CartAdd implements Action{
 		// TODO Auto-generated method stub
 		System.out.println("장바구니 추가 액션");
 
-		//request.setCharacterEncoding("utf-8");	//한글처리
+		request.setCharacterEncoding("utf-8");	//한글처리
 		
 		HttpSession session = request.getSession(); 
 		String id = (String)session.getAttribute("id"); //세션에서 id 값 가져오기
@@ -28,7 +28,7 @@ public class CartAdd implements Action{
 		} // 로그인이 되어있지 않으면 로그인 페이지로 이동
 
 		
-		System.out.println("subject : "+request.getParameter("product_num"));
+		System.out.println("subject : "+request.getParameter("subject"));
 		System.out.println("pro_num : "+request.getParameter("product_num"));
 		System.out.println("vendor_id : "+request.getParameter("vendor_id"));
 		System.out.println("sns_id : "+request.getParameter("sns_id"));

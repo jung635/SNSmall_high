@@ -93,6 +93,7 @@
             </div>
 			
 			<form action="" method="post" name="gfr">
+			<input type="hidden" name="subject" value="<%=productbean.getSubject()%>">
 			<input type="hidden" name="product_num" value="<%=productbean.getProduct_num()%>">
 			<input type="hidden" name="sns_id" value="<%=sns_id%>">
 			<input type="hidden" name="vendor_id" value="<%=productbean.getVendor_id()%>">
@@ -166,7 +167,7 @@
                 <a class="btn btn-success" onclick="gobuy()">Get it</a>
                 <% if(!(type.equals("client"))){%>
                 <a class="btn btn-success" onclick="goshare()">Share</a>
-                <input type="hidden" value="" >
+               
                 <%} %>
             </div>
 			</form>

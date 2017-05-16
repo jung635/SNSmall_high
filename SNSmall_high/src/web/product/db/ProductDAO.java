@@ -250,6 +250,26 @@ public class ProductDAO {
 		return count;
 	}// getProductCount() end
 	
+	// 검색어 지정 등록 상품 갯수 구하기
+		public int getSearchProductCount(String search){
+			int count = 0;
+			
+			try{
+				con = getConnection();
+				sql = "select count(*) from product where subject like ?";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, "%"+search+"%");
+				rs = pstmt.executeQuery();
+				if(rs.next()) count = rs.getInt(1);
+				
+			} catch (Exception e) {e.printStackTrace();}
+			finally {if(rs != null){try {rs.close();} catch (Exception ex) {}}
+			if(pstmt != null){try {pstmt.close();}catch(Exception ex){}}
+			if(con != null){try {con.close();}catch(Exception ex) {}}}
+			
+			return count;
+		}
+	
 	//카테고리별 상품갯수 구하기
 	public int getProductCount(String category, int a){
 		int count = 0;
@@ -316,6 +336,44 @@ public class ProductDAO {
 		
 		return productList;
 	} //getProductList() end 
+	
+	//검색어 지정 등록상품 리스트
+		public List<ProductBean> getSearchProductList(String search, int startRow, int pageSize){
+			List<ProductBean> productList = new ArrayList<ProductBean>();
+			
+			try {
+				con = getConnection();
+				sql = "select * from product where subject like ? order by product_num desc limit ?, ?";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, "%"+search+"%");
+				pstmt.setInt(2, startRow-1);
+				pstmt.setInt(3, pageSize);
+				rs = pstmt.executeQuery();
+				
+				while(rs.next()){
+					ProductBean prb = new ProductBean();
+					prb.setProduct_num(rs.getInt(1));
+					prb.setVendor_id(rs.getString(2));
+					prb.setCategory(rs.getString(3));
+					prb.setSubject(rs.getString(4));
+					prb.setContent(rs.getString(5));
+					prb.setMain_img(rs.getString(6));
+					prb.setDetail_img(rs.getString(7));
+					prb.setOption1(rs.getString(8));
+					prb.setOption2(rs.getString(9));
+					prb.setOption3(rs.getString(10));
+					prb.setPrice(rs.getInt(11));
+					prb.setAmount(rs.getInt(12));				
+					prb.setCount(rs.getInt(12));
+					prb.setDate(rs.getDate(14));
+					productList.add(prb);
+				}
+			} catch (Exception e) {e.printStackTrace();}
+			finally {if(rs != null){try {rs.close();} catch (Exception ex) {}}
+			if(pstmt != null){try {pstmt.close();}catch(Exception ex){}}
+			if(con != null){try {con.close();}catch(Exception ex) {}}}
+			return productList;
+		}
 	
 	// 상품 정보 수정(모든 정보 수정)
 	public void updateProduct(ProductBean prb){

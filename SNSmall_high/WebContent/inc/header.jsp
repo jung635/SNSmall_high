@@ -74,7 +74,7 @@
 						<%}else if(type.equals("vendor")){ %>
 						<li class="scroll"><a href="MyPage.ve">MyPage</a></li>
 						<%}else if(type.equals("sns")){%>
-						<li class="scroll"><a href="#">MyPage</a></li>
+						<li class="scroll"><a href="MyPage.sn">MyPage</a></li>
 						<%}} %>
 					<!-- vendor,client,sns mypage 구분 -->
 					

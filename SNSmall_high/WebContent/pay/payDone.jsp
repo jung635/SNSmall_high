@@ -3,12 +3,12 @@
 <%@page import="java.util.List"%>
 <%@page import="web.payment.db.PaymentBean"%>
 <%@page import="web.payment.db.PaymentDAO"%>
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+    pageEncoding="utf-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
 	<meta name="description" content="Creative One Page Parallax Template">
 	<meta name="keywords" content="Creative, Onepage, Parallax, HTML5, Bootstrap, Popular, custom, personal, portfolio" /> 
@@ -36,6 +36,7 @@ List<PaymentBean> pb_list = pdao.getPayment(merchant_uid);
 int length = pb_list.size();
 int price = 0;
 int usedPoint = 0;
+String option_all = "";
 %>
 <jsp:include page="../inc/header.jsp"/>
   <!-- Page Content -->
@@ -43,9 +44,9 @@ int usedPoint = 0;
     <div class="more_content">
 
 <div id = "pay_check">
-<div><h2>°áÁ¦ Á¤º¸ È®ÀÎ</h2></div>
+<div><h2>ê²°ì œ ì •ë³´ í™•ì¸</h2></div>
 <table border="1" style="width: 900px; margin: auto;">
-<tr><td rowspan="<%=length+1 %>" style="width: 150px;">ÁÖ¹®¹øÈ£<br><%=merchant_uid%></td><td>»óÇ°Á¤º¸</td><td>°¡°Ý</td></tr>
+<tr><td rowspan="<%=length+1 %>" style="width: 150px;">ì£¼ë¬¸ë²ˆí˜¸<br><%=merchant_uid%></td><td>ìƒí’ˆì •ë³´</td><td>ê°€ê²©</td><td>ê°œìˆ˜</td></tr>
 <%
 for(int i=0; i<length; i++){
 PaymentBean pb = pb_list.get(i);
@@ -54,18 +55,22 @@ ProductDAO prodao = new ProductDAO();
 ProductBean prob = prodao.getProduct(product_num);
 price += prob.getPrice()*pb.getAmount();
 usedPoint += pb.getUsedPoint();
+if(pb.getOption1() != null && !pb.getOption1().equals("") && !pb.getOption1().equals("null")) option_all += pb.getOption1()+"/";
+if(pb.getOption2() != null && !pb.getOption2().equals("") && !pb.getOption2().equals("null")) option_all += pb.getOption2()+"/";
+if(pb.getOption3() != null && !pb.getOption3().equals("") && !pb.getOption3().equals("null")) option_all += pb.getOption3()+"/";
+if(option_all.length()>0) option_all = option_all.substring(0,option_all.length()-1);
 %>
- <tr><td><%=prob.getSubject() %></td><td><%=prob.getPrice() %></td></tr>
+ <tr><td><%=prob.getSubject() %> (<%=option_all %>)</td><td><%=prob.getPrice() %></td><td><%=prob.getAmount() %></td></tr>
  <%} %>
- <tr><td colspan="3" style="text-align: right;">»ç¿ëÇÑ Æ÷ÀÎÆ®: <%=usedPoint %></td></tr>
- <tr><td colspan="3" style="text-align: right;">ÃÑ °áÁ¦ ±Ý¾×: <%=price-usedPoint %></td></tr>
+ <tr><td colspan="4" style="text-align: right;">ì‚¬ìš©í•œ í¬ì¸íŠ¸: <%=usedPoint %></td></tr>
+ <tr><td colspan="4" style="text-align: right;">ì´ ê²°ì œ ê¸ˆì•¡: <%=price-usedPoint %></td></tr>
 </table>
 </div>
 </div>
 <div id="pay_bottom">
-<input type="button" value="±¸¸Å¸ñ·Ï" onclick="location.href='PayList.pa'">
-<input type="button" value="ÁÖ¹® Ãë¼Ò" onclick="location.href='PayMultipleCancel.pa?order_num=<%=merchant_uid%>'">
-<input type="button" value="È®ÀÎ">
+<input type="button" value="êµ¬ë§¤ëª©ë¡" onclick="location.href='PayList.pa'">
+<input type="button" value="ì£¼ë¬¸ ì·¨ì†Œ" onclick="location.href='PayMultipleCancel.pa?order_num=<%=merchant_uid%>'">
+<input type="button" value="í™•ì¸">
 
 
 	</div>

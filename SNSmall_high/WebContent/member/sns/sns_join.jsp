@@ -14,9 +14,11 @@
 <link href="./css/header.css" rel="stylesheet">
 <link href="./css/inner.css" rel="stylesheet">
 <link href="./css/main.css" rel="stylesheet">
+<link href="./css/member.css" rel="stylesheet">  
 
 <script type="text/javascript">
 	var idDubClicked = false;
+	var account_count = 0;
 	var id_reg = /^(?=.*[a-zA-Z])(?=.*[0-9]).{5,10}$/;
 	var pass_reg = /^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[~,!,@,#,$,*,(,),=,+,_,.,|]).{10,20}$/;
 	var iamge_extend_count = false;
@@ -101,7 +103,31 @@
 			alert("자기소개를 입력해주세요");
 			return false;
 		}
-
+		
+		/////sns계정 체크
+		
+		account_count
+		
+		if(document.fr.instagram_ac.value != ""){
+			account_count+=1;
+		}
+		if(document.fr.facebook_ac.value != ""){
+			account_count+=1;
+		}
+		if(document.fr.twitter_ac.value != ""){
+			account_count+=1;
+		}
+		if(document.fr.blog_ac.value != ""){
+			account_count+=1;
+		}
+		if(document.fr.etc_ac.value != ""){
+			account_count+=1;
+		}
+		
+		if(account_count==0){
+		alert("SNS계정을 1개이상 입력해주세요");
+		return false;
+		}
 	}
 
 	//비밀번호 일치 체크 디스플레이
@@ -118,7 +144,7 @@
 		var pwd = document.fr.pass.value;
 
 		if (!pass_reg.test(pwd)) {
-			document.getElementById("passCheckDisplay").innerHTML = "비밀번호는 영문, 숫자, 특수문자 조합 10-20자리로 구성해주세요.";
+			document.getElementById("passCheckDisplay").innerHTML = "영문,숫자,특수문자 조합 10-20자리로 구성해주세요.";
 		} else {
 			document.getElementById("passCheckDisplay").innerHTML = "OK!";
 
@@ -129,13 +155,15 @@
 	function idCheck() {
 		var id = document.fr.sns_id.value;
 		if (!id_reg.test(id)) {
-			document.getElementById("idCheckDisplay").innerHTML = "아이디는 영어,숫자조합 5-10자리로 구성해주세요";
+			document.getElementById("idCheckDisplay").innerHTML = "영어,숫자조합 5-10자리로 구성해주세요";
 
 		} else {
 			document.getElementById("idCheckDisplay").innerHTML = "OK!";
 		}
 
 	}
+	
+	
 
 	//프로필메인이미지 미리보기 구현
 	var InputImage = (function loadImageFile() {
@@ -165,7 +193,7 @@
 					alert("이미지 파일을 업로드 하세요");
 					return;
 				}
-				if (pre_img.style.display = 'block') {
+				if (pre_img.style.display == 'block') {
 					pre_img.style.display = 'none';
 				}
 				ImgReader.readAsDataURL(img[0]);
@@ -215,10 +243,45 @@
 		}
 	}
 
-	// function check(){
-	// 	var file_str = document.fr.file_names.value;
-	// 	alert(file_str);
-	// }
+	
+	//체크박스 디스플레이
+	function snschecked(){
+		
+		if(document.fr.ckb1.checked==true){
+			dp_insta.style.display='block';
+ 		}else if(document.fr.ckb1.checked==false){
+ 			dp_insta.style.display='none';
+ 			document.fr.instagram_ac.value="";
+ 		}
+		if(document.fr.ckb2.checked==true){
+			dp_face.style.display='block';
+		}else if(document.fr.ckb2.checked==false){
+			dp_face.style.display='none';
+			document.fr.facebook_ac.value="";
+		}
+		if(document.fr.ckb3.checked==true){
+			dp_twit.style.display='block';
+		}else if(document.fr.ckb3.checked==false){
+			dp_twit.style.display='none';
+			document.fr.twitter_ac.value="";
+		}
+		if(document.fr.ckb4.checked==true){
+			dp_blog.style.display='block';
+		}else if(document.fr.ckb4.checked==false){
+			dp_blog.style.display='none';
+			document.fr.blog_ac.value="";
+		}
+		if(document.fr.ckb5.checked==true){
+			dp_etc.style.display='block';
+		}else if(document.fr.ckb5.checked==false){
+			dp_etc.style.display='none';
+			document.fr.etc_ac.value="";
+		}
+	}
+	
+	//sns계정 체크
+	
+	
 </script>
 </head>
 <body>
@@ -227,9 +290,9 @@
 
 	<div class="container">
 		<div class="content">
-		
-
-				<h1>SNS Star Join Us</h1>
+			<div class="col-md-2"></div>
+				 <div class="col-md-8">
+				<div class="join_subject">:) SNS celeb Join Us</div>
 
 				<form action="./SnsJoinAction.sn" id="join" name="fr" method="post"
 					onsubmit="return submitCheck()" enctype="multipart/form-data">
@@ -237,7 +300,7 @@
 						type="hidden" name="idDubOk">
 					<fieldset>
 						<legend>Basic Info</legend>
-						<table>
+						<table class="join_table">
 							<tr>
 								<td><label>User ID</label></td>
 								<td><input type="text" name="sns_id" class="sns_id"
@@ -277,9 +340,48 @@
 							</tr>
 						</table>
 					</fieldset>
-
+					
 					<legend>
-						Profile Image<br>
+					<lable>SNS Account</lable>
+					<span style="font-size: 7px;"> (SNS계정은 최소 1개이상 기입하세요.)</span>
+					</legend>
+						<table class="Snsaccount">
+							<tr>
+								<td> Instagram <input type="checkbox" name="ckb1" id="ckb1" onchange="snschecked()"> </td>
+								<td> facebook <input type="checkbox" name="ckb2" id="ckb2" onchange="snschecked()"></td>
+								<td> twitter <input type="checkbox" name="ckb3" id="ckb3" onchange="snschecked()"></td>
+								<td> blog <input type="checkbox" name="ckb4" id="ckb4" onchange="snschecked()"></td>
+								<td> etc <input type="checkbox" name="ckb5" id="ckb5" onchange="snschecked()"></td>
+							</tr>
+						</table>
+					
+							<div id="dp_insta" style="display: none; margin: 10px;">
+								<span style="padding-right: 10px;">Instagram</span>
+								<input type="text" name="instagram_ac" size=40>
+							</div>
+							
+							<div id="dp_face" style="display: none;  margin: 10px;">
+								<span style="padding-right: 15px;">facebook</span> 
+								<input type="text" name="facebook_ac" size=40> 
+							</div>
+						
+							<div id="dp_twit" style="display: none; margin: 10px;">
+								 <span style="padding-right: 34px;">twitter</span>
+								 <input type="text" name="twitter_ac" size=40> 
+							</div>
+							
+							<div id="dp_blog" style="display: none; margin: 10px;">
+								<span style="padding-right: 46px;">blog</span>
+								<input type="text" name="blog_ac" size=40>
+							</div>
+							
+							<div id="dp_etc" style="display: none; margin: 10px;">
+								<span style="padding-right: 54px;">etc</span>
+								<input type="text" name="etc_ac" size=40> 
+							</div>
+						
+					<legend>
+						Profile Image
 					</legend>
 					<div id="imagePreview">
 						<img alt="이미지를등록하세요" src="./member/sns/sns_image/default_img.JPG" id="pre_img" style="display: block; width: 200px; height: 140px;">
@@ -295,23 +397,24 @@
 					<div id="selectedFiles"></div>
 					<br>
 					<!-- <input type="button" value="체크" onclick="check()"> -->
+					<legend></legend>
 					<label>Introduce</label><br>
-					<textarea rows="2" cols="40" name="content"></textarea>
+					<textarea rows="3" cols="80" name="content"></textarea>
 					<br>
 
 					<!-- <label>Phone Number</label> -->
 					<!-- <input type="text" name="phone" id="phone"><br> -->
 
 
-					<div class="clear"></div>
-				<hr>
-					<div id="buttons">
-						<input type="submit" value="Submit" class="submit"> <input
-							type="button" value="Cancel" class="cancel"
-							onclick="history.back()">
-					</div>
-				</form>
-
+							<div class="clear"></div>
+						<hr>
+						<div id="buttons">
+							<input type="submit" value="Submit" class="submit"> <input
+								type="button" value="Cancel" class="cancel"
+								onclick="history.back()">
+						</div>
+					</form>
+				</div>
 			</div>
 		</div>
 </body>

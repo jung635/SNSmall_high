@@ -51,7 +51,7 @@ public class SnsFrontController extends HttpServlet{
 	 		forward.setPath("./member/common_join.jsp");
 	 		forward.setRedirect(false);
 	 		
-		}else if(command.equals("/SnsInfo.sn")){
+		}else if(command.equals("/MyPage.sn")){
 			action = new Snsinfo();
 	 		try{
 	 			forward=action.execute(request, response);

@@ -1,5 +1,3 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="en">
 <head> 
@@ -9,13 +7,13 @@
 	<meta name="keywords" content="Creative, Onepage, Parallax, HTML5, Bootstrap, Popular, custom, personal, portfolio" /> 
 	<meta name="author" content=""> 
 	<title>HIMU - OnePage HTML Parallax template</title> 
-	<link href="./css/bootstrap.min.css" rel="stylesheet">
-	<link href="./css/prettyPhoto.css" rel="stylesheet"> 
-	<link href="./css/font-awesome.min.css" rel="stylesheet"> 
-	<link href="./css/animate.css" rel="stylesheet"> 
-	<link href="./css/main.css" rel="stylesheet">
-	<link href="./css/responsive.css" rel="stylesheet"> 
-	<link href="./css/header.css" rel="stylesheet"> 
+	<link href="css/bootstrap.min.css" rel="stylesheet">
+	<link href="css/prettyPhoto.css" rel="stylesheet"> 
+	<link href="css/font-awesome.min.css" rel="stylesheet"> 
+	<link href="css/animate.css" rel="stylesheet"> 
+	<link href="css/main.css" rel="stylesheet">
+	<link href="css/responsive.css" rel="stylesheet"> 
+	<link href="css/header.css" rel="stylesheet">
 	<!--[if lt IE 9]> <script src="js/html5shiv.js"></script> 
 	<script src="js/respond.min.js"></script> <![endif]--> 
 	<link rel="shortcut icon" href="images/ico/favicon.png"> 
@@ -24,12 +22,6 @@
 	<link rel="apple-touch-icon-precomposed" sizes="72x72" href="images/ico/apple-touch-icon-72-precomposed.png"> 
 	<link rel="apple-touch-icon-precomposed" href="images/ico/apple-touch-icon-57-precomposed.png">
 </head><!--/head-->
-<script type="text/javascript">
-function sns_search_exe(){
-	sns_id = document.getElementById('sns_id').innerText;
-	alert(sns_id);
-}
-</script>
 <body>
 	<div class="preloader">
 		<div class="preloder-wrap">
@@ -44,7 +36,32 @@ function sns_search_exe(){
 			</div>
 		</div>
 	</div><!--/.preloader-->
-<jsp:include page="../inc/header.jsp"/>
+<!-- 	<header id="navigation"> 
+		<div class="navbar navbar-inverse navbar-fixed-top" role="banner"> 
+			<div class="container"> 
+				<div class="navbar-header"> 
+					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"> 
+						<span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> 
+					</button> 
+					<a class="navbar-brand" href="index.html"><h1><img src="images/logo.png" alt="logo"></h1></a> 
+				</div> 
+				<div class="collapse navbar-collapse"> 
+					<ul class="nav navbar-nav navbar-right"> 
+						<li class="scroll active"><a href="#navigation">Home</a></li> 
+						<li class="scroll"><a href="goodsList.jsp">About Us</a></li> 
+						<li class="scroll"><a href="starList.jsp">Services</a></li> 
+						<li class="scroll"><a href="#our-team">Our Team</a></li> 
+						<li class="scroll"><a href="#portfolio">Portfolio</a></li> 
+						<li class="scroll"><a href="#clients">Clients</a></li> 
+						<li class="scroll"><a href="#blog">Blog</a></li> 
+						<li class="scroll"><a href="#contact">Contact</a></li> 
+					</ul> 
+				</div> 
+			</div> 
+		</div>/navbar 
+	</header> /#navigation 
+ -->	
+<jsp:include page="./inc/header.jsp"/>
 	<section id="home">
 		<div class="home-pattern"></div>
 		<div id="main-carousel" class="carousel slide" data-ride="carousel"> 
@@ -59,17 +76,14 @@ function sns_search_exe(){
 						<div> 
 							<h2 class="heading animated bounceInDown">'Himu' Onepage HTML Template</h2> 
 							<p class="animated bounceInUp">Fully Professional one page template</p> 
-<!-- 							<a class="btn btn-default slider-btn animated fadeIn" href="#">상품 검색</a> 
-							<a class="btn btn-default slider-btn animated fadeIn" href="#">SNS STAR 검색</a>  -->
+							<a class="btn btn-default slider-btn animated fadeIn" href="#">Get Started</a> 
 						</div> 
 					</div> 
 				</div>
 				<div class="item" style="background-image: url(images/slider/slide2.jpg)"> 
 					<div class="carousel-caption"> <div> 
 						<h2 class="heading animated bounceInDown">Get All in Onepage</h2> 
-						<p class="animated bounceInUp">Everything is outstanding </p>
-<!-- 						<a class="btn btn-default slider-btn animated fadeIn" href="#">상품 검색</a> 
-						<a class="btn btn-default slider-btn animated fadeIn" href="#">SNS STAR 검색</a>  -->
+						<p class="animated bounceInUp">Everything is outstanding </p> <a class="btn btn-default slider-btn animated fadeIn" href="#">Get Started</a> 
 					</div> 
 				</div> 
 			</div> 
@@ -78,22 +92,12 @@ function sns_search_exe(){
 					<div> 
 						<h2 class="heading animated bounceInRight">Fully Responsive Template</h2> 
 						<p class="animated bounceInLeft">100% Responsive HTML template</p> 
-<!-- 						<a class="btn btn-default slider-btn animated fadeIn" href="#">상품 검색</a> 
-						<a class="btn btn-default slider-btn animated fadeIn" href="#">SNS STAR 검색</a>  -->
+						<a class="btn btn-default slider-btn animated bounceInUp" href="#">Get Started</a> 
 					</div> 
 				</div> 
 			</div>
 		</div><!--/.carousel-inner-->
-		<div id="search">
-			<div id="product_search">
-				<input type="text" id="product_name">
-				<a class="btn btn-default slider-btn animated fadeIn" href="#">상품 검색</a> 
-			</div>
-			<div id="sns_search">
-			<input type="text" id="sns_id">
-			<a href="snsList.sn" class="btn btn-default slider-btn animated fadeIn">SNS STAR 검색</a> 
-			</div>
-		</div>
+
 		<a class="carousel-left member-carousel-control hidden-xs" href="#main-carousel" data-slide="prev"><i class="fa fa-angle-left"></i></a>
 		<a class="carousel-right member-carousel-control hidden-xs" href="#main-carousel" data-slide="next"><i class="fa fa-angle-right"></i></a>
 	</div> 

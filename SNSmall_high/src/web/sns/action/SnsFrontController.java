@@ -91,6 +91,12 @@ public class SnsFrontController extends HttpServlet{
 				forward = action.execute(request, response);
 			} catch (Exception e) {e.printStackTrace();}
 			
+		}else if(command.equals("/SearchSnsList.sn")){
+			action = new SearchSnsListAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {e.printStackTrace();}
+			
 		}
 
 		

@@ -42,9 +42,11 @@ public class loginAction implements Action{
 		
 		// 로그인 성공시 세션생성
 		String type = mtb.getType();
+		String name = mtb.getName();
 		HttpSession session = request.getSession();		
 		session.setAttribute("type", type);
 		session.setAttribute("id", id);
+		session.setAttribute("name", name);
 		session.setAttribute("pass", pass);
 		ActionForward forward = new ActionForward();
 		forward.setPath("./Main.cl");

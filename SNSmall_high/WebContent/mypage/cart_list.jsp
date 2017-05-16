@@ -39,7 +39,8 @@ function myfunction(){
 </head>
 <body>
 <jsp:include page="../inc/header.jsp"/>
-<%String id = "test";
+<%String id = (String)session.getAttribute("id");
+String type = (String)session.getAttribute("type");
 %>
   <!-- Page Content -->
   <div class="container">
@@ -49,13 +50,17 @@ function myfunction(){
         
             <div class="col-md-3">
                 <p class="lead"><%=id %></p>
+                <%if(type.equals("client")){ %>
                 <jsp:include page="../inc/myinfo_left.jsp"/>
+                <%}else if(type.equals("vendor")){ %>
+                <jsp:include page="../inc/myinfo_vendor_left.jsp"/>
+                <%} %>
             </div>
             <div class="col-md-9">
 <%
 List<CartBean> cblist = new ArrayList<CartBean>();
 %>
-<form action="Pay.pa" method="post" name="form1">
+<form action="Pay.pa" method="post" name="form1" enctype="multipart/form-data">
 
 <%
 int sum=0;
@@ -83,7 +88,7 @@ for(int i=0;i<cl.size();i++){
 <!-- 장바구니 정보 -->
 <a href="Detail2.pr">
 물품 번호:<%=cb.getProduct_num() %>
-이미지:<%=cb.getMain_img() %>
+이미지:<input type="file" value="<%=cb.getMain_img() %>">
 품명:<%=cb.getSubject()%>
 <%if(cb.getOption1()!=null){
 	%>/<%=cb.getOption1()%>

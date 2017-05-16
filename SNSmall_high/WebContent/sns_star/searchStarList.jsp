@@ -31,6 +31,7 @@
 </head>
 <body>
 <%
+String search = (String)request.getAttribute("search");
 String category = (String)request.getAttribute("category");
 String order = (String)request.getAttribute("order");
 String realfilePath = request.getRealPath("/sns_pro_upload");
@@ -119,7 +120,7 @@ List<SnsBean> list = (List<SnsBean>)request.getAttribute("list");
 		                   			</li>
 		                 		<%}else{ %>
 		                 			<li>
-		                        		<a href="snsList.sn?order=<%=order %>&category=<%=category %>&pageNum=<%=startPage-pageBlock %>">&laquo;</a>
+		                        		<a href="SearchSnsList.sn?order=<%=order %>&category=<%=category %>&pageNum=<%=startPage-pageBlock %>&search=<%=search%>">&laquo;</a>
 		                  			</li>
 								<%}
 							for(int i=startPage; i<=endPage; i++){
@@ -129,7 +130,7 @@ List<SnsBean> list = (List<SnsBean>)request.getAttribute("list");
 		                    		</li>
 		                   		 <%}else{ %>
 		                    		<li>
-										<a href="snsList.sn?order=<%=order %>&category=<%=category %>&pageNum=<%=i %>"><%=i %></a>
+										<a href="SearchSnsList.sn?order=<%=order %>&category=<%=category %>&pageNum=<%=i %>&search=<%=search%>"><%=i %></a>
 		                    		</li>
 		                    	<%}} %>
 		                    <%if(endPage>=pageCount){ %>
@@ -138,7 +139,7 @@ List<SnsBean> list = (List<SnsBean>)request.getAttribute("list");
 		                    	</li>
 		                    <%}else{ %>
 		                    	<li>
-		                        	<a href="snsList.sn?order=<%=order %>&category=<%=category %>&pageNum=<%=startPage+pageBlock %>">&raquo;</a>
+		                        	<a href="SearchSnsList.sn?order=<%=order %>&category=<%=category %>&pageNum=<%=startPage+pageBlock %>&search=<%=search%>">&raquo;</a>
 		                    	</li>
 	                    	<%}} %>
 	                	</ul>

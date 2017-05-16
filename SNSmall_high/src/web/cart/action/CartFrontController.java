@@ -38,18 +38,6 @@ public class CartFrontController extends HttpServlet{
 				e.printStackTrace();
 			}
 		
-		}else if(command.equals("/main.ca")){
-			forward=new ActionForward();
-			forward.setRedirect(false);
-			forward.setPath("./shopping_basket/main.jsp");
-		}else if(command.equals("/requestTest.ca")){
-			action=new requestTest();
-			try {
-				forward=action.execute(request, response);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		
 		}
 		
 		

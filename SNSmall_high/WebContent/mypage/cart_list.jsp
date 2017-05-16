@@ -1,3 +1,5 @@
+<%@page import="web.product.db.ProductDAO"%>
+<%@page import="web.product.db.ProductBean"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.List"%>
 <%@page import="web.cart.db.CartDAO"%>
@@ -55,12 +57,15 @@ function myfunction(){
 <%
 List<CartBean> cblist = new ArrayList<CartBean>();
 %>
-<form action="Pay.pa" method="post" name="form1" enctype="multipart/form-data">
+<form action="Pay.pa" method="post" name="form1">
 
 <%
 int sum=0;
 
 List cl = (List)request.getAttribute("CartList"); 
+
+ProductDAO pdao = new ProductDAO();
+
 
 
 String client_id ="";
@@ -75,7 +80,7 @@ for(int i=0;i<cl.size();i++){
 	CartBean cb = (CartBean)cl.get(i);
 
 	int price=cb.getPrice();
-	
+	ProductBean prob = pdao.getProduct(cb.getProduct_num()); 
 %>
 
 <input type="checkbox" name="check" value="<%=cb.getPrice()%>" onchange="myfunction()" checked>
@@ -83,7 +88,7 @@ for(int i=0;i<cl.size();i++){
 <!-- 장바구니 정보 -->
 <a href="Detail2.pr">
 물품 번호:<%=cb.getProduct_num() %>
-이미지:<input type="file" value="<%=cb.getMain_img() %>">
+이미지:<img src="./vendor_img/<%=prob.getMain_img() %>">
 품명:<%=cb.getSubject()%>
 <%if(cb.getOption1()!=null){
 	%>/<%=cb.getOption1()%>
@@ -93,6 +98,7 @@ for(int i=0;i<cl.size();i++){
 	<%}if(cb.getOption3()!=null){%>
 		/<%=cb.getOption3() %><%
 	}
+
 %>
 
 수량:<%=cb.getAmount() %>

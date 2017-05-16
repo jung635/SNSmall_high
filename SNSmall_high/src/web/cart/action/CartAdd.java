@@ -6,6 +6,7 @@ import javax.servlet.http.HttpSession;
 
 import web.cart.db.CartBean;
 import web.cart.db.CartDAO;
+import web.product.db.ProductBean;
 
 public class CartAdd implements Action{
 
@@ -20,22 +21,22 @@ public class CartAdd implements Action{
 		String id = (String)session.getAttribute("id"); //세션에서 id 값 가져오기
 		
 		ActionForward forward = new ActionForward();
-//		if(id==null){
-//			forward.setRedirect(true);
-//			forward.setPath("./MemberLogin.me");
-//			return forward;
-//		} // 로그인이 되어있지 않으면 로그인 페이지로 이동
+		if(id==null){
+			forward.setRedirect(true);
+			forward.setPath("./MemberLogin.me");
+			return forward;
+		} // 로그인이 되어있지 않으면 로그인 페이지로 이동
+
 		
-		
-		System.out.println("subject : "+request.getParameter("subject"));
+		System.out.println("subject : "+request.getParameter("product_num"));
 		System.out.println("pro_num : "+request.getParameter("product_num"));
 		System.out.println("vendor_id : "+request.getParameter("vendor_id"));
 		System.out.println("sns_id : "+request.getParameter("sns_id"));
-		System.out.println("op1 : "+request.getParameter("option1"));
-		System.out.println("op2 : "+request.getParameter("option2"));
-		System.out.println("op3 : "+request.getParameter("option3"));
-		System.out.println("price : "+request.getParameter("price"));
-		System.out.println("amount : "+request.getAttribute("amount"));
+		System.out.println("option1 : "+request.getParameter("option1"));
+		System.out.println("option2 : "+request.getParameter("option2"));
+		System.out.println("option3 : "+request.getParameter("option3"));
+		System.out.println("allprice : "+request.getParameter("allprice"));
+		System.out.println("payamount : "+request.getParameter("amount"));
 		
 		//Basket.bean에값 저장
 		CartBean cb = new CartBean();

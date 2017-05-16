@@ -159,6 +159,7 @@
                 <a class="btn btn-success" onclick="gobuy()">Get it</a>
                 <% if(!(type.equals("client"))){%>
                 <a class="btn btn-success" onclick="goshare()">Share</a>
+                <input type="hidden" value="" >
                 <%} %>
             </div>
 			</form>

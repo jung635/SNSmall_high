@@ -20,7 +20,7 @@ public class passComfirmAction implements Action{
 		System.out.println("sns_pass_confirmaction execute()");
 		
 		HttpSession session = request.getSession();
-		String id = (String)session.getAttribute("sns_id");
+		String id = (String)session.getAttribute("id");
 		
 		ActionForward forward = new ActionForward();
 		if(id==null){

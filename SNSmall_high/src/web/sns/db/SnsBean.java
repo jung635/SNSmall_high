@@ -15,10 +15,17 @@ public class SnsBean {
 	private int sell;
 	private Date date;
 	private String type;
+<<<<<<< HEAD
 	private String Instagram;
 	private String facebook;
 	private String twitter;
 	private String blog;
+=======
+	private String facebook;
+	private String instagram;
+	private String blog;
+	private String twitter;
+>>>>>>> feature/snsList_personal
 	private String etc;
 	private String rank;
 	
@@ -123,6 +130,43 @@ public class SnsBean {
 	}
 	public void setType(String type) {
 		this.type = type;
+	}
+	public String getFacebook() {
+		return facebook;
+	}
+	public void setFacebook(String facebook) {
+		this.facebook = facebook;
+	}
+	public String getInstagram() {
+		return instagram;
+	}
+	public void setInstagram(String instagram) {
+		this.instagram = instagram;
+	}
+	public String getBlog() {
+		return blog;
+	}
+	public void setBlog(String blog) {
+		this.blog = blog;
+	}
+	public String getTwitter() {
+		return twitter;
+	}
+	public void setTwitter(String twitter) {
+		this.twitter = twitter;
+	}
+	public String getEtc() {
+		return etc;
+	}
+	public void setEtc(String etc) {
+		this.etc = etc;
+	}
+	
+	public String getRank() {
+		return rank;
+	}
+	public void setRank(String rank) {
+		this.rank = rank;
 	}
 	
 }

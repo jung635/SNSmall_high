@@ -40,6 +40,7 @@ function myfunction(){
 <body>
 <jsp:include page="../inc/header.jsp"/>
 <%String id = (String)session.getAttribute("id");
+String type = (String)session.getAttribute("type");
 %>
   <!-- Page Content -->
   <div class="container">
@@ -49,7 +50,11 @@ function myfunction(){
         
             <div class="col-md-3">
                 <p class="lead"><%=id %></p>
+                <%if(type.equals("client")){ %>
                 <jsp:include page="../inc/myinfo_left.jsp"/>
+                <%}else if(type.equals("vendor")){ %>
+                <jsp:include page="../inc/myinfo_vendor_left.jsp"/>
+                <%} %>
             </div>
             <div class="col-md-9">
 <%

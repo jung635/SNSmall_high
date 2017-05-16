@@ -513,9 +513,12 @@ public class SnsDAO {
 		
 		try{
 			con = getConnection();
+			
 			sql="update sns set pass=? where sns_id=?";
-			pstmt.setString(1, id);
-			pstmt.setString(2, pass);
+			
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, pass);
+			pstmt.setString(2, id);
 			
 			pstmt.executeUpdate();
 			

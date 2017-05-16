@@ -242,13 +242,14 @@ function snschecked5(){
 				<h3>회원정보 수정</h3>
 					<legend>Basic info</legend>
 					<label>ID</label>
-					<%=id%><br> <input type="button" id="passChange" value="비밀번호 변경">
+					<%=id%><br>
+					<label>Password</label> <input type="button" id="passChange" value="비밀번호 변경">
 					<div style="display: none;">
-						<form action="./SnspassChange.sn"  name="pr" onsubmit="return passCheck()">
+						<form action="./passChangeAction.sn"  name="pr" onsubmit="return passCheck()">
 							new password &nbsp;&nbsp;
-							<input type="text" name="newpass" onkeyup="passFormCheck()">
+							<input type="password" name="newpass" id="newpass" onkeyup="passFormCheck()">
 							<span id="passCheckDisplay"></span><br>
-							retype password<input type="text" name="newpass2" onkeyup="passFormCheck()">
+							retype password<input type="password" name="newpass2" onkeyup="passCheck()">
 							<span id="passdbCheckDisplay"></span><br>
 							<input type="submit" value="변경">
 						</form>

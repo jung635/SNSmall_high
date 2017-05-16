@@ -48,7 +48,7 @@ public class PayCompleteAction implements Action {
 		else if (method.equals("deposit"))
 			state = "waiting";
 
-		// Payment�뿉 Insert
+		// Payment Insert
 		PaymentBean pb = null;
 		ProductBean prob = null;
 		PaymentDAO pdao = new PaymentDAO();

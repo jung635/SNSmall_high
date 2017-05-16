@@ -32,6 +32,7 @@
 
 </head>
 <body>
+
 	<%
 	String id = (String)session.getAttribute("id");
 	if(id==null){response.sendRedirect("./login.cl");}
@@ -41,6 +42,8 @@
 	
 	String pageNum = (String)request.getAttribute("pageNum");
 	if(pageNum == null){pageNum="1";}
+	
+	String sns_id = "";
 	
 	ProductBean productbean = (ProductBean)request.getAttribute("productbean");
 	String [] o1 = productbean.getOption1().split(",");
@@ -90,6 +93,10 @@
             </div>
 			
 			<form action="" method="post" name="gfr">
+			<input type="hidden" name="product_num" value="<%=productbean.getProduct_num()%>">
+			<input type="hidden" name="sns_id" value="<%=sns_id%>">
+			<input type="hidden" name="vendor_id" value="<%=productbean.getVendor_id()%>">
+			
             <div class="col-md-4">
                 <h3><%=productbean.getSubject() %></h3>
                 <p><%=content %></p>
@@ -120,15 +127,15 @@
                  <%}%>
                  <script type="text/javascript">
                  function plus(){
-                		if(document.gfr.payamount.value<<%=amount%>){
-                			document.gfr.payamount.value++;
-							document.getElementById("allprice").value=<%=allprice%>*document.gfr.payamount.value;
+                		if(document.gfr.amount.value<<%=amount%>){
+                			document.gfr.amount.value++;
+							document.getElementById("allprice").value=<%=allprice%>*document.gfr.amount.value;
                 		}
                 	}
                 	function minus(){
-                		if(document.gfr.payamount.value>1){
-                			document.gfr.payamount.value--;
-                			document.getElementById("allprice").value=<%=allprice%>*document.gfr.payamount.value;
+                		if(document.gfr.amount.value>1){
+                			document.gfr.amount.value--;
+                			document.getElementById("allprice").value=<%=allprice%>*document.gfr.amount.value;
                 		}
                 	}
                 	function gocart(){
@@ -137,7 +144,7 @@
                 		window.document.gfr.submit();
                 	}
 					function gobuy() {
-						window.document.gfr.action="";
+						window.document.gfr.action="Pay.pa";
                 		window.document.gfr.method="post";
                 		window.document.gfr.submit();
 					}
@@ -147,8 +154,8 @@
                 		window.document.gfr.submit();
 					}
                 	</script>
-				잔여수량: <input type="text" name="amount" value="<%=peace%> / <%=productbean.getAmount()%>"><br>
-				수량: <input type="text" name="payamount" value="1">
+				잔여수량: <input type="text" name="rest_amount" value="<%=peace%> / <%=productbean.getAmount()%>"><br>
+				수량: <input type="text" name="amount" value="1">
 				<button type="button" onclick="plus()">+</button>
 				<button type="button" onclick="minus()">-</button><br>
 				가격: <input type="text" id="allprice" value="<%=productbean.getPrice()%>">

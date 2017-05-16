@@ -50,10 +50,15 @@ array=s.split(",");
 <tr> <td>카테고리</td><td><%=sb.getCategory() %></td> </tr>
 </table>
 <legend>SNS Acount</legend>
-<table>
-<tr> <td></td><td></td> </tr>
-<tr> <td></td><td></td> </tr>
-</table>
+	<table class="Snsaccount">
+			<tr>
+				<td> Instagram <input type="checkbox" name="ckb1" id="ckb1" onchange="snschecked()"> </td>
+				<td> facebook <input type="checkbox" name="ckb2" id="ckb2" onchange="snschecked()"></td>
+				<td> twitter <input type="checkbox" name="ckb3" id="ckb3" onchange="snschecked()"></td>
+				<td> blog <input type="checkbox" name="ckb4" id="ckb4" onchange="snschecked()"></td>
+				<td> etc <input type="checkbox" name="ckb5" id="ckb5" onchange="snschecked()"></td>
+			</tr>
+	</table>
 <legend>total sale</legend>
 <table>
 <tr> <td>sell</td><td><%=sb.getSell() %></td> </tr>

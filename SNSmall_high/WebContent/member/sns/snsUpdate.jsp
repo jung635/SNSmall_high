@@ -183,7 +183,7 @@
 		<div class="content">
 			<div class="more_content">
 				<div class="col-md-3">
-					<jsp:include page="../../inc/myinfo_left.jsp" />
+					<jsp:include page="../../inc/myinfo_sns_left.jsp" />
 				</div>
 				<div class="col-md-9">
 				

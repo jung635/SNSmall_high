@@ -18,7 +18,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<jsp:include page="../../inc/header.jsp"/>
+<jsp:include page="../inc/header.jsp"/>
 <%
 String id = (String)session.getAttribute("id"); 
 String type= (String)session.getAttribute("type");
@@ -39,7 +39,7 @@ array=s.split(",");
  <div class="content">
   <div class="more_content">
      <div class="col-md-3">
-   <jsp:include page="../../inc/myinfo_left.jsp"/>
+   <jsp:include page="../inc/myinfo_sns_left.jsp"/>
      </div>
      <div class="col-md-9">
 
@@ -48,6 +48,11 @@ array=s.split(",");
 <tr> <td>아이디</td><td><%=id %></td> </tr>
 <tr> <td>이름</td><td><%=sb.getName() %></td> </tr>
 <tr> <td>카테고리</td><td><%=sb.getCategory() %></td> </tr>
+</table>
+<legend>SNS Acount</legend>
+<table>
+<tr> <td></td><td></td> </tr>
+<tr> <td></td><td></td> </tr>
 </table>
 <legend>total sale</legend>
 <table>
@@ -60,7 +65,7 @@ array=s.split(",");
 <img src="./sns_pro_upload/<%=sb.getProfile_img()%>" width="200" height="100">
 
 
-서브프로필사진
+<legend>Sub Image</legend>
 <table>
  <tr><td>
   <% for(int i=0; i<array.length;i++){%>

@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-랭크제어 어떡하지이제
+
 </body>
 </html>

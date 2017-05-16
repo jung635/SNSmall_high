@@ -33,7 +33,7 @@ public class Snsinfo implements Action {
 //			request.setAttribute("type", type);
 //			request.setAttribute("id", id);
 			
-			forward.setPath("./member/sns/snsInfo.jsp");
+			forward.setPath("./mypage/mypage_sns.jsp");
 			forward.setRedirect(false);
 			return forward;
 	}

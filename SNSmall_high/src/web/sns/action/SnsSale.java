@@ -16,11 +16,9 @@ public class SnsSale implements Action{
 		System.out.println("SnsSale execute()");
 		
 		// 세션값 제어
-//		HttpSession session=request.getSession();
-//		String id = (String)session.getAttribute("wndms4142");
-
-		String id = "abc";
-		HttpSession session = request.getSession();
+		HttpSession session=request.getSession();
+		String id = (String)session.getAttribute("id");
+		
 		session.setAttribute("id", id);
 		System.out.println("id : "+id);
 		
@@ -32,10 +30,10 @@ public class SnsSale implements Action{
 //-----------------------------------------------------		
 		//판매내역 전체 개수
 		// int count = padao.getPaymentCount() 메서드 호출
-		int count = padao.getPaymentCount();
+		int count = padao.getPaymentCount(snsState, id);
 		
 		//한 페이지에 보여줄 글의 개수
-		int pageSize=5;
+		int pageSize=1;
 		//현페이지가 몇 페이지인지 가져오기
 		String pageNum = request.getParameter("pageNum");
 		if(pageNum==null){  // pageNum없으면

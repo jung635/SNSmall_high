@@ -87,6 +87,7 @@ function more() {
 <jsp:include page="../inc/header.jsp"/>
 <%
 String id = (String)session.getAttribute("id");
+
 /* ClientDAO cdao = new ClientDAO();
 ClientBean cb = cdao.getMember(id);
 PaymentDAO pdao = new PaymentDAO();
@@ -116,11 +117,11 @@ System.out.println(pay_list.size()); */
 </form> -->
 <%
 // 세션 가져오기
-//String id =(String)session.getAttribute("wndms4145");
+
 // 세션이 없으면 또는 세션이 admin이 아니면 main.jsp 이동
-// if(id ==null ){
+//if(id ==null ){
 // 	response.sendRedirect("./Main.me");
-// }
+//}
 
 // request에 저장된 memberList 가져오기
 List paymentList = (List)request.getAttribute("paymentList");
@@ -137,18 +138,20 @@ int addPoint=0;
 <div class="row">
     <div class="col-lg-12">
         <h1 class="page-header">판매내역 목록
-            <small>[전체 내역수 : <%=count %>]</small>
+            <small>[판매 내역수 : <%=count %>]</small>
         </h1>
      </div>
 </div>
 <div class="row">
-<form action="SnsSale.my" method="post" name="frmSearch">
+<form action="SnsSale.sn" method="post" name="frmSearch">
 <select id="snsState" name="snsState" onchange="snsStatefn()">
   <option value="">정렬방법을 선택하세요
-  <option value="delay">delay
-  <option value="done">done
-  <option value="cancel">cancel
-  <option value="waiting">waiting
+<option value="payDone">주문 내역</option>
+<option value="delivery">배송중</option>
+<option value="done">배송완료</option>
+<option value="cancel">주문취소</option>
+<option value="cancelHold">취소신청</option>
+<option value="waiting">무통장입금</option>
 </select><br><br><!-- <div id="snselected"></div> -->
 </form>
 
@@ -198,7 +201,7 @@ if(count!=0){
 	//끝페이지 번호 구하기
 	//이전 페이지
 	if(startPage>pageBlock){ // 스타트페이지가 페이지블럭보다 많을 때
-		%><li><a href="SnsSale.my?pageNum=<%=startPage-pageBlock%>">&laquo;</a></li>&nbsp;<%
+		%><li><a href="SnsSale.sn?pageNum=<%=startPage-pageBlock%>">&laquo;</a></li>&nbsp;<%
 	}
 	//1...10   11...20   21...30
 	for(int i=startPage; i<=endPage; i++){
@@ -207,11 +210,11 @@ if(count!=0){
                         <a href="#"><%=i %></a>
                     </li>
                     <%}else{ %>
-                    <li><a href="SnsSale.my?pageNum=<%=i%>">[<%=i%>]</a></li>
+                    <li><a href="SnsSale.sn?pageNum=<%=i%>">[<%=i%>]</a></li>
                     <%}}
 	//다음 페이지
 	if(endPage<pageCount){ //엔트페이지가 페이지블록보다 작을 때
-		%><li><a href="SnsSale.my?pageNum=<%=startPage+pageBlock%>">&raquo;</a></li><%
+		%><li><a href="SnsSale.sn?pageNum=<%=startPage+pageBlock%>">&raquo;</a></li><%
 	}
 }
 

@@ -450,7 +450,7 @@ Connection con = null;
 	}
 	
 	// 전체 글의 개수 구하기 getPaymentCount()----------------------------------------------------------------
-	public int getPaymentCount(){
+	public int getPaymentCount(String snsState, String id){
 		Connection con=null;
 		PreparedStatement pstmt=null;
 		String sql="";
@@ -461,8 +461,21 @@ Connection con = null;
 			//1, 2 디비연결 메서드 호출
 			con=getConnection();	
 			//3. sql함수 count(*) 구하기
-			sql = "select count(*) from payment where sns_id='wndms4142'";
-			pstmt=con.prepareStatement(sql);
+			
+			if(snsState!=null){
+				sql = "select count(*) from payment where state=? and sns_id=?";
+				pstmt=con.prepareStatement(sql);
+				pstmt.setString(1, snsState);
+				pstmt.setString(2, id);
+				System.out.println("sns_id and state : "+id);
+			}else{
+				sql = "select count(*) from payment where sns_id=?";
+				pstmt=con.prepareStatement(sql);
+				pstmt.setString(1, id);
+				System.out.println("sns_id : "+id);
+			}
+			
+			
 			//4. rs 실행저장
 			rs = pstmt.executeQuery();
 			//5. rs 데이터 있으면 count 저장
@@ -502,7 +515,8 @@ Connection con = null;
 			pstmt.setInt(4, pageSize); //몇개글
 			}else{
 				
-			sql="select * from payment where state='done' or state='cancel' and sns_id=? limit ?,?";
+			sql="select * from payment where sns_id=? limit ?,?";
+			//sql="select * from payment where state in ('done', 'cancel') and sns_id=? limit ?,?";
 			System.out.println("id : "+id);
 			pstmt=con.prepareStatement(sql);
 			pstmt.setString(1, id);

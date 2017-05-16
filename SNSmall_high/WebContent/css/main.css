@@ -1538,10 +1538,11 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 #search{
-	position: absolute; 
-	top: 58%; 
-	left: 30%; 
-	z-index: 1;
+    position: absolute;
+    top: 58%;
+    left: 30%;
+    z-index: 1;
+    padding-top: 525px;
 }
 
 #sns_search, #product_search{

@@ -14,13 +14,15 @@ public class passChangeAction implements Action{
 		//세션제어
 		HttpSession session = request.getSession();
 		String id= (String)session.getAttribute("id");
-	
+		
 		ActionForward forward = new ActionForward();
 		if(id==null){
 			forward.setPath("./login.ve");
 			forward.setRedirect(true);
 			return forward;
 		}
+		
+		
 		
 		return null;
 	}

@@ -42,6 +42,11 @@ public class SnsUpdateAction implements Action{
 		sb.setName(multi.getParameter("name"));
 		sb.setCategory(multi.getParameter("myselect"));
 		sb.setContent(multi.getParameter("content")); 
+		sb.setInstagram(multi.getParameter("instagram_ac"));
+		sb.setFacebook(multi.getParameter("facebook_ac"));
+		sb.setTwitter(multi.getParameter("twitter_ac"));
+		sb.setBlog(multi.getParameter("blog_ac"));
+		sb.setEtc(multi.getParameter("etc_ac"));
 		
 		session.setAttribute("name", multi.getParameter("name"));
 		

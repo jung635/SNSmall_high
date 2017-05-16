@@ -159,6 +159,42 @@
 
 		}
 	}
+	
+	//체크박스 디스플레이
+	function snschecked(){
+		
+		if(document.fr.ckb1.checked==true){
+			dp_insta.style.display='block';
+ 		}else if(document.fr.ckb1.checked==false){
+ 			dp_insta.style.display='none';
+ 			document.fr.instagram_ac.value="";
+ 		}
+		if(document.fr.ckb2.checked==true){
+			dp_face.style.display='block';
+		}else if(document.fr.ckb2.checked==false){
+			dp_face.style.display='none';
+			document.fr.facebook_ac.value="";
+		}
+		if(document.fr.ckb3.checked==true){
+			dp_twit.style.display='block';
+		}else if(document.fr.ckb3.checked==false){
+			dp_twit.style.display='none';
+			document.fr.twitter_ac.value="";
+		}
+		if(document.fr.ckb4.checked==true){
+			dp_blog.style.display='block';
+		}else if(document.fr.ckb4.checked==false){
+			dp_blog.style.display='none';
+			document.fr.blog_ac.value="";
+		}
+		if(document.fr.ckb5.checked==true){
+			dp_etc.style.display='block';
+		}else if(document.fr.ckb5.checked==false){
+			dp_etc.style.display='none';
+			document.fr.etc_ac.value="";
+		}
+	}
+	
 </script>
 </head>
 <body>
@@ -169,8 +205,7 @@
 			response.sendRedirect("./Login.ve");
 		}
 		SnsBean sb = (SnsBean) request.getAttribute("sb");
-		System.out.println(sb.getDetail_img());
-
+		
 		//서브이미지 분해
 		String[] array;
 		String s = sb.getDetail_img();
@@ -188,7 +223,7 @@
 				<div class="col-md-9">
 				
 				<h3>회원정보 수정</h3>
-				
+					<legend>Basic info</legend>
 					<label>ID</label>
 					<%=id%><br> <input type="button" id="passChange" value="비밀번호 변경">
 					<div style="display: none;">
@@ -237,7 +272,77 @@
 								<td colspan="2"></td>
 							</tr>
 						</table>
-
+						
+						<legend>SNS Acount</legend>
+						
+						<table class="Snsaccount">
+							<tr>
+								<td> Instagram <input type="checkbox" name="ckb1" id="ckb1" onchange="snschecked()" <%if(!(sb.getInstagram().equals(""))){%>checked<%}%>> </td>
+								<td> facebook <input type="checkbox" name="ckb2" id="ckb2" onchange="snschecked()" <%if(!(sb.getFacebook().equals(""))){%>checked<%}%>></td>
+								<td> twitter <input type="checkbox" name="ckb3" id="ckb3" onchange="snschecked()" <%if(!(sb.getTwitter().equals(""))){%>checked<%}%>></td>
+								<td> blog <input type="checkbox" name="ckb4" id="ckb4" onchange="snschecked()" <%if(!(sb.getBlog().equals(""))){%>checked<%}%>></td>
+								<td> etc <input type="checkbox" name="ckb5" id="ckb5" onchange="snschecked()" <%if(!(sb.getEtc().equals(""))){%>checked<%}%>></td>
+							</tr>
+						</table>
+						
+						 <%if(sb.getInstagram().equals("")){%>
+						<div id="dp_insta" style="display: none; margin: 10px;">
+								<span style="padding-right: 10px;">Instagram</span>
+								<input type="text" name="instagram_ac" size=40 value="<%=sb.getInstagram()%>">
+							</div>
+						<%}else{ %>
+						<div id="dp_insta" style=" margin: 10px;">
+								<span style="padding-right: 10px;">Instagram</span>
+								<input type="text" name="instagram_ac" size=40 value="<%=sb.getInstagram()%>">
+							</div>
+						<%} %>
+						<%if(sb.getFacebook().equals("")){%>
+							<div id="dp_face" style="display: none; margin: 10px;">
+								<span style="padding-right: 15px;">facebook</span> 
+								<input type="text" name="facebook_ac" size=40> 
+							</div>
+						<%}else{ %>
+						<div id="dp_face" style="margin: 10px;">
+								<span style="padding-right: 15px;">facebook</span> 
+								<input type="text" name="facebook_ac" size=40 value="<%=sb.getFacebook()%>"> 
+							</div>
+						<%} %>
+						
+						<%if(sb.getTwitter().equals("")){%>
+							<div id="dp_twit" style="display: none; margin: 10px;">
+								 <span style="padding-right: 34px;">twitter</span>
+								 <input type="text" name="twitter_ac" size=40> 
+							</div>
+						<%}else{ %>
+						<div id="dp_twit" style="margin: 10px;">
+								 <span style="padding-right: 34px;">twitter</span>
+								 <input type="text" name="twitter_ac" size=40 value="<%=sb.getTwitter()%>"> 
+							</div>
+						<%} %>
+						
+						<%if(sb.getBlog().equals("")){%>	
+							<div id="dp_blog" style="display: none; margin: 10px;">
+								<span style="padding-right: 46px;">blog</span>
+								<input type="text" name="blog_ac" size=40>
+							</div>
+						<%}else{ %>
+							<div id="dp_blog" style="margin: 10px;">
+								<span style="padding-right: 46px;">blog</span>
+								<input type="text" name="blog_ac" size=40 value="<%=sb.getBlog()%>">
+							</div>
+						<%} %>	
+						
+						<%if(sb.getEtc().equals("")){%>	
+							<div id="dp_etc" style="display: none; margin: 10px;">
+								<span style="padding-right: 54px;">etc</span>
+								<input type="text" name="etc_ac" size=40> 
+							</div>
+						<%}else{ %>
+							<div id="dp_etc" style="margin: 10px;">
+								<span style="padding-right: 54px;">etc</span>
+								<input type="text" name="etc_ac" size=40 value="<%=sb.getEtc()%>"> 
+							</div>
+						<%} %>
 						<legend>Profile Image</legend>
 
 
@@ -264,7 +369,7 @@
 
 						selected Image<br>
 
-						<textarea rows="2" cols="40" name="selected_img" id="selected_img"
+						<textarea rows="2" cols="80" name="selected_img" id="selected_img"
 							readonly="readonly"><%=sb.getDetail_img()%></textarea>
 
 
@@ -272,7 +377,7 @@
 
 						<legend>introduce</legend>
 
-						<textarea rows="3" cols="40" name="content"><%=sb.getContent()%></textarea>
+						<textarea rows="3" cols="80" name="content"><%=sb.getContent()%></textarea>
 
 						<hr>
 

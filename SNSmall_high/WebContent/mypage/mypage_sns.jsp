@@ -50,17 +50,16 @@ array=s.split(",");
 <tr> <td>카테고리</td><td><%=sb.getCategory() %></td> </tr>
 </table>
 <legend>SNS Acount</legend>
-	<table class="Snsaccount">
-			<tr>
-				<td> Instagram <input type="checkbox" name="ckb1" id="ckb1" onchange="snschecked()"> </td>
-				<td> facebook <input type="checkbox" name="ckb2" id="ckb2" onchange="snschecked()"></td>
-				<td> twitter <input type="checkbox" name="ckb3" id="ckb3" onchange="snschecked()"></td>
-				<td> blog <input type="checkbox" name="ckb4" id="ckb4" onchange="snschecked()"></td>
-				<td> etc <input type="checkbox" name="ckb5" id="ckb5" onchange="snschecked()"></td>
-			</tr>
-	</table>
+<table class="Snsaccount">
+			<tr> <td>Instagram</td><td> <%if(sb.getInstagram().equals("")){%>미등록<%}else{%><%=sb.getInstagram()%><%}%> </td> </tr>
+			<tr> <td>Facebook</td><td> <%if(sb.getFacebook().equals("")){%>미등록<%}else{%><%=sb.getFacebook()%><%}%> </td> </tr>
+			<tr> <td>Twitter</td><td> <%if(sb.getTwitter().equals("")){%>미등록<%}else{%><%=sb.getTwitter()%><%}%> </td> </tr>
+			<tr> <td>Blog</td><td> <%if(sb.getBlog().equals("")){%>미등록<%}else{%><%=sb.getBlog()%><%}%> </td> </tr>
+			<tr> <td>Etc</td><td>  <%if(sb.getEtc().equals("")){%>미등록<%}else{%><%=sb.getEtc()%><%}%>  </td> </tr>
+</table>
 <legend>total sale</legend>
 <table>
+<tr> <td>rank</td><td><%=sb.getRank() %></td> </tr>
 <tr> <td>sell</td><td><%=sb.getSell() %></td> </tr>
 <tr> <td>profit</td><td><%=sb.getSns_profit() %></td> </tr>
 </table>

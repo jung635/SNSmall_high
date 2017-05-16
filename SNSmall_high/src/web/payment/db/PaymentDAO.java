@@ -134,6 +134,19 @@ Connection con = null;
 		if(pstmt!=null){try{pstmt.close();}catch(SQLException ex){}}
 		if(con!=null){try{con.close();}catch(SQLException ex){}}}
 	}
+	
+	public void deletePayRequestWaiting(int num) {
+		try {
+			con = getConnection();
+			sql = "update payment set state='w_cancelHold' where num=? ";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, num);
+			pstmt.executeUpdate();
+		} catch(Exception e){e.printStackTrace();}
+		finally{if(rs!=null){try{rs.close();}catch(SQLException ex){}}
+		if(pstmt!=null){try{pstmt.close();}catch(SQLException ex){}}
+		if(con!=null){try{con.close();}catch(SQLException ex){}}}
+	}
 
 	public void subPoint(int point, String id) {
 		try {
@@ -205,7 +218,7 @@ Connection con = null;
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, profit);
 			pstmt.setInt(2, amount);
-			pstmt.setString(2, sns_id);
+			pstmt.setString(3, sns_id);
 			pstmt.executeUpdate();
 
 		} catch(Exception e){e.printStackTrace();}
@@ -257,6 +270,20 @@ Connection con = null;
 		if(pstmt!=null){try{pstmt.close();}catch(SQLException ex){}}
 		if(con!=null){try{con.close();}catch(SQLException ex){}}}
 	}
+	public void calAmountCancel(int amount, int product_num) {
+		try {
+			con = getConnection();
+			sql = "update product set amount=amount+?, count=count-? where product_num=? ";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, amount);
+			pstmt.setInt(2, amount);
+			pstmt.setInt(3, product_num);
+			pstmt.executeUpdate();
+		} catch(Exception e){e.printStackTrace();}
+		finally{if(rs!=null){try{rs.close();}catch(SQLException ex){}}
+		if(pstmt!=null){try{pstmt.close();}catch(SQLException ex){}}
+		if(con!=null){try{con.close();}catch(SQLException ex){}}}
+	}
 	public void subAmount(int amount, int product_num) {
 		try {
 			con = getConnection();
@@ -270,10 +297,23 @@ Connection con = null;
 		if(pstmt!=null){try{pstmt.close();}catch(SQLException ex){}}
 		if(con!=null){try{con.close();}catch(SQLException ex){}}}
 	}
-	public void addCount(int count, int product_num) {
+	public void addAmount(int amount, int product_num) {
 		try {
 			con = getConnection();
 			sql = "update product set amount=amount+? where product_num=? ";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, amount);
+			pstmt.setInt(2, product_num);
+			pstmt.executeUpdate();
+		} catch(Exception e){e.printStackTrace();}
+		finally{if(rs!=null){try{rs.close();}catch(SQLException ex){}}
+		if(pstmt!=null){try{pstmt.close();}catch(SQLException ex){}}
+		if(con!=null){try{con.close();}catch(SQLException ex){}}}
+	}
+	public void addCount(int count, int product_num) {
+		try {
+			con = getConnection();
+			sql = "update product set count=count+? where product_num=? ";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, count);
 			pstmt.setInt(2, product_num);
@@ -354,6 +394,40 @@ Connection con = null;
 		if(pstmt!=null){try{pstmt.close();}catch(SQLException ex){}}
 		if(con!=null){try{con.close();}catch(SQLException ex){}}}
 
+		return pb;
+	}
+	public PaymentBean getPaymentByOrderNum(String order_num) {
+		PaymentBean pb = null;
+		try {
+			con = getConnection();
+			sql = "select * from payment where order_num = ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, order_num);
+			rs = pstmt.executeQuery();
+			
+			while (rs.next()) {
+				pb = new PaymentBean();
+				pb.setAmount(rs.getInt("amount"));
+				pb.setDate(rs.getDate("date"));
+				pb.setMessage(rs.getString("message"));
+				pb.setProduct_num(rs.getInt("product_num"));
+				pb.setOption1(rs.getString("option1"));
+				pb.setOption2(rs.getString("option2"));
+				pb.setOption3(rs.getString("option3"));
+				pb.setOrder_num(rs.getString("order_num"));
+				pb.setSns_id(rs.getString("sns_id"));
+				pb.setVendor_id(rs.getString("vendor_id"));
+				pb.setState(rs.getString("state"));
+				pb.setNum(rs.getInt("num"));
+				pb.setUsedPoint(rs.getInt("usedPoint"));
+				pb.setClient_id(rs.getString("client_id"));
+			}
+			
+		} catch(Exception e){e.printStackTrace();}
+		finally{if(rs!=null){try{rs.close();}catch(SQLException ex){}}
+		if(pstmt!=null){try{pstmt.close();}catch(SQLException ex){}}
+		if(con!=null){try{con.close();}catch(SQLException ex){}}}
+		
 		return pb;
 	}
 

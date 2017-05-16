@@ -32,8 +32,18 @@
 </script>	
 	
 </head><!--/head-->
+<<<<<<< HEAD
 <body onload="javascript:pop()">
 
+=======
+<script type="text/javascript">
+function sns_search_exe(){
+	sns_id = document.getElementById('sns_id').innerText;
+	alert(sns_id);
+}
+</script>
+<body>
+>>>>>>> 6efffef1d06a386022e31cb2890628e8a94df3f7
 	<div class="preloader">
 		<div class="preloder-wrap">
 			<div class="preloder-inner"> 
@@ -47,31 +57,6 @@
 			</div>
 		</div>
 	</div><!--/.preloader-->
-<!-- 	<header id="navigation"> 
-		<div class="navbar navbar-inverse navbar-fixed-top" role="banner"> 
-			<div class="container"> 
-				<div class="navbar-header"> 
-					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"> 
-						<span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> 
-					</button> 
-					<a class="navbar-brand" href="index.html"><h1><img src="images/logo.png" alt="logo"></h1></a> 
-				</div> 
-				<div class="collapse navbar-collapse"> 
-					<ul class="nav navbar-nav navbar-right"> 
-						<li class="scroll active"><a href="#navigation">Home</a></li> 
-						<li class="scroll"><a href="goodsList.jsp">About Us</a></li> 
-						<li class="scroll"><a href="starList.jsp">Services</a></li> 
-						<li class="scroll"><a href="#our-team">Our Team</a></li> 
-						<li class="scroll"><a href="#portfolio">Portfolio</a></li> 
-						<li class="scroll"><a href="#clients">Clients</a></li> 
-						<li class="scroll"><a href="#blog">Blog</a></li> 
-						<li class="scroll"><a href="#contact">Contact</a></li> 
-					</ul> 
-				</div> 
-			</div> 
-		</div>/navbar 
-	</header> /#navigation 
- -->	
 <jsp:include page="../inc/header.jsp"/>
 	<section id="home">
 		<div class="home-pattern"></div>
@@ -87,14 +72,17 @@
 						<div> 
 							<h2 class="heading animated bounceInDown">'Himu' Onepage HTML Template</h2> 
 							<p class="animated bounceInUp">Fully Professional one page template</p> 
-							<a class="btn btn-default slider-btn animated fadeIn" href="#">Get Started</a> 
+<!-- 							<a class="btn btn-default slider-btn animated fadeIn" href="#">상품 검색</a> 
+							<a class="btn btn-default slider-btn animated fadeIn" href="#">SNS STAR 검색</a>  -->
 						</div> 
 					</div> 
 				</div>
 				<div class="item" style="background-image: url(images/slider/slide2.jpg)"> 
 					<div class="carousel-caption"> <div> 
 						<h2 class="heading animated bounceInDown">Get All in Onepage</h2> 
-						<p class="animated bounceInUp">Everything is outstanding </p> <a class="btn btn-default slider-btn animated fadeIn" href="#">Get Started</a> 
+						<p class="animated bounceInUp">Everything is outstanding </p>
+<!-- 						<a class="btn btn-default slider-btn animated fadeIn" href="#">상품 검색</a> 
+						<a class="btn btn-default slider-btn animated fadeIn" href="#">SNS STAR 검색</a>  -->
 					</div> 
 				</div> 
 			</div> 
@@ -103,12 +91,22 @@
 					<div> 
 						<h2 class="heading animated bounceInRight">Fully Responsive Template</h2> 
 						<p class="animated bounceInLeft">100% Responsive HTML template</p> 
-						<a class="btn btn-default slider-btn animated bounceInUp" href="#">Get Started</a> 
+<!-- 						<a class="btn btn-default slider-btn animated fadeIn" href="#">상품 검색</a> 
+						<a class="btn btn-default slider-btn animated fadeIn" href="#">SNS STAR 검색</a>  -->
 					</div> 
 				</div> 
 			</div>
 		</div><!--/.carousel-inner-->
-
+		<div id="search">
+			<div id="product_search">
+				<input type="text" id="product_name">
+				<a class="btn btn-default slider-btn animated fadeIn" href="#">상품 검색</a> 
+			</div>
+			<div id="sns_search">
+			<input type="text" id="sns_id">
+			<a href="snsList.sn" class="btn btn-default slider-btn animated fadeIn">SNS STAR 검색</a> 
+			</div>
+		</div>
 		<a class="carousel-left member-carousel-control hidden-xs" href="#main-carousel" data-slide="prev"><i class="fa fa-angle-left"></i></a>
 		<a class="carousel-right member-carousel-control hidden-xs" href="#main-carousel" data-slide="next"><i class="fa fa-angle-right"></i></a>
 	</div> 

@@ -33,36 +33,36 @@
 //scroll menu
 window.onscroll = changePos;
 function changePos() {
-	var skill_y = $('#skill').offset().top + $('#skill').height()-100;
+	var skill_y = $('#skill').offset().top + $('#skill').height()-300;
 	var nav_y = $('#navigation .navbar').height()+8;
-	var sell_popular_y = $('#sell_popular_box').offset().top + $('#sell_popular_box').height()-100;
-	var sell_latest_y = $('#sell_latest_box').offset().top + $('#sell_latest_box').height()-100;
-	/*var proInfo_y = $('#product_info').offset().top + $('#product_info').height()-100; */
+	var sell_popular_y = $('#sell_popular_box').offset().top + $('#sell_popular_box').height()-300;
+	var sell_latest_y = $('#sell_latest_box').offset().top + $('#sell_latest_box').height()-500;
+	var policy_info_y = $('#policy_info_box').offset().top + $('#policy_info_box').height();
     var tab = document.getElementById("tab");
     if (window.pageYOffset > 750) {
         tab.style.position = "absolute";
         tab.style.top = pageYOffset+nav_y+ "px";
         tab.style.width = "1110px";
-        if (window.pageYOffset > 680&&window.pageYOffset<skill_y) {
+        if (window.pageYOffset >= 680&&window.pageYOffset<=skill_y) {
         	$('#t_skill').addClass('active');
         } else{
         	$('#t_skill').removeClass('active');
         }
-        if (window.pageYOffset >skill_y&&window.pageYOffset<sell_popular_y) {
+        if (window.pageYOffset >=skill_y&&window.pageYOffset<=sell_popular_y) {
         	$('#t_sell_popular').addClass('active');
         }else{
         	$('#t_sell_popular').removeClass('active');
         }
-        if (window.pageYOffset > sell_popular_y&&window.pageYOffset<sell_latest_y) {
+        if (window.pageYOffset >= sell_popular_y&&window.pageYOffset<=sell_latest_y) {
         	$('#t_sell_latest').addClass('active');
         }else{
         	$('#t_sell_latest').removeClass('active');
         }
-        /* if (window.pageYOffset > sell_latest_y&&window.pageYOffset<proInfo_y) {
-        	$('#m_proInfo').addClass('active');
+         if (window.pageYOffset >= sell_latest_y) {
+        	$('#t_policy_info').addClass('active');
         }else{
-        	$('#m_proInfo').removeClass('active');
-        } */
+        	$('#t_policy_info').removeClass('active');
+        } 
     } else {
         tab.style.position = "";
         tab.style.top = "";
@@ -126,6 +126,11 @@ List<Integer> popular_list= (List<Integer>)request.getAttribute("popular_list");
 int popular_size = (popular_list.size()>4) ? 4:popular_list.size();
 ProductDAO pdao = new ProductDAO();
 ProductBean pb;
+int all_price_rank = (Integer)request.getAttribute("all_price_rank");
+int cat_price_rank = (Integer)request.getAttribute("cat_price_rank");
+int all_amount_rank = (Integer)request.getAttribute("all_amount_rank");
+int cat_amount_rank = (Integer)request.getAttribute("cat_amount_rank");
+int rank_percent = (Integer)request.getAttribute("rank_percent");
 %>
 <!-- Page Content -->
 <div class="container">
@@ -134,7 +139,7 @@ ProductBean pb;
         <div class="row">
 			<div class="col-lg-12">
                 <h1 class="page-header"><%=sb.getName() %>
-                    <small><%=sb.getCategory() %></small>
+                    <small><%=sb.getCategory() %>/<%=sb.getRank() %></small>
                 </h1>
             </div>
         </div>
@@ -148,8 +153,8 @@ ProductBean pb;
                 <h3>상세 정보</h3>
                 <ul>
                     <li>이름:<%=sb.getName()  %></li>
-                    <li>Dolor Sit Amet</li>
-                    <li>Consectetur</li>
+                    <li>주력 카테고리: <%=sb.getCategory() %></li>
+                    <li>등급: <%=sb.getRank() %></li>
                     <li>Adipiscing Elit</li>
                 </ul>
                  <h3>자기 소개</h3>
@@ -157,11 +162,17 @@ ProductBean pb;
             </div>
             <section id="our-team">
 				<div class="socials">
-					<a href="#"><i class="fa fa-facebook"></i></a>
-					<a href="#"><i class="fa fa-twitter"></i></a>
-					<a href="#"><i class="fa fa-google-plus"></i></a>
-					<a href="#"><i class="fa fa-dribbble"></i></a>
-					<a href="#"><i class="fa fa-linkedin"></i></a>
+							<%if(sb.getFacebook()!=null){%>
+								<a href="<%=sb.getFacebook()%>"><i class="fa fa-facebook"></i></a>
+							<%}if(sb.getTwitter()!=null){%>							
+							<a href="<%=sb.getTwitter()%>"><i class="fa fa-twitter"></i></a>
+							<%}if(sb.getInstagram()!=null){%>			
+							<a href="<%=sb.getInstagram()%>"><i class="fa fa-instagram"></i></a>
+							<%}if(sb.getBlog()!=null){%>	
+							<a href="<%=sb.getBlog()%>"><i class="fa fa-bold"></i></a>
+							<%}if(sb.getEtc()!=null){%>	
+							<a href="<%=sb.getEtc()%>"><i class="fa fa-smile-o"></i></a>
+							<%} %>
 				</div>
 			</section>
         </div>
@@ -192,7 +203,7 @@ ProductBean pb;
 			<a href="#skill" id="t_skill">스타 스킬 확인</a>
 			<a href="#sell_popular" id="t_sell_popular">많이 판매한 상품</a>
 			<a href="#sell_latest" id="t_sell_latest">최근 판매한 상품</a>
-			<a href="#product_info" id="m_proInfo">구매 사항 확인</a>
+			<a href="#policy_info" id="t_policy_info">안내사항 확인</a>
 		</div>
         <div id="bigimg_active">
         	<img src="" id="big_img">
@@ -203,32 +214,32 @@ ProductBean pb;
 			<div class="col-sm-6">
 				<h3>Star Skills</h3>
 				<div class="skill-bar">
-					<div class="skillbar clearfix " data-percent="90%">
+					<div class="skillbar clearfix " data-percent="<%=all_price_rank%>%">
 						<div class="skillbar-title">
-							<span>HTML5 &amp; CSS3</span>
+							<span>전체 판매액</span>
 						</div>
 						<div class="skillbar-bar"></div>
-						<div class="skill-bar-percent">90%</div>
+						<div class="skill-bar-percent"><%=all_price_rank%>%</div>
 					</div> <!-- End Skill Bar -->
-					<div class="skillbar clearfix" data-percent="85%">
-						<div class="skillbar-title"><span>UI Design</span></div>
+					<div class="skillbar clearfix" data-percent="<%=all_amount_rank%>%">
+						<div class="skillbar-title"><span>전체 판매량</span></div>
 						<div class="skillbar-bar"></div>
-						<div class="skill-bar-percent">85%</div>
+						<div class="skill-bar-percent"><%=all_amount_rank%>%</div>
 					</div> <!-- End Skill Bar -->
-					<div class="skillbar clearfix " data-percent="70%">
-						<div class="skillbar-title"><span>jQuery</span></div>
+					<div class="skillbar clearfix " data-percent="<%=cat_price_rank%>%">
+						<div class="skillbar-title"><span>주력 카테고리 내 판매액</span></div>
 						<div class="skillbar-bar"></div>
-						<div class="skill-bar-percent">70%</div>
+						<div class="skill-bar-percent"><%=cat_price_rank%>%</div>
 					</div>	
-					<div class="skillbar clearfix " data-percent="60%">
-						<div class="skillbar-title"><span>PHP</span></div>
+					<div class="skillbar clearfix " data-percent="<%=cat_amount_rank%>%">
+						<div class="skillbar-title"><span>주력 카테고리 내 판매량</span></div>
 						<div class="skillbar-bar"></div>
-						<div class="skill-bar-percent">60%</div>
+						<div class="skill-bar-percent"><%=cat_amount_rank%>%</div>
 					</div>	
-					<div class="skillbar clearfix " data-percent="75%">
-						<div class="skillbar-title"><span>Wordpress</span></div>
+					<div class="skillbar clearfix " data-percent=<%=rank_percent%>%>
+						<div class="skillbar-title"><span>등급</span></div>
 						<div class="skillbar-bar"></div>
-						<div class="skill-bar-percent">75%</div>
+						<div class="skill-bar-percent"><%=rank_percent%>%</div>
 					</div> <!-- End Skill Bar -->
 				</div>
 			</div>
@@ -267,6 +278,27 @@ ProductBean pb;
                	</div>
             </div> <%} %>
 		</div>
+		
+		<a name="policy_info"></a>
+		<div id="policy_info_box">
+			<div><h3>안내 사항 확인</h3></div>
+			<div>
+				<ul>
+					<li>SNS 스타들의 정보와 우리 회사와는 전혀 무관합니다.</li>
+					<li>SNS 스타들과 물건 정보 및 판매 과정은 전혀 무관합니다.</li>
+					<li>SNS 스타들의 skill과 실제 판매 물건은 다소 차이가 있을 수 있습니다.</li>
+					<li>자세한 판매 사항은 판매자에게 문의하시기 바랍니다.</li>
+					<li>SNS 스타의 개인적인 연락처는 요청 하시더라도 회사에서 제공하지 않습니다.</li>
+					<li>SNS 스타와 컨텍은  쪽지를 이용해주시기 바랍니다.</li>
+					<li>SNS 스타에 제공되는  profit은 등급마다 다릅니다.</li>
+				</ul>
+				<table border="1">
+					<tr><td>등급</td><td>Premium</td><td>Plus</td><td>Basic</td></tr>
+					<tr><td>기준</td><td>1천만원 이상</td><td>500만원 이상</td><td>기본</td></tr>
+					<tr><td>profit</td><td>20%</td><td>10%</td><td>5%</td></tr>
+				</table>
+			</div>
+		</div>		
         <!-- /.row -->
         <hr>
         <!-- Footer -->

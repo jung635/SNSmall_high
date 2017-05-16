@@ -33,6 +33,15 @@ public class PayDepositDoneAction implements Action {
 		int point = Integer.parseInt(request.getParameter("point"));
 		String snsId_str = request.getParameter("snsId_str");
 		String[] sns_id = snsId_str.split(",");
+		System.out.println(sns_id.length);
+		if(sns_id.length==0){
+			System.out.println("test1");
+			sns_id[0]=" ";
+		}else{
+			System.out.println("test2");
+		}
+		System.out.println("snsId_str: "+snsId_str);
+		System.out.println("sns_id: "+sns_id[0]);
 		String message = request.getParameter("message");
 		String option1_str = request.getParameter("option1_str");
 		String[] option1 = option1_str.split(",");
@@ -54,14 +63,10 @@ public class PayDepositDoneAction implements Action {
 		int usedPoint_each = usedPoint;
 		List<PaymentBean> list_pb = new ArrayList<>();
 		for (int i = 0; i < amount.length; i++) {
-			System.out.println("test1");
 			int point_each = 0;
-			System.out.println((Integer.parseInt(product[i])));
 			prob = prodao.getProduct((Integer.parseInt(product[i])));
-			System.out.println(option1[i]);
 			pb = new PaymentBean();
 			pb.setAmount(Integer.parseInt(amount[i]));
-			System.out.println(pb.getAmount());
 			pb.setClient_id(id);
 			pb.setMessage(message);
 			pb.setOrder_num(merchant_uid);
@@ -79,8 +84,6 @@ public class PayDepositDoneAction implements Action {
 			}
 			pb.setUsedPoint(point_each);
 			list_pb.add(pb);
-			System.out.println("test");
-			System.out.println(list_pb.get(0));
 			pdao.subPoint(point, id);
 		}
 		out.println("<script>");

@@ -21,7 +21,7 @@
 </head>
 <body>
 <jsp:include page="../inc/header.jsp"/>
-<%String id = "test";
+<%String id = (String)session.getAttribute("id");
 PaymentBean pb = (PaymentBean)request.getAttribute("pb");
 ProductBean prob = (ProductBean)request.getAttribute("prob");
 ClientDAO cdao = new ClientDAO();

@@ -140,19 +140,33 @@
                 		}
                 	}
                 	function gocart(){
-                		window.document.gfr.action="./CartAdd.ca";
-                		window.document.gfr.method="post";
-                		window.document.gfr.submit();
+                		document.gfr.action="./CartAdd.ca";
+                		document.gfr.method="post";
+                		document.gfr.submit();
                 	}
 					function gobuy() {
-						window.document.gfr.action="Pay.pa";
-                		window.document.gfr.method="post";
-                		window.document.gfr.submit();
+						if(document.gfr.option1.value == ""){
+							alert("option1을 선택하세요");
+							document.gfr.option1.focus();
+						}else if(document.gfr.option2 != null){
+							if(document.gfr.option2.value == ""){
+								alert("option2을 선택하세요");
+								document.gfr.option2.focus();
+							}
+						}else(document.gfr.option3 != null){
+							if(document.gfr.option3.value == ""){
+								alert("option3을 선택하세요");
+								document.gfr.option2.focus();
+							}
+						}
+						document.gfr.action="Pay.pa";
+                		document.gfr.method="post";
+                		document.gfr.submit();
 					}
 					function goshare() {
-						window.document.gfr.action="";
-                		window.document.gfr.method="post";
-                		window.document.gfr.submit();
+						document.gfr.action="";
+                		document.gfr.method="post";
+                		document.gfr.submit();
 					}
                 	</script>
 				잔여수량: <input type="text" name="rest_amount" value="<%=peace%> / <%=productbean.getAmount()%>"><br>

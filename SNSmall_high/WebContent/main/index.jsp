@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+    pageEncoding="utf-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="en">
 <head> 
@@ -28,6 +28,10 @@
 function snsSearch_exe(){
 	sns_id = document.getElementById('sns_id').value;
 	location.href = 'SearchSnsList.sn?search='+sns_id;
+}
+function productSearch_exe(){
+	product_name = document.getElementById('product_name').value;
+	location.href = './ProductSearchList.pr?search='+product_name;
 }
 </script>
 <body>
@@ -59,8 +63,8 @@ function snsSearch_exe(){
 						<div> 
 							<h2 class="heading animated bounceInDown">'Himu' Onepage HTML Template</h2> 
 							<p class="animated bounceInUp">Fully Professional one page template</p> 
- 							<!-- <a class="btn btn-default slider-btn animated fadeIn" href="#">»óÇ° °Ë»ö</a> 
-							<a class="btn btn-default slider-btn animated fadeIn" href="#">SNS STAR °Ë»ö</a>   -->
+ 							<!-- <a class="btn btn-default slider-btn animated fadeIn" href="#">ìƒí’ˆ ê²€ìƒ‰</a> 
+							<a class="btn btn-default slider-btn animated fadeIn" href="#">SNS STAR ê²€ìƒ‰</a>   -->
 						</div> 
 					</div> 
 				</div>
@@ -68,8 +72,8 @@ function snsSearch_exe(){
 					<div class="carousel-caption"> <div> 
 						<h2 class="heading animated bounceInDown">Get All in Onepage</h2> 
 						<p class="animated bounceInUp">Everything is outstanding </p>
-<!-- 						<a class="btn btn-default slider-btn animated fadeIn" href="#">»óÇ° °Ë»ö</a> 
-						<a class="btn btn-default slider-btn animated fadeIn" href="#">SNS STAR °Ë»ö</a>  -->
+<!-- 						<a class="btn btn-default slider-btn animated fadeIn" href="#">ìƒí’ˆ ê²€ìƒ‰</a> 
+						<a class="btn btn-default slider-btn animated fadeIn" href="#">SNS STAR ê²€ìƒ‰</a>  -->
 					</div> 
 				</div> 
 			</div> 
@@ -78,8 +82,8 @@ function snsSearch_exe(){
 					<div> 
 						<h2 class="heading animated bounceInRight">Fully Responsive Template</h2> 
 						<p class="animated bounceInLeft">100% Responsive HTML template</p> 
-<!-- 						<a class="btn btn-default slider-btn animated fadeIn" href="#">»óÇ° °Ë»ö</a> 
-						<a class="btn btn-default slider-btn animated fadeIn" href="#">SNS STAR °Ë»ö</a>  -->
+<!-- 						<a class="btn btn-default slider-btn animated fadeIn" href="#">ìƒí’ˆ ê²€ìƒ‰</a> 
+						<a class="btn btn-default slider-btn animated fadeIn" href="#">SNS STAR ê²€ìƒ‰</a>  -->
 					</div> 
 				</div> 
 			</div>
@@ -94,11 +98,11 @@ function snsSearch_exe(){
 		<div id="search">
 			<div id="product_search">
 				<input type="text" id="product_name">
-				<a class="btn btn-default slider-btn animated fadeIn" href="#">»óÇ° °Ë»ö</a> 
+				<a class="btn btn-default slider-btn animated fadeIn" onclick="productSearch_exe()">ìƒí’ˆ ê²€ìƒ‰</a> 
 			</div>
 			<div id="sns_search">
 				<input type="text" id="sns_id">
-				<a href="#" class="btn btn-default slider-btn animated fadeIn" onclick="snsSearch_exe();">SNS STAR °Ë»ö</a> 
+				<a href="#" class="btn btn-default slider-btn animated fadeIn" onclick="snsSearch_exe();">SNS STAR ê²€ìƒ‰</a> 
 			</div>
 		</div>
 		</div>

@@ -51,8 +51,10 @@
 
         <!-- Projects Row -->
         <div id="our-team">
-        <%
-		for(int i=0; i<productList.size(); i++){
+        <%if(productList==null){%>
+        	리스트가 없습니다.
+        <%}else{%>
+		<%for(int i=0; i<productList.size(); i++){
 			ProductBean pb = (ProductBean)productList.get(i);
 		%>
             <div class="col-md-4 portfolio-item">
@@ -69,7 +71,7 @@
                 <p><%=pb.getPrice() %>원</p>
                 <p><%=pb.getDate() %></p>
             </div>
-		<%} %>
+		<%}} %>
 
 		<div class="clear"></div>
         <div class="row text-center">

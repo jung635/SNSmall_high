@@ -151,7 +151,7 @@
 				수량: <input type="text" name="payamount" value="1">
 				<button type="button" onclick="plus()">+</button>
 				<button type="button" onclick="minus()">-</button><br>
-				가격: <input type="text" id="allprice" value="<%=productbean.getPrice()%>">
+				가격: <input type="text" id="allprice" name="allprice" value="<%=productbean.getPrice()%>">
 				
 				
 				<br>

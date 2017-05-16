@@ -1,3 +1,5 @@
+<%@page import="web.sns.db.SnsBean"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -239,128 +241,75 @@ function snsSearch_exe(){
 					<a class="member-right" href="#team-carousel" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>
 					<div class="carousel-inner team-members">
 						<div class="row item active">
-							<div class="col-sm-6 col-md-3">
-								<div class="single-member">
-									<img src="images/our-team/member1.jpg" alt="team member" />
-									<h4>William Hurt</h4>
-									<h5>Sr. Web Developer</h5>
-									<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod</p>
-									<div class="socials">
-										<a href="#"><i class="fa fa-facebook"></i></a>
-										<a href="#"><i class="fa fa-twitter"></i></a>
-										<a href="#"><i class="fa fa-google-plus"></i></a>
-										<a href="#"><i class="fa fa-dribbble"></i></a>
-										<a href="#"><i class="fa fa-linkedin"></i></a>
+							<%List<SnsBean> list = (List<SnsBean>)request.getAttribute("list");
+							for(int i=0; i<4; i++){
+								SnsBean sb = list.get(i);%>
+								<div class="col-sm-6 col-md-3">
+									<div class="single-member">
+										<div id="profile_img_wrap">
+											<%if(i==0){%>
+												<span id="ranking_sns_first">1등!</span>
+											<%}else{ %>
+												<span id="ranking_sns"><%=i+1 %>등</span>
+											<%} %>
+											<img src="./sns_pro_upload/<%=sb.getProfile_img() %>" alt="team member" />
+										</div>
+										<div id="star_list_detail">
+											<h3><a href="SnsDetailAction.sn?sns_id=<%=sb.getSns_id()%>"><%=sb.getName() %></a>
+											<small><%=sb.getCategory() %>/<%=sb.getRank() %></small></h3>
+											<p><%=sb.getContent() %></p>
+										</div>
+										<div class="socials">
+											<%if(sb.getFacebook()!=null){%>
+												<a href="<%=sb.getFacebook()%>"><i class="fa fa-facebook"></i></a>
+											<%}if(sb.getTwitter()!=null){%>							
+											<a href="<%=sb.getTwitter()%>"><i class="fa fa-twitter"></i></a>
+											<%}if(sb.getInstagram()!=null){%>			
+											<a href="<%=sb.getInstagram()%>"><i class="fa fa-instagram"></i></a>
+											<%}if(sb.getBlog()!=null){%>	
+											<a href="<%=sb.getBlog()%>"><i class="fa fa-bold"></i></a>
+											<%}if(sb.getEtc()!=null){%>	
+											<a href="<%=sb.getEtc()%>"><i class="fa fa-smile-o"></i></a>
+											<%} %>
+										</div>
 									</div>
 								</div>
-							</div>
-							<div class="col-sm-6 col-md-3">
-								<div class="single-member">
-									<img src="images/our-team/member2.jpg" alt="team member" />
-									<h4>Alekjandra Jony</h4>
-									<h5>Creative Designer</h5>
-									<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod</p>
-									<div class="socials">
-										<a href="#"><i class="fa fa-facebook"></i></a>
-										<a href="#"><i class="fa fa-twitter"></i></a>
-										<a href="#"><i class="fa fa-google-plus"></i></a>
-										<a href="#"><i class="fa fa-dribbble"></i></a>
-										<a href="#"><i class="fa fa-linkedin"></i></a>
-									</div>
-								</div>
-							</div>
-							<div class="col-sm-6 col-md-3">
-								<div class="single-member">
-									<img src="images/our-team/member3.jpg" alt="team member" />
-									<h4>Paul Johnson</h4>
-									<h5>Skilled Programmer</h5>
-									<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod</p>
-									<div class="socials">
-										<a href="#"><i class="fa fa-facebook"></i></a>
-										<a href="#"><i class="fa fa-twitter"></i></a>
-										<a href="#"><i class="fa fa-google-plus"></i></a>
-										<a href="#"><i class="fa fa-dribbble"></i></a>
-										<a href="#"><i class="fa fa-linkedin"></i></a>
-									</div>
-								</div>
-							</div>
-							<div class="col-sm-6 col-md-3">
-								<div class="single-member">
-									<img src="images/our-team/member4.jpg" alt="team member" />
-									<h4>John Richerds</h4>
-									<h5>Marketing Officer</h5>
-									<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod</p>
-									<div class="socials">
-										<a href="#"><i class="fa fa-facebook"></i></a>
-										<a href="#"><i class="fa fa-twitter"></i></a>
-										<a href="#"><i class="fa fa-google-plus"></i></a>
-										<a href="#"><i class="fa fa-dribbble"></i></a>
-										<a href="#"><i class="fa fa-linkedin"></i></a>
-									</div>
-								</div>
-							</div>
+							<%} %>
 						</div>
 						<div class="row item">
-							<div class="col-sm-6 col-md-3">
-								<div class="single-member">
-									<img src="images/our-team/member1.jpg" alt="team member" />
-									<h4>William Hurt</h4>
-									<h5>Sr. Web Developer</h5>
-									<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod</p>
-									<div class="socials">
-										<a href="#"><i class="fa fa-facebook"></i></a>
-										<a href="#"><i class="fa fa-twitter"></i></a>
-										<a href="#"><i class="fa fa-google-plus"></i></a>
-										<a href="#"><i class="fa fa-dribbble"></i></a>
-										<a href="#"><i class="fa fa-linkedin"></i></a>
+							<%for(int i=4; i<8; i++){
+								SnsBean sb = list.get(i);%>
+								<div class="col-sm-6 col-md-3">
+									<div class="single-member">
+										<div id="profile_img_wrap">
+											<%if(i==0){%>
+												<span id="ranking_sns_first">1등!</span>
+											<%}else{ %>
+												<span id="ranking_sns"><%=i+1 %>등</span>
+											<%} %>										
+											<img src="./sns_pro_upload/<%=sb.getProfile_img() %>" alt="team member" />
+										</div>
+										<div id="star_list_detail">
+											<h3><a href="SnsDetailAction.sn?sns_id=<%=sb.getSns_id()%>"><%=sb.getName() %></a>
+											<small><%=sb.getCategory() %>/<%=sb.getRank() %></small></h3>
+											<p><%=sb.getContent() %></p>
+										</div>
+										<div class="socials">
+											<%if(sb.getFacebook()!=null){%>
+												<a href="<%=sb.getFacebook()%>"><i class="fa fa-facebook"></i></a>
+											<%}if(sb.getTwitter()!=null){%>							
+											<a href="<%=sb.getTwitter()%>"><i class="fa fa-twitter"></i></a>
+											<%}if(sb.getInstagram()!=null){%>			
+											<a href="<%=sb.getInstagram()%>"><i class="fa fa-instagram"></i></a>
+											<%}if(sb.getBlog()!=null){%>	
+											<a href="<%=sb.getBlog()%>"><i class="fa fa-bold"></i></a>
+											<%}if(sb.getEtc()!=null){%>	
+											<a href="<%=sb.getEtc()%>"><i class="fa fa-smile-o"></i></a>
+											<%} %>
+										</div>
 									</div>
 								</div>
-							</div>
-							<div class="col-sm-6 col-md-3">
-								<div class="single-member">
-									<img src="images/our-team/member3.jpg" alt="team member" />
-									<h4>Paul Johnson</h4>
-									<h5>Skilled Programmer</h5>
-									<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod</p>
-									<div class="socials">
-										<a href="#"><i class="fa fa-facebook"></i></a>
-										<a href="#"><i class="fa fa-twitter"></i></a>
-										<a href="#"><i class="fa fa-google-plus"></i></a>
-										<a href="#"><i class="fa fa-dribbble"></i></a>
-										<a href="#"><i class="fa fa-linkedin"></i></a>
-									</div>
-								</div>
-							</div>
-							<div class="col-sm-6 col-md-3">
-								<div class="single-member">
-									<img src="images/our-team/member2.jpg" alt="team member" />
-									<h4>Alekjandra Jony</h4>
-									<h5>Creative Designer</h5>
-									<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod</p>
-									<div class="socials">
-										<a href="#"><i class="fa fa-facebook"></i></a>
-										<a href="#"><i class="fa fa-twitter"></i></a>
-										<a href="#"><i class="fa fa-google-plus"></i></a>
-										<a href="#"><i class="fa fa-dribbble"></i></a>
-										<a href="#"><i class="fa fa-linkedin"></i></a>
-									</div>
-								</div>
-							</div>
-							<div class="col-sm-6 col-md-3">
-								<div class="single-member">
-									<img src="images/our-team/member4.jpg" alt="team member" />
-									<h4>John Richerds</h4>
-									<h5>Marketing Officer</h5>
-									<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod</p>
-									<div class="socials">
-										<a href="#"><i class="fa fa-facebook"></i></a>
-										<a href="#"><i class="fa fa-twitter"></i></a>
-										<a href="#"><i class="fa fa-google-plus"></i></a>
-										<a href="#"><i class="fa fa-dribbble"></i></a>
-										<a href="#"><i class="fa fa-linkedin"></i></a>
-									</div>
-								</div>
-							</div>
+								<%} %>
 						</div>
 					</div>
 				</div>

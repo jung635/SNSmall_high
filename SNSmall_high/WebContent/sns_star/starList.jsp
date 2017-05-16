@@ -88,15 +88,15 @@ List<SnsBean> list = (List<SnsBean>)request.getAttribute("list");
 							<p><%=sb.getContent() %></p>
 						</div>
 						<div class="socials">
-							<%if(sb.getFacebook()!=null){%>
+							<%if(sb.getFacebook().trim().length()!=0){%>
 								<a href="<%=sb.getFacebook()%>"><i class="fa fa-facebook"></i></a>
-							<%}if(sb.getTwitter()!=null){%>							
+							<%}if(sb.getTwitter().trim().length()!=0){%>							
 							<a href="<%=sb.getTwitter()%>"><i class="fa fa-twitter"></i></a>
-							<%}if(sb.getInstagram()!=null){%>			
+							<%}if(sb.getInstagram().trim().length()!=0){%>			
 							<a href="<%=sb.getInstagram()%>"><i class="fa fa-instagram"></i></a>
-							<%}if(sb.getBlog()!=null){%>	
+							<%}if(sb.getBlog().trim().length()!=0){%>	
 							<a href="<%=sb.getBlog()%>"><i class="fa fa-bold"></i></a>
-							<%}if(sb.getEtc()!=null){%>	
+							<%}if(sb.getEtc().trim().length()!=0){%>	
 							<a href="<%=sb.getEtc()%>"><i class="fa fa-smile-o"></i></a>
 							<%} %>
 						</div>

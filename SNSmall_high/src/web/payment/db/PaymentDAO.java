@@ -375,13 +375,13 @@ Connection con = null;
 		try {
 			con = getConnection();
 			if (method.equals("payDone")) {
-				sql.append("state = 'payDone' or state = 'delivery' or state = 'cancelHold' or state = 'waiting'");
+				sql.append("state = 'payDone' or state = 'delivery' or state = 'cancelHold' or state = 'waiting' or state = 'cancel'");
 			} else if (method.equals("done")) {
 				sql.append("state = 'done'");
 			} else if (method.equals("delivery")) {
 				sql.append("state = 'delivery'");
 			} else if (method.equals("cancelHold")) {
-				sql.append("state = 'cancelHold'");
+				sql.append("state = 'cancelHold' or state = 'cancel'");
 			} else if (method.equals("waiting")) {
 				sql.append("state = 'waiting'");
 			}
@@ -423,13 +423,13 @@ Connection con = null;
 		try {
 			con = getConnection();
 			if (method.equals("payDone")) {
-				sql.append("state = 'payDone' or state = 'delivery' or state = 'cancelHold' or state = 'waiting'");
+				sql.append("state = 'payDone' or state = 'delivery' or state = 'cancelHold' or state = 'waiting' or state = 'cancel'");
 			} else if (method.equals("done")) {
 				sql.append("state = 'done'");
 			} else if (method.equals("delivery")) {
 				sql.append("state = 'delivery'");
 			} else if (method.equals("cancelHold")) {
-				sql.append("state = 'cancelHold'");
+				sql.append("state = 'cancelHold' or state = 'cancel'");
 			} else if (method.equals("waiting")) {
 				sql.append("state = 'waiting'");
 			}
@@ -544,17 +544,15 @@ Connection con = null;
 		try {
 			con = getConnection();
 			if (method.equals("payDone")) {
-				sql.append("state = 'payDone' or state = 'delivery' or state = 'cancelHold' or state = 'waiting'");
+				sql.append("state = 'payDone' or state = 'delivery' or state = 'cancelHold' or state = 'waiting' or state = 'cancel'");
 			} else if (method.equals("done")) {
 				sql.append("state = 'done'");
 			} else if (method.equals("delivery")) {
 				sql.append("state = 'delivery'");
 			} else if (method.equals("cancelHold")) {
-				sql.append("state = 'cancelHold'");
+				sql.append("state = 'cancelHold' or state = 'cancel'");
 			} else if (method.equals("waiting")) {
 				sql.append("state = 'waiting'");
-			}else if (method.equals("cancel")) {
-				sql.append("state = 'cancel'");
 			}
 			sql.append(" order by date desc limit ? ");
 			pstmt = con.prepareStatement(sql.toString());
@@ -600,11 +598,9 @@ Connection con = null;
 			} else if (method.equals("delivery")) {
 				sql.append("state = 'delivery'");
 			} else if (method.equals("cancelHold")) {
-				sql.append("state = 'cancelHold'");
+				sql.append("state = 'cancelHold' or state = 'cancel'");
 			} else if (method.equals("waiting")) {
 				sql.append("state = 'waiting'");
-			}else if (method.equals("cancel")) {
-				sql.append("state = 'cancel'");
 			}
 			sql.append(" group by order_num order by date desc limit ? ");
 			pstmt = con.prepareStatement(sql.toString());

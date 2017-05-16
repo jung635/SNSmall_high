@@ -182,10 +182,9 @@ Connection con = null;
 		return usedPoint;
 	}
 
-	public void addSnsPay(int price, String sns_id) {
+	public void addSnsPay(int profit, String sns_id) {
 		try {
 			con = getConnection();
-			int profit = (int) (price * 0.01);
 			sql = "update sns set sns_profit=sns_profit+?, sell=sell+1 where sns_id=? ";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, profit);

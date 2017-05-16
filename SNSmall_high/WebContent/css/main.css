@@ -554,11 +554,9 @@ h1, h2, h3, h4, h5, h6 {
 	position:absolute;
 	top:0;
 	left:0;
-	width:25%;
 	font-weight:bold;
 	font-size:13px;
 	color:#fff;
-	background-color:#fc7700;
 }
 
 .skillbar-title span {
@@ -568,7 +566,6 @@ h1, h2, h3, h4, h5, h6 {
 	margin-top: 0;
 	text-align: left;
 	display:block;
-	background-color:#fc7700;
 	padding:0 15px;
 	height:35px;
 	line-height:35px;
@@ -1530,4 +1527,24 @@ h1, h2, h3, h4, h5, h6 {
    -ms-filter: "progid: DXImageTransform.Microsoft.Alpha(Opacity=100)";
    filter: alpha(opacity=100);
    opacity: 1;
+}
+
+/* 수정 사항 */
+#item2{
+	background-size: cover;
+    height: 100%;
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+}
+
+#search{
+	position: absolute; 
+	top: 58%; 
+	left: 30%; 
+	z-index: 1;
+}
+
+#sns_search, #product_search{
+    float: right;
+    margin: 20px;
 }

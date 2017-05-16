@@ -134,7 +134,7 @@ a{
     background: #ffffff;
     color: #0073E9;
 }
-#tab #m_proInfo.active{
+#tab #t_policy_info.active{
 	border: 2px solid #0073E9;
     border-bottom-color: #ffffff;
     margin-bottom: -2px;
@@ -147,10 +147,18 @@ a{
 #sell_latest_box{
 	overflow: hidden;
 	margin: 100px 0;
+	min-height: 380px;
 }
 #sell_popular_box{
 	overflow: hidden;
 	margin: 100px 0;
+	min-height: 380px;
+}
+#policy_info_box{
+	overflow: hidden;
+	margin: 100px 0;
+	min-height: 380px;
+	border: solid 1px black;
 }
 #skill{
 	overflow: hidden;
@@ -246,6 +254,24 @@ a{
 .socials{
     margin-top: 30px;
 }
+.dropdown-content-rank {
+    display: none;
+    position: absolute;
+    z-index: 1;
+    background: #fff;
+}
+.dropdown-content-rank a{
+    line-height: 30px;
+    padding: 7px 30% !important;
+	text-align: center;
+}
+.dropdown-content-rank a:hover {
+	background-color: #ddd !important;
+}
+.dropbtn:hover .dropdown-content-rank{
+    display: block;
+}
+
 /* pay */
 #buyer, #product, #pay{
     width: 900px;
@@ -287,5 +313,12 @@ a{
 }
 a.list-group-item:hover, a.list-group-item:focus {
     background-color: #dedede !important;
+}
+
+/* Price */
+#standard{
+	display: block;
+    font-size: 25px;
+    line-height: 50px;
 }
 

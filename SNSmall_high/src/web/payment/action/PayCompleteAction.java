@@ -12,6 +12,8 @@ import web.payment.db.PaymentBean;
 import web.payment.db.PaymentDAO;
 import web.product.db.ProductBean;
 import web.product.db.ProductDAO;
+import web.sns.db.SnsBean;
+import web.sns.db.SnsDAO;
 
 public class PayCompleteAction implements Action {
 
@@ -37,6 +39,7 @@ public class PayCompleteAction implements Action {
 		String message = request.getParameter("message");
 		String option1_str = request.getParameter("option1_str");
 		String[] option1 = option1_str.split(",");
+		System.out.println("옵션: "+option1_str);
 		String option2_str = request.getParameter("option2_str");
 		String[] option2 = option2_str.split(",");
 		String option3_str = request.getParameter("option3_str");
@@ -53,8 +56,13 @@ public class PayCompleteAction implements Action {
 		ProductBean prob = null;
 		PaymentDAO pdao = new PaymentDAO();
 		ProductDAO prodao = new ProductDAO();
+		SnsDAO sdao = new SnsDAO();
 		int usedPoint = pdao.usingPoint(point, id);
 		int usedPoint_each = usedPoint;
+		int sns_profit = 0;
+		int add_point = 0;
+		int vendor_profit = 0;
+		int company_profit = 0;
 		List<PaymentBean> list_pb = new ArrayList<>();
 		for (int i = 0; i < amount.length; i++) {
 			int point_each = 0;
@@ -72,19 +80,42 @@ public class PayCompleteAction implements Action {
 			pb.setOption3(option3[i]);
 			if(i==amount.length-1){
 				point_each = usedPoint_each;
+				point_each = (int)(((double)prob.getPrice()*(double)pb.getAmount()/(double)price)*usedPoint)/100*100;
 			}else{
 				point_each = (int)(((double)prob.getPrice()*(double)pb.getAmount()/(double)price)*usedPoint)/100*100;
-				usedPoint_each -=point_each;
+				usedPoint_each -= point_each;
 			}
+			//사용된 포인트 각 물건에 주기
 			pb.setUsedPoint(point_each);
 			list_pb.add(pb);
+			//사용한 포인트 빼기
 			pdao.subPoint(point_each, id);
+
 			
 			if(method.equals("card")){
-				int profit = (int)((double)prob.getPrice()*(Double.parseDouble(amount[i])*0.01));
-				pdao.addSnsPay(profit, sns_id[i]);
-				pdao.addVendorProfit(profit, vendor_id[i]);
-				pdao.addPoint(profit, id);
+				SnsBean sb = sdao.getSnsDetail(sns_id[i]);
+				System.out.println(sb.getRank());
+				if(sb.getRank().equals("basic")){
+					sns_profit = (int)((double)prob.getPrice()*(Double.parseDouble(amount[i])*0.05));
+				}else if(sb.getRank().equals("plus")){
+					sns_profit = (int)((double)prob.getPrice()*(Double.parseDouble(amount[i])*0.1));
+				}else{
+					sns_profit = (int)((double)prob.getPrice()*(Double.parseDouble(amount[i])*0.2));
+				}
+				System.out.println("sns_profit"+sns_profit);
+				add_point = (int)((double)prob.getPrice()*(Double.parseDouble(amount[i])*0.01));
+				company_profit = (int)((double)prob.getPrice()*(Double.parseDouble(amount[i])*0.1));
+				vendor_profit = (prob.getPrice()*pb.getAmount())-company_profit-sns_profit;
+				System.out.println("vendor_profit: "+vendor_profit);
+				System.out.println("company_profit: "+company_profit);
+				System.out.println("add_point:" + add_point);
+				//sns profit 주기
+				pdao.addSnsPay(sns_profit, sns_id[i]);
+				//vendor profit 주기
+				pdao.addVendorProfit(vendor_profit, vendor_id[i]);
+				//포인트 더하기
+				pdao.addPoint(add_point, id);
+				//amount 정리
 				pdao.subAmount(Integer.parseInt(amount[i]), Integer.parseInt(product[i]));
 			}
 		}

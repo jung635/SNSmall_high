@@ -43,7 +43,7 @@
 	String pageNum = (String)request.getAttribute("pageNum");
 	if(pageNum == null){pageNum="1";}
 	
-	String sns_id = "";
+	String sns_id = "abc";
 	
 	ProductBean productbean = (ProductBean)request.getAttribute("productbean");
 	String [] o1 = productbean.getOption1().split(",");

@@ -40,12 +40,15 @@ List<PaymentBean> pay_list_reult = new ArrayList<PaymentBean>();
 						<%for(int j=0; j<pay_list_reult.size(); j++){
 							PaymentBean pb = pay_list_reult.get(j);
 							merchant_uid = pb.getOrder_num();
-							ProductBean prob = prodao.getProduct(pb.getProduct_num()); %>
+							ProductBean prob = prodao.getProduct(pb.getProduct_num()); 
+							int price = pb.getAmount()*prob.getPrice();
+							%>
+							
 						<tr>
 							<td><img src="./vendor_img/<%=prob.getMain_img() %>" style="width: 130px; height: 90px"></td>
 							<td><%=prob.getSubject() %></td>
 							<td><%=prob.getContent() %></td>
-							<td><%=prob.getPrice() %></td>
+							<td><%=price %></td>
 							<td><%=pb.getDate() %></td>
 							<td><%=pb.getState() %></td>
 							<td><%=pb.getOrder_num() %></td>

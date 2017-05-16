@@ -139,7 +139,7 @@
                 		}
                 	}
                 	function gocart(){
-                		window.document.gfr.action="";
+                		window.document.gfr.action="./CartAdd.ca";
                 		window.document.gfr.method="post";
                 		window.document.gfr.submit();
                 	}

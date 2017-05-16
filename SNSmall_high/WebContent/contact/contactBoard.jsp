@@ -38,13 +38,13 @@
   		<!-- Introduction Row -->
         <div class="row" style="margin-top: 43px">
             <div class="col-lg-12">
-                <h1 class="page-header">PriceTable</h1>
-                <p>SNS 스타들의 등급에 따라 받는 profit이 달라집니다. </p>
+                <h1 class="page-header">홍보게시판</h1>
+                <p>SNS 스타와 판매자들간의 매칭을 위한 공간입니다.</p>
             </div>
         </div>
 
         <!-- Team Members Row -->
-<div class="row">
+		<div class="row">
             <div class="col-md-4">
                 <div class="panel panel-default text-center">
                     <div class="panel-heading">
@@ -61,34 +61,8 @@
                         </li>
                     </ul>
                 </div>
-            </div>
-            <div class="col-md-4">
-                <div class="panel panel-default text-center">
-                    <div class="panel-heading">
-                        <h3 class="panel-title">Plus</h3>
-                    </div>
-                    <ul class="list-group">
-                        <li class="list-group-item"><span id="standard"><strong>500만원 이상</strong></span> 판매액</li>
-                        <li class="list-group-item"><strong>10%</strong> Profit</li>
-                        <li class="list-group-item"><a href="snsList.sn?category=plus&order=sell" class="btn btn-primary">Plus SNS스타 보기</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="panel panel-default text-center">
-                    <div class="panel-heading">
-                        <h3 class="panel-title">Premium <span class="label label-success">Best</span></h3>
-                    </div>
-                    <ul class="list-group">
-                        <li class="list-group-item"><span id="standard"><strong>1000만원 이상</strong></span> 판매액</li>
-                        <li class="list-group-item"><strong>20%</strong> Profit</li>
-                        <li class="list-group-item"><a href="snsList.sn?category=premium&order=sell" class="btn btn-primary">Premium SNS스타 보기</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
+            </div>                     
+		</div>
         <hr>
         <!-- Footer -->
         <footer>

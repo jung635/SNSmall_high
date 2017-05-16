@@ -485,8 +485,8 @@ public class SnsDAO {
 		
 		try{
 			con = getConnection();
-			sql = "update sns set name=?,category=?,content=?,Instagram=?,facebook=?,twitter=?,blog=?,etc=?"
-					+ "profile_img=?,detail_img=? where sns_id=?";					
+			sql = "update sns set name=?,category=?,content=?,instagram=?,facebook=?,twitter=?,blog=?,etc=?,"
+				+"profile_img=?,detail_img=? where sns_id=?";					
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, sb.getName());
 			pstmt.setString(2, sb.getCategory());

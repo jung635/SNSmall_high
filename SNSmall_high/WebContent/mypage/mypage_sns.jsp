@@ -51,11 +51,11 @@ array=s.split(",");
 </table>
 <legend>SNS Acount</legend>
 <table class="Snsaccount">
-			<tr> <td>Instagram</td><td> <%if(sb.getInstagram().equals("")){%>미등록<%}else{%><%=sb.getInstagram()%><%}%> </td> </tr>
-			<tr> <td>Facebook</td><td> <%if(sb.getFacebook().equals("")){%>미등록<%}else{%><%=sb.getFacebook()%><%}%> </td> </tr>
-			<tr> <td>Twitter</td><td> <%if(sb.getTwitter().equals("")){%>미등록<%}else{%><%=sb.getTwitter()%><%}%> </td> </tr>
-			<tr> <td>Blog</td><td> <%if(sb.getBlog().equals("")){%>미등록<%}else{%><%=sb.getBlog()%><%}%> </td> </tr>
-			<tr> <td>Etc</td><td>  <%if(sb.getEtc().equals("")){%>미등록<%}else{%><%=sb.getEtc()%><%}%>  </td> </tr>
+			<tr> <td>Instagram</td><td> <%if(sb.getInstagram()==null || sb.getInstagram().equals("")){%>미등록<%}else{%><%=sb.getInstagram()%><%}%> </td> </tr>
+			<tr> <td>Facebook</td><td> <%if(sb.getFacebook()==null || sb.getFacebook().equals("")){%>미등록<%}else{%><%=sb.getFacebook()%><%}%> </td> </tr>
+			<tr> <td>Twitter</td><td> <%if(sb.getTwitter()==null || sb.getTwitter().equals("")){%>미등록<%}else{%><%=sb.getTwitter()%><%}%> </td> </tr>
+			<tr> <td>Blog</td><td> <%if(sb.getBlog()==null || sb.getBlog().equals("")){%>미등록<%}else{%><%=sb.getBlog()%><%}%> </td> </tr>
+			<tr> <td>Etc</td><td>  <%if(sb.getEtc()==null || sb.getEtc().equals("")){%>미등록<%}else{%><%=sb.getEtc()%><%}%>  </td> </tr>
 </table>
 <legend>total sale</legend>
 <table>

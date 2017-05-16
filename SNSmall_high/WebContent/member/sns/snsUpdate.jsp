@@ -168,31 +168,48 @@
  		}else if(document.fr.ckb1.checked==false){
  			dp_insta.style.display='none';
  			document.fr.instagram_ac.value="";
+ 			document.fr.instagram_ac2.value="";
  		}
-		if(document.fr.ckb2.checked==true){
-			dp_face.style.display='block';
-		}else if(document.fr.ckb2.checked==false){
-			dp_face.style.display='none';
-			document.fr.facebook_ac.value="";
-		}
-		if(document.fr.ckb3.checked==true){
-			dp_twit.style.display='block';
-		}else if(document.fr.ckb3.checked==false){
-			dp_twit.style.display='none';
-			document.fr.twitter_ac.value="";
-		}
-		if(document.fr.ckb4.checked==true){
-			dp_blog.style.display='block';
-		}else if(document.fr.ckb4.checked==false){
-			dp_blog.style.display='none';
-			document.fr.blog_ac.value="";
-		}
-		if(document.fr.ckb5.checked==true){
-			dp_etc.style.display='block';
-		}else if(document.fr.ckb5.checked==false){
-			dp_etc.style.display='none';
-			document.fr.etc_ac.value="";
-		}
+	}
+	
+function snschecked2(){
+	if(document.fr.ckb2.checked==true){
+		dp_face.style.display='block';
+	}else if(document.fr.ckb2.checked==false){
+		dp_face.style.display='none';
+		document.fr.facebook_ac.value="";
+		document.fr.facebook_ac2.value="";
+	}
+}
+	
+function snschecked3(){
+	if(document.fr.ckb3.checked==true){
+		dp_twit.style.display='block';
+	}else if(document.fr.ckb3.checked==false){
+		dp_twit.style.display='none';
+		document.fr.twitter_ac.value="";
+		document.fr.twitter_ac2.value="";
+	}
+}
+	
+function snschecked4(){
+	if(document.fr.ckb4.checked==true){
+		dp_blog.style.display='block';
+	}else if(document.fr.ckb4.checked==false){
+		dp_blog.style.display='none';
+		document.fr.blog_ac.value="";
+		document.fr.blog_ac2.value="";
+	}
+}
+	
+function snschecked5(){
+	if(document.fr.ckb5.checked==true){
+		dp_etc.style.display='block';
+	}else if(document.fr.ckb5.checked==false){
+		dp_etc.style.display='none';
+		document.fr.etc_ac.value="";
+		document.fr.etc_ac2.value="";
+	}
 	}
 	
 </script>
@@ -278,17 +295,17 @@
 						<table class="Snsaccount">
 							<tr>
 								<td> Instagram <input type="checkbox" name="ckb1" id="ckb1" onchange="snschecked()" <%if(!(sb.getInstagram().equals(""))){%>checked<%}%>> </td>
-								<td> facebook <input type="checkbox" name="ckb2" id="ckb2" onchange="snschecked()" <%if(!(sb.getFacebook().equals(""))){%>checked<%}%>></td>
-								<td> twitter <input type="checkbox" name="ckb3" id="ckb3" onchange="snschecked()" <%if(!(sb.getTwitter().equals(""))){%>checked<%}%>></td>
-								<td> blog <input type="checkbox" name="ckb4" id="ckb4" onchange="snschecked()" <%if(!(sb.getBlog().equals(""))){%>checked<%}%>></td>
-								<td> etc <input type="checkbox" name="ckb5" id="ckb5" onchange="snschecked()" <%if(!(sb.getEtc().equals(""))){%>checked<%}%>></td>
+								<td> facebook <input type="checkbox" name="ckb2" id="ckb2" onchange="snschecked2()" <%if(!(sb.getFacebook().equals(""))){%>checked<%}%>></td>
+								<td> twitter <input type="checkbox" name="ckb3" id="ckb3" onchange="snschecked3()" <%if(!(sb.getTwitter().equals(""))){%>checked<%}%>></td>
+								<td> blog <input type="checkbox" name="ckb4" id="ckb4" onchange="snschecked4()" <%if(!(sb.getBlog().equals(""))){%>checked<%}%>></td>
+								<td> etc <input type="checkbox" name="ckb5" id="ckb5" onchange="snschecked5()" <%if(!(sb.getEtc().equals(""))){%>checked<%}%>></td>
 							</tr>
 						</table>
 						
 						 <%if(sb.getInstagram().equals("")){%>
 						<div id="dp_insta" style="display: none; margin: 10px;">
 								<span style="padding-right: 10px;">Instagram</span>
-								<input type="text" name="instagram_ac" size=40 value="<%=sb.getInstagram()%>">
+								<input type="text" name="instagram_ac" size=40>
 							</div>
 						<%}else{ %>
 						<div id="dp_insta" style=" margin: 10px;">

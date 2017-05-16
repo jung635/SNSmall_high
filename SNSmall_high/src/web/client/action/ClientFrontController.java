@@ -20,10 +20,10 @@ public class ClientFrontController extends HttpServlet{
 		Action action = null;
 		
 		if(command.equals("/Main.cl")){
-			forward = new ActionForward();
-			forward.setPath("./main/index.jsp");
-			forward.setRedirect(false);
-			
+			action = new MainAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {e.printStackTrace();}
 		}else if (command.equals("/clientJoin.cl")) {
 			forward = new ActionForward();
 			forward.setPath("./member/client/clientJoinForm.jsp");

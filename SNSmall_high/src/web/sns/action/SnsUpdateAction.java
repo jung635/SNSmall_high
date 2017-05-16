@@ -42,6 +42,15 @@ public class SnsUpdateAction implements Action{
 		sb.setName(multi.getParameter("name"));
 		sb.setCategory(multi.getParameter("myselect"));
 		sb.setContent(multi.getParameter("content")); 
+		
+//		if(!(multi.getParameter("instagram_ac").equals(""))){
+//			sb.setInstagram(multi.getParameter("instagram_ac"));
+//		}else if(!(multi.getParameter("instagram_ac2").equals(""))){
+//			sb.setInstagram(multi.getParameter("instagram_ac2"));
+//		}else if((multi.getParameter("instagram_ac").equals(""))&&(multi.getParameter("instagram_ac2").equals(""))){
+//			sb.setInstagram(multi.getParameter("instagram_ac2"));
+//		}
+		
 		sb.setInstagram(multi.getParameter("instagram_ac"));
 		sb.setFacebook(multi.getParameter("facebook_ac"));
 		sb.setTwitter(multi.getParameter("twitter_ac"));

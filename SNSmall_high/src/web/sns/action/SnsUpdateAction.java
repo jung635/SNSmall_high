@@ -20,7 +20,7 @@ public class SnsUpdateAction implements Action{
 		
 		System.out.println("업뎃");
 		
-		String realPath = request.getRealPath("/member/sns/sns_pro_upload");
+		String realPath = request.getRealPath("/sns_pro_upload");
 		System.out.println("물리적경로:"+realPath);
 		int maxSize = 5*1024*1024;
 		MultipartRequest multi = 
@@ -74,7 +74,7 @@ public class SnsUpdateAction implements Action{
 		
 		sdao.SnsUpdate(sb, id);
 		
-		forward.setPath("./SnsInfo.sn");
+		forward.setPath("./MyPage.sn");
 		forward.setRedirect(true);
 		
 		return forward;		 

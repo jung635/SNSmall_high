@@ -242,7 +242,7 @@
 
 
 						<div id="ProimagePreview" style="display: block;">
-							<img src="./member/sns/sns_pro_upload/<%=sb.getProfile_img()%>"
+							<img src="./sns_pro_upload/<%=sb.getProfile_img()%>"
 								style="width: 200px; height: 140px;">
 						</div>
 						<div id="imagePreview"></div>

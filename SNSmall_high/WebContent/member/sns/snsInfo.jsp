@@ -42,24 +42,31 @@ array=s.split(",");
    <jsp:include page="../../inc/myinfo_left.jsp"/>
      </div>
      <div class="col-md-9">
+
+<legend>Basic info</legend>
 <table>
 <tr> <td>아이디</td><td><%=id %></td> </tr>
 <tr> <td>이름</td><td><%=sb.getName() %></td> </tr>
-<tr> <td>메인 프로필 사진</td><td> <img src="./member/sns/sns_pro_upload/<%=sb.getProfile_img()%>" width="200" height="100"> </td> </tr>
-<tr> <td>자기소개</td><td><%=sb.getContent() %></td> </tr>
-<tr> <td>sell 판매한돈?int형</td><td><%=sb.getSell() %></td> </tr>
-<tr> <td>profit 수익</td><td><%=sb.getSns_profit() %></td> </tr>
 <tr> <td>카테고리</td><td><%=sb.getCategory() %></td> </tr>
 </table>
+<legend>total sale</legend>
+<table>
+<tr> <td>sell</td><td><%=sb.getSell() %></td> </tr>
+<tr> <td>profit</td><td><%=sb.getSns_profit() %></td> </tr>
+</table>
+<legend>introduce</legend>
+<%=sb.getContent() %>
+<legend>Profile Image</legend>
+<img src="./sns_pro_upload/<%=sb.getProfile_img()%>" width="200" height="100">
+
+
 서브프로필사진
 <table>
-
  <tr><td>
   <% for(int i=0; i<array.length;i++){%>
-    <img src="./member/sns/sns_pro_upload/<%=array[i]%>"  width="100" height="100">
+    <img src="./sns_pro_upload/<%=array[i]%>"  width="100" height="100">
   <%} %>
  </td><tr>
-
 				</table>
 				
 				</div>

@@ -1,4 +1,4 @@
-package web.contact.db;
+package web.reply.db;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -8,9 +8,12 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
-public class ContactDAO {
-
-Connection con = null;
+public class ReplyDAO {
+	
+	Connection con = null;
+	PreparedStatement pstmt = null;
+	String sql = "";
+	ResultSet rs = null;
 	
 	private Connection getConnection() throws Exception{
 
@@ -18,10 +21,5 @@ Connection con = null;
 		DataSource ds = (DataSource)init.lookup("java:comp/env/jdbc/mysqlDB");
 		con = ds.getConnection();
 		return con;
-	}	//getConnection()
-	
-	PreparedStatement pstmt = null;
-	String sql = "";
-	ResultSet rs = null;
-	
+	}	//getConnection()	
 }

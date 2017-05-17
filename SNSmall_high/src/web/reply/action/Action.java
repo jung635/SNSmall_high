@@ -1,4 +1,4 @@
-package web.contact.action;
+package web.reply.action;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

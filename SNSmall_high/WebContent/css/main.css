@@ -685,12 +685,14 @@ h1, h2, h3, h4, h5, h6 {
 
 .single-member {
 	height:430px;
-	background-color:#43484E;
-	border: 1px solid #43484E;
-	color: #f6f6f6;
-	padding: 25px;
+	background-color:#9a9999;
+	border: 2px solid #fc4300;
+	color: black;
+	padding: 18px;
 	text-align:center;
 	overflow:hidden;
+	margin-bottom: 16px;
+	height: 375px ;
 }
 
 .single-member img {
@@ -1538,13 +1540,100 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 #search{
-	position: absolute; 
-	top: 58%; 
-	left: 30%; 
-	z-index: 1;
+    position: absolute;
+    top: 58%;
+    left: 30%;
+    z-index: 1;
+    padding-top: 525px;
 }
 
-#sns_search, #product_search{
-    float: right;
-    margin: 20px;
+#profile_img_wrap{
+    min-height: 140px;
+    max-height: 169px;
+    position: relative;
+}
+#star_list_detail{
+    min-height: 85px;
+    max-height: 85px;
+}
+
+#our-team .socials a .fa-facebook{
+	background: #3B5997 !important;
+}
+#our-team .socials a .fa-twitter {
+    background: #29C5F6 !important;
+}
+#our-team .socials a .fa-instagram {
+    background: #D13D2F !important;
+}
+#our-team .socials a .fa-bold {
+    background: #FF5C93 !important;
+}
+#our-team .socials a .fa-smile-o {
+    background: #006DC0 !important;
+}
+#our-team .socials a .fa-facebook:hover {
+    border-radius: 0px;
+    border: solid 1px !important;
+}
+#our-team .socials a .fa-twitter:hover {
+    border-radius: 0px;
+    border: solid 1px !important;
+}
+#our-team .socials a .fa-instagram:hover {
+    border-radius: 0px;
+    border: solid 1px !important;
+}
+#our-team .socials a .fa-bold:hover {
+    border-radius: 0px;
+    border: solid 1px !important;
+}
+#our-team .socials a .fa-smile-o:hover {
+    border-radius: 0px;
+    border: solid 1px !important;
+}
+
+#our-team .socials a i {
+    opacity: 1 !important;
+    color: #080808 !important;
+    border: 0px !important;
+}
+
+.socials{
+    margin-top: 30px;
+}
+
+.single-member a{
+	color: rgb(255, 210, 106);
+}
+.single-member small{
+    color: #fbfbfb;
+}
+#ranking_sns{
+	display: inline;
+    padding: .2em .6em .3em;
+    font-size: 75%;
+    font-weight: bold;
+    line-height: 1;
+    color: #fff;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: .25em;
+    background-color: #5cb85c;
+    position: absolute;
+}
+#ranking_sns_first{
+    display: inline;
+    padding: .2em .6em .3em;
+    font-size: 2em;
+    font-weight: bold;
+    line-height: 1;
+    color: #fff;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: .25em;
+    background-color: #fd0558;
+    position: absolute;
 }

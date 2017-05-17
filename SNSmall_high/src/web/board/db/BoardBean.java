@@ -1,33 +1,22 @@
-package web.contact.db;
+package web.board.db;
 
 import java.sql.Date;
 
-public class ContactBean {
-
-	private int num;
-	private String sns_id;
-	private String vendor_id;
-	private String subject;
-	private String content;
-	private Date date;
-	
+public class BoardBean {
+	int num;
+	String id,subject,content,type;
+	Date date;
 	public int getNum() {
 		return num;
 	}
 	public void setNum(int num) {
 		this.num = num;
 	}
-	public String getSns_id() {
-		return sns_id;
+	public String getId() {
+		return id;
 	}
-	public void setSns_id(String sns_id) {
-		this.sns_id = sns_id;
-	}
-	public String getVendor_id() {
-		return vendor_id;
-	}
-	public void setVendor_id(String vendor_id) {
-		this.vendor_id = vendor_id;
+	public void setId(String id) {
+		this.id = id;
 	}
 	public String getSubject() {
 		return subject;
@@ -40,6 +29,12 @@ public class ContactBean {
 	}
 	public void setContent(String content) {
 		this.content = content;
+	}
+	public String getType() {
+		return type;
+	}
+	public void setType(String type) {
+		this.type = type;
 	}
 	public Date getDate() {
 		return date;

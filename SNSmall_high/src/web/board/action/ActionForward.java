@@ -1,4 +1,4 @@
-package web.contact.action;
+package web.board.action;
 
 public class ActionForward{
 

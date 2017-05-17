@@ -117,6 +117,18 @@ public class ClientFrontController extends HttpServlet{
 			forward = new ActionForward();
 			forward.setPath("./test/page.html");
 			forward.setRedirect(false);
+		}else if(command.equals("/Alarm.cl")){
+			action = new AlarmAction();
+			try{
+				forward = action.execute(request, response);
+			}catch(Exception e){e.printStackTrace();}
+			
+		}else if(command.equals("/AlarmView.cl")){
+			action = new AlarmAction();
+			try{
+				forward = action.execute(request, response);
+			}catch(Exception e){e.printStackTrace();}
+			
 		}
 		
 		

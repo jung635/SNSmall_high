@@ -113,6 +113,10 @@ public class ClientFrontController extends HttpServlet{
 			forward = new ActionForward();
 			forward.setPath("./price/priceTable.jsp");
 			forward.setRedirect(false);
+		}else if (command.equals("/test.cl")) {
+			forward = new ActionForward();
+			forward.setPath("./test/page.html");
+			forward.setRedirect(false);
 		}
 		
 		

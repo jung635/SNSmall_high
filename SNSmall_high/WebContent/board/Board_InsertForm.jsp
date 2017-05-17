@@ -53,7 +53,7 @@
 											<option value="etc">기타</option>
 									</select></td>
 								</tr>
-								<input type="hidden" name="vendor_id" value=<%=id%>>
+<%-- 								<input type="hidden" name="vendor_id" value=<%=id%>> --%>
 								<tr>
 									<td>상품명</td>
 									<td><input type="text" name="subject"></td>

@@ -1,3 +1,4 @@
+<%@page import="web.sns.db.SnsBean"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
@@ -21,13 +22,6 @@
 <body>
 
 <jsp:include page="../inc/header.jsp"/>
-
-<!-- 리퀘스트 세션값 받아오기 -->
-	<%
-		
-	%>
-<!-- 리퀘스트 세션값 받아오기 -->
-
 <!-- Page Content -->
 <div class="container">
 	<div class="content">
@@ -38,21 +32,36 @@
                 <p>SNS 스타와 판매자들간의 매칭을 위한 공간입니다.</p>
             </div>
         </div>
-        	
+
+        <!-- Team Members Row -->
+		<div class="row">
+            <div class="col-md-4">
+                <div class="panel panel-default text-center">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Basic</h3>
+                    </div>
+
+                    <ul class="list-group">
+                        <li class="list-group-item"><span id="standard"><strong>기본</strong></span> 판매액</li>
+                        <li class="list-group-item"><strong>5%</strong> Profit</li>
+<!--                         <li class="list-group-item"><strong>Unlimited</strong> Email Accounts</li>
+                        <li class="list-group-item"><strong>10GB</strong> Disk Space</li>
+                        <li class="list-group-item"><strong>100GB</strong> Monthly Bandwidth</li>
+ -->                        <li class="list-group-item"><a href="snsList.sn?category=basic&order=sell" class="btn btn-primary">Basic SNS스타 보기</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>                     
+		</div>
+		
 		<!-- 테이블 모양 테스트 -->
 		<div class="row">
             <div class="col-md-8">
                 <div class="panel panel-default text-center">
                     <table>
-                    	<h3>
-							<a href="./writeForm.co">글쓰기</a>
-						</h3>
                     	<tr style="border-bottom: 1px double gray;"><th>구분</th><th>제목</th><th>글쓴이</th><th>등록일</th></tr>
-						
-						<!-- 조건 for문 시작할 부분 -->
-						<tr><td></td><td></td><td></td><td></td></tr>
-						<!-- 조건 for문 끝낼 부분 -->
-						
+						<tr><td>sns</td><td>나 유명해 쪽지줘나 유명해나 유명해나 유명해나 유명해나 유명해나 유명해나 유명해나 유명해나 유명해나 유명해</td><td>김허세</td><td>오늘</td></tr>
+						<tr><td>판매자</td><td>팔꺼많아</td><td>다팜</td><td>어저께</td></tr>
 					</table>
                     
                 </div>

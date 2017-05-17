@@ -22,7 +22,12 @@ public class ContactFrontController extends HttpServlet{
 			forward = new ActionForward();
 			forward.setPath("./contact/contactBoard.jsp");
 			forward.setRedirect(false);
+		}else if(command.equals("/writeForm.co")){
+			forward = new ActionForward();
+			forward.setPath("./contact/contactBoard_InsertForm.jsp");
+			forward.setRedirect(false);
 		}
+		
 		// 가상주소 판단 끝
 		
 		// 이동 시작

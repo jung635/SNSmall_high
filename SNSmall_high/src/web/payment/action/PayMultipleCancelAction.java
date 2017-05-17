@@ -38,8 +38,19 @@ public class PayMultipleCancelAction implements Action {
 		}else{
 			for(int i=0; i<pb_list.size(); i++){
 				pb = pb_list.get(i);
+				if (pb.getState().equals("cancel")) {
+					out.println("<script>");
+					out.println("alert('이미 취소 신청하신 상품은 취소신청이 불가능 합니다.');");
+					out.println("history.back();");
+					out.println("</script>");
+				}
+			}
+			for(int i=0; i<pb_list.size(); i++){
+				pb = pb_list.get(i);
 					if(pb.getState().equals("waiting")){
 						pdao.deletePayRequestWaiting(pb.getNum());
+					}else if(pb.getState().equals("cancel")){
+						
 					}else{
 						pdao.deletePayRequest(pb.getNum());
 					}

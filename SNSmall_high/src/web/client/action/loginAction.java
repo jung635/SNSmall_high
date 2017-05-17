@@ -50,7 +50,7 @@ public class loginAction implements Action{
 		session.setAttribute("pass", pass);
 		ActionForward forward = new ActionForward();
 		forward.setPath("./Main.cl");
-		forward.setRedirect(true);			
-		return forward;
+		forward.setRedirect(true);		
+		return forward;				
 	}
 }

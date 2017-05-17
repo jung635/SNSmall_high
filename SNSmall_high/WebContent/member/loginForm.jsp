@@ -74,7 +74,7 @@
 			
 				 <div class="login_subject">comming soon Logo</div> 
 		
-				<form action="./loginAction.cl" id="join" name="fr" onsubmit="return confirmSubmit()">
+				<form action="./loginAction.cl" id="join" name="fr" method="post" onsubmit="return confirmSubmit()">
 			
 					<fieldset class="login_form">
 					

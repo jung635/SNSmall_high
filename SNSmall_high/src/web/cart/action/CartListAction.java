@@ -15,7 +15,7 @@ public class CartListAction implements Action{
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		// TODO Auto-generated method stub
-		
+		request.setCharacterEncoding("utf-8");
 		HttpSession session = request.getSession();
 		
 		CartDAO cdao = new CartDAO();

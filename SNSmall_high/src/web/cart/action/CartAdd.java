@@ -32,9 +32,9 @@ public class CartAdd implements Action{
 		System.out.println("pro_num : "+request.getParameter("product_num"));
 		System.out.println("vendor_id : "+request.getParameter("vendor_id"));
 		System.out.println("sns_id : "+request.getParameter("sns_id"));
-		System.out.println("option1 : "+request.getParameter("option1"));
-		System.out.println("option2 : "+request.getParameter("option2"));
-		System.out.println("option3 : "+request.getParameter("option3"));
+		String option1 = request.getParameter("option1");
+		String option2 = request.getParameter("option2");
+		String option3 = request.getParameter("option3");
 		System.out.println("allprice : "+request.getParameter("allprice"));
 		System.out.println("payamount : "+request.getParameter("amount"));
 		
@@ -43,13 +43,16 @@ public class CartAdd implements Action{
 		//받아올 세션 값 : 구매자 아이디
 		cb.setClient_id(id);
 		//받아올 파라미터 값 : (sns_id 어떻게 가져오지) 제목 , 갯수 , 옵션1 , 옵션2 , 옵션3 , 대표이미지
-		cb.setMain_img(request.getParameter("main_img"));
+		
 		cb.setSubject(request.getParameter("subject"));
-		cb.setOption1(request.getParameter("option1"));
-		cb.setOption2(request.getParameter("option2"));
-		cb.setOption3(request.getParameter("option3"));
+		if(option1==null){option1 = "null";}
+		cb.setOption1(option1);
+		if(option2==null){option2 = "null";}
+		cb.setOption2(option2);
+		if(option3==null){option3 = "null";}
+		cb.setOption3(option3);
 		cb.setAmount(Integer.parseInt(request.getParameter("amount")));
-		cb.setPrice(Integer.parseInt(request.getParameter("price")));
+		cb.setPrice(Integer.parseInt(request.getParameter("allprice")));
 		cb.setProduct_num(Integer.parseInt(request.getParameter("product_num")));
 		cb.setSns_id(request.getParameter("sns_id"));
 		cb.setVendor_id(request.getParameter("vendor_id"));
@@ -63,7 +66,7 @@ public class CartAdd implements Action{
 		CartDAO cdao = new CartDAO();
 		//추가
 		cdao.CartAdd(cb);
-		request.setAttribute("cb", cb);
+		
 		//장바구니 리스트로 가기? or 상세페이지로 이동(뒤로가기)
 		
 			forward.setRedirect(true);

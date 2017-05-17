@@ -10,7 +10,7 @@ import java.util.List;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
-
+import web.cart.db.CartBean;
 public class CartDAO {
 
 Connection con = null;
@@ -29,17 +29,16 @@ Connection con = null;
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
 		String sql="";
-		int b_num=0;
+		
 		try {
 			//1,2 디비연결
 			con=getConnection();
 			
-			sql="insert into cart values(?,?,?,?,?,?,?,?,?,?,now())";
+			sql="insert into cart values(?,?,?,?,?,?,?,?,?,now())";
 			pstmt.setInt(1, cb.getProduct_num());
 			pstmt.setString(2, cb.getSns_id());
 			pstmt.setString(3, cb.getClient_id());
 			pstmt.setString(4, cb.getVendor_id());
-			pstmt.setString(5, cb.getSubject());
 			pstmt.setString(5, cb.getOption1());
 			pstmt.setString(6, cb.getOption2());
 			pstmt.setString(7, cb.getOption3());

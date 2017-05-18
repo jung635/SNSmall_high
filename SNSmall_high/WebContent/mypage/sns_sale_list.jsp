@@ -24,8 +24,9 @@
 <title>Insert title here</title>
 <script type="text/javascript">
 function snsStatefn() {
-    /* var x = document.getElementById("snsState").value; */
-    /* document.getElementById("snselected").innerHTML = "You selected: " + x; */
+    /*var State = document.getElementById("snsState").value;
+    document.getElementById("snselected").innerHTML = "You selected: " + snsState;*/
+    
     document.frmSearch.submit();
 }
 </script>
@@ -144,14 +145,14 @@ int addPoint=0;
 </div>
 <div class="row">
 <form action="SnsSale.sn" method="post" name="frmSearch">
-<select id="snsState" name="snsState" onchange="snsStatefn()">
+<select id="snsState" name="snsState" onchange="snsStatefn(this.value)">
   <option value="">정렬방법을 선택하세요
-<option value="payDone">주문 내역</option>
-<option value="delivery">배송중</option>
-<option value="done">배송완료</option>
-<option value="cancel">주문취소</option>
-<option value="cancelHold">취소신청</option>
-<option value="waiting">무통장입금</option>
+  <option value="payDone">주문 내역</option>
+  <option value="delivery">배송중</option>
+  <option value="done">배송완료</option>
+  <option value="cancel">주문취소</option>
+  <option value="cancelHold">취소신청</option>
+  <option value="waiting">무통장입금</option>
 </select><br><br><!-- <div id="snselected"></div> -->
 </form>
 
@@ -162,12 +163,16 @@ int addPoint=0;
 		<td>사용된포인트</td><td>상태표시</td></tr>
 
 <%
+	//String snsState="";
+
 	for(int i=0; i < paymentList.size(); i++){
 		//PaymentBean pab= 한칸의 데이터 가져와서 저장 .get()
 		PaymentBean pab = (PaymentBean)paymentList.get(i);
 		//부모                                                      자식
 		System.out.println("i : "+i);
 		addPoint+=pab.getUsedPoint();
+	//	snsState = pab.getState();
+	//	System.out.println("snsState >>> : "+snsState);
 %>
 		<tr align="center">
 		<td><%=pab.getProduct_num()%></td><td><%=pab.getSns_id()%></td><td><%=pab.getAmount()%></td><td><%=pab.getMessage()%></td>

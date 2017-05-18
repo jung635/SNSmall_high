@@ -468,6 +468,7 @@ Connection con = null;
 				pstmt.setString(1, snsState);
 				pstmt.setString(2, id);
 				System.out.println("sns_id and state : "+id);
+				
 			}else{
 				sql = "select count(*) from payment where sns_id=?";
 				pstmt=con.prepareStatement(sql);
@@ -505,23 +506,22 @@ Connection con = null;
 			con=getConnection();
 			//3. sql member 모든 데이터 가져오기
 			if(snsState!=null){
-			sql="select * from payment where state=? and sns_id=? limit ?,?";
-			System.out.println("snsState : "+snsState);
-			System.out.println("id : "+id);
-			pstmt=con.prepareStatement(sql);
-			pstmt.setString(1, snsState); //첫번째 물음표 1, snsState 상태에 입력될 값
-			pstmt.setString(2, id);
-			pstmt.setInt(3, startRow-1); //시작행 -1
-			pstmt.setInt(4, pageSize); //몇개글
+				sql="select * from payment where state=? and sns_id=? limit ?,?";
+				System.out.println("snsState : "+snsState);
+				System.out.println("id : "+id);
+				pstmt=con.prepareStatement(sql);
+				pstmt.setString(1, snsState); //첫번째 물음표 1, snsState 상태에 입력될 값
+				pstmt.setString(2, id);
+				pstmt.setInt(3, startRow-1); //시작행 -1
+				pstmt.setInt(4, pageSize); //몇개글
 			}else{
-				
-			sql="select * from payment where sns_id=? limit ?,?";
-			//sql="select * from payment where state in ('done', 'cancel') and sns_id=? limit ?,?";
-			System.out.println("id : "+id);
-			pstmt=con.prepareStatement(sql);
-			pstmt.setString(1, id);
-			pstmt.setInt(2, startRow-1); //시작행 -1
-			pstmt.setInt(3, pageSize); //몇개글
+				sql="select * from payment where sns_id=? limit ?,?";
+				//sql="select * from payment where state in ('done', 'cancel') and sns_id=? limit ?,?";
+				System.out.println("id : "+id);
+				pstmt=con.prepareStatement(sql);
+				pstmt.setString(1, id);
+				pstmt.setInt(2, startRow-1); //시작행 -1
+				pstmt.setInt(3, pageSize); //몇개글
 			}
 			rs=pstmt.executeQuery();
 			while(rs.next()){ //첫행 데이터 있으면  true
@@ -551,6 +551,7 @@ Connection con = null;
 		
 		return paymentList;
 	}//getPaymentList(String snsState)
+	
 	public List<PaymentBean> getVendorPaymentById(int pageSize, String vendor_id, String method) {
 		List<PaymentBean> list = new ArrayList<PaymentBean>();
 		StringBuffer sql = new StringBuffer("select * from payment where vendor_id = ? and ");

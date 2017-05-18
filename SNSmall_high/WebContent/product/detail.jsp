@@ -160,9 +160,6 @@
             </div>
         </div>
         <!-- /.row -->
-<%=id %><br>
-<%=type %><br>
-<%=sns_id %>
         <!-- Portfolio Item Row -->
         <div class="row">
 

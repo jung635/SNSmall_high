@@ -10,7 +10,7 @@ function alarm_access(){
 		xhttp.open("GET", 'Alarm.al', true);
 		xhttp.send();	
 	   
-  setTimeout("alarm_access()", 5000);//3초 마다 서버와 통신함  
+  setTimeout("alarm_access()", 3000);//3초 마다 서버와 통신함  
   return false;  
 }  
 function alarm_view(){  
@@ -31,8 +31,10 @@ function alarm_view(){
 
 function alert_view(alarm_msg){
 	text = document.getElementById("alarm").innerHTML.trim();
+	//alert(text);
 	if(text == 'nothing'){
 		document.getElementById("alarm").style.display = 'none';
+		document.getElementById("alarm").innerHTML = alarm_msg;
 	}else{
 		document.getElementById("alarm").style.display = 'block';
 		document.getElementById("alarm").innerHTML = alarm_msg;

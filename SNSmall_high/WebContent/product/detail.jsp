@@ -117,10 +117,10 @@
  						<%} %>
  				</select>
  				<br>
-				<%}else if(o3 != null){ %>
+				<%}if(o3 != null){ %>
  				<select name="option3">
  					<option value=""><%=o3[0] %> 선택하세요</option>
- 						<%for(int i=1; i<o2.length; i++){ %>
+ 						<%for(int i=1; i<o3.length; i++){ %>
   							<option value="<%=o3[i]%>"><%=o3[i] %></option>
   						<%} %>
   				</select>
@@ -148,15 +148,18 @@
 						if(document.gfr.option1.value == ""){
 							alert("option1을 선택하세요");
 							document.gfr.option1.focus();
+							return false;
 						}else if(document.gfr.option2 != null){
 							if(document.gfr.option2.value == ""){
 								alert("option2을 선택하세요");
 								document.gfr.option2.focus();
-							}
-						}else(document.gfr.option3 != null){
-							if(document.gfr.option3.value == ""){
-								alert("option3을 선택하세요");
-								document.gfr.option2.focus();
+								return false;
+							}else if(document.gfr.option3 != null){
+								if(document.gfr.option3.value == ""){
+									alert("option3을 선택하세요");
+									document.gfr.option3.focus();
+									return false;
+								}
 							}
 						}
 						document.gfr.action="Pay.pa";
@@ -170,19 +173,27 @@
 					}
                 	</script>
 				잔여수량: <input type="text" name="rest_amount" value="<%=peace%> / <%=productbean.getAmount()%>"><br>
+				<%
+				if(peace==0){
+					%>
+					<h2>SOLD OUT</h2>
+					<%
+				}else{
+				%>
 				수량: <input type="text" name="amount" value="1">
 				<button type="button" onclick="plus()">+</button>
 				<button type="button" onclick="minus()">-</button><br>
 				가격: <input type="text" id="allprice" name="allprice" value="<%=productbean.getPrice()%>">
-				
-				
+				<%} %>
 				<br>
+				<%
+				if(peace!=0){
+				%>
                 <a class="btn btn-success" onclick="gocart()">Into Cart</a>
-                <a class="btn btn-success" onclick="gobuy()">Get it</a>
+                <a class="btn btn-success" onclick="return gobuy()">Get it</a>
                 <% if(!(type.equals("client"))){%>
                 <a class="btn btn-success" onclick="goshare()">Share</a>
-               
-                <%} %>
+                <%}} %>
             </div>
 			</form>
         </div>

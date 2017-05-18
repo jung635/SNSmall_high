@@ -3,6 +3,8 @@ package web.client.db;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Properties;
 
 import javax.mail.Message;
@@ -14,6 +16,7 @@ import javax.mail.internet.MimeMessage;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
+
 
 public class ClientDAO {
 
@@ -235,5 +238,6 @@ Connection con = null;
 		if(con != null){try {con.close();}catch(Exception ex) {}}}
 	} //passModify
 	
+
 	
 }

@@ -1,3 +1,5 @@
+<%@page import="web.sns.db.SnsBean"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -23,14 +25,17 @@
 	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="images/ico/apple-touch-icon-114-precomposed.png"> 
 	<link rel="apple-touch-icon-precomposed" sizes="72x72" href="images/ico/apple-touch-icon-72-precomposed.png"> 
 	<link rel="apple-touch-icon-precomposed" href="images/ico/apple-touch-icon-57-precomposed.png">
-</head><!--/head-->
+</head>
+
 <script type="text/javascript">
-function sns_search_exe(){
-	sns_id = document.getElementById('sns_id').innerText;
-	alert(sns_id);
-}
+function snsSearch_exe(){
+	search = document.getElementById('search').value;
+	location.href = 'SearchSnsList.sn?search='+search;
+} -->
 </script>
 <body>
+
+	<script type="text/javascript" src=".main/alarm.js"></script> 
 	<div class="preloader">
 		<div class="preloder-wrap">
 			<div class="preloder-inner"> 
@@ -59,8 +64,8 @@ function sns_search_exe(){
 						<div> 
 							<h2 class="heading animated bounceInDown">'Himu' Onepage HTML Template</h2> 
 							<p class="animated bounceInUp">Fully Professional one page template</p> 
-<!-- 							<a class="btn btn-default slider-btn animated fadeIn" href="#">상품 검색</a> 
-							<a class="btn btn-default slider-btn animated fadeIn" href="#">SNS STAR 검색</a>  -->
+ 							<!-- <a class="btn btn-default slider-btn animated fadeIn" href="#">상품 검색</a> 
+							<a class="btn btn-default slider-btn animated fadeIn" href="#">SNS STAR 검색</a>   -->
 						</div> 
 					</div> 
 				</div>
@@ -83,20 +88,22 @@ function sns_search_exe(){
 					</div> 
 				</div> 
 			</div>
+
+			
 		</div><!--/.carousel-inner-->
-		<div id="search">
-			<div id="product_search">
-				<input type="text" id="product_name">
-				<a class="btn btn-default slider-btn animated fadeIn" href="#">상품 검색</a> 
-			</div>
-			<div id="sns_search">
-			<input type="text" id="sns_id">
-			<a href="snsList.sn" class="btn btn-default slider-btn animated fadeIn">SNS STAR 검색</a> 
-			</div>
-		</div>
+
+ 
 		<a class="carousel-left member-carousel-control hidden-xs" href="#main-carousel" data-slide="prev"><i class="fa fa-angle-left"></i></a>
 		<a class="carousel-right member-carousel-control hidden-xs" href="#main-carousel" data-slide="next"><i class="fa fa-angle-right"></i></a>
+		<div class="carousel-caption"> 
+		<div id="search">
+			<input type="text" id="product_name">
+			<a href="#" class="btn btn-default slider-btn animated fadeIn" onclick="snsSearch_exe();">SNS STAR 검색</a> 
+			<a class="btn btn-default slider-btn animated fadeIn" href="#">상품 검색</a> 
+		</div>
+		</div>
 	</div> 
+
 
 </section><!--/#home-->
 
@@ -232,128 +239,75 @@ function sns_search_exe(){
 					<a class="member-right" href="#team-carousel" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>
 					<div class="carousel-inner team-members">
 						<div class="row item active">
-							<div class="col-sm-6 col-md-3">
-								<div class="single-member">
-									<img src="images/our-team/member1.jpg" alt="team member" />
-									<h4>William Hurt</h4>
-									<h5>Sr. Web Developer</h5>
-									<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod</p>
-									<div class="socials">
-										<a href="#"><i class="fa fa-facebook"></i></a>
-										<a href="#"><i class="fa fa-twitter"></i></a>
-										<a href="#"><i class="fa fa-google-plus"></i></a>
-										<a href="#"><i class="fa fa-dribbble"></i></a>
-										<a href="#"><i class="fa fa-linkedin"></i></a>
+							<%List<SnsBean> list = (List<SnsBean>)request.getAttribute("list");
+							for(int i=0; i<4; i++){
+								SnsBean sb = list.get(i);%>
+								<div class="col-sm-6 col-md-3">
+									<div class="single-member">
+										<div id="profile_img_wrap">
+											<%if(i==0){%>
+												<span id="ranking_sns_first">1등!</span>
+											<%}else{ %>
+												<span id="ranking_sns"><%=i+1 %>등</span>
+											<%} %>
+											<img src="./sns_pro_upload/<%=sb.getProfile_img() %>" alt="team member" />
+										</div>
+										<div id="star_list_detail">
+											<h3><a href="SnsDetailAction.sn?sns_id=<%=sb.getSns_id()%>"><%=sb.getName() %></a>
+											<small><%=sb.getCategory() %>/<%=sb.getRank() %></small></h3>
+											<p><%=sb.getContent() %></p>
+										</div>
+										<div class="socials">
+											<%if(sb.getFacebook().trim().length()!=0){%>
+												<a href="<%=sb.getFacebook()%>"><i class="fa fa-facebook"></i></a>
+											<%}if(sb.getTwitter().trim().length()!=0){%>							
+											<a href="<%=sb.getTwitter()%>"><i class="fa fa-twitter"></i></a>
+											<%}if(sb.getInstagram().trim().length()!=0){%>			
+											<a href="<%=sb.getInstagram()%>"><i class="fa fa-instagram"></i></a>
+											<%}if(sb.getBlog().trim().length()!=0){%>	
+											<a href="<%=sb.getBlog()%>"><i class="fa fa-bold"></i></a>
+											<%}if(sb.getEtc().trim().length()!=0){%>	
+											<a href="<%=sb.getEtc()%>"><i class="fa fa-smile-o"></i></a>
+											<%} %>
+										</div>
 									</div>
 								</div>
-							</div>
-							<div class="col-sm-6 col-md-3">
-								<div class="single-member">
-									<img src="images/our-team/member2.jpg" alt="team member" />
-									<h4>Alekjandra Jony</h4>
-									<h5>Creative Designer</h5>
-									<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod</p>
-									<div class="socials">
-										<a href="#"><i class="fa fa-facebook"></i></a>
-										<a href="#"><i class="fa fa-twitter"></i></a>
-										<a href="#"><i class="fa fa-google-plus"></i></a>
-										<a href="#"><i class="fa fa-dribbble"></i></a>
-										<a href="#"><i class="fa fa-linkedin"></i></a>
-									</div>
-								</div>
-							</div>
-							<div class="col-sm-6 col-md-3">
-								<div class="single-member">
-									<img src="images/our-team/member3.jpg" alt="team member" />
-									<h4>Paul Johnson</h4>
-									<h5>Skilled Programmer</h5>
-									<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod</p>
-									<div class="socials">
-										<a href="#"><i class="fa fa-facebook"></i></a>
-										<a href="#"><i class="fa fa-twitter"></i></a>
-										<a href="#"><i class="fa fa-google-plus"></i></a>
-										<a href="#"><i class="fa fa-dribbble"></i></a>
-										<a href="#"><i class="fa fa-linkedin"></i></a>
-									</div>
-								</div>
-							</div>
-							<div class="col-sm-6 col-md-3">
-								<div class="single-member">
-									<img src="images/our-team/member4.jpg" alt="team member" />
-									<h4>John Richerds</h4>
-									<h5>Marketing Officer</h5>
-									<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod</p>
-									<div class="socials">
-										<a href="#"><i class="fa fa-facebook"></i></a>
-										<a href="#"><i class="fa fa-twitter"></i></a>
-										<a href="#"><i class="fa fa-google-plus"></i></a>
-										<a href="#"><i class="fa fa-dribbble"></i></a>
-										<a href="#"><i class="fa fa-linkedin"></i></a>
-									</div>
-								</div>
-							</div>
+							<%} %>
 						</div>
 						<div class="row item">
-							<div class="col-sm-6 col-md-3">
-								<div class="single-member">
-									<img src="images/our-team/member1.jpg" alt="team member" />
-									<h4>William Hurt</h4>
-									<h5>Sr. Web Developer</h5>
-									<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod</p>
-									<div class="socials">
-										<a href="#"><i class="fa fa-facebook"></i></a>
-										<a href="#"><i class="fa fa-twitter"></i></a>
-										<a href="#"><i class="fa fa-google-plus"></i></a>
-										<a href="#"><i class="fa fa-dribbble"></i></a>
-										<a href="#"><i class="fa fa-linkedin"></i></a>
+							<%for(int i=4; i<8; i++){
+								SnsBean sb = list.get(i);%>
+								<div class="col-sm-6 col-md-3">
+									<div class="single-member">
+										<div id="profile_img_wrap">
+											<%if(i==0){%>
+												<span id="ranking_sns_first">1등!</span>
+											<%}else{ %>
+												<span id="ranking_sns"><%=i+1 %>등</span>
+											<%} %>										
+											<img src="./sns_pro_upload/<%=sb.getProfile_img() %>" alt="team member" />
+										</div>
+										<div id="star_list_detail">
+											<h3><a href="SnsDetailAction.sn?sns_id=<%=sb.getSns_id()%>"><%=sb.getName() %></a>
+											<small><%=sb.getCategory() %>/<%=sb.getRank() %></small></h3>
+											<p><%=sb.getContent() %></p>
+										</div>
+										<div class="socials">
+											<%if(sb.getFacebook().trim().length()!=0){%>
+												<a href="<%=sb.getFacebook()%>"><i class="fa fa-facebook"></i></a>
+											<%}if(sb.getTwitter().trim().length()!=0){%>							
+											<a href="<%=sb.getTwitter()%>"><i class="fa fa-twitter"></i></a>
+											<%}if(sb.getInstagram().trim().length()!=0){%>			
+											<a href="<%=sb.getInstagram()%>"><i class="fa fa-instagram"></i></a>
+											<%}if(sb.getBlog().trim().length()!=0){%>	
+											<a href="<%=sb.getBlog()%>"><i class="fa fa-bold"></i></a>
+											<%}if(sb.getEtc().trim().length()!=0){%>	
+											<a href="<%=sb.getEtc()%>"><i class="fa fa-smile-o"></i></a>
+											<%} %>
+										</div>
 									</div>
 								</div>
-							</div>
-							<div class="col-sm-6 col-md-3">
-								<div class="single-member">
-									<img src="images/our-team/member3.jpg" alt="team member" />
-									<h4>Paul Johnson</h4>
-									<h5>Skilled Programmer</h5>
-									<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod</p>
-									<div class="socials">
-										<a href="#"><i class="fa fa-facebook"></i></a>
-										<a href="#"><i class="fa fa-twitter"></i></a>
-										<a href="#"><i class="fa fa-google-plus"></i></a>
-										<a href="#"><i class="fa fa-dribbble"></i></a>
-										<a href="#"><i class="fa fa-linkedin"></i></a>
-									</div>
-								</div>
-							</div>
-							<div class="col-sm-6 col-md-3">
-								<div class="single-member">
-									<img src="images/our-team/member2.jpg" alt="team member" />
-									<h4>Alekjandra Jony</h4>
-									<h5>Creative Designer</h5>
-									<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod</p>
-									<div class="socials">
-										<a href="#"><i class="fa fa-facebook"></i></a>
-										<a href="#"><i class="fa fa-twitter"></i></a>
-										<a href="#"><i class="fa fa-google-plus"></i></a>
-										<a href="#"><i class="fa fa-dribbble"></i></a>
-										<a href="#"><i class="fa fa-linkedin"></i></a>
-									</div>
-								</div>
-							</div>
-							<div class="col-sm-6 col-md-3">
-								<div class="single-member">
-									<img src="images/our-team/member4.jpg" alt="team member" />
-									<h4>John Richerds</h4>
-									<h5>Marketing Officer</h5>
-									<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod</p>
-									<div class="socials">
-										<a href="#"><i class="fa fa-facebook"></i></a>
-										<a href="#"><i class="fa fa-twitter"></i></a>
-										<a href="#"><i class="fa fa-google-plus"></i></a>
-										<a href="#"><i class="fa fa-dribbble"></i></a>
-										<a href="#"><i class="fa fa-linkedin"></i></a>
-									</div>
-								</div>
-							</div>
+								<%} %>
 						</div>
 					</div>
 				</div>

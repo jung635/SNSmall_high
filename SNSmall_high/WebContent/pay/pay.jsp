@@ -18,6 +18,7 @@
 	<link href="./css/main.css" rel="stylesheet">
 	<link href="./css/inner.css" rel="stylesheet">
 	<link href="./css/header.css" rel="stylesheet">
+
 <style>
 
 #buyer, #product, #pay{
@@ -32,9 +33,12 @@
 } 
 
 </style>
+ 
+
 <%
 request.setCharacterEncoding("utf-8");
-String id = "test";
+String id = (String)session.getAttribute("id");
+String type = (String)session.getAttribute("type");
 String product_str = request.getParameter("product_num");
 String amount_str = request.getParameter("amount"); //갯수
 String vendorId_str = request.getParameter("vendor_id");
@@ -157,7 +161,6 @@ function pointChanged(price, myPoint){
 		document.getElementById('myPoint').innerText = myPoint-point;
 	}else{alert('포인트가 부족합니다.');}	
 }
- 
 
 </script>
 </head>

@@ -54,7 +54,7 @@ public class SnsFrontController extends HttpServlet{
 		}else if(command.equals("/MyPage.sn")){
 			action = new Snsinfo();
 	 		try{
-	 			forward=action.execute(request, response);
+	 		forward=action.execute(request, response);
 	 		}catch(Exception e){e.printStackTrace();}
 	 		
 		}else if(command.equals("/passConfirm.sn")){

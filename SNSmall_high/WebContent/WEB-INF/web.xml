@@ -97,6 +97,15 @@
   	<url-pattern>*.qn</url-pattern>
   </servlet-mapping>
   
+    <servlet>
+  	<servlet-name>BlogFrontController</servlet-name>
+  	<servlet-class>web.blog.action.BlogFrontController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>BlogFrontController</servlet-name>
+  	<url-pattern>*.bl</url-pattern>
+  </servlet-mapping>
+  
 
   
 </web-app>

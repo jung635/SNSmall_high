@@ -550,7 +550,9 @@ function snsSearch_exe(){
 							<div class="row text-center clearfix">
 								<div class="col-sm-8 col-sm-offset-2">
 									<h2 class="title-one">Our Blog</h2>
-									<p class="blog-heading">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p>
+									<p class="blog-heading">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
+										<a href="./OurBlog.bl"><button>Go to our blog</button></a>
+									</p>
 								</div>
 							</div> 
 							<div class="row">

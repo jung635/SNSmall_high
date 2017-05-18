@@ -238,26 +238,6 @@ Connection con = null;
 		if(con != null){try {con.close();}catch(Exception ex) {}}}
 	} //passModify
 	
-	public List<Object> showAlarm(String id){
-		List<Object> list = new ArrayList<>();
-		try{
-			con = getConnection();
-			sql = "select * from alarm where id=?";
-			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, id);
-			rs = pstmt.executeQuery();
-			while(rs.next()){
-				list.add(id);
-				list.add(rs.getString("content"));
-				list.add(rs.getInt("num"));
-			}
-				
-		}catch (Exception e){System.out.println("DB연결 실패(passModify)" + e);}
-		finally {if(rs != null){try {rs.close();} catch (Exception ex) {}}
-		if(pstmt != null){try {pstmt.close();}catch(Exception ex){}}
-		if(con != null){try {con.close();}catch(Exception ex) {}}}
-		return list;
-	}
-	
+
 	
 }

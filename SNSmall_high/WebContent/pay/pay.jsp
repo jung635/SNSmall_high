@@ -161,38 +161,10 @@ function pointChanged(price, myPoint){
 		document.getElementById('myPoint').innerText = myPoint-point;
 	}else{alert('포인트가 부족합니다.');}	
 }
-//실시간알람  
-function alarm_access(){  
- 		var xhttp;    
-		xhttp = new XMLHttpRequest();
-		xhttp.onreadystatechange = function() {
-			if (this.readyState == 4 && this.status == 200) {
-                var alarm_msg = this.responseText;  
-                alert(alarm_msg);
-                view_msg(alarm_msg);  
-			}
-		};
-		xhttp.open("GET", 'Alarm.cl', true);
-		xhttp.send();	
-	   
-  //setTimeout("alarm_access()", 3000);//3초 마다 서버와 통신함  
-  return false;  
-}  
-function view_msg(msg){  
-    var width = 350;  
-    var height = 150;  
-    var left = (document.body-width)/2;  
-    var top = (document.body-height)/2;  
-    var alram_win = window.open('AlarmView.cl?msg='+msg, '', 'left='+left+',top='+top+',width='+width+',height='+height+',toolbar=no ,directories=no,menubar=no,location=no,scrollbars=no,resizable=yes,status=no');  
-}
-
 
 </script>
 </head>
 <body>
-<script type="text/javascript">
-alarm_access(); 
-</script>
 <jsp:include page="../inc/header.jsp"/>
 <!-- Page Content -->
 <%

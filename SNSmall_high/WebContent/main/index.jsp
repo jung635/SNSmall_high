@@ -25,14 +25,17 @@
 	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="images/ico/apple-touch-icon-114-precomposed.png"> 
 	<link rel="apple-touch-icon-precomposed" sizes="72x72" href="images/ico/apple-touch-icon-72-precomposed.png"> 
 	<link rel="apple-touch-icon-precomposed" href="images/ico/apple-touch-icon-57-precomposed.png">
-</head><!--/head-->
+</head>
+
 <script type="text/javascript">
 function snsSearch_exe(){
 	search = document.getElementById('search').value;
 	location.href = 'SearchSnsList.sn?search='+search;
-}
+} -->
 </script>
 <body>
+
+	<script type="text/javascript" src=".main/alarm.js"></script> 
 	<div class="preloader">
 		<div class="preloder-wrap">
 			<div class="preloder-inner"> 

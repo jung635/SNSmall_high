@@ -1,3 +1,5 @@
+<%@page import="java.util.Map"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -5,18 +7,6 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<%  
-String msg = request.getParameter("msg");
-System.out.println(msg);
-%> 
-<style type="text/css">  
-a { text-decoration:none; color: black; font-size: 12px;}  
-a:Visited {}  
-a:Active {}  
-a:Hover { text-decoration:none; color:black;font-size: 12px;}  
-body,table,td {  font-family: ""; font-size: 12px; }  
-.button_normal {font-family:"";font-size:12px;}  
-</style>  
 <script type="text/javascript">
 function _CloseOnEsc() {  
     if (event.keyCode == 27) { window.close(); return; }  
@@ -40,12 +30,34 @@ function _CloseOnEsc() {
       if(pop_height>500) pop_height = 500;   
       window.resizeTo(pop_width,pop_height);   
   }  
-
-
 </script>  
 
 </head>
 <body>
-<%=msg%>  
+<%List<Map<String, Object>> list = (List)request.getAttribute("list"); 
+Map<String, Object> map = null;
+String color = "";%>
+<%if(list == null){
+	%>
+	nothing
+	<%}else{ %>
+
+<ul>
+<%for(int i=0; i<5; i++){
+	map = list.get(i);
+	if(map.get("state").equals("on")){
+		color = "#0a8dff";
+	}else if(map.get("state").equals("now")){
+		color = "red";
+	}else{
+		color = "#ddd";
+	}
+%>
+	<li style="background-color: <%=color%>"><%=map.get("content")%> </li>
+<%} %> 
+</ul>
+<%if(list.size()>5){%>
+<input type="button" value="더보기">
+<%}} %>
 </body>
 </html>

@@ -569,7 +569,6 @@ Connection con = null;
 			//5. rs 데이터 있으면 count 저장
 			if(rs.next()){
 				count = rs.getInt(1);
-				System.out.println("count : "+count);
 			}
 		}
 		catch(Exception e){e.printStackTrace();}
@@ -594,8 +593,6 @@ Connection con = null;
 			//3. sql member 모든 데이터 가져오기
 			if(snsState!=null){
 			sql="select * from payment where state=? and sns_id=? limit ?,?";
-			System.out.println("snsState : "+snsState);
-			System.out.println("id : "+id);
 			pstmt=con.prepareStatement(sql);
 			pstmt.setString(1, snsState); //첫번째 물음표 1, snsState 상태에 입력될 값
 			pstmt.setString(2, id);
@@ -604,7 +601,6 @@ Connection con = null;
 			}else{
 				
 			sql="select * from payment where state='done' or state='cancel' and sns_id=? limit ?,?";
-			System.out.println("id : "+id);
 			pstmt=con.prepareStatement(sql);
 			pstmt.setString(1, id);
 			pstmt.setInt(2, startRow-1); //시작행 -1

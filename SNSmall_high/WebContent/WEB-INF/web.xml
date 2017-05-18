@@ -97,6 +97,15 @@
   	<url-pattern>*.qn</url-pattern>
   </servlet-mapping>
   
+  <servlet>
+  	<servlet-name>AlarmFrontController</servlet-name>
+  	<servlet-class>web.alarm.action.AlarmFrontController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>AlarmFrontController</servlet-name>
+  	<url-pattern>*.al</url-pattern>
+  </servlet-mapping>
+  
 
   
 </web-app>

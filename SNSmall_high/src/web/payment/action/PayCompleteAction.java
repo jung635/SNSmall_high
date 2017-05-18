@@ -39,7 +39,6 @@ public class PayCompleteAction implements Action {
 		String message = request.getParameter("message");
 		String option1_str = request.getParameter("option1_str");
 		String[] option1 = option1_str.split(",");
-		System.out.println("옵션: "+option1_str);
 		String option2_str = request.getParameter("option2_str");
 		String[] option2 = option2_str.split(",");
 		String option3_str = request.getParameter("option3_str");

@@ -19,7 +19,6 @@ public class InsertAction implements Action {
 		ab.setContent("테스트 Content");
 		ab.setId(id);
 		ab.setMove("memo");
-		ab.setState("now");
 		
 		AlarmDAO adao = new AlarmDAO();
 		adao.insertAlarm(ab);

@@ -15,21 +15,13 @@ public class SnsBean {
 	private int sell;
 	private Date date;
 	private String type;
-<<<<<<< HEAD
-=======
-	private String Instagram;
->>>>>>> origin/feature/alarm
 	private String facebook;
 	private String instagram;
 	private String blog;
 	private String twitter;
 	private String etc;
 	private String rank;
-<<<<<<< HEAD
-=======
-	
 
->>>>>>> origin/feature/alarm
 	public String getSns_id() {
 		return sns_id;
 	}

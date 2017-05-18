@@ -1,3 +1,4 @@
+<%@page import="javax.crypto.interfaces.PBEKey"%>
 <%@page import="web.qna.db.QnaBean"%>
 <%@page import="java.util.List"%>
 <%@page import="web.product.db.ProductBean"%>
@@ -13,20 +14,101 @@
 	<meta name="author" content=""> 
 	<title>HIMU - OnePage HTML Parallax template</title> 
 	<link href="css/bootstrap.min.css" rel="stylesheet">
+	<link href="./css/font-awesome.min.css" rel="stylesheet"> 
 	<link href="css/header.css" rel="stylesheet">
 	<link href="css/inner.css" rel="stylesheet">
 	<link href="css/main.css" rel="stylesheet">
 <title>Insert title here</title>
-<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script type="text/javascript">
 	$(document).ready(function(){
 	    $(".reviewbtn").click(function(){
         	$("#writing").toggle();
     	});
 	});
-
-	function cart(){
-		
+	
+	function gocart(){
+		document.gfr.action="./CartAdd.ca";
+		document.gfr.method="post";
+		document.gfr.submit();
+	}
+	
+	function gobuy() {
+		if(document.gfr.option1.value == ""){
+			alert("option1을 선택하세요");
+			document.gfr.option1.focus();
+			return false;
+		}else if(document.gfr.option2 != null){
+			if(document.gfr.option2.value == ""){
+				alert("option2을 선택하세요");
+				document.gfr.option2.focus();
+				return false;
+			}else if(document.gfr.option3 != null){
+				if(document.gfr.option3.value == ""){
+					alert("option3을 선택하세요");
+					document.gfr.option3.focus();
+					return false;
+				}
+			}
+		}
+		document.gfr.action="Pay.pa";
+		document.gfr.method="post";
+		document.gfr.submit();
+	}
+	
+	function sendSns(sns, url, txt){
+		alert(sns+", "+url+", "+txt);
+	    var o;
+	    var _url = encodeURIComponent(url);
+	    var _txt = encodeURIComponent(txt);
+	    var _br  = encodeURIComponent('\r\n');
+	 
+	    switch(sns){
+	        case 'facebook':
+	            o = {
+	                method:'popup',
+	                url:'http://www.facebook.com/sharer/sharer.php?u=' + _url
+	      		  };
+	            break;
+	 
+	        case 'twitter':
+	            o = {
+	                method:'popup',
+	                url:'http://twitter.com/intent/tweet?text=' + _txt + '&url=' + _url
+	            };
+	            break;
+	 
+	         case 'blog':
+	            o = {
+	                method:'popup',
+	                url:"http://blog.naver.com/openapi/share?url=" + _url + "&title=" + _txt
+	            };
+	            break; 
+	 
+	        default:
+	            alert('지원하지 않는 SNS입니다.');
+	            return false;
+	    }
+	 
+	    switch(o.method){
+	    
+	        case 'popup':
+	            window.open(o.url);
+	            break;
+	 
+	        case 'web2app':
+	            if(navigator.userAgent.match(/android/i)){
+	                // Android
+	                setTimeout(function(){ location.href = 'intent://' + o.param + '#Intent;' + o.g_proto + ';end'}, 100);
+	            }else if(navigator.userAgent.match(/(iphone)|(ipod)|(ipad)/i)){
+	                // Apple
+	                setTimeout(function(){ location.href = o.a_store; }, 200);          
+	                setTimeout(function(){ location.href = o.a_proto + o.param }, 100);
+	            }else{
+	                alert('이 기능은 모바일에서만 사용할 수 있습니다.');
+	            }
+	            break;
+	    }
 	}
 </script>
 
@@ -40,10 +122,12 @@
 	String type =(String)session.getAttribute("type");
 	if(type==null){type = "client";}
 	
+	String sns_id = (String)request.getAttribute("sns_id");
+	if(type.equals("sns")){sns_id = id;}
+	if(sns_id == null){sns_id = "";}
+	
 	String pageNum = (String)request.getAttribute("pageNum");
 	if(pageNum == null){pageNum="1";}
-	
-	String sns_id = "abc";
 	
 	ProductBean productbean = (ProductBean)request.getAttribute("productbean");
 	String [] o1 = productbean.getOption1().split(",");
@@ -76,7 +160,9 @@
             </div>
         </div>
         <!-- /.row -->
-
+<%=id %><br>
+<%=type %><br>
+<%=sns_id %>
         <!-- Portfolio Item Row -->
         <div class="row">
 
@@ -128,7 +214,7 @@
                  <%}%>
                  <script type="text/javascript">
                  function plus(){
-                		if(document.gfr.amount.value<<%=amount%>){
+                		if(document.gfr.amount.value<<%=peace%>){
                 			document.gfr.amount.value++;
 							document.getElementById("allprice").value=<%=allprice%>*document.gfr.amount.value;
                 		}
@@ -139,60 +225,29 @@
                 			document.getElementById("allprice").value=<%=allprice%>*document.gfr.amount.value;
                 		}
                 	}
-                	function gocart(){
-                		document.gfr.action="./CartAdd.ca";
-                		document.gfr.method="post";
-                		document.gfr.submit();
-                	}
-					function gobuy() {
-						if(document.gfr.option1.value == ""){
-							alert("option1을 선택하세요");
-							document.gfr.option1.focus();
-							return false;
-						}else if(document.gfr.option2 != null){
-							if(document.gfr.option2.value == ""){
-								alert("option2을 선택하세요");
-								document.gfr.option2.focus();
-								return false;
-							}else if(document.gfr.option3 != null){
-								if(document.gfr.option3.value == ""){
-									alert("option3을 선택하세요");
-									document.gfr.option3.focus();
-									return false;
-								}
-							}
-						}
-						document.gfr.action="Pay.pa";
-                		document.gfr.method="post";
-                		document.gfr.submit();
-					}
-					function goshare() {
-						document.gfr.action="";
-                		document.gfr.method="post";
-                		document.gfr.submit();
-					}
                 	</script>
 				잔여수량: <input type="text" name="rest_amount" value="<%=peace%> / <%=productbean.getAmount()%>"><br>
 				<%
-				if(peace==0){
-					%>
+				if(peace==0){%>
 					<h2>SOLD OUT</h2>
-					<%
-				}else{
-				%>
+				<%}else{%>
 				수량: <input type="text" name="amount" value="1">
 				<button type="button" onclick="plus()">+</button>
 				<button type="button" onclick="minus()">-</button><br>
 				가격: <input type="text" id="allprice" name="allprice" value="<%=productbean.getPrice()%>">
 				<%} %>
 				<br>
-				<%
-				if(peace!=0){
-				%>
+				<%if(peace!=0){%>
                 <a class="btn btn-success" onclick="gocart()">Into Cart</a>
                 <a class="btn btn-success" onclick="return gobuy()">Get it</a>
-                <% if(!(type.equals("client"))){%>
-                <a class="btn btn-success" onclick="goshare()">Share</a>
+                <% if(type.equals("sns")){%>
+                <br>
+				<i class="fa fa-facebook-square" aria-hidden="true" 
+					onclick="sendSns('facebook', 'http://sunju635.cafe24.com/SNSmall_high/ProductDetail.pr?product_num=<%=productbean.getProduct_num()%>&sns_id=<%=sns_id %>', '안녕')"></i>
+				<i class="fa fa-twitter" aria-hidden="true" 
+					onclick="sendSns('twitter', 'http://sunju635.cafe24.com/SNSmall_high/ProductDetail.pr?product_num=<%=productbean.getProduct_num()%>&sns_id=<%=sns_id %>', '안녕')"></i>
+				<i class="fa fa-bold" aria-hidden="true" 
+					onclick="sendSns('blog', 'http://sunju635.cafe24.com/SNSmall_high/ProductDetail.pr?product_num=<%=productbean.getProduct_num()%>&sns_id=<%=sns_id %>', '안녕')"></i>
                 <%}} %>
             </div>
 			</form>
@@ -215,6 +270,7 @@
                     <% }%>
                 </a>
             </div>
+            
 
         </div>
         <div class="well">

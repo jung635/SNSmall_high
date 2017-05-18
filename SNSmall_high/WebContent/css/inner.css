@@ -322,3 +322,8 @@ a.list-group-item:hover, a.list-group-item:focus {
     line-height: 50px;
 }
 
+/* Product */
+i.fa-facebook-square, i.fa-twitter, i.fa-bold{
+	font-size: 30px;
+}
+

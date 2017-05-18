@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import web.product.db.ProductBean;
 import web.product.db.ProductDAO;
@@ -17,6 +18,10 @@ public class ProductDetailAction implements Action{
 		System.out.println("ProductDetailAction execute()");
 		
 		request.setCharacterEncoding("utf-8");
+		
+		HttpSession session = request.getSession();
+		String id= (String)session.getAttribute("id");
+		String type= (String)session.getAttribute("type");
 		
 		int product_num = Integer.parseInt(request.getParameter("product_num"));
 		String pageNum = request.getParameter("pageNum");
@@ -46,16 +51,18 @@ public class ProductDetailAction implements Action{
 //		int endPage = startPage+pageBlock-1;
 //		if(endPage > pageCount){endPage=pageCount;}
 
-		request.setAttribute("pageNum", pageNum);
-		request.setAttribute("qnaList", qnaList);
 //		request.setAttribute("count", count);
 //		request.setAttribute("pageCount", pageCount);
 //		request.setAttribute("pageBlock", pageBlock);
 //		request.setAttribute("startPage", startPage);
 //		request.setAttribute("endPage", endPage);
 		
+		request.setAttribute("pageNum", pageNum);
+		request.setAttribute("qnaList", qnaList);
 		request.setAttribute("productbean", productbean);
 		request.setAttribute("pageNum", pageNum);
+		request.setAttribute("id", id);
+		request.setAttribute("type", type);
 		
 		ActionForward forward = new ActionForward();
 		forward.setPath("./product/detail.jsp");

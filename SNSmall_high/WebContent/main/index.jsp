@@ -26,10 +26,6 @@
 	<link rel="apple-touch-icon-precomposed" sizes="72x72" href="images/ico/apple-touch-icon-72-precomposed.png"> 
 	<link rel="apple-touch-icon-precomposed" href="images/ico/apple-touch-icon-57-precomposed.png">
 	
-	<script type="text/javascript">
-	function pop(){
-	alert();
-	}
 </script>	
 	
 </head><!--/head-->
@@ -63,7 +59,7 @@ function snsSearch_exe(){
 				<li data-target="#main-carousel" data-slide-to="2"></li>
 			</ol><!--/.carousel-indicators--> 
 			<div class="carousel-inner">
-				<div class="item active" style="background-image: url(images/slider/slide3.jpg)"> 
+				<div class="item active" style="background-image: url(images/slider/main001.gif)"> 
 					<div class="carousel-caption"> 
 						<div> 
 							<h2 class="heading animated bounceInDown">'Himu' Onepage HTML Template</h2> 
@@ -73,7 +69,7 @@ function snsSearch_exe(){
 						</div> 
 					</div> 
 				</div>
-				<div class="item" style="background-image: url(images/slider/slide2.jpg)"> 
+				<div class="item" style="background-image: url(images/slider/main002.gif)"> 
 					<div class="carousel-caption"> <div> 
 						<h2 class="heading animated bounceInDown">Get All in Onepage</h2> 
 						<p class="animated bounceInUp">Everything is outstanding </p>
@@ -82,7 +78,7 @@ function snsSearch_exe(){
 					</div> 
 				</div> 
 			</div> 
-			<div class="item" style="background-image: url(images/slider/slide1.jpg)"> 
+			<div class="item" style="background-image: url(images/slider/slide3.jpg)"> 
 				<div class="carousel-caption"> 
 					<div> 
 						<h2 class="heading animated bounceInRight">Fully Responsive Template</h2> 
@@ -101,9 +97,17 @@ function snsSearch_exe(){
 		<a class="carousel-right member-carousel-control hidden-xs" href="#main-carousel" data-slide="next"><i class="fa fa-angle-right"></i></a>
 		<div class="carousel-caption"> 
 		<div id="search">
-			<input type="text" id="product_name">
-			<a href="#" class="btn btn-default slider-btn animated fadeIn" onclick="snsSearch_exe();">SNS STAR 검색</a> 
-			<a class="btn btn-default slider-btn animated fadeIn" href="#">상품 검색</a> 
+			<div class="col-sm-7">
+			<div class="input_row" id="id_area">
+						<span class="input_box1">
+							<input type="text" id="product_name" placeholder="SNS Celeb or Prodoct Name Search" class="int" maxlength="80" value="" size="100">
+							
+						</span>
+					</div>
+			</div>
+		<div class="col-sm-3"><input type="button" class="Sns_SearchBtn" value="" onclick="snsSearch_exe();" style="height: 60px; width: 60px;">
+							<input type="button" class="product_SearchBtn" value="" style="width:60px; height:60px;"></div>
+		<div class="col-sm-2"></div>					
 		</div>
 		</div>
 	</div> 

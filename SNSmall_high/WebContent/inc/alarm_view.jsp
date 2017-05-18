@@ -36,11 +36,15 @@ function _CloseOnEsc() {
 <body>
 <%List<Map<String, Object>> list = (List)request.getAttribute("list"); 
 Map<String, Object> map = null;
-String color = "";%>
+String color = "";
+int limit = 0;
+%>
 <%if(list == null){
 	%>
 	nothing
-	<%}else{ %>
+	<%}else{
+	if(list.size()<5) limit = list.size();
+	else limit = 5;%>
 
 <ul>
 <%for(int i=0; i<5; i++){

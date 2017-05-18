@@ -5,22 +5,21 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
-</head>
 <body>
 <%
 List<Map<String, Object>> list = (List)request.getAttribute("list"); 
 Map<String, Object> map = new HashMap<String, Object>();
 String color = "";
+int limit = 0;
 if(list == null){
 %>
 nothing
-<%}else{ %>
+<%}else{
+	if(list.size()<5) limit = list.size();
+	else limit = 5;%>
 <ul>
 
-<%for(int i=0; i<5; i++){
+<%for(int i=0; i<limit; i++){
 		map = list.get(i);%>
 
 	<li><%=map.get("content") %></li>

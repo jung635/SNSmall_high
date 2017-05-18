@@ -23,19 +23,23 @@ public class AlarmAction implements Action{
 		AlarmDAO adao = new AlarmDAO();
 		Map<String, Object> map = null;
 		List<Map<String, Object>> list = adao.alertAlarm(id);
-		for(int i=0; i<list.size(); i++){
-			map = list.get(i);
-			timestamp = (Timestamp)map.get("date");
-			System.out.println("time"+timestamp);
-	
-		if(id.equals(map.get("id"))&&map != null) {
-			if((System.currentTimeMillis()-timestamp.getTime())>3*1000) {  
+		if(list == null){
+			
+		}else{
+			for(int i=0; i<list.size(); i++){
+				map = list.get(i);
+				timestamp = (Timestamp)map.get("date");
+				System.out.println("time"+timestamp);
+		
+			if(id.equals(map.get("id"))&&map != null) {
+				if((System.currentTimeMillis()-timestamp.getTime())>3*1000) {  
+			        adao.updateToOn(id, (int)map.get("num"));
+			    }
+				request.setAttribute("list", list);
+		    }else if((System.currentTimeMillis()-timestamp.getTime())>5*1000) {  
 		        adao.updateToOn(id, (int)map.get("num"));
 		    }
-			request.setAttribute("list", list);
-	    }else if((System.currentTimeMillis()-timestamp.getTime())>5*1000) {  
-	        adao.updateToOn(id, (int)map.get("num"));
-	    }
+			}
 		}
 
 

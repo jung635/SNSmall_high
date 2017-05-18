@@ -8,6 +8,9 @@ $(document).ready(function(){
     $("#alarm_btn").click(function(){
         $("#alarm_list").toggle();
     });
+    
+    $("#alarm").css('display','none');
+
 });
 </script>
 <%
@@ -19,6 +22,7 @@ $(document).ready(function(){
 <script type="text/javascript">
 alarm_view(); 
 alarm_access();
+
 </script>
 		<div class="navbar navbar-inverse navbar-fixed-top" role="banner"> 
 			<div class="container">

@@ -18,12 +18,16 @@ public class AlarmViewAction implements Action{
 		AlarmDAO adao = new AlarmDAO();
 		Map<String, Object> map = null;
 		List<Map<String, Object>> list = adao.showAlarm(id);
-		for(int i=0; i<list.size(); i++){
-			map = list.get(i);
+		if(list == null){
+			
+		}else{
+			for(int i=0; i<list.size(); i++){
+				map = list.get(i);
+			}
+			if(id.equals(map.get("id"))) {
+				request.setAttribute("list", list);
+		    }
 		}
-		if(id.equals(map.get("id"))) {
-			request.setAttribute("list", list);
-	    }
 		
 		ActionForward forward = new ActionForward();
 		forward.setPath("./inc/alarm_view.jsp");

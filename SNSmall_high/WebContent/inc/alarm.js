@@ -1,5 +1,3 @@
-
-
 function alarm_access(){  
  		var xhttp;    
 		xhttp = new XMLHttpRequest();
@@ -29,15 +27,19 @@ function alarm_view(){
 	xhttp.send();	
 	
 	return false;  
-} 
+}
+
 function alert_view(alarm_msg){
-	text = alarm_msg;
-	//alert(text);
-	if(alarm_msg == 'nothing'){
+	text = document.getElementById("alarm").innerHTML.trim();
+	if(text == 'nothing'){
 		document.getElementById("alarm").style.display = 'none';
 	}else{
 		document.getElementById("alarm").style.display = 'block';
 		document.getElementById("alarm").innerHTML = alarm_msg;
+		text = document.getElementById("alarm").innerHTML.trim();
+		if(text == 'nothing'){
+			document.getElementById("alarm").style.display = 'none';
+		}
 	}
 }
 function insert(){

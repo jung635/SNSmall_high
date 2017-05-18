@@ -17,7 +17,7 @@
 	<link href="css/inner.css" rel="stylesheet">
 	<link href="css/main.css" rel="stylesheet">
 <title>Insert title here</title>
-<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script type="text/javascript">
 	$(document).ready(function(){
 	    $(".reviewbtn").click(function(){
@@ -43,7 +43,7 @@
 	String pageNum = (String)request.getAttribute("pageNum");
 	if(pageNum == null){pageNum="1";}
 	
-	String sns_id = "";
+	String sns_id = "abc";
 	
 	ProductBean productbean = (ProductBean)request.getAttribute("productbean");
 	String [] o1 = productbean.getOption1().split(",");
@@ -139,7 +139,7 @@
                 		}
                 	}
                 	function gocart(){
-                		window.document.gfr.action="";
+                		window.document.gfr.action="./CartAdd.ca";
                 		window.document.gfr.method="post";
                 		window.document.gfr.submit();
                 	}

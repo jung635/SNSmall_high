@@ -28,13 +28,6 @@ public class PaymentFrontController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		} else if (command.equals("/PayDepositDoneAction.pa")) {
-			action = new PayDepositDoneAction();
-			try {
-				forward = action.execute(request, response);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
 		} else if (command.equals("/Deposit.pa")) {
 			forward = new ActionForward();
 			forward.setPath("./pay/deposit.jsp");
@@ -79,14 +72,7 @@ public class PaymentFrontController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		} else if (command.equals("/PayDepositDone.pa")) {
-			action = new PayDepositDoneAction();
-			try {
-				forward = action.execute(request, response);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		} else if (command.equals("/PayMultipleCancel.pa")) {
+		}else if (command.equals("/PayMultipleCancel.pa")) {
 			action = new PayMultipleCancelAction();
 			try {
 				forward = action.execute(request, response);

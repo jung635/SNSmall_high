@@ -23,7 +23,7 @@ public class AlarmAction implements Action{
 		AlarmDAO adao = new AlarmDAO();
 		Map<String, Object> map = null;
 		List<Map<String, Object>> list = adao.alertAlarm(id);
-		if(list == null){
+		if(list.isEmpty()){
 			
 		}else{
 			for(int i=0; i<list.size(); i++){

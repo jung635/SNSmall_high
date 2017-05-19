@@ -26,7 +26,7 @@ function alarm_view(){
 	xhttp.open("GET", 'AlarmView.al', true);
 	xhttp.send();	
 	
-	setTimeout("alarm_access()", 3000);//3초 마다 서버와 통신함  
+	setTimeout("alarm_view()", 3000);//3초 마다 서버와 통신함  
 	return false;  
 }
 

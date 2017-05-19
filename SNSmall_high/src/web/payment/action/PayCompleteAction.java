@@ -45,7 +45,7 @@ public class PayCompleteAction implements Action {
 		String[] option3 = option3_str.split(",");
 		String method = request.getParameter("method");
 		String state = "";
-		if (method.equals("card"))
+		if (method.equals("card")||method.equals("withPoint"))
 			state = "payDone";
 		else if (method.equals("deposit"))
 			state = "waiting";
@@ -59,8 +59,8 @@ public class PayCompleteAction implements Action {
 		ProductDAO prodao = new ProductDAO();
 		SnsBean sb_sns = null;
 		SnsDAO sdao = new SnsDAO();
-		int usedPoint = pdao.usingPoint(point, id);
-		int usedPoint_each = usedPoint;
+		//int usedPoint = pdao.usingPoint(point, id);
+		int usedPoint_each = point;
 		int sns_profit = 0;
 		int add_point = 0;
 		int vendor_profit = 0;
@@ -86,9 +86,9 @@ public class PayCompleteAction implements Action {
 			if(i==amount.length-1){
 				point_each = usedPoint_each;
 				price_result = (double)prob.getPrice()*(double)pb.getAmount();
-				point_each = (int)((price_result/(double)price)*usedPoint)/100*100;
 			}else{
-				point_each = (int)((price_result/(double)price)*usedPoint)/100*100;
+				price_result = (double)prob.getPrice()*(double)pb.getAmount();
+				point_each = (int)((price_result/(double)price)*point)/10*10;
 				usedPoint_each -= point_each;
 			}
 			//사용된 포인트 각 물건에 주기
@@ -100,7 +100,7 @@ public class PayCompleteAction implements Action {
 			pdao.subAmount(pb.getAmount(), pb.getProduct_num());
 
 			
-			if(method.equals("card")){
+			if(method.equals("card")||method.equals("withPoint")){
 				SnsBean sb = sdao.getSnsDetail(sns_id[i]);
 				System.out.println(sb.getRank());
 				if(sb.getRank().equals("basic")){
@@ -113,7 +113,7 @@ public class PayCompleteAction implements Action {
 				}
 				System.out.println("sns_profit"+sns_profit);
 				//add_point = (int)((double)prob.getPrice()*(Double.parseDouble(amount[i])*0.01));
-				add_point = (int)(price_result*0.01);
+				add_point = (int)(price_result*0.01)/10*10;
 				//company_profit = (int)((double)prob.getPrice()*(Double.parseDouble(amount[i])*0.1));
 				company_profit = (int)(price_result*0.1)/100*100;
 				vendor_profit = ((prob.getPrice()*pb.getAmount())-company_profit-sns_profit)/100*100;

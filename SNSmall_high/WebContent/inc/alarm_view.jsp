@@ -47,7 +47,7 @@ int limit = 0;
 	else limit = 5;%>
 
 <ul>
-<%for(int i=0; i<5; i++){
+<%for(int i=0; i<limit; i++){
 	map = list.get(i);
 	if(map.get("state").equals("on")){
 		color = "#0a8dff";

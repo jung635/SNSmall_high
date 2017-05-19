@@ -520,6 +520,45 @@ public class SnsDAO {
 			if (pstmt != null) {try {pstmt.close();} catch (Exception ex) {}}
 			if (con != null) {try {con.close();} catch (Exception ex) {}}}
 	}
+<<<<<<< .merge_file_a04144
+=======
+	
+	//getPaymentList()--------------------------------------------------------------------------------
+		public List getPaymentList() {
+			//배열(컬렉션) 객체 생성 - 여러개의 기억공간 사용+기억공간 추가해서 사용
+			List paymentList=new ArrayList();
+			
+			try{
+				con=getConnection();
+				sql="select * from payment";
+				pstmt=con.prepareStatement(sql);
+
+				rs=pstmt.executeQuery();
+
+				while(rs.next()){ //첫행 데이터 있으면  true
+					PaymentBean pab = new PaymentBean();
+					//pab.setSns_id(rs.getString("sns_id"));
+					pab.setProduct_num(rs.getInt("num"));
+					pab.setAmount(rs.getInt("amount"));
+					pab.setMessage(rs.getString("message"));
+					pab.setDate(rs.getTimestamp("date"));
+					pab.setOrder_num(rs.getString("order_num"));
+					pab.setOption1(rs.getString("option1"));
+					pab.setOption2(rs.getString("option2"));
+					pab.setOption3(rs.getString("option3"));
+					pab.setUsedPoint(rs.getInt("usedPoint"));
+					pab.setState(rs.getString("state"));
+
+					paymentList.add(pab);
+				}
+			}catch(Exception e){e.printStackTrace();}
+			finally{if(rs!=null){try{rs.close();}catch(SQLException ex){}}
+				if(pstmt!=null){try{pstmt.close();}catch(SQLException ex){}}
+				if(con!=null){try{con.close();}catch(SQLException ex){}}}
+			
+			return paymentList;
+		}//getPaymentList()
+>>>>>>> .merge_file_a06904
 		
 		
 

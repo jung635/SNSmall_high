@@ -9,7 +9,6 @@ $(document).ready(function(){
         $("#alarm_list").toggle();
     });
     
-    $("#alarm").css('display','none');
 
 });
 </script>

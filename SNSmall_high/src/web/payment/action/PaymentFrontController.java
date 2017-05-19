@@ -97,7 +97,11 @@ public class PaymentFrontController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		} 
+		}  else if (command.equals("/Deposit.pa")) {
+			forward = new ActionForward();
+			forward.setPath("./pay/deposit.jsp");
+			forward.setRedirect(false);
+		}
 
 		if (forward != null) {
 			if (forward.isRedirect()) {

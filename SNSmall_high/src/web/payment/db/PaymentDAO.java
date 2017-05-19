@@ -11,6 +11,8 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
+import web.alarm.db.AlarmBean;
+import web.alarm.db.AlarmDAO;
 import web.client.db.ClientBean;
 import web.product.db.ProductBean;
 import web.sns.db.SnsBean;
@@ -337,7 +339,7 @@ Connection con = null;
 			while (rs.next()) {
 				pb = new PaymentBean();
 				pb.setAmount(rs.getInt("amount"));
-				pb.setDate(rs.getDate("date"));
+				pb.setDate(rs.getTimestamp("date"));
 				pb.setMessage(rs.getString("message"));
 				pb.setProduct_num(rs.getInt("product_num"));
 				pb.setOption1(rs.getString("option1"));
@@ -373,7 +375,7 @@ Connection con = null;
 			while (rs.next()) {
 				pb = new PaymentBean();
 				pb.setAmount(rs.getInt("amount"));
-				pb.setDate(rs.getDate("date"));
+				pb.setDate(rs.getTimestamp("date"));
 				pb.setMessage(rs.getString("message"));
 				pb.setProduct_num(rs.getInt("product_num"));
 				pb.setOption1(rs.getString("option1"));
@@ -408,7 +410,7 @@ Connection con = null;
 			while (rs.next()) {
 				pb = new PaymentBean();
 				pb.setAmount(rs.getInt("amount"));
-				pb.setDate(rs.getDate("date"));
+				pb.setDate(rs.getTimestamp("date"));
 				pb.setMessage(rs.getString("message"));
 				pb.setProduct_num(rs.getInt("product_num"));
 				pb.setOption1(rs.getString("option1"));
@@ -444,7 +446,7 @@ Connection con = null;
 			while (rs.next()) {
 				pb = new PaymentBean();
 				pb.setAmount(rs.getInt("amount"));
-				pb.setDate(rs.getDate("date"));
+				pb.setDate(rs.getTimestamp("date"));
 				pb.setMessage(rs.getString("message"));
 				pb.setProduct_num(rs.getInt("product_num"));
 				pb.setOption1(rs.getString("option1"));
@@ -494,7 +496,7 @@ Connection con = null;
 			while (rs.next()) {
 				pb = new PaymentBean();
 				pb.setAmount(rs.getInt("amount"));
-				pb.setDate(rs.getDate("date"));
+				pb.setDate(rs.getTimestamp("date"));
 				pb.setMessage(rs.getString("message"));
 				pb.setProduct_num(rs.getInt("product_num"));
 				pb.setOption1(rs.getString("option1"));
@@ -632,7 +634,7 @@ Connection con = null;
 				pab.setProduct_num(rs.getInt("num"));
 				pab.setAmount(rs.getInt("amount"));
 				pab.setMessage(rs.getString("message"));
-				pab.setDate(rs.getDate("date"));
+				pab.setDate(rs.getTimestamp("date"));
 				pab.setOrder_num(rs.getString("order_num"));
 				pab.setOption1(rs.getString("option1"));
 				pab.setOption2(rs.getString("option2"));
@@ -678,7 +680,7 @@ Connection con = null;
 			while (rs.next()) {
 				pb = new PaymentBean();
 				pb.setAmount(rs.getInt("amount"));
-				pb.setDate(rs.getDate("date"));
+				pb.setDate(rs.getTimestamp("date"));
 				pb.setMessage(rs.getString("message"));
 				pb.setProduct_num(rs.getInt("product_num"));
 				pb.setOption1(rs.getString("option1"));
@@ -765,6 +767,79 @@ Connection con = null;
 		if(pstmt != null){try {pstmt.close();}catch(Exception ex){}}
 		if(con != null){try {con.close();}catch(Exception ex) {}}}
 	}
+	
+	public void rankUpdate(String sns_id, long money, String rank){
+		StringBuffer sql = new StringBuffer("update sns set rank = ");
+		AlarmBean ab = new AlarmBean();
+		AlarmDAO adao = new AlarmDAO();
+		try{
+			con = getConnection();
+			if(rank.equals("basic")){
+				if(money>10000000){
+				//if(money>90000){
+					sql.append("'premium'");
+				}else if(money>90000){
+					sql.append("'plus'");
+					ab.setContent("등급이 plsu로 올라갔네!");
+					ab.setId(sns_id);
+					ab.setMove("rank");
+					adao.insertAlarm(ab);
+				}
+			}else if(rank.equals("plus")){
+				if(money>10000000){
+					sql.append("'premium'");
+					
+				}
+			}else{
+				sql.append("'premium'");
+			}
+			
+			sql.append(" where sns_id = ?");
+			pstmt = con.prepareStatement(sql.toString());
+			pstmt.setString(1, sns_id);
+			pstmt.executeUpdate();
+	
+			
+		} catch (Exception e) {e.printStackTrace();}
+		finally {if(rs != null){try {rs.close();} catch (Exception ex) {}}
+		if(pstmt != null){try {pstmt.close();}catch(Exception ex){}}
+		if(con != null){try {con.close();}catch(Exception ex) {}}}
+		
+	}
+	
+	public List<PaymentBean> getSnsPaymentList(String sns_id) {
+		//배열(컬렉션) 객체 생성 - 여러개의 기억공간 사용+기억공간 추가해서 사용
+		List<PaymentBean> paymentList=new ArrayList<PaymentBean>();
+		
+		try{
+			con=getConnection();
+			sql="select * from payment where sns_id = ?";
+			pstmt=con.prepareStatement(sql);
+			pstmt.setString(1, sns_id);
+			rs=pstmt.executeQuery();
+
+			while(rs.next()){ //첫행 데이터 있으면  true
+				PaymentBean pb = new PaymentBean();
+				pb.setProduct_num(rs.getInt("product_num"));
+				pb.setAmount(rs.getInt("amount"));
+				pb.setMessage(rs.getString("message"));
+				pb.setDate(rs.getTimestamp("date"));
+				pb.setOrder_num(rs.getString("order_num"));
+				pb.setOption1(rs.getString("option1"));
+				pb.setOption2(rs.getString("option2"));
+				pb.setOption3(rs.getString("option3"));
+				pb.setUsedPoint(rs.getInt("usedPoint"));
+				pb.setState(rs.getString("state"));
+
+				paymentList.add(pb);
+			}
+		}catch(Exception e){e.printStackTrace();}
+		finally{if(rs!=null){try{rs.close();}catch(SQLException ex){}}
+			if(pstmt!=null){try{pstmt.close();}catch(SQLException ex){}}
+			if(con!=null){try{con.close();}catch(SQLException ex){}}}
+		
+		return paymentList;
+	}//getPaymentList()
 	
 	
 }

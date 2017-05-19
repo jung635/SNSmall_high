@@ -98,13 +98,12 @@ Connection con = null;
 			if(rs.next()){
 				max = rs.getInt(1);
 			}
-			sql = "insert into alarm(num, content, state, id, move, date) values (?,?,?,?,?,now()) ;";
+			sql = "insert into alarm(num, content, state, id, move, date) values (?,?,'now',?,?,now()) ;";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, max+1);
 			pstmt.setString(2, ab.getContent());
-			pstmt.setString(3, ab.getState());
-			pstmt.setString(4, ab.getId());
-			pstmt.setString(5, ab.getMove());
+			pstmt.setString(3, ab.getId());
+			pstmt.setString(4, ab.getMove());
 			pstmt.executeUpdate();
 				
 		}catch (Exception e){e.printStackTrace();;}

@@ -49,6 +49,22 @@ public class MemoFrontController extends HttpServlet{
 			try {
 				forward=action.execute(request, response);
 			} catch (Exception e) {e.printStackTrace();}
+		}else if(command.equals("/MemoDeleteAction.me")){
+			// MemoDeleteAction 생성 execute() 메서드 호출
+			action = new MemoDeleteAction();
+			try{
+				forward = action.execute(request, response);
+			}catch(Exception e){e.printStackTrace();}
+		}else if(command.equals("/MemoDelete.me")){
+			// MemoDeleteAction 생성 execute() 메서드 호출
+			forward = new ActionForward();
+			forward.setPath("./mypage/memo_deleteForm.jsp");
+			forward.setRedirect(false);
+		}else if(command.equals("/MemoReWrite.me")){
+			// 파일 MemoReWrite 생성 execute()
+			forward = new ActionForward();
+			forward.setPath("./mypage/memo_rewriteForm.jsp");
+			forward.setRedirect(false);
 		}
 		
 		

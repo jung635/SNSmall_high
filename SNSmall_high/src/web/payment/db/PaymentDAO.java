@@ -606,7 +606,6 @@ Connection con = null;
 			con=getConnection();
 			//3. sql member 모든 데이터 가져오기
 			if(snsState!=null){
-<<<<<<< HEAD
 				sql="select * from payment where state=? and sns_id=? limit ?,?";
 				System.out.println("snsState : "+snsState);
 				System.out.println("id : "+id);
@@ -623,21 +622,7 @@ Connection con = null;
 				pstmt.setString(1, id);
 				pstmt.setInt(2, startRow-1); //시작행 -1
 				pstmt.setInt(3, pageSize); //몇개글
-=======
-			sql="select * from payment where state=? and sns_id=? limit ?,?";
-			pstmt=con.prepareStatement(sql);
-			pstmt.setString(1, snsState); //첫번째 물음표 1, snsState 상태에 입력될 값
-			pstmt.setString(2, id);
-			pstmt.setInt(3, startRow-1); //시작행 -1
-			pstmt.setInt(4, pageSize); //몇개글
-			}else{
-				
-			sql="select * from payment where state='done' or state='cancel' and sns_id=? limit ?,?";
-			pstmt=con.prepareStatement(sql);
-			pstmt.setString(1, id);
-			pstmt.setInt(2, startRow-1); //시작행 -1
-			pstmt.setInt(3, pageSize); //몇개글
->>>>>>> origin/feature/alarm
+			
 			}
 			rs=pstmt.executeQuery();
 			while(rs.next()){ //첫행 데이터 있으면  true

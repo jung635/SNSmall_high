@@ -2,7 +2,10 @@ package web.memo.action;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import web.alarm.db.AlarmBean;
+import web.alarm.db.AlarmDAO;
 import web.memo.db.MemoBean;
 import web.memo.db.MemoDAO;
 
@@ -15,6 +18,9 @@ public class MemoWriteAction implements Action{
 		
 		//한글처리
 		request.setCharacterEncoding("utf-8");
+		
+		HttpSession session = request.getSession();
+		String from_id = (String)session.getAttribute("from_id");
 		// web.memo.db.MemoBean   web.memo.db.MemoDAO
 		// MemoBean mob 객체생성
 		MemoBean meb=new MemoBean();
@@ -29,7 +35,16 @@ public class MemoWriteAction implements Action{
 		 MemoDAO medao = new MemoDAO();
 		// 메서드 호출 insertMemo(meb)
 		 medao.insertMemo(meb);
+		 
+		AlarmBean ab = new AlarmBean(); 
+		ab.setContent("메모_알람_테스트");
+		ab.setId(from_id);
+		ab.setMove("memo");
+		 
+		AlarmDAO adao = new AlarmDAO();
+		adao.insertAlarm(ab);
 
+		
 		// 이동 ./MemoList.me
 		 ActionForward forward = new ActionForward();
 		 forward.setPath("./MemoList.me");

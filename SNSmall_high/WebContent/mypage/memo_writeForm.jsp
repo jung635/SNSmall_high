@@ -59,7 +59,7 @@ String id = (String)session.getAttribute("id");
 
 <h3>쪽지 쓰기</h3>
 
-<table>
+
 <form action="./MemoWriteAction.me" method="post" name="fr">
 보낸사람 : <input type="text" name="from_id"  value="<%=id%>" readonly><br>
 받는사람: <input type="text" name="to_id"><br>
@@ -67,7 +67,7 @@ String id = (String)session.getAttribute("id");
 내용 : <textarea rows="10" cols="20" name="content"></textarea><br>
 <input type="submit" value="글쓰기">
 </form>
-</table>
+
 
     <!-- /.container -->
 <!--     <div class="container"> -->

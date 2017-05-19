@@ -248,7 +248,6 @@ int price=0;
 		</div>
 		<div style="text-align: center; margin-top: 50px;">
 			<input type="button" value="결제하기" onclick="pay()">
-			<input type="button" value="취소하기" onclick="history.back()">
 		</div>
 	
 		</form>

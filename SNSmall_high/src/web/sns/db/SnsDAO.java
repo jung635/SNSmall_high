@@ -520,8 +520,6 @@ public class SnsDAO {
 			if (pstmt != null) {try {pstmt.close();} catch (Exception ex) {}}
 			if (con != null) {try {con.close();} catch (Exception ex) {}}}
 	}
-<<<<<<< .merge_file_a04144
-=======
 	
 	//getPaymentList()--------------------------------------------------------------------------------
 		public List getPaymentList() {
@@ -558,7 +556,6 @@ public class SnsDAO {
 			
 			return paymentList;
 		}//getPaymentList()
->>>>>>> .merge_file_a06904
 		
 		
 

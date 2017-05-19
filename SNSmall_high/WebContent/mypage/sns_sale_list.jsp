@@ -1,3 +1,4 @@
+<%@page import="java.text.SimpleDateFormat"%>
 <%@page import="web.product.db.ProductBean"%>
 <%@page import="web.product.db.ProductDAO"%>
 <%@page import="web.payment.db.PaymentDAO"%>
@@ -134,6 +135,7 @@ int pageBlock=((Integer)request.getAttribute("pageBlock")).intValue();
 int startPage=((Integer)request.getAttribute("startPage")).intValue();
 int endPage=((Integer)request.getAttribute("endPage")).intValue();
 int addPoint=0;
+SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd");
 
 %>
 <div class="row">
@@ -176,7 +178,7 @@ int addPoint=0;
 %>
 		<tr align="center">
 		<td><%=pab.getProduct_num()%></td><td><%=pab.getSns_id()%></td><td><%=pab.getAmount()%></td><td><%=pab.getMessage()%></td>
-		<td><%=pab.getDate()%></td><td><%=pab.getOrder_num()%></td><td><%=pab.getOption1()%></td><td><%=pab.getOption2()%></td>
+		<td><%=sdf.format(pab.getDate()) %></td><td><%=pab.getOrder_num()%></td><td><%=pab.getOption1()%></td><td><%=pab.getOption2()%></td>
 		<td><%=pab.getOption3()%></td><td><%=pab.getUsedPoint()%></td><td><%=pab.getState()%></td>
 		</tr>
 <%

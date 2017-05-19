@@ -19,14 +19,19 @@ function alarm_view(){
 	xhttp.onreadystatechange = function() {
 		if (this.readyState == 4 && this.status == 200) {
 			var alarm_msg = this.responseText;  
-			//view_msg(alarm_msg);  
-			document.getElementById("alarm_list").innerHTML = alarm_msg;
+			alarm_inner(alarm_msg);  
+			//document.getElementById("alarm_list").innerHTML = alarm_msg;
 		}
 	};
 	xhttp.open("GET", 'AlarmView.al', true);
 	xhttp.send();	
 	
+	setTimeout("alarm_access()", 3000);//3초 마다 서버와 통신함  
 	return false;  
+}
+
+function alarm_inner(alarm_msg){
+	document.getElementById("alarm_list").innerHTML = alarm_msg;
 }
 
 function alert_view(alarm_msg){

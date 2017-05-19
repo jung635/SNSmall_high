@@ -97,7 +97,7 @@ public class PayCompleteAction implements Action {
 			//사용한 포인트 빼기
 			pdao.subPoint(point_each, id);
 			//amount 빼기
-			pdao.subAmount(Integer.parseInt(amount[i]), Integer.parseInt(product[i]));
+			pdao.subAmount(pb.getAmount(), pb.getProduct_num());
 
 			
 			if(method.equals("card")){
@@ -105,29 +105,29 @@ public class PayCompleteAction implements Action {
 				System.out.println(sb.getRank());
 				if(sb.getRank().equals("basic")){
 					//sns_profit = (int)((double)prob.getPrice()*(Double.parseDouble(amount[i])*0.05));
-					sns_profit = (int)(price_result*0.05);
+					sns_profit = (int)(price_result*0.05)/100*100;
 				}else if(sb.getRank().equals("plus")){
-					sns_profit = (int)(price_result*0.1);
+					sns_profit = (int)(price_result*0.1)/100*100;
 				}else{
-					sns_profit = (int)(price_result*0.2);
+					sns_profit = (int)(price_result*0.2)/100*100;
 				}
 				System.out.println("sns_profit"+sns_profit);
 				//add_point = (int)((double)prob.getPrice()*(Double.parseDouble(amount[i])*0.01));
 				add_point = (int)(price_result*0.01);
 				//company_profit = (int)((double)prob.getPrice()*(Double.parseDouble(amount[i])*0.1));
-				company_profit = (int)(price_result*0.1);
-				vendor_profit = (prob.getPrice()*pb.getAmount())-company_profit-sns_profit;
+				company_profit = (int)(price_result*0.1)/100*100;
+				vendor_profit = ((prob.getPrice()*pb.getAmount())-company_profit-sns_profit)/100*100;
 				System.out.println("vendor_profit: "+vendor_profit);
 				System.out.println("company_profit: "+company_profit);
 				System.out.println("add_point:" + add_point);
 				//sns profit 주기
-				pdao.addSnsPay(sns_profit, Integer.parseInt(amount[i]), sns_id[i]);
+				pdao.addSnsPay(sns_profit, pb.getAmount(), sns_id[i]);
 				//vendor profit 주기
 				pdao.addVendorProfit(vendor_profit, vendor_id[i]);
 				//포인트 더하기
 				pdao.addPoint(add_point, id);
 				//amount 정리
-				pdao.calAmount(Integer.parseInt(amount[i]), Integer.parseInt(product[i]));
+				pdao.calAmount(pb.getAmount(), pb.getProduct_num());
 				
 				//rank update 확인
 				list_sns = pdao.getSnsPaymentList(sns_id[i]);

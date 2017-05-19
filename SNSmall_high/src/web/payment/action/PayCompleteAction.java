@@ -28,7 +28,6 @@ public class PayCompleteAction implements Action {
 		String vendorId_str = request.getParameter("vendorId_str");
 		String[] vendor_id = vendorId_str.split(",");
 		int price = Integer.parseInt(request.getParameter("price"));
-		//int price_result = Integer.parseInt(request.getParameter("price_result"));
 		String amount_str = request.getParameter("amount_str");
 		String[] amount = amount_str.split(",");
 		String product_str = request.getParameter("product_str");
@@ -69,6 +68,7 @@ public class PayCompleteAction implements Action {
 		Double price_result = 0d;
 		List<PaymentBean> list_pb = new ArrayList<>();
 		List<PaymentBean> list_sns = new ArrayList<>();
+		
 		for (int i = 0; i < amount.length; i++) {
 			int point_each = 0;
 			prob = prodao.getProduct((Integer.parseInt(product[i])));
@@ -104,7 +104,6 @@ public class PayCompleteAction implements Action {
 				SnsBean sb = sdao.getSnsDetail(sns_id[i]);
 				System.out.println(sb.getRank());
 				if(sb.getRank().equals("basic")){
-					//sns_profit = (int)((double)prob.getPrice()*(Double.parseDouble(amount[i])*0.05));
 					sns_profit = (int)(price_result*0.05)/100*100;
 				}else if(sb.getRank().equals("plus")){
 					sns_profit = (int)(price_result*0.1)/100*100;
@@ -112,9 +111,7 @@ public class PayCompleteAction implements Action {
 					sns_profit = (int)(price_result*0.2)/100*100;
 				}
 				System.out.println("sns_profit"+sns_profit);
-				//add_point = (int)((double)prob.getPrice()*(Double.parseDouble(amount[i])*0.01));
 				add_point = (int)(price_result*0.01)/10*10;
-				//company_profit = (int)((double)prob.getPrice()*(Double.parseDouble(amount[i])*0.1));
 				company_profit = (int)(price_result*0.1)/100*100;
 				vendor_profit = ((prob.getPrice()*pb.getAmount())-company_profit-sns_profit)/100*100;
 				System.out.println("vendor_profit: "+vendor_profit);
@@ -145,6 +142,14 @@ public class PayCompleteAction implements Action {
 				
 				
 				pdao.rankUpdate(sns_id[i], all_sns_sell+Math.round(price_result), sb_sns.getRank());
+				
+				if(method.equals("withPoint")){
+					out.println("<script>");
+					out.println("alert('주문이 완료되었습니다.');");
+					out.println("location.href='PayDone.pa?merchant_uid=" + merchant_uid + "';");
+					out.println("window.close();");
+					out.println("</script>");
+				}
 			}
 		}
 		

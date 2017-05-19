@@ -20,22 +20,6 @@
 	<link href="./css/inner.css" rel="stylesheet">
 	<link href="./css/header.css" rel="stylesheet">
 
-<style>
-
-#buyer, #product, #pay{
-    width: 900px;
-    margin: auto;
-}
-#policy{
-    margin-top: 55px;
-}
-#policy1{
-    border: 1px solid;
-} 
-
-</style>
- 
-
 <%
 request.setCharacterEncoding("utf-8");
 String id = (String)session.getAttribute("id");
@@ -164,7 +148,9 @@ function pointChanged(price, myPoint){
 	point =  document.getElementById('usingPoint').value;
 	if(price==point){
 		alert('전액을 포인트로 계산합니다.');
-		point =  document.getElementById('withPoint').checked = true;
+		document.getElementById('price_result').innerText = price-point;
+		document.getElementById('myPoint').innerText = myPoint-point;
+		document.getElementById('withPoint').checked = true;
 	}
 	
 	if(myPoint-point<0){
@@ -262,7 +248,7 @@ int price=0;
 		</div>
 		<div style="text-align: center; margin-top: 50px;">
 			<input type="button" value="결제하기" onclick="pay()">
-			<input type="button" value="취소하기">
+			<input type="button" value="취소하기" onclick="history.back()">
 		</div>
 	
 		</form>

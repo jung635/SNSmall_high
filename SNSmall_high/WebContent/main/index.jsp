@@ -59,7 +59,7 @@ function snsSearch_exe(){
 				<li data-target="#main-carousel" data-slide-to="2"></li>
 			</ol><!--/.carousel-indicators--> 
 			<div class="carousel-inner">
-				<div class="item active" style="background-image: url(images/slider/main001.gif)"> 
+				<div class="item active" style="background-image: url(images/slider/main0001.gif)"> 
 					<div class="carousel-caption"> 
 						<div> 
 							<h2 class="heading animated bounceInDown">'Himu' Onepage HTML Template</h2> 
@@ -69,7 +69,7 @@ function snsSearch_exe(){
 						</div> 
 					</div> 
 				</div>
-				<div class="item" style="background-image: url(images/slider/main002.gif)"> 
+				<div class="item" style="background-image: url(images/slider/main02.gif)"> 
 					<div class="carousel-caption"> <div> 
 						<h2 class="heading animated bounceInDown">Get All in Onepage</h2> 
 						<p class="animated bounceInUp">Everything is outstanding </p>
@@ -78,7 +78,7 @@ function snsSearch_exe(){
 					</div> 
 				</div> 
 			</div> 
-			<div class="item" style="background-image: url(images/slider/slide3.jpg)"> 
+			<div class="item" style="background-image: url(images/slider/main003.gif)"> 
 				<div class="carousel-caption"> 
 					<div> 
 						<h2 class="heading animated bounceInRight">Fully Responsive Template</h2> 

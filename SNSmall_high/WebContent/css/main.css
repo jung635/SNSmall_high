@@ -1639,8 +1639,8 @@ h1, h2, h3, h4, h5, h6 {
 }
 /*main search btn*/
 .Sns_SearchBtn{
-	border: 2px double white;
-	background-image: url("../images/slider/people_search_btn.gif");
+	
+	background-image: url("../images/slider/people_search_btn1.gif");
 	background-size:100%;
 	background-repeat: no-repeat;
 	border-radius:20px; 
@@ -1649,16 +1649,40 @@ h1, h2, h3, h4, h5, h6 {
 	margin-bottom: 50px;
 	position: relative;
 	bottom:5px;
+	border:1px solid #fc7700;
 	
 }
+.Sns_SearchBtn:hover{
+	background-image: url("../images/slider/people_search_btn2.gif");
+	background-size:100%;
+	background-repeat: no-repeat;
+	border-radius:20px; 
+	position: relative;
+	margin-right: 15px;
+	margin-bottom: 50px;
+	position: relative;
+	bottom:5px;
+	border:1px solid #fc7700;
+	}
 .product_SearchBtn{
-	border: 2px double white;
-	background-image: url("../images/slider/product_search_btn.gif");
+	
+	background-image: url("../images/slider/product_search_btn1.gif");
 	background-size:100%;
 	background-repeat: no-repeat;
 	border-radius:20px; 
 	position: relative;
 	bottom:5px;
+	border:1px solid #fc7700;
+}
+.product_SearchBtn:hover{
+	border:1px solid #fc7700;
+	background-image: url("../images/slider/product_search_btn3.gif");
+	background-size:100%;
+	background-repeat: no-repeat;
+	border-radius:20px; 
+	position: relative;
+	bottom:5px;
+	
 }
 /*search text*/
 .input_row {

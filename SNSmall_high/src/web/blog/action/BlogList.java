@@ -32,7 +32,7 @@ public class BlogList implements Action{
 			//                게시판 글 56개, 한 화면에 보여줄 글 개수 10 =>전체페이지? 5+1(나머지)Page
 			 int pageCount = count/pageSize+(count%pageSize==0? 0:1);
 			//한 화면에 보여줄 페이지 번호 개수 
-			 int pageBlock=10;
+			 int pageBlock=1;
 			//시작페이지 번호 구하기  1~10=>1 , 11~20=>11 , 21~30=>21
 			 int startPage = ((currentPage-1)/pageBlock)*pageBlock+1;
 			//끝페이지 번호 구하기

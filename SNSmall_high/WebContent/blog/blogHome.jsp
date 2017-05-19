@@ -1,6 +1,5 @@
 <%@page import="java.util.Locale"%>
 <%@page import="java.text.SimpleDateFormat"%>
-<%@page import="java.sql.Date"%>
 <%@page import="web.blog.db.BlogBean"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -38,7 +37,8 @@
                     Page Heading
                     <small>Secondary Text</small>
                     
-                    <a href="./OurBlogPosting.bl">Posting</a>
+                    
+                    <a href="./OurBlogPosting.bl"><button class="posting_btn">Posting</button></a>
                     
                 </h1>
 
@@ -68,12 +68,8 @@ for(int i=0;i<blogList.size();i++){
                    
             
                 <p><span class="glyphicon glyphicon-time"></span> 
-                <%
-                SimpleDateFormat formatter = new SimpleDateFormat("yyyy.MM.dd HH:mm:ss");
-                Date date = bb.getDate();
-                String time = formatter.format(date);
-                 %>
-                 <%=time %>
+                <%SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd HH시mm분ss초");%>
+                 <%=sdf.format(bb.getDate())%>
                 </p>
                 <hr>  <!-- Posted on August 28, 2013 at 10:00 PM -->
                 
@@ -91,48 +87,29 @@ for(int i=0;i<blogList.size();i++){
 
                <hr style="border: 0; height: 3px; background: #111111;">
 
-        <%}
-//count>pageBlock
+        <%}%>
 
-if(count!=0){
-	if(PageNum>=2){
-		%>
-		<a href="./OurBlog.bl?pageNum=<%=%>">&larr; Older</a>
-		<%
-	}
-	if()
-}
-        
+<!-- Pager -->
+<%
 if(count!=0){
 	// 이전        시작페이지가1~10인경우 이전이없다! 10초과면 이전글자보이게!
+	 %><ul class="pager">
+                    <li class="previous"><%
 	if(startPage > pageBlock){
-		%><a href="./OurBlog.bl?pageNum=<%=startPage-pageBlock%>">[이전]</a><%
+		%><a href="./OurBlog.bl?pageNum=<%=startPage-pageBlock%>">&larr; Older</a><%
 	}                    //get방식방법에서쓰는방식 파일이름? ...파라미터값 <%=..>쮹쮹~
-	// 1..10
-	for(int i=startPage;i<=endPage;i++){
-		%><a href="./OurBlog.bl?pageNum=<%=i%>">[<%=i%>]</a> <%
-	}
+	%></li>
+	
+	<li class="next" style="position: relative;"><%
 	// 다음
+	
 	if(endPage<pageCount){
-		%><a href="./OurBlog.bl?pageNum=<%=startPage+pageBlock%>">[다음]</a><%
+		%><a href="./OurBlog.bl?pageNum=<%=startPage+pageBlock%>">Newer &rarr;</a><%
 	}
+	%></li> </ul><%
 }
 %>
-        
-        %>      
-
-
-
-                <!-- Pager -->
-                <ul class="pager">
-                    <li class="previous">
-                        <a href="#">&larr; Older</a>
-                    </li>
-                    <li class="next" style="position: relative;">
-                        <a href="#">Newer &rarr;</a>
-                    </li>
-                </ul>
-
+         
             </div>
 
 <!-- Blog Sidebar Widgets Column -->

@@ -1120,6 +1120,17 @@ h1, h2, h3, h4, h5, h6 {
 .blog-content {
 	margin-bottom: 25px;
 	margin-top: 0;
+	height: 75px;
+}
+.blog-content-limit{
+	height: 80px;
+	border: 1px solid red;
+	overflow: hidden;
+}
+.blog-content-long{
+	margin-bottom: 25px;
+	margin-top: 0;
+	height: 305px;
 }
 
 .single-blog .btn-primary {

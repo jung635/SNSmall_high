@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html lang="en">
+<html lang="UTF-8">
 <head> 
 	<meta charset="UTF-8"> 
 	<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
@@ -51,6 +51,11 @@
 	
 </head><!--/head-->
 <body>
+<%
+String returnUrl = request.getParameter("returnUrl");
+if(returnUrl==null){returnUrl = request.getHeader("referer");}
+System.out.println(returnUrl);
+%>
 	<div class="preloader">
 		<div class="preloder-wrap">
 			<div class="preloder-inner"> 
@@ -75,7 +80,7 @@
 				 <div class="login_subject">comming soon Logo</div> 
 		
 				<form action="./loginAction.cl" id="join" name="fr" onsubmit="return confirmSubmit()">
-			
+					<input type="hidden" name="returnUrl" value="<%=returnUrl%>">
 					<fieldset class="login_form">
 					
 					<div class="input_row" id="id_area">

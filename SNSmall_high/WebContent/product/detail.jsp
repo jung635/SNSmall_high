@@ -116,8 +116,10 @@
 <body>
 
 	<%
+	String returnUrl = request.getHeader("referer");
+	System.out.println(returnUrl);
 	String id = (String)session.getAttribute("id");
-	if(id==null){response.sendRedirect("./login.cl");}
+	if(id==null){response.sendRedirect("./login.cl?returnUrl="+returnUrl);}
 	
 	String type =(String)session.getAttribute("type");
 	if(type==null){type = "client";}

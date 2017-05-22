@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 
+
 public class MemoFrontController extends HttpServlet{
 
 	protected void doProcess(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
@@ -64,6 +65,58 @@ public class MemoFrontController extends HttpServlet{
 			// 파일 MemoReWrite 생성 execute()
 			forward = new ActionForward();
 			forward.setPath("./mypage/memo_rewriteForm.jsp");
+			forward.setRedirect(false);
+		}else if(command.equals("/MemoReWriteAction.me")){
+			// BoardReWriteAction 생성 execute() 메서드 호출
+			action = new MemoReWriteAction();
+			try{
+				forward = action.execute(request, response);
+			}catch(Exception e){e.printStackTrace();}
+		}else if(command.equals("/MemoListGet.me")){
+			//   MemoListAction   execute()
+			action = new MemoListGetAction();
+			try {
+				forward=action.execute(request, response);
+			} catch (Exception e) {e.printStackTrace();}
+		}else if(command.equals("/MemoDeleteGetAction.me")){
+			// MemoDeleteAction 생성 execute() 메서드 호출
+			action = new MemoDeleteGetAction();
+			try{
+				forward = action.execute(request, response);
+			}catch(Exception e){e.printStackTrace();}
+		}else if(command.equals("/MemoDeleteGet.me")){
+			// MemoDeleteAction 생성 execute() 메서드 호출
+			forward = new ActionForward();
+			forward.setPath("./mypage/memo_deleteFormGet.jsp");
+			forward.setRedirect(false);
+		}else if(command.equals("/MemoContentGet.me")){
+			// BoardContentAction execute()
+			action = new MemoContentGetAction();
+			try {
+				forward=action.execute(request, response);
+			} catch (Exception e) {e.printStackTrace();}
+		}else if(command.equals("/MemoListAll.me")){
+			//   MemoListAction   execute()
+			action = new MemoListAllAction();
+			try {
+				forward=action.execute(request, response);
+			} catch (Exception e) {e.printStackTrace();}
+		}else if(command.equals("/MemoContentAll.me")){
+			// BoardContentAction execute()
+			action = new MemoContentAllAction();
+			try {
+				forward=action.execute(request, response);
+			} catch (Exception e) {e.printStackTrace();}
+		}else if(command.equals("/MemoDeleteAllAction.me")){
+			// MemoDeleteAction 생성 execute() 메서드 호출
+			action = new MemoDeleteGetAction();
+			try{
+				forward = action.execute(request, response);
+			}catch(Exception e){e.printStackTrace();}
+		}else if(command.equals("/MemoDeleteAll.me")){
+			// MemoDeleteAction 생성 execute() 메서드 호출
+			forward = new ActionForward();
+			forward.setPath("./mypage/memo_deleteFormAll.jsp");
 			forward.setRedirect(false);
 		}
 		

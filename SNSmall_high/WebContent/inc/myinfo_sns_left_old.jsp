@@ -13,8 +13,8 @@
 	<div id="showbtn">		
 		<a href="MemoList.me" class="list-group-item">쪽지함</a>
 		<div id="show_content">
-			<a href="MemoListAll.me"  class="list-group-item">전체 쪽지함</a>
-			<a href="MemoListGet.me"  class="list-group-item">받은 쪽지함</a>
+			<a href="MemoList.me"  class="list-group-item">전체 쪽지함</a>
+			<a href="MemoList.me"  class="list-group-item">받은 쪽지함</a>
 			<a href="MemoList.me"  class="list-group-item">보낸 쪽지함</a>
 		</div>
 	</div>

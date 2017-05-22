@@ -552,6 +552,7 @@ Connection con = null;
 		return list;
 	}
 	
+
 	// 전체 글의 개수 구하기 getPaymentCount()----------------------------------------------------------------
 	public int getPaymentCount(String snsState, String id){
 		Connection con=null;
@@ -565,7 +566,7 @@ Connection con = null;
 			con=getConnection();	
 			//3. sql함수 count(*) 구하기
 			
-			if(snsState!=null){
+			if(!snsState.equals("")){
 				sql = "select count(*) from payment where state=? and sns_id=?";
 				pstmt=con.prepareStatement(sql);
 				pstmt.setString(1, snsState);
@@ -607,7 +608,7 @@ Connection con = null;
 		try{
 			con=getConnection();
 			//3. sql member 모든 데이터 가져오기
-			if(snsState!=null){
+			if(!snsState.equals("")){
 				sql="select * from payment where state=? and sns_id=? limit ?,?";
 				System.out.println("snsState : "+snsState);
 				System.out.println("id : "+id);
@@ -653,7 +654,8 @@ Connection con = null;
 			if(con!=null){try{con.close();}catch(SQLException ex){}}}
 		
 		return paymentList;
-	}//getPaymentList(String snsState)
+	}//getPaymentList(String snsState)	
+	
 	
 	public List<PaymentBean> getVendorPaymentById(int pageSize, String vendor_id, String method) {
 		List<PaymentBean> list = new ArrayList<PaymentBean>();

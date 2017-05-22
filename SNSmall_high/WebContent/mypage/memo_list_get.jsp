@@ -48,7 +48,7 @@ String id = (String)session.getAttribute("id");
             </div>
             <div class="col-md-9">
 <%
-List memoList=(List)request.getAttribute("memoList");
+List memoListGet=(List)request.getAttribute("memoListGet");
 String pageNum=(String)request.getAttribute("pageNum");
 int count=((Integer)request.getAttribute("count")).intValue();
 int pageCount=((Integer)request.getAttribute("pageCount")).intValue();
@@ -67,7 +67,7 @@ if(id ==null ){
 <div class="row">
     <div class="col-lg-12">
         <h1 class="page-header">쪽지글 목록
-            <small>보낸쪽지함</small>
+            <small>받은쪽지함</small>
         </h1>
      </div>
 </div>
@@ -78,20 +78,20 @@ if(id ==null ){
 
 <table border=1>
 <tr bgcolor="orange">
-	<td>번호</td><td>받는사람</td><td>내용</td><td>날짜</td>
+	<td>번호</td><td>보낸사람</td><td>제목</td><td>날짜</td>
 </tr>
 <%
-	for(int i=0; i < memoList.size(); i++){
+	for(int i=0; i < memoListGet.size(); i++){
 		//memoBean meb= 한칸의 데이터 가져와서 저장 .get()
-		MemoBean meb = (MemoBean)memoList.get(i); //downcasting
+		MemoBean meb = (MemoBean)memoListGet.get(i); //downcasting
 		// 자바빈(MemoBean) 변수=배열한칸 접근 배열변수.get()
 		//부모                                                      자식
 		
 %>
 <tr bgcolor="#ffeecc">
-<td><%=meb.getNum() %></td><td><%=meb.getTo_id() %></td>
+<td><%=meb.getNum() %></td><td><%=meb.getFrom_id() %></td>
 <td>
-<a href="./MemoContent.me?num=<%=meb.getNum()%>&pageNum=<%=pageNum%>"><%= meb.getSubject()%></a></td><td><%=meb.getDate() %></td>
+<a href="./MemoContentGet.me?num=<%=meb.getNum()%>&pageNum=<%=pageNum%>"><%= meb.getSubject()%></a></td><td><%=meb.getDate() %></td>
 </tr>
 <%
 }
@@ -114,15 +114,15 @@ if(count!=0){
 	//끝페이지 번호 구하기
 	//이전 페이지
 	if(startPage>pageBlock){ // 스타트페이지가 페이지블럭보다 많을 때
-		%><a href="MemoList.me?pageNum=<%=startPage-pageBlock%>">[이전]</a>&nbsp;<%
+		%><a href="MemoListGet.me?pageNum=<%=startPage-pageBlock%>">[이전]</a>&nbsp;<%
 	}
 	//1...10   11...20   21...30
 	for(int i=startPage; i<=endPage; i++){
-		%><a href="MemoList.me?pageNum=<%=i%>">[<%=i%>]</a>&nbsp;<%
+		%><a href="MemoListGet.me?pageNum=<%=i%>">[<%=i%>]</a>&nbsp;<%
 	}
 	//다음 페이지
 	if(endPage<pageCount){ //엔트페이지가 페이지블록보다 작을 때
-		%><a href="MemoList.me?pageNum=<%=startPage+pageBlock%>">[다음]</a><%
+		%><a href="MemoListGet.me?pageNum=<%=startPage+pageBlock%>">[다음]</a><%
 	}
 }
 

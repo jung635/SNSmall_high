@@ -30,6 +30,7 @@ public class MemoWriteAction implements Action{
 		meb.setTo_id(request.getParameter("to_id"));
 		meb.setSubject(request.getParameter("subject"));
 		meb.setContent(request.getParameter("content"));
+		
 		 
 		// MemoDAO modao 객체생성
 		 MemoDAO medao = new MemoDAO();

@@ -128,6 +128,8 @@ System.out.println(pay_list.size()); */
 // request에 저장된 memberList 가져오기
 List paymentList = (List)request.getAttribute("paymentList");
 String pageNum=(String)request.getAttribute("pageNum");
+String snsState=(String)request.getAttribute("snsState");
+if(snsState==null){snsState="";}
 int currentPage=Integer.parseInt(pageNum);
 int count=((Integer)request.getAttribute("count")).intValue();
 int pageCount=((Integer)request.getAttribute("pageCount")).intValue();
@@ -136,6 +138,7 @@ int startPage=((Integer)request.getAttribute("startPage")).intValue();
 int endPage=((Integer)request.getAttribute("endPage")).intValue();
 int addPoint=0;
 SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd");
+
 
 %>
 <div class="row">
@@ -147,14 +150,15 @@ SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd");
 </div>
 <div class="row">
 <form action="SnsSale.sn" method="post" name="frmSearch">
-<select id="snsState" name="snsState" onchange="snsStatefn(this.value)">
-  <option value="">정렬방법을 선택하세요
-  <option value="payDone">주문 내역</option>
-  <option value="delivery">배송중</option>
-  <option value="done">배송완료</option>
-  <option value="cancel">주문취소</option>
-  <option value="cancelHold">취소신청</option>
-  <option value="waiting">무통장입금</option>
+<%=snsState %>
+<select id="snsState" name="snsState" onchange="snsStatefn()">
+  <option value="" <%if(snsState.equals("")){ %> selected <%}  %>>정렬방법을 선택하세요
+  <option value="payDone" <%if(snsState.equals("payDone")){ %> selected <%}  %>>주문 내역</option>
+  <option value="delivery" <%if(snsState.equals("delivery")){ %> selected <%}  %>>배송중</option>
+  <option value="done" <%if(snsState.equals("done")){ %> selected <%}  %>>배송완료</option>
+  <option value="cancel" <%if(snsState.equals("cancel")){ %> selected <%}  %>>주문취소</option>
+  <option value="cancelHold" <%if(snsState.equals("cancelHold")){ %> selected <%}  %>>취소신청</option>
+  <option value="waiting" <%if(snsState.equals("waiting")){ %> selected <%}  %>>무통장입금</option>
 </select><br><br><!-- <div id="snselected"></div> -->
 </form>
 
@@ -217,7 +221,7 @@ if(count!=0){
                         <a href="#"><%=i %></a>
                     </li>
                     <%}else{ %>
-                    <li><a href="SnsSale.sn?pageNum=<%=i%>">[<%=i%>]</a></li>
+                    <li><a href="SnsSale.sn?pageNum=<%=i%>&snsState=<%=snsState%>">[<%=i%>]</a></li>
                     <%}}
 	//다음 페이지
 	if(endPage<pageCount){ //엔트페이지가 페이지블록보다 작을 때

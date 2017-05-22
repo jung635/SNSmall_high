@@ -29,7 +29,23 @@ th,td {
   padding: 5px;
 }
 </style>
+<script type="text/javascript">
+function fncheckdelete(para_getNum){
+	
+	if(confirm("메모를 삭제하시겠습니까?")){
+		if(para_getNum!=""){
+			document.frmdelete.num.value=para_getNum;
+			document.frmdelete.submit();
+		}else{
+			alert("메모가 이상하다");
+			return;
+		}
+	}else{
+		return;
+	}
+}
 
+</script>
 </head>
 <body>
 <jsp:include page="../inc/header.jsp"/>
@@ -74,7 +90,7 @@ String pageNum=(String)request.getAttribute("pageNum");
 
 %>
 
-<h3>쪽지내용 보기</h3>
+<h3>보낸쪽지 보기</h3>
 <table border=1>
 <tr bgcolor="orange"><td>쪽지번호</td><td colspan=3><%=meb.getNum()%></td></tr>
 <tr bgcolor="#ffeecc"><td>받는사람</td><td><%=meb.getTo_id()%></td><td>작성일</td><td><%=meb.getDate()%></td></tr>
@@ -82,10 +98,16 @@ String pageNum=(String)request.getAttribute("pageNum");
 <tr bgcolor="#ffeecc"><td>쪽지내용</td><td colspan=3><%=meb.getContent()%></td></tr>
 <tr bgcolor="#ffeecc"><td colspan=4>
 
-<input type="button" value="쪽지삭제" onclick="location.href='./MemoDelete.me?num=<%=meb.getNum()%>&pageNum=<%=pageNum%>'">
-<input type="button" value="답글쓰기" onclick="location.href='./MemoReWrite.me?num=<%=meb.getNum()%>'">
+<!-- <input type="button" value="쪽지삭제" onclick="location.href='./MemoDelete.me?num=<%=meb.getNum()%>&pageNum=<%=pageNum%>'">-->
+<input type="button" value="쪽지삭제" onclick="javascript:fncheckdelete(<%=meb.getNum()%>);">
+<input type="button" value="답글쓰기" onclick="location.href='./MemoReWrite.me?num=<%=meb.getNum()%>&re_ref=<%=meb.getRe_ref()%>&re_lev=<%=meb.getRe_lev()%>&re_seq=<%=meb.getRe_seq()%>'">
 <input type="button" value="쪽지목록" onclick="location.href='./MemoList.me?pageNum=<%=pageNum%>'"></td></tr>
 </table>
+
+<form action="./MemoDeleteAction.me?pageNum=<%=pageNum %>" method="post" name="frmdelete" >
+       <input type="hidden" name="num" value="">
+</form>
+
 
     <!-- /.container -->
 <!--     <div class="container"> -->

@@ -253,8 +253,8 @@ int rank_percent = (Integer)request.getAttribute("rank_percent");
 				pb = pdao.getProduct(popular_list.get(i));%>
 			<div class="col-sm-3 col-xs-6">
 				<div>
-				<a href="#">
-					<img class="img-responsive portfolio-item" id="sns_imgs" src="./vendor_img/<%=pb.getMain_img() %>" alt="" onclick="view(this)">
+				<a href="ProductDetail.pr?product_num=<%=pb.getProduct_num()%>">
+					<img class="img-responsive portfolio-item" id="sns_imgs" src="./vendor_img/<%=pb.getMain_img() %>" alt="">
                	</a>
                	</div>
                	<div>
@@ -269,8 +269,8 @@ int rank_percent = (Integer)request.getAttribute("rank_percent");
 			<%for(int i=0; i<latest_size; i++){
 				pb = pdao.getProduct(latest_list.get(i));%>
 			<div class="col-sm-3 col-xs-6">
-				<a href="#">
-					<img class="img-responsive portfolio-item" id="sns_imgs" src="./vendor_img/<%=pb.getMain_img() %>" alt="" onclick="view(this)">
+				 <a href="ProductDetail.pr?product_num=<%=pb.getProduct_num()%>">
+					<img class="img-responsive portfolio-item" id="sns_imgs" src="./vendor_img/<%=pb.getMain_img() %>" alt="">
                	 </a>
                	 <div>
                		ÀÌ¸§: <%=pb.getSubject() %><br>

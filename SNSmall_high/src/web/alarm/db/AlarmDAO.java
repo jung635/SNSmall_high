@@ -30,7 +30,7 @@ Connection con = null;
 	String sql = "";
 	ResultSet rs = null;
 	
-	public List<Map<String, Object>> showAlarm(String id){
+/*	public List<Map<String, Object>> showAlarm(String id){
 		Map<String, Object> map = null;
 		List<Map<String, Object>> list = new ArrayList<>();
 		try{
@@ -56,7 +56,7 @@ Connection con = null;
 		if(pstmt != null){try {pstmt.close();}catch(Exception ex){}}
 		if(con != null){try {con.close();}catch(Exception ex) {}}}
 		return list;
-	}
+	}*/
 	public List<Map<String, Object>> alarmList(String id, int limit){
 		Map<String, Object> map = null;
 		List<Map<String, Object>> list = new ArrayList<>();
@@ -66,6 +66,32 @@ Connection con = null;
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, id);
 			pstmt.setInt(2, limit);
+			rs = pstmt.executeQuery();
+			while(rs.next()){
+				map = new HashMap<>();
+				map.put("id", id);
+				map.put("content", rs.getString("content"));
+				map.put("num", rs.getInt("num"));
+				map.put("state", rs.getString("state"));
+				map.put("move", rs.getString("move"));
+				map.put("date", rs.getTimestamp("date"));
+				list.add(map);
+			}
+			
+		}catch (Exception e){e.printStackTrace();}
+		finally {if(rs != null){try {rs.close();} catch (Exception ex) {}}
+		if(pstmt != null){try {pstmt.close();}catch(Exception ex){}}
+		if(con != null){try {con.close();}catch(Exception ex) {}}}
+		return list;
+	}
+	public List<Map<String, Object>> alarmList(String id){
+		Map<String, Object> map = null;
+		List<Map<String, Object>> list = new ArrayList<>();
+		try{
+			con = getConnection();
+			sql = "select * from alarm where id=? order by date desc";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, id);
 			rs = pstmt.executeQuery();
 			while(rs.next()){
 				map = new HashMap<>();

@@ -24,10 +24,10 @@ SimpleDateFormat sdf = new SimpleDateFormat("yyyy-mm-dd hh:mm");
 					<table style="margin: auto;">
 					<%for(int i=0; i<limit; i++){
 						map = list.get(i);
-						if(map.get("state").equals("on")){
-							color = "#ddd";
-						}else if(map.get("state").equals("now")){
-							color = "red";
+						if(map.get("state").equals("on")||map.get("state").equals("now")){
+							color = "#1e9ef0";
+						}else{
+							color = "rgba(255, 255, 255, 0)";
 						}
 					%>
 						<tr style="background-color: <%=color%>">

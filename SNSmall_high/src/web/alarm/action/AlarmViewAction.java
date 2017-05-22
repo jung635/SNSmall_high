@@ -18,7 +18,7 @@ public class AlarmViewAction implements Action{
 		if(id!=null){
 		AlarmDAO adao = new AlarmDAO();
 		Map<String, Object> map = null;
-		List<Map<String, Object>> list = adao.showAlarm(id);
+		List<Map<String, Object>> list = adao.alarmList(id);
 		if(list.isEmpty()){
 			
 		}else{

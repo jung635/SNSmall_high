@@ -17,7 +17,7 @@
 	<link href="css/inner.css" rel="stylesheet">
 	<link href="css/main.css" rel="stylesheet">
 <title>Insert title here</title>
-<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script type="text/javascript">
 	$(document).ready(function(){
 	    $(".reviewbtn").click(function(){

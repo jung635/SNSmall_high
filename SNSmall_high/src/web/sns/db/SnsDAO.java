@@ -546,7 +546,7 @@ public class SnsDAO {
 					pab.setProduct_num(rs.getInt("num"));
 					pab.setAmount(rs.getInt("amount"));
 					pab.setMessage(rs.getString("message"));
-					pab.setDate(rs.getDate("date"));
+					pab.setDate(rs.getTimestamp("date"));
 					pab.setOrder_num(rs.getString("order_num"));
 					pab.setOption1(rs.getString("option1"));
 					pab.setOption2(rs.getString("option2"));

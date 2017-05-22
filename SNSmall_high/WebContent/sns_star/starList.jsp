@@ -91,13 +91,13 @@ List<SnsBean> list = (List<SnsBean>)request.getAttribute("list");
 							<%if(sb.getFacebook().trim().length()!=0){%>
 								<a href="<%=sb.getFacebook()%>"><i class="fa fa-facebook"></i></a>
 							<%}if(sb.getTwitter().trim().length()!=0){%>							
-							<a href="<%=sb.getTwitter()%>"><i class="fa fa-twitter"></i></a>
+								<a href="<%=sb.getTwitter()%>"><i class="fa fa-twitter"></i></a>
 							<%}if(sb.getInstagram().trim().length()!=0){%>			
-							<a href="<%=sb.getInstagram()%>"><i class="fa fa-instagram"></i></a>
+								<a href="<%=sb.getInstagram()%>"><i class="fa fa-instagram"></i></a>
 							<%}if(sb.getBlog().trim().length()!=0){%>	
-							<a href="<%=sb.getBlog()%>"><i class="fa fa-bold"></i></a>
+								<a href="<%=sb.getBlog()%>"><i class="fa fa-bold"></i></a>
 							<%}if(sb.getEtc().trim().length()!=0){%>	
-							<a href="<%=sb.getEtc()%>"><i class="fa fa-smile-o"></i></a>
+								<a href="<%=sb.getEtc()%>"><i class="fa fa-smile-o"></i></a>
 							<%} %>
 						</div>
 					</div>

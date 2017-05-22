@@ -99,10 +99,10 @@ img {
 #alarm{
 	position: absolute; 
 	display: inline-block;
-	background: #ccc;
+	background: #fc2c2c;
 	height: 50px;
-	width: 120px;
-    margin: 18px 0px 0px -10px;
+	width: 200px;
+    margin: 18px 0px 0px -70px;
 }
 #alarm:after {
     content: '';
@@ -110,9 +110,9 @@ img {
     border-top: 0px solid #ccc;
     border-right: 10px solid transparent;
     border-left: 10px solid transparent;
-    border-bottom: 10px solid #ccc;
+    border-bottom: 10px solid #fc2c2c;
     bottom: 50px;
-    left: 5px;
+    left: 80px;
 }
 
 #alarm_btn{
@@ -133,4 +133,11 @@ img {
 #list_view_ul li{
 	line-height: 28px;
 	border-bottom: solid 1px #8a8686;
+}
+#alert_view_ul{
+    list-style-type: none;
+    margin: 10px 0px 7px 5px;
+}
+#alert_view_ul li{
+	line-height: 28px;
 }

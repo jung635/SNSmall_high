@@ -20,8 +20,10 @@ public class ProductDetailAction implements Action{
 		request.setCharacterEncoding("utf-8");
 		
 		HttpSession session = request.getSession();
-		String id= (String)session.getAttribute("id");
-		String type= (String)session.getAttribute("type");
+		String id = (String)session.getAttribute("id");
+		String type = (String)session.getAttribute("type");
+		String sns_id = request.getParameter("sns_id");
+		if(sns_id == null){sns_id = "";}
 		
 		int product_num = Integer.parseInt(request.getParameter("product_num"));
 		String pageNum = request.getParameter("pageNum");
@@ -31,7 +33,7 @@ public class ProductDetailAction implements Action{
 			pageNum = (String)request.getAttribute("pageNum");
 		}
 		if(pageNum==null){pageNum="1";}
-		
+
 		ProductDAO productdao = new ProductDAO();
 		ProductBean productbean = productdao.getProduct(product_num);
 		
@@ -63,6 +65,7 @@ public class ProductDetailAction implements Action{
 		request.setAttribute("pageNum", pageNum);
 		request.setAttribute("id", id);
 		request.setAttribute("type", type);
+		request.setAttribute("sns_id", sns_id);
 		
 		ActionForward forward = new ActionForward();
 		forward.setPath("./product/detail.jsp");

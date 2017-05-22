@@ -118,20 +118,24 @@
 	<%
 	String returnUrl = request.getHeader("referer");
 	System.out.println(returnUrl);
+	
+	ProductBean productbean = (ProductBean)request.getAttribute("productbean");
+	String sns_id = (String)request.getAttribute("sns_id");
+	if(sns_id == null){sns_id = "";}
+	
+	System.out.println("detailJsp"+sns_id);
+	System.out.println("detailJsp"+productbean.getProduct_num());
 	String id = (String)session.getAttribute("id");
-	if(id==null){response.sendRedirect("./login.cl?returnUrl="+returnUrl);}
+	if(id==null){response.sendRedirect("./login.cl?returnUrl="+returnUrl+"&product_num="+productbean.getProduct_num()+"&sns_id="+sns_id);}
 	
 	String type =(String)session.getAttribute("type");
 	if(type==null){type = "client";}
 	
-	String sns_id = (String)request.getAttribute("sns_id");
 	if(type.equals("sns")){sns_id = id;}
-	if(sns_id == null){sns_id = "";}
 	
 	String pageNum = (String)request.getAttribute("pageNum");
 	if(pageNum == null){pageNum="1";}
 	
-	ProductBean productbean = (ProductBean)request.getAttribute("productbean");
 	String [] o1 = productbean.getOption1().split(",");
 	String [] o2 = productbean.getOption2().split(",");
 	String [] o3 = productbean.getOption3().split(",");

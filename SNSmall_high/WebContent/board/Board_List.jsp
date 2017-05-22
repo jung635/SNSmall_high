@@ -22,12 +22,6 @@
 
 <jsp:include page="../inc/header.jsp"/>
 
-<!-- 리퀘스트 세션값 받아오기 -->
-	<%
-		
-	%>
-<!-- 리퀘스트 세션값 받아오기 -->
-
 <!-- Page Content -->
 <div class="container">
 	<div class="content">

@@ -756,23 +756,48 @@ Connection con = null;
 		try{
 			con = getConnection();
 			if(rank.equals("basic")){
-				if(money>10000000){
-				//if(money>90000){
+				if(money>=10000000){
 					sql.append("'premium'");
-				}else if(money>90000){
+					ab.setContent("등급이  premium으로 상승하셨습니다!");
+					ab.setId(sns_id);
+					ab.setMove("rank");
+					adao.insertAlarm(ab);
+				}else if(money>=90000){
 					sql.append("'plus'");
-					ab.setContent("등급이 plsu로 올라갔네!");
+					ab.setContent("등급이 plsu로 상승하셨습니다!");
 					ab.setId(sns_id);
 					ab.setMove("rank");
 					adao.insertAlarm(ab);
 				}
 			}else if(rank.equals("plus")){
-				if(money>10000000){
+				if(money>=10000000){
 					sql.append("'premium'");
-					
+					ab.setContent("등급이  premium으로 상승하셨습니다!");
+					ab.setId(sns_id);
+					ab.setMove("rank");
+					adao.insertAlarm(ab);
+				}else if(money<5000000){
+					sql.append("'basic'");
+					ab.setContent("등급이 basic으로 내려가셨어요ㅠㅠ");
+					ab.setId(sns_id);
+					ab.setMove("rank");
+					adao.insertAlarm(ab);
 				}
 			}else{
 				sql.append("'premium'");
+				if(money<10000000){
+					sql.append("'plus'");
+					ab.setContent("등급이  plus로 내려가셨어요ㅠㅠ");
+					ab.setId(sns_id);
+					ab.setMove("rank");
+					adao.insertAlarm(ab);
+				}else if(money<5000000){
+					sql.append("'basic'");
+					ab.setContent("등급이 basic으로 내려가셨어요ㅠㅠ");
+					ab.setId(sns_id);
+					ab.setMove("rank");
+					adao.insertAlarm(ab);
+				}
 			}
 			
 			sql.append(" where sns_id = ?");

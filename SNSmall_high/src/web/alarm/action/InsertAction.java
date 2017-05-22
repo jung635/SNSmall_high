@@ -30,10 +30,10 @@ public class InsertAction implements Action {
 		PaymentBean pb_sns = null;
 		ProductBean prob_sns = null;
 		long all_sns_sell = 0L;
-		AlarmDAO adao = new AlarmDAO();
 		PaymentDAO pdao = new PaymentDAO();
 		ProductDAO prodao = new ProductDAO();*/
-		//adao.insertAlarm(ab);
+		AlarmDAO adao = new AlarmDAO();
+		adao.insertAlarm(ab);
 		
 		/*list_sns = pdao.getSnsPaymentList("abc");
 		System.out.println("size:"+list_sns.size());

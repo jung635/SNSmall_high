@@ -33,9 +33,10 @@ public class OffAlarmAction implements Action{
 			out.println("history.back();");
 			out.println("</script>");
 		}else{
-			forward = new ActionForward();
-			forward.setPath(ab.getMove());
-			forward.setRedirect(true);
+			out.println("<script>");
+			out.println("location.href='"+ab.getMove()+"';");
+			out.println("history.back();");
+			out.println("</script>");
 		}
 		
 		return forward;

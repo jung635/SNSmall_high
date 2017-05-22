@@ -150,9 +150,8 @@ int rank_percent = (Integer)request.getAttribute("rank_percent");
                 <img class="img-responsive" style="margin: auto;" src="./sns_pro_upload/<%=sb.getProfile_img() %>" alt="">
             </div>
             <div class="col-md-4">              
-                <h3>상세 정보</h3>
+                <h3><%=sb.getName() %></h3>
                 <ul>
-                    <li>이름:<%=sb.getName()  %></li>
                     <li>주력 카테고리: <%=sb.getCategory() %></li>
                     <li>등급: <%=sb.getRank() %></li>
                     <li>Adipiscing Elit</li>
@@ -161,18 +160,19 @@ int rank_percent = (Integer)request.getAttribute("rank_percent");
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae. Sed dui lorem, adipiscing in adipiscing et, interdum nec metus. Mauris ultricies, justo eu convallis placerat, felis enim.</p>
             </div>
             <section id="our-team">
+            	<div><input type="button" value="쪽지보내기" style="float:right"></div>
 				<div class="socials">
-							<%if(sb.getFacebook()!=null){%>
-								<a href="<%=sb.getFacebook()%>"><i class="fa fa-facebook"></i></a>
-							<%}if(sb.getTwitter()!=null){%>							
+						<%if(sb.getFacebook().trim().length()!=0){%>
+							<a href="<%=sb.getFacebook()%>"><i class="fa fa-facebook"></i></a>
+						<%}if(sb.getTwitter().trim().length()!=0){%>							
 							<a href="<%=sb.getTwitter()%>"><i class="fa fa-twitter"></i></a>
-							<%}if(sb.getInstagram()!=null){%>			
+						<%}if(sb.getInstagram().trim().length()!=0){%>			
 							<a href="<%=sb.getInstagram()%>"><i class="fa fa-instagram"></i></a>
-							<%}if(sb.getBlog()!=null){%>	
+						<%}if(sb.getBlog().trim().length()!=0){%>	
 							<a href="<%=sb.getBlog()%>"><i class="fa fa-bold"></i></a>
-							<%}if(sb.getEtc()!=null){%>	
+						<%}if(sb.getEtc().trim().length()!=0){%>	
 							<a href="<%=sb.getEtc()%>"><i class="fa fa-smile-o"></i></a>
-							<%} %>
+						<%} %>
 				</div>
 			</section>
         </div>

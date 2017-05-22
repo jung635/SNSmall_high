@@ -10,6 +10,7 @@ public class QnaBean {
 	private String content;
 	private String q_img;
 	private int popular=0;
+	private int stars=0;
 	private Date date;
 	
 	public int getQ_num() {
@@ -47,6 +48,12 @@ public class QnaBean {
 	}
 	public void setPopular(int popular) {
 		this.popular = popular;
+	}
+	public int getStars() {
+		return stars;
+	}
+	public void setStars(int stars) {
+		this.stars = stars;
 	}
 	public Date getDate() {
 		return date;

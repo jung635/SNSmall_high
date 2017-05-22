@@ -123,8 +123,6 @@
 	String sns_id = (String)request.getAttribute("sns_id");
 	if(sns_id == null){sns_id = "";}
 	
-	System.out.println("detailJsp"+sns_id);
-	System.out.println("detailJsp"+productbean.getProduct_num());
 	String id = (String)session.getAttribute("id");
 	if(id==null){response.sendRedirect("./login.cl?returnUrl="+returnUrl+"&product_num="+productbean.getProduct_num()+"&sns_id="+sns_id);}
 	
@@ -216,7 +214,7 @@
                  <br>
                  <%}%>
                  <script type="text/javascript">
-                 function plus(){
+                 	function plus(){
                 		if(document.gfr.amount.value<<%=peace%>){
                 			document.gfr.amount.value++;
 							document.getElementById("allprice").value=<%=allprice%>*document.gfr.amount.value;
@@ -273,8 +271,12 @@
                     <% }%>
                 </a>
             </div>
-            
 
+		<script type="text/javascript">
+			function qnaStar() {
+				
+			}
+		</script>
         </div>
         <div class="well">
         	<%if(type!=null){ %>
@@ -282,66 +284,71 @@
                     <div class="text-right">
                      	<div id="writing" style="margin-bottom: 14px; display: none;">
                     	 	<form action="./QnaInsertAction.qn?product_num=<%=productbean.getProduct_num() %>&pageNum=<%=pageNum%>" method="post" enctype="multipart/form-data">
-                    	 		<input type="hidden" name="client_id" value="<%=id%>">
-                    	 		<textarea rows="3" cols="120" name="content"></textarea><br>
-                    	 		<input type="file" name="q_img"><br>
-                    	 		<input type="submit" value="submit">
-                    	 	</form>
-                    	 </div>
-                        <a class="btn btn-success reviewbtn">Leave a Review</a>
-                    </div>
+								<input type="hidden" name="client_id" value="<%=id%>">
+								<span class="glyphicon glyphicon-star"></span>
+								<span class="glyphicon glyphicon-star-empty" onclick=""></span>
+								<span class="glyphicon glyphicon-star-empty" onclick=""></span>
+								<span class="glyphicon glyphicon-star-empty" onclick=""></span>
+								<span class="glyphicon glyphicon-star-empty" onclick=""></span>
+								<textarea rows="3" cols="120" name="content"></textarea><br>
+								<input type="file" name="q_img"><br>
+								<input type="submit" value="submit">
+							</form>
+						</div>
+						<a class="btn btn-success reviewbtn">Leave a Review</a>
+					</div>
 				<%} %>
 			<%} %>
-                    <hr>
+					<hr>
 					
 					<%for(int i=0; i<qnaList.size(); i++){
 						QnaBean qnabean = (QnaBean)qnaList.get(i);
 						String qUrl = "./QnaPopular.qn?product_num="+productbean.getProduct_num()+"&pageNum="+pageNum+"&q_num="+qnabean.getQ_num();
 					%>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star-empty"></span>
-                            <%=qnabean.getClient_id() %> / <%=qnabean.getPopular() %>
-                            <input type="button" value="++" onclick="location.href='<%=qUrl%>'">
-                            <span class="pull-right"><%=qnabean.getDate() %></span>
-                            <p><%=qnabean.getContent() %></p>
-                            <%if(qnabean.getQ_img()!=null){ %>
-                            	<p><img src="./qna_img/<%=qnabean.getQ_img()%>" width="200px" height="100px"></p>
-                            <%} %>
-                        </div>
-                    </div>
+					<div class="row">
+						<div class="col-md-12">
+							<span class="glyphicon glyphicon-star"></span>
+							<span class="glyphicon glyphicon-star"></span>
+							<span class="glyphicon glyphicon-star"></span>
+							<span class="glyphicon glyphicon-star"></span>
+							<span class="glyphicon glyphicon-star-empty"></span>
+							<%=qnabean.getClient_id() %> / <%=qnabean.getPopular() %>
+							<input type="button" value="++" onclick="location.href='<%=qUrl%>'">
+							<span class="pull-right"><%=qnabean.getDate() %></span>
+							<p><%=qnabean.getContent() %></p>
+							<%if(qnabean.getQ_img()!=null){ %>
+								<p><img src="./qna_img/<%=qnabean.getQ_img()%>" width="200px" height="100px"></p>
+							<%} %>
+						</div>
+					</div>
 					<%} %>
 					
-                    <hr>
+					<hr>
 
-                </div>
+				</div>
         <!-- /.row -->
 
-        <hr>
+		<hr>
 
         <!-- Footer -->
-        <footer>
-            <div class="row">
-                <div class="col-lg-12">
-                    <p>Copyright &copy; Your Website 2014</p>
-                </div>
-            </div>
-            <!-- /.row -->
-        </footer>
+		<footer>
+			<div class="row">
+				<div class="col-lg-12">
+					<p>Copyright &copy; Your Website 2014</p>
+				</div>
+			</div>
+			<!-- /.row -->
+		</footer>
 
-    </div>
-  </div>
-    <!-- /.container -->
+	</div>
+	</div>
+	<!-- /.container -->
 
-    <!-- jQuery -->
-    <script src="js/jquery.js"></script>
+	<!-- jQuery -->
+	<script src="js/jquery.js"></script>
 
-    <!-- Bootstrap Core JavaScript -->
-    <script src="js/bootstrap.min.js"></script>
+	<!-- Bootstrap Core JavaScript -->
+	<script src="js/bootstrap.min.js"></script>
 
 </body>
 </html>

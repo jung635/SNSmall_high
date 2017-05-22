@@ -1,13 +1,13 @@
 package web.blog.db;
 
-import java.sql.Date;
+import java.sql.Timestamp;
 
 public class BlogBean {
 
 	private int num;
 	private String subject;
 	private String content;
-	private Date date;
+	private Timestamp date;
 	private String file;
 	private String category;
 	
@@ -35,10 +35,11 @@ public class BlogBean {
 	public void setContent(String content) {
 		this.content = content;
 	}
-	public Date getDate() {
+	
+	public Timestamp getDate() {
 		return date;
 	}
-	public void setDate(Date date) {
+	public void setDate(Timestamp date) {
 		this.date = date;
 	}
 	public String getFile() {

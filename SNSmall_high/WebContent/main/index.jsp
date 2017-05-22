@@ -596,16 +596,24 @@ function snsSearch_exe(){
 											<p class="blog-content-long-limit"><%=bb.getContent() %></p>
 										</div>
 										<%} %>
-										<a href="" class="btn btn-primary" data-toggle="modal" data-target="#blog-detail">Read More</a>
+										<a href="" class="btn btn-primary" data-toggle="modal" data-target="#blog-detail<%=i%>">Read More</a>
 									</div>
-									<div class="modal fade" id="blog-detail" tabindex="-1" role="dialog" aria-hidden="true">
+									<div class="modal fade" id="blog-detail<%=i %>" tabindex="-1" role="dialog" aria-hidden="true">
 										<div class="modal-dialog">
 											<div class="modal-content">
 												<div class="modal-body">
 													<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-													<img src="images/blog/3.jpg" alt="" />
+													<%if(bb.getFile()!=null){ %>
+													<div class="modal-in-img" style="background-image: url('./blog_upload/<%=bb.getFile()%>');">
+													</div>
+													<%} %>
 													<h2><%=bb.getSubject() %></h2>
-													<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p><p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p>
+													<%	String content = bb.getContent();
+													
+													if(content!=null){
+													content = bb.getContent().replace("\r\n", "<br>");
+													} %>
+													<p><%=content %></p>
 												</div> 
 											</div>
 										</div>

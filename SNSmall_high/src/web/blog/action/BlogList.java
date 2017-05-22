@@ -12,8 +12,6 @@ public class BlogList implements Action{
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
-		System.out.println("BlogList execute()");
-		
 		BlogDAO bdao = new BlogDAO();
 		int count = bdao.getBlogListCount();
 		//한페이지에 보여줄 글갯수

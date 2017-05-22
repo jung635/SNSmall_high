@@ -1,3 +1,4 @@
+<%@page import="java.util.ArrayList"%>
 <%@page import="web.product.db.ProductDAO"%>
 <%@page import="java.util.List"%>
 <%@page import="web.sns.db.SnsBean"%>
@@ -120,10 +121,18 @@ function showSlides(n, full_length) {
 <body>
 <jsp:include page="../inc/header.jsp"/>
 <%SnsBean sb= (SnsBean)request.getAttribute("sb");
-List<Integer> latest_list= (List<Integer>)request.getAttribute("latest_list");
-int latest_size = (latest_list.size()>4) ? 4:latest_list.size();
-List<Integer> popular_list= (List<Integer>)request.getAttribute("popular_list");
-int popular_size = (popular_list.size()>4) ? 4:popular_list.size();
+int latest_size = 0;
+int popular_size = 0;
+List<Integer> latest_list = new ArrayList<>();
+List<Integer> popular_list = new ArrayList<>();
+if(request.getAttribute("latest_list") != null){
+	latest_list= (List<Integer>)request.getAttribute("latest_list");
+	latest_size = (latest_list.size()>4) ? 4:latest_list.size();
+}
+if(request.getAttribute("popular_list") != null){
+	popular_list= (List<Integer>)request.getAttribute("popular_list");
+	popular_size = (popular_list.size()>4) ? 4:popular_list.size();
+}
 ProductDAO pdao = new ProductDAO();
 ProductBean pb;
 int all_price_rank = (Integer)request.getAttribute("all_price_rank");
@@ -249,34 +258,38 @@ int rank_percent = (Integer)request.getAttribute("rank_percent");
       	<a name="sell_popular"></a>
 		<div class="well" id="sell_popular_box">
 			<div><h3>가장 많이 판매한 상품</h3></div>
-			<%for(int i=0; i<popular_size; i++){
+			<%
+			if(popular_list!=null){
+			for(int i=0; i<popular_size; i++){
 				pb = pdao.getProduct(popular_list.get(i));%>
 			<div class="col-sm-3 col-xs-6">
 				<div>
-				<a href="#">
-					<img class="img-responsive portfolio-item" id="sns_imgs" src="./vendor_img/<%=pb.getMain_img() %>" alt="" onclick="view(this)">
+				<a href="ProductDetail.pr?product_num=<%=pb.getProduct_num()%>">
+					<img class="img-responsive portfolio-item" id="sns_imgs" src="./vendor_img/<%=pb.getMain_img() %>" alt="">
                	</a>
                	</div>
                	<div>
                		이름: <%=pb.getSubject() %><br>
                		가격: <%=pb.getPrice() %>
                	</div>
- 			</div><%} %>
+ 			</div><%}} %>
 		</div>
 		<a name="sell_latest"></a>
 		<div class="well" id="sell_latest_box">
 			<div><h3>최근 판매한 상품</h3></div>
-			<%for(int i=0; i<latest_size; i++){
+			<%
+			if(latest_list != null){
+			for(int i=0; i<latest_size; i++){
 				pb = pdao.getProduct(latest_list.get(i));%>
 			<div class="col-sm-3 col-xs-6">
-				<a href="#">
-					<img class="img-responsive portfolio-item" id="sns_imgs" src="./vendor_img/<%=pb.getMain_img() %>" alt="" onclick="view(this)">
+				 <a href="ProductDetail.pr?product_num=<%=pb.getProduct_num()%>">
+					<img class="img-responsive portfolio-item" id="sns_imgs" src="./vendor_img/<%=pb.getMain_img() %>" alt="">
                	 </a>
                	 <div>
                		이름: <%=pb.getSubject() %><br>
                		가격: <%=pb.getPrice() %>
                	</div>
-            </div> <%} %>
+            </div> <%}} %>
 		</div>
 		
 		<a name="policy_info"></a>

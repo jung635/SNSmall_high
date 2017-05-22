@@ -40,7 +40,6 @@ String product_str = request.getParameter("product_num");
 String amount_str = request.getParameter("amount"); //갯수
 String vendorId_str = request.getParameter("vendor_id");
 String option1_str = request.getParameter("option1");
-System.out.println(request.getParameter("option1"));
 String option2_str = request.getParameter("option2");
 String option3_str = request.getParameter("option3");
 String snsId_str = request.getParameter("sns_id");

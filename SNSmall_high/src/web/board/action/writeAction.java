@@ -21,7 +21,7 @@ public class writeAction implements Action{
 		bdao.insertBoard(bb);
 		
 		ActionForward forward = new ActionForward();
-		forward.setPath("./Board.bo");
+		forward.setPath("./BoardList.bo");
 		forward.setRedirect(true);
 		return forward;
 	}

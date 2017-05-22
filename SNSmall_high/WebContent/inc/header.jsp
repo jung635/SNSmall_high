@@ -78,7 +78,7 @@
 						<%} %>
 					<!-- vendor,client,sns mypage 구분 -->
 						<%if(type.equals("vendor") || type.equals("sns")){ %>
-						<li class="scroll"><a href="Board.bo">Contact</a></li>
+						<li class="scroll"><a href="BoardList.bo">Contact</a></li>
 						<%}} %>
 						<li class="scroll"><a href="Price.cl">Price</a></li>
 					</ul> 

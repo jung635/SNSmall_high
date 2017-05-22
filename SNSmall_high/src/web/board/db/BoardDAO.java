@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -49,5 +51,55 @@ public class BoardDAO {
 			if (pstmt != null) {try {pstmt.close();} catch (SQLException ex) {}}
 			if (con != null) {try {con.close();} catch (SQLException ex) {	}}
 		}
-	}
+	}//insertBoard() END
+	
+	// 게시판 글 갯수 불러오기
+	public int getBoardCount(){
+		int count = 0;
+		try{
+			con = getConnection();
+			sql = "select count(num) from board";
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			if(rs.next()) count = rs.getInt(1);
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally{
+			if (rs != null) {try {rs.close();} catch (SQLException ex) {}	}
+			if (pstmt != null) {try {pstmt.close();} catch (SQLException ex) {}}
+			if (con != null) {try {con.close();} catch (SQLException ex) {	}}
+		}
+		return count;
+	}//getBoardCount() END
+	
+	// 게시판 글 목록 불러오기
+	public List<BoardBean> getBoardList(int startRow, int pageSize){
+		List<BoardBean> boardList = new ArrayList<BoardBean>();
+		try{
+			con = getConnection();
+			sql = "select * from board order by num desc limit ?,?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, startRow-1);
+			pstmt.setInt(2, pageSize);
+			rs = pstmt.executeQuery();
+			while(rs.next()){
+				BoardBean bb = new BoardBean();
+				bb.setNum(rs.getInt(1));
+				bb.setId(rs.getString(2));
+				bb.setSubject(rs.getString(3));
+				bb.setContent(rs.getString(4));
+				bb.setDate(rs.getDate(5));
+				bb.setType(rs.getString(6));
+				boardList.add(bb);				
+			}
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally{
+			if (rs != null) {try {rs.close();} catch (SQLException ex) {}	}
+			if (pstmt != null) {try {pstmt.close();} catch (SQLException ex) {}}
+			if (con != null) {try {con.close();} catch (SQLException ex) {	}}
+		}
+		return boardList;
+	}//getBoardList() END
+	
 }

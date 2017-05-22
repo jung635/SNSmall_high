@@ -60,7 +60,7 @@
 						
 						<tr><td><%=bb.getType() %></td>
 							<td>
-							<a href="./BoardDetailAction.bo?num=<%=bb.getNum()%>&pageNum=<%=pageNum%>">
+							<a href="./BoardDetail.bo?num=<%=bb.getNum()%>&pageNum=<%=pageNum%>">
 							<%=bb.getSubject() %>
 							</a>	
 							</td>							

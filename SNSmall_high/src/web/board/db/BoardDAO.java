@@ -102,4 +102,34 @@ public class BoardDAO {
 		return boardList;
 	}//getBoardList() END
 	
+	// 글내용 가져오기
+	public BoardBean getBoard(int num){
+		BoardBean bb = new BoardBean();
+		try{			
+			//1,2디비연결 메서드호출
+			con = getConnection();
+			//num 게시판 글번호 구하기
+			//sql 함수 최대값 구하기 max()
+			sql = "select * from board where num = ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, num);
+			rs = pstmt.executeQuery();
+			while(rs.next()){				
+				bb.setNum(rs.getInt(1));
+				bb.setId(rs.getString(2));
+				bb.setSubject(rs.getString(3));
+				bb.setContent(rs.getString(4));
+				bb.setDate(rs.getDate(5));
+				bb.setType(rs.getString(6));
+			}
+		}catch (Exception e){
+			e.printStackTrace();
+		}finally{
+			if (rs != null) {try {rs.close();} catch (SQLException ex) {}	}
+			if (pstmt != null) {try {pstmt.close();} catch (SQLException ex) {}}
+			if (con != null) {try {con.close();} catch (SQLException ex) {	}}
+		}
+		return bb;		
+	}// getBoard() end
+	
 }

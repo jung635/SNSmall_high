@@ -33,6 +33,11 @@ public class BoardFrontController extends HttpServlet{
 			try{
 				forward = action.execute(request, response);
 			}catch(Exception e){e.printStackTrace();}
+		}else if(command.equals("/BoardDetail.bo")){
+			action = new BoardDetailAction();
+			try{
+				forward = action.execute(request, response);
+			}catch(Exception e){e.printStackTrace();}
 		}
 
 		//이동

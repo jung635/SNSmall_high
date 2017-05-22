@@ -1,3 +1,4 @@
+<%@page import="web.board.db.BoardBean"%>
 <%@page import="web.sns.db.SnsBean"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=utf-8"
@@ -5,6 +6,13 @@
 <!DOCTYPE html>
 <html>
 <head>
+<%
+	BoardBean bb = (BoardBean)request.getAttribute("bb");
+	String pageNum = (String)request.getAttribute("pageNum");
+	String id = (String)session.getAttribute("id");
+	String content = bb.getContent();
+	if(content != null){content=bb.getContent().replace("\r\n","<br>");}
+%>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
 	<meta name="description" content="Creative One Page Parallax Template">
@@ -35,39 +43,51 @@
 
         <!-- Team Members Row -->
 		<div class="row">
-            <div class="col-md-4">
-                <div class="panel panel-default text-center">
-                    <div class="panel-heading">
-                        <h3 class="panel-title">Basic</h3>
-                    </div>
-
-                    <ul class="list-group">
-                        <li class="list-group-item"><span id="standard"><strong>기본</strong></span> 판매액</li>
-                        <li class="list-group-item"><strong>5%</strong> Profit</li>
-<!--                         <li class="list-group-item"><strong>Unlimited</strong> Email Accounts</li>
-                        <li class="list-group-item"><strong>10GB</strong> Disk Space</li>
-                        <li class="list-group-item"><strong>100GB</strong> Monthly Bandwidth</li>
- -->                        <li class="list-group-item"><a href="snsList.sn?category=basic&order=sell" class="btn btn-primary">Basic SNS스타 보기</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>                     
-		</div>
-		
-		<!-- 테이블 모양 테스트 -->
-		<div class="row">
             <div class="col-md-8">
                 <div class="panel panel-default text-center">
-                    <table>
-                    	<tr style="border-bottom: 1px double gray;"><th>구분</th><th>제목</th><th>글쓴이</th><th>등록일</th></tr>
-						<tr><td>sns</td><td>나 유명해 쪽지줘나 유명해나 유명해나 유명해나 유명해나 유명해나 유명해나 유명해나 유명해나 유명해나 유명해</td><td>김허세</td><td>오늘</td></tr>
-						<tr><td>판매자</td><td>팔꺼많아</td><td>다팜</td><td>어저께</td></tr>
+					<table style="border-collapse: collapse; text-align: left; width:500;">
+							<tr>
+								<th>제목</th><td colspan="3"><%=bb.getSubject() %></td>
+							</tr>
+						
+							<tr>
+								<th>글쓴이</th><td><%=bb.getId() %></td><th>등록일</th><td><%=bb.getDate() %></td>
+							</tr>
+						
+							<tr>
+								<th>내용</th>
+								<td colspan="3" width="600"><%=content %></td>
+							</tr>
+							
+							<tr>
+								<!-- 글수정/삭제 -->
+							</tr>
 					</table>
-                    
+					<!-- 댓글 목록 -->					
+					<%
+					
+					%>
+					<!-- 댓글 목록 -->
+	
+					<!-- 댓글 입력란 -->
+					<%if(id != null){ %>
+					<form action="./replyAction.re" method="post" name="fr">
+					<input type="hidden" name="num" value="<%=bb.getNum()%>">
+					<input type="hidden" name="id" value="<%=id%>">
+					
+					<table>
+					<tr><td>댓글 입력란</td></tr>
+					<tr><td><textarea rows="7" cols="81" name="reply"></textarea></td></tr>
+					<tr><td><input type="submit" value="저장"></td></tr>
+					</table>
+					
+					</form>
+					<%} %>
+					<!-- 댓글 입력란 -->
                 </div>
             </div>                     
 		</div>
-						
+								
         <hr>
         <!-- Footer -->
         <footer>

@@ -4,7 +4,7 @@ import java.sql.Date;
 
 public class ReplyBean {
 	int num,reply_num,re_lev,re_seq;
-	String id,comment;
+	String id,reply_content;
 	Date date;
 	public int getNum() {
 		return num;
@@ -36,11 +36,11 @@ public class ReplyBean {
 	public void setId(String id) {
 		this.id = id;
 	}
-	public String getComment() {
-		return comment;
+	public String getReply_content() {
+		return reply_content;
 	}
-	public void setComment(String comment) {
-		this.comment = comment;
+	public void setReply_content(String reply_content) {
+		this.reply_content = reply_content;
 	}
 	public Date getDate() {
 		return date;

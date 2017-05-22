@@ -27,9 +27,19 @@ String type = (String)session.getAttribute("type");
 String product_str = request.getParameter("product_num");
 String amount_str = request.getParameter("amount"); //갯수
 String vendorId_str = request.getParameter("vendor_id");
-String option1_str = request.getParameter("option1");
-String option2_str = request.getParameter("option2");
-String option3_str = request.getParameter("option3");
+String option1_str = "";
+String option2_str = "";
+String option3_str = "";
+if(request.getParameter("option1")!=null){
+	option1_str = request.getParameter("option1");
+}
+if(request.getParameter("option2")!=null){
+	option1_str = request.getParameter("option1");
+}
+if(request.getParameter("option3")!=null){
+	option1_str = request.getParameter("option1");
+}
+
 String snsId_str = request.getParameter("sns_id");
 ClientBean cb = new ClientBean();
 ClientDAO cdao = new ClientDAO();
@@ -70,7 +80,6 @@ function card(){
 	    pay_method : 'card', //card(신용카드), trans(실시간계좌이체), vbank(가상계좌), phone(휴대폰소액결제)
 	    merchant_uid : <%=merchant_uid %>, //상점에서 관리하시는 고유 주문번호를 전달
 	    name : '결제 진행중',
-	    amount : price_result,
 	    buyer_email : '<%=cb.getEmail()%>',
 	    buyer_name : '<%=cb.getName()%>',
 	    buyer_tel : '<%=cb.getPhone()%>', //누락되면 카드사 인증에 실패할 수 있으니 기입해주세요
@@ -169,11 +178,15 @@ function pointChanged(price, myPoint){
 <jsp:include page="../inc/header.jsp"/>
 <!-- Page Content -->
 <%
+String[] option1 = option1_str.split(",");
+String[] option2 = option2_str.split(",");
+String[] option3 = option3_str.split(",");
 String[] amount = amount_str.split(",");
 ProductDAO pdao = new ProductDAO();
 List<ProductBean> product_list = pdao.getProduct(product_str);
 int list_size = product_list.size(); 
 int price=0;
+String option_all = "";
 %>
 
 <div class="container">
@@ -205,8 +218,19 @@ int price=0;
 			<table id="product" border="1">
 				<tr><th rowspan="<%=list_size+1 %>"  style="width: 150px;">배송상품</th><th>배송상품 이름</th><th>수량</th><th>가격</th></tr>
 	 			<%for(int i=0; i<list_size; i++){ 
-					ProductBean pb = (ProductBean)product_list.get(i);%>
-	 				<tr><td><%=pb.getSubject() %></td><td><%=amount[i] %></td><td><%=pb.getPrice()*Integer.parseInt(amount[i]) %></td></tr>
+					ProductBean pb = (ProductBean)product_list.get(i);
+					if(option1[i].trim().length()>0){
+						option_all += option1[i]+"/";
+					}
+					if(option2[i].trim().length()>0){
+						option_all += option2[i]+"/";
+					}
+					if(option3[i].trim().length()>0){
+						option_all += option3[i]+"/";
+					}
+					if(option_all.length()>0) option_all = option_all.substring(0,option_all.length()-1);
+					%>
+	 				<tr><td><%=pb.getSubject() %>(<%=option_all %>)</td><td><%=amount[i] %></td><td><%=pb.getPrice()*Integer.parseInt(amount[i]) %></td></tr>
 					<%price += pb.getPrice()*Integer.parseInt(amount[i]);} %>
 			</table>
 		</div>

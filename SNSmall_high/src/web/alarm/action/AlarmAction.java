@@ -33,11 +33,11 @@ public class AlarmAction implements Action{
 		
 			if(id.equals(map.get("id"))&&map != null) {
 				if((System.currentTimeMillis()-timestamp.getTime())>10*1000) {  
-			        adao.updateToOn(id, (int)map.get("num"));
+			        adao.updateToOn((int)map.get("num"));
 			    }
 				request.setAttribute("list", list);
 		    }else if((System.currentTimeMillis()-timestamp.getTime())>5*1000) {  
-		        adao.updateToOn(id, (int)map.get("num"));
+		        adao.updateToOn((int)map.get("num"));
 		    }
 			}
 		}

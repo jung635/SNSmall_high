@@ -15,6 +15,7 @@ public class AlarmViewAction implements Action{
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		HttpSession session = request.getSession();
 		String id = (String)session.getAttribute("id");
+		if(id!=null){
 		AlarmDAO adao = new AlarmDAO();
 		Map<String, Object> map = null;
 		List<Map<String, Object>> list = adao.showAlarm(id);
@@ -28,12 +29,13 @@ public class AlarmViewAction implements Action{
 				request.setAttribute("list", list);
 		    }
 		}
-		
+		}
 		ActionForward forward = new ActionForward();
 		forward.setPath("./inc/alarm_view.jsp");
 		forward.setRedirect(false);
-
+		
 		return forward;
+		
 	}
 
 }

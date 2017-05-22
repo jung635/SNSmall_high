@@ -115,4 +115,22 @@ img {
     left: 5px;
 }
 
+#alarm_btn{
+	width: 20px;
+    height: 20px;
+    padding-top: 2px;
+    margin-left: 5px;
+    margin-top: 1px;
+    border-radius: 100px;
+    background-color: #ff4400;
+    text-align: center;
+}
 
+#list_view_ul{
+    list-style-type: none;
+    margin: 10px 0px 7px -50px;
+}
+#list_view_ul li{
+	line-height: 28px;
+	border-bottom: solid 1px #8a8686;
+}

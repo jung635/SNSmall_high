@@ -91,7 +91,7 @@ for(int i=0;i<cl.size();i++){
 <input type="checkbox" name="check" value="<%=cb.getPrice()%>" onchange="myfunction()" checked>
 
 <!-- 장바구니 정보 -->
-<a href="Detail2.pr">
+<a href="ProductDetail.pr?product_num=<%=prob.getProduct_num() %>">
 물품 번호:<%=cb.getProduct_num() %>
 이미지:<img src="./vendor_img/<%=prob.getMain_img() %>">
 품명:<%=cb.getSubject()%>

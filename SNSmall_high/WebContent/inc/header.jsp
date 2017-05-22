@@ -29,13 +29,6 @@ alarm_access();
 			
 			<!-- 로그인/조인 부분 수정 --> 
 				<%if(id==null){ %>
-				<div style="float: right; position: relative;">				|
-					<div id="alarm_btn"><i class="fa fa-bell" aria-hidden="true"></i></div> 
-					<div id="alarm_list">
-					</div>
-					<div id="alarm">
-					</div>
-				</div>
 				<div style="float: right;">				|
 					<span><a href="./common_join.sn">Join</a> </span> 
 				</div>

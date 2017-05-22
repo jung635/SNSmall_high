@@ -53,4 +53,9 @@ function insert(){
 	location.href = "InsertAction.al";
 }
 
+function alarmViewMore(limit){
+	limit = limit+2;
+	location.href='AlarmList.al?limit='+limit;
+}
+
 

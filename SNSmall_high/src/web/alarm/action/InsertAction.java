@@ -22,7 +22,7 @@ public class InsertAction implements Action {
 		HttpSession session = request.getSession();
 		String id = (String)session.getAttribute("id");
 		AlarmBean ab = new AlarmBean();
-		ab.setContent("테스트 Content");
+		ab.setContent("테스트 Content OFF");
 		ab.setId("test");
 		ab.setMove("memo");
 /*		List<PaymentBean> list_pb = new ArrayList<>();

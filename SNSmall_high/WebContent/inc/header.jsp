@@ -41,7 +41,7 @@ alarm_access();
 					<div id="alarm_count" style="display: none;"></div>
 					<div id="alarm_list">
 					</div>
-					<div id="alert_box" style="display: none;">
+					<div id="alert_box"">
 					</div>
 				</div>
 				<div style="float: right;">				|

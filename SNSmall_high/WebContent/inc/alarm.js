@@ -10,7 +10,7 @@ function alarm_access(){
 		xhttp.open("GET", 'Alarm.al', true);
 		xhttp.send();	
 	   
-  //setTimeout("alarm_access()", 3000);//3초 마다 서버와 통신함  
+  setTimeout("alarm_access()", 3000);//3초 마다 서버와 통신함  
   return false;  
 }  
 function alarm_view(){  
@@ -28,20 +28,6 @@ function alarm_view(){
 	setTimeout("alarm_view()", 3000);//3초 마다 서버와 통신함  
 	return false;  
 }
-
-/*$(document).ready(function(){
-	//setInterval(function(){
-        $.ajax({url: "AlarmView.al", success: function(result){
-       	 //var e = $(result).find('찾으려는요소');
-       	alarm_inner(result);
-          var mesg = result;
-          var div = $('#alarm_count');
-          var mesg = $(result).find('#alarm_count').toString();
-          alert(mesg);
-       }});
-	//},3000)
-
-});*/
 
 
 function alarm_inner(alarm_msg){
@@ -79,7 +65,6 @@ function alert_view(alarm_msg){
 		//document.getElementById("alarm").innerHTML = alarm_msg;
 		
 		document.getElementById("alarm").style.display = 'block';
-		document.getElementById("alert_box").style.display = 'block';
 		/*document.getElementById("alarm").innerHTML = alarm_msg;
 		text = document.getElementById("alarm").innerHTML.trim();
 		if(text == 'nothing'){
@@ -94,6 +79,11 @@ function insert(){
 function alarmViewMore(limit){
 	limit = limit+2;
 	location.href='AlarmList.al?limit='+limit;
+}
+
+function offAlert(num){
+	document.getElementById("alarm").style.display = 'none';
+	location.href="OffAlarm.al?num="+num;
 }
 
 

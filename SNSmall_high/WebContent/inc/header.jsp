@@ -36,12 +36,12 @@ alarm_access();
 					<span><a href="./login.cl">Login &nbsp;</a></span>
 				</div>
 				<%}else{ %>
-				<div style="float: right;">		
+				<div id="alarm_box" style="float: right;">		
 					<div id="alarm_btn"><i class="fa fa-bell" aria-hidden="true"></i></div> 
 					<div id="alarm_count" style="display: none;"></div>
 					<div id="alarm_list">
 					</div>
-					<div id="alarm" style="display: none;">
+					<div id="alert_box" style="display: none;">
 					</div>
 				</div>
 				<div style="float: right;">				|

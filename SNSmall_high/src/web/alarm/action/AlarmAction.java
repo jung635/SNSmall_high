@@ -32,7 +32,7 @@ public class AlarmAction implements Action{
 				System.out.println("time"+timestamp);
 		
 			if(id.equals(map.get("id"))&&map != null) {
-				if((System.currentTimeMillis()-timestamp.getTime())>5*1000) {  
+				if((System.currentTimeMillis()-timestamp.getTime())>1000*1000) {  
 			        adao.updateToOn((int)map.get("num"));
 			    }
 				request.setAttribute("list", list);

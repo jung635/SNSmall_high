@@ -10,7 +10,7 @@ function alarm_access(){
 		xhttp.open("GET", 'Alarm.al', true);
 		xhttp.send();	
 	   
-  setTimeout("alarm_access()", 3000);//3초 마다 서버와 통신함  
+  //setTimeout("alarm_access()", 3000);//3초 마다 서버와 통신함  
   return false;  
 }  
 function alarm_view(){  
@@ -56,21 +56,36 @@ function alarm_inner(alarm_msg){
 }
 
 function alert_view(alarm_msg){
-	text = document.getElementById("alarm").innerHTML.trim();
-
-	//alert(count);
+	//alert(alarm_msg);
+	//text = document.getElementById("alert_box").innerHTML.trim();
+	//var div = document.createElement("DIV");
+	//div.id = "alarm";
+	//document.getElementById("alarm_box").appendChild(div);
+	document.getElementById("alert_box").innerHTML = alarm_msg;
+	//text = document.getElementById("alert_content").innerHTML;
 	//alert(text);
-	if(text == 'nothing'){
-		document.getElementById("alarm").style.display = 'none';
-		document.getElementById("alarm").innerHTML = alarm_msg;
-	}else{
+	//if(text == 'nothing'){
+		//alert("nook");
+		//document.getElementById("alert_box").style.display = 'none';
+		//document.getElementById("alarm").innerHTML = alarm_msg;
+	//}else{
+		//alert("ok");
+		//alert(document.getElementById("alarm_box").innerHTML());
+		//var div = document.createElement("DIV");
+		//div.id = "alarm";
+		//document.body.appendChild(div);
+		//alert("test");
+		//document.getElementById("alarm_box").appendChild(div);
+		//document.getElementById("alarm").innerHTML = alarm_msg;
+		
 		document.getElementById("alarm").style.display = 'block';
-		document.getElementById("alarm").innerHTML = alarm_msg;
+		document.getElementById("alert_box").style.display = 'block';
+		/*document.getElementById("alarm").innerHTML = alarm_msg;
 		text = document.getElementById("alarm").innerHTML.trim();
 		if(text == 'nothing'){
 			document.getElementById("alarm").style.display = 'none';
-		}
-	}
+		}*/
+	//}
 }
 function insert(){
 	location.href = "InsertAction.al";

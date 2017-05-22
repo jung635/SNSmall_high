@@ -16,7 +16,6 @@ int limit = 0;
 	<%}else{
 	if(list.size()<5) limit = list.size();
 	else limit = 5;%>
-
 <ul id="list_view_ul">
 <%for(int i=0; i<limit; i++){
 	map = list.get(i);

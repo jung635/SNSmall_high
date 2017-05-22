@@ -20,7 +20,6 @@ function alarm_view(){
 		if (this.readyState == 4 && this.status == 200) {
 			var alarm_msg = this.responseText;  
 			alarm_inner(alarm_msg);  
-			//document.getElementById("alarm_list").innerHTML = alarm_msg;
 		}
 	};
 	xhttp.open("GET", 'AlarmView.al', true);

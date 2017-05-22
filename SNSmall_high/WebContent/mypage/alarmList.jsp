@@ -33,33 +33,32 @@ String type = (String)session.getAttribute("type");
                 	<jsp:include page="../inc/myinfo_left.jsp"/>
                 <%} %>
             </div>
-<%List<Map<String, Object>> list = (List)request.getAttribute("list"); 
-Map<String, Object> map = null;
-String color = "";
-int limit = (int)request.getAttribute("limit");
-%>
-<%if(list == null){
-	%>
-	nothing
-	<%}else{
-	if(list.size()<5 || list.size()<limit) limit = list.size();%>
-
-<table>
-<tr><td>메시지</td></tr>
-<%for(int i=0; i<limit; i++){
-	map = list.get(i);
-	if(map.get("state").equals("on")){
-		color = "#ddd";
-	}else if(map.get("state").equals("now")){
-		color = "red";
-	}
-%>
-	<tr style="background-color: <%=color%>"><td><a href="OffAlarm.al?num=<%=map.get("num")%>"><%=map.get("content")%></a> </td></tr>
-<%} %> 
-</table>
-<%if(list.size()>=5){%>
-<input type="button" value="더보기" onclick="alarmViewMore(<%=limit %>)" >
-<%}} %>
+			<%List<Map<String, Object>> list = (List)request.getAttribute("list"); 
+			Map<String, Object> map = null;
+			String color = "";
+			int limit = (int)request.getAttribute("limit");
+			%>
+			<%if(list == null){
+				%>
+				nothing
+				<%}else{
+					if(list.size()<5 || list.size()<limit) limit = list.size();%>
+					<table>
+					<tr><td>메시지</td></tr>
+					<%for(int i=0; i<limit; i++){
+						map = list.get(i);
+						if(map.get("state").equals("on")){
+							color = "#ddd";
+						}else if(map.get("state").equals("now")){
+							color = "red";
+						}
+					%>
+						<tr style="background-color: <%=color%>"><td><a href="OffAlarm.al?num=<%=map.get("num")%>"><%=map.get("content")%></a> </td></tr>
+					<%} %> 
+					</table>
+					<%if(list.size()>=5){%>
+					<input type="button" value="더보기" onclick="alarmViewMore(<%=limit %>)" >
+			<%}} %>
 		</div>
 	</div>
 </div>

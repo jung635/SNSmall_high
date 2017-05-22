@@ -147,3 +147,15 @@ img {
 #alert_view_ul li{
 	line-height: 28px;
 }
+
+#alarm_count{
+	position: absolute;
+    top: 10px;
+    right: -12px;
+    border-radius: 100px;
+    background-color: #ff792f;
+    text-align: center;
+    width: 15px;
+    height: 15px;
+    line-height: 14px;
+}

@@ -18,7 +18,6 @@ public class AlarmListAction implements Action {
 		int limit = 0;
 		if(request.getParameter("limit")==null) limit=5;
 		else limit = Integer.parseInt(request.getParameter("limit"));
-		System.out.println(limit);
 		AlarmDAO adao = new AlarmDAO();
 		Map<String, Object> map = null;
 		List<Map<String, Object>> list = adao.alarmList(id, limit);

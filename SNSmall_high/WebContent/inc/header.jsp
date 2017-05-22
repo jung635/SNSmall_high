@@ -38,6 +38,7 @@ alarm_access();
 				<%}else{ %>
 				<div style="float: right;">		
 					<div id="alarm_btn"><i class="fa fa-bell" aria-hidden="true"></i></div> 
+					<div id="alarm_count">8</div>
 					<div id="alarm_list">
 					</div>
 					<div id="alarm" style="display: none;">

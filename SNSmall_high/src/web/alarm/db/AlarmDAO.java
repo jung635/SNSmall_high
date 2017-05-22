@@ -58,7 +58,6 @@ Connection con = null;
 		return list;
 	}
 	public List<Map<String, Object>> alarmList(String id, int limit){
-		System.out.println("dao limit:"+limit);
 		Map<String, Object> map = null;
 		List<Map<String, Object>> list = new ArrayList<>();
 		try{

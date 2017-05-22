@@ -21,16 +21,16 @@ public class BoardFrontController extends HttpServlet{
 		// 가상주소 판단 시작
 		if(command.equals("/Board.bo")){
 			forward = new ActionForward();
-			forward.setPath("./board/Board.jsp");
+			forward.setPath("./board/Board_List.jsp");
 			forward.setRedirect(false);
 		}else if(command.equals("/writeForm.bo")){
 			forward = new ActionForward();
-			forward.setPath("./board/Board_writeForm.jsp");
+			forward.setPath("./board/Board_WriteForm.jsp");
 			forward.setRedirect(false);
 		}else if(command.equals("/writeAction.bo")){
-			// action = new writeAction();
+			 action = new writeAction();
 			try{
-				//forward = action.execute(request.response);
+				forward = action.execute(request, response);
 			}catch(Exception e){e.printStackTrace();}
 		}
 

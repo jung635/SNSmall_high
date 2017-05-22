@@ -29,12 +29,36 @@ function alarm_view(){
 	return false;  
 }
 
+/*$(document).ready(function(){
+	//setInterval(function(){
+        $.ajax({url: "AlarmView.al", success: function(result){
+       	 //var e = $(result).find('찾으려는요소');
+       	alarm_inner(result);
+          var mesg = result;
+          var div = $('#alarm_count');
+          var mesg = $(result).find('#alarm_count').toString();
+          alert(mesg);
+       }});
+	//},3000)
+
+});*/
+
+
 function alarm_inner(alarm_msg){
 	document.getElementById("alarm_list").innerHTML = alarm_msg;
+	count = document.getElementById("alarm_count_in").innerHTML;
+	if(count==0){
+		document.getElementById("alarm_count").style.display = 'none';
+	}else{
+		document.getElementById("alarm_count").style.display = 'block';
+		document.getElementById("alarm_count").innerHTML = count;
+	}
 }
 
 function alert_view(alarm_msg){
 	text = document.getElementById("alarm").innerHTML.trim();
+
+	//alert(count);
 	//alert(text);
 	if(text == 'nothing'){
 		document.getElementById("alarm").style.display = 'none';

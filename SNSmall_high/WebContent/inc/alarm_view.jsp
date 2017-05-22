@@ -2,7 +2,6 @@
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
 <html>
 <body>
 <%List<Map<String, Object>> list = (List)request.getAttribute("list"); 
@@ -16,6 +15,7 @@ int limit = 0;
 	<%}else{
 	if(list.size()<5) limit = list.size();
 	else limit = 5;%>
+<div id="alarm_count_in" style="display: none;"><%=list.size() %></div>
 <ul id="list_view_ul">
 <%for(int i=0; i<limit; i++){
 	map = list.get(i);

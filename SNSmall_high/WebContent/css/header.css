@@ -116,9 +116,9 @@ img {
 }
 
 #alarm_btn{
-	width: 20px;
-    height: 20px;
-    padding-top: 2px;
+    width: 24px;
+    height: 24px;
+    padding-top: 4px;
     margin-left: 5px;
     margin-top: 1px;
     border-radius: 100px;
@@ -150,12 +150,12 @@ img {
 
 #alarm_count{
 	position: absolute;
-    top: 10px;
+    top: 13px;
     right: -12px;
     border-radius: 100px;
-    background-color: #ff792f;
+    background-color: #fbc201;
     text-align: center;
-    width: 15px;
-    height: 15px;
-    line-height: 14px;
+    width: 20px;
+    height: 20px;
+    line-height: 18px;
 }

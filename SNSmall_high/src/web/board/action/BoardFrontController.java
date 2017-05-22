@@ -19,14 +19,19 @@ public class BoardFrontController extends HttpServlet{
 		Action action = null;
 		
 		// 가상주소 판단 시작
-		if(command.equals("/Contact.co")){
+		if(command.equals("/Board.bo")){
 			forward = new ActionForward();
-			forward.setPath("./contact/contactBoard.jsp");
+			forward.setPath("./board/Board.jsp");
 			forward.setRedirect(false);
-		}else if(command.equals("/writeForm.co")){
+		}else if(command.equals("/writeForm.bo")){
 			forward = new ActionForward();
-			forward.setPath("./contact/contactBoard_InsertForm.jsp");
+			forward.setPath("./board/Board_writeForm.jsp");
 			forward.setRedirect(false);
+		}else if(command.equals("/writeAction.bo")){
+			// action = new writeAction();
+			try{
+				//forward = action.execute(request.response);
+			}catch(Exception e){e.printStackTrace();}
 		}
 
 		//이동

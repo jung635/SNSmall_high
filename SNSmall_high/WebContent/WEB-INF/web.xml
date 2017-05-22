@@ -97,6 +97,14 @@
   	<url-pattern>*.qn</url-pattern>
   </servlet-mapping>
   
+  <servlet>
+  	<servlet-name>BoardFrontController</servlet-name>
+  	<servlet-class>web.board.action.BoardFrontController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>BoardFrontController</servlet-name>
+  	<url-pattern>*.bo</url-pattern>
+  </servlet-mapping>
 
   
 </web-app>

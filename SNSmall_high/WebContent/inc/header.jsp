@@ -78,7 +78,7 @@
 						<%}} %>
 					<!-- vendor,client,sns mypage 구분 -->
 					
-						<li class="scroll"><a href="Contact.co">Contact</a></li>
+						<li class="scroll"><a href="Board.bo">Contact</a></li>
 						<li class="scroll"><a href="Price.cl">Price</a></li>
 					</ul> 
 				</div> 

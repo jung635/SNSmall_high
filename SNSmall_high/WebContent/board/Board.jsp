@@ -45,7 +45,7 @@
                 <div class="panel panel-default text-center">
                     <table>
                     	<h3>
-							<a href="./writeForm.co">글쓰기</a>
+							<a href="./writeForm.bo">글쓰기</a>
 						</h3>
                     	<tr style="border-bottom: 1px double gray;"><th>구분</th><th>제목</th><th>글쓴이</th><th>등록일</th></tr>
 						

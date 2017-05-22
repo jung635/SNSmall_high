@@ -5,6 +5,10 @@
 <!DOCTYPE html>
 <html>
 <head>
+<%
+	String id = (String)session.getAttribute("id");
+	String type = (String)session.getAttribute("type");
+%>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
 	<meta name="description" content="Creative One Page Parallax Template">
@@ -39,63 +43,22 @@
                 <div class="panel panel-default text-center">
                 
                     <h1>글쓰기 페이지</h1>
-						<form action="./writeAction.co" method="post" name="fr"
-							enctype="multipart/form-data" onsubmit="return submitCheck()">
-							<table border="1">
+						<form action="./writeAction.bo" method="post" name="fr">
+							<table style="border-collapse: collapse;">
+								<input type="hidden" name="id" value=<%=id%>>
+								<input type="hidden" name="type" value=<%=type%>>
 								<tr>
-									<td>구분</td>
-									<td><select name="type">
-											<option value="fashion">패션</option>
-											<option value="beauty">뷰티</option>
-											<option value="baby">육아</option>
-											<option value="daily">일상</option>
-											<option value="gym">운동</option>
-											<option value="etc">기타</option>
-									</select></td>
+									<th>제목</th><td><input type="text" size="93" name="subject"></td>
 								</tr>
-<%-- 								<input type="hidden" name="vendor_id" value=<%=id%>> --%>
+								
 								<tr>
-									<td>상품명</td>
-									<td><input type="text" name="subject"></td>
+									<th>내용</th>
+									<td><textarea rows="20" cols="94" name="content"></textarea></td>
 								</tr>
+								
 								<tr>
-									<td>제품정보</td>
-									<td><input type="text" name="content"></td>
-								</tr>
-								<tr>
-									<td>메인제품이미지</td>
-									<td><input type="file" name="main_img"></td>
-								</tr>
-								<tr>
-									<td>상세이미지</td>
-									<td><input type="file" name="detail_img"></td>
-								</tr>
-								<tr>
-									<td>옵션1</td>
-									<td>옵션명<input type="text" name="opt_name1">옵션<input
-										type="text" name="option1"></td>
-								</tr>
-								<tr>
-									<td>옵션2</td>
-									<td>옵션명<input type="text" name="opt_name2">옵션<input
-										type="text" name="option2"></td>
-								</tr>
-								<tr>
-									<td>옵션3</td>
-									<td>옵션명<input type="text" name="opt_name3">옵션<input
-										type="text" name="option3"></td>
-								</tr>
-								<tr>
-									<td>판매가</td>
-									<td><input type="text" name="price"></td>
-								</tr>
-								<tr>
-									<td>수량</td>
-									<td><input type="text" name="amount"></td>
-								</tr>
-								<tr>
-									<td colspan="2"><input type="submit" value="상품등록">
-										<input type="reset" value="다시등록"></td>
+									<td colspan="2"><input type="submit" value="글등록">
+										<input type="reset" value="취소" onclick="history.back()"></td>
 								</tr>
 							</table>
 						</form>

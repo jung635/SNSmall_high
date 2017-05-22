@@ -16,7 +16,7 @@ public class AlarmListAction implements Action {
 		HttpSession session = request.getSession();
 		String id = (String) session.getAttribute("id");
 		int limit = 0;
-		if(request.getParameter("limit")==null) limit=5;
+		if(request.getParameter("limit")==null) limit=20;
 		else limit = Integer.parseInt(request.getParameter("limit"));
 		AlarmDAO adao = new AlarmDAO();
 		Map<String, Object> map = null;
@@ -26,7 +26,7 @@ public class AlarmListAction implements Action {
 			request.setAttribute("list", list);
 			request.setAttribute("limit", limit);
 			forward = new ActionForward();
-			forward.setPath("./mypage/alarmList.jsp");
+			forward.setPath("./mypage/alarmInnerList.jsp");
 			forward.setRedirect(false);
 			
 		}

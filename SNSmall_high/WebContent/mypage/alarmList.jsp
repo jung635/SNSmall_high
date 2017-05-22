@@ -1,3 +1,4 @@
+<%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.Map"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -16,16 +17,45 @@
 	<link href="./css/inner.css" rel="stylesheet">
 	<link href="./css/main.css" rel="stylesheet"> 
 <title>Insert title here</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script type="text/javascript">
+var loading= false;
+limit = 20;
+alarmViewMore(limit);
+
+$(window).scroll(function() {
+    if (!loading && ($(window).scrollTop() >  $(document).height() - $(window).height() - 100)) {
+        loading= true;
+		limit += 5;
+        alarmViewMore(limit);
+
+        loading = false; // reset value of loading once content loaded
+    }
+});
+function alarmViewMore(limit){
+	var xhttp;    
+	xhttp = new XMLHttpRequest();
+	xhttp.onreadystatechange = function() {
+		if (this.readyState == 4 && this.status == 200) {
+            var alarm_msg = this.responseText;  
+            document.getElementById("alarm_list_box").innerHTML = alarm_msg; 
+		}
+	};
+	xhttp.open("GET", 'AlarmList.al?limit='+limit, true);
+	xhttp.send();	
+}
+</script>
 </head>
 <body>
 <jsp:include page="../inc/header.jsp"/>
 <%String id = (String)session.getAttribute("id");
 String type = (String)session.getAttribute("type");
+SimpleDateFormat sdf = new SimpleDateFormat("yyyy-mm-dd hh:mm");
 %>
 <div class="container">
 	<div class="more_content">
 		<div class="row">
-            <div class="col-md-3">
+            <div class="col-md-3"">
                 <p class="lead"><%=id %></p>
                 <%if(type.equals("vendor")){ %>
                		<jsp:include page="../inc/myinfo_vendor_left.jsp"/>
@@ -33,32 +63,9 @@ String type = (String)session.getAttribute("type");
                 	<jsp:include page="../inc/myinfo_left.jsp"/>
                 <%} %>
             </div>
-			<%List<Map<String, Object>> list = (List)request.getAttribute("list"); 
-			Map<String, Object> map = null;
-			String color = "";
-			int limit = (int)request.getAttribute("limit");
-			%>
-			<%if(list == null){
-				%>
-				nothing
-				<%}else{
-					if(list.size()<5 || list.size()<limit) limit = list.size();%>
-					<table>
-					<tr><td>메시지</td></tr>
-					<%for(int i=0; i<limit; i++){
-						map = list.get(i);
-						if(map.get("state").equals("on")){
-							color = "#ddd";
-						}else if(map.get("state").equals("now")){
-							color = "red";
-						}
-					%>
-						<tr style="background-color: <%=color%>"><td><a href="OffAlarm.al?num=<%=map.get("num")%>"><%=map.get("content")%></a> </td></tr>
-					<%} %> 
-					</table>
-					<%if(list.size()>=5){%>
-					<input type="button" value="더보기" onclick="alarmViewMore(<%=limit %>)" >
-			<%}} %>
+            <div class="col-md-9" id="alarm_list_box" style="text-align: center;">
+            
+            </div>
 		</div>
 	</div>
 </div>

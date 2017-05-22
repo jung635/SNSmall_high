@@ -20,10 +20,10 @@ int limit = 0;
 <ul id="list_view_ul">
 <%for(int i=0; i<limit; i++){
 	map = list.get(i);
-	if(map.get("state").equals("on")){
+	if(map.get("state").equals("off")){
 		color = "#ddd";
-	}else if(map.get("state").equals("now")){
-		color = "red";
+	}else if(map.get("state").equals("on")||map.get("state").equals("now")){
+		color = "#1e9ef0";
 	}
 %>
 	<li style="background-color: <%=color%>"><a href="OffAlarm.al?num=<%=map.get("num")%>"><%=map.get("content")%></a> </li>

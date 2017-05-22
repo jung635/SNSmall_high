@@ -1,8 +1,13 @@
-<%@ page language="java" contentType="text/html; charset=utf-8"
-    pageEncoding="utf-8"%>
+<%@page import="web.blog.db.BlogBean"%>
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="web.blog.db.BlogDAO"%>
+<%@page import="web.sns.db.SnsBean"%>
+<%@page import="java.util.List"%>
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+    pageEncoding="EUC-KR"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="en">
-<head> 
+<head>
 	<meta charset="utf-8"> 
 	<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
 	<meta name="description" content="Creative One Page Parallax Template">
@@ -23,15 +28,14 @@
 	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="images/ico/apple-touch-icon-114-precomposed.png"> 
 	<link rel="apple-touch-icon-precomposed" sizes="72x72" href="images/ico/apple-touch-icon-72-precomposed.png"> 
 	<link rel="apple-touch-icon-precomposed" href="images/ico/apple-touch-icon-57-precomposed.png">
+	
+</script>	
+	
 </head><!--/head-->
 <script type="text/javascript">
 function snsSearch_exe(){
-	sns_id = document.getElementById('sns_id').value;
-	location.href = 'SearchSnsList.sn?search='+sns_id;
-}
-function productSearch_exe(){
-	product_name = document.getElementById('product_name').value;
-	location.href = './ProductSearchList.pr?search='+product_name;
+	search = document.getElementById('search').value;
+	location.href = 'SearchSnsList.sn?search='+search;
 }
 </script>
 <body>
@@ -58,32 +62,32 @@ function productSearch_exe(){
 				<li data-target="#main-carousel" data-slide-to="2"></li>
 			</ol><!--/.carousel-indicators--> 
 			<div class="carousel-inner">
-				<div class="item active" style="background-image: url(images/slider/slide3.jpg)"> 
+				<div class="item active" style="background-image: url(images/slider/main0001.gif)"> 
 					<div class="carousel-caption"> 
 						<div> 
 							<h2 class="heading animated bounceInDown">'Himu' Onepage HTML Template</h2> 
 							<p class="animated bounceInUp">Fully Professional one page template</p> 
- 							<!-- <a class="btn btn-default slider-btn animated fadeIn" href="#">ÏÉÅÌíà Í≤ÄÏÉâ</a> 
-							<a class="btn btn-default slider-btn animated fadeIn" href="#">SNS STAR Í≤ÄÏÉâ</a>   -->
+ 							<!-- <a class="btn btn-default slider-btn animated fadeIn" href="#">ªÛ«∞ ∞Àªˆ</a> 
+							<a class="btn btn-default slider-btn animated fadeIn" href="#">SNS STAR ∞Àªˆ</a>   -->
 						</div> 
 					</div> 
 				</div>
-				<div class="item" style="background-image: url(images/slider/slide2.jpg)"> 
+				<div class="item" style="background-image: url(images/slider/main02.gif)"> 
 					<div class="carousel-caption"> <div> 
 						<h2 class="heading animated bounceInDown">Get All in Onepage</h2> 
 						<p class="animated bounceInUp">Everything is outstanding </p>
-<!-- 						<a class="btn btn-default slider-btn animated fadeIn" href="#">ÏÉÅÌíà Í≤ÄÏÉâ</a> 
-						<a class="btn btn-default slider-btn animated fadeIn" href="#">SNS STAR Í≤ÄÏÉâ</a>  -->
+<!-- 						<a class="btn btn-default slider-btn animated fadeIn" href="#">ªÛ«∞ ∞Àªˆ</a> 
+						<a class="btn btn-default slider-btn animated fadeIn" href="#">SNS STAR ∞Àªˆ</a>  -->
 					</div> 
 				</div> 
 			</div> 
-			<div class="item" style="background-image: url(images/slider/slide1.jpg)"> 
+			<div class="item" style="background-image: url(images/slider/main003.gif)"> 
 				<div class="carousel-caption"> 
 					<div> 
 						<h2 class="heading animated bounceInRight">Fully Responsive Template</h2> 
 						<p class="animated bounceInLeft">100% Responsive HTML template</p> 
-<!-- 						<a class="btn btn-default slider-btn animated fadeIn" href="#">ÏÉÅÌíà Í≤ÄÏÉâ</a> 
-						<a class="btn btn-default slider-btn animated fadeIn" href="#">SNS STAR Í≤ÄÏÉâ</a>  -->
+<!-- 						<a class="btn btn-default slider-btn animated fadeIn" href="#">ªÛ«∞ ∞Àªˆ</a> 
+						<a class="btn btn-default slider-btn animated fadeIn" href="#">SNS STAR ∞Àªˆ</a>  -->
 					</div> 
 				</div> 
 			</div>
@@ -96,14 +100,17 @@ function productSearch_exe(){
 		<a class="carousel-right member-carousel-control hidden-xs" href="#main-carousel" data-slide="next"><i class="fa fa-angle-right"></i></a>
 		<div class="carousel-caption"> 
 		<div id="search">
-			<div id="product_search">
-				<input type="text" id="product_name">
-				<a class="btn btn-default slider-btn animated fadeIn" onclick="productSearch_exe()">ÏÉÅÌíà Í≤ÄÏÉâ</a> 
+			<div class="col-sm-7">
+			<div class="input_row" id="id_area">
+						<span class="input_box1">
+							<input type="text" id="product_name" placeholder="SNS Celeb or Prodoct Name Search" class="int" maxlength="80" value="" size="100">
+							
+						</span>
+					</div>
 			</div>
-			<div id="sns_search">
-				<input type="text" id="sns_id">
-				<a href="#" class="btn btn-default slider-btn animated fadeIn" onclick="snsSearch_exe();">SNS STAR Í≤ÄÏÉâ</a> 
-			</div>
+		<div class="col-sm-3"><input type="button" class="Sns_SearchBtn" value="" onclick="snsSearch_exe();" style="height: 60px; width: 60px;">
+							<input type="button" class="product_SearchBtn" value="" style="width:60px; height:60px;"></div>
+		<div class="col-sm-2"></div>					
 		</div>
 		</div>
 	</div> 
@@ -243,128 +250,75 @@ function productSearch_exe(){
 					<a class="member-right" href="#team-carousel" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>
 					<div class="carousel-inner team-members">
 						<div class="row item active">
-							<div class="col-sm-6 col-md-3">
-								<div class="single-member">
-									<img src="images/our-team/member1.jpg" alt="team member" />
-									<h4>William Hurt</h4>
-									<h5>Sr. Web Developer</h5>
-									<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod</p>
-									<div class="socials">
-										<a href="#"><i class="fa fa-facebook"></i></a>
-										<a href="#"><i class="fa fa-twitter"></i></a>
-										<a href="#"><i class="fa fa-google-plus"></i></a>
-										<a href="#"><i class="fa fa-dribbble"></i></a>
-										<a href="#"><i class="fa fa-linkedin"></i></a>
+							<%List<SnsBean> list = (List<SnsBean>)request.getAttribute("list");
+							for(int i=0; i<4; i++){
+								SnsBean sb = list.get(i);%>
+								<div class="col-sm-6 col-md-3">
+									<div class="single-member">
+										<div id="profile_img_wrap">
+											<%if(i==0){%>
+												<span id="ranking_sns_first">1µÓ!</span>
+											<%}else{ %>
+												<span id="ranking_sns"><%=i+1 %>µÓ</span>
+											<%} %>
+											<img src="./sns_pro_upload/<%=sb.getProfile_img() %>" alt="team member" />
+										</div>
+										<div id="star_list_detail">
+											<h3><a href="SnsDetailAction.sn?sns_id=<%=sb.getSns_id()%>"><%=sb.getName() %></a>
+											<small><%=sb.getCategory() %>/<%=sb.getRank() %></small></h3>
+											<p><%=sb.getContent() %></p>
+										</div>
+										<div class="socials">
+											<%if(sb.getFacebook().trim().length()!=0){%>
+												<a href="<%=sb.getFacebook()%>"><i class="fa fa-facebook"></i></a>
+											<%}if(sb.getTwitter().trim().length()!=0){%>							
+											<a href="<%=sb.getTwitter()%>"><i class="fa fa-twitter"></i></a>
+											<%}if(sb.getInstagram().trim().length()!=0){%>			
+											<a href="<%=sb.getInstagram()%>"><i class="fa fa-instagram"></i></a>
+											<%}if(sb.getBlog().trim().length()!=0){%>	
+											<a href="<%=sb.getBlog()%>"><i class="fa fa-bold"></i></a>
+											<%}if(sb.getEtc().trim().length()!=0){%>	
+											<a href="<%=sb.getEtc()%>"><i class="fa fa-smile-o"></i></a>
+											<%} %>
+										</div>
 									</div>
 								</div>
-							</div>
-							<div class="col-sm-6 col-md-3">
-								<div class="single-member">
-									<img src="images/our-team/member2.jpg" alt="team member" />
-									<h4>Alekjandra Jony</h4>
-									<h5>Creative Designer</h5>
-									<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod</p>
-									<div class="socials">
-										<a href="#"><i class="fa fa-facebook"></i></a>
-										<a href="#"><i class="fa fa-twitter"></i></a>
-										<a href="#"><i class="fa fa-google-plus"></i></a>
-										<a href="#"><i class="fa fa-dribbble"></i></a>
-										<a href="#"><i class="fa fa-linkedin"></i></a>
-									</div>
-								</div>
-							</div>
-							<div class="col-sm-6 col-md-3">
-								<div class="single-member">
-									<img src="images/our-team/member3.jpg" alt="team member" />
-									<h4>Paul Johnson</h4>
-									<h5>Skilled Programmer</h5>
-									<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod</p>
-									<div class="socials">
-										<a href="#"><i class="fa fa-facebook"></i></a>
-										<a href="#"><i class="fa fa-twitter"></i></a>
-										<a href="#"><i class="fa fa-google-plus"></i></a>
-										<a href="#"><i class="fa fa-dribbble"></i></a>
-										<a href="#"><i class="fa fa-linkedin"></i></a>
-									</div>
-								</div>
-							</div>
-							<div class="col-sm-6 col-md-3">
-								<div class="single-member">
-									<img src="images/our-team/member4.jpg" alt="team member" />
-									<h4>John Richerds</h4>
-									<h5>Marketing Officer</h5>
-									<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod</p>
-									<div class="socials">
-										<a href="#"><i class="fa fa-facebook"></i></a>
-										<a href="#"><i class="fa fa-twitter"></i></a>
-										<a href="#"><i class="fa fa-google-plus"></i></a>
-										<a href="#"><i class="fa fa-dribbble"></i></a>
-										<a href="#"><i class="fa fa-linkedin"></i></a>
-									</div>
-								</div>
-							</div>
+							<%} %>
 						</div>
 						<div class="row item">
-							<div class="col-sm-6 col-md-3">
-								<div class="single-member">
-									<img src="images/our-team/member1.jpg" alt="team member" />
-									<h4>William Hurt</h4>
-									<h5>Sr. Web Developer</h5>
-									<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod</p>
-									<div class="socials">
-										<a href="#"><i class="fa fa-facebook"></i></a>
-										<a href="#"><i class="fa fa-twitter"></i></a>
-										<a href="#"><i class="fa fa-google-plus"></i></a>
-										<a href="#"><i class="fa fa-dribbble"></i></a>
-										<a href="#"><i class="fa fa-linkedin"></i></a>
+							<%for(int i=4; i<8; i++){
+								SnsBean sb = list.get(i);%>
+								<div class="col-sm-6 col-md-3">
+									<div class="single-member">
+										<div id="profile_img_wrap">
+											<%if(i==0){%>
+												<span id="ranking_sns_first">1µÓ!</span>
+											<%}else{ %>
+												<span id="ranking_sns"><%=i+1 %>µÓ</span>
+											<%} %>										
+											<img src="./sns_pro_upload/<%=sb.getProfile_img() %>" alt="team member" />
+										</div>
+										<div id="star_list_detail">
+											<h3><a href="SnsDetailAction.sn?sns_id=<%=sb.getSns_id()%>"><%=sb.getName() %></a>
+											<small><%=sb.getCategory() %>/<%=sb.getRank() %></small></h3>
+											<p><%=sb.getContent() %></p>
+										</div>
+										<div class="socials">
+											<%if(sb.getFacebook().trim().length()!=0){%>
+												<a href="<%=sb.getFacebook()%>"><i class="fa fa-facebook"></i></a>
+											<%}if(sb.getTwitter().trim().length()!=0){%>							
+											<a href="<%=sb.getTwitter()%>"><i class="fa fa-twitter"></i></a>
+											<%}if(sb.getInstagram().trim().length()!=0){%>			
+											<a href="<%=sb.getInstagram()%>"><i class="fa fa-instagram"></i></a>
+											<%}if(sb.getBlog().trim().length()!=0){%>	
+											<a href="<%=sb.getBlog()%>"><i class="fa fa-bold"></i></a>
+											<%}if(sb.getEtc().trim().length()!=0){%>	
+											<a href="<%=sb.getEtc()%>"><i class="fa fa-smile-o"></i></a>
+											<%} %>
+										</div>
 									</div>
 								</div>
-							</div>
-							<div class="col-sm-6 col-md-3">
-								<div class="single-member">
-									<img src="images/our-team/member3.jpg" alt="team member" />
-									<h4>Paul Johnson</h4>
-									<h5>Skilled Programmer</h5>
-									<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod</p>
-									<div class="socials">
-										<a href="#"><i class="fa fa-facebook"></i></a>
-										<a href="#"><i class="fa fa-twitter"></i></a>
-										<a href="#"><i class="fa fa-google-plus"></i></a>
-										<a href="#"><i class="fa fa-dribbble"></i></a>
-										<a href="#"><i class="fa fa-linkedin"></i></a>
-									</div>
-								</div>
-							</div>
-							<div class="col-sm-6 col-md-3">
-								<div class="single-member">
-									<img src="images/our-team/member2.jpg" alt="team member" />
-									<h4>Alekjandra Jony</h4>
-									<h5>Creative Designer</h5>
-									<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod</p>
-									<div class="socials">
-										<a href="#"><i class="fa fa-facebook"></i></a>
-										<a href="#"><i class="fa fa-twitter"></i></a>
-										<a href="#"><i class="fa fa-google-plus"></i></a>
-										<a href="#"><i class="fa fa-dribbble"></i></a>
-										<a href="#"><i class="fa fa-linkedin"></i></a>
-									</div>
-								</div>
-							</div>
-							<div class="col-sm-6 col-md-3">
-								<div class="single-member">
-									<img src="images/our-team/member4.jpg" alt="team member" />
-									<h4>John Richerds</h4>
-									<h5>Marketing Officer</h5>
-									<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod</p>
-									<div class="socials">
-										<a href="#"><i class="fa fa-facebook"></i></a>
-										<a href="#"><i class="fa fa-twitter"></i></a>
-										<a href="#"><i class="fa fa-google-plus"></i></a>
-										<a href="#"><i class="fa fa-dribbble"></i></a>
-										<a href="#"><i class="fa fa-linkedin"></i></a>
-									</div>
-								</div>
-							</div>
+								<%} %>
 						</div>
 					</div>
 				</div>
@@ -599,21 +553,49 @@ function productSearch_exe(){
 							<div class="row text-center clearfix">
 								<div class="col-sm-8 col-sm-offset-2">
 									<h2 class="title-one">Our Blog</h2>
-									<p class="blog-heading">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p>
+									<p class="blog-heading">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
+										<a href="./OurBlog.bl"><button>Go to our blog</button></a>
+									</p>
 								</div>
 							</div> 
 							<div class="row">
+							<%BlogDAO bdao = new BlogDAO();
+							  int count = bdao.getBlogListCount();
+							  SimpleDateFormat sdf=new SimpleDateFormat("yyyy.MM.dd");
+							  
+							  int startRow= 1;
+							  int pageSize = 3;
+							  List blogList = null;
+							  
+							  if(count!=0){
+								  blogList=bdao.getBlogList(startRow, pageSize);
+							  }
+							  
+							  for(int i=0;i<blogList.size();i++){
+								  BlogBean bb = (BlogBean)blogList.get(i);
+											%>
 								<div class="col-sm-4">
 									<div class="single-blog">
-										<img src="images/blog/1.jpg" alt="" />
-										<h2>Lorem ipsum dolor sit amet</h2>
+									  <%if(bb.getFile()!=null){ %>
+										<img src="./blog_upload/<%=bb.getFile()%>" style="border-radius:5px; height: 210px;"></img>
+										<%} %>
+										<h2><%=bb.getSubject() %></h2>
 										<ul class="post-meta">
-											<li><i class="fa fa-pencil-square-o"></i><strong> Posted By:</strong> John</li>
-											<li><i class="fa fa-clock-o"></i><strong> Posted On:</strong> Apr 15 2014</li>
+											<li><i class="fa fa-pencil-square-o"></i><strong> Posted By:</strong> admin</li>
+											<li><i class="fa fa-clock-o"></i><strong> Posted On:</strong><%=sdf.format(bb.getDate())%></li>
 										</ul>
+										<%if(bb.getFile()!=null){ %>
 										<div class="blog-content">
-											<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p>
+											<div class="blog-content-limit">
+												<%=bb.getContent() %>
+											</div>
+											
 										</div>
+										<%}else if(bb.getFile()==null){%>
+										<div class="blog-content-long">
+											<p class="blog-content-long-limit"><%=bb.getContent() %></p>
+										</div>
+										<%} %>
 										<a href="" class="btn btn-primary" data-toggle="modal" data-target="#blog-detail">Read More</a>
 									</div>
 									<div class="modal fade" id="blog-detail" tabindex="-1" role="dialog" aria-hidden="true">
@@ -622,143 +604,15 @@ function productSearch_exe(){
 												<div class="modal-body">
 													<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 													<img src="images/blog/3.jpg" alt="" />
-													<h2>Lorem ipsum dolor sit amet</h2>
+													<h2><%=bb.getSubject() %></h2>
 													<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p><p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p>
 												</div> 
 											</div>
 										</div>
 									</div>
 								</div>
-								<div class="col-sm-4">
-									<div class="single-blog">
-										<img src="images/blog/2.jpg" alt="" />
-										<h2>Lorem ipsum dolor sit amet</h2>
-										<ul class="post-meta">
-											<li><i class="fa fa-pencil-square-o"></i><strong> Posted By:</strong> John</li>
-											<li><i class="fa fa-clock-o"></i><strong> Posted On:</strong> Apr 15 2014</li>
-										</ul>
-										<div class="blog-content">
-											<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p>
-										</div>
-										<a href="" class="btn btn-primary" data-toggle="modal" data-target="#blog-two">Read More</a>
-									</div>
-									<div class="modal fade" id="blog-two" tabindex="-1" role="dialog" aria-hidden="true">
-										<div class="modal-dialog">
-											<div class="modal-content">
-												<div class="modal-body">
-													<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-													<img src="images/blog/2.jpg" alt="" />
-													<h2>Lorem ipsum dolor sit amet</h2>
-													<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p><p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="col-sm-4">
-									<div class="single-blog">
-										<img src="images/blog/3.jpg" alt="" />
-										<h2>Lorem ipsum dolor sit amet</h2>
-										<ul class="post-meta">
-											<li><i class="fa fa-pencil-square-o"></i><strong> Posted By:</strong> John</li>
-											<li><i class="fa fa-clock-o"></i><strong> Posted On:</strong> Apr 15 2014</li>
-										</ul>
-										<div class="blog-content">
-											<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p>
-										</div>
-										<a href="" class="btn btn-primary" data-toggle="modal" data-target="#blog-three">Read More</a>
-									</div>
-									<div class="modal fade" id="blog-three" tabindex="-1" role="dialog" aria-hidden="true">
-										<div class="modal-dialog">
-											<div class="modal-content">
-												<div class="modal-body">
-													<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-													<img src="images/blog/3.jpg" alt="" />
-													<h2>Lorem ipsum dolor sit amet</h2>
-													<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p><p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p>
-												</div> 
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="col-sm-4">
-									<div class="single-blog">
-										<img src="images/blog/3.jpg" alt="" />
-										<h2>Lorem ipsum dolor sit amet</h2>
-										<ul class="post-meta">
-											<li><i class="fa fa-pencil-square-o"></i><strong> Posted By:</strong> John</li>
-											<li><i class="fa fa-clock-o"></i><strong> Posted On:</strong> Apr 15 2014</li>
-										</ul>
-										<div class="blog-content">
-											<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p>
-										</div>
-										<a href="" class="btn btn-primary" data-toggle="modal" data-target="#blog-four">Read More</a></div>
-										<div class="modal fade" id="blog-four" tabindex="-1" role="dialog" aria-hidden="true">
-											<div class="modal-dialog">
-												<div class="modal-content">
-													<div class="modal-body">
-														<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-														<img src="images/blog/3.jpg" alt="" />
-														<h2>Lorem ipsum dolor sit amet</h2>
-														<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p><p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p>
-													</div> 
-												</div>
-											</div>
-										</div>
-									</div>
-									<div class="col-sm-4">
-										<div class="single-blog">
-											<img src="images/blog/2.jpg" alt="" />
-											<h2>Lorem ipsum dolor sit amet</h2>
-											<ul class="post-meta">
-												<li><i class="fa fa-pencil-square-o"></i><strong> Posted By:</strong> John</li>
-												<li><i class="fa fa-clock-o"></i><strong> Posted On:</strong> Apr 15 2014</li>
-											</ul>
-											<div class="blog-content">
-												<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p>
-											</div>
-											<a href="" class="btn btn-primary" data-toggle="modal" data-target="#blog-six">Read More</a>
-										</div>
-										<div class="modal fade" id="blog-six" tabindex="-1" role="dialog" aria-hidden="true">
-											<div class="modal-dialog">
-												<div class="modal-content">
-													<div class="modal-body">
-														<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-														<img src="images/blog/2.jpg" alt="" />
-														<h2>Lorem ipsum dolor sit amet</h2>
-														<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p><p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p>
-													</div> 
-												</div>
-											</div>
-										</div>
-									</div>
+								<%} %>
 
-									<div class="col-sm-4">
-										<div class="single-blog">
-											<img src="images/blog/1.jpg" alt="" />
-											<h2>Lorem ipsum dolor sit amet</h2>
-											<ul class="post-meta">
-												<li><i class="fa fa-pencil-square-o"></i><strong> Posted By:</strong> John</li>
-												<li><i class="fa fa-clock-o"></i><strong> Posted On:</strong> Apr 15 2014</li>
-											</ul>
-											<div class="blog-content">
-												<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p>
-											</div>
-											<a href="" class="btn btn-primary" data-toggle="modal" data-target="#blog-seven">Read More</a>
-										</div>
-										<div class="modal fade" id="blog-seven" tabindex="-1" role="dialog" aria-hidden="true">
-											<div class="modal-dialog">
-												<div class="modal-content">
-													<div class="modal-body">
-														<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-														<img src="images/blog/1.jpg" alt="" />
-														<h2>Lorem ipsum dolor sit amet</h2>
-														<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p><p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p>
-													</div> 
-												</div>
-											</div>
-										</div>
-									</div> 
 								</div> 
 							</div> 
 						</section> <!--/#blog-->

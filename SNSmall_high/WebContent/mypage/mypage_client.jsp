@@ -29,7 +29,7 @@
         
             <div class="col-md-3">
                 <p class="lead"><%=id %></p>
-                <jsp:include page="../inc/myinfo_left.jsp"/>
+                <jsp:include page="../inc/myinfo_client_left.jsp"/>
                <%--  <div class="list-group">
                 	<div id="showbtn">
                     	<a href="PayList.pa" class="list-group-item showbtn">³» Á¤º¸</a>

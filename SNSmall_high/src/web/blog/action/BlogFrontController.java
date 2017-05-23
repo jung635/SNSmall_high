@@ -47,6 +47,26 @@ public class BlogFrontController extends HttpServlet{
 			try{
 				forward = action.execute(request, response);
 			}catch(Exception e){e.printStackTrace();}
+		}else if(command.equals("/OurBlogCategory.bl")){
+			action = new BlogCategoryAction();
+			try{
+				forward = action.execute(request, response);
+			}catch(Exception e){e.printStackTrace();}
+		}else if(command.equals("/OurBlogPostUpdate.bl")){
+			action = new BlogUpdate();
+			try{
+				forward = action.execute(request, response);
+			}catch(Exception e){e.printStackTrace();}
+		}else if(command.equals("/OurBlogPostUpdateAction.bl")){
+			action = new BlogUpdateAction();
+			try{
+				forward = action.execute(request, response);
+			}catch(Exception e){e.printStackTrace();}
+		}else if(command.equals("/OurBlogPostDeleteAction.bl")){
+			action = new BlogDeleteAction();
+			try{
+				forward = action.execute(request, response);
+			}catch(Exception e){e.printStackTrace();}
 		}
 
 		

@@ -29,28 +29,21 @@ function blogSearch(){
                     <div class="row">
                         <div class="col-lg-6">
                             <ul class="list-unstyled">
-                                <li><a href="#">Category Name</a>
+                                <li><a href="./OurBlogCategory.bl?category=notice">　notice</a>
                                 </li>
-                                <li><a href="#">Category Name</a>
+                                <li><a href="./OurBlogCategory.bl?category=contribution">　contribution</a>
                                 </li>
-                                <li><a href="#">Category Name</a>
+                                <li><a href="./OurBlogCategory.bl?category=Event">　Event</a>
                                 </li>
-                                <li><a href="#">Category Name</a>
+                                <li><a href="./OurBlogCategory.bl?category=service">　service</a>
+                                </li>
+                                 <li><a href="./OurBlogCategory.bl?category=advertising">　advertising</a>
                                 </li>
                             </ul>
                         </div>
                         <!-- /.col-lg-6 -->
                         <div class="col-lg-6">
-                            <ul class="list-unstyled">
-                                <li><a href="#">Category Name</a>
-                                </li>
-                                <li><a href="#">Category Name</a>
-                                </li>
-                                <li><a href="#">Category Name</a>
-                                </li>
-                                <li><a href="#">Category Name</a>
-                                </li>
-                            </ul>
+  
                         </div>
                         <!-- /.col-lg-6 -->
                     </div>

@@ -39,7 +39,7 @@ public class BlogList implements Action{
 				 endPage=pageCount;
 			 }
 			 
-			 request.setAttribute("blogList", blogList);
+			 	request.setAttribute("blogList", blogList);
 			    request.setAttribute("pageCount",pageCount);
 			    request.setAttribute("count", count);
 				request.setAttribute("pageNum",pageNum);  //currentPage 랑 동일

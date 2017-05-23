@@ -20,6 +20,15 @@
 	<link href="./css/blog-home.css" rel="stylesheet">
 	<link href="./css/blog-post.css" rel="stylesheet">
 <title>Insert title here</title>
+<script type="text/javascript">
+
+function d_confirm(){
+	if (confirm("삭제하시겠습니까?") == true){
+	}else{ return false;}
+}
+	
+</script>
+
 </head>
 <body>
 	
@@ -39,26 +48,27 @@
   		String pageNum = (String)request.getAttribute("pageNum");%>
                 <!-- Title -->
                 <h1>
-                <%if(bb.getCategory().equals("　notice")){ %>
+                <%if(bb.getCategory().equals("notice")){ %>
               	<i class="fa fa-file-text-o" aria-hidden="true"></i> notice
-              	<%}else if(bb.getCategory().equals("　contribution")){ %>
+              	<%}else if(bb.getCategory().equals("contribution")){ %>
 				<i class="fa fa-globe" aria-hidden="true"></i> contribution
-				<%}else if(bb.getCategory().equals("　Event")){ %>
+				<%}else if(bb.getCategory().equals("Event")){ %>
 				<i class="fa fa-gift" aria-hidden="true"></i> Event
-				<%}else if(bb.getCategory().equals("　service")){ %>
+				<%}else if(bb.getCategory().equals("service")){ %>
 				 <i class="fa fa-star" aria-hidden="true"></i> service
-				<%}else if(bb.getCategory().equals("　advertising")){ %>
+				<%}else if(bb.getCategory().equals("advertising")){ %>
 				<i class="fa fa-lightbulb-o" aria-hidden="true"></i> advertising
 				<%} %>
                 </h1>
 
 
-
+				<a href="./OurBlogPostUpdate.bl?num=<%=bb.getNum()%>&pageNum=<%=pageNum%>">수정하기</a>&nbsp;|
+				<a href="./OurBlogPostDeleteAction.bl?num=<%=bb.getNum()%>&pageNum=<%=pageNum%>" onclick="return d_confirm()">삭제</a>
                 <!-- Author -->
                 <p class="lead">
-                    by admin
+                    by admin 
                 </p>
-
+					
                 <hr>
 
                 <!-- Date/Time -->
@@ -86,7 +96,16 @@
 				</p>
                 
                 <hr>
-
+                
+				<div class="col-lg-4"></div>
+                <div class="col-lg-4">
+                <%if(pageNum!=null){ %>
+             			<input type="button" value="List View" class="btn_submit"
+             			onclick="location.href='./OurBlog.bl?pageNum=<%=pageNum%>'">
+             			<%} %>
+             	
+             	</div>
+                <div class="col-lg-4"></div>
   
 
          

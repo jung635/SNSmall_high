@@ -19,9 +19,9 @@ public class ReplyFrontController extends HttpServlet{
 		Action action = null;
 		
 		if(command.equals("/replyAction.re")){
-//			action = new writeAction();
+			action = new ReplyAction();
 			try{
-//				forward = action.execute(request, response);
+				forward = action.execute(request, response);
 			}catch(Exception e){e.printStackTrace();}
 		}
 		

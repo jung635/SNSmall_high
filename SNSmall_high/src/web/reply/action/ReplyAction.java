@@ -11,19 +11,24 @@ public class ReplyAction implements Action{
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		request.setCharacterEncoding("utf-8");
+		String returnUrl = request.getHeader("referer");
+		
 		ReplyBean rb = new ReplyBean();
 		ReplyDAO rdao = new ReplyDAO();
 		String id = (String)request.getParameter("id");
-		String num = (String)request.getParameter("num");
-		String reply = (String)request.getParameter("reply");
+		String content = (String)request.getParameter("content");
+		int re_ref = Integer.parseInt(request.getParameter("re_ref"));
 		
 		rb.setId(id);
-		rb.setReply_num(Integer.parseInt(num));
-		rb.setReply_content(reply);
+		rb.setContent(content);
+		rb.setRe_ref(re_ref);
+		rb.setRe_lev(0);
+		rb.setRe_seq(0);
 		
+		rdao.insertReply(rb);
 		
 		ActionForward forward = new ActionForward();
-		forward.setPath("./BoardList.bo");
+		forward.setPath(returnUrl);
 		forward.setRedirect(true);
 		return forward;
 	}

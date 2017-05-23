@@ -1,3 +1,4 @@
+<%@page import="web.reply.db.ReplyBean"%>
 <%@page import="web.board.db.BoardBean"%>
 <%@page import="web.sns.db.SnsBean"%>
 <%@page import="java.util.List"%>
@@ -9,6 +10,7 @@
 <%
 	BoardBean bb = (BoardBean)request.getAttribute("bb");
 	String pageNum = (String)request.getAttribute("pageNum");
+	List replyList = (List)request.getAttribute("replyList");
 	String id = (String)session.getAttribute("id");
 	String content = bb.getContent();
 	if(content != null){content=bb.getContent().replace("\r\n","<br>");}
@@ -60,30 +62,56 @@
 							</tr>
 							
 							<tr>
-								<!-- 글수정/삭제 -->
+								
 							</tr>
 					</table>
-					<!-- 댓글 목록 -->					
+					<hr>
+					<!-- [ 댓글 목록 출력-->
+					<a href="./BoardList.bo">목록보기</a> | <a href="">댓글 열기/닫기</a>
 					<%
-					
+					if(id.equals(bb.getId())&&id!=null){
 					%>
-					<!-- 댓글 목록 -->
+					 | <a href="">수정</a> | <a href="">삭제</a>
+					
+					<%
+					}
+					for(int i = 0; i < replyList.size(); i++){
+						ReplyBean rb = (ReplyBean)replyList.get(i);	
+						String replyContent = rb.getContent();
+						if(replyContent != null){replyContent = rb.getContent().replace("\r\n","<br>");}
+					%>
+					<table style="border-collapse: collapse; text-align: left; width:500;">
+						
+						<tr>
+						<td style="text-align: left;"><%=rb.getId() %><br>
+						<%=replyContent %>
+						</td>
+						<td style="text-align: right;"><%=rb.getDate() %><br>
+						<a href="#">[덧글]</a>						
+						</td></tr>
+					</table>					
+					<%
+					}
+					%>					
+					<!-- 댓글 목록 출력 ]-->
+										
 	
-					<!-- 댓글 입력란 -->
+					<!-- [ 댓글 입력란 -->
+					<hr>
 					<%if(id != null){ %>
 					<form action="./replyAction.re" method="post" name="fr">
-					<input type="hidden" name="num" value="<%=bb.getNum()%>">
+					<input type="hidden" name="re_ref" value="<%=bb.getNum()%>">
 					<input type="hidden" name="id" value="<%=id%>">
 					
 					<table>
 					<tr><td>댓글 입력란</td></tr>
-					<tr><td><textarea rows="7" cols="81" name="reply"></textarea></td></tr>
-					<tr><td><input type="submit" value="저장"></td></tr>
+					<tr><td><textarea rows="7" cols="81" name="content"></textarea></td>
+					<td><input type="submit" value="저장"></td></tr>					
 					</table>
 					
 					</form>
 					<%} %>
-					<!-- 댓글 입력란 -->
+					<!-- 댓글 입력란 ] -->
                 </div>
             </div>                     
 		</div>

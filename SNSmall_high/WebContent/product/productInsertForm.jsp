@@ -26,6 +26,12 @@
 	 		document.fr.amount.focus();
 	 		return false;
 	 	}
+		if(document.fr.opt_name1.value==""&&document.fr.opt_name2.value==""&&document.fr.opt_name3.value==""){
+			alert("옵션을 하나이상은 입력해야합니다.");
+			document.fr.amount.focus();
+			return false;
+		}
+		
 	}
 </script>
 </head>

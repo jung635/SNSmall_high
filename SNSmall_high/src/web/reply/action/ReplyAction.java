@@ -25,6 +25,7 @@ public class ReplyAction implements Action{
 		ab.setContent("댓글이 입력되었습니다.");//메세지 뜰 내용
 		ab.setId(to_id);//to Id
 		ab.setMove(returnUrl);//url
+		System.out.println(returnUrl);
 		adao.insertAlarm(ab);		
 		// 알람 테이블 정보 입력 ]
 				

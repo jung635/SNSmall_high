@@ -125,7 +125,40 @@ Connection con = null;
 				}
 			}
 		}
-		return ;
+		
 	}
-	
+	public int ZzimCheckAction(String id,int product_num){
+		int check=0;
+		try{
+			
+			con = getConnection();
+			sql = "select * from zzim where client_id=? and product_num=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, id);
+			pstmt.setInt(2, product_num);
+			
+			rs = pstmt.executeQuery();
+			if(rs.next()){
+				check=1;
+			}
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally {
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		return check;
+	}
 }

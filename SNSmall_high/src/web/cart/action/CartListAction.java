@@ -21,6 +21,7 @@ public class CartListAction implements Action{
 		CartDAO cdao = new CartDAO();
 		String client_id = (String)session.getAttribute("id");
 		
+
 		PrintWriter out = response.getWriter();
 		
 		if(client_id.equals(null)){

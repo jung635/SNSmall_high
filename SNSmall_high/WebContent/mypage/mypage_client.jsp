@@ -1,11 +1,11 @@
 <%@page import="web.client.db.ClientDAO"%>
 <%@page import="web.client.db.ClientBean"%>
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+    pageEncoding="utf-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
 	<meta name="description" content="Creative One Page Parallax Template">
 	<meta name="keywords" content="Creative, Onepage, Parallax, HTML5, Bootstrap, Popular, custom, personal, portfolio" /> 
@@ -32,15 +32,15 @@
                 <jsp:include page="../inc/myinfo_client_left.jsp"/>
                <%--  <div class="list-group">
                 	<div id="showbtn">
-                    	<a href="PayList.pa" class="list-group-item showbtn">³» Á¤º¸</a>
+                    	<a href="PayList.pa" class="list-group-item showbtn">ë‚´ ì •ë³´</a>
                     	<div id="show_content">
-                    		<a href="#"  class="list-group-item">³» Á¤º¸ È®ÀÎ</a>
-                    		<a href="#"  class="list-group-item">³» Á¤º¸ ¼öÁ¤</a>
-                    		<a href="#"  class="list-group-item">È¸¿ø Å»Åð</a>
+                    		<a href="#"  class="list-group-item">ë‚´ ì •ë³´ í™•ì¸</a>
+                    		<a href="#"  class="list-group-item">ë‚´ ì •ë³´ ìˆ˜ì •</a>
+                    		<a href="#"  class="list-group-item">íšŒì› íƒˆí‡´</a>
                     	</div>
                     </div>
-                    <a href="PayList.pa" class="list-group-item">ÁÖ¹® ³»¿ª</a>
-                    <a href="#" class="list-group-item">Âò ¸ñ·Ï</a>
+                    <a href="PayList.pa" class="list-group-item">ì£¼ë¬¸ ë‚´ì—­</a>
+                    <a href="#" class="list-group-item">ì°œ ëª©ë¡</a>
                 </div> --%>
             </div>
             <div class="col-md-9">

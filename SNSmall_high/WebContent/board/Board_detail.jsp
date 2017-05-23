@@ -27,7 +27,16 @@
 	<link href="./css/inner.css" rel="stylesheet">
 	<link href="./css/main.css" rel="stylesheet">
 	
-	<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>	
+	<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
+	<script type="text/javascript">
+		/* 경고문 */
+		function d_confirm(){
+			if(confirm("삭제하시겠습니까?")==true){
+			}else{
+				return false;
+			}
+		}
+	</script>	
 </head>
 <body>
 
@@ -72,7 +81,7 @@
 					if(id.equals(bb.getId())&&id!=null){
 					%>
 					 | <a href="./BoardUpdateForm.bo?num=<%=bb.getNum() %>">수정</a>
-					  | <a href="./BoardDelete.bo?num=<%=bb.getNum() %>"">삭제</a>
+					  | <a href="./BoardDelete.bo?num=<%=bb.getNum() %>" onclick="return d_confirm()">삭제</a>
 					
 					<%
 					}

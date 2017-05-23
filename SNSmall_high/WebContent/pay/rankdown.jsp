@@ -14,15 +14,12 @@ String rank = request.getParameter("rank");
 하지만 곧 업그레이드 되실 수 있으실 거에요!<br>
 
 변화된 사항<br>
-<%
-if(rank.equals("plus")){
-%>
+<%if(rank.equals("plus")){%>
 10%의 profit을  받을 수 있습니다.
-<%	
-}else if(rank.equals("premium")){
-%>
+<%}else if(rank.equals("premium")){%>
 20%의 profit을  받을 수 있습니다.	
-<%}
-%>
+<%}else if(rank.equals("basic")){%>
+5%의 profit을  받을 수 있습니다.	
+<%} %>
 </body>
 </html>

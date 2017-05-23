@@ -94,6 +94,13 @@ public class PaymentFrontController extends HttpServlet {
 			forward = new ActionForward();
 			forward.setPath("./pay/deposit.jsp");
 			forward.setRedirect(false);
+		}  else if (command.equals("/PayCancelPoint.pa")) {
+			action = new PayCancelPointAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 
 		if (forward != null) {

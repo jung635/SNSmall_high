@@ -77,9 +77,9 @@ public class PayCancelAction implements Action {
 			for(int j=0; j<list_sns.size(); j++){
 				pb_sns = list_sns.get(j);
 				prob_sns = prodao.getProduct(pb_sns.getProduct_num());
-				System.out.println("product_num:"+pb_sns.getProduct_num());
-				System.out.println("price:"+prob_sns.getPrice());
-				all_sns_sell += (long)prob_sns.getPrice()*(long)pb_sns.getAmount();
+				if(pb_sns.getState().equals("payDone") || pb_sns.getState().equals("done") || pb_sns.getState().equals("delivery")){
+					all_sns_sell += (long)prob_sns.getPrice()*(long)pb_sns.getAmount();
+				}
 			}
 			System.out.println(all_sns_sell);
 			sb_sns= sdao.getSnsDetail(pb.getSns_id());

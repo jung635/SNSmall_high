@@ -30,11 +30,11 @@ public class PayCancelAction implements Action {
 			out.println("</script>");
 		} else {
 			if (pb.getUsedPoint() > 0) {
-				if(pb.getState().equals("waiting")){
+				/*if(pb.getState().equals("waiting")){
 					pdao.deletePayRequestWaiting(pb.getNum());
 				}else{
 					pdao.deletePayRequest(pb.getNum());
-				}
+				}*/
 				out.println("<script>");
 				out.println("alert('포인트를 사용한 배송은 해당 상품 퍼센트에 해당하는 포인트만 돌려받을 수 있습니다.');");
 				out.println("location.href='PayPointCancel.pa?merchant_uid=" + pb.getOrder_num() + "&num="+pb.getProduct_num()+"';");

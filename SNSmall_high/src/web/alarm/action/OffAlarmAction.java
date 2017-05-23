@@ -35,7 +35,7 @@ public class OffAlarmAction implements Action{
 		}else{
 			out.println("<script>");
 			out.println("location.href='"+ab.getMove()+"';");
-			out.println("location.href='"+url+"';");
+			//out.println("location.href='"+url+"';");
 			out.println("</script>");
 		}
 		

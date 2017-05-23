@@ -149,7 +149,54 @@ public class PayCompleteAction implements Action {
 				sb_sns= sdao.getSnsDetail(sns_id[i]);
 				
 				
-				pdao.rankUpdate(sns_id[i], all_sns_sell+Math.round(price_result), sb_sns.getRank());
+				//pdao.rankUpdate(sns_id[i], all_sns_sell+Math.round(price_result), sb_sns.getRank());
+				long money = all_sns_sell+Math.round(price_result);
+				AlarmBean ab = new AlarmBean();
+				AlarmDAO adao = new AlarmDAO();
+				if( sb_sns.getRank().equals("basic")){
+					if(money>=10000000){
+						ab.setContent("등급이  premium으로 상승하셨습니다!");
+						ab.setId(sns_id[i]);
+						ab.setMove("RankUp.al?rank="+"premium");
+						adao.insertAlarm(ab);
+						pdao.rankUpdate(sns_id[i], "premium");
+					}else if(money>=90000){//테스트용
+					//}else if(money>=500000){
+						ab.setContent("등급이 plsu로 상승하셨습니다!");
+						ab.setId(sns_id[i]);
+						ab.setMove("RankUp.al?rank="+"plus");
+						adao.insertAlarm(ab);
+						pdao.rankUpdate(sns_id[i], "plus");
+					}
+				}else if( sb_sns.getRank().equals("plus")){
+					if(money>=10000000){
+						ab.setContent("등급이  premium으로 상승하셨습니다!");
+						ab.setId(sns_id[i]);
+						ab.setMove("RankUp.al?rank="+"premium");
+						adao.insertAlarm(ab);
+						pdao.rankUpdate(sns_id[i], "premium");
+					}else if(money<5000000){
+						ab.setContent("등급이 basic으로 내려가셨어요ㅠㅠ");
+						ab.setId(sns_id[i]);
+						ab.setMove("RankDown.al?rank="+"basic");
+						adao.insertAlarm(ab);
+						pdao.rankUpdate(sns_id[i], "basic");
+					}
+				}else{
+					if(money<10000000){
+						ab.setContent("등급이  plus로 내려가셨어요ㅠㅠ");
+						ab.setId(sns_id[i]);
+						ab.setMove("RankDown.al?rank="+"plus");
+						adao.insertAlarm(ab);
+						pdao.rankUpdate(sns_id[i], "plus");
+					}else if(money<5000000){
+						ab.setContent("등급이 basic으로 내려가셨어요ㅠㅠ");
+						ab.setId(sns_id[i]);
+						ab.setMove("RankDown.al?rank="+"basic");
+						adao.insertAlarm(ab);
+						pdao.rankUpdate(sns_id[i], "basic");
+					}
+				}
 				
 				if(method.equals("withPoint")){
 					out.println("<script>");

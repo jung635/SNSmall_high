@@ -1,14 +1,21 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+            
+<script type="text/javascript">
+function blogSearch(){
+	search = document.getElementById('BlogSearch').value;
+	location.href = './OurBlogSearchAction.bl?search='+search;
+}
+</script>
             <div class="col-md-4">
 
                 <!-- Blog Search Well -->
                 <div class="well">
                     <h4>Blog Search</h4>
                     <div class="input-group">
-                        <input type="text" class="form-control">
+                        <input type="text" id="BlogSearch" class="form-control">
                         <span class="input-group-btn">
-                            <button class="btn btn-default" type="button">
+                            <button class="btn btn-default" type="button" onclick="blogSearch()">
                                 <span class="glyphicon glyphicon-search"></span>
                         </button>
                         </span>

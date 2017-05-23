@@ -15,10 +15,6 @@ public class BlogPostingAction implements Action{
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
-		System.out.println("BlogPostingAction execute()");
-		
-		request.setCharacterEncoding("utf-8");
-		
 		String realPate = request.getRealPath("/blog_upload");
 		
 		System.out.println(realPate);

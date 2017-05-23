@@ -34,14 +34,14 @@
             <div class="col-md-8">
 
                 <h1 class="page-header">
-                    Page Heading
-                    <small>Secondary Text</small>
+                    www's Blog
+                    <small>Welcome to our Blog</small>
                     
-                    
+                 <span >
                     <a href="./OurBlogPosting.bl"><button class="posting_btn">Posting</button></a>
-                    
+                 </span>     
                 </h1>
-
+		 <hr style="border: 0; height: 2px; background: #ddd;">
 
 <%
 List blogList=(List)request.getAttribute("blogList");
@@ -60,32 +60,34 @@ for(int i=0;i<blogList.size();i++){
 %>
 
                 <!-- First Blog Post -->
+               
                 <h2>
-                    <a href="./OurBlogPost.bl"><%=bb.getSubject() %></a>
-                     <small> by admin </small>
+                    <a href="./OurBlogPostAction.bl?num=<%=bb.getNum()%>&pageNum=<%=pageNum%>">
+                    <%=bb.getSubject() %>
+                    </a>
+                     <small> by admin</small>
                 </h2>
                
-                   
-            
-                <p><span class="glyphicon glyphicon-time"></span> 
-                <%SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd HH시mm분ss초");%>
+                <p><span class="glyphicon glyphicon-time"></span> Posted on 
+                <%SimpleDateFormat sdf = new SimpleDateFormat("MMMMM dd, yyyy hh:mm a zzz");%>
                  <%=sdf.format(bb.getDate())%>
                 </p>
                 <hr>  <!-- Posted on August 28, 2013 at 10:00 PM -->
                 
                 <%if(bb.getFile()!=null){ %>
                 
-                  <a href="./OurBlogPost.bl?num=<%=bb.getNum()%>&pageNum=<%=pageNum%>">
+                  <a href="./OurBlogPostAction.bl?num=<%=bb.getNum()%>&pageNum=<%=pageNum%>">
     			<img src="./blog_upload/<%=bb.getFile()%>" style="border-radius:5px;"></img></a>
     			
     			 <hr>
                 <%} %>
                 
                
-                <div style="overflow:hidden; white-space:nowrap; text-overflow:ellipsis;"><%=bb.getContent()%></div>
+                <div style="overflow:hidden; height:100px;"><%=bb.getContent()%></div>
                 <a class="btn btn-primary" href="#">Read More <span class="glyphicon glyphicon-chevron-right"></span></a>
 
-               <hr style="border: 0; height: 3px; background: #111111;">
+               <hr style="border: 0; height: 1px; background: #ddd;">
+               <hr style="border: 0; height: 2px; background: #ddd;">
 
         <%}%>
 

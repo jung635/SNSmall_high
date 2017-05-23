@@ -51,7 +51,7 @@ Connection con = null;
 				list.add(map);
 			}
 				
-		}catch (Exception e){System.out.println("DB연결 실패(passModify)" + e);}
+		}catch (Exception e){e.printStackTrace();}
 		finally {if(rs != null){try {rs.close();} catch (Exception ex) {}}
 		if(pstmt != null){try {pstmt.close();}catch(Exception ex){}}
 		if(con != null){try {con.close();}catch(Exception ex) {}}}
@@ -131,7 +131,7 @@ Connection con = null;
 				list.add(map);
 			}
 				
-		}catch (Exception e){System.out.println("DB연결 실패(passModify)" + e);}
+		}catch (Exception e){e.printStackTrace();}
 		finally {if(rs != null){try {rs.close();} catch (Exception ex) {}}
 		if(pstmt != null){try {pstmt.close();}catch(Exception ex){}}
 		if(con != null){try {con.close();}catch(Exception ex) {}}}

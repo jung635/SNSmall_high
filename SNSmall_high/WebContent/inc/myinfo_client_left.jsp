@@ -12,7 +12,6 @@
 	
 	<%
 			String type= (String)session.getAttribute("type");
-			System.out.println(type);
 			if(type.equals("sns")){ %>
 				<div id="showbtn">
 				<a href="PayList.pa" class="list-group-item showbtn">내 정보</a>

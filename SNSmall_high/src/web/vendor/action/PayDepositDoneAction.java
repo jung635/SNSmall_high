@@ -69,7 +69,6 @@ public class PayDepositDoneAction implements Action{
 		
 		//rank update 확인
 		list_sns = pdao.getSnsPaymentList(pb.getSns_id());
-		System.out.println("size:"+list_sns.size());
 		for(int j=0; j<list_sns.size(); j++){
 			pb_sns = list_sns.get(j);
 			prob_sns = prodao.getProduct(pb_sns.getProduct_num());

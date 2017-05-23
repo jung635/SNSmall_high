@@ -25,7 +25,6 @@ public class AlarmAction implements Action {
 			for (int i = 0; i < list.size(); i++) {
 				map = list.get(i);
 				timestamp = (Timestamp) map.get("date");
-				System.out.println("time" + timestamp);
 
 				if (id.equals(map.get("id")) && map != null) {
 					if ((System.currentTimeMillis() - timestamp.getTime()) > 4 * 1000) {

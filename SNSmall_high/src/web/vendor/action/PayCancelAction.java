@@ -47,7 +47,6 @@ public class PayCancelAction implements Action {
 			pdao.addAmount(pb.getAmount(), pb.getProduct_num());
 		}else{
 			SnsBean sb = sdao.getSnsDetail(pb.getSns_id());
-			System.out.println(sb.getRank());
 			if(sb.getRank().equals("basic")){
 				sns_profit = (int)(price_result*0.05)/10*10;
 			}else if(sb.getRank().equals("plus")){
@@ -85,7 +84,6 @@ public class PayCancelAction implements Action {
 			sb_sns= sdao.getSnsDetail(pb.getSns_id());
 			
 			
-			//pdao.rankUpdate(pb.getSns_id(), all_sns_sell+Math.round(price_result), sb_sns.getRank());
 			long money = all_sns_sell+Math.round(price_result);
 			AlarmBean ab = new AlarmBean();
 			AlarmDAO adao = new AlarmDAO();

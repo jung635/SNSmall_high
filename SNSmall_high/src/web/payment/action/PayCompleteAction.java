@@ -65,7 +65,6 @@ public class PayCompleteAction implements Action {
 		ProductDAO prodao = new ProductDAO();
 		SnsBean sb_sns = null;
 		SnsDAO sdao = new SnsDAO();
-		//int usedPoint = pdao.usingPoint(point, id);
 		int usedPoint_each = point;
 		int sns_profit = 0;
 		int add_point = 0;
@@ -105,12 +104,13 @@ public class PayCompleteAction implements Action {
 			//사용한 포인트 빼기
 			pdao.subPoint(point_each, id);
 			//amount 빼기
-			pdao.subAmount(pb.getAmount(), pb.getProduct_num());
+			if(method.equals("waiting")){
+				pdao.subAmount(pb.getAmount(), pb.getProduct_num());
+			}
 
 			
 			if(method.equals("card")||method.equals("withPoint")){
 				SnsBean sb = sdao.getSnsDetail(sns_id[i]);
-				System.out.println(sb.getRank());
 				if(sb.getRank().equals("basic")){
 					sns_profit = (int)(price_result*0.05)/10*10;
 				}else if(sb.getRank().equals("plus")){
@@ -136,7 +136,6 @@ public class PayCompleteAction implements Action {
 				
 				//rank update 확인
 				list_sns = pdao.getSnsPaymentList(sns_id[i]);
-				System.out.println("size:"+list_sns.size());
 				for(int j=0; j<list_sns.size(); j++){
 					pb_sns = list_sns.get(j);
 					prob_sns = prodao.getProduct(pb_sns.getProduct_num());
@@ -148,7 +147,6 @@ public class PayCompleteAction implements Action {
 				sb_sns= sdao.getSnsDetail(sns_id[i]);
 				
 				
-				//pdao.rankUpdate(sns_id[i], all_sns_sell+Math.round(price_result), sb_sns.getRank());
 				long money = all_sns_sell+Math.round(price_result);
 				AlarmBean ab = new AlarmBean();
 				AlarmDAO adao = new AlarmDAO();
@@ -159,7 +157,7 @@ public class PayCompleteAction implements Action {
 						ab.setMove("RankUp.al?rank="+"premium");
 						adao.insertAlarm(ab);
 						pdao.rankUpdate(sns_id[i], "premium");
-					}else if(money>=90000){//테스트용
+					}else if(money>=30000){//테스트용
 					//}else if(money>=500000){
 						ab.setContent("등급이 plsu로 상승하셨습니다!");
 						ab.setId(sns_id[i]);

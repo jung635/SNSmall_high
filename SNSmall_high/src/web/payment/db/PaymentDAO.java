@@ -752,60 +752,13 @@ Connection con = null;
 		if(con != null){try {con.close();}catch(Exception ex) {}}}
 	}
 	
-	public void rankUpdate(String sns_id, long money, String rank){
-		StringBuffer sql = new StringBuffer("update sns set rank = ");
-		AlarmBean ab = new AlarmBean();
-		AlarmDAO adao = new AlarmDAO();
+	public void rankUpdate(String sns_id, String rank){
 		try{
 			con = getConnection();
-			if(rank.equals("basic")){
-				if(money>=10000000){
-					sql.append("'premium'");
-					ab.setContent("등급이  premium으로 상승하셨습니다!");
-					ab.setId(sns_id);
-					ab.setMove("RankUp.al?rank="+"premium");
-					adao.insertAlarm(ab);
-				}else if(money>=90000){
-					sql.append("'plus'");
-					ab.setContent("등급이 plsu로 상승하셨습니다!");
-					ab.setId(sns_id);
-					ab.setMove("RankUp.al?rank="+"plus");
-					adao.insertAlarm(ab);
-				}
-			}else if(rank.equals("plus")){
-				if(money>=10000000){
-					sql.append("'premium'");
-					ab.setContent("등급이  premium으로 상승하셨습니다!");
-					ab.setId(sns_id);
-					ab.setMove("RankUp.al?rank="+"premium");
-					adao.insertAlarm(ab);
-				}else if(money<5000000){
-					sql.append("'basic'");
-					ab.setContent("등급이 basic으로 내려가셨어요ㅠㅠ");
-					ab.setId(sns_id);
-					ab.setMove("RankDown.al?rank="+"basic");
-					adao.insertAlarm(ab);
-				}
-			}else{
-				sql.append("'premium'");
-				if(money<10000000){
-					sql.append("'plus'");
-					ab.setContent("등급이  plus로 내려가셨어요ㅠㅠ");
-					ab.setId(sns_id);
-					ab.setMove("RankDown.al?rank="+"plus");
-					adao.insertAlarm(ab);
-				}else if(money<5000000){
-					sql.append("'basic'");
-					ab.setContent("등급이 basic으로 내려가셨어요ㅠㅠ");
-					ab.setId(sns_id);
-					ab.setMove("RankDown.al?rank="+"basic");
-					adao.insertAlarm(ab);
-				}
-			}
-			
-			sql.append(" where sns_id = ?");
+			sql = "update sns set rank = ? where sns_id = ?";
 			pstmt = con.prepareStatement(sql.toString());
-			pstmt.setString(1, sns_id);
+			pstmt.setString(1, rank);
+			pstmt.setString(2, sns_id);
 			pstmt.executeUpdate();
 	
 			

@@ -219,7 +219,7 @@ String option_all = "";
 				<tr><th rowspan="<%=list_size+1 %>"  style="width: 150px;">배송상품</th><th>배송상품 이름</th><th>수량</th><th>가격</th></tr>
 	 			<%for(int i=0; i<list_size; i++){ 
 					ProductBean pb = (ProductBean)product_list.get(i);
-					if(option1[i].trim().length()>0){
+/* 					if(option1[i].trim().length()>0){
 						option_all += option1[i]+"/";
 					}
 					if(option2[i].trim().length()>0){
@@ -228,7 +228,7 @@ String option_all = "";
 					if(option3[i].trim().length()>0){
 						option_all += option3[i]+"/";
 					}
-					if(option_all.length()>0) option_all = option_all.substring(0,option_all.length()-1);
+					if(option_all.length()>0) option_all = option_all.substring(0,option_all.length()-1); */
 					%>
 	 				<tr><td><%=pb.getSubject() %>(<%=option_all %>)</td><td><%=amount[i] %></td><td><%=pb.getPrice()*Integer.parseInt(amount[i]) %></td></tr>
 					<%price += pb.getPrice()*Integer.parseInt(amount[i]);} %>

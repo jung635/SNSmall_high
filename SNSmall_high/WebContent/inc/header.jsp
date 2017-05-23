@@ -8,8 +8,8 @@ $(document).ready(function(){
     $("#alarm_btn").click(function(){
         $("#alarm_list").toggle();
     });
-    
-
+    alarm_view(); 
+    alarm_access();
 });
 </script>
 <%
@@ -18,11 +18,6 @@ $(document).ready(function(){
 	String type = (String) session.getAttribute("type");
 %> 
 <script type="text/javascript" src="inc/alarm.js"></script> 
-<script type="text/javascript">
-alarm_view(); 
-alarm_access();
-
-</script>
 		<div class="navbar navbar-inverse navbar-fixed-top" role="banner"> 
 			<div class="container">
 			<div style="position: relative;">
@@ -41,7 +36,7 @@ alarm_access();
 					<div id="alarm_count" style="display: none;"></div>
 					<div id="alarm_list">
 					</div>
-					<div id="alert_box"">
+					<div id="alert_box">
 					</div>
 				</div>
 				<div style="float: right;">				|
@@ -108,7 +103,7 @@ alarm_access();
 						<li class="scroll"><a href="BoardList.bo">Contact</a></li>
 						<%}} %>
 						<li class="scroll"><a href="Price.cl">Price</a></li>
-						<input type="button" value="test" onclick="insert()">
+						<input type="button" value="test" onclick="location.href = 'InsertAction.al'">
 					</div>	
 					</ul> 
 				</div> 

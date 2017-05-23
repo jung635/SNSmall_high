@@ -21,6 +21,12 @@
 <script type="text/javascript">
 var loading= false;
 limit = 20;
+
+$(document).ready(function(){
+	alarmViewMore(limit)
+});
+
+
 alarmViewMore(limit);
 
 $(window).scroll(function() {
@@ -57,10 +63,12 @@ SimpleDateFormat sdf = new SimpleDateFormat("yyyy-mm-dd hh:mm");
 		<div class="row">
             <div class="col-md-3"">
                 <p class="lead"><%=id %></p>
-                <%if(type.equals("vendor")){ %>
-               		<jsp:include page="../inc/myinfo_vendor_left.jsp"/>
-                <%}else{ %>
-                	<jsp:include page="../inc/myinfo_left.jsp"/>
+                <%if(type.equals("client")){ %>
+                	<jsp:include page="../inc/myinfo_client_left.jsp"/>
+                <%}else if(type.equals("vendor")){ %>
+               	 	<jsp:include page="../inc/myinfo_vendor_left.jsp"/>
+                <%}else if(type.equals("sns")){ %>
+                 	<jsp:include page="../inc/myinfo_sns_left.jsp"/>
                 <%} %>
             </div>
             <div class="col-md-9" id="alarm_list_box" style="text-align: center;">

@@ -2,8 +2,8 @@
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
-<!DOCTYPE html>
-<html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html class="csstransforms csstransforms3d csstransitions">
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
@@ -16,20 +16,9 @@
 	<link href="./css/header.css" rel="stylesheet">
 	<link href="./css/inner.css" rel="stylesheet">
 	<link href="./css/main.css" rel="stylesheet">
-	
-	<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
-	<script type="text/javascript">
-	$(document).ready(function() {
-		$('.scroll').click(function(){
-			//alert('hi');
-			  //$('.active').removeClass('active');
-			  $(this).addClass('active');  
-			});
-	}); 
-	
-	</script>
 </head>
 <body>
+<jsp:include page="../inc/header.jsp"/>
 <%
 String category = (String)request.getAttribute("category");
 String order = (String)request.getAttribute("order");
@@ -42,7 +31,6 @@ int start = (Integer)request.getAttribute("start");
 int end = (Integer)request.getAttribute("end");
 List<SnsBean> list = (List<SnsBean>)request.getAttribute("list");
 %>
-<jsp:include page="../inc/header.jsp"/>
 <!-- Page Content -->
 <div class="container">
 	<div class="content">

@@ -166,21 +166,6 @@ Connection con = null;
 		if(con != null){try {con.close();}catch(Exception ex) {}}}
 	}
 	
-	public void  updateToOn(int num){
-		try{
-			con = getConnection();
-
-			sql = "update alarm set state = 'on' where num = ?";
-			pstmt = con.prepareStatement(sql);
-			pstmt.setInt(1, num);
-			pstmt.executeUpdate();
-				
-		}catch (Exception e){e.printStackTrace();}
-		finally {if(rs != null){try {rs.close();} catch (Exception ex) {}}
-		if(pstmt != null){try {pstmt.close();}catch(Exception ex){}}
-		if(con != null){try {con.close();}catch(Exception ex) {}}}
-		
-	}
 	
 	public void  updateToOff(int num){
 		try{
@@ -191,6 +176,21 @@ Connection con = null;
 			pstmt.setInt(1, num);
 			pstmt.executeUpdate();
 				
+		}catch (Exception e){e.printStackTrace();}
+		finally {if(rs != null){try {rs.close();} catch (Exception ex) {}}
+		if(pstmt != null){try {pstmt.close();}catch(Exception ex){}}
+		if(con != null){try {con.close();}catch(Exception ex) {}}}
+		
+	}
+	public void  updateToOn(int num){
+		try{
+			con = getConnection();
+			
+			sql = "update alarm set state = 'on' where num = ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, num);
+			pstmt.executeUpdate();
+			
 		}catch (Exception e){e.printStackTrace();}
 		finally {if(rs != null){try {rs.close();} catch (Exception ex) {}}
 		if(pstmt != null){try {pstmt.close();}catch(Exception ex){}}

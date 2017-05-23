@@ -57,8 +57,8 @@ $(document).ready(function(){
 				</div> 
 				<div class="collapse navbar-collapse" style="height: 70px !important;">
 					<ul class="nav navbar-nav navbar-right">
-						<li class="scroll"><a href="#navigation">Home</a></li>
-						<li class="scroll dropbtn"><a href="ProductList.pr">GoodsList</a>
+						<li class="scroll"><a href="./Main.cl">Home</a></li>
+						<li class="scroll dropbtn"><a href="./ProductList.pr">GoodsList</a>
 							<div class="dropdown-content">
      							<a href="ProductList.pr">전체</a>
      					 		<a href="ProductList.pr?category=fashion">패션</a>

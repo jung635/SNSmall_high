@@ -16,7 +16,7 @@ public class OffAlarmAction implements Action{
 		response.setContentType("text/html; charset=utf-8");
 		PrintWriter out = response.getWriter();
 		ActionForward forward = null;
-		
+		String url = request.getParameter("url");
 		int num = Integer.parseInt(request.getParameter("num"));
 		AlarmDAO adao = new AlarmDAO();
 		adao.updateToOff(num);
@@ -25,17 +25,17 @@ public class OffAlarmAction implements Action{
 		if(ab.getMove().contains("RankUp")){
 			out.println("<script>");
 			out.println("window.open('"+ab.getMove()+"','RankUp', 'width=500, height=500');");
-			out.println("history.back();");
+			out.println("location.href='"+url+"';");
 			out.println("</script>");
 		}else if(ab.getMove().contains("RankDown")){
 			out.println("<script>");
 			out.println("window.open('"+ab.getMove()+"','RankDown', 'width=500, height=500');");
-			out.println("history.back();");
+			out.println("location.href='"+url+"';");
 			out.println("</script>");
 		}else{
 			out.println("<script>");
 			out.println("location.href='"+ab.getMove()+"';");
-			out.println("history.back();");
+			out.println("location.href='"+url+"';");
 			out.println("</script>");
 		}
 		

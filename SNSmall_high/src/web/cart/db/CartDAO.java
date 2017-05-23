@@ -6,10 +6,18 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Properties;
 
+import javax.mail.Message;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
+
 
 public class CartDAO {
 
@@ -24,42 +32,6 @@ Connection con = null;
 	}	//getConnection()
 	
 	
-	public void CartAdd(CartBean cb){
-		Connection con=null;
-		PreparedStatement pstmt=null;
-		ResultSet rs=null;
-		String sql="";
-		int b_num=0;
-		try {
-			//1,2 디비연결
-			con=getConnection();
-			
-			sql="insert into cart values(?,?,?,?,?,?,?,?,?,?,now())";
-			pstmt.setInt(1, cb.getProduct_num());
-			pstmt.setString(2, cb.getSns_id());
-			pstmt.setString(3, cb.getClient_id());
-			pstmt.setString(4, cb.getVendor_id());
-			pstmt.setString(5, cb.getSubject());
-			pstmt.setString(5, cb.getOption1());
-			pstmt.setString(6, cb.getOption2());
-			pstmt.setString(7, cb.getOption3());
-			pstmt.setInt(8, cb.getAmount());
-			pstmt.setInt(9, cb.getPrice());
-			pstmt=con.prepareStatement(sql);
-			
-			pstmt.executeUpdate();
-			
-			
-			
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-		}finally{
-			if(rs!=null)try{rs.close();}catch(SQLException ex){}
-			if(pstmt!=null)try{pstmt.close();}catch(SQLException ex){}
-			if(con!=null)try{con.close();}catch(SQLException ex){}
-		}
-	}
 	PreparedStatement pstmt = null;
 	String sql = "";
 	ResultSet rs = null;
@@ -89,7 +61,6 @@ public List<CartBean> getCartList(String client_id){
 				pstmt2=con.prepareStatement(sql);
 				
 				int product_num = rs.getInt("product_num");
-				System.out.println(product_num);
 				pstmt2.setInt(1, product_num);
 				
 				
@@ -98,9 +69,8 @@ public List<CartBean> getCartList(String client_id){
 				if(rs2.next()){
 				CartBean cb = new CartBean();
 				
-				cb.setClient_id(client_id);
 				cb.setProduct_num(rs.getInt("product_num"));
-				cb.setSns_id(rs.getString("sns_id"));
+				//cb.setSns_id(rs.getString("sns_id"));
 				cb.setVendor_id(rs.getString("vendor_id"));
 				//cb.setMain_img();
 				cb.setAmount(rs.getInt("amount"));
@@ -127,5 +97,36 @@ public List<CartBean> getCartList(String client_id){
 		
 		return CartList;
 	}
+
+	//장바구니에 추가하기
+	public void CartAdd(CartBean cb){
+		try{
+			con = getConnection();
+			
+			
+			
+			sql = "insert into cart values(?,?,?,?,?,?,?,?,?,now())";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, cb.getProduct_num());
+			pstmt.setString(2, cb.getSns_id());
+			pstmt.setString(3, cb.getClient_id());
+			pstmt.setString(4, cb.getVendor_id());
+			pstmt.setString(5, cb.getOption1());
+			pstmt.setString(6, cb.getOption2());
+			pstmt.setString(7, cb.getOption3());
+			pstmt.setInt(8, cb.getAmount());
+			pstmt.setInt(9, cb.getPrice());
+			
+			pstmt.executeUpdate();
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally {
+			if(rs!=null){try {rs.close();}catch(SQLException ex){}}
+			if(pstmt!=null){try {pstmt.close();}catch(SQLException ex){}}
+			if(con!=null){try {con.close();}catch(SQLException ex) {}}
+		}
+
+	}
+
 	
 }

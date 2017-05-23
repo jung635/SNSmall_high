@@ -21,7 +21,7 @@ int limit = 0;%>
 
 <%for(int i=0; i<limit; i++){
 		map = list.get(i);%>
-	<div id="alarm" style="top: <%=i*65+30%>px;"><a href="OffAlarm.al?num=<%=map.get("num")%>"><%=map.get("content") %></a><div style="float:right;"><input type="button" value="X" onclick="location.href='OnAlarm.al?num=<%=map.get("num")%>'"></div></div><br>
+	<div id="alarm" style="top: <%=i*65+30%>px;"><a href="#" onclick="offAlarm(<%=map.get("num")%>)"><%=map.get("content") %></a><div style="float:right;"><input type="button" value="X" onclick="onAlarm(<%=map.get("num")%>)"></div></div><br>
 <%} %>
 <%if(list.size()>5){%>
 <input type="button" value="더보기">

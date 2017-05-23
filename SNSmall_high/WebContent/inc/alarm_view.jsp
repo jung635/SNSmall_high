@@ -26,7 +26,7 @@ int limit = 0;
 		color = "rgba(255, 255, 255, 0)";
 	}
 %>
-	<li style="background-color: <%=color%>"><a href="OffAlarm.al?num=<%=map.get("num")%>"><%=map.get("content")%></a> </li>
+	<li style="background-color: <%=color%>"><a href="#" onclick="offAlarm(<%=map.get("num")%>)"><%=map.get("content")%></a> </li>
 <%} %> 
 </ul>
 <%if(list.size()>5){%>

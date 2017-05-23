@@ -1,24 +1,23 @@
+<%@page import="web.product.db.ProductDAO"%>
+<%@page import="web.product.db.ProductBean"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.List"%>
 <%@page import="web.cart.db.CartDAO"%>
 <%@page import="web.cart.db.CartBean"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+    pageEncoding="EUC-KR"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
-	<meta name="description" content="Creative One Page Parallax Template">
-	<meta name="keywords" content="Creative, Onepage, Parallax, HTML5, Bootstrap, Popular, custom, personal, portfolio" /> 
-	<meta name="author" content=""> 
+<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+
 	<title>HIMU - OnePage HTML Parallax template</title> 
 	<link href="./css/bootstrap.min.css" rel="stylesheet">
 	<link href="./css/header.css" rel="stylesheet">
 	<link href="./css/inner.css" rel="stylesheet">
 	<link href="./css/main.css" rel="stylesheet"> 
 <title>Insert title here</title>
-<!-- ì²´í¬ë°•ìŠ¤ì— ì²´í¬ê°€ ë˜ì–´ìˆìœ¼ë©´ functionì—ì„œ í•©ì³ì„œ í•©ê°€ê²© ë¦¬í„´  -->
+<!-- Ã¼Å©¹Ú½º¿¡ Ã¼Å©°¡ µÇ¾îÀÖÀ¸¸é function¿¡¼­ ÇÕÃÄ¼­ ÇÕ°¡°İ ¸®ÅÏ  -->
 
 <script type="text/javascript">
 function myfunction(){
@@ -60,12 +59,15 @@ String type = (String)session.getAttribute("type");
 <%
 List<CartBean> cblist = new ArrayList<CartBean>();
 %>
-<form action="Pay.pa" method="post" name="form1" enctype="multipart/form-data">
+<form action="Pay.pa" method="post" name="form1">
 
 <%
 int sum=0;
 
 List cl = (List)request.getAttribute("CartList"); 
+
+ProductDAO pdao = new ProductDAO();
+
 
 
 String client_id ="";
@@ -80,16 +82,16 @@ for(int i=0;i<cl.size();i++){
 	CartBean cb = (CartBean)cl.get(i);
 
 	int price=cb.getPrice();
-	
+	ProductBean prob = pdao.getProduct(cb.getProduct_num()); 
 %>
 
 <input type="checkbox" name="check" value="<%=cb.getPrice()%>" onchange="myfunction()" checked>
 
-<!-- ì¥ë°”êµ¬ë‹ˆ ì •ë³´ -->
-<a href="Detail2.pr">
-ë¬¼í’ˆ ë²ˆí˜¸:<%=cb.getProduct_num() %>
-ì´ë¯¸ì§€:<input type="file" value="<%=cb.getMain_img() %>">
-í’ˆëª…:<%=cb.getSubject()%>
+<!-- Àå¹Ù±¸´Ï Á¤º¸ -->
+<a href="ProductDetail.pr?product_num=<%=prob.getProduct_num() %>">
+¹°Ç° ¹øÈ£:<%=cb.getProduct_num() %>
+ÀÌ¹ÌÁö:<img src="./vendor_img/<%=prob.getMain_img() %>">
+Ç°¸í:<%=cb.getSubject()%>
 <%if(cb.getOption1()!=null){
 	%>/<%=cb.getOption1()%>
 	
@@ -98,16 +100,17 @@ for(int i=0;i<cl.size();i++){
 	<%}if(cb.getOption3()!=null){%>
 		/<%=cb.getOption3() %><%
 	}
+
 %>
 
-ìˆ˜ëŸ‰:<%=cb.getAmount() %>
-ê°€ê²©:<%=cb.getPrice() %>
-íŒë§¤ì ì•„ì´ë”” :<%=cb.getVendor_id() %>
-êµ¬ë§¤ì ì•„ì´ë”” :<%=cb.getClient_id()%>
+¼ö·®:<%=cb.getAmount() %>
+°¡°İ:<%=cb.getPrice() %>
+ÆÇ¸ÅÀÚ ¾ÆÀÌµğ :<%=cb.getVendor_id() %>
+±¸¸ÅÀÚ ¾ÆÀÌµğ :<%=cb.getClient_id()%>
 </a>
-<a href="./Cart_Delete.ca?product_num=<%=cb.getProduct_num()%>"><input type="button" name="delete" value="ì‚­ì œ"></a>
+<a href="./Cart_Delete.ca?product_num=<%=cb.getProduct_num()%>"><input type="button" name="delete" value="»èÁ¦"></a>
 <br>
-<!-- ì •ë³´ ë -->
+<!-- Á¤º¸ ³¡ -->
 
 <%client_id += cb.getClient_id()+","; 
 product_num += cb.getProduct_num()+","; 
@@ -126,11 +129,10 @@ option3 += cb.getOption3()+",";
 
  <br>
 <%sum = sum+price;} 
-System.out.print(sns_id);
 %>
 
 <br>
-ì´ê°€ê²© :<span id="price"><%=sum %></span>
+ÃÑ°¡°İ :<span id="price"><%=sum %></span>
 <input type="hidden" name = "client_id" value="<%=client_id%>">
 <input type="hidden" name = "product_num" value="<%=product_num%>">
 <input type="hidden" name = "amount" value="<%=amount%>">
@@ -141,10 +143,10 @@ System.out.print(sns_id);
 <input type="hidden" name = "option3" value="<%=option3%>">
 <%
 
-//ì²´í¬ê°€ ë˜ì–´ìˆìœ¼ë©´ í•©í•˜ê¸° ì•„ë‹ˆë©´ í•©í•˜ê¸° X
+//Ã¼Å©°¡ µÇ¾îÀÖÀ¸¸é ÇÕÇÏ±â ¾Æ´Ï¸é ÇÕÇÏ±â X
 %>
  <br>
-	<input type="submit" value="ê²°ì œí•˜ê¸°">
+	<input type="submit" value="°áÁ¦ÇÏ±â">
  </form>
 </div>
 </div>

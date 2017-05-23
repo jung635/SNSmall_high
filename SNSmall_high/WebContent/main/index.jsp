@@ -1,6 +1,6 @@
+<%@page import="web.blog.db.BlogDAO"%>
 <%@page import="web.blog.db.BlogBean"%>
 <%@page import="java.text.SimpleDateFormat"%>
-<%@page import="web.blog.db.BlogDAO"%>
 <%@page import="web.sns.db.SnsBean"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=EUC-KR"

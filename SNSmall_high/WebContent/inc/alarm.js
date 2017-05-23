@@ -46,5 +46,16 @@ function alert_view(alarm_msg){
 	document.getElementById("alert_box").innerHTML = alarm_msg;
 }
 
+function onAlarm(num){
+	url = location.href;
+	location.href='OnAlarm.al?num='+num+'&url='+url;
+}
+
+function offAlarm(num){
+	url = location.href;
+	location.href='OffAlarm.al?num='+num+'&url='+url;
+}
+
+
 
 

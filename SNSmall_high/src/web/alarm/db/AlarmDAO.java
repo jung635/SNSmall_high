@@ -30,7 +30,7 @@ Connection con = null;
 	String sql = "";
 	ResultSet rs = null;
 	
-/*	public List<Map<String, Object>> showAlarm(String id){
+	public List<Map<String, Object>> showAlarm(String id){
 		Map<String, Object> map = null;
 		List<Map<String, Object>> list = new ArrayList<>();
 		try{
@@ -56,7 +56,7 @@ Connection con = null;
 		if(pstmt != null){try {pstmt.close();}catch(Exception ex){}}
 		if(con != null){try {con.close();}catch(Exception ex) {}}}
 		return list;
-	}*/
+	}
 	public List<Map<String, Object>> alarmList(String id, int limit){
 		Map<String, Object> map = null;
 		List<Map<String, Object>> list = new ArrayList<>();

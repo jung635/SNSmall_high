@@ -19,6 +19,8 @@ public class AlarmViewAction implements Action{
 		AlarmDAO adao = new AlarmDAO();
 		Map<String, Object> map = null;
 		List<Map<String, Object>> list = adao.alarmList(id);
+		List<Map<String, Object>> list_nowon = adao.showAlarm(id);
+		
 		if(list.isEmpty()){
 			
 		}else{
@@ -27,6 +29,7 @@ public class AlarmViewAction implements Action{
 			}
 			if(id.equals(map.get("id"))) {
 				request.setAttribute("list", list);
+				request.setAttribute("list_nowon", list_nowon);
 		    }
 		}
 		}

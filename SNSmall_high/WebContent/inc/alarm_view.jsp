@@ -5,6 +5,7 @@
 <html>
 <body>
 <%List<Map<String, Object>> list = (List)request.getAttribute("list"); 
+List<Map<String, Object>> list_nowon = (List)request.getAttribute("list_nowon"); 
 Map<String, Object> map = null;
 String color = "";
 int limit = 0;
@@ -15,7 +16,7 @@ int limit = 0;
 	<%}else{
 	if(list.size()<5) limit = list.size();
 	else limit = 5;%>
-<div id="alarm_count_in" style="display: none;"><%=list.size() %></div>
+<div id="alarm_count_in" style="display: none;"><%=list_nowon.size() %></div>
 <ul id="list_view_ul">
 <%for(int i=0; i<limit; i++){
 	map = list.get(i);

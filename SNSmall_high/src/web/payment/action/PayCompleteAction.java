@@ -174,26 +174,6 @@ public class PayCompleteAction implements Action {
 						ab.setMove("RankUp.al?rank="+"premium");
 						adao.insertAlarm(ab);
 						pdao.rankUpdate(sns_id[i], "premium");
-					}else if(money<5000000){
-						ab.setContent("등급이 basic으로 내려가셨어요ㅠㅠ");
-						ab.setId(sns_id[i]);
-						ab.setMove("RankDown.al?rank="+"basic");
-						adao.insertAlarm(ab);
-						pdao.rankUpdate(sns_id[i], "basic");
-					}
-				}else{
-					if(money<10000000){
-						ab.setContent("등급이  plus로 내려가셨어요ㅠㅠ");
-						ab.setId(sns_id[i]);
-						ab.setMove("RankDown.al?rank="+"plus");
-						adao.insertAlarm(ab);
-						pdao.rankUpdate(sns_id[i], "plus");
-					}else if(money<5000000){
-						ab.setContent("등급이 basic으로 내려가셨어요ㅠㅠ");
-						ab.setId(sns_id[i]);
-						ab.setMove("RankDown.al?rank="+"basic");
-						adao.insertAlarm(ab);
-						pdao.rankUpdate(sns_id[i], "basic");
 					}
 				}
 				

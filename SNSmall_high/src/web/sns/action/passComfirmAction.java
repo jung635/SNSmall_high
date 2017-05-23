@@ -33,8 +33,8 @@ public class passComfirmAction implements Action{
 		
 		SnsDAO sdao = new SnsDAO();
 		int check= sdao.passCheck(id, pass);
-		
-		if(check==0){
+		System.out.println(check);
+		if(check==-1){
 			response.setContentType("text/html; charset=UTF-8");
 			PrintWriter out=response.getWriter();
 			out.println("<script>");

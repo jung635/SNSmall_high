@@ -79,7 +79,7 @@ public class SnsFrontController extends HttpServlet{
 	 			forward=action.execute(request, response);
 	 		}catch(Exception e){e.printStackTrace();}
 	 		
-		}else if(command.equals("/passChangeAction")){
+		}else if(command.equals("/passChangeAction.sn")){
 			action = new passChangeAction();
 	 		try{
 	 			forward=action.execute(request, response);

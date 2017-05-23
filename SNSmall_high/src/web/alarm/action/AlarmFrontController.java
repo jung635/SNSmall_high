@@ -71,6 +71,13 @@ public class AlarmFrontController extends HttpServlet {
 			forward = new ActionForward();
 			forward.setPath("./mypage/alarmList.jsp");
 			forward.setRedirect(false);
+		} else if (command.equals("/OnAlarm.al")) {
+			action = new OnAlarmAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		} 
 	
 		if (forward != null) {

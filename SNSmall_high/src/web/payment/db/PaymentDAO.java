@@ -398,8 +398,9 @@ Connection con = null;
 
 		return pb;
 	}
-	public PaymentBean getPaymentByOrderNum(String order_num) {
+	public List<PaymentBean> getPaymentByOrderNum(String order_num) {
 		PaymentBean pb = null;
+		List<PaymentBean> list = new ArrayList<>();
 		try {
 			con = getConnection();
 			sql = "select * from payment where order_num = ?";
@@ -423,6 +424,8 @@ Connection con = null;
 				pb.setNum(rs.getInt("num"));
 				pb.setUsedPoint(rs.getInt("usedPoint"));
 				pb.setClient_id(rs.getString("client_id"));
+				
+				list.add(pb);
 			}
 			
 		} catch(Exception e){e.printStackTrace();}
@@ -430,7 +433,7 @@ Connection con = null;
 		if(pstmt!=null){try{pstmt.close();}catch(SQLException ex){}}
 		if(con!=null){try{con.close();}catch(SQLException ex){}}}
 		
-		return pb;
+		return list;
 	}
 
 	public List<PaymentBean> getPaymentById(String client_id) {

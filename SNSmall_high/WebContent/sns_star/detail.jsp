@@ -18,7 +18,7 @@
 	<link href="./css/header.css" rel="stylesheet">
 	<link href="./css/inner.css" rel="stylesheet">
 	<link href="./css/main.css" rel="stylesheet"> 
-		<link href="./css/font-awesome.min.css" rel="stylesheet"> 
+	<link href="./css/font-awesome.min.css" rel="stylesheet"> 
 <title>Insert title here</title>
 <style>
 #our-team{

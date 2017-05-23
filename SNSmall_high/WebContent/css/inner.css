@@ -172,6 +172,12 @@ a{
     padding: 18px !important;
     height: 375px !important;
 }
+.single-member a{
+	color: rgb(255, 210, 106) !important;
+}
+.single-member small{
+    color: #999 !important;
+}
 #profile_img_wrap{
     min-height: 140px;
     max-height: 169px;

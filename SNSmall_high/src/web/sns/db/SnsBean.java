@@ -15,12 +15,21 @@ public class SnsBean {
 	private int sell;
 	private Date date;
 	private String type;
+<<<<<<< HEAD
+=======
+	private String Instagram;
+>>>>>>> cce7ac4b23b3307f07e01ee7bec557b032c2a266
 	private String facebook;
 	private String instagram;
 	private String blog;
 	private String twitter;
 	private String etc;
 	private String rank;
+<<<<<<< HEAD
+=======
+	
+
+>>>>>>> cce7ac4b23b3307f07e01ee7bec557b032c2a266
 	public String getSns_id() {
 		return sns_id;
 	}

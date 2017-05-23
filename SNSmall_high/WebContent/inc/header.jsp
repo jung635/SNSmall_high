@@ -1,30 +1,57 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<link href="./css/font-awesome.min.css" rel="stylesheet"> 
 <header id="navigation">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+    $("#alarm_btn").click(function(){
+        $("#alarm_list").toggle();
+    });
+    
+
+});
+</script>
 <%
 	String id = (String) session.getAttribute("id");
 	String name = (String) session.getAttribute("name");
 	String type = (String) session.getAttribute("type");
 %> 
+<script type="text/javascript" src="inc/alarm.js"></script> 
+<script type="text/javascript">
+alarm_view(); 
+alarm_access();
+
+</script>
 		<div class="navbar navbar-inverse navbar-fixed-top" role="banner"> 
 			<div class="container">
+			<div style="position: relative;">
 			
 			<!-- 로그인/조인 부분 수정 --> 
 				<%if(id==null){ %>
-				<div style="float: right;;">				|
-				<span><a href="./common_join.sn">Join</a> </span> 
+				<div style="float: right;">				|
+					<span><a href="./common_join.sn">Join</a> </span> 
 				</div>
-				<div style="float: right;;">
-				<span><a href="./login.cl">Login &nbsp;</a></span>
+				<div style="float: right;">
+					<span><a href="./login.cl">Login &nbsp;</a></span>
 				</div>
 				<%}else{ %>
-				<div style="float: right;;">				|
-				<span><a href="./logOut.cl">Logout</a></span> 
+				<div id="alarm_box" style="float: right;">		
+					<div id="alarm_btn"><i class="fa fa-bell" aria-hidden="true"></i></div> 
+					<div id="alarm_count" style="display: none;"></div>
+					<div id="alarm_list">
+					</div>
+					<div id="alert_box"">
+					</div>
 				</div>
-				<div style="float: right;;">
-				<span><a href="#"><%=name %>&nbsp;</a> </span>				
+				<div style="float: right;">				|
+					<span><a href="./logOut.cl">Logout</a></span> 
+				</div>
+				<div style="float: right;">
+					<span><a href="#"><%=name %>&nbsp;</a> </span>				
 				</div>
 				<%} %>
+				</div>
 			<!-- 로그인/조인 부분 수정 -->
 			
 				<div class="navbar-header"> 
@@ -81,6 +108,8 @@
 						<li class="scroll"><a href="BoardList.bo">Contact</a></li>
 						<%}} %>
 						<li class="scroll"><a href="Price.cl">Price</a></li>
+						<input type="button" value="test" onclick="insert()">
+					</div>	
 					</ul> 
 				</div> 
 			</div> 

@@ -98,6 +98,7 @@
   </servlet-mapping>
   
   <servlet>
+<<<<<<< HEAD
   	<servlet-name>BoardFrontController</servlet-name>
   	<servlet-class>web.board.action.BoardFrontController</servlet-class>
   </servlet>
@@ -114,6 +115,16 @@
   	<servlet-name>ReplyFrontController</servlet-name>
   	<url-pattern>*.re</url-pattern>
   </servlet-mapping>
+=======
+  	<servlet-name>AlarmFrontController</servlet-name>
+  	<servlet-class>web.alarm.action.AlarmFrontController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>AlarmFrontController</servlet-name>
+  	<url-pattern>*.al</url-pattern>
+  </servlet-mapping>
+  
+>>>>>>> cce7ac4b23b3307f07e01ee7bec557b032c2a266
 
   
 </web-app>

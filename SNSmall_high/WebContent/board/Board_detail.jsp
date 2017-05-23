@@ -102,6 +102,7 @@
 					<form action="./replyAction.re" method="post" name="fr">
 					<input type="hidden" name="re_ref" value="<%=bb.getNum()%>">
 					<input type="hidden" name="id" value="<%=id%>">
+					<input type="hidden" name="to_id" value="<%=bb.getId()%>">
 					
 					<table>
 					<tr><td>댓글 입력란</td></tr>

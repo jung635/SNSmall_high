@@ -34,10 +34,10 @@ if(request.getParameter("option1")!=null){
 	option1_str = request.getParameter("option1");
 }
 if(request.getParameter("option2")!=null){
-	option1_str = request.getParameter("option1");
+	option2_str = request.getParameter("option2");
 }
 if(request.getParameter("option3")!=null){
-	option1_str = request.getParameter("option1");
+	option3_str = request.getParameter("option3");
 }
 
 String snsId_str = request.getParameter("sns_id");
@@ -186,7 +186,10 @@ ProductDAO pdao = new ProductDAO();
 List<ProductBean> product_list = pdao.getProduct(product_str);
 int list_size = product_list.size(); 
 int price=0;
-String option_all = "";
+
+//System.out.println("op1: "+option1.length);
+//System.out.println("op2: "+option2[1]);
+//System.out.println("op3: "+option3[1]);
 %>
 
 <div class="container">
@@ -218,17 +221,18 @@ String option_all = "";
 			<table id="product" border="1">
 				<tr><th rowspan="<%=list_size+1 %>"  style="width: 150px;">배송상품</th><th>배송상품 이름</th><th>수량</th><th>가격</th></tr>
 	 			<%for(int i=0; i<list_size; i++){ 
+	 				String option_all = "";
 					ProductBean pb = (ProductBean)product_list.get(i);
-					if(option1[i].trim().length()>0){
+ 					if(i<option1.length && option1[i].trim().length()>0){
 						option_all += option1[i]+"/";
 					}
-					if(option2[i].trim().length()>0){
+					if(i<option2.length && option2[i].trim().length()>0){
 						option_all += option2[i]+"/";
 					}
-					if(option3[i].trim().length()>0){
+					if(i<option2.length && option3[i].trim().length()>0){
 						option_all += option3[i]+"/";
 					}
-					if(option_all.length()>0) option_all = option_all.substring(0,option_all.length()-1);
+					if(option_all.length()>0) option_all = option_all.substring(0,option_all.length()-1); 
 					%>
 	 				<tr><td><%=pb.getSubject() %>(<%=option_all %>)</td><td><%=amount[i] %></td><td><%=pb.getPrice()*Integer.parseInt(amount[i]) %></td></tr>
 					<%price += pb.getPrice()*Integer.parseInt(amount[i]);} %>

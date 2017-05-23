@@ -60,12 +60,6 @@ array=s.split(",");
 <legend>total sale</legend>
 <table>
 <tr> <td>rank</td><td><%=sb.getRank() %></td> </tr>
-<table>
-<tr> <td></td><td></td> </tr>
-<tr> <td></td><td></td> </tr>
-</table>
-<legend>total sale</legend>
-<table>
 <tr> <td>sell</td><td><%=sb.getSell() %></td> </tr>
 <tr> <td>profit</td><td><%=sb.getSns_profit() %></td> </tr>
 </table>

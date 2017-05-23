@@ -142,7 +142,6 @@ option3 += cb.getOption3()+",";
 <input type="hidden" name = "option2" value="<%=option2%>">
 <input type="hidden" name = "option3" value="<%=option3%>">
 <%
-
 //체크가 되어있으면 합하기 아니면 합하기 X
 %>
  <br>

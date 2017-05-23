@@ -89,6 +89,5 @@ public class CartBean {
 	public void setDate(Date date) {
 		this.date = date;
 	}
-
 	
 }

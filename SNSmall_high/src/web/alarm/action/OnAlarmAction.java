@@ -5,6 +5,7 @@ import java.io.PrintWriter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import web.alarm.db.AlarmBean;
 import web.alarm.db.AlarmDAO;
 
 public class OnAlarmAction implements Action {
@@ -14,14 +15,15 @@ public class OnAlarmAction implements Action {
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html; charset=utf-8");
 		PrintWriter out = response.getWriter();
-
 		int num = Integer.parseInt(request.getParameter("num"));
 		AlarmDAO adao = new AlarmDAO();
+		AlarmBean ab = adao.getAlarmByNum(num);
+		System.out.println(ab.getState());
 		adao.updateToOn(num);
-
 		out.println("<script>");
 		out.println("history.back();");
 		out.println("</script>");
+		
 
 		return null;
 	}

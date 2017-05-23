@@ -5,11 +5,11 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){
+    alarm_view(); 
+    alarm_access(); 
     $("#alarm_btn").click(function(){
         $("#alarm_list").toggle();
     });
-    alarm_view(); 
-    alarm_access();
 });
 </script>
 <%

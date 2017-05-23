@@ -32,8 +32,10 @@ public class AlarmAction implements Action {
 						adao.updateToOn((int) map.get("num"));
 					}
 					request.setAttribute("list", list);
-				} else if ((System.currentTimeMillis() - timestamp.getTime()) > 4 * 1000) {
-					adao.updateToOn((int) map.get("num"));
+				} else{
+					if((System.currentTimeMillis() - timestamp.getTime()) > 4 * 1000){ 
+						adao.updateToOn((int) map.get("num"));
+					}
 				}
 			}
 		}

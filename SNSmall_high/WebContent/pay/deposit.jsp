@@ -1,3 +1,4 @@
+<%@page import="java.util.Calendar"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.Date"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -31,8 +32,11 @@ String[] option3 = option3_str.split(",");
 String method = request.getParameter("method");
 %>
 <%
-Date date = new Date();
-date.setDate(date.getDate()+1);
+/* Date date = new Date();
+date.setDate(date.getDate()+1); */
+Calendar today = Calendar.getInstance ( );
+today.add ( Calendar.DATE, 1 );
+Date tomorrow = today.getTime ( );
 SimpleDateFormat sdf = new SimpleDateFormat("yyyy년 MM월 dd일 hh시mm분 까지");
 %>
 <form action="PayCompleteAction.pa" name="fr">
@@ -60,7 +64,7 @@ SimpleDateFormat sdf = new SimpleDateFormat("yyyy년 MM월 dd일 hh시mm분 까�
   		</td>
 	</tr>
  	<tr>
- 		<td>입금 기한</td><td><%=sdf.format(date) %></td>
+ 		<td>입금 기한</td><td><%=sdf.format(tomorrow) %></td>
  	<tr>
 </table>
 

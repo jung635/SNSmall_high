@@ -156,7 +156,7 @@ Connection con = null;
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, max+1);
 			pstmt.setString(2, ab.getContent());
-			pstmt.setString(3, "abc");
+			pstmt.setString(3, ab.getId());
 			pstmt.setString(4, ab.getMove());
 			pstmt.executeUpdate();
 				

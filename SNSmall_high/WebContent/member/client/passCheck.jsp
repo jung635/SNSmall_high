@@ -41,7 +41,7 @@
         
             <div class="col-md-3">
 <%--                 <p class="lead"><%=id %></p> --%>
-                <jsp:include page="../../inc/myinfo_left.jsp"/>               
+                <jsp:include page="../../inc/myinfo_client_left.jsp"/>               
             </div>
             <div class="col-md-9">
                 <!-- 메인 내용 -->

@@ -102,10 +102,11 @@ alarm_access();
 						<li class="scroll"><a href="MyPage.ve">MyPage</a></li>
 						<%}else if(type.equals("sns")){%>
 						<li class="scroll"><a href="MyPage.sn">MyPage</a></li>
-						<%}} %>
+						<%} %>
 					<!-- vendor,client,sns mypage 구분 -->
-					
-						<li class="scroll"><a href="#">Contact</a></li>
+						<%if(type.equals("vendor") || type.equals("sns")){ %>
+						<li class="scroll"><a href="BoardList.bo">Contact</a></li>
+						<%}} %>
 						<li class="scroll"><a href="Price.cl">Price</a></li>
 						<input type="button" value="test" onclick="insert()">
 					</div>	

@@ -39,7 +39,7 @@ vendor</a></span>
             </div>
             <div class="col-lg-4 col-sm-6 text-center">
                 <a href="clientJoin.cl">
-                	<img class="img-circle img-responsive img-center" src="http://placehold.it/200x200" alt="">
+                	<img class="img-circle img-responsive img-center" src="images/join/custom2.gif" alt="">
                 </a>
                 	<h3>일반회원
                  		<small>Client</small>
@@ -49,7 +49,7 @@ vendor</a></span>
             </div>
             <div class="col-lg-4 col-sm-6 text-center">
             	<a href="vendorJoin.ve">
-               		<img class="img-circle img-responsive img-center" src="http://placehold.it/200x200" alt="">
+               		<img class="img-circle img-responsive img-center" src="images/join/vendor2.gif" alt="">
                	</a>
                 <h3>판매자
                     <small>Vender</small>
@@ -58,7 +58,7 @@ vendor</a></span>
             </div>
             <div class="col-lg-4 col-sm-6 text-center">
                 <a href="sns_join.sn">
-                	<img class="img-circle img-responsive img-center" src="http://placehold.it/200x200" alt="">
+                	<img class="img-circle img-responsive img-center" src="images/join/sns2.gif" alt="">
                 </a> 
                 	<h3>SNS Celeb
                     	<small>SNS Celebrity</small>

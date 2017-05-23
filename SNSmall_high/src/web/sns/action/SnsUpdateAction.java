@@ -20,7 +20,7 @@ public class SnsUpdateAction implements Action{
 		
 		System.out.println("업뎃");
 		
-		String realPath = request.getRealPath("/member/sns/sns_pro_upload");
+		String realPath = request.getRealPath("/sns_pro_upload");
 		System.out.println("물리적경로:"+realPath);
 		int maxSize = 5*1024*1024;
 		MultipartRequest multi = 
@@ -42,6 +42,20 @@ public class SnsUpdateAction implements Action{
 		sb.setName(multi.getParameter("name"));
 		sb.setCategory(multi.getParameter("myselect"));
 		sb.setContent(multi.getParameter("content")); 
+		
+//		if(!(multi.getParameter("instagram_ac").equals(""))){
+//			sb.setInstagram(multi.getParameter("instagram_ac"));
+//		}else if(!(multi.getParameter("instagram_ac2").equals(""))){
+//			sb.setInstagram(multi.getParameter("instagram_ac2"));
+//		}else if((multi.getParameter("instagram_ac").equals(""))&&(multi.getParameter("instagram_ac2").equals(""))){
+//			sb.setInstagram(multi.getParameter("instagram_ac2"));
+//		}
+		
+		sb.setInstagram(multi.getParameter("instagram_ac"));
+		sb.setFacebook(multi.getParameter("facebook_ac"));
+		sb.setTwitter(multi.getParameter("twitter_ac"));
+		sb.setBlog(multi.getParameter("blog_ac"));
+		sb.setEtc(multi.getParameter("etc_ac"));
 		
 		session.setAttribute("name", multi.getParameter("name"));
 		
@@ -74,7 +88,7 @@ public class SnsUpdateAction implements Action{
 		
 		sdao.SnsUpdate(sb, id);
 		
-		forward.setPath("./SnsInfo.sn");
+		forward.setPath("./MyPage.sn");
 		forward.setRedirect(true);
 		
 		return forward;		 

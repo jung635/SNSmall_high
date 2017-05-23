@@ -15,7 +15,6 @@ public class SnsBean {
 	private int sell;
 	private Date date;
 	private String type;
-	private String Instagram;
 	private String facebook;
 	private String instagram;
 	private String blog;

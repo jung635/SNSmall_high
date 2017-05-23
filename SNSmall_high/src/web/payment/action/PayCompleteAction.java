@@ -1,13 +1,20 @@
 package web.payment.action;
 
 import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import web.alarm.db.AlarmBean;
+import web.alarm.db.AlarmDAO;
 import web.payment.db.PaymentBean;
 import web.payment.db.PaymentDAO;
 import web.product.db.ProductBean;
@@ -68,6 +75,7 @@ public class PayCompleteAction implements Action {
 		Double price_result = 0d;
 		List<PaymentBean> list_pb = new ArrayList<>();
 		List<PaymentBean> list_sns = new ArrayList<>();
+
 		
 		for (int i = 0; i < amount.length; i++) {
 			int point_each = 0;
@@ -154,6 +162,43 @@ public class PayCompleteAction implements Action {
 		}
 		
 		if(method.equals("deposit")){
+			Calendar today = Calendar.getInstance ( );
+			today.add ( Calendar.DATE, 1 );
+			Date tomorrow = today.getTime ( );
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy년 MM월 dd일 hh시mm분");
+			String day = sdf.format(tomorrow);
+			System.out.println(day);
+			
+			Timer timer = new Timer();
+			TimerTask t_task = new TimerTask() {
+				@Override
+				public void run() {
+					for(int i=0; i<product.length; i++){
+						List<PaymentBean> list_depositPb = pdao.getPaymentByOrderNum(merchant_uid);
+						for(int j=0; j<list_depositPb.size(); j++){
+							PaymentBean pb_deposit = list_depositPb.get(j);
+							if(pb_deposit.getState().equals("waiting")){
+								pdao.deletePay(pb_deposit.getNum());
+								pdao.addPoint(pb_deposit.getUsedPoint(), pb_deposit.getClient_id());
+								pdao.addAmount(pb_deposit.getAmount(), pb_deposit.getProduct_num());
+								System.out.println("무통장 입금이 안되 주문이 취소됨");
+								AlarmBean ab = new AlarmBean();
+								ab.setContent("무통장 입금이 안되 주문이 취소되었습니다.");
+								ab.setId(id);
+								ab.setMove("PayList.pa");
+								AlarmDAO adao = new AlarmDAO();
+								adao.insertAlarm(ab);
+							}
+						}
+						
+						
+					}
+					
+				}
+			};
+			
+			timer.schedule(t_task, (long) 1000 * 60 * 60 * 24 );
+			
 			out.println("<script>");
 			out.println("alert('주문이 완료되었습니다.');");
 			out.println("window.opener.location.href='PayDone.pa?merchant_uid=" + merchant_uid + "';");

@@ -71,7 +71,8 @@
 					<%
 					if(id.equals(bb.getId())&&id!=null){
 					%>
-					 | <a href="">수정</a> | <a href="">삭제</a>
+					 | <a href="./BoardUpdateForm.bo?num=<%=bb.getNum() %>">수정</a>
+					  | <a href="./BoardDelete.bo?num=<%=bb.getNum() %>"">삭제</a>
 					
 					<%
 					}

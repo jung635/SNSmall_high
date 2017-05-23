@@ -132,4 +132,40 @@ public class BoardDAO {
 		return bb;		
 	}// getBoard() end
 	
+	// 글수정
+	public void updateBoard(BoardBean bb){
+		try{
+			con = getConnection();			
+			sql = "update board set subject=?, content=? where num=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, bb.getSubject());
+			pstmt.setString(2, bb.getContent());
+			pstmt.setInt(3, bb.getNum());
+			pstmt.executeUpdate();			
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally{
+			if (rs != null) {try {rs.close();} catch (SQLException ex) {}	}
+			if (pstmt != null) {try {pstmt.close();} catch (SQLException ex) {}}
+			if (con != null) {try {con.close();} catch (SQLException ex) {	}}
+		}
+	}//updateBoard() END
+	
+	// 글삭제
+	public void deleteBoard(int num){
+		try{
+			con = getConnection();			
+			sql = "delete from board where num=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, num);
+			pstmt.executeUpdate();			
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally{
+			if (rs != null) {try {rs.close();} catch (SQLException ex) {}	}
+			if (pstmt != null) {try {pstmt.close();} catch (SQLException ex) {}}
+			if (con != null) {try {con.close();} catch (SQLException ex) {	}}
+		}
+	}
+	
 }

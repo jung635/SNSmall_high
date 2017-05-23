@@ -98,15 +98,31 @@
   </servlet-mapping>
   
   <servlet>
+  	<servlet-name>BoardFrontController</servlet-name>
+  	<servlet-class>web.board.action.BoardFrontController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>BoardFrontController</servlet-name>
+  	<url-pattern>*.bo</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+  	<servlet-name>ReplyFrontController</servlet-name>
+  	<servlet-class>web.reply.action.ReplyFrontController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>ReplyFrontController</servlet-name>
+  	<url-pattern>*.re</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
   	<servlet-name>AlarmFrontController</servlet-name>
   	<servlet-class>web.alarm.action.AlarmFrontController</servlet-class>
   </servlet>
   <servlet-mapping>
   	<servlet-name>AlarmFrontController</servlet-name>
   	<url-pattern>*.al</url-pattern>
-  </servlet-mapping>
-  
-
+  </servlet-mapping>  
   
 </web-app>
 

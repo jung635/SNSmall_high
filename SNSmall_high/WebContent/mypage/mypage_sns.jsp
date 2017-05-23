@@ -50,6 +50,7 @@ array=s.split(",");
 <tr> <td>카테고리</td><td><%=sb.getCategory() %></td> </tr>
 </table>
 <legend>SNS Acount</legend>
+<<<<<<< HEAD:SNSmall_high/WebContent/mypage/mypage_sns.jsp
 <table class="Snsaccount">
 			<tr> <td>Instagram</td><td> <%if(sb.getInstagram()==null || sb.getInstagram().equals("")){%>미등록<%}else{%><%=sb.getInstagram()%><%}%> </td> </tr>
 			<tr> <td>Facebook</td><td> <%if(sb.getFacebook()==null || sb.getFacebook().equals("")){%>미등록<%}else{%><%=sb.getFacebook()%><%}%> </td> </tr>
@@ -60,6 +61,14 @@ array=s.split(",");
 <legend>total sale</legend>
 <table>
 <tr> <td>rank</td><td><%=sb.getRank() %></td> </tr>
+=======
+<table>
+<tr> <td></td><td></td> </tr>
+<tr> <td></td><td></td> </tr>
+</table>
+<legend>total sale</legend>
+<table>
+>>>>>>> origin/feature/board:SNSmall_high/WebContent/mypage/mypage_sns.jsp
 <tr> <td>sell</td><td><%=sb.getSell() %></td> </tr>
 <tr> <td>profit</td><td><%=sb.getSns_profit() %></td> </tr>
 </table>

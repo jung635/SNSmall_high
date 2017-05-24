@@ -97,7 +97,10 @@
 						<%=replyContent %>
 						</td>
 						<td style="text-align: right;"><%=rb.getDate() %><br>
-						<a href="#">[덧글]</a>						
+						<%if(id != null && id.equals(rb.getId())){%>							
+						[삭제] [수정]
+						<%} %>
+						<a href="#"> [덧글]</a>						
 						</td></tr>
 					</table>					
 					<%

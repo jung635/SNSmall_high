@@ -22,6 +22,11 @@ footer {
 .blog_produce{
 	margin: auto;
 }
+
+.blog_produce_img{
+	background-image: url("");	
+}
+
 .blog_produce__content{
 	background-color: #fff;
 	margin: 20px 15px 15px 0;

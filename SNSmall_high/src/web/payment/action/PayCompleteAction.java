@@ -104,7 +104,7 @@ public class PayCompleteAction implements Action {
 			//사용한 포인트 빼기
 			pdao.subPoint(point_each, id);
 			//amount 빼기
-			if(method.equals("waiting")){
+			if(method.equals("deposit")){
 				pdao.subAmount(pb.getAmount(), pb.getProduct_num());
 			}
 
@@ -221,7 +221,7 @@ public class PayCompleteAction implements Action {
 				}
 			};
 			
-			timer.schedule(t_task, (long) 1000 * 60 * 60 * 24 );
+			timer.schedule(t_task, (long) (1000 * 60 * 60 * 24) - (1000 * 60 *2));
 			
 			out.println("<script>");
 			out.println("alert('주문이 완료되었습니다.');");

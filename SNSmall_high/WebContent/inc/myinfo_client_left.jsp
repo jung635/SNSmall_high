@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=utf-8"
-    pageEncoding="utf-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <div class="list-group">
 	<div id="showbtn">
 		<a href="PayList.pa" class="list-group-item showbtn">내 정보</a>

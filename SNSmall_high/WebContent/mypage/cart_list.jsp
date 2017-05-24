@@ -4,12 +4,12 @@
 <%@page import="java.util.List"%>
 <%@page import="web.cart.db.CartDAO"%>
 <%@page import="web.cart.db.CartBean"%>
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+    pageEncoding="utf-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 
 	<title>HIMU - OnePage HTML Parallax template</title> 
 	<link href="./css/bootstrap.min.css" rel="stylesheet">
@@ -17,7 +17,7 @@
 	<link href="./css/inner.css" rel="stylesheet">
 	<link href="./css/main.css" rel="stylesheet"> 
 <title>Insert title here</title>
-<!-- Ã¼Å©¹Ú½º¿¡ Ã¼Å©°¡ µÇ¾îÀÖÀ¸¸é function¿¡¼­ ÇÕÃÄ¼­ ÇÕ°¡°İ ¸®ÅÏ  -->
+<!-- ì²´í¬ë°•ìŠ¤ì— ì²´í¬ê°€ ë˜ì–´ìˆìœ¼ë©´ functionì—ì„œ í•©ì³ì„œ í•©ê°€ê²© ë¦¬í„´  -->
 
 <script type="text/javascript">
 function myfunction(){
@@ -42,115 +42,111 @@ function myfunction(){
 String type = (String)session.getAttribute("type");
 %>
   <!-- Page Content -->
-  <div class="container">
-    <div class="more_content">
-    <!-- Page Content -->
-        <div class="row">
-        
-            <div class="col-md-3">
-                <p class="lead"><%=id %></p>
-                <%if(type.equals("client")){ %>
-                <jsp:include page="../inc/myinfo_client_left.jsp"/>
-                <%}else if(type.equals("vendor")){ %>
-                <jsp:include page="../inc/myinfo_vendor_left.jsp"/>
-                <%} %>
-            </div>
-            <div class="col-md-9">
-<%
+	<div class="container">
+		<div class="more_content">
+			<!-- Page Content -->
+			<div class="row">
+
+				<div class="col-md-3">
+					<p class="lead"><%=id %></p>
+					<%if(type.equals("client")){ %>
+					<jsp:include page="../inc/myinfo_client_left.jsp" />
+					<%}else if(type.equals("vendor")){ %>
+					<jsp:include page="../inc/myinfo_vendor_left.jsp" />
+					<%} %>
+				</div>
+				<div class="col-md-9">
+					<%
 List<CartBean> cblist = new ArrayList<CartBean>();
 %>
-<form action="Pay.pa" method="post" name="form1">
+					<form action="Pay.pa" method="post" name="form1">
 
-<%
-int sum=0;
+						<%
+							int sum = 0;
 
-List cl = (List)request.getAttribute("CartList"); 
+							List cl = (List) request.getAttribute("CartList");
 
-ProductDAO pdao = new ProductDAO();
+							ProductDAO pdao = new ProductDAO();
 
+							String client_id = "";
+							String product_num = "";
+							String amount = "";
+							String vendor_id = "";
+							String sns_id = "";
+							String option1 = "";
+							String option2 = "";
+							String option3 = "";
+							for (int i = 0; i < cl.size(); i++) {
+								CartBean cb = (CartBean) cl.get(i);
 
+								int price = cb.getPrice();
+								ProductBean prob = pdao.getProduct(cb.getProduct_num());
+						%>
 
-String client_id ="";
-String product_num ="";
-String amount="";
-String vendor_id ="";
-String sns_id="";
-String option1="";
-String option2="";
-String option3="";
-for(int i=0;i<cl.size();i++){
-	CartBean cb = (CartBean)cl.get(i);
+						<input type="checkbox" name="check" value="<%=cb.getPrice()%>"
+							onchange="myfunction()" checked>
 
-	int price=cb.getPrice();
-	ProductBean prob = pdao.getProduct(cb.getProduct_num()); 
-%>
+						<!-- ì¥ë°”êµ¬ë‹ˆ ì •ë³´ -->
+						<a href="ProductDetail.pr?product_num=<%=prob.getProduct_num()%>">
+							ë¬¼í’ˆ ë²ˆí˜¸:<%=cb.getProduct_num()%> ì´ë¯¸ì§€:<img
+							src="./vendor_img/<%=prob.getMain_img()%>"> í’ˆëª…:<%=cb.getSubject()%>
+							<%
+								if (cb.getOption1() != null) {
+							%>/<%=cb.getOption1()%> <%
+ 	}
+ 		if (cb.getOption2() != null) {
+ %> /<%=cb.getOption2()%>
+							<%
+								}
+									if (cb.getOption3() != null) {
+							%> /<%=cb.getOption3()%>
+							<%
+								}
+							%> ìˆ˜ëŸ‰:<%=cb.getAmount()%> ê°€ê²©:<%=cb.getPrice()%> íŒë§¤ì ì•„ì´ë”” :<%=cb.getVendor_id()%>
+							êµ¬ë§¤ì ì•„ì´ë”” :<%=cb.getClient_id()%>
+						</a> <a href="./Cart_Delete.ca?product_num=<%=cb.getProduct_num()%>"><input
+							type="button" name="delete" value="ì‚­ì œ"></a> <br>
+						<!-- ì •ë³´ ë -->
 
-<input type="checkbox" name="check" value="<%=cb.getPrice()%>" onchange="myfunction()" checked>
+						<%
+							client_id += cb.getClient_id() + ",";
+								product_num += cb.getProduct_num() + ",";
+								amount += cb.getAmount() + ",";
+								vendor_id += cb.getVendor_id().toString() + ",";
+								if (cb.getSns_id() == null) {
+									sns_id = " ,";
+								} else {
+									sns_id += cb.getSns_id() + ",";
+								}
+								option1 += cb.getOption1() + ",";
+								option2 += cb.getOption2() + ",";
+								option3 += cb.getOption3() + ",";
+						%>
 
-<!-- Àå¹Ù±¸´Ï Á¤º¸ -->
-<a href="ProductDetail.pr?product_num=<%=prob.getProduct_num() %>">
-¹°Ç° ¹øÈ£:<%=cb.getProduct_num() %>
-ÀÌ¹ÌÁö:<img src="./vendor_img/<%=prob.getMain_img() %>">
-Ç°¸í:<%=cb.getSubject()%>
-<%if(cb.getOption1()!=null){
-	%>/<%=cb.getOption1()%>
-	
-	<%}if(cb.getOption2()!=null){ %>
-	/<%=cb.getOption2()%>
-	<%}if(cb.getOption3()!=null){%>
-		/<%=cb.getOption3() %><%
-	}
+						<br>
+						<%
+							sum = sum + price;
+							}
+						%>
 
-%>
-
-¼ö·®:<%=cb.getAmount() %>
-°¡°İ:<%=cb.getPrice() %>
-ÆÇ¸ÅÀÚ ¾ÆÀÌµğ :<%=cb.getVendor_id() %>
-±¸¸ÅÀÚ ¾ÆÀÌµğ :<%=cb.getClient_id()%>
-</a>
-<a href="./Cart_Delete.ca?product_num=<%=cb.getProduct_num()%>"><input type="button" name="delete" value="»èÁ¦"></a>
-<br>
-<!-- Á¤º¸ ³¡ -->
-
-<%client_id += cb.getClient_id()+","; 
-product_num += cb.getProduct_num()+","; 
-amount += cb.getAmount()+","; 
-vendor_id += cb.getVendor_id().toString()+","; 
-if(cb.getSns_id()==null){
-	sns_id=" ,";
-}else{
-	sns_id += cb.getSns_id()+","; 
-}
-option1	+= cb.getOption1()+","; 
-option2 += cb.getOption2()+","; 
-option3 += cb.getOption3()+","; 
-
-%>
-
- <br>
-<%sum = sum+price;} 
-%>
-
-<br>
-ÃÑ°¡°İ :<span id="price"><%=sum %></span>
-<input type="hidden" name = "client_id" value="<%=client_id%>">
-<input type="hidden" name = "product_num" value="<%=product_num%>">
-<input type="hidden" name = "amount" value="<%=amount%>">
-<input type="hidden" name = "vendor_id" value="<%=vendor_id%>">
-<input type="hidden" name = "sns_id" value="<%=sns_id%>">
-<input type="hidden" name = "option1" value="<%=option1%>">
-<input type="hidden" name = "option2" value="<%=option2%>">
-<input type="hidden" name = "option3" value="<%=option3%>">
-<%
-//Ã¼Å©°¡ µÇ¾îÀÖÀ¸¸é ÇÕÇÏ±â ¾Æ´Ï¸é ÇÕÇÏ±â X
-%>
- <br>
-	<input type="submit" value="°áÁ¦ÇÏ±â">
- </form>
-</div>
-</div>
-</div>
-</div>
+						<br> ì´ê°€ê²© :<span id="price"><%=sum%></span> <input
+							type="hidden" name="client_id" value="<%=client_id%>"> <input
+							type="hidden" name="product_num" value="<%=product_num%>">
+						<input type="hidden" name="amount" value="<%=amount%>"> <input
+							type="hidden" name="vendor_id" value="<%=vendor_id%>"> <input
+							type="hidden" name="sns_id" value="<%=sns_id%>"> <input
+							type="hidden" name="option1" value="<%=option1%>"> <input
+							type="hidden" name="option2" value="<%=option2%>"> <input
+							type="hidden" name="option3" value="<%=option3%>">
+						<%
+							//ì²´í¬ê°€ ë˜ì–´ìˆìœ¼ë©´ í•©í•˜ê¸° ì•„ë‹ˆë©´ í•©í•˜ê¸° X
+						%>
+						<br> <input type="submit" value="ê²°ì œí•˜ê¸°">
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
 
 
 

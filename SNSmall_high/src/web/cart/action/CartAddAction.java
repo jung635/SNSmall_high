@@ -11,7 +11,9 @@ public class CartAddAction implements Action{
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		// TODO Auto-generated method stub
+		// 한글처리
+		request.setCharacterEncoding("utf-8");
+		
 		
 		HttpSession session = request.getSession();
 		String client_id = (String)session.getAttribute("id");

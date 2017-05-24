@@ -23,7 +23,7 @@
 </head>
 <body>
 	
-<jsp:include page="../inc/header.jsp"/>
+<jsp:include page="../inc/blog_header.jsp"/>
   <!-- Page Content -->
   <div class="container">
     <div class="content">
@@ -31,7 +31,7 @@
      	        <div class="row">
 
             <!-- Blog Entries Column -->
-            <div class="col-md-8">
+            <div class="col-md-9">
 
                 <h1 class="page-header">
                     www's Blog

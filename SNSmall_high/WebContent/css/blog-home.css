@@ -19,3 +19,11 @@ footer {
 	border: 1px solid skyblue;
 	padding:5px;
 }
+.blog_produce{
+	margin: auto;
+}
+.blog_produce__content{
+	background-color: #fff;
+	margin: 20px 15px 15px 0;
+	padding: 15px;
+}

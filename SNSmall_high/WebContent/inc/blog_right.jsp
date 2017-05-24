@@ -7,8 +7,27 @@ function blogSearch(){
 	location.href = './OurBlogSearchAction.bl?search='+search;
 }
 </script>
-            <div class="col-md-4">
-
+            <div class="col-md-3">
+             <!-- Blog produce Well -->
+				 <div class="well">
+					 <div class="blog_produce">
+				 		<img alt="" src="./images/blog/blog_img.jpg" style="width: 200px; height: 200px">
+						<div class="blog_produce_img">
+						
+						</div>
+						
+						<div class="blog_produce_content">
+						
+						 www' shopping.<br>
+						 #sns celeb #trend<br>
+						 #social network shopping<br>
+						 #fishion #beauty<br>
+						 #baby #daily #gym<br>
+						 
+						</div>
+				 	</div>
+				 </div>
+				
                 <!-- Blog Search Well -->
                 <div class="well">
                     <h4>Blog Search</h4>

@@ -57,8 +57,9 @@ public class BlogCategoryAction implements Action{
 			request.setAttribute("startPage",startPage);
 			request.setAttribute("endPage",endPage);
 		
+			
 		ActionForward forward = new ActionForward();
-		forward.setPath("./blog/blogCategoryList.jsp");
+		forward.setPath("/blog/blogCategoryList.jsp");
 		forward.setRedirect(false);
 		
 		return forward;

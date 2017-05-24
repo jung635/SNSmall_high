@@ -32,15 +32,23 @@
 
             <!-- Blog Entries Column -->
             <div class="col-md-9">
-
-                <h1 class="page-header">
-                    www's Blog
-                    <small>Welcome to our Blog</small>
-                    
-                 <span >
-                    <a href="./OurBlogPosting.bl"><button class="posting_btn">Posting</button></a>
-                 </span>     
-                </h1>
+            
+				<div class="blog-content-header">
+					
+					<h2 style="margin: 8px 0 8px 0">
+						himu 's Blog
+						 <small style="padding-left: 20px;">Welcome to our Blog</small>
+					</h2>
+            
+				</div>
+					<div style="text-align: right;">
+					<a href="./OurBlogPosting.bl">
+               			<button class="posting_btn">posting</button>
+               		</a>				
+					</div>
+  
+                <div class="blogHomeTopImg"></div>  
+                
 		 <hr style="border: 0; height: 2px; background: #ddd;">
 
 <%
@@ -61,18 +69,26 @@ for(int i=0;i<blogList.size();i++){
 
                 <!-- First Blog Post -->
                
-                <h2>
-                    <a href="./OurBlogPostAction.bl?num=<%=bb.getNum()%>&pageNum=<%=pageNum%>">
-                    <%=bb.getSubject() %>
-                    </a>
+                <div>
+                   <div class="col-md-6">
+                    <%=bb.getSubject() %><span style="font-size: 15px;"> / category</span>
+                   </div>
+                   <div class="col-md-2">
                      <small> by admin</small>
-                </h2>
-               
-                <p><span class="glyphicon glyphicon-time"></span> Posted on 
-                <%SimpleDateFormat sdf = new SimpleDateFormat("MMMMM dd, yyyy hh:mm a zzz");%>
-                 <%=sdf.format(bb.getDate())%>
-                </p>
-                <hr>  <!-- Posted on August 28, 2013 at 10:00 PM -->
+                	</div>
+               		<div class="col-md-4">
+               		 <small style="font-size: 10px;">
+                	<span class="glyphicon glyphicon-time"></span> 
+               		Posted on 
+               		 <%SimpleDateFormat sdf = new SimpleDateFormat("MMMMM dd, yyyy hh:mm a zzz");%>
+               		  <%=sdf.format(bb.getDate())%>
+                	</small>
+                	</div>
+                </div>
+                	
+                	
+                	<hr>
+                  <!-- Posted on August 28, 2013 at 10:00 PM -->
                 
                 <%if(bb.getFile()!=null){ %>
                 
@@ -84,10 +100,10 @@ for(int i=0;i<blogList.size();i++){
                 
                
                 <div style="overflow:hidden; height:100px;"><%=bb.getContent()%></div>
-                <a class="btn btn-primary" href="#">Read More <span class="glyphicon glyphicon-chevron-right"></span></a>
-
-               <hr style="border: 0; height: 1px; background: #ddd;">
-               <hr style="border: 0; height: 2px; background: #ddd;">
+                <a class="btn btn-primary" href="./OurBlogPostAction.bl?num=<%=bb.getNum()%>&pageNum=<%=pageNum%>">Read More <span class="glyphicon glyphicon-chevron-right"></span></a>
+                
+               
+               <hr style="border: 0; height: 2px; background: #e3e3e3;">
 
         <%}%>
 

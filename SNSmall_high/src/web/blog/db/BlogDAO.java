@@ -198,11 +198,12 @@ public class BlogDAO {
 			
 			try{
 				con=getConnection();
-				sql="select * from blog where subject like ? order by num desc limit ?,?";
+				sql="select * from blog where subject like ? or content like ? order by num desc limit ?,?";
 				pstmt=con.prepareStatement(sql);
 				pstmt.setString(1, "%"+search+"%");
-				pstmt.setInt(2, startRow-1);
-				pstmt.setInt(3, pageSize);
+				pstmt.setString(2, "%"+search+"%");
+				pstmt.setInt(3, startRow-1);
+				pstmt.setInt(4, pageSize);
 				
 				rs= pstmt.executeQuery();
 				

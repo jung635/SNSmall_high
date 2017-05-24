@@ -20,14 +20,7 @@
 
 <script type="text/javascript">
 function zzimcheck(check) {
-	if(check.equals("0")){
-		alert("check==0");
-	return false;
-	}else if(check.equals("1")){
-		alert("check==1");
-		return true;
-	}
-	
+	alert(check);
 }
 
 </script>
@@ -89,7 +82,7 @@ function zzimcheck(check) {
                     <a href="./ProductDetail.pr?product_num=<%=pb.getProduct_num() %>&pageNum=<%=pageNum%>"><%=pb.getSubject() %></a>
                 </h3>
                 <p><%=pb.getPrice() %>원</p>
-                <p><%=pb.getDate() %><a href="#" onclick="return zzimcheck(check);">찜하기
+                <p><%=pb.getDate() %><a href="#" onclick="return zzimcheck(check)">찜하기
                 <%if(check==0){ %><img src="./vendor_img/zzimheart.jpg">
                 <%}else if(check==1){ %><img src="./vendor_img/zzimfullheart.jpg"><%} %></a></p>
             </div>

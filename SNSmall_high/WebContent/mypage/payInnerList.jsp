@@ -63,7 +63,7 @@ List<PaymentBean> pay_list_reult = new ArrayList<PaymentBean>();
 								}else if(pb.getState().equals("cancel")){
 									%>취소된 상품<%
 								}else{
-									%><input type="button" onclick="location.href='PayCancel.pa?num=<%=pb.getNum() %>'" value="주문 취소"><%
+									%><input type="button" onclick="location.href='PayCancel.pa?num=<%=pb.getNum() %>&order_num=<%=pb.getOrder_num() %>'" value="주문 취소"><%
 								}
 							
 							}	
@@ -124,7 +124,7 @@ List<PaymentBean> pay_list_reult = new ArrayList<PaymentBean>();
 								}else if(pb.getState().equals("cancelHold")||pb.getState().equals("w_cancelHold")){
 									%>취소 대기중<%
 								}else{
-									%><input type="button" onclick="location.href='PayCancel.pa?num=<%=pb.getNum() %>'" value="주문 취소"><%
+									%><input type="button" onclick="location.href='PayCancel.pa?num=<%=pb.getNum() %>&order_num=<%=pb.getOrder_num() %>'" value="주문 취소"><%
 								}
 							
 							}	

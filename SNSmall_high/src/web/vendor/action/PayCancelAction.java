@@ -46,17 +46,20 @@ public class PayCancelAction implements Action {
 			pdao.addPoint(pb.getUsedPoint(), pb.getClient_id());
 			pdao.addAmount(pb.getAmount(), pb.getProduct_num());
 		}else{
+			
 			SnsBean sb = sdao.getSnsDetail(pb.getSns_id());
-			if(sb.getRank().equals("basic")){
-				sns_profit = (int)(price_result*0.05)/10*10;
-			}else if(sb.getRank().equals("plus")){
-				sns_profit = (int)(price_result*0.1)/10*10;
-			}else{
-				sns_profit = (int)(price_result*0.2/10*10);
+			if(sb != null){
+				if(sb.getRank().equals("basic")){
+					sns_profit = (int)(price_result*0.05)/10*10;
+				}else if(sb.getRank().equals("plus")){
+					sns_profit = (int)(price_result*0.1)/10*10;
+				}else{
+					sns_profit = (int)(price_result*0.2/10*10);
+				}
 			}
 			System.out.println("sns_profit"+sns_profit);
 			add_point = (int)(price_result*0.01)/10*10;
-			company_profit = (int)(price_result*0.1)/100*100;
+			company_profit = (int)(price_result*0.1)/10*10;
 			vendor_profit = ((prob.getPrice()*pb.getAmount())-company_profit-sns_profit);
 			System.out.println("vendor_profit: "+vendor_profit);
 			System.out.println("company_profit: "+company_profit);

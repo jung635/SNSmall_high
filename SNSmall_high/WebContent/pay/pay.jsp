@@ -75,7 +75,6 @@ function card(){
 	price_result = document.getElementById('price_result').innerText;
 	point = document.getElementById('usingPoint').value;
 	message = document.getElementById('message').value;
-	alert(point);
 	IMP.init('imp29540450');
 	IMP.request_pay({
 	    pg : 'danal_tpay', //아임포트 관리자에서 danal_tpay를 기본PG로 설정하신 경우는 생략 가능
@@ -175,6 +174,22 @@ function pointChanged(price, myPoint){
 	}
 }
 
+function allPointPay(){
+	point =  document.getElementById('usingPoint').value;
+	myPoint = document.getElementById('myPoint').innerText;
+	price = document.getElementById('price').innerText;
+	
+	if(price-myPoint>0){
+		alert('포인트가 부족합니다.');
+	}else{
+		alert('전액을 포인트로 계산합니다.');
+		document.getElementById('price_result').innerText = 0;
+		document.getElementById('myPoint').innerText = myPoint-price;
+		document.getElementById('usingPoint').value =price;
+	}
+	
+	
+}
 </script>
 </head>
 <body>
@@ -247,7 +262,7 @@ int price=0;
 				<tr><td>결제방법</td>
 					<td><input type="radio" value="card" name="method">신용카드
 	            		<input type="radio" value="deposit" name="method">무통장입금
-	            		<input type="radio" value="withPoint" id="withPoint" name="method">전액 포인트 결제
+	            		<input type="radio" value="withPoint" id="withPoint" name="method" onclick="allPointPay()">전액 포인트 결제
 	            		<input type="radio" value="kakao" name="method">카카오페이</td>
 				</tr>
 			</table>

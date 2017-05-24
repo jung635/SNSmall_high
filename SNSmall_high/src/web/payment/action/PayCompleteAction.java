@@ -71,17 +71,19 @@ public class PayCompleteAction implements Action {
 		ProductDAO prodao = new ProductDAO();
 		SnsDAO sdao = new SnsDAO();
 		int usedPoint_each = point;
-		int sns_profit = 0;
-		int add_point = 0;
-		int vendor_profit = 0;
-		int company_profit = 0;
-		long all_sns_sell = 0L;
-		Double price_result = 0d;
+
+
 		List<PaymentBean> list_pb = new ArrayList<>();
 		List<PaymentBean> list_sns = new ArrayList<>();
 
 		
 		for (int i = 0; i < amount.length; i++) {
+			Double price_result = 0d;
+			long all_sns_sell = 0L;
+			int add_point = 0;
+			int vendor_profit = 0;
+			int company_profit = 0;
+			int sns_profit = 0;
 			int point_each = 0;
 			prob = prodao.getProduct((Integer.parseInt(product[i])));
 			pb = new PaymentBean();
@@ -148,12 +150,13 @@ public class PayCompleteAction implements Action {
 				System.out.println("sns_profit"+sns_profit);
 				
 				add_point = (int)(price_result*0.01)/10*10;
-				company_profit = (int)(price_result*0.1)/100*100;
+				company_profit = (int)(price_result*0.1)/10*10;
 				vendor_profit = ((prob.getPrice()*pb.getAmount())-company_profit-sns_profit);
 				System.out.println("vendor_profit: "+vendor_profit);
 				System.out.println("company_profit: "+company_profit);
 				System.out.println("add_point:" + add_point);
 				//sns profit 주기
+
 				pdao.addSnsPay(sns_profit, pb.getAmount(), pb.getSns_id());
 				//vendor profit 주기
 				pdao.addVendorProfit(vendor_profit, vendor_id[i]);

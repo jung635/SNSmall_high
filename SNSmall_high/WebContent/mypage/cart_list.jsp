@@ -94,7 +94,7 @@ for(int i=0;i<cl.size();i++){
 품명:<%=cb.getSubject()%>
 <%if(cb.getOption1()!=null){
 	%>/<%=cb.getOption1()%>
-	
+
 	<%}if(cb.getOption2()!=null){ %>
 	/<%=cb.getOption2()%>
 	<%}if(cb.getOption3()!=null){%>
@@ -117,7 +117,7 @@ product_num += cb.getProduct_num()+",";
 amount += cb.getAmount()+","; 
 vendor_id += cb.getVendor_id().toString()+","; 
 if(cb.getSns_id()==null){
-	sns_id=" ,";
+	sns_id +=" ,";
 }else{
 	sns_id += cb.getSns_id()+","; 
 }
@@ -143,7 +143,6 @@ option3 += cb.getOption3()+",";
 <input type="hidden" name = "option3" value="<%=option3%>">
 <%
 //체크가 되어있으면 합하기 아니면 합하기 X
-System.out.println(sns_id);
 %>
  <br>
 	<input type="submit" value="결제하기">

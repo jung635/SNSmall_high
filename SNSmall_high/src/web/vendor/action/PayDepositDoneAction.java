@@ -34,7 +34,6 @@ public class PayDepositDoneAction implements Action{
 		ProductBean prob = prodao.getProduct(pb.getProduct_num());
 		PaymentBean pb_sns = null;
 		ProductBean prob_sns = null;
-		SnsBean sb_sns = null;
 		int sns_profit = 0;
 		int add_point = 0;
 		int vendor_profit = 0;
@@ -47,17 +46,19 @@ public class PayDepositDoneAction implements Action{
 		double price_result = (double)prob.getPrice()*(double)pb.getAmount();
 		
 		SnsBean sb = sdao.getSnsDetail(pb.getSns_id());
-		System.out.println(sb.getRank());
-		if(sb.getRank().equals("basic")){
-			sns_profit = (int)(price_result*0.05)/10*10;
-		}else if(sb.getRank().equals("plus")){
-			sns_profit = (int)(price_result*0.1)/10*10;
-		}else{
-			sns_profit = (int)(price_result*0.2/10*10);
+		if(sb != null){
+			System.out.println(sb.getRank());
+			if(sb.getRank().equals("basic")){
+				sns_profit = (int)(price_result*0.05)/10*10;
+			}else if(sb.getRank().equals("plus")){
+				sns_profit = (int)(price_result*0.1)/10*10;
+			}else{
+				sns_profit = (int)(price_result*0.2/10*10);
+			}
 		}
 		System.out.println("sns_profit"+sns_profit);
 		add_point = (int)(price_result*0.01)/10*10;
-		company_profit = (int)(price_result*0.1)/100*100;
+		company_profit = (int)(price_result*0.1)/10*10;
 		vendor_profit = ((prob.getPrice()*pb.getAmount())-company_profit-sns_profit);
 		System.out.println("vendor_profit: "+vendor_profit);
 		System.out.println("company_profit: "+company_profit);
@@ -77,35 +78,36 @@ public class PayDepositDoneAction implements Action{
 			}
 		}
 		System.out.println(all_sns_sell);
-		sb_sns= sdao.getSnsDetail(pb.getSns_id());
 		
 		
 		//pdao.rankUpdate(pb.getSns_id(), all_sns_sell+Math.round(price_result), sb_sns.getRank());
 		long money = all_sns_sell+Math.round(price_result);
 		AlarmBean ab = new AlarmBean();
 		AlarmDAO adao = new AlarmDAO();
-		if( sb_sns.getRank().equals("basic")){
-			if(money>=10000000){
-				ab.setContent("등급이  premium으로 상승하셨습니다!");
-				ab.setId(pb.getSns_id());
-				ab.setMove("RankUp.al?rank="+"premium");
-				adao.insertAlarm(ab);
-				pdao.rankUpdate(pb.getSns_id(), "premium");
-			}else if(money>=90000){//테스트용
-			//}else if(money>=500000){
-				ab.setContent("등급이 plsu로 상승하셨습니다!");
-				ab.setId(pb.getSns_id());
-				ab.setMove("RankUp.al?rank="+"plus");
-				adao.insertAlarm(ab);
-				pdao.rankUpdate(pb.getSns_id(), "plus");
-			}
-		}else if( sb_sns.getRank().equals("plus")){
-			if(money>=10000000){
-				ab.setContent("등급이  premium으로 상승하셨습니다!");
-				ab.setId(pb.getSns_id());
-				ab.setMove("RankUp.al?rank="+"premium");
-				adao.insertAlarm(ab);
-				pdao.rankUpdate(pb.getSns_id(), "premium");
+		if(sb != null){
+			if( sb.getRank().equals("basic")){
+				if(money>=10000000){
+					ab.setContent("등급이  premium으로 상승하셨습니다!");
+					ab.setId(pb.getSns_id());
+					ab.setMove("RankUp.al?rank="+"premium");
+					adao.insertAlarm(ab);
+					pdao.rankUpdate(pb.getSns_id(), "premium");
+				}else if(money>=90000){//테스트용
+				//}else if(money>=500000){
+					ab.setContent("등급이 plsu로 상승하셨습니다!");
+					ab.setId(pb.getSns_id());
+					ab.setMove("RankUp.al?rank="+"plus");
+					adao.insertAlarm(ab);
+					pdao.rankUpdate(pb.getSns_id(), "plus");
+				}
+			}else if( sb.getRank().equals("plus")){
+				if(money>=10000000){
+					ab.setContent("등급이  premium으로 상승하셨습니다!");
+					ab.setId(pb.getSns_id());
+					ab.setMove("RankUp.al?rank="+"premium");
+					adao.insertAlarm(ab);
+					pdao.rankUpdate(pb.getSns_id(), "premium");
+				}
 			}
 		}
 		

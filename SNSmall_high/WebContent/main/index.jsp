@@ -37,14 +37,12 @@ function snsSearch_exe(){
 	search = document.getElementById('product_name').value;
 	location.href = 'SearchSnsList.sn?search='+search;
 }
-<<<<<<< HEAD
-=======
+
 function productSearch_exe(){
 	search = document.getElementById('product_name').value;
 	location.href = './ProductSearchList.pr?search='+search;
 }
 
->>>>>>> 3aa463ba330efecd45e75f05f462ee94d55f143b
 </script>
 </head><!--/head-->
 <body>

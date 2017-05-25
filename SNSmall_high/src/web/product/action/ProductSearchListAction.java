@@ -17,6 +17,7 @@ public class ProductSearchListAction implements Action{
 		request.setCharacterEncoding("utf-8");
 		
 		String search = request.getParameter("search");
+		System.out.println(search);
 		String category = request.getParameter("category");
 		if(category==null) {category="not";}
 		String pageNum = request.getParameter("pageNum");

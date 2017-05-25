@@ -19,7 +19,6 @@ public class OnAlarmAction implements Action {
 		String url = request.getParameter("url");
 		AlarmDAO adao = new AlarmDAO();
 		AlarmBean ab = adao.getAlarmByNum(num);
-		System.out.println(ab.getState());
 		adao.updateToOn(num);
 		out.println("<script>");
 		//out.println("history.back();");

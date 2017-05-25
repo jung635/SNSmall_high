@@ -18,6 +18,7 @@ public class QnaInsertAction implements Action{
 		System.out.println("QnaInsertAction execute()");
 		
 		request.setCharacterEncoding("utf-8");
+
 		String realPath = request.getRealPath("/qna_img");
 		int maxSize = 5*1024*1024;
 		MultipartRequest multi =
@@ -26,7 +27,8 @@ public class QnaInsertAction implements Action{
 		String pageNum = request.getParameter("pageNum");
 		int product_num = Integer.parseInt(multi.getParameter("product_num"));
 		String client_id = multi.getParameter("client_id");
-				
+		String checkbox = multi.getParameter("start_check");
+		System.out.println(checkbox);
 		QnaBean qnabean = new QnaBean();
 		qnabean.setClient_id(client_id);
 		qnabean.setProduct_num(product_num);

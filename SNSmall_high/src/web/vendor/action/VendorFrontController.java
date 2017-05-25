@@ -94,14 +94,7 @@ public class VendorFrontController extends HttpServlet{
 			forward = new ActionForward();
 			forward.setPath("./member/loginForm.jsp");
 			forward.setRedirect(false);
-		} else if (command.equals("/PayCancelPoint.ve")) {
-			action = new PayCancelPointAction();
-			try {
-				forward = action.execute(request, response);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}  else if (command.equals("/PayDepositDone.ve")) {
+		} else if (command.equals("/PayDepositDone.ve")) {
 			action = new PayDepositDoneAction();
 			try {
 				forward = action.execute(request, response);

@@ -52,7 +52,7 @@ String merchant_uid="high_" + new Date().getTime();
 <script>
 var method;
 var price;
-var point;
+var point=0;
 var message;
 //결제 제어
 function pay(){
@@ -72,18 +72,20 @@ function pay(){
 //카드 결제
 function card(){
 	price = document.getElementById('price').innerText;
-	point = document.getElementById('usingPoint').innerText;
+	price_result = document.getElementById('price_result').innerText;
+	point = document.getElementById('usingPoint').value;
 	message = document.getElementById('message').value;
 	IMP.init('imp29540450');
 	IMP.request_pay({
 	    pg : 'danal_tpay', //아임포트 관리자에서 danal_tpay를 기본PG로 설정하신 경우는 생략 가능
 	    pay_method : 'card', //card(신용카드), trans(실시간계좌이체), vbank(가상계좌), phone(휴대폰소액결제)
-	    merchant_uid : <%=merchant_uid %>, //상점에서 관리하시는 고유 주문번호를 전달
+	    merchant_uid : '<%=merchant_uid %>', //상점에서 관리하시는 고유 주문번호를 전달
 	    name : '결제 진행중',
 	    buyer_email : '<%=cb.getEmail()%>',
 	    buyer_name : '<%=cb.getName()%>',
 	    buyer_tel : '<%=cb.getPhone()%>', //누락되면 카드사 인증에 실패할 수 있으니 기입해주세요
 	    buyer_addr : '<%=cb.getAddress()%>',
+	    amount : price_result,
 	   custom_data: {
 		   price : price,
 		   amount_str : '<%=amount_str%>',
@@ -172,6 +174,22 @@ function pointChanged(price, myPoint){
 	}
 }
 
+function allPointPay(){
+	point =  document.getElementById('usingPoint').value;
+	myPoint = document.getElementById('myPoint').innerText;
+	price = document.getElementById('price').innerText;
+	
+	if(price-myPoint>0){
+		alert('포인트가 부족합니다.');
+	}else{
+		alert('전액을 포인트로 계산합니다.');
+		document.getElementById('price_result').innerText = 0;
+		document.getElementById('myPoint').innerText = myPoint-price;
+		document.getElementById('usingPoint').value =price;
+	}
+	
+	
+}
 </script>
 </head>
 <body>
@@ -186,10 +204,6 @@ ProductDAO pdao = new ProductDAO();
 List<ProductBean> product_list = pdao.getProduct(product_str);
 int list_size = product_list.size(); 
 int price=0;
-
-//System.out.println("op1: "+option1.length);
-//System.out.println("op2: "+option2[1]);
-//System.out.println("op3: "+option3[1]);
 %>
 
 <div class="container">
@@ -248,11 +262,11 @@ int price=0;
 				<tr><td>결제방법</td>
 					<td><input type="radio" value="card" name="method">신용카드
 	            		<input type="radio" value="deposit" name="method">무통장입금
-	            		<input type="radio" value="withPoint" id="withPoint" name="method">전액 포인트 결제
+	            		<input type="radio" value="withPoint" id="withPoint" name="method" onclick="allPointPay()">전액 포인트 결제
 	            		<input type="radio" value="kakao" name="method">카카오페이</td>
 				</tr>
 			</table>
-			<input type="hidden" name="price" value=<%=price %>>
+			<input type="hidden" name="price" value='<%=price %>'>
 			<input type="checkbox" id="policyChecked1">선택한 결제수단으로 향후 결제 이용에 동의합니다. (선택)
 		</div>
 		<div id="policy">

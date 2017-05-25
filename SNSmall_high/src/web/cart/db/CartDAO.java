@@ -70,7 +70,7 @@ public List<CartBean> getCartList(String client_id){
 				CartBean cb = new CartBean();
 				
 				cb.setProduct_num(rs.getInt("product_num"));
-				//cb.setSns_id(rs.getString("sns_id"));
+				cb.setSns_id(rs.getString("sns_id"));
 				cb.setVendor_id(rs.getString("vendor_id"));
 				//cb.setMain_img();
 				cb.setAmount(rs.getInt("amount"));

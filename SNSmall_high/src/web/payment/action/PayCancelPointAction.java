@@ -5,6 +5,7 @@ import java.io.PrintWriter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import web.payment.db.PaymentBean;
 import web.payment.db.PaymentDAO;
 
 public class PayCancelPointAction implements Action{
@@ -15,9 +16,20 @@ public class PayCancelPointAction implements Action{
 		response.setContentType("text/html; charset=utf-8");
 		PrintWriter out = response.getWriter();
 
-		int payNum = Integer.parseInt(request.getParameter("num"));
+		String payNum_str = request.getParameter("num");
+		String[] payNum = payNum_str.split(",");
 		PaymentDAO pdao = new PaymentDAO();
-		pdao.deletePayRequest(payNum);
+		System.out.println(payNum_str);
+		for(int i=0; i<payNum.length; i++){
+			PaymentBean pb = pdao.getPaymentByNum(Integer.parseInt(payNum[i]));
+			System.out.println(pb.getState());
+			if(pb.getState().equals("waiting")){
+				pdao.deletePayRequestWaiting(pb.getNum());
+			}else{
+				pdao.deletePayRequest(pb.getNum());
+			}
+		}
+		
 		out.println("<script>");
 		out.println("alert('취소 신청이 완료되었습니다.');");
 		out.println("location.href='PayList.pa';");

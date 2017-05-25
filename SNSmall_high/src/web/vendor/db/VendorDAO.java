@@ -46,7 +46,7 @@ ResultSet rs = null;
 			
 			
 			pstmt.executeUpdate();
-		} catch (Exception e) {System.out.println("DB연결 실패" + e);
+		} catch (Exception e) {e.printStackTrace();
 		} finally {if (con != null) {try {con.close();} catch (Exception e) {e.printStackTrace();}	}
 			if (pstmt != null) {try {pstmt.close();} catch (Exception e) {	e.printStackTrace();}}
 			if (rs != null) {try {rs.close();} catch (Exception e) {e.printStackTrace();}}}
@@ -87,7 +87,7 @@ ResultSet rs = null;
 				return check;
 			}
 			
-		} catch (Exception e) {System.out.println("DB연결 실패" + e);
+		} catch (Exception e) {e.printStackTrace();
 		} finally {if (con != null) {try {con.close();} catch (Exception e) {e.printStackTrace();}	}
 			if (pstmt != null) {try {pstmt.close();} catch (Exception e) {	e.printStackTrace();}}
 			if (rs != null) {try {rs.close();} catch (Exception e) {e.printStackTrace();}}}

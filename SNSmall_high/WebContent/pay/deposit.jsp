@@ -11,6 +11,7 @@
 </head>
 <body>
 <%
+request.setCharacterEncoding("utf-8");
 String merchant_uid = request.getParameter("merchant_uid");
 String vendorId_str = request.getParameter("vendorId_str");
 String[] vendor_id = vendorId_str.split(",");

@@ -25,18 +25,48 @@
 	    $(".reviewbtn").click(function(){
         	$("#writing").toggle();
     	});
-		
-	   var star=3;
-		$('#writing').find('.glyphicon').click(function(){
+	    
+	    var star = 1;
+	    star *= 1;
+	    
+		$('#qnastar').find('#star4').click(function(){
 			if($(this).attr('class')=="glyphicon glyphicon-star-empty"){
-				$(this).attr('class', "glyphicon glyphicon-star");
-				star++;
-				alert(star);
+				$('#qnastar').find('#star1, #star2, #star3, #star4').attr('class', "glyphicon glyphicon-star");
+				star = 5;
 			}else{
 				$(this).attr('class', "glyphicon glyphicon-star-empty");
-				star--;
-				alert(star);
-			}
+				star = 4;
+			}$('input[name=stars]').val(star);
+		});
+		
+		$('#qnastar').find('#star3').click(function(){
+			if($(this).attr('class')=="glyphicon glyphicon-star-empty"){
+				$('#qnastar').find('#star1, #star2, #star3').attr('class', "glyphicon glyphicon-star");
+				star = 4;
+			}else{
+				$('#qnastar').find('#star3, #star4').attr('class', "glyphicon glyphicon-star-empty");
+				star = 3;
+			}$('input[name=stars]').val(star);
+		});
+		
+		$('#qnastar').find('#star2').click(function(){
+			if($(this).attr('class')=="glyphicon glyphicon-star-empty"){
+				$('#qnastar').find('#star1, #star2').attr('class', "glyphicon glyphicon-star");
+				star = 3;
+			}else{
+				$('#qnastar').find('#star2, #star3, #star4').attr('class', "glyphicon glyphicon-star-empty");
+				star = 2;
+			}$('input[name=stars]').val(star);
+		});
+		
+		$('#qnastar').find('#star1').click(function(){
+			if($(this).attr('class')=="glyphicon glyphicon-star-empty"){
+				$('#qnastar').find('#star1').attr('class', "glyphicon glyphicon-star");
+				star = 2;
+			}else{
+				$('#qnastar').find('#star1, #star2, #star3, #star4').attr('class', "glyphicon glyphicon-star-empty");
+				star = 1;
+			}$('input[name=stars]').val(star);
 		});
 		
 	});
@@ -295,12 +325,13 @@
                      	<div id="writing" style="margin-bottom: 14px; display: none;">
                     	 	<form action="./QnaInsertAction.qn?product_num=<%=productbean.getProduct_num() %>&pageNum=<%=pageNum%>" method="post" enctype="multipart/form-data">
 								<input type="hidden" name="client_id" value="<%=id%>">
+								<input type="hidden" name="stars" value="">
 								<div><textarea rows="3" cols="120" name="content"></textarea><br></div>
-								<div><span class="glyphicon glyphicon-star"></span>
-								<span class="glyphicon glyphicon-star"></span>
-								<span class="glyphicon glyphicon-star"></span>
-								<span class="glyphicon glyphicon-star-empty"></span>
-								<span class="glyphicon glyphicon-star-empty"></span></div>
+								<div id="qnastar"><span class="glyphicon glyphicon-star"></span>
+								<span id="star1" class="glyphicon glyphicon-star-empty"></span>
+								<span id="star2" class="glyphicon glyphicon-star-empty"></span>
+								<span id="star3" class="glyphicon glyphicon-star-empty"></span>
+								<span id="star4" class="glyphicon glyphicon-star-empty"></span></div>
 								<input type="file" name="q_img">
 								<input type="submit" value="submit">
 							</form>
@@ -313,17 +344,24 @@
 					
 					<%for(int i=0; i<qnaList.size(); i++){
 						QnaBean qnabean = (QnaBean)qnaList.get(i);
-						String qUrl = "./QnaPopular.qn?product_num="+productbean.getProduct_num()+"&pageNum="+pageNum+"&q_num="+qnabean.getQ_num()+"stars=";
+						String qInsertUrl = "./QnaPopular.qn?product_num="+productbean.getProduct_num()+"&pageNum="+pageNum+"&q_num="+qnabean.getQ_num();
+						String qDelUrl = "./QnaDelete.qn?product_num="+productbean.getProduct_num()+"&pageNum="+pageNum+"&q_num="+qnabean.getQ_num();
+						int restStar = 5 - qnabean.getStars();
 					%>
 					<div class="row">
 						<div class="col-md-12">
-							<span class="glyphicon glyphicon-star"></span>
-							<span class="glyphicon glyphicon-star"></span>
-							<span class="glyphicon glyphicon-star"></span>
-							<span class="glyphicon glyphicon-star"></span>
-							<span class="glyphicon glyphicon-star-empty"></span>
+							<%for(int j=0; j<qnabean.getStars(); j++){%>
+								<span class="glyphicon glyphicon-star"></span>
+							<%}
+							if(restStar<5){
+								for(int k=0; k<restStar; k++){%>
+									<span class="glyphicon glyphicon-star-empty"></span>
+							<%}}%>
 							<%=qnabean.getClient_id() %> / <%=qnabean.getPopular() %>
-							<input type="button" value="++" onclick="location.href='<%=qUrl%>'">
+							<input type="button" value="++" onclick="location.href='<%=qInsertUrl%>'">
+							<%if(id.equals(qnabean.getClient_id())){%>
+							<input type="button" value="del" onclick="location.href='<%=qDelUrl%>'">
+							<%} %>
 							<span class="pull-right"><%=qnabean.getDate() %></span>
 							<p><%=qnabean.getContent() %></p>
 							<%if(qnabean.getQ_img()!=null){ %>

@@ -27,13 +27,14 @@ public class QnaInsertAction implements Action{
 		String pageNum = request.getParameter("pageNum");
 		int product_num = Integer.parseInt(multi.getParameter("product_num"));
 		String client_id = multi.getParameter("client_id");
-		String checkbox = multi.getParameter("start_check");
-		System.out.println(checkbox);
+		int stars = Integer.parseInt(multi.getParameter("stars"));
+		System.out.println(stars);
 		QnaBean qnabean = new QnaBean();
 		qnabean.setClient_id(client_id);
 		qnabean.setProduct_num(product_num);
 		qnabean.setContent(multi.getParameter("content"));
 		qnabean.setQ_img(multi.getFilesystemName("q_img"));
+		qnabean.setStars(stars);
 		
 		QnaDAO qnadao = new QnaDAO();
 		int check = qnadao.checkClientId(client_id);

@@ -1,4 +1,5 @@
 
+<%@page import="java.text.SimpleDateFormat"%>
 <%@page import="web.memo.db.MemoBean"%>
 <%@page import="java.util.List"%>
 
@@ -16,7 +17,8 @@
 	<link href="./css/bootstrap.min.css" rel="stylesheet">
 	<link href="./css/header.css" rel="stylesheet">
 	<link href="./css/inner.css" rel="stylesheet">
-	<link href="./css/main.css" rel="stylesheet"> 
+	<link href="./css/main.css" rel="stylesheet">
+	<link href="./css/memo.css" rel="stylesheet">  
 	
 <title>Insert title here</title>
 
@@ -29,7 +31,8 @@ th,td {
   padding: 5px;
 }
 </style>
-<script type="text/javascript">
+
+<!-- <script type="text/javascript">
 function fncheckdelete(para_getNum){
 	
 	if(confirm("메모를 삭제하시겠습니까???")){
@@ -45,12 +48,14 @@ function fncheckdelete(para_getNum){
 	}
 }
  
-</script>
+</script> -->
+
 </head>
 <body>
 <jsp:include page="../inc/header.jsp"/>
 <%
 String id = (String)session.getAttribute("id");
+SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd");
 
 %>
   <!-- Page Content -->
@@ -81,6 +86,8 @@ if(id ==null ){
 
 <%
 
+
+
 // MemoBean meb = request 저장된 meb값 가져오기
 // String pageNum= request 저장된 pageNum값 가져오기
 // 		request.setAttribute("meb", meb);
@@ -88,18 +95,23 @@ if(id ==null ){
 MemoBean meb=(MemoBean)request.getAttribute("meb");
 String pageNum=(String)request.getAttribute("pageNum");
 
+//엔터키 (\r\n) => <br> 바꾸기
+String content = meb.getContent();
+if(content !=null){
+	content=meb.getContent().replace("\r\n", "<br>");
+}
 %>
 
-<h3>받은쪽지 보기</h3>
+<h3>전체쪽지 보기</h3>
 <table border=1>
 <tr bgcolor="orange"><td>쪽지번호</td><td colspan=3><%=meb.getNum()%></td></tr>
-<tr bgcolor="#ffeecc"><td>보낸사람</td><td><%=meb.getFrom_id()%></td><td>작성일</td><td><%=meb.getDate()%></td></tr>
+<tr bgcolor="#ffeecc"><td>보낸사람</td><td><%=meb.getFrom_id()%></td><td>작성일</td><td><%=sdf.format(meb.getDate())%></td></tr>
 <tr bgcolor="#ffeecc"><td>쪽지제목</td><td colspan=3><%=meb.getSubject()%></td></tr>
-<tr bgcolor="#ffeecc"><td>쪽지내용</td><td colspan=3><%=meb.getContent()%></td></tr>
+<tr bgcolor="#ffeecc"><td>쪽지내용</td><td colspan=3><%=content%></td></tr>
 <tr bgcolor="#ffeecc"><td colspan=4>
 
 <!-- <input type="button" value="쪽지삭제" onclick="location.href='./MemoDeleteAll.me?num=<%=meb.getNum()%>&pageNum=<%=pageNum%>'">-->
-<input type="button" value="쪽지삭제" onclick="javascript:fncheckdelete(<%=meb.getNum()%>);">
+<%-- <input type="button" value="쪽지삭제" onclick="javascript:fncheckdelete(<%=meb.getNum()%>);"> --%>
 <%-- <input type="button" value="답글쓰기" onclick="location.href='./MemoReWrite.me?num=<%=meb.getNum()%>&re_ref=<%=meb.getRe_ref()%>&re_lev=<%=meb.getRe_lev()%>&re_seq=<%=meb.getRe_seq()%>&from_id=<%=meb.getFrom_id()%>&to_id=<%=meb.getTo_id()%>'"> --%>
 <input type="button" value="쪽지목록" onclick="location.href='./MemoListAll.me?pageNum=<%=pageNum%>'"></td></tr>
 </table>

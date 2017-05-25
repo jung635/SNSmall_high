@@ -40,50 +40,7 @@ th,td {
   padding: 5px;
 }
 </style>
-<script>
-var method = "";
-var page = 0;
-showCustomer("payDone");
-function showCustomer(str) {
-	method = str;
-	page = 6;
-	//alert(page);
-  var xhttp;    
-  if (str == "") {
-    document.getElementById("txtHint").innerHTML = "";
-    return;
-  }
-  xhttp = new XMLHttpRequest();
-  
-  xhttp.onreadystatechange = function() {
-    if (this.readyState == 4 && this.status == 200) {
-      document.getElementById("txtHint").innerHTML = this.responseText;
-    }
-  };
-  xhttp.open("GET", "PayInnerList.pa?method="+str+"&page="+page, true);
-  xhttp.send();
-}
 
-function more() {
-	//alert(method);
-	page += 2;
-	//alert(page);
-  var xhttp;    
-  if (method == "") {
-    document.getElementById("txtHint").innerHTML = "";
-    return;
-  }
-  xhttp = new XMLHttpRequest();
-  
-  xhttp.onreadystatechange = function() {
-    if (this.readyState == 4 && this.status == 200) {
-      document.getElementById("txtHint").innerHTML = this.responseText;
-    }
-  };
-  xhttp.open("GET", "PayInnerList.pa?method="+method+"&page="+page, true);
-  xhttp.send();
-}
-</script>
 </head>
 <body>
 <jsp:include page="../inc/header.jsp"/>
@@ -108,15 +65,7 @@ System.out.println(pay_list.size()); */
                 <jsp:include page="../inc/myinfo_sns_left.jsp"/>
             </div>
             <div class="col-md-9">
-<!--             <form action=""> 
-<select name="order" onchange="showCustomer(this.value)">
-<option value="">정렬방법을 선택하세요</option>
-<option value="payDone">주문 내역</option>
-<option value="delivery">배송중</option>
-<option value="done">배송완료</option>
-<option value="cancle">주문취소</option>
-</select>
-</form> -->
+
 <%
 // 세션 가져오기
 
@@ -139,7 +88,6 @@ int endPage=((Integer)request.getAttribute("endPage")).intValue();
 int addPoint=0;
 SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd");
 
-
 %>
 <div class="row">
     <div class="col-lg-12">
@@ -150,7 +98,7 @@ SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd");
 </div>
 <div class="row">
 <form action="SnsSale.sn" method="post" name="frmSearch">
-<%=snsState %>
+<%-- <%=snsState %> --%>
 <select id="snsState" name="snsState" onchange="snsStatefn()">
   <option value="" <%if(snsState.equals("")){ %> selected <%}  %>>정렬방법을 선택하세요
   <option value="payDone" <%if(snsState.equals("payDone")){ %> selected <%}  %>>주문 내역</option>

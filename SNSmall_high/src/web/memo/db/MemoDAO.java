@@ -413,8 +413,13 @@ Connection con = null;
 					sql="delete from memo where num=?";
 					pstmt=con.prepareStatement(sql);
 					pstmt.setInt(1, num);
-					//4단계 실행
 					pstmt.executeUpdate();
+					
+					sql = "update memo set num=num-1 where num>?";
+					pstmt = con.prepareStatement(sql);
+					pstmt.setInt(1, num);
+					pstmt.executeUpdate();
+					
 					check=1;
 				}else{
 					sql="update memo set to_del='Y' where num=?";
@@ -464,8 +469,13 @@ Connection con = null;
 					sql="delete from memo where num=?";
 					pstmt=con.prepareStatement(sql);
 					pstmt.setInt(1, num);
-					//4단계 실행
 					pstmt.executeUpdate();
+					
+					sql = "update memo set num=num-1 where num>?";
+					pstmt = con.prepareStatement(sql);
+					pstmt.setInt(1, num);
+					pstmt.executeUpdate();
+					
 					check=1;
 				}else{
 					sql="update memo set from_del='Y' where num=?";

@@ -1,4 +1,5 @@
 
+<%@page import="java.text.SimpleDateFormat"%>
 <%@page import="web.memo.db.MemoBean"%>
 <%@page import="java.util.List"%>
 
@@ -17,7 +18,7 @@
 	<link href="./css/header.css" rel="stylesheet">
 	<link href="./css/inner.css" rel="stylesheet">
 	<link href="./css/main.css" rel="stylesheet"> 
-	<link href="./css/memo.css" rel="stylesheet"> 
+
 	
 <title>Insert title here</title>
 
@@ -51,11 +52,13 @@ String id = (String)session.getAttribute("id");
 <%
 List memoListGet=(List)request.getAttribute("memoListGet");
 String pageNum=(String)request.getAttribute("pageNum");
+int currentPage=Integer.parseInt(pageNum);
 int count=((Integer)request.getAttribute("count")).intValue();
 int pageCount=((Integer)request.getAttribute("pageCount")).intValue();
 int pageBlock=((Integer)request.getAttribute("pageBlock")).intValue();
 int startPage=((Integer)request.getAttribute("startPage")).intValue();
 int endPage=((Integer)request.getAttribute("endPage")).intValue();
+SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd");
 
 // 세션 가져오기
 
@@ -92,7 +95,7 @@ if(id ==null ){
 <tr bgcolor="#ffeecc">
 <td><%=meb.getNum() %></td><td><%=meb.getFrom_id() %></td>
 <td><a href="./MemoContentGet.me?num=<%=meb.getNum()%>&pageNum=<%=pageNum%>"><%= meb.getSubject()%></a></td>
-<td><a href="./MemoContentGet.me?num=<%=meb.getNum()%>&pageNum=<%=pageNum%>"><%= meb.getContent()%></a></td><td><%=meb.getDate() %></td>
+<td><a href="./MemoContentGet.me?num=<%=meb.getNum()%>&pageNum=<%=pageNum%>"><%= meb.getContent()%></a></td><td><%=sdf.format(meb.getDate()) %></td>
 </tr>
 <%
 }
@@ -115,19 +118,24 @@ if(count!=0){
 	//끝페이지 번호 구하기
 	//이전 페이지
 	if(startPage>pageBlock){ // 스타트페이지가 페이지블럭보다 많을 때
-		%><a href="MemoListGet.me?pageNum=<%=startPage-pageBlock%>">[이전]</a>&nbsp;<%
+		%><li><a href="MemoListGet.me?pageNum=<%=startPage-pageBlock%>">&laquo;</a></li>&nbsp;<%
 	}
 	//1...10   11...20   21...30
 	for(int i=startPage; i<=endPage; i++){
-		%><a href="MemoListGet.me?pageNum=<%=i%>">[<%=i%>]</a>&nbsp;<%
-	}
+		if(i==currentPage){%>
+                    <li class="active">
+                        <a href="#"><%=i %></a>
+                    </li>
+                    <%}else{ %>
+                    <li><a href="MemoListGet.me?pageNum=<%=i%>">[<%=i%>]</a></li>
+                    <%}}
 	//다음 페이지
 	if(endPage<pageCount){ //엔트페이지가 페이지블록보다 작을 때
-		%><a href="MemoListGet.me?pageNum=<%=startPage+pageBlock%>">[다음]</a><%
+		%><li><a href="MemoListGet.me?pageNum=<%=startPage+pageBlock%>">&raquo;</a></li><%
 	}
 }
 
-%>
+%>  
 </ul>
 </div>
 </div>  

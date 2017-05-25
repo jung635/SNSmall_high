@@ -1,4 +1,5 @@
 
+<%@page import="java.text.SimpleDateFormat"%>
 <%@page import="web.memo.db.MemoBean"%>
 <%@page import="java.util.List"%>
 
@@ -52,7 +53,7 @@ function fncheckdelete(para_getNum){
 <jsp:include page="../inc/header.jsp"/>
 <%
 String id = (String)session.getAttribute("id");
-
+SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd");
 %>
   <!-- Page Content -->
   <div class="container">
@@ -89,14 +90,19 @@ if(id ==null ){
 MemoBean meb=(MemoBean)request.getAttribute("meb");
 String pageNum=(String)request.getAttribute("pageNum");
 
+//엔터키 (\r\n) => <br> 바꾸기
+String content = meb.getContent();
+if(content !=null){
+	content=meb.getContent().replace("\r\n", "<br>");
+}
 %>
 
 <h3>보낸쪽지 보기</h3>
 <table border=1>
 <tr bgcolor="orange"><td>쪽지번호</td><td colspan=3><%=meb.getNum()%></td></tr>
-<tr bgcolor="#ffeecc"><td>받는사람</td><td><%=meb.getTo_id()%></td><td>작성일</td><td><%=meb.getDate()%></td></tr>
+<tr bgcolor="#ffeecc"><td>받는사람</td><td><%=meb.getTo_id()%></td><td>작성일</td><td><%=sdf.format(meb.getDate())%></td></tr>
 <tr bgcolor="#ffeecc"><td>쪽지제목</td><td colspan=3><%=meb.getSubject()%></td></tr>
-<tr bgcolor="#ffeecc"><td>쪽지내용</td><td colspan=3><%=meb.getContent()%></td></tr>
+<tr bgcolor="#ffeecc"><td>쪽지내용</td><td colspan=3><%=content%></td></tr>
 <tr bgcolor="#ffeecc"><td colspan=4>
 
 <!-- <input type="button" value="쪽지삭제" onclick="location.href='./MemoDelete.me?num=<%=meb.getNum()%>&pageNum=<%=pageNum%>'">-->

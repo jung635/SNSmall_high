@@ -1,7 +1,5 @@
 @CHARSET "UTF-8";
 
-
-
 /* join us */
 
 article form{
@@ -52,7 +50,6 @@ article form input.subject{
 	width: 200px;
 	height: 18px;
 }
-
 
 article form textarea.content{
 	padding: 0;

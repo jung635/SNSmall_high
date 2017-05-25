@@ -38,13 +38,12 @@ public class MemoWriteAction implements Action{
 		 medao.insertMemo(meb);
 		 
 		AlarmBean ab = new AlarmBean(); 
-		ab.setContent("메모_알람_테스트");
-		ab.setId(from_id);
+		ab.setContent("메모_알람_테스트 > ");
+		ab.setId(request.getParameter("from_id"));
 		ab.setMove("memo");
 		 
 		AlarmDAO adao = new AlarmDAO();
 		adao.insertAlarm(ab);
-
 		
 		// 이동 ./MemoList.me
 		 ActionForward forward = new ActionForward();

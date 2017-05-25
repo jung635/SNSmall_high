@@ -20,7 +20,7 @@ public class SnsSale implements Action{
 		String id = (String)session.getAttribute("id");
 		
 		session.setAttribute("id", id);
-		System.out.println("id : "+id);
+		//System.out.println("id : "+id);
 		
 		String snsState=request.getParameter("snsState");
 		if(snsState==null){
@@ -37,7 +37,7 @@ public class SnsSale implements Action{
 		int count = padao.getPaymentCount(snsState, id);
 		
 		//한 페이지에 보여줄 글의 개수
-		int pageSize=1;
+		int pageSize=5;
 		//현페이지가 몇 페이지인지 가져오기
 		String pageNum = request.getParameter("pageNum");
 		if(pageNum==null){  // pageNum없으면
@@ -68,7 +68,7 @@ public class SnsSale implements Action{
 		}		
 		
 		// 저장
-		System.out.println("snsState 3 : "+snsState);
+		//System.out.println("snsState 3 : "+snsState);
 		request.setAttribute("snsState", snsState); // String형
 		request.setAttribute("paymentList", paymentList); // 리스트형
 		request.setAttribute("pageNum", pageNum); // String형

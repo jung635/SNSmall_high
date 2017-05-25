@@ -124,5 +124,14 @@
   	<url-pattern>*.al</url-pattern>
   </servlet-mapping>  
   
+  <servlet>
+  	<servlet-name>MemoFrontController</servlet-name>
+  	<servlet-class>web.memo.action.MemoFrontController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>MemoFrontController</servlet-name>
+  	<url-pattern>*.me</url-pattern>
+  </servlet-mapping>  
+
 </web-app>
 

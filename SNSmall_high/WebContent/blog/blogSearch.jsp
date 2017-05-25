@@ -51,8 +51,9 @@
     			BlogBean bb = (BlogBean)blogList.get(i); %>
     			
     			<hr style="border: 1px solid white;">
+    			
     			<%if(bb.getFile()!=null){%>
-    			<div style="border-bottom: 1px solid #e3e3e3; background-color:#f5f5f5; ">
+    			<div style="border-bottom: 1px solid #e3e3e3; background-color:#f5f5f5;">
     			<%if(bb.getCategory().equals("notice")){ %>
               	<i class="fa fa-file-text-o" aria-hidden="true"></i> notice
               	<%}else if(bb.getCategory().equals("contribution")){ %>
@@ -66,13 +67,15 @@
 				<%} %>
     			</div>
     			
-    			<div style="position: relative; border: 1px solid red">
-    			 <%=bb.getSubject() %> 
-    			<p><span class="glyphicon glyphicon-time"></span> Posted on 
+    			<div class="search-subject">
+    			<span style="font-size: 15px;"><%=bb.getSubject() %></span>
+    			<span style="position: absolute; right: 10px;">
+    			<span class="glyphicon glyphicon-time"></span> Posted on 
                		 	<%SimpleDateFormat sdf = new SimpleDateFormat("MMMMM dd, yyyy hh:mm a zzz");%>
-                	 	<%=sdf.format(bb.getDate())%>
-                	</p> 
+                	 	<%=sdf.format(bb.getDate())%>    
+                </span> 
             	</div>
+            	<hr>
     			<div class="col-lg-4">
     			<img alt="" src="./blog_upload/<%=bb.getFile() %>" style="width: 200px; height: 100px; padding: 2px">
  				</div>
@@ -81,7 +84,7 @@
     			<br>
     			
     			<%}else{ %>
-    			<div>
+    			<div  style="border-bottom: 1px solid #e3e3e3; background-color:#f5f5f5;">
     			<%if(bb.getCategory().equals("notice")){ %>
               	<i class="fa fa-file-text-o" aria-hidden="true"></i> notice
               	<%}else if(bb.getCategory().equals("contribution")){ %>
@@ -95,13 +98,15 @@
 				<%} %>
     			</div>
     			
-    			<div style="position: relative; border: 1px solid red">
-    				<span><%=bb.getSubject() %></span>
-    					 <span style="position: absolute; right: 10px;"><span class="glyphicon glyphicon-time"></span> Posted on 
-	               		 	<%SimpleDateFormat sdf = new SimpleDateFormat("MMMMM dd, yyyy hh:mm a zzz");%>
-	                	 	<%=sdf.format(bb.getDate())%>
-                		</span> 
- 				</div>
+     			<div class="search-subject">
+    			<span style="font-size: 15px;"><%=bb.getSubject() %></span>
+    			<span style="position: absolute; right: 10px;">
+    			<span class="glyphicon glyphicon-time"></span> Posted on 
+               		 	<%SimpleDateFormat sdf = new SimpleDateFormat("MMMMM dd, yyyy hh:mm a zzz");%>
+                	 	<%=sdf.format(bb.getDate())%>    
+                </span> 
+            	</div>
+            	<hr>
     			<div style="height: 40px; overflow: hidden;"><%=bb.getContent()%></div>...
     	
     				<%} %>

@@ -14,14 +14,12 @@ public class PayDetailAction implements Action {
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
 		int num = Integer.parseInt(request.getParameter("num"));
-		PaymentDAO pdao = new PaymentDAO();
-		ProductDAO prodao = new ProductDAO();
-		PaymentBean pb = pdao.getPaymentByNum(num);
-		ProductBean prob = prodao.getProduct(pb.getProduct_num());
-
-		request.setAttribute("pb", pb);
-		request.setAttribute("prob", prob);
-
+		
+		ProductDAO pdao = new ProductDAO();
+		
+		
+		
+		
 		ActionForward forward = new ActionForward();
 		forward.setPath("./mypage/payDetail.jsp");
 		forward.setRedirect(false);

@@ -686,7 +686,7 @@ Connection con = null;
 	// getorderNum 아이디,start,pageSize, order로 찾음 ----vendor
 	public List<String> getVendorOrderNumList(int pageSize, String vendor_id, String method) {
 		List<String> list = new ArrayList<String>();
-		StringBuffer sql = new StringBuffer("select product_num from payment where vendor_id=? and ");
+		StringBuffer sql = new StringBuffer("select order_num from payment where vendor_id=? and ");
 		String order_num = "";
 		try {
 			con = getConnection();
@@ -846,6 +846,33 @@ Connection con = null;
 		
 		return paymentList;
 	}//getPaymentList()
+	
+	public void payDetail(int num){
+		try{
+			ProductBean pb = new ProductBean();
+			con = getConnection();
+			sql="select * from payment where num=?";
+			pstmt=con.prepareStatement(sql);
+			pstmt.setInt(1, num);
+			rs=pstmt.executeQuery();
+			if(rs.next()){
+				pb.setOption1(rs.getString("option1"));
+				pb.setOption2(rs.getString("option2"));
+				pb.setOption3(rs.getString("option3"));
+				sql="select * from product where product_num=?";
+				pstmt=con.prepareStatement(sql);
+				pstmt.setInt(1, rs.getInt("product_num"));
+				rs = pstmt.executeQuery();
+				if(rs.next()){
+					
+					pb.setSubject(rs.getString("subject"));
+				}
+			}
+		}catch(Exception e){e.printStackTrace();}
+		finally{if(rs!=null){try{rs.close();}catch(SQLException ex){}}
+			if(pstmt!=null){try{pstmt.close();}catch(SQLException ex){}}
+			if(con!=null){try{con.close();}catch(SQLException ex){}}}
+	}
 	
 	
 }

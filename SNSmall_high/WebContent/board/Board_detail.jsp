@@ -98,7 +98,7 @@
 						</td>
 						<td style="text-align: right;"><%=rb.getDate() %><br>
 						<%if(id != null && id.equals(rb.getId())){%>							
-						[삭제] [수정]
+						<a href="">[삭제]</a> <a href="">[수정]</a>
 						<%} %>
 						<a href="#"> [덧글]</a>						
 						</td></tr>

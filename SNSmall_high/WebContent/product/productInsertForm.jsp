@@ -87,18 +87,18 @@ String id = (String)session.getAttribute("id");
 								</tr>
 								<tr>
 									<td>옵션1</td>
-									<td>옵션명<input type="text" name="opt_name1">옵션<input
-										type="text" name="option1"></td>
+									<td>옵션명<input type="text" name="opt_name1" placeholder="ex)사이즈">옵션<input
+										type="text" name="option1" placeholder="ex)small,medium,large"></td>
 								</tr>
 								<tr>
 									<td>옵션2</td>
-									<td>옵션명<input type="text" name="opt_name2">옵션<input
-										type="text" name="option2"></td>
+									<td>옵션명<input type="text" name="opt_name2" placeholder="ex)사이즈">옵션<input
+										type="text" name="option2" placeholder="ex)220,225,230,235"></td>
 								</tr>
 								<tr>
 									<td>옵션3</td>
-									<td>옵션명<input type="text" name="opt_name3">옵션<input
-										type="text" name="option3"></td>
+									<td>옵션명<input type="text" name="opt_name3" placeholder="ex)세트">옵션<input
+										type="text" name="option3" placeholder="ex)A,B,C"></td>
 								</tr>
 								<tr>
 									<td>판매가</td>

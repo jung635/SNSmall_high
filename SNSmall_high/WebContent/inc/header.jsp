@@ -96,8 +96,6 @@ $(document).ready(function(){
 						<li class="scroll"><a href="BoardList.bo">Contact</a></li>
 						<%}} %>
 						<li class="scroll"><a href="Price.cl">Price</a></li>
-						<input type="button" value="test" onclick="location.href = 'InsertAction.al'">
-					</div>	
 					</ul> 
 				</div> 
 			</div> 

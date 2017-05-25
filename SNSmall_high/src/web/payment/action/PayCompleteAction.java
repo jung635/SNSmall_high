@@ -42,11 +42,6 @@ public class PayCompleteAction implements Action {
 		int point = Integer.parseInt(request.getParameter("point"));
 		String snsId_str = request.getParameter("snsId_str");
 		String[] sns_id = snsId_str.split(",");
-		System.out.println(snsId_str);
-		System.out.println(sns_id.length);
-		for(int i=0; i<sns_id.length; i++){
-			System.out.println("sns_id"+sns_id[i]);
-		}
 		
 		String message = request.getParameter("message");
 		String option1_str = request.getParameter("option1_str");
@@ -134,7 +129,6 @@ public class PayCompleteAction implements Action {
 				pdao.subAmount(pb.getAmount(), pb.getProduct_num());
 			}
 
-			System.out.println("sns_id공백"+pb.getSns_id());
 			if(method.equals("card")||method.equals("withPoint")){
 				SnsBean sb = sdao.getSnsDetail(pb.getSns_id());
 				if(sb != null){
@@ -147,14 +141,10 @@ public class PayCompleteAction implements Action {
 					}
 					
 				}
-				System.out.println("sns_profit"+sns_profit);
 				
 				add_point = (int)(price_result*0.01)/10*10;
 				company_profit = (int)(price_result*0.1)/10*10;
 				vendor_profit = ((prob.getPrice()*pb.getAmount())-company_profit-sns_profit);
-				System.out.println("vendor_profit: "+vendor_profit);
-				System.out.println("company_profit: "+company_profit);
-				System.out.println("add_point:" + add_point);
 				//sns profit 주기
 
 				pdao.addSnsPay(sns_profit, pb.getAmount(), pb.getSns_id());
@@ -175,7 +165,6 @@ public class PayCompleteAction implements Action {
 							all_sns_sell += (long)prob_sns.getPrice()*(long)pb_sns.getAmount();
 						}
 					}
-					System.out.println(all_sns_sell);
 					
 					long money = all_sns_sell+Math.round(price_result);
 					AlarmBean ab = new AlarmBean();
@@ -217,13 +206,6 @@ public class PayCompleteAction implements Action {
 		}
 		
 		if(method.equals("deposit")){
-			Calendar today = Calendar.getInstance ( );
-			today.add ( Calendar.DATE, 1 );
-			Date tomorrow = today.getTime ( );
-			SimpleDateFormat sdf = new SimpleDateFormat("yyyy년 MM월 dd일 hh시mm분");
-			String day = sdf.format(tomorrow);
-			System.out.println(day);
-			
 			Timer timer = new Timer();
 			TimerTask t_task = new TimerTask() {
 				@Override
@@ -236,7 +218,6 @@ public class PayCompleteAction implements Action {
 								pdao.deletePay(pb_deposit.getNum());
 								pdao.addPoint(pb_deposit.getUsedPoint(), pb_deposit.getClient_id());
 								pdao.addAmount(pb_deposit.getAmount(), pb_deposit.getProduct_num());
-								System.out.println("무통장 입금이 안되 주문이 취소됨");
 								AlarmBean ab = new AlarmBean();
 								ab.setContent("무통장 입금이 안되 주문이 취소되었습니다.");
 								ab.setId(id);
@@ -245,13 +226,9 @@ public class PayCompleteAction implements Action {
 								adao.insertAlarm(ab);
 							}
 						}
-						
-						
 					}
-					
 				}
 			};
-			
 			timer.schedule(t_task, (long) (1000 * 60 * 60 * 24) - (1000 * 60 *2));
 			
 			out.println("<script>");

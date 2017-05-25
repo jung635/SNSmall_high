@@ -39,7 +39,6 @@ public class PayDepositDoneAction implements Action{
 		int vendor_profit = 0;
 		int company_profit = 0;
 		long all_sns_sell = 0L;
-		List<PaymentBean> list_pb = new ArrayList<>();
 		List<PaymentBean> list_sns = new ArrayList<>();
 		
 		pdao.depositPay(num);
@@ -47,7 +46,6 @@ public class PayDepositDoneAction implements Action{
 		
 		SnsBean sb = sdao.getSnsDetail(pb.getSns_id());
 		if(sb != null){
-			System.out.println(sb.getRank());
 			if(sb.getRank().equals("basic")){
 				sns_profit = (int)(price_result*0.05)/10*10;
 			}else if(sb.getRank().equals("plus")){
@@ -56,13 +54,9 @@ public class PayDepositDoneAction implements Action{
 				sns_profit = (int)(price_result*0.2/10*10);
 			}
 		}
-		System.out.println("sns_profit"+sns_profit);
 		add_point = (int)(price_result*0.01)/10*10;
 		company_profit = (int)(price_result*0.1)/10*10;
 		vendor_profit = ((prob.getPrice()*pb.getAmount())-company_profit-sns_profit);
-		System.out.println("vendor_profit: "+vendor_profit);
-		System.out.println("company_profit: "+company_profit);
-		System.out.println("add_point:" + add_point);
 		pdao.addSnsPay(sns_profit, pb.getAmount(), pb.getSns_id());
 		pdao.addVendorProfit(vendor_profit, pb.getVendor_id());
 		pdao.addPoint(add_point, id);
@@ -77,7 +71,6 @@ public class PayDepositDoneAction implements Action{
 				all_sns_sell += (long)prob_sns.getPrice()*(long)pb_sns.getAmount();
 			}
 		}
-		System.out.println(all_sns_sell);
 		
 		
 		//pdao.rankUpdate(pb.getSns_id(), all_sns_sell+Math.round(price_result), sb_sns.getRank());

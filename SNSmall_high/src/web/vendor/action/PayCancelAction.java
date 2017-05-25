@@ -62,13 +62,9 @@ public class PayCancelAction implements Action {
 					sns_profit = (int)(price_result*0.2/10*10);
 				}
 			}
-			System.out.println("sns_profit"+sns_profit);
 			add_point = (int)(price_result*0.01)/10*10;
 			company_profit = (int)(price_result*0.1)/10*10;
 			vendor_profit = ((prob.getPrice()*pb.getAmount())-company_profit-sns_profit);
-			System.out.println("vendor_profit: "+vendor_profit);
-			System.out.println("company_profit: "+company_profit);
-			System.out.println("add_point:" + add_point);
 			
 	
 			pdao.subSnsPay(sns_profit, pb.getAmount(), pb.getSns_id());
@@ -80,7 +76,6 @@ public class PayCancelAction implements Action {
 			
 			//rank update 확인
 			list_sns = pdao.getSnsPaymentList(pb.getSns_id());
-			System.out.println("size:"+list_sns.size());
 			for(int j=0; j<list_sns.size(); j++){
 				pb_sns = list_sns.get(j);
 				prob_sns = prodao.getProduct(pb_sns.getProduct_num());
@@ -88,8 +83,6 @@ public class PayCancelAction implements Action {
 					all_sns_sell += (long)prob_sns.getPrice()*(long)pb_sns.getAmount();
 				}
 			}
-			System.out.println(all_sns_sell);
-			
 			
 			long money = all_sns_sell+Math.round(price_result);
 			if(sb != null){

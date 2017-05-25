@@ -51,8 +51,13 @@ public class loginAction implements Action{
 		session.setAttribute("name", name);
 		session.setAttribute("pass", pass);
 		ActionForward forward = new ActionForward();
-		forward.setPath(returnUrl);
-		forward.setRedirect(true);			
+		if(type.equals("admin")){
+			forward.setPath("AdminMain.ad");
+			forward.setRedirect(true);
+		}else{
+			forward.setPath(returnUrl);
+			forward.setRedirect(true);	
+		}
 		return forward;
 	}
 }

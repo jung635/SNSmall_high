@@ -31,7 +31,7 @@ SimpleDateFormat sdf = new SimpleDateFormat("yyyy-mm-dd hh:mm");
 						}
 					%>
 						<tr style="background-color: <%=color%>">
-							<td style="font-size: 16px; height: 45px; padding-right: 63px;"><a href="OffAlarm.al?num=<%=map.get("num")%>"><%=map.get("content")%></a></td>
+							<td style="font-size: 16px; height: 45px; padding-right: 63px; width: 400px;"><a href="OffAlarm.al?num=<%=map.get("num")%>"><%=map.get("content")%></a></td>
 							<td style="font-size: 11px;"><%=sdf.format(map.get("date"))%></td>
 						</tr>
 					<%} %> 

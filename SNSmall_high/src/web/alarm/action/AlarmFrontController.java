@@ -35,14 +35,6 @@ public class AlarmFrontController extends HttpServlet {
 				e.printStackTrace();
 			}
 
-		} else if (command.equals("/InsertAction.al")) {
-			action = new InsertAction();
-			try {
-				forward = action.execute(request, response);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-
 		} else if (command.equals("/OffAlarm.al")) {
 			action = new OffAlarmAction();
 			try {

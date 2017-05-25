@@ -19,10 +19,8 @@ public class PayCancelPointAction implements Action{
 		String payNum_str = request.getParameter("num");
 		String[] payNum = payNum_str.split(",");
 		PaymentDAO pdao = new PaymentDAO();
-		System.out.println(payNum_str);
 		for(int i=0; i<payNum.length; i++){
 			PaymentBean pb = pdao.getPaymentByNum(Integer.parseInt(payNum[i]));
-			System.out.println(pb.getState());
 			if(pb.getState().equals("waiting")){
 				pdao.deletePayRequestWaiting(pb.getNum());
 			}else{

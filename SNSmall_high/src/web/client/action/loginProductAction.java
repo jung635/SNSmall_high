@@ -9,16 +9,18 @@ import javax.servlet.http.HttpSession;
 import web.client.db.ClientDAO;
 import web.client.db.MemberTypeBean;
 
-public class loginAction implements Action{
+public class loginProductAction implements Action{
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		System.out.println("loginAction execute()");
+		System.out.println("loginProductAction execute()");
 		
 		request.setCharacterEncoding("utf-8");
 		String id = request.getParameter("id");
 		String pass = request.getParameter("pass");
-		String returnUrl = request.getParameter("returnUrl");
+		//int product_num = Integer.parseInt(request.getParameter("product_num"));
+		String product_num = request.getParameter("product_num");
+		String sns_id = request.getParameter("sns_id");
 		
 		ClientDAO cldao = new ClientDAO();
 		MemberTypeBean mtb = (MemberTypeBean)cldao.idCheck(id,pass);
@@ -51,7 +53,7 @@ public class loginAction implements Action{
 		session.setAttribute("name", name);
 		session.setAttribute("pass", pass);
 		ActionForward forward = new ActionForward();
-		forward.setPath(returnUrl);
+		forward.setPath("./ProductDetail.pr?product_num="+product_num+"&sns_id="+sns_id);
 		forward.setRedirect(true);			
 		return forward;
 	}

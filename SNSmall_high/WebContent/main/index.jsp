@@ -331,10 +331,12 @@ function snsSearch_exe(){
 				</div>
 				<ul class="portfolio-filter text-center">
 					<li><a class="btn btn-default active" href="#" data-filter="*">All</a></li>
-					<li><a class="btn btn-default" href="#" data-filter=".html">Html</a></li>
-					<li><a class="btn btn-default" href="#" data-filter=".wordpress">Wordpress</a></li>
-					<li><a class="btn btn-default" href="#" data-filter=".joomla">Joomla</a></li>
-					<li><a class="btn btn-default" href="#" data-filter=".megento">Megento</a></li>
+					<li><a class="btn btn-default" href="#" data-filter=".html">Fashion</a></li>
+					<li><a class="btn btn-default" href="#" data-filter=".wordpress">Beauty</a></li>
+					<li><a class="btn btn-default" href="#" data-filter=".joomla">Baby</a></li>
+					<li><a class="btn btn-default" href="#" data-filter=".megento">Daily</a></li>
+					<li><a class="btn btn-default" href="#" data-filter=".megento">WorkOut</a></li>
+					<li><a class="btn btn-default" href="#" data-filter=".megento">Etc</a></li>
 				</ul><!--/#portfolio-filter-->
 				<div class="portfolio-items">
 					<div class="col-sm-3 col-xs-12 portfolio-item html">

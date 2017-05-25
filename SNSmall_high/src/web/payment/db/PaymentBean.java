@@ -18,6 +18,15 @@ public class PaymentBean {
 	private String option3;
 	private String state;
 	private int usedPoint;
+	private String address;
+	
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
 
 	public int getProduct_num() {
 		return product_num;

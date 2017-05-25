@@ -51,13 +51,6 @@ public class PaymentFrontController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		} else if (command.equals("/PayInnerList.pa")) {
-			action = new PayListAction();
-			try {
-				forward = action.execute(request, response);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
 		} else if (command.equals("/PayDetail.pa")) {
 			action = new PayDetailAction();
 			try {

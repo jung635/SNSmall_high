@@ -16,7 +16,7 @@ public class PayListAction implements Action {
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		HttpSession session = request.getSession();
 		String type = (String)session.getAttribute("type");
-		
+
 		request.setAttribute("type", type);
 		
 		String client_id="";
@@ -29,12 +29,11 @@ public class PayListAction implements Action {
 		PaymentDAO pdao = new PaymentDAO();
 		String method = request.getParameter("method");
 		int page = Integer.parseInt(request.getParameter("page"));
-		
-		
+
 		if(type.equals("client")){
 			client_id =(String)session.getAttribute("id");
 			order_num_list = pdao.getOrderNumList(page, client_id, method);
-			
+
 			if(method.equals("payDone")){
 				for (int i=0; i<order_num_list.size(); i++){
 					pay_list_done.add(pdao.getPayment(order_num_list.get(i)));

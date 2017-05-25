@@ -11,8 +11,6 @@ import web.client.db.ClientDAO;
 import web.vendor.db.VendorBean;
 import web.vendor.db.VendorDAO;
 
-
-
 public class clientJoinAction implements Action{
 
 	@Override

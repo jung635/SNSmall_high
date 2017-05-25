@@ -10,8 +10,6 @@ import javax.servlet.http.HttpSession;
 import web.client.db.ClientBean;
 import web.client.db.ClientDAO;
 
-
-
 public class clientUpdateAction implements Action{
 
 	@Override

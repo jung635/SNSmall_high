@@ -39,6 +39,22 @@ public class AdminFrontController extends HttpServlet {
 				e.printStackTrace();
 			}
 
+		} else if (command.equals("/ClientList.ad")) {
+			action = new ClientListAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+
+		} else if (command.equals("/SearchClientList.ad")) {
+//			action = new SearchClientList();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+
 		}
 
 		if (forward != null) {

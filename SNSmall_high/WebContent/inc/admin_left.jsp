@@ -14,7 +14,7 @@
 			<div id="show_content">
 				<a href="SnsList.ad"  class="list-group-item">SNS star</a>
 				<a href="#"  class="list-group-item">Vendor</a>
-				<a href="#"  class="list-group-item">Client</a>
+				<a href="ClientList.ad"  class="list-group-item">Client</a>
 			</div>
 		</div>
 	

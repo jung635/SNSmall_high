@@ -18,9 +18,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-<jsp:include page="../inc/header.jsp"/>
-<%String id = "test";
-%>
   <!-- Page Content -->
   <div class="container">
     <div class="more_content">

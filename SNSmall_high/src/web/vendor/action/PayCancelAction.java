@@ -41,8 +41,14 @@ public class PayCancelAction implements Action {
 		List<PaymentBean> list_pb = new ArrayList<>();
 		List<PaymentBean> list_sns = new ArrayList<>();
 		pdao.deletePay(payNum);
+		AlarmBean ab = new AlarmBean();
+		AlarmDAO adao = new AlarmDAO();
 		
 		if(pb.getState().equals("w_cancleHold")){
+			ab.setContent("결제 취소가 완료되었습니다.");
+			ab.setId(pb.getClient_id());
+			ab.setMove("PayList.pa");
+			adao.insertAlarm(ab);
 			pdao.addPoint(pb.getUsedPoint(), pb.getClient_id());
 			pdao.addAmount(pb.getAmount(), pb.getProduct_num());
 		}else{
@@ -88,8 +94,7 @@ public class PayCancelAction implements Action {
 			
 			
 			long money = all_sns_sell+Math.round(price_result);
-			AlarmBean ab = new AlarmBean();
-			AlarmDAO adao = new AlarmDAO();
+			
 			if( sb_sns.getRank().equals("plus")){
 				if(money<146000){//테스트
 				//if(money<5000000){
@@ -114,7 +119,10 @@ public class PayCancelAction implements Action {
 					pdao.rankUpdate(pb.getSns_id(), "basic");
 				}
 			}
-			
+			ab.setContent("결제 취소가 완료되었습니다.");
+			ab.setId(pb.getClient_id());
+			ab.setMove("PayList.pa");
+			adao.insertAlarm(ab);
 			out.println("<script>");
 			out.println("alert('취소가 완료되었습니다.');");
 			out.println("location.href='PayList.pa';");

@@ -104,3 +104,8 @@ footer {
 	text-align: center;
 	margin: 50px 0 50px 0;
 }
+
+.search-subject{
+	position: relative;
+	padding-top: 5px;
+}

@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 
+
 public class AlarmFrontController extends HttpServlet {
 	protected void doProcess(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -20,24 +21,65 @@ public class AlarmFrontController extends HttpServlet {
 		
 		if(command.equals("/Alarm.al")){
 			action = new AlarmAction();
-			try{
+			try {
 				forward = action.execute(request, response);
-			}catch(Exception e){e.printStackTrace();}
-			
-		}else if(command.equals("/AlarmView.al")){
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+
+		} else if (command.equals("/AlarmView.al")) {
 			action = new AlarmViewAction();
-			try{
+			try {
 				forward = action.execute(request, response);
-			}catch(Exception e){e.printStackTrace();}
-			
-		}else if(command.equals("/InsertAction.al")){
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+
+		} else if (command.equals("/InsertAction.al")) {
 			action = new InsertAction();
-			try{
+			try {
 				forward = action.execute(request, response);
-			}catch(Exception e){e.printStackTrace();}
-			
-		}
-		
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+
+		} else if (command.equals("/OffAlarm.al")) {
+			action = new OffAlarmAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+
+		} else if (command.equals("/RankUp.al")) {
+			forward = new ActionForward();
+			forward.setPath("./pay/rankup.jsp");
+			forward.setRedirect(false);
+		}else if (command.equals("/RankDown.al")) {
+			forward = new ActionForward();
+			forward.setPath("./pay/rankdown.jsp");
+			forward.setRedirect(false);
+		} else if (command.equals("/AlarmList.al")) {
+			action = new AlarmListAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+
+		}else if (command.equals("/AlarmListView.al")) {
+			forward = new ActionForward();
+			forward.setPath("./mypage/alarmList.jsp");
+			forward.setRedirect(false);
+		} else if (command.equals("/OnAlarm.al")) {
+			action = new OnAlarmAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} 
+	
 		if (forward != null) {
 			if (forward.isRedirect()) {
 				response.sendRedirect(forward.getPath());

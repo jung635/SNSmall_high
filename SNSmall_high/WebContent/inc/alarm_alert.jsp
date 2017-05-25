@@ -6,25 +6,23 @@
 <!DOCTYPE html>
 <html>
 <body>
+
 <%
 List<Map<String, Object>> list = (List)request.getAttribute("list"); 
 Map<String, Object> map = new HashMap<String, Object>();
 String color = "";
-int limit = 0;
-if(list == null){
+int limit = 0;%>
+<%if(list == null){
 %>
-nothing
 <%}else{
 	if(list.size()<5) limit = list.size();
 	else limit = 5;%>
-<ul>
+
 
 <%for(int i=0; i<limit; i++){
 		map = list.get(i);%>
-
-	<li><%=map.get("content") %></li>
+	<div id="alarm" style="top: <%=i*65+30%>px;"><a href="#" onclick="offAlarm(<%=map.get("num")%>)"><%=map.get("content") %></a><div style="float:right;"><input type="button" value="X" onclick="onAlarm(<%=map.get("num")%>)"></div></div><br>
 <%} %>
-</ul>
 <%if(list.size()>5){%>
 <input type="button" value="더보기">
 <%} %>

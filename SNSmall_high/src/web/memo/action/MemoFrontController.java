@@ -109,7 +109,7 @@ public class MemoFrontController extends HttpServlet{
 			} catch (Exception e) {e.printStackTrace();}
 		}else if(command.equals("/MemoDeleteAllAction.me")){
 			// MemoDeleteAction 생성 execute() 메서드 호출
-			action = new MemoDeleteGetAction();
+			action = new MemoDeleteAllAction();
 			try{
 				forward = action.execute(request, response);
 			}catch(Exception e){e.printStackTrace();}

@@ -17,6 +17,7 @@
 	<link href="./css/header.css" rel="stylesheet">
 	<link href="./css/inner.css" rel="stylesheet">
 	<link href="./css/main.css" rel="stylesheet"> 
+	<link href="./css/memo.css" rel="stylesheet"> 
 	
 <title>Insert title here</title>
 
@@ -78,7 +79,7 @@ if(id ==null ){
 
 <table border=1>
 <tr bgcolor="orange">
-	<td>번호</td><td>보낸사람</td><td>제목</td><td>날짜</td>
+	<td>번호</td><td>보낸사람</td><td>제목</td><td>내용</td><td>날짜</td>
 </tr>
 <%
 	for(int i=0; i < memoListGet.size(); i++){
@@ -90,8 +91,8 @@ if(id ==null ){
 %>
 <tr bgcolor="#ffeecc">
 <td><%=meb.getNum() %></td><td><%=meb.getFrom_id() %></td>
-<td>
-<a href="./MemoContentGet.me?num=<%=meb.getNum()%>&pageNum=<%=pageNum%>"><%= meb.getSubject()%></a></td><td><%=meb.getDate() %></td>
+<td><a href="./MemoContentGet.me?num=<%=meb.getNum()%>&pageNum=<%=pageNum%>"><%= meb.getSubject()%></a></td>
+<td><a href="./MemoContentGet.me?num=<%=meb.getNum()%>&pageNum=<%=pageNum%>"><%= meb.getContent()%></a></td><td><%=meb.getDate() %></td>
 </tr>
 <%
 }

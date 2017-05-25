@@ -461,11 +461,13 @@ public class SnsDAO {
 			while (rs.next()) {
 				try{
 					sb = sdao.getSnsDetail(rs.getString("sns_id"));
-					if (category.equals(sb.getCategory())) {
-						pb = new PaymentBean();
-						pb.setProduct_num(rs.getInt("product_num"));
-						pb.setAmount(rs.getInt("amount"));
-						list.add(pb);
+					if( sb != null){
+						if (category.equals(sb.getCategory())) {
+							pb = new PaymentBean();
+							pb.setProduct_num(rs.getInt("product_num"));
+							pb.setAmount(rs.getInt("amount"));
+							list.add(pb);
+						}
 					}
 				}catch(Exception e){
 					e.printStackTrace();
@@ -485,22 +487,26 @@ public class SnsDAO {
 		
 		try{
 			con = getConnection();
-			sql = "update sns set name=?,category=?,content=?,"
-					+ "profile_img=?,detail_img=? where sns_id=?";					
+			sql = "update sns set name=?,category=?,content=?,instagram=?,facebook=?,twitter=?,blog=?,etc=?,"
+				+"profile_img=?,detail_img=? where sns_id=?";					
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, sb.getName());
 			pstmt.setString(2, sb.getCategory());
 			pstmt.setString(3, sb.getContent());
-			pstmt.setString(4, sb.getProfile_img());
-			pstmt.setString(5, sb.getDetail_img());
-			pstmt.setString(6, id);
+			pstmt.setString(4, sb.getInstagram());
+			pstmt.setString(5, sb.getFacebook());
+			pstmt.setString(6, sb.getTwitter());
+			pstmt.setString(7, sb.getBlog());
+			pstmt.setString(8, sb.getEtc());
+			pstmt.setString(9, sb.getProfile_img());
+			pstmt.setString(10, sb.getDetail_img());
+			pstmt.setString(11, id);
 			//4. 실행
 			pstmt.executeUpdate();
 			
 		}catch(Exception e){
 			e.printStackTrace();
 		}finally{
-//			if(rs!=null){try {rs.close();}catch(SQLException ex){}}
 			if(pstmt!=null){try{ pstmt.close(); }catch(SQLException ex){}}
 			if(con!=null){try {con.close();}catch(SQLException ex){}}}
 	}
@@ -509,9 +515,12 @@ public class SnsDAO {
 		
 		try{
 			con = getConnection();
+			
 			sql="update sns set pass=? where sns_id=?";
-			pstmt.setString(1, id);
-			pstmt.setString(2, pass);
+			
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, pass);
+			pstmt.setString(2, id);
 			
 			pstmt.executeUpdate();
 			

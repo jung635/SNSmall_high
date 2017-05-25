@@ -13,10 +13,12 @@ public class loginAction implements Action{
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		System.out.println("loginAction execute()");
 		
 		request.setCharacterEncoding("utf-8");
 		String id = request.getParameter("id");
 		String pass = request.getParameter("pass");
+		String returnUrl = request.getParameter("returnUrl");
 		
 		ClientDAO cldao = new ClientDAO();
 		MemberTypeBean mtb = (MemberTypeBean)cldao.idCheck(id,pass);
@@ -49,7 +51,7 @@ public class loginAction implements Action{
 		session.setAttribute("name", name);
 		session.setAttribute("pass", pass);
 		ActionForward forward = new ActionForward();
-		forward.setPath("./Main.cl");
+		forward.setPath(returnUrl);
 		forward.setRedirect(true);			
 		return forward;
 	}

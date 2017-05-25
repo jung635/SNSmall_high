@@ -5,11 +5,11 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){
+    alarm_view(); 
+    alarm_access(); 
     $("#alarm_btn").click(function(){
         $("#alarm_list").toggle();
     });
-    
-
 });
 </script>
 <%
@@ -18,24 +18,12 @@ $(document).ready(function(){
 	String type = (String) session.getAttribute("type");
 %> 
 <script type="text/javascript" src="inc/alarm.js"></script> 
-<script type="text/javascript">
-alarm_view(); 
-alarm_access();
-
-</script>
 		<div class="navbar navbar-inverse navbar-fixed-top" role="banner"> 
 			<div class="container">
 			<div style="position: relative;">
 			
 			<!-- 로그인/조인 부분 수정 --> 
 				<%if(id==null){ %>
-				<div style="float: right; position: relative;">				|
-					<div id="alarm_btn"><i class="fa fa-bell" aria-hidden="true"></i></div> 
-					<div id="alarm_list">
-					</div>
-					<div id="alarm">
-					</div>
-				</div>
 				<div style="float: right;">				|
 					<span><a href="./common_join.sn">Join</a> </span> 
 				</div>
@@ -43,11 +31,12 @@ alarm_access();
 					<span><a href="./login.cl">Login &nbsp;</a></span>
 				</div>
 				<%}else{ %>
-				<div style="float: right;">		
+				<div id="alarm_box" style="float: right;">		
 					<div id="alarm_btn"><i class="fa fa-bell" aria-hidden="true"></i></div> 
+					<div id="alarm_count" style="display: none;"></div>
 					<div id="alarm_list">
 					</div>
-					<div id="alarm" style="display: none;">
+					<div id="alert_box">
 					</div>
 				</div>
 				<div style="float: right;">				|
@@ -68,8 +57,8 @@ alarm_access();
 				</div> 
 				<div class="collapse navbar-collapse" style="height: 70px !important;">
 					<ul class="nav navbar-nav navbar-right">
-						<li class="scroll"><a href="#navigation">Home</a></li>
-						<li class="scroll dropbtn"><a href="ProductList.pr">GoodsList</a>
+						<li class="scroll"><a href="./Main.cl">Home</a></li>
+						<li class="scroll dropbtn"><a href="./ProductList.pr">GoodsList</a>
 							<div class="dropdown-content">
      							<a href="ProductList.pr">전체</a>
      					 		<a href="ProductList.pr?category=fashion">패션</a>
@@ -91,14 +80,7 @@ alarm_access();
      					 		<a href="snsList.sn?category=etc">기타</a>
     						</div>
 						</li>
-						<%
-						String pageNum = (String)request.getAttribute("pageNum");
-						if(pageNum == null){pageNum="1";}
-						int product_num = 9;
-						request.setAttribute("product_num", product_num);
-						%> 
 						<li class="scroll"><a href="Service.cl">Our Service</a></li>
-						<li class="scroll"><a href="./ProductDetail.pr?product_num=<%=product_num %>&pageNum=<%=pageNum%>">Detail</a></li> 
 					
 					<!-- vendor,client,sns mypage 구분 -->
 						<%if(type !=null){
@@ -108,12 +90,13 @@ alarm_access();
 						<li class="scroll"><a href="MyPage.ve">MyPage</a></li>
 						<%}else if(type.equals("sns")){%>
 						<li class="scroll"><a href="MyPage.sn">MyPage</a></li>
-						<%}} %>
+						<%} %>
 					<!-- vendor,client,sns mypage 구분 -->
-					
-						<li class="scroll"><a href="#">Contact</a></li>
+						<%if(type.equals("vendor") || type.equals("sns")){ %>
+						<li class="scroll"><a href="BoardList.bo">Contact</a></li>
+						<%}} %>
 						<li class="scroll"><a href="Price.cl">Price</a></li>
-						<input type="button" value="test" onclick="insert()">
+						<input type="button" value="test" onclick="location.href = 'InsertAction.al'">
 					</div>	
 					</ul> 
 				</div> 

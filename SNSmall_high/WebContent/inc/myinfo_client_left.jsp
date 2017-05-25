@@ -12,7 +12,6 @@
 	
 	<%
 			String type= (String)session.getAttribute("type");
-			System.out.println(type);
 			if(type.equals("sns")){ %>
 				<div id="showbtn">
 				<a href="PayList.pa" class="list-group-item showbtn">내 정보</a>
@@ -27,8 +26,6 @@
 	<a href="PayList.pa" class="list-group-item">주문 내역</a>
 	<a href="ZzimList.zz" class="list-group-item">찜 목록</a>
 	<a href="CartList.ca" class="list-group-item">장바구니</a>
-	<a href="SnsSale.sn" class="list-group-item">SNS 판매내역</a>
-	<a href="CancelList.ve" class="list-group-item">취소 내역(vendor)</a>
-	<a href="DepositList.ve" class="list-group-item">디파짓 내역(vendor)</a>
+	<a href="AlarmListView.al" class="list-group-item">메시지 리스트</a>
 </div>
   

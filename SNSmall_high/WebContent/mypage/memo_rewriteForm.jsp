@@ -17,6 +17,7 @@
 	<link href="./css/header.css" rel="stylesheet">
 	<link href="./css/inner.css" rel="stylesheet">
 	<link href="./css/main.css" rel="stylesheet"> 
+	<link href="./css/memo.css" rel="stylesheet"> 
 	
 <title>Insert title here</title>
 
@@ -29,6 +30,31 @@ th,td {
   padding: 5px;
 }
 </style>
+
+<script type="text/javascript">
+function check(){
+
+	if(document.fr.to_id.value==""){
+		//받는사람 아이디를 입력하세요. 커서 깜박 되돌아가기
+		alert("받는사람 아이디를 입력하세요");
+		document.fr.to_id.focus();
+		return false;
+	}
+	if(document.fr.subject.value==""){
+		//제목을 입력하세요. 커서 깜박 되돌아가기
+		alert("제목를 입력하세요");
+		document.fr.subject.focus();
+		return false;
+	}
+	if(document.fr.content.value==""){
+		//내용을 입력하세요. 커서 깜박 되돌아가기
+		alert("내용을 입력하세요");
+		document.fr.content.focus();
+		return false;
+	}
+
+}
+</script>
 
 </head>
 <body>
@@ -67,19 +93,21 @@ int re_seq = Integer.parseInt(request.getParameter("re_seq"));
 </div>
 <div class="row">
 
-<h1>쪽지글 답하기</h1>
-<form action="./MemoReWriteAction.me" method="post" name="fr">
-<input type="hidden" name="num" value="<%=num%>">
-<input type="hidden" name="re_ref" value="<%=re_ref%>">
-<input type="hidden" name="re_lev" value="<%=re_lev%>">
-<input type="hidden" name="re_seq" value="<%=re_seq%>">
-<input type="hidden" name="from_id" value="<%=to_id %>">
-받는사람 : <input type="text" name="to_id" value="<%=from_id%>"><br>
-제목 : <input type="text" name="subject" value="[답글]"><br>
-내용 : <textarea rows="10" cols="20" name="content"></textarea><br>
-<input type="submit" value="답글쓰기">
-</form>
+<h3>쪽지글 답하기</h3>
 
+<article>
+<fieldset>
+<form action="./MemoReWriteAction.me" method="post" name="fr" onsubmit="return check()">
+<input type="hidden" name="num" value="<%=num%>">
+<input type="hidden" name="from_id" value="<%=to_id %>">
+<label for="to_id">받는사람 </label> <input type="text" name="to_id" value="<%=from_id%>"   id="to_id" class="to_id"><br>
+<label for="subject">제목 </label> <input type="text" name="subject" value="[답글]"  id="subject" class="subject"><br>
+<label for="content">내용 </label> <textarea rows="10" cols="20" name="content"  id="content" class="content"></textarea><br>
+<input type="submit" value="쪽지 답하기" class="submit">
+	<input type="reset" value="다시 쓰기" class="cancel">
+</form>
+</fieldset>
+</article>
 
     <!-- /.container -->
 <!--     <div class="container"> -->

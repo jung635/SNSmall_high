@@ -15,9 +15,12 @@ public class AlarmViewAction implements Action{
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		HttpSession session = request.getSession();
 		String id = (String)session.getAttribute("id");
+		if(id!=null){
 		AlarmDAO adao = new AlarmDAO();
 		Map<String, Object> map = null;
-		List<Map<String, Object>> list = adao.showAlarm(id);
+		List<Map<String, Object>> list = adao.alarmList(id);
+		List<Map<String, Object>> list_nowon = adao.showAlarm(id);
+		
 		if(list.isEmpty()){
 			
 		}else{
@@ -26,14 +29,16 @@ public class AlarmViewAction implements Action{
 			}
 			if(id.equals(map.get("id"))) {
 				request.setAttribute("list", list);
+				request.setAttribute("list_nowon", list_nowon);
 		    }
 		}
-		
+		}
 		ActionForward forward = new ActionForward();
 		forward.setPath("./inc/alarm_view.jsp");
 		forward.setRedirect(false);
-
+		
 		return forward;
+		
 	}
 
 }

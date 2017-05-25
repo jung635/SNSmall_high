@@ -14,7 +14,7 @@ public class MemoListAllAction implements Action{
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
 		System.out.println("Memo List All execute()");
-		
+
 		// 세션값 제어
 		HttpSession session=request.getSession();
 		String id = (String)session.getAttribute("id");
@@ -42,7 +42,8 @@ public class MemoListAllAction implements Action{
 		//끝행 구하기(오라클 끝행 필요함.)
 		int endRow = currentPage*pageSize;
 
-		// List memoList = 매서드 호출 getMemoList(시작행, 몇개)
+
+		// List memoListAll = 매서드 호출 getMemoListAll(시작행, 몇개)
 		List memoListAll=medao.getMemoListAll(id, startRow, pageSize);
 				
 		//전체 페이지 수 구하기   게시판글  50개 한 화면에 보여줄 글개수 10 => 5 페이지
@@ -73,7 +74,7 @@ public class MemoListAllAction implements Action{
 		forward.setPath("./mypage/memo_list_all.jsp");
 		forward.setRedirect(false);
 		return forward;
-
+		
 	}
 
 }

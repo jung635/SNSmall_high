@@ -18,16 +18,6 @@
 	<link href="./css/main.css" rel="stylesheet">
 	
 	<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
-	<script type="text/javascript">
-	$(document).ready(function() {
-		$('.scroll').click(function(){
-			//alert('hi');
-			  //$('.active').removeClass('active');
-			  $(this).addClass('active');  
-			});
-	}); 
-	
-	</script>
 </head>
 <body>
 <%

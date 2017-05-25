@@ -13,8 +13,8 @@ public class MemoBean {
 		private int re_ref;
 		private int re_lev;
 		private int re_seq;
-		
-		
+		private char from_del;
+		private char to_del;
 		public int getNum() {
 			return num;
 		}
@@ -69,6 +69,17 @@ public class MemoBean {
 		public void setRe_seq(int re_seq) {
 			this.re_seq = re_seq;
 		}
-		
-		
+		public char getFrom_del() {
+			return from_del;
+		}
+		public void setFrom_del(char from_del) {
+			this.from_del = from_del;
+		}
+		public char getTo_del() {
+			return to_del;
+		}
+		public void setTo_del(char to_del) {
+			this.to_del = to_del;
+		}
+
 }

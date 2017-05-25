@@ -1,3 +1,4 @@
+<%@page import="javax.crypto.interfaces.PBEKey"%>
 <%@page import="web.qna.db.QnaBean"%>
 <%@page import="java.util.List"%>
 <%@page import="web.product.db.ProductBean"%>
@@ -13,6 +14,7 @@
 	<meta name="author" content=""> 
 	<title>HIMU - OnePage HTML Parallax template</title> 
 	<link href="css/bootstrap.min.css" rel="stylesheet">
+	<link href="./css/font-awesome.min.css" rel="stylesheet"> 
 	<link href="css/header.css" rel="stylesheet">
 	<link href="css/inner.css" rel="stylesheet">
 	<link href="css/main.css" rel="stylesheet">
@@ -23,29 +25,130 @@
 	    $(".reviewbtn").click(function(){
         	$("#writing").toggle();
     	});
-	});
-
-	function cart(){
 		
+	   var star=3;
+		$('#writing').find('.glyphicon').click(function(){
+			if($(this).attr('class')=="glyphicon glyphicon-star-empty"){
+				$(this).attr('class', "glyphicon glyphicon-star");
+				star++;
+				alert(star);
+			}else{
+				$(this).attr('class', "glyphicon glyphicon-star-empty");
+				star--;
+				alert(star);
+			}
+		});
+		
+	});
+	
+	function gocart(){
+		document.gfr.action="./CartAdd.ca";
+		document.gfr.method="post";
+		document.gfr.submit();
 	}
+	
+	function gobuy() {
+		if(document.gfr.option1.value == ""){
+			alert("option1을 선택하세요");
+			document.gfr.option1.focus();
+			return false;
+		}else if(document.gfr.option2 != null){
+			if(document.gfr.option2.value == ""){
+				alert("option2을 선택하세요");
+				document.gfr.option2.focus();
+				return false;
+			}else if(document.gfr.option3 != null){
+				if(document.gfr.option3.value == ""){
+					alert("option3을 선택하세요");
+					document.gfr.option3.focus();
+					return false;
+				}
+			}
+		}
+		document.gfr.action="Pay.pa";
+		document.gfr.method="post";
+		document.gfr.submit();
+	}
+	
+	function sendSns(sns, url, txt){
+		alert(sns+", "+url+", "+txt);
+	    var o;
+	    var _url = encodeURIComponent(url);
+	    var _txt = encodeURIComponent(txt);
+	    var _br  = encodeURIComponent('\r\n');
+	 
+	    switch(sns){
+	        case 'facebook':
+	            o = {
+	                method:'popup',
+	                url:'http://www.facebook.com/sharer/sharer.php?u=' + _url
+	      		  };
+	            break;
+	 
+	        case 'twitter':
+	            o = {
+	                method:'popup',
+	                url:'http://twitter.com/intent/tweet?text=' + _txt + '&url=' + _url
+	            };
+	            break;
+	 
+	         case 'blog':
+	            o = {
+	                method:'popup',
+	                url:"http://blog.naver.com/openapi/share?url=" + _url + "&title=" + _txt
+	            };
+	            break; 
+	 
+	        default:
+	            alert('지원하지 않는 SNS입니다.');
+	            return false;
+	    }
+	 
+	    switch(o.method){
+	    
+	        case 'popup':
+	            window.open(o.url);
+	            break;
+	 
+	        case 'web2app':
+	            if(navigator.userAgent.match(/android/i)){
+	                // Android
+	                setTimeout(function(){ location.href = 'intent://' + o.param + '#Intent;' + o.g_proto + ';end'}, 100);
+	            }else if(navigator.userAgent.match(/(iphone)|(ipod)|(ipad)/i)){
+	                // Apple
+	                setTimeout(function(){ location.href = o.a_store; }, 200);          
+	                setTimeout(function(){ location.href = o.a_proto + o.param }, 100);
+	            }else{
+	                alert('이 기능은 모바일에서만 사용할 수 있습니다.');
+	            }
+	            break;
+	    }
+	}
+	
 </script>
 
 </head>
 <body>
 
 	<%
+	String returnUrl = request.getHeader("referer");
+	System.out.println(returnUrl);
+	
+	ProductBean productbean = (ProductBean)request.getAttribute("productbean");
+	String sns_id = (String)request.getAttribute("sns_id");
+	if(sns_id == null){sns_id = "";}
+	
 	String id = (String)session.getAttribute("id");
-	if(id==null){response.sendRedirect("./login.cl");}
+	if(id==null){response.sendRedirect("./login.cl?returnUrl="+returnUrl+"&product_num="+productbean.getProduct_num()+"&sns_id="+sns_id);}
 	
 	String type =(String)session.getAttribute("type");
 	if(type==null){type = "client";}
 	
+	if(type.equals("sns")){sns_id = id;}
+	
 	String pageNum = (String)request.getAttribute("pageNum");
 	if(pageNum == null){pageNum="1";}
 	
-	String sns_id = "abc";
-	
-	ProductBean productbean = (ProductBean)request.getAttribute("productbean");
 	String [] o1 = productbean.getOption1().split(",");
 	String [] o2 = productbean.getOption2().split(",");
 	String [] o3 = productbean.getOption3().split(",");
@@ -76,7 +179,6 @@
             </div>
         </div>
         <!-- /.row -->
-
         <!-- Portfolio Item Row -->
         <div class="row">
 
@@ -93,6 +195,7 @@
             </div>
 			
 			<form action="" method="post" name="gfr">
+			<input type="hidden" name="subject" value="<%=productbean.getSubject()%>">
 			<input type="hidden" name="product_num" value="<%=productbean.getProduct_num()%>">
 			<input type="hidden" name="sns_id" value="<%=sns_id%>">
 			<input type="hidden" name="vendor_id" value="<%=productbean.getVendor_id()%>">
@@ -116,18 +219,18 @@
  						<%} %>
  				</select>
  				<br>
-				<%}else if(o3 != null){ %>
+				<%}if(o3 != null){ %>
  				<select name="option3">
  					<option value=""><%=o3[0] %> 선택하세요</option>
- 						<%for(int i=1; i<o2.length; i++){ %>
+ 						<%for(int i=1; i<o3.length; i++){ %>
   							<option value="<%=o3[i]%>"><%=o3[i] %></option>
   						<%} %>
   				</select>
                  <br>
                  <%}%>
                  <script type="text/javascript">
-                 function plus(){
-                		if(document.gfr.amount.value<<%=amount%>){
+                 	function plus(){
+                		if(document.gfr.amount.value<<%=peace%>){
                 			document.gfr.amount.value++;
 							document.getElementById("allprice").value=<%=allprice%>*document.gfr.amount.value;
                 		}
@@ -138,35 +241,30 @@
                 			document.getElementById("allprice").value=<%=allprice%>*document.gfr.amount.value;
                 		}
                 	}
-                	function gocart(){
-                		window.document.gfr.action="./CartAdd.ca";
-                		window.document.gfr.method="post";
-                		window.document.gfr.submit();
-                	}
-					function gobuy() {
-						window.document.gfr.action="Pay.pa";
-                		window.document.gfr.method="post";
-                		window.document.gfr.submit();
-					}
-					function goshare() {
-						window.document.gfr.action="";
-                		window.document.gfr.method="post";
-                		window.document.gfr.submit();
-					}
                 	</script>
 				잔여수량: <input type="text" name="rest_amount" value="<%=peace%> / <%=productbean.getAmount()%>"><br>
+				<%
+				if(peace==0){%>
+					<h2>SOLD OUT</h2>
+				<%}else{%>
 				수량: <input type="text" name="amount" value="1">
 				<button type="button" onclick="plus()">+</button>
 				<button type="button" onclick="minus()">-</button><br>
-				가격: <input type="text" id="allprice" value="<%=productbean.getPrice()%>">
-				
-				
+				가격: <input type="text" id="allprice" name="allprice" value="<%=productbean.getPrice()%>">
+				<%} %>
 				<br>
+				<%if(peace!=0){%>
                 <a class="btn btn-success" onclick="gocart()">Into Cart</a>
-                <a class="btn btn-success" onclick="gobuy()">Get it</a>
-                <% if(!(type.equals("client"))){%>
-                <a class="btn btn-success" onclick="goshare()">Share</a>
-                <%} %>
+                <a class="btn btn-success" onclick="return gobuy()">Get it</a>
+                <% if(type.equals("sns")){%>
+                <br>
+				<i class="fa fa-facebook-square" aria-hidden="true" 
+					onclick="sendSns('facebook', 'http://sunju635.cafe24.com/SNSmall_high/ProductDetail.pr?product_num=<%=productbean.getProduct_num()%>&sns_id=<%=sns_id %>', '안녕')"></i>
+				<i class="fa fa-twitter" aria-hidden="true" 
+					onclick="sendSns('twitter', 'http://sunju635.cafe24.com/SNSmall_high/ProductDetail.pr?product_num=<%=productbean.getProduct_num()%>&sns_id=<%=sns_id %>', '안녕')"></i>
+				<i class="fa fa-bold" aria-hidden="true" 
+					onclick="sendSns('blog', 'http://sunju635.cafe24.com/SNSmall_high/ProductDetail.pr?product_num=<%=productbean.getProduct_num()%>&sns_id=<%=sns_id %>', '안녕')"></i>
+                <%}} %>
             </div>
 			</form>
         </div>
@@ -196,66 +294,71 @@
                     <div class="text-right">
                      	<div id="writing" style="margin-bottom: 14px; display: none;">
                     	 	<form action="./QnaInsertAction.qn?product_num=<%=productbean.getProduct_num() %>&pageNum=<%=pageNum%>" method="post" enctype="multipart/form-data">
-                    	 		<input type="hidden" name="client_id" value="<%=id%>">
-                    	 		<textarea rows="3" cols="120" name="content"></textarea><br>
-                    	 		<input type="file" name="q_img"><br>
-                    	 		<input type="submit" value="submit">
-                    	 	</form>
-                    	 </div>
-                        <a class="btn btn-success reviewbtn">Leave a Review</a>
-                    </div>
+								<input type="hidden" name="client_id" value="<%=id%>">
+								<div><textarea rows="3" cols="120" name="content"></textarea><br></div>
+								<div><span class="glyphicon glyphicon-star"></span>
+								<span class="glyphicon glyphicon-star"></span>
+								<span class="glyphicon glyphicon-star"></span>
+								<span class="glyphicon glyphicon-star-empty"></span>
+								<span class="glyphicon glyphicon-star-empty"></span></div>
+								<input type="file" name="q_img">
+								<input type="submit" value="submit">
+							</form>
+						</div>
+						<a class="btn btn-success reviewbtn">Leave a Review</a>
+					</div>
 				<%} %>
 			<%} %>
-                    <hr>
+					<hr>
 					
 					<%for(int i=0; i<qnaList.size(); i++){
 						QnaBean qnabean = (QnaBean)qnaList.get(i);
-						String qUrl = "./QnaPopular.qn?product_num="+productbean.getProduct_num()+"&pageNum="+pageNum+"&q_num="+qnabean.getQ_num();
+						String qUrl = "./QnaPopular.qn?product_num="+productbean.getProduct_num()+"&pageNum="+pageNum+"&q_num="+qnabean.getQ_num()+"stars=";
 					%>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star-empty"></span>
-                            <%=qnabean.getClient_id() %> / <%=qnabean.getPopular() %>
-                            <input type="button" value="++" onclick="location.href='<%=qUrl%>'">
-                            <span class="pull-right"><%=qnabean.getDate() %></span>
-                            <p><%=qnabean.getContent() %></p>
-                            <%if(qnabean.getQ_img()!=null){ %>
-                            	<p><img src="./qna_img/<%=qnabean.getQ_img()%>" width="200px" height="100px"></p>
-                            <%} %>
-                        </div>
-                    </div>
+					<div class="row">
+						<div class="col-md-12">
+							<span class="glyphicon glyphicon-star"></span>
+							<span class="glyphicon glyphicon-star"></span>
+							<span class="glyphicon glyphicon-star"></span>
+							<span class="glyphicon glyphicon-star"></span>
+							<span class="glyphicon glyphicon-star-empty"></span>
+							<%=qnabean.getClient_id() %> / <%=qnabean.getPopular() %>
+							<input type="button" value="++" onclick="location.href='<%=qUrl%>'">
+							<span class="pull-right"><%=qnabean.getDate() %></span>
+							<p><%=qnabean.getContent() %></p>
+							<%if(qnabean.getQ_img()!=null){ %>
+								<p><img src="./qna_img/<%=qnabean.getQ_img()%>" width="200px" height="100px"></p>
+							<%} %>
+						</div>
+					</div>
 					<%} %>
 					
-                    <hr>
+					<hr>
 
-                </div>
+				</div>
         <!-- /.row -->
 
-        <hr>
+		<hr>
 
         <!-- Footer -->
-        <footer>
-            <div class="row">
-                <div class="col-lg-12">
-                    <p>Copyright &copy; Your Website 2014</p>
-                </div>
-            </div>
-            <!-- /.row -->
-        </footer>
+		<footer>
+			<div class="row">
+				<div class="col-lg-12">
+					<p>Copyright &copy; Your Website 2014</p>
+				</div>
+			</div>
+			<!-- /.row -->
+		</footer>
 
-    </div>
-  </div>
-    <!-- /.container -->
+	</div>
+	</div>
+	<!-- /.container -->
 
-    <!-- jQuery -->
-    <script src="js/jquery.js"></script>
+	<!-- jQuery -->
+	<script src="js/jquery.js"></script>
 
-    <!-- Bootstrap Core JavaScript -->
-    <script src="js/bootstrap.min.js"></script>
+	<!-- Bootstrap Core JavaScript -->
+	<script src="js/bootstrap.min.js"></script>
 
 </body>
 </html>

@@ -1,0 +1,89 @@
+@CHARSET "UTF-8";
+
+
+
+/* join us */
+
+article form{
+	margin: 10px 0 0 0;
+	/* float: right; */
+	/* border:1px solid red; */
+}
+
+article form fieldset{
+	border : none;
+	padding: 10px 0 20px 5px;
+}
+
+article form legend{
+	font-family: seo;	
+	font-size: 20px;
+	border-bottom: 1px dotted #666;
+	width:600px;
+	padding: 5px 0;
+}
+
+article form label{
+	width: 60px;/* input 상자가 정렬됨 */
+	margin: 10px 5px;/* input 상자가 흥클어짐 */
+	/* border:1px solid #999; */
+	display: inline-block;
+}
+
+article form input{
+	display: inline-block;
+	background-color: #ffe8dd;
+	border:1px solid #999;
+	margin: 10px 5px;/* input 상자가 다시 정렬됨 */
+}
+
+article form input.from_id{
+	width: 100px;
+	height: 18px;
+}
+
+article form input.to_pass{
+	width: 100px;
+	height: 18px;
+}
+
+
+article form input.subject{
+	width: 200px;
+	height: 18px;
+}
+
+
+article form textarea.content{
+	padding: 0;
+	margin: 10px 5px;
+	}
+	
+article form input.content{
+	width: 300px;
+	height: 18px;
+}
+
+
+article form input.submit, article form input.cancel{
+	width: 150px;
+	height: 30px;
+	border: 1px solid #666;
+	border-radius: 10px;
+	box-shadow: 3px 3px 2px #ccc;
+	font-size: 14px;
+	color:black;
+}
+
+article form input.submit{
+	background-image: url('../images/memo/submit_back.jpg'); 
+	background-repeat: repeat-x;
+	background-position: center center;
+}
+
+article form input.cancel{
+	background-image: url('../images/memo/cancel_back.jpg'); 
+	background-repeat: repeat-x;
+	background-position: center center;
+	margin: 0 0 0 20px;
+}

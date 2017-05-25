@@ -24,9 +24,9 @@ public class MemoReWriteAction implements Action{
 		meb.setSubject(request.getParameter("subject"));
 		meb.setFrom_id(request.getParameter("from_id"));
 		meb.setTo_id(request.getParameter("to_id"));
-		meb.setRe_ref(Integer.parseInt(request.getParameter("re_ref")));
-		meb.setRe_lev(Integer.parseInt(request.getParameter("re_lev")));
-		meb.setRe_seq(Integer.parseInt(request.getParameter("re_seq")));
+		//meb.setRe_ref(Integer.parseInt(request.getParameter("re_ref")));
+		//meb.setRe_lev(Integer.parseInt(request.getParameter("re_lev")));
+		//meb.setRe_seq(Integer.parseInt(request.getParameter("re_seq")));
 		//meb.setDate(request.getParameter("data"));
 		
 		// MemoDAO 객체생성 medao

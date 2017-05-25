@@ -1,3 +1,4 @@
+
 <%@page import="web.memo.db.MemoBean"%>
 <%@page import="java.util.List"%>
 
@@ -31,7 +32,7 @@ th,td {
 <script type="text/javascript">
 function fncheckdelete(para_getNum){
 	
-	if(confirm("메모를 삭제하시겠습니까?")){
+	if(confirm("메모를 삭제하시겠습니까???")){
 		if(para_getNum!=""){
 			document.frmdelete.num.value=para_getNum;
 			document.frmdelete.submit();
@@ -62,7 +63,7 @@ String id = (String)session.getAttribute("id");
                 <jsp:include page="../inc/myinfo_sns_left.jsp"/>
             </div>
             <div class="col-md-9">
-<%
+<% 
 // 세션 가져오기
 // 세션이 없으면 또는 세션이 admin이 아니면 main.jsp 이동
 if(id ==null ){
@@ -97,10 +98,9 @@ String pageNum=(String)request.getAttribute("pageNum");
 <tr bgcolor="#ffeecc"><td>쪽지내용</td><td colspan=3><%=meb.getContent()%></td></tr>
 <tr bgcolor="#ffeecc"><td colspan=4>
 
-<!-- <input type="button" value="쪽지삭제" onclick="location.href='./MemoDeleteGet.me?num=<%=meb.getNum()%>&pageNum=<%=pageNum%>'">-->
+<!-- <input type="button" value="쪽지삭제" onclick="location.href='./MemoDeleteAll.me?num=<%=meb.getNum()%>&pageNum=<%=pageNum%>'">-->
 <input type="button" value="쪽지삭제" onclick="javascript:fncheckdelete(<%=meb.getNum()%>);">
-<input type="button" value="답글쓰기" onclick="location.href='./MemoReWrite.me?num=<%=meb.getNum()%>&re_ref=<%=meb.getRe_ref()%>&re_lev=<%=meb.getRe_lev()%>&re_seq=<%=meb.getRe_seq()%>&from_id=<%=meb.getFrom_id()%>&to_id=<%=meb.getTo_id()%>'">
-
+<%-- <input type="button" value="답글쓰기" onclick="location.href='./MemoReWrite.me?num=<%=meb.getNum()%>&re_ref=<%=meb.getRe_ref()%>&re_lev=<%=meb.getRe_lev()%>&re_seq=<%=meb.getRe_seq()%>&from_id=<%=meb.getFrom_id()%>&to_id=<%=meb.getTo_id()%>'"> --%>
 <input type="button" value="쪽지목록" onclick="location.href='./MemoListAll.me?pageNum=<%=pageNum%>'"></td></tr>
 </table>
 

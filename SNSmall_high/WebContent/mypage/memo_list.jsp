@@ -17,6 +17,7 @@
 	<link href="./css/header.css" rel="stylesheet">
 	<link href="./css/inner.css" rel="stylesheet">
 	<link href="./css/main.css" rel="stylesheet"> 
+	<link href="./css/memo.css" rel="stylesheet"> 
 	
 <title>Insert title here</title>
 
@@ -50,6 +51,7 @@ String id = (String)session.getAttribute("id");
 <%
 List memoList=(List)request.getAttribute("memoList");
 String pageNum=(String)request.getAttribute("pageNum");
+String from_del=(String)request.getAttribute("from_del");
 int count=((Integer)request.getAttribute("count")).intValue();
 int pageCount=((Integer)request.getAttribute("pageCount")).intValue();
 int pageBlock=((Integer)request.getAttribute("pageBlock")).intValue();
@@ -78,7 +80,7 @@ if(id ==null ){
 
 <table border=1>
 <tr bgcolor="orange">
-	<td>번호</td><td>받는사람</td><td>내용</td><td>날짜</td>
+	<td>번호</td><td>받는사람</td><td>제목</td><td>내용</td><td>날짜</td>
 </tr>
 <%
 	for(int i=0; i < memoList.size(); i++){
@@ -91,7 +93,10 @@ if(id ==null ){
 <tr bgcolor="#ffeecc">
 <td><%=meb.getNum() %></td><td><%=meb.getTo_id() %></td>
 <td>
-<a href="./MemoContent.me?num=<%=meb.getNum()%>&pageNum=<%=pageNum%>"><%= meb.getSubject()%></a></td><td><%=meb.getDate() %></td>
+<a href="./MemoContent.me?num=<%=meb.getNum()%>&pageNum=<%=pageNum%>"><%= meb.getSubject()%></a></td>
+<td>
+<a href="./MemoContent.me?num=<%=meb.getNum()%>&pageNum=<%=pageNum%>"><%= meb.getContent()%></a></td>
+<td><%=meb.getDate() %></td>
 </tr>
 <%
 }

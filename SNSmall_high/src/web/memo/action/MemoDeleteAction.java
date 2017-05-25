@@ -20,6 +20,8 @@ public class MemoDeleteAction implements Action{
 
 		// pageNum 파라미터 정보 가져오기
 		String pageNum=request.getParameter("pageNum");
+		String to_del=(String)request.getParameter("to_del");
+		System.out.println("to_del : "+to_del);
 		//글번호, 비밀번호 파라미터 가져오기
 		int num=Integer.parseInt(request.getParameter("num"));
 

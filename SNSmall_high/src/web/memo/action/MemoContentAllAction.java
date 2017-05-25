@@ -21,7 +21,7 @@ public class MemoContentAllAction implements Action{
 		MemoDAO medao = new MemoDAO();
 		
 		//쪽지 글 가져오기 메서드 호출 getMemo(num)
-		MemoBean meb=medao.getMemo(num);
+		MemoBean meb=medao.getMemo(num);	
 		
 		// 데이터 저장 bb, pageNum
 		request.setAttribute("meb", meb);
@@ -31,7 +31,7 @@ public class MemoContentAllAction implements Action{
 		ActionForward forward = new ActionForward();
 		forward.setPath("./mypage/memo_content_all.jsp");
 		forward.setRedirect(false);
-		return forward;
+		return forward;		
 	}
 
 }

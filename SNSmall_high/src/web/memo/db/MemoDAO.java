@@ -141,10 +141,10 @@ Connection con = null;
 			if(con!=null){try{con.close();}catch(SQLException ex){}}
 		}
 		return count;
-	}//getMemoCountGet()
-
+	}//getMemoCount()	
 	
-	// 받은 쪽지수 구하기 getMemoCountAll()----------------------------------------------------------------
+
+	// 받은 쪽지수 구하기 getMemoCountGet()----------------------------------------------------------------
 	public int getMemoCountAll(String id){
 		Connection con=null;
 		PreparedStatement pstmt=null;
@@ -156,11 +156,11 @@ Connection con = null;
 			//1, 2 디비연결 메서드 호출
 			con=getConnection();	
 			//3. sql함수 count(*) 구하기
-			sql = "select count(*) from memo where to_id =? or from_id = ?";
-			//sql="select * from payment where state in ('done', 'cancel') and sns_id=? limit ?,?";
+			sql = "select count(*) from memo where to_id=? or from_id=?";
 			pstmt=con.prepareStatement(sql);
 			pstmt.setString(1, id); //
 			pstmt.setString(2, id); //
+			
 			System.out.println("id get : "+id);
 			
 			//4. rs 실행저장
@@ -184,8 +184,8 @@ Connection con = null;
 		return count;
 	}//getMemoCountAll()	
 	
-	
 
+	
 	//게시판 페이지 가져오기----------------------------------------------------------------------------
 	public List getMemoList(String id, int startRow, int pageSize){
 		List memoList=new ArrayList();
@@ -204,7 +204,7 @@ Connection con = null;
 			//		re_ref desc, re_seq asc
 			// 글잘라오기 limit  시작행-1, 개수
 			//3단계 sql 
-			sql="select * from memo where from_id=? order by num desc limit ?,?";
+			sql="select * from memo where from_id=? and to_del='N' order by num desc limit ?,?";
 			pstmt=con.prepareStatement(sql);
 			pstmt.setString(1, id); //
 			pstmt.setInt(2, startRow-1); //시작행 -1
@@ -257,7 +257,7 @@ Connection con = null;
 			//		re_ref desc, re_seq asc
 			// 글잘라오기 limit  시작행-1, 개수
 			//3단계 sql 
-			sql="select * from memo where to_id=? order by num desc limit ?,?";
+			sql="select * from memo where to_id=?  and from_del='N' order by num desc limit ?,?";
 			pstmt=con.prepareStatement(sql);
 			pstmt.setString(1, id); //
 			pstmt.setInt(2, startRow-1); //시작행 -1
@@ -291,7 +291,7 @@ Connection con = null;
 		return memoListGet;
 	} //getMemoListGet()
 
-
+	
 	//받은 쪽지리스트 가져오기----------------------------------------------------------------------------
 	public List getMemoListAll(String id, int startRow, int pageSize){
 		List memoListAll=new ArrayList();
@@ -310,7 +310,7 @@ Connection con = null;
 			//		re_ref desc, re_seq asc
 			// 글잘라오기 limit  시작행-1, 개수
 			//3단계 sql 
-			sql="select * from memo where to_id=?  or from_id=? order by num desc limit ?,?";
+			sql="select * from memo where (from_id=? and to_del='N')or (to_id=? and from_del='N') order by num desc limit ?,?";
 			pstmt=con.prepareStatement(sql);
 			pstmt.setString(1, id); //
 			pstmt.setString(2, id); //
@@ -343,10 +343,10 @@ Connection con = null;
 			if(con!=null){try{con.close();}catch(SQLException ex){}}
 		}
 		return memoListAll;
-	} //getMemoListAll()
-	
-	
+	} //getMemoListGet()
 
+
+	
 	// 쪽지 내용물 가져오기-------------------------------------------------------------------
 	public MemoBean getMemo(int num){
 		Connection con=null;
@@ -401,12 +401,31 @@ Connection con = null;
 			//예외가 발생할 것 같은 명령문
 			//1단계 드라이버로더			//2단계 디비연결
 			con=getConnection();
-			sql="delete from memo where num=?";
+			
+			sql="select from_del, to_del from memo where num=?";
 			pstmt=con.prepareStatement(sql);
 			pstmt.setInt(1, num);
 			//4단계 실행
-			pstmt.executeUpdate();
-			check=1;
+			rs=pstmt.executeQuery();
+			
+			if(rs.next()){
+				if(rs.getString("from_del").equals("Y")){
+					sql="delete from memo where num=?";
+					pstmt=con.prepareStatement(sql);
+					pstmt.setInt(1, num);
+					//4단계 실행
+					pstmt.executeUpdate();
+					check=1;
+				}else{
+					sql="update memo set to_del='Y' where num=?";
+					pstmt=con.prepareStatement(sql);
+					
+					pstmt.setInt(1, num);
+					//4단계 실행
+					pstmt.executeUpdate();
+					check=1;
+				}
+			}
 		}
 		catch(Exception e){
 			e.printStackTrace();
@@ -434,12 +453,29 @@ Connection con = null;
 			//예외가 발생할 것 같은 명령문
 			//1단계 드라이버로더			//2단계 디비연결
 			con=getConnection();
-			sql="delete from memo where num=?";
+			
+			sql="select from_del, to_del from memo where num=?";
 			pstmt=con.prepareStatement(sql);
 			pstmt.setInt(1, num);
-			//4단계 실행
-			pstmt.executeUpdate();
-			check=1;
+			rs=pstmt.executeQuery();
+
+			if(rs.next()){
+				if(rs.getString("to_del").equals("Y")){
+					sql="delete from memo where num=?";
+					pstmt=con.prepareStatement(sql);
+					pstmt.setInt(1, num);
+					//4단계 실행
+					pstmt.executeUpdate();
+					check=1;
+				}else{
+					sql="update memo set from_del='Y' where num=?";
+					pstmt=con.prepareStatement(sql);
+					pstmt.setInt(1, num);
+					//4단계 실행
+					pstmt.executeUpdate();
+					check=1;
+				}
+			}
 		}
 		catch(Exception e){
 			e.printStackTrace();
@@ -452,6 +488,9 @@ Connection con = null;
 		}
 		return check;
 	}//deleteMemoGet() class
+	
+	
+
 	
 	
 	//reInsertMemo(meb)----------------------------------------------------------------

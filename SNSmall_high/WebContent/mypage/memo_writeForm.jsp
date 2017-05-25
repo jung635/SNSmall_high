@@ -16,7 +16,8 @@
 	<link href="./css/bootstrap.min.css" rel="stylesheet">
 	<link href="./css/header.css" rel="stylesheet">
 	<link href="./css/inner.css" rel="stylesheet">
-	<link href="./css/main.css" rel="stylesheet"> 
+	<link href="./css/main.css" rel="stylesheet">
+	<link href="./css/memo.css" rel="stylesheet">  
 	
 <title>Insert title here</title>
 
@@ -29,6 +30,31 @@ th,td {
   padding: 5px;
 }
 </style>
+
+<script type="text/javascript">
+function check(){
+
+	if(document.fr.to_id.value==""){
+		//받는사람 아이디를 입력하세요. 커서 깜박 되돌아가기
+		alert("받는사람 아이디를 입력하세요");
+		document.fr.to_id.focus();
+		return false;
+	}
+	if(document.fr.subject.value==""){
+		//제목을 입력하세요. 커서 깜박 되돌아가기
+		alert("제목를 입력하세요");
+		document.fr.subject.focus();
+		return false;
+	}
+	if(document.fr.content.value==""){
+		//내용을 입력하세요. 커서 깜박 되돌아가기
+		alert("내용을 입력하세요");
+		document.fr.content.focus();
+		return false;
+	}
+
+}
+</script>
 
 </head>
 <body>
@@ -59,14 +85,18 @@ String id = (String)session.getAttribute("id");
 
 <h3>쪽지 쓰기</h3>
 
-
-<form action="./MemoWriteAction.me" method="post" name="fr">
-보낸사람 : <input type="text" name="from_id"  value="<%=id%>" readonly><br>
-받는사람: <input type="text" name="to_id"><br>
-제목 : <input type="text" name="subject"><br>
-내용 : <textarea rows="10" cols="20" name="content"></textarea><br>
-<input type="submit" value="글쓰기">
+<article>
+<fieldset>
+<form action="./MemoWriteAction.me" method="post" name="fr" onsubmit="return check()">
+	<label for="from_id">보낸사람 </label> <input type="text" name="from_id" id="from_id" class="from_id" value="<%=id%>" readonly><br>
+	<label for="to_id">받는사람</label> <input type="text" name="to_id"  id="to_id" class="to_id"><br>
+	<label for="subject">제목 </label> <input type="text" name="subject" id="subject" class="subject"><br>
+	<label for="content">내용 </label> <textarea rows="10" cols="50" name="content" id="content" class="content"></textarea><br>
+	<input type="submit" value="쪽지 쓰기" class="submit">
+	<input type="reset" value="다시 쓰기" class="cancel">
 </form>
+</fieldset>
+</article>
 
 
     <!-- /.container -->

@@ -328,3 +328,10 @@ a.list-group-item:hover, a.list-group-item:focus {
     line-height: 50px;
 }
 
+/* PayCancel */
+#pay_bottom{
+	text-align: center;
+}
+#pay_check{
+	margin-bottom: 63px;
+}

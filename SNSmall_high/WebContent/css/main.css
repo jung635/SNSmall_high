@@ -597,7 +597,7 @@ h1, h2, h3, h4, h5, h6 {
 ======================*/
 
 #services {
-  background-image: url("../images/services/service-bg.jpg");
+  background-image: url("../images/services/service-bg2.gif");
   color:#fff;
   text-align:center;
   background-color:	#0A0A13;
@@ -1120,6 +1120,20 @@ h1, h2, h3, h4, h5, h6 {
 .blog-content {
 	margin-bottom: 25px;
 	margin-top: 0;
+	height: 75px;
+}
+.blog-content-limit{
+	height: 80px;
+	overflow: hidden;
+}
+.blog-content-long{
+	margin-bottom: 25px;
+	margin-top: 0;
+	height: 305px;
+}
+.blog-content-long-limit{
+	height: 305px;
+	overflow: hidden;
 }
 
 .single-blog .btn-primary {
@@ -1147,6 +1161,14 @@ h1, h2, h3, h4, h5, h6 {
 	margin-right: -15px;
     margin-top: -25px;
 }
+.modal-in-img{
+	 height: 350px;
+	 padding:10px;
+	 background-size:100%;
+	 background-repeat: no-repeat;
+	  
+}
+
 
 
 
@@ -1544,7 +1566,7 @@ h1, h2, h3, h4, h5, h6 {
     top: 58%;
     left: 30%;
     z-index: 1;
-    padding-top: 525px;
+    padding-top: 580px;
 }
 
 #profile_img_wrap{
@@ -1637,3 +1659,78 @@ h1, h2, h3, h4, h5, h6 {
     background-color: #fd0558;
     position: absolute;
 }
+/*main search btn*/
+.Sns_SearchBtn{
+	
+	background-image: url("../images/slider/people_search_btn1.gif");
+	background-size:100%;
+	background-repeat: no-repeat;
+	border-radius:20px; 
+	position: relative;
+	margin-right: 15px;
+	margin-bottom: 50px;
+	position: relative;
+	bottom:5px;
+	border:1px solid #fc7700;
+	
+}
+.Sns_SearchBtn:hover{
+	background-image: url("../images/slider/people_search_btn2.gif");
+	background-size:100%;
+	background-repeat: no-repeat;
+	border-radius:20px; 
+	position: relative;
+	margin-right: 15px;
+	margin-bottom: 50px;
+	position: relative;
+	bottom:5px;
+	border:1px solid #fc7700;
+	}
+.product_SearchBtn{
+	
+	background-image: url("../images/slider/product_search_btn1.gif");
+	background-size:100%;
+	background-repeat: no-repeat;
+	border-radius:20px; 
+	position: relative;
+	bottom:5px;
+	border:1px solid #fc7700;
+}
+.product_SearchBtn:hover{
+	border:1px solid #fc7700;
+	background-image: url("../images/slider/product_search_btn3.gif");
+	background-size:100%;
+	background-repeat: no-repeat;
+	border-radius:20px; 
+	position: relative;
+	bottom:5px;
+	
+}
+/*search text*/
+.input_row {
+    position: relative;
+    height: 50px;
+    margin: 0 0 14px;
+    padding: 10px 35px 10px 15px;
+    border: solid 1px #dadada;
+    background: #fff;
+}
+.input_box1{
+	height: 29px;
+	
+}
+.int {
+    font-size: 15px;
+    line-height: 16px;
+    position: relative;
+    z-index: 9;
+    width: 100%;
+    height: 30px;
+    padding: 7px 0 6px;
+    color: #000;
+    border: none;
+    background: #fff;
+    -webkit-appearance: none;
+    margin: 0px;
+}
+

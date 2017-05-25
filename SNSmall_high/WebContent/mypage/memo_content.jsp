@@ -35,6 +35,7 @@ function fncheckdelete(para_getNum){
 	if(confirm("메모를 삭제하시겠습니까?")){
 		if(para_getNum!=""){
 			document.frmdelete.num.value=para_getNum;
+
 			document.frmdelete.submit();
 		}else{
 			alert("메모가 이상하다");
@@ -100,7 +101,7 @@ String pageNum=(String)request.getAttribute("pageNum");
 
 <!-- <input type="button" value="쪽지삭제" onclick="location.href='./MemoDelete.me?num=<%=meb.getNum()%>&pageNum=<%=pageNum%>'">-->
 <input type="button" value="쪽지삭제" onclick="javascript:fncheckdelete(<%=meb.getNum()%>);">
-<input type="button" value="답글쓰기" onclick="location.href='./MemoReWrite.me?num=<%=meb.getNum()%>&re_ref=<%=meb.getRe_ref()%>&re_lev=<%=meb.getRe_lev()%>&re_seq=<%=meb.getRe_seq()%>'">
+<%-- <input type="button" value="답글쓰기" onclick="location.href='./MemoReWrite.me?num=<%=meb.getNum()%>&re_ref=<%=meb.getRe_ref()%>&re_lev=<%=meb.getRe_lev()%>&re_seq=<%=meb.getRe_seq()%>'"> --%>
 <input type="button" value="쪽지목록" onclick="location.href='./MemoList.me?pageNum=<%=pageNum%>'"></td></tr>
 </table>
 

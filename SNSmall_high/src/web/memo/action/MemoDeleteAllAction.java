@@ -12,6 +12,7 @@ public class MemoDeleteAllAction implements Action{
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
+
 		System.out.println("Memo Delete All execute()");
 		
 		//한글처리
@@ -25,8 +26,8 @@ public class MemoDeleteAllAction implements Action{
 		//memoDAO medao 객체 생성
 		MemoDAO medao = new MemoDAO();
 		//int check = deleteMemoGet(num)메서드 호출
-		int check = medao.deleteMemoGet(num);
-				
+		int check = medao.deleteMemo(num);
+
 		// check==0 "비밀번호" 뒤로 이동
 		// check==-1 "게시판 글 번호없음" 뒤로 이동
 		// "삭제성공" 이동 ./MemoList.me?pageNum=

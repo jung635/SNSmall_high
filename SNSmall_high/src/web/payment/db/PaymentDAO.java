@@ -398,8 +398,9 @@ Connection con = null;
 
 		return pb;
 	}
-	public PaymentBean getPaymentByOrderNum(String order_num) {
+	public List<PaymentBean> getPaymentByOrderNum(String order_num) {
 		PaymentBean pb = null;
+		List<PaymentBean> list = new ArrayList<>();
 		try {
 			con = getConnection();
 			sql = "select * from payment where order_num = ?";
@@ -423,6 +424,8 @@ Connection con = null;
 				pb.setNum(rs.getInt("num"));
 				pb.setUsedPoint(rs.getInt("usedPoint"));
 				pb.setClient_id(rs.getString("client_id"));
+				
+				list.add(pb);
 			}
 			
 		} catch(Exception e){e.printStackTrace();}
@@ -430,7 +433,7 @@ Connection con = null;
 		if(pstmt!=null){try{pstmt.close();}catch(SQLException ex){}}
 		if(con!=null){try{con.close();}catch(SQLException ex){}}}
 		
-		return pb;
+		return list;
 	}
 
 	public List<PaymentBean> getPaymentById(String client_id) {
@@ -770,35 +773,13 @@ Connection con = null;
 		if(con != null){try {con.close();}catch(Exception ex) {}}}
 	}
 	
-	public void rankUpdate(String sns_id, long money, String rank){
-		StringBuffer sql = new StringBuffer("update sns set rank = ");
-		AlarmBean ab = new AlarmBean();
-		AlarmDAO adao = new AlarmDAO();
+	public void rankUpdate(String sns_id, String rank){
 		try{
 			con = getConnection();
-			if(rank.equals("basic")){
-				if(money>10000000){
-				//if(money>90000){
-					sql.append("'premium'");
-				}else if(money>90000){
-					sql.append("'plus'");
-					ab.setContent("등급이 plsu로 올라갔네!");
-					ab.setId(sns_id);
-					ab.setMove("rank");
-					adao.insertAlarm(ab);
-				}
-			}else if(rank.equals("plus")){
-				if(money>10000000){
-					sql.append("'premium'");
-					
-				}
-			}else{
-				sql.append("'premium'");
-			}
-			
-			sql.append(" where sns_id = ?");
+			sql = "update sns set rank = ? where sns_id = ?";
 			pstmt = con.prepareStatement(sql.toString());
-			pstmt.setString(1, sns_id);
+			pstmt.setString(1, rank);
+			pstmt.setString(2, sns_id);
 			pstmt.executeUpdate();
 	
 			

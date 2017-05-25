@@ -1,9 +1,9 @@
 <%@page import="web.sns.db.SnsBean"%>
 <%@page import="java.util.List"%>
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html lang="en">
+<html lang="UTF-8">
 <head>
 	<meta charset="utf-8"> 
 	<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
@@ -25,27 +25,19 @@
 	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="images/ico/apple-touch-icon-114-precomposed.png"> 
 	<link rel="apple-touch-icon-precomposed" sizes="72x72" href="images/ico/apple-touch-icon-72-precomposed.png"> 
 	<link rel="apple-touch-icon-precomposed" href="images/ico/apple-touch-icon-57-precomposed.png">
-<<<<<<< HEAD
-	
-	<script type="text/javascript">
-	function pop(){
-	alert();
-	}
-</script>	
-	
-</head><!--/head-->
-=======
-</head>
-
->>>>>>> origin/feature/alarm
 <script type="text/javascript">
 function snsSearch_exe(){
-	search = document.getElementById('search').value;
+	search = document.getElementById('product_name').value;
 	location.href = 'SearchSnsList.sn?search='+search;
-} -->
-</script>
-<body>
+}
+function productSearch_exe(){
+	search = document.getElementById('product_name').value;
+	location.href = './ProductSearchList.pr?search='+search;
+}
 
+</script>
+</head>
+<body>
 	<script type="text/javascript" src=".main/alarm.js"></script> 
 	<div class="preloader">
 		<div class="preloder-wrap">
@@ -70,32 +62,32 @@ function snsSearch_exe(){
 				<li data-target="#main-carousel" data-slide-to="2"></li>
 			</ol><!--/.carousel-indicators--> 
 			<div class="carousel-inner">
-				<div class="item active" style="background-image: url(images/slider/slide3.jpg)"> 
+				<div class="item active" style="background-image: url(images/slider/main001.gif)"> 
 					<div class="carousel-caption"> 
 						<div> 
 							<h2 class="heading animated bounceInDown">'Himu' Onepage HTML Template</h2> 
 							<p class="animated bounceInUp">Fully Professional one page template</p> 
- 							<!-- <a class="btn btn-default slider-btn animated fadeIn" href="#">»óÇ° °Ë»ö</a> 
-							<a class="btn btn-default slider-btn animated fadeIn" href="#">SNS STAR °Ë»ö</a>   -->
+ 							<!-- <a class="btn btn-default slider-btn animated fadeIn" href="#">ìƒí’ˆ ê²€ìƒ‰</a> 
+							<a class="btn btn-default slider-btn animated fadeIn" href="#">SNS STAR ê²€ìƒ‰</a>   -->
 						</div> 
 					</div> 
 				</div>
-				<div class="item" style="background-image: url(images/slider/slide2.jpg)"> 
+				<div class="item" style="background-image: url(images/slider/main02.gif)"> 
 					<div class="carousel-caption"> <div> 
 						<h2 class="heading animated bounceInDown">Get All in Onepage</h2> 
 						<p class="animated bounceInUp">Everything is outstanding </p>
-<!-- 						<a class="btn btn-default slider-btn animated fadeIn" href="#">»óÇ° °Ë»ö</a> 
-						<a class="btn btn-default slider-btn animated fadeIn" href="#">SNS STAR °Ë»ö</a>  -->
+<!-- 						<a class="btn btn-default slider-btn animated fadeIn" href="#">ìƒí’ˆ ê²€ìƒ‰</a> 
+						<a class="btn btn-default slider-btn animated fadeIn" href="#">SNS STAR ê²€ìƒ‰</a>  -->
 					</div> 
 				</div> 
 			</div> 
-			<div class="item" style="background-image: url(images/slider/slide1.jpg)"> 
+			<div class="item" style="background-image: url(images/slider/main004.gif)"> 
 				<div class="carousel-caption"> 
 					<div> 
 						<h2 class="heading animated bounceInRight">Fully Responsive Template</h2> 
 						<p class="animated bounceInLeft">100% Responsive HTML template</p> 
-<!-- 						<a class="btn btn-default slider-btn animated fadeIn" href="#">»óÇ° °Ë»ö</a> 
-						<a class="btn btn-default slider-btn animated fadeIn" href="#">SNS STAR °Ë»ö</a>  -->
+<!-- 						<a class="btn btn-default slider-btn animated fadeIn" href="#">ìƒí’ˆ ê²€ìƒ‰</a> 
+						<a class="btn btn-default slider-btn animated fadeIn" href="#">SNS STAR ê²€ìƒ‰</a>  -->
 					</div> 
 				</div> 
 			</div>
@@ -108,9 +100,17 @@ function snsSearch_exe(){
 		<a class="carousel-right member-carousel-control hidden-xs" href="#main-carousel" data-slide="next"><i class="fa fa-angle-right"></i></a>
 		<div class="carousel-caption"> 
 		<div id="search">
-			<input type="text" id="product_name">
-			<a href="#" class="btn btn-default slider-btn animated fadeIn" onclick="snsSearch_exe();">SNS STAR °Ë»ö</a> 
-			<a class="btn btn-default slider-btn animated fadeIn" href="#">»óÇ° °Ë»ö</a> 
+			<div class="col-sm-7">
+			<div class="input_row" id="id_area">
+						<span class="input_box1">
+							<input type="text" id="product_name" placeholder="SNS Celeb or Prodoct Name Search" class="int" maxlength="80" value="" size="100">
+							
+						</span>
+					</div>
+			</div>
+		<div class="col-sm-3"><input type="button" class="Sns_SearchBtn" value="" onclick="snsSearch_exe();" style="height: 60px; width: 60px;">
+							<input type="button" class="product_SearchBtn" value="" onclick="productSearch_exe()" style="width:60px; height:60px;"></div>
+		<div class="col-sm-2"></div>					
 		</div>
 		</div>
 	</div> 
@@ -257,9 +257,9 @@ function snsSearch_exe(){
 									<div class="single-member">
 										<div id="profile_img_wrap">
 											<%if(i==0){%>
-												<span id="ranking_sns_first">1µî!</span>
+												<span id="ranking_sns_first">1ë“±!</span>
 											<%}else{ %>
-												<span id="ranking_sns"><%=i+1 %>µî</span>
+												<span id="ranking_sns"><%=i+1 %>ë“±</span>
 											<%} %>
 											<img src="./sns_pro_upload/<%=sb.getProfile_img() %>" alt="team member" />
 										</div>
@@ -292,9 +292,9 @@ function snsSearch_exe(){
 									<div class="single-member">
 										<div id="profile_img_wrap">
 											<%if(i==0){%>
-												<span id="ranking_sns_first">1µî!</span>
+												<span id="ranking_sns_first">1ë“±!</span>
 											<%}else{ %>
-												<span id="ranking_sns"><%=i+1 %>µî</span>
+												<span id="ranking_sns"><%=i+1 %>ë“±</span>
 											<%} %>										
 											<img src="./sns_pro_upload/<%=sb.getProfile_img() %>" alt="team member" />
 										</div>
@@ -335,10 +335,12 @@ function snsSearch_exe(){
 				</div>
 				<ul class="portfolio-filter text-center">
 					<li><a class="btn btn-default active" href="#" data-filter="*">All</a></li>
-					<li><a class="btn btn-default" href="#" data-filter=".html">Html</a></li>
-					<li><a class="btn btn-default" href="#" data-filter=".wordpress">Wordpress</a></li>
-					<li><a class="btn btn-default" href="#" data-filter=".joomla">Joomla</a></li>
-					<li><a class="btn btn-default" href="#" data-filter=".megento">Megento</a></li>
+					<li><a class="btn btn-default" href="#" data-filter=".html">Fashion</a></li>
+					<li><a class="btn btn-default" href="#" data-filter=".wordpress">Beauty</a></li>
+					<li><a class="btn btn-default" href="#" data-filter=".joomla">Baby</a></li>
+					<li><a class="btn btn-default" href="#" data-filter=".megento">Daily</a></li>
+					<li><a class="btn btn-default" href="#" data-filter=".megento">WorkOut</a></li>
+					<li><a class="btn btn-default" href="#" data-filter=".megento">Etc</a></li>
 				</ul><!--/#portfolio-filter-->
 				<div class="portfolio-items">
 					<div class="col-sm-3 col-xs-12 portfolio-item html">

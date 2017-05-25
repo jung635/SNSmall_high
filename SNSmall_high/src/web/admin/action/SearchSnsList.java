@@ -1,4 +1,4 @@
-package web.sns.action;
+package web.admin.action;
 
 import java.util.List;
 
@@ -7,7 +7,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import web.sns.db.SnsDAO;
 
-public class SearchSnsListAction implements Action{
+public class SearchSnsList implements Action {
+
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		SnsDAO sdao = new SnsDAO();
@@ -53,9 +54,10 @@ public class SearchSnsListAction implements Action{
 	 	request.setAttribute("search", search);
 	 	
 	 	ActionForward forward = new ActionForward();
-	 	forward.setPath("./sns_star/starList.jsp");
+	 	forward.setPath("./admin/snsList.jsp");
 	 	forward.setRedirect(false);
 		return forward;
+
 	}
 
 }

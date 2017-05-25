@@ -80,14 +80,7 @@ $(document).ready(function(){
      					 		<a href="snsList.sn?category=etc">기타</a>
     						</div>
 						</li>
-						<%
-						String pageNum = (String)request.getAttribute("pageNum");
-						if(pageNum == null){pageNum="1";}
-						int product_num = 9;
-						request.setAttribute("product_num", product_num);
-						%> 
 						<li class="scroll"><a href="Service.cl">Our Service</a></li>
-						<li class="scroll"><a href="./ProductDetail.pr?product_num=<%=product_num %>&pageNum=<%=pageNum%>">Detail</a></li> 
 					
 					<!-- vendor,client,sns mypage 구분 -->
 						<%if(type !=null){
@@ -103,8 +96,6 @@ $(document).ready(function(){
 						<li class="scroll"><a href="BoardList.bo">Contact</a></li>
 						<%}} %>
 						<li class="scroll"><a href="Price.cl">Price</a></li>
-						<input type="button" value="test" onclick="location.href = 'InsertAction.al'">
-					</div>	
 					</ul> 
 				</div> 
 			</div> 

@@ -3,10 +3,10 @@
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="web.sns.db.SnsBean"%>
 <%@page import="java.util.List"%>
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html lang="en">
+<html lang="UTF-8">
 <head>
 	<meta charset="utf-8"> 
 	<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
@@ -34,9 +34,17 @@
 
 <script type="text/javascript">
 function snsSearch_exe(){
-	search = document.getElementById('search').value;
+	search = document.getElementById('product_name').value;
 	location.href = 'SearchSnsList.sn?search='+search;
 }
+<<<<<<< HEAD
+=======
+function productSearch_exe(){
+	search = document.getElementById('product_name').value;
+	location.href = './ProductSearchList.pr?search='+search;
+}
+
+>>>>>>> 3aa463ba330efecd45e75f05f462ee94d55f143b
 </script>
 </head><!--/head-->
 <body>
@@ -70,8 +78,8 @@ function snsSearch_exe(){
 						<div> 
 							<h2 class="heading animated bounceInDown">'Himu' Onepage HTML Template</h2> 
 							<p class="animated bounceInUp">Fully Professional one page template</p> 
- 							<!-- <a class="btn btn-default slider-btn animated fadeIn" href="#">»óÇ° °Ë»ö</a> 
-							<a class="btn btn-default slider-btn animated fadeIn" href="#">SNS STAR °Ë»ö</a>   -->
+ 							<!-- <a class="btn btn-default slider-btn animated fadeIn" href="#">ìƒí’ˆ ê²€ìƒ‰</a> 
+							<a class="btn btn-default slider-btn animated fadeIn" href="#">SNS STAR ê²€ìƒ‰</a>   -->
 						</div> 
 					</div> 
 				</div>
@@ -79,8 +87,8 @@ function snsSearch_exe(){
 					<div class="carousel-caption"> <div> 
 						<h2 class="heading animated bounceInDown">Get All in Onepage</h2> 
 						<p class="animated bounceInUp">Everything is outstanding </p>
-<!-- 						<a class="btn btn-default slider-btn animated fadeIn" href="#">»óÇ° °Ë»ö</a> 
-						<a class="btn btn-default slider-btn animated fadeIn" href="#">SNS STAR °Ë»ö</a>  -->
+<!-- 						<a class="btn btn-default slider-btn animated fadeIn" href="#">ìƒí’ˆ ê²€ìƒ‰</a> 
+						<a class="btn btn-default slider-btn animated fadeIn" href="#">SNS STAR ê²€ìƒ‰</a>  -->
 					</div> 
 				</div> 
 			</div> 
@@ -89,8 +97,8 @@ function snsSearch_exe(){
 					<div> 
 						<h2 class="heading animated bounceInRight">Fully Responsive Template</h2> 
 						<p class="animated bounceInLeft">100% Responsive HTML template</p> 
-<!-- 						<a class="btn btn-default slider-btn animated fadeIn" href="#">»óÇ° °Ë»ö</a> 
-						<a class="btn btn-default slider-btn animated fadeIn" href="#">SNS STAR °Ë»ö</a>  -->
+<!-- 						<a class="btn btn-default slider-btn animated fadeIn" href="#">ìƒí’ˆ ê²€ìƒ‰</a> 
+						<a class="btn btn-default slider-btn animated fadeIn" href="#">SNS STAR ê²€ìƒ‰</a>  -->
 					</div> 
 				</div> 
 			</div>
@@ -112,7 +120,7 @@ function snsSearch_exe(){
 					</div>
 			</div>
 		<div class="col-sm-3"><input type="button" class="Sns_SearchBtn" value="" onclick="snsSearch_exe();" style="height: 60px; width: 60px;">
-							<input type="button" class="product_SearchBtn" value="" style="width:60px; height:60px;"></div>
+							<input type="button" class="product_SearchBtn" value="" onclick="productSearch_exe()" style="width:60px; height:60px;"></div>
 		<div class="col-sm-2"></div>					
 		</div>
 		</div>
@@ -260,9 +268,9 @@ function snsSearch_exe(){
 									<div class="single-member">
 										<div id="profile_img_wrap">
 											<%if(i==0){%>
-												<span id="ranking_sns_first">1µî!</span>
+												<span id="ranking_sns_first">1ë“±!</span>
 											<%}else{ %>
-												<span id="ranking_sns"><%=i+1 %>µî</span>
+												<span id="ranking_sns"><%=i+1 %>ë“±</span>
 											<%} %>
 											<img src="./sns_pro_upload/<%=sb.getProfile_img() %>" alt="team member" />
 										</div>
@@ -295,9 +303,9 @@ function snsSearch_exe(){
 									<div class="single-member">
 										<div id="profile_img_wrap">
 											<%if(i==0){%>
-												<span id="ranking_sns_first">1µî!</span>
+												<span id="ranking_sns_first">1ë“±!</span>
 											<%}else{ %>
-												<span id="ranking_sns"><%=i+1 %>µî</span>
+												<span id="ranking_sns"><%=i+1 %>ë“±</span>
 											<%} %>										
 											<img src="./sns_pro_upload/<%=sb.getProfile_img() %>" alt="team member" />
 										</div>

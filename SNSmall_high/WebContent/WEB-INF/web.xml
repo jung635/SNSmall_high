@@ -132,6 +132,16 @@
   	<servlet-name>BlogFrontController</servlet-name>
   	<url-pattern>*.bl</url-pattern>
   </servlet-mapping>
+
+    <servlet>
+  	<servlet-name>AdminFrontController</servlet-name>
+  	<servlet-class>web.admin.action.AdminFrontController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>AdminFrontController</servlet-name>
+  	<url-pattern>*.ad</url-pattern>
+  </servlet-mapping> 
+
   
 </web-app>
 

@@ -66,7 +66,7 @@ public class SnsDAO {
 	}
 
 	// sns star list 개수
-	public int getListCount(String category) {
+	public int getListCount(String category, String rank) {
 		int num = 0;
 
 		try {
@@ -84,7 +84,23 @@ public class SnsDAO {
 				sql.append("where category = 'gym'");
 			}else if(category.equals("etc")){
 				sql.append("where category = 'etc'");
+				if(category.equals("basic")){
+					sql.append("and rank = 'basic'");
+				}else if(category.equals("plus")){
+					sql.append("and category = 'plus'");
+				}else if(category.equals("premium")){
+					sql.append("and category = 'premium'");
+				}
+			}else{
+				if(category.equals("basic")){
+					sql.append("where rank = 'basic'");
+				}else if(category.equals("plus")){
+					sql.append("where rank = 'plus'");
+				}else if(category.equals("premium")){
+					sql.append("where rank = 'premium'");
+				}
 			}
+			
 			
 			pstmt = con.prepareStatement(sql.toString());
 			rs = pstmt.executeQuery();
@@ -100,12 +116,12 @@ public class SnsDAO {
 		return num;
 	}
 	// sns star search list 개수
-	public int getListCount(String category, String search) {
+	public int getListCountForSearch(String category, String search) {
 		int num = 0;
 		
 		try {
 			con = getConnection();
-			StringBuffer sql = new StringBuffer("select count(sns_id) from sns where sns_id like ? ");
+			StringBuffer sql = new StringBuffer("select count(sns_id) from sns where name like ? ");
 			if(category.equals("fashion")){
 				sql.append("and category = 'fashion'");
 			}else if(category.equals("beauty")){
@@ -207,7 +223,7 @@ public class SnsDAO {
 	// sns search 리스트 get
 	public List<Object> snsList(int start, int pageSize, String category, String order, String search) {
 		List<Object> list = new ArrayList<Object>();
-		StringBuffer sql = new StringBuffer("select * from sns where sns_id like ? ");
+		StringBuffer sql = new StringBuffer("select * from sns where name like ? ");
 		SnsBean sb = null;
 		
 		try {

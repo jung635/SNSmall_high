@@ -1,24 +1,25 @@
-package web.sns.action;
+package web.admin.action;
 
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import web.sns.db.SnsBean;
 import web.sns.db.SnsDAO;
 
-public class SearchSnsListAction implements Action{
+public class SnsListAction implements Action{
+
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		SnsDAO sdao = new SnsDAO();
-		String search = request.getParameter("search");
 		String category = request.getParameter("category");
 		if(category == null) category = "all";
 		String order = request.getParameter("order");
 		if(order == null) order = "sell";
 		String rank = request.getParameter("rank");
 		if(rank == null) order = "all";
-		int count = sdao.getListCountForSearch(category, search);
+		int count = sdao.getListCount(category, rank);
 		String pageNum = request.getParameter("pageNum");
 		if(pageNum == null) pageNum="1";
 		int currentPage=Integer.parseInt(pageNum);
@@ -33,9 +34,9 @@ public class SearchSnsListAction implements Action{
 		start = (pageSize*(currentPage-1));
 		end = start+pageSize-1;  
 		
-		List<?> list = null ;
+		List<Object> list = null ;
 	 	if(count!=0){
-	 		list = sdao.snsList(start, pageSize, category, order, search);
+	 		list = sdao.snsList(start, pageSize, category, order);
 		} 
 	 	
 	 	request.setAttribute("list", list);
@@ -50,11 +51,10 @@ public class SearchSnsListAction implements Action{
 	 	request.setAttribute("endPage", endPage);
 	 	request.setAttribute("category", category);
 	 	request.setAttribute("order", order);
-	 	request.setAttribute("search", search);
-	 	
-	 	ActionForward forward = new ActionForward();
-	 	forward.setPath("./sns_star/starList.jsp");
-	 	forward.setRedirect(false);
+		
+		ActionForward forward = new ActionForward();
+		forward.setPath("./admin/snsList.jsp");
+		forward.setRedirect(false);
 		return forward;
 	}
 

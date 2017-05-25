@@ -24,12 +24,12 @@ public class OffAlarmAction implements Action{
 		
 		if(ab.getMove().contains("RankUp")){
 			out.println("<script>");
-			out.println("window.open('"+ab.getMove()+"','RankUp', 'width=500, height=500');");
+			out.println("window.open('"+ab.getMove()+"','RankUp', 'width=300, height=300');");
 			out.println("location.href='"+url+"';");
 			out.println("</script>");
 		}else if(ab.getMove().contains("RankDown")){
 			out.println("<script>");
-			out.println("window.open('"+ab.getMove()+"','RankDown', 'width=500, height=500');");
+			out.println("window.open('"+ab.getMove()+"','RankDown', 'width=300, height=300');");
 			out.println("location.href='"+url+"';");
 			out.println("</script>");
 		}else{

@@ -18,6 +18,7 @@ public class CartListAction implements Action{
 		//한글 처리 추가
 		request.setCharacterEncoding("utf-8");
 		
+		request.setCharacterEncoding("utf-8");
 		HttpSession session = request.getSession();
 		
 		CartDAO cdao = new CartDAO();

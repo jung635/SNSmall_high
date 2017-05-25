@@ -1733,4 +1733,24 @@ h1, h2, h3, h4, h5, h6 {
     -webkit-appearance: none;
     margin: 0px;
 }
+.goBlog-btn{
+	padding:3px 6px 3px 6px;
+	background-color: #fc7700;
+	border-radius:5px;
+	border: 1px solid #fc7700;
+	font-size: 13px;
+	color: #fff;
+	margin-left: 10px;
+	
+}
+.goBlog-btn:hover{
+	padding:3px 6px 3px 6px;
+	background-color: #fff;
+	border-radius:5px;
+	border: 1px solid #fc7700;
+	font-size: 13px;
+	color: #43484E;
+	margin-left: 10px;
+	
+}
 

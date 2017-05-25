@@ -1,4 +1,13 @@
 <Context>
+<!--	절대 이부분은 커밋하지 말것 //개인용 -->
+<!-- 	<Resource   -->
+<!-- 	name="jdbc/mysqlDB" -->
+<!-- 	auth="Container" -->
+<!-- 	type="javax.sql.DataSource" -->
+<!-- 	driverClassName="com.mysql.jdbc.Driver" -->
+<!-- 	url="jdbc:mysql://localhost/high" -->
+<!-- 	username="hid" -->
+<!-- 	password="hips"/> -->
  	<Resource name="jdbc/mysqlDB"
 		auth="Container"
 		type="javax.sql.DataSource"

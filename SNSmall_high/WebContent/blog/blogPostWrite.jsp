@@ -9,6 +9,7 @@
 	<meta name="keywords" content="Creative, Onepage, Parallax, HTML5, Bootstrap, Popular, custom, personal, portfolio" /> 
 	<meta name="author" content=""> 
 	<title>HIMU - OnePage HTML Parallax template</title> 
+	<link href="./css/font-awesome.min.css" rel="stylesheet"> 
 	<link href="./css/bootstrap.min.css" rel="stylesheet">
 	<link href="./css/bootstrap.css" rel="stylesheet">
 	<link href="./css/header.css" rel="stylesheet">
@@ -36,11 +37,11 @@
 			
 				
 					<select style="width: 200px; margin-top: 20px;" id="category" name="category">
-						<option>　notice</option>
-						<option>　contribution</option>
-						<option>　Event</option>
-						<option>　service</option>
-						<option>　advertising</option>
+						<option>notice</option>
+						<option>contribution</option>
+						<option>Event</option>
+						<option>service</option>
+						<option>advertising</option>
 					</select>
 				
 				
@@ -83,7 +84,7 @@
         <footer>
             <div class="row">
                 <div class="col-lg-12">
-                    <p>Copyright &copy; Your Website 2014</p>
+                    <p>Copyright &copy; Your Website 2017</p>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>

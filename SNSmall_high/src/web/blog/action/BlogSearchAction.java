@@ -20,8 +20,7 @@ public class BlogSearchAction implements Action{
 		
 		BlogDAO bdao = new BlogDAO();
 		
-		
-		int count = bdao.getBoardCount(search);
+		int count = bdao.getBlogSearchCount(search);
 		
 		int pageSize=5;
 		
@@ -42,8 +41,8 @@ public class BlogSearchAction implements Action{
 			request.setAttribute("blogList", blogList);
 		   
 		    request.setAttribute("count", count);
-			request.setAttribute("pageNum",pageNum);  //currentPage 랑 동일
-			//이동 ./board/list.jsp
+			request.setAttribute("pageNum",pageNum);  
+			
 			ActionForward forward = new ActionForward();
 			forward.setPath("./blog/blogSearch.jsp");
 			forward.setRedirect(false);

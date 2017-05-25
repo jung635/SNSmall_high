@@ -17,6 +17,8 @@ public class BoardSearchAction implements Action{
 		BoardDAO bdao = new BoardDAO();
 		int count = bdao.getBoardCount();
 		int pageSize = 10;
+//		String search = request.getParameter("search");
+		String search = request.getParameter("search");
 		String pageNum = request.getParameter("pageNum");
 		if(pageNum==null) pageNum="1";
 		int currentPage = Integer.parseInt(pageNum);
@@ -29,7 +31,7 @@ public class BoardSearchAction implements Action{
 		
 		List<BoardBean> boardList = null;
 		if(count!=0){
-			boardList = bdao.getBoardList(startRow, pageSize);
+			boardList = bdao.getSearchBoardList(startRow, pageSize, search);
 			pageCount = count/pageSize+(count%pageSize == 0 ? 0 : 1);
 			
 			startPage = ((currentPage-1)/pageBlock)*pageBlock+1;
@@ -44,10 +46,11 @@ public class BoardSearchAction implements Action{
 		request.setAttribute("startPage", startPage);
 		request.setAttribute("endPage", endPage);
 		request.setAttribute("count", count);
+		request.setAttribute("search", search);
 		request.setAttribute("boardList", boardList);
 				
 		ActionForward forward = new ActionForward();
-		forward.setPath("./board/Board_List.jsp");
+		forward.setPath("./board/Board_List_search.jsp");
 		forward.setRedirect(false);
 		return forward;
 	}

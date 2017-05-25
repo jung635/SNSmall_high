@@ -34,9 +34,9 @@
 			$.ajax({
 				url:'./BoardSearch.bo',
 				type:'post',
-				data:{search:$('#search-word').val()},
+				data:{search:$('#search').val()},
 				success:function(data){
-					$('.div_search').html(data);
+					$('#ajax_search').html(data);
 				}
 			});
 		}
@@ -52,7 +52,7 @@
   		<!-- Introduction Row -->
         <div class="row" style="margin-top: 43px">
             <div class="col-lg-12">
-                <h1 class="page-header">홍보게시판</h1>                
+                <h1 class="page-header">홍보게시판</h1>       
             </div>
         </div>
         	
@@ -62,7 +62,7 @@
             <div class="col-md-10">
                 <p>SNS 스타와 판매자들간의 매칭을 위한 공간입니다.</p>
                 <div class="panel panel-default text-center">
-                
+                <div id="ajax_search">
                     <table class = "board_table">
                     	<h3>
 							<a href="./writeForm.bo">글쓰기</a>
@@ -115,11 +115,12 @@
                     		}
                     		%>                    
                     <%} %>
+                    </div>
                     <!-- 페이지 넘버 부분 -->
                     <!-- 검색 -->
-                    <div class = "div_search">
-                    <input type="text" name="search-word" placeholder="검색어를 입력하세요"><input type="button" value="검색" onclick="searchFunc()">
-                    </div>
+                    <form action="./BoardSearch.bo" method="post">
+                    <input type="text" name="search" placeholder="검색어를 입력하세요"><input type="submit" value="검색" onclick="searchFunc()">
+                    </form>
                     <!-- 검색 -->
                 </div>
             </div>    

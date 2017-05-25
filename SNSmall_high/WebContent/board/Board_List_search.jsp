@@ -8,6 +8,7 @@
 <%
 	List boardList = (List)request.getAttribute("boardList");
 	String pageNum = (String)request.getAttribute("pageNum");
+	String search = (String)request.getAttribute("search");
 	int count=((Integer)request.getAttribute("count")).intValue();
 	int pageCount=((Integer)request.getAttribute("pageCount")).intValue();
 	int pageBlock=((Integer)request.getAttribute("pageBlock")).intValue();
@@ -25,22 +26,7 @@
 	<link href="./css/header.css" rel="stylesheet">
 	<link href="./css/inner.css" rel="stylesheet">
 	<link href="./css/main.css" rel="stylesheet">
-	<link href="./css/board.css" rel="stylesheet">
-	
-	<script type="text/javascript" src="./js/jquery-3.2.0.js" ></script>
-	<script type="text/javascript">
-	/* Ajax 검색 test */
-		function searchFunc(){
-			$.ajax({
-				url:'./BoardSearch.bo',
-				type:'post',
-				data:{search:$('#search-word').val()},
-				success:function(data){
-					$('.div_search').html(data);
-				}
-			});
-		}
-	</script>	
+	<link href="./css/board.css" rel="stylesheet">	
 </head>
 <body>
 
@@ -98,26 +84,26 @@
                     		//이전페이지
                     		if(startPage>pageBlock){
                     		%>
-                    			<a href="./BoardList.bo?pageNum=<%=startPage-pageBlock%>">Pre</a>
+                    			<a href="./BoardSearch.bo?pageNum=<%=startPage-pageBlock%>&search=<%=search%>">Pre</a>
                     		<%
                     		}
                     		//페이지 번호
                     		for(int i=startPage; i<=endPage; i++){
                     		%>
-                    			<a href="./BoardList.bo?pageNum=<%=i%>"><%=i%></a>
+                    			<a href="./BoardSearch.bo?pageNum=<%=i%>&search=<%=search%>"><%=i%></a>
                     		<%
                     		}
                     		//다음페이지
                     		if(endPage<pageCount){
                     		%>
-                    			<a href="./BoardList.bo?pageNum=<%=startPage+pageBlock%>">Next</a>
+                    			<a href="./BoardSearch.bo?pageNum=<%=startPage+pageBlock%>&search=<%=search%>">Next</a>
                     		<%
                     		}
                     		%>                    
                     <%} %>
                     <!-- 페이지 넘버 부분 -->
                     <!-- 검색 -->
-                    <div class = "div_search">
+                    <div>
                     <input type="text" name="search-word" placeholder="검색어를 입력하세요"><input type="button" value="검색" onclick="searchFunc()">
                     </div>
                     <!-- 검색 -->

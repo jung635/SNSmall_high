@@ -30,10 +30,12 @@ public class PayListAction implements Action {
 		String method = request.getParameter("method");
 		int page = Integer.parseInt(request.getParameter("page"));
 		
-		
 		if(type.equals("client")){
 			client_id =(String)session.getAttribute("id");
 			order_num_list = pdao.getOrderNumList(page, client_id, method);
+			for(int i=0; i<order_num_list.size(); i++){
+				System.out.println("tst:"+order_num_list.get(i));
+			}
 			
 			if(method.equals("payDone")){
 				for (int i=0; i<order_num_list.size(); i++){

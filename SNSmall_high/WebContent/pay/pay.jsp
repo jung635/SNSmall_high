@@ -46,6 +46,7 @@ ClientDAO cdao = new ClientDAO();
 cb = cdao.getMember(id);
 String merchant_uid="high_" + new Date().getTime();
 %>
+<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
 <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
 <script type="text/javascript" src="https://service.iamport.kr/js/iamport.payment-1.1.2.js"></script>
@@ -54,6 +55,7 @@ var method;
 var price;
 var point=0;
 var message;
+var address;
 //결제 제어
 function pay(){
 	document.getElementById("usingPoint").defaultValue = "0";
@@ -63,7 +65,6 @@ function pay(){
 			if(method == null) alert("결제수단을 결정해주세요");
 			else if(method == 'card') card();
 	 		else if(method == 'deposit') deposit();
-	 		else if(method == 'kakao') card();
 	 		else if(method == 'withPoint') withPoint();
 		 }else{alert("개인정보 제공에 동의해주세요");}
 	}else{alert("결제수단에 동의해 주세요");}
@@ -75,6 +76,7 @@ function card(){
 	price_result = document.getElementById('price_result').innerText;
 	point = document.getElementById('usingPoint').value;
 	message = document.getElementById('message').value;
+	address = document.getElementById('address').value;
 	IMP.init('imp29540450');
 	IMP.request_pay({
 	    pg : 'danal_tpay', //아임포트 관리자에서 danal_tpay를 기본PG로 설정하신 경우는 생략 가능
@@ -98,6 +100,7 @@ function card(){
 		   option2_str : '<%=option2_str%>',
 		   option3_str : '<%=option3_str%>',
 		   method : method,
+		   address : address,
 	   }
 	}, function(rsp) {
 	    if ( rsp.success ) {
@@ -118,6 +121,7 @@ function card(){
 	        		option2_str : rsp.custom_data.option2_str,
 	        		option3_str : rsp.custom_data.option3_str,
 	        		method : rsp.custom_data.method,
+	        		address : rsp.custom_data.address,
 	    		},
 	    		success : function(result, status){
 	    			console.log(result);
@@ -190,6 +194,35 @@ function allPointPay(){
 	
 	
 }
+
+
+function addressFind() {
+	new daum.Postcode({
+		oncomplete: function(data) {
+			var fullAddr = ''; // 최종 주소 변수
+			var extraAddr = ''; // 조합형 주소 변수
+
+  			if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
+				fullAddr = data.roadAddress;
+
+			} else { // 사용자가 지번 주소를 선택했을 경우(J)
+                    fullAddr = data.jibunAddress;
+			}
+
+			if(data.userSelectedType === 'R'){
+				if(data.bname !== ''){
+					extraAddr += data.bname;
+			}
+			if(data.buildingName !== ''){
+				extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+			}
+  				fullAddr += (extraAddr !== '' ? ' ('+ extraAddr +')' : '');
+			}
+			document.getElementById('address').value = fullAddr + ' '+ data.zonecode;
+			document.getElementById('address').focus();
+		}
+	}).open();
+}
 </script>
 </head>
 <body>
@@ -204,6 +237,7 @@ ProductDAO pdao = new ProductDAO();
 List<ProductBean> product_list = pdao.getProduct(product_str);
 int list_size = product_list.size(); 
 int price=0;
+String address = cdao.getMember(id).getAddress();
 %>
 
 <div class="container">
@@ -225,7 +259,7 @@ int price=0;
 	  		<div id="title_in"><h2>구매자 정보</h2></div>
 			<table id="buyer" border="1">
 				<tr><td style="width: 150px;">이름</td><td>정선주</td></tr>
-				<tr><td>배송주소</td><td>부산광역시 서면 아이티윌</td></tr>
+				<tr><td>배송주소</td><td><input type="text" name="address" id="address" value="<%=address%>"><input type="button" onclick="addressFind()" value="우편번호 찾기"></td></tr>
 				<tr><td>연락처</td><td>010-000-0000</td></tr>
 				<tr><td>배송 요청 메세지</td><td><input type="text" id="message" name="message"></td></tr>
 			</table>
@@ -263,7 +297,6 @@ int price=0;
 					<td><input type="radio" value="card" name="method">신용카드
 	            		<input type="radio" value="deposit" name="method">무통장입금
 	            		<input type="radio" value="withPoint" id="withPoint" name="method" onclick="allPointPay()">전액 포인트 결제
-	            		<input type="radio" value="kakao" name="method">카카오페이</td>
 				</tr>
 			</table>
 			<input type="hidden" name="price" value='<%=price %>'>

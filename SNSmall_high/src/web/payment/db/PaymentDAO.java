@@ -686,7 +686,7 @@ Connection con = null;
 	// getorderNum 아이디,start,pageSize, order로 찾음 ----vendor
 	public List<String> getVendorOrderNumList(int pageSize, String vendor_id, String method) {
 		List<String> list = new ArrayList<String>();
-		StringBuffer sql = new StringBuffer("select order_num from payment where vendor_id = ? and ");
+		StringBuffer sql = new StringBuffer("select product_num from payment where vendor_id=? and ");
 		String order_num = "";
 		try {
 			con = getConnection();

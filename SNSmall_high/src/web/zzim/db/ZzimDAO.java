@@ -41,6 +41,8 @@ Connection con = null;
 			rs=pstmt.executeQuery();
 			
 			while (rs.next()){
+				
+				
 				ZzimBean zb = new ZzimBean();
 				zb.setClient_id(rs.getString("client_id"));
 				zb.setProduct_num(Integer.parseInt(rs.getString("product_num")));
@@ -104,8 +106,13 @@ Connection con = null;
 	public void ZzimAddAction(ZzimBean zb){
 		try{
 			con = getConnection();
-			sql="insert into zzim values(?,?,?,?,?)";
-			
+			sql="insert into zzim values(?,?,?,?,now())";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1,zb.getProduct_num());
+			pstmt.setString(2, zb.getSns_id());
+			pstmt.setString(3,zb.getClient_id());
+			pstmt.setInt(4,zb.getPrice());
+			pstmt.executeUpdate();
 			
 		}catch (Exception e){
 			e.printStackTrace();		

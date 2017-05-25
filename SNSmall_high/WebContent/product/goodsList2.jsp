@@ -18,12 +18,6 @@
 	<link href="css/main.css" rel="stylesheet">
 <title>Insert title here</title>
 
-<script type="text/javascript">
-function zzimcheck(check) {
-	alert(check);
-}
-
-</script>
 </head>
 <body>
 <%
@@ -82,9 +76,9 @@ function zzimcheck(check) {
                     <a href="./ProductDetail.pr?product_num=<%=pb.getProduct_num() %>&pageNum=<%=pageNum%>"><%=pb.getSubject() %></a>
                 </h3>
                 <p><%=pb.getPrice() %>원</p>
-                <p><%=pb.getDate() %><a href="#" onclick="return zzimcheck(check)">찜하기
-                <%if(check==0){ %><img src="./vendor_img/zzimheart.jpg">
-                <%}else if(check==1){ %><img src="./vendor_img/zzimfullheart.jpg"><%} %></a></p>
+                <p><%=pb.getDate() %><a href="ZzimAddAction.zz?product_num=<%=pb.getProduct_num() %>&subject=<%=pb.getSubject() %>&price=<%=pb.getPrice() %>">
+                <%if(check==0){ %>찜하기<img src="./vendor_img/zzimheart.jpg">
+                <%}else if(check==1){ %>찜한상품<img src="./vendor_img/zzimfullheart.jpg"><%} %></a></p>
             </div>
 		<%}} %>
 

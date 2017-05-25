@@ -26,15 +26,15 @@
         	$("#writing").toggle();
     	});
 		
-	   var star=1;
+	   var star=3;
 		$('#writing').find('.glyphicon').click(function(){
 			if($(this).attr('class')=="glyphicon glyphicon-star-empty"){
 				$(this).attr('class', "glyphicon glyphicon-star");
-				star = star+1;
+				star++;
 				alert(star);
 			}else{
 				$(this).attr('class', "glyphicon glyphicon-star-empty");
-				star = star-1;
+				star--;
 				alert(star);
 			}
 		});
@@ -296,12 +296,12 @@
                     	 	<form action="./QnaInsertAction.qn?product_num=<%=productbean.getProduct_num() %>&pageNum=<%=pageNum%>" method="post" enctype="multipart/form-data">
 								<input type="hidden" name="client_id" value="<%=id%>">
 								<div><textarea rows="3" cols="120" name="content"></textarea><br></div>
+								<div><span class="glyphicon glyphicon-star"></span>
+								<span class="glyphicon glyphicon-star"></span>
 								<span class="glyphicon glyphicon-star"></span>
 								<span class="glyphicon glyphicon-star-empty"></span>
-								<span class="glyphicon glyphicon-star-empty"></span>
-								<span class="glyphicon glyphicon-star-empty"></span>
-								<span class="glyphicon glyphicon-star-empty"></span>
-								<input type="file" name="q_img"><br>
+								<span class="glyphicon glyphicon-star-empty"></span></div>
+								<input type="file" name="q_img">
 								<input type="submit" value="submit">
 							</form>
 						</div>
@@ -313,7 +313,7 @@
 					
 					<%for(int i=0; i<qnaList.size(); i++){
 						QnaBean qnabean = (QnaBean)qnaList.get(i);
-						String qUrl = "./QnaPopular.qn?product_num="+productbean.getProduct_num()+"&pageNum="+pageNum+"&q_num="+qnabean.getQ_num();
+						String qUrl = "./QnaPopular.qn?product_num="+productbean.getProduct_num()+"&pageNum="+pageNum+"&q_num="+qnabean.getQ_num()+"stars=";
 					%>
 					<div class="row">
 						<div class="col-md-12">

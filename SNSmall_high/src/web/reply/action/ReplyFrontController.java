@@ -23,6 +23,11 @@ public class ReplyFrontController extends HttpServlet{
 			try{
 				forward = action.execute(request, response);
 			}catch(Exception e){e.printStackTrace();}
+		}else if(command.equals("/replyDelete.re")){
+			action = new ReplyDeleteAction();
+			try{
+				forward = action.execute(request, response);
+			}catch(Exception e){e.printStackTrace();}
 		}
 		
 		//이동

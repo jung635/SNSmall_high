@@ -104,4 +104,23 @@ public class ReplyDAO {
 		return count;
 	}
 	
+	// 댓글 삭제
+	public void replyDelete(int num){
+		try{
+			con = getConnection();
+			
+			sql = "delete from reply where num=?";					
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, num);
+			pstmt.executeUpdate();
+			
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally{
+			if (rs != null) {try {rs.close();} catch (SQLException ex) {}	}
+			if (pstmt != null) {try {pstmt.close();} catch (SQLException ex) {}}
+			if (con != null) {try {con.close();} catch (SQLException ex) {	}}
+		}
+	}
+	
 }

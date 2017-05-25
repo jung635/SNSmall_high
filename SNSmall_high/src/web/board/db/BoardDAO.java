@@ -102,6 +102,38 @@ public class BoardDAO {
 		return boardList;
 	}//getBoardList() END
 	
+	// 게시판 검색글 목록 불러오기
+		public List<BoardBean> getSearchBoardList(int startRow, int pageSize, String search){
+			List<BoardBean> boardList = new ArrayList<BoardBean>();
+			try{
+				con = getConnection();
+				sql = "select * from board where subject like ? or content like ? order by num desc limit ?,?";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, "%"+search+"%");
+				pstmt.setString(2, "%"+search+"%");
+				pstmt.setInt(3, startRow-1);
+				pstmt.setInt(4, pageSize);
+				rs = pstmt.executeQuery();
+				while(rs.next()){
+					BoardBean bb = new BoardBean();
+					bb.setNum(rs.getInt(1));
+					bb.setId(rs.getString(2));
+					bb.setSubject(rs.getString(3));
+					bb.setContent(rs.getString(4));
+					bb.setDate(rs.getDate(5));
+					bb.setType(rs.getString(6));
+					boardList.add(bb);				
+				}
+			}catch(Exception e){
+				e.printStackTrace();
+			}finally{
+				if (rs != null) {try {rs.close();} catch (SQLException ex) {}	}
+				if (pstmt != null) {try {pstmt.close();} catch (SQLException ex) {}}
+				if (con != null) {try {con.close();} catch (SQLException ex) {	}}
+			}
+			return boardList;
+		}//getBoardList() END
+	
 	// 글내용 가져오기
 	public BoardBean getBoard(int num){
 		BoardBean bb = new BoardBean();

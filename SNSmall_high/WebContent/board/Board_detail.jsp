@@ -27,7 +27,7 @@
 	<link href="./css/inner.css" rel="stylesheet">
 	<link href="./css/main.css" rel="stylesheet">
 	
-	<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
+	<script src="../js/jquery-3.2.0.js"></script>
 	<script type="text/javascript">
 		/* 경고문 */
 		function d_confirm(){
@@ -35,7 +35,7 @@
 			}else{
 				return false;
 			}
-		}
+		}		
 	</script>	
 </head>
 <body>
@@ -98,11 +98,10 @@
 						</td>
 						<td style="text-align: right;"><%=rb.getDate() %><br>
 						<%if(id != null && id.equals(rb.getId())){%>							
-						<a href="">[삭제]</a> <a href="">[수정]</a>
+						<a href="./replyDelete.re?num=<%=rb.getNum()%>" onclick="return d_confirm()">[삭제]</a>
 						<%} %>
-						<a href="#"> [덧글]</a>						
 						</td></tr>
-					</table>					
+					</table>				
 					<%
 					}
 					%>					

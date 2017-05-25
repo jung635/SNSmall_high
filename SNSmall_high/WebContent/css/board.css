@@ -1,0 +1,33 @@
+@CHARSET "UTF-8";
+
+
+/*Board_List css*/
+.board_table{
+	border: 1px double gray;
+	
+}
+.board_table tr{
+}
+
+.board_table th{
+	text-align: center;	
+}
+	
+.board_type{
+	border: 1px solid red;
+	text-align: center;
+}
+
+
+.board_subject{
+	border: 1px solid green;
+	text-align: left;
+}
+.board_id{
+	border: 1px solid red;
+}
+.board_date{
+	border: 1px solid red;
+}
+
+

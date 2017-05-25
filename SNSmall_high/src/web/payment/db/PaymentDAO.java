@@ -243,10 +243,9 @@ Connection con = null;
 		if(con!=null){try{con.close();}catch(SQLException ex){}}}
 	}
 
-	public void subVendorProfit(int price, String vendor_id) {
+	public void subVendorProfit(int profit, String vendor_id) {
 		try {
 			con = getConnection();
-			int profit = (int) (price * 0.01);
 			sql = "update vendor set vendor_profit=vendor_profit-? where vendor_id=? ";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, profit);

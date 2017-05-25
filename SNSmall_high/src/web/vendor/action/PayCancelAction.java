@@ -36,7 +36,6 @@ public class PayCancelAction implements Action {
 		double price_result = (double)prob.getPrice()*(double)pb.getAmount();
 		PaymentBean pb_sns = null;
 		ProductBean prob_sns = null;
-		SnsBean sb_sns = null;
 		long all_sns_sell = 0L;
 		List<PaymentBean> list_pb = new ArrayList<>();
 		List<PaymentBean> list_sns = new ArrayList<>();
@@ -44,7 +43,7 @@ public class PayCancelAction implements Action {
 		AlarmBean ab = new AlarmBean();
 		AlarmDAO adao = new AlarmDAO();
 		
-		if(pb.getState().equals("w_cancleHold")){
+		if(pb.getState().equals("w_cancelHold")){
 			ab.setContent("결제 취소가 완료되었습니다.");
 			ab.setId(pb.getClient_id());
 			ab.setMove("PayList.pa");
@@ -90,44 +89,45 @@ public class PayCancelAction implements Action {
 				}
 			}
 			System.out.println(all_sns_sell);
-			sb_sns= sdao.getSnsDetail(pb.getSns_id());
 			
 			
 			long money = all_sns_sell+Math.round(price_result);
-			
-			if( sb_sns.getRank().equals("plus")){
-				if(money<146000){//테스트
-				//if(money<5000000){
-					ab.setContent("등급이 basic으로 내려가셨어요ㅠㅠ");
-					ab.setId(pb.getSns_id());
-					ab.setMove("RankDown.al?rank="+"basic");
-					adao.insertAlarm(ab);
-					pdao.rankUpdate(pb.getSns_id(), "basic");
-				}
-			}else{
-				if(money<10000000){
-					ab.setContent("등급이  plus로 내려가셨어요ㅠㅠ");
-					ab.setId(pb.getSns_id());
-					ab.setMove("RankDown.al?rank="+"plus");
-					adao.insertAlarm(ab);
-					pdao.rankUpdate(pb.getSns_id(), "plus");
-				}else if(money<5000000){
-					ab.setContent("등급이 basic으로 내려가셨어요ㅠㅠ");
-					ab.setId(pb.getSns_id());
-					ab.setMove("RankDown.al?rank="+"basic");
-					adao.insertAlarm(ab);
-					pdao.rankUpdate(pb.getSns_id(), "basic");
+			if(sb != null){
+				if( sb.getRank().equals("plus")){
+					if(money<277360){//테스트
+					//if(money<5000000){
+						ab.setContent("등급이 basic으로 내려가셨어요ㅠㅠ");
+						ab.setId(pb.getSns_id());
+						ab.setMove("RankDown.al?rank="+"basic");
+						adao.insertAlarm(ab);
+						pdao.rankUpdate(pb.getSns_id(), "basic");
+					}
+				}else{
+					if(money<10000000){
+						ab.setContent("등급이  plus로 내려가셨어요ㅠㅠ");
+						ab.setId(pb.getSns_id());
+						ab.setMove("RankDown.al?rank="+"plus");
+						adao.insertAlarm(ab);
+						pdao.rankUpdate(pb.getSns_id(), "plus");
+					}else if(money<5000000){
+						ab.setContent("등급이 basic으로 내려가셨어요ㅠㅠ");
+						ab.setId(pb.getSns_id());
+						ab.setMove("RankDown.al?rank="+"basic");
+						adao.insertAlarm(ab);
+						pdao.rankUpdate(pb.getSns_id(), "basic");
+					}
 				}
 			}
 			ab.setContent("결제 취소가 완료되었습니다.");
 			ab.setId(pb.getClient_id());
 			ab.setMove("PayList.pa");
 			adao.insertAlarm(ab);
-			out.println("<script>");
-			out.println("alert('취소가 완료되었습니다.');");
-			out.println("location.href='PayList.pa';");
-			out.println("</script>");
 		}
+		
+		out.println("<script>");
+		out.println("alert('취소가 완료되었습니다.');");
+		out.println("location.href='PayList.pa';");
+		out.println("</script>");
 		return null;
 	}
 

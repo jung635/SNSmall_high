@@ -25,18 +25,18 @@
 	    $(".reviewbtn").click(function(){
         	$("#writing").toggle();
     	});
-// 	    $('#qnastar').click(function() {
-// 		 if($('#qnastar').attr('class') != "glyphicon glyphicon-star"){
-// 			 $('#qnastar').attr('class', "glyphicon glyphicon-star");
-// 		 }else{
-// 			 $('#qnastar').attr('class', "glyphicon glyphicon-star-empty");
-// 		 }
-// 		});
-		$('#writing').find('.glyphicon-star-empty').click(function(){
-			$(this).attr('class', "glyphicon glyphicon-star");
-		});
-		$('#writing').find('.glyphicon-star').click(function(){
-			$(this).attr('class', "glyphicon glyphicon-star-empty");
+		
+	   var star=1;
+		$('#writing').find('.glyphicon').click(function(){
+			if($(this).attr('class')=="glyphicon glyphicon-star-empty"){
+				$(this).attr('class', "glyphicon glyphicon-star");
+				star = star+1;
+				alert(star);
+			}else{
+				$(this).attr('class', "glyphicon glyphicon-star-empty");
+				star = star-1;
+				alert(star);
+			}
 		});
 		
 	});
@@ -295,7 +295,7 @@
                      	<div id="writing" style="margin-bottom: 14px; display: none;">
                     	 	<form action="./QnaInsertAction.qn?product_num=<%=productbean.getProduct_num() %>&pageNum=<%=pageNum%>" method="post" enctype="multipart/form-data">
 								<input type="hidden" name="client_id" value="<%=id%>">
-								<textarea rows="3" cols="120" name="content"></textarea><br>
+								<div><textarea rows="3" cols="120" name="content"></textarea><br></div>
 								<span class="glyphicon glyphicon-star"></span>
 								<span class="glyphicon glyphicon-star-empty"></span>
 								<span class="glyphicon glyphicon-star-empty"></span>

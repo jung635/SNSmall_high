@@ -190,6 +190,11 @@ public class BoardDAO {
 			sql = "delete from board where num=?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, num);
+			pstmt.executeUpdate();
+			
+			sql = "update board set num=num-1 where num>?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, num);
 			pstmt.executeUpdate();			
 		}catch(Exception e){
 			e.printStackTrace();

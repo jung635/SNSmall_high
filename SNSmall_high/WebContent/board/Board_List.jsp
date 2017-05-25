@@ -75,7 +75,9 @@
 							</tr>
 
 							<!-- 조건 for문 시작할 부분 -->
-						<%for(int i=0; i<boardList.size(); i++){
+						<%
+						if(boardList!=null){
+						for(int i=0; i<boardList.size(); i++){
 							BoardBean bb = (BoardBean)boardList.get(i);
 							%>
 
@@ -114,7 +116,7 @@
                     		<%
                     		}
                     		%>                    
-                    <%} %>
+                    <%}} %>
                     </div>
                     <!-- 페이지 넘버 부분 -->
                     <!-- 검색 -->

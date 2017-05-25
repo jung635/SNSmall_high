@@ -413,7 +413,11 @@ public class ProductDAO {
 			sql="delete from product where product_num=?";
 			pstmt=con.prepareStatement(sql);
 			pstmt.setInt(1, product_num);
-
+			pstmt.executeUpdate();
+			
+			sql = "update product set product_num=product_num-1 where product_num>?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, product_num);
 			pstmt.executeUpdate();
 			
 		} catch (Exception e) {e.printStackTrace();}

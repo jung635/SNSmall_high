@@ -7,9 +7,20 @@ function blogSearch(){
 	location.href = './OurBlogSearchAction.bl?search='+search;
 }
 </script>
+		<br>
             <div class="col-md-3">
-             <!-- Blog produce Well -->
-       
+         
+        <!-- Blog Home posting Well --> 
+        <div class="well" style="padding: 0px; text-align: center; background-color: skyblue;">
+       				<a href="./OurBlog.bl"> 
+	       				<button class="blogHome-btn">
+	       					<i class="fa fa-home" aria-hidden="true"></i>
+	       					<span class="blogHome-letter">Blog</span>
+	       				</button> 
+       				</a>
+       			</div>    
+
+        <!-- Blog produce Well -->
 				 <div class="well">
 					 <div class="blog_produce" style="margin:auto;">
 				 		
@@ -30,6 +41,15 @@ function blogSearch(){
 				
 				 	</div>
 				 </div>
+				 
+			<!-- Blog posting btn Well -->      
+       			<div class="well" style="padding: 0px; text-align: center; background-color: skyblue;">
+       				<a href="./OurBlogPosting.bl"> 
+	       				<button class="posting_btn">
+	       					<span class="blogHome-letter">posting</span>
+	       				</button> 
+       				</a>
+       			</div>
 				
                 <!-- Blog Search Well -->
                 <div class="well">
@@ -37,7 +57,7 @@ function blogSearch(){
                     <div class="input-group">
                         <input type="text" id="BlogSearch" class="form-control">
                         <span class="input-group-btn">
-                            <button class="btn btn-default" type="button" onclick="blogSearch()">
+                            <button class="btn btn-default" type="button" onclick="blogSearch()" style="padding: 9px 15px 9px 15px;">
                                 <span class="glyphicon glyphicon-search"></span>
                         </button>
                         </span>
@@ -49,22 +69,36 @@ function blogSearch(){
                 <div class="well">
                     <h4>Blog Categories</h4>
                     <div class="row">
-                        <div class="col-lg-6">
+                        <div class="col-lg-8">
                             <ul class="list-unstyled">
-                                <li><a href="./OurBlogCategory.bl?category=notice">　notice</a>
+                                <li>
+                                <a href="./OurBlogCategory.bl?category=notice">　
+	                                <i class="fa fa-file-text-o" aria-hidden="true"></i>　notice
+                                </a>
                                 </li>
-                                <li><a href="./OurBlogCategory.bl?category=contribution">　contribution</a>
+                                
+                                <li>
+                                <a href="./OurBlogCategory.bl?category=contribution">　
+                                	<i class="fa fa-globe" aria-hidden="true"></i>　contribution
+                                </a>
                                 </li>
-                                <li><a href="./OurBlogCategory.bl?category=Event">　Event</a>
+                                
+                                <li>
+                                <a href="./OurBlogCategory.bl?category=Event">　
+                                <i class="fa fa-gift" aria-hidden="true"></i>　Event
+                                </a>
                                 </li>
-                                <li><a href="./OurBlogCategory.bl?category=service">　service</a>
+                                <li><a href="./OurBlogCategory.bl?category=service">　
+                                <i class="fa fa-star" aria-hidden="true"></i>　service</a>
                                 </li>
-                                 <li><a href="./OurBlogCategory.bl?category=advertising">　advertising</a>
+                                <li><a href="./OurBlogCategory.bl?category=advertising">　
+                                <i class="fa fa-lightbulb-o" aria-hidden="true"></i>　advertising</a>
                                 </li>
+                               	
                             </ul>
                         </div>
                         <!-- /.col-lg-6 -->
-                        <div class="col-lg-6">
+                        <div class="col-lg-4">
   
                         </div>
                         <!-- /.col-lg-6 -->

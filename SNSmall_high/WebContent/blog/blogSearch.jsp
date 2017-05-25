@@ -12,6 +12,7 @@
 	<meta name="keywords" content="Creative, Onepage, Parallax, HTML5, Bootstrap, Popular, custom, personal, portfolio" /> 
 	<meta name="author" content=""> 
 	<title>HIMU - OnePage HTML Parallax template</title> 
+	<link href="./css/font-awesome.min.css" rel="stylesheet"> 
 	<link href="./css/bootstrap.min.css" rel="stylesheet">
 	<link href="./css/bootstrap.css" rel="stylesheet">
 	<link href="./css/header.css" rel="stylesheet">
@@ -38,61 +39,85 @@
 	List blogList=(List)request.getAttribute("blogList");
 	String pageNum=(String)request.getAttribute("pageNum");
 	int count=((Integer)request.getAttribute("count")).intValue();
-	%>
 	
-				
-					<select style="width: 200px; margin-top: 20px;" id="category" name="category">
-						<option>　notice</option>
-						<option>　contribution</option>
-						<option>　Event</option>
-						<option>　service</option>
-						<option>　advertising</option>
-					</select>
-				
-				
+	if(count!=0){
+	%>
                 <hr>
                 <%=count %>개의 포스팅이 있습니다.
-				<table border=1;>
-				
+                <br>
+                <br>
 				
 				<% for(int i=0;i<blogList.size();i++){
     			BlogBean bb = (BlogBean)blogList.get(i); %>
     			
-    			
+    			<hr style="border: 1px solid white;">
     			<%if(bb.getFile()!=null){%>
-    			<tr>
-    			<td rowspan="2"> <%=bb.getCategory() %> </td>
-    			<td rowspan="2" style="width: 200px; height: 100px;"> <img alt="" src="./blog_upload/<%=bb.getFile() %>" style="width: 200px; height: 100px; padding: 2px"> </td>
-    			<td><%=bb.getSubject() %></td>
-    			<td style="text-align: right;">
-    				<p><span class="glyphicon glyphicon-time"></span> Posted on 
+    			<div style="border-bottom: 1px solid #e3e3e3; background-color:#f5f5f5; ">
+    			<%if(bb.getCategory().equals("notice")){ %>
+              	<i class="fa fa-file-text-o" aria-hidden="true"></i> notice
+              	<%}else if(bb.getCategory().equals("contribution")){ %>
+				<i class="fa fa-globe" aria-hidden="true"></i> contribution
+				<%}else if(bb.getCategory().equals("Event")){ %>
+				<i class="fa fa-gift" aria-hidden="true"></i> Event
+				<%}else if(bb.getCategory().equals("service")){ %>
+				<i class="fa fa-star" aria-hidden="true"></i> service
+				<%}else if(bb.getCategory().equals("advertising")){ %>
+				<i class="fa fa-lightbulb-o" aria-hidden="true"></i> advertising
+				<%} %>
+    			</div>
+    			
+    			<div style="position: relative; border: 1px solid red">
+    			 <%=bb.getSubject() %> 
+    			<p><span class="glyphicon glyphicon-time"></span> Posted on 
                		 	<%SimpleDateFormat sdf = new SimpleDateFormat("MMMMM dd, yyyy hh:mm a zzz");%>
                 	 	<%=sdf.format(bb.getDate())%>
-                	</p>
-    			</td>
-    			</tr>
-    			<tr> <td colspan="2"><%=bb.getContent() %></td> </tr>
+                	</p> 
+            	</div>
+    			<div class="col-lg-4">
+    			<img alt="" src="./blog_upload/<%=bb.getFile() %>" style="width: 200px; height: 100px; padding: 2px">
+ 				</div>
+    			<div class="col-lg-8" style="height: 40px; overflow: hidden;"><%=bb.getContent()%></div>...
+    			
+    			<br>
+    			
     			<%}else{ %>
-    			<tr>
-    				<td rowspan="2"> <%=bb.getCategory() %> </td>
-    				<td colspan="2"> <%=bb.getSubject() %> </td>
-    				<td style="text-align: right;">
-    					<p><span class="glyphicon glyphicon-time"></span> Posted on 
-               		 		<%SimpleDateFormat sdf = new SimpleDateFormat("MMMMM dd, yyyy hh:mm a zzz");%>
-                			<%=sdf.format(bb.getDate())%>
-                		</p>
-    				</td>
-    				
-    			<tr> <td colspan="3"><%=bb.getContent() %></td> </tr>
-    			<%} %>
+    			<div>
+    			<%if(bb.getCategory().equals("notice")){ %>
+              	<i class="fa fa-file-text-o" aria-hidden="true"></i> notice
+              	<%}else if(bb.getCategory().equals("contribution")){ %>
+				<i class="fa fa-globe" aria-hidden="true"></i> contribution
+				<%}else if(bb.getCategory().equals("Event")){ %>
+				<i class="fa fa-gift" aria-hidden="true"></i> Event
+				<%}else if(bb.getCategory().equals("service")){ %>
+				<i class="fa fa-star" aria-hidden="true"></i> service
+				<%}else if(bb.getCategory().equals("advertising")){ %>
+				<i class="fa fa-lightbulb-o" aria-hidden="true"></i> advertising
+				<%} %>
+    			</div>
+    			
+    			<div style="position: relative; border: 1px solid red">
+    				<span><%=bb.getSubject() %></span>
+    					 <span style="position: absolute; right: 10px;"><span class="glyphicon glyphicon-time"></span> Posted on 
+	               		 	<%SimpleDateFormat sdf = new SimpleDateFormat("MMMMM dd, yyyy hh:mm a zzz");%>
+	                	 	<%=sdf.format(bb.getDate())%>
+                		</span> 
+ 				</div>
+    			<div style="height: 40px; overflow: hidden;"><%=bb.getContent()%></div>...
+    	
+    				<%} %>
     			
     			
     			
-    			<%} %>
+    				<%} %>
     			
-    			
-				</table>
 
+				<%}else if(count==0){%>
+				
+				<hr>
+				<div class="empty-result">
+				검색어와 관련된 포스팅이 없습니다.
+				</div>
+				<% }%>
             </div>
 
 <!-- Blog Sidebar Widgets Column -->

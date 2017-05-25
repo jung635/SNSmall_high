@@ -9,6 +9,7 @@
 	<meta name="keywords" content="Creative, Onepage, Parallax, HTML5, Bootstrap, Popular, custom, personal, portfolio" /> 
 	<meta name="author" content=""> 
 	<title>HIMU - OnePage HTML Parallax template</title> 
+	<link href="./css/font-awesome.min.css" rel="stylesheet"> 
 	<link href="./css/bootstrap.min.css" rel="stylesheet">
 	<link href="./css/bootstrap.css" rel="stylesheet">
 	<link href="./css/header.css" rel="stylesheet">

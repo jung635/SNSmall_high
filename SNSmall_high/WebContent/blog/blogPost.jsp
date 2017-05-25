@@ -46,8 +46,11 @@ function d_confirm(){
                 <!-- Blog Post -->
 		<%BlogBean bb = (BlogBean)request.getAttribute("bb");
   		String pageNum = (String)request.getAttribute("pageNum");%>
+  		
+  		<a href="./OurBlogPostUpdate.bl?num=<%=bb.getNum()%>&pageNum=<%=pageNum%>">수정하기</a>&nbsp;|
+				<a href="./OurBlogPostDeleteAction.bl?num=<%=bb.getNum()%>&pageNum=<%=pageNum%>" onclick="return d_confirm()">삭제</a>
                 <!-- Title -->
-                <h1>
+                <div style="font-size: 15px;">
                 <%if(bb.getCategory().equals("notice")){ %>
               	<i class="fa fa-file-text-o" aria-hidden="true"></i> notice
               	<%}else if(bb.getCategory().equals("contribution")){ %>
@@ -59,35 +62,39 @@ function d_confirm(){
 				<%}else if(bb.getCategory().equals("advertising")){ %>
 				<i class="fa fa-lightbulb-o" aria-hidden="true"></i> advertising
 				<%} %>
-                </h1>
-
-
-				<a href="./OurBlogPostUpdate.bl?num=<%=bb.getNum()%>&pageNum=<%=pageNum%>">수정하기</a>&nbsp;|
-				<a href="./OurBlogPostDeleteAction.bl?num=<%=bb.getNum()%>&pageNum=<%=pageNum%>" onclick="return d_confirm()">삭제</a>
-                <!-- Author -->
-                <p class="lead">
-                    by admin 
-                </p>
-					
-                <hr>
-
-                <!-- Date/Time -->
+				
+				<span style="font-size: 10px; margin-left: 10px">_ by admin</span>
+                </div>
+                <hr style="margin: 0 0 10px 0;">
+                <div style="background-color:#e3e3e3;">
+                <div class="col-lg-8">
+                <div class="subject_size">
+				<%=bb.getSubject() %>
+				<hr>	
+				</div>
+				</div>
+				 <div class="col-lg-4">
+				 <!-- Date/Time -->
                 <p><span class="glyphicon glyphicon-time"></span>
                  <%SimpleDateFormat sdf = new SimpleDateFormat("MMMMM dd, yyyy hh:mm a zzz");%>
                  <%=sdf.format(bb.getDate())%>
                 </p>
-
+				</div>
+				</div>
+                
+ 				
+ 				
+               
+				
                 <hr>
 				<%if(bb.getFile()!=null){ %>
                 <!-- Preview Image -->
                 <img class="img-responsive" src="./blog_upload/<%=bb.getFile()%>" alt="">
 
-                <hr>
+                <br>
 				<%} %>
                 <!-- Post Content -->
-                <p class="lead">
-                <%=bb.getSubject() %>
-                </p>
+
                 <p> 
                 <%String content = bb.getContent();
 				if(content!=null){

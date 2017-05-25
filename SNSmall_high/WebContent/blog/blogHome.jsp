@@ -13,6 +13,7 @@
 	<meta name="keywords" content="Creative, Onepage, Parallax, HTML5, Bootstrap, Popular, custom, personal, portfolio" /> 
 	<meta name="author" content=""> 
 	<title>HIMU - OnePage HTML Parallax template</title> 
+	<link href="./css/font-awesome.min.css" rel="stylesheet"> 
 	<link href="./css/bootstrap.min.css" rel="stylesheet">
 	<link href="./css/bootstrap.css" rel="stylesheet">
 	<link href="./css/header.css" rel="stylesheet">
@@ -29,27 +30,22 @@
     <div class="content">
 
      	        <div class="row">
+				
+				 <div class="blogHomeTopImg">
+
+					<div class="blog-content-header">
+							&nbsp;himu 's Blog
+					</div>
+					
+					
+				
+				 </div>  
 
             <!-- Blog Entries Column -->
             <div class="col-md-9">
-            
-				<div class="blog-content-header">
-					
-					<h2 style="margin: 8px 0 8px 0">
-						himu 's Blog
-						 <small style="padding-left: 20px;">Welcome to our Blog</small>
-					</h2>
-            
-				</div>
-					<div style="text-align: right;">
-					<a href="./OurBlogPosting.bl">
-               			<button class="posting_btn">posting</button>
-               		</a>				
-					</div>
-  
-                <div class="blogHomeTopImg"></div>  
-                
-		 <hr style="border: 0; height: 2px; background: #ddd;">
+          
+           
+		 
 
 <%
 List blogList=(List)request.getAttribute("blogList");
@@ -67,37 +63,52 @@ for(int i=0;i<blogList.size();i++){
 	
 %>
 
+		 <hr>
+		 &nbsp;전체보기 &nbsp;(<%=count %>)
+		 <hr>
                 <!-- First Blog Post -->
                
-                <div>
-                   <div class="col-md-6">
-                    <%=bb.getSubject() %><span style="font-size: 15px;"> / category</span>
-                   </div>
-                   <div class="col-md-2">
-                     <small> by admin</small>
-                	</div>
-               		<div class="col-md-4">
-               		 <small style="font-size: 10px;">
-                	<span class="glyphicon glyphicon-time"></span> 
+                <div class="blog-subject">
+                 
+                    <span style="font-size: 20px;"><%=bb.getSubject() %></span>
+                    <span style="font-size: 12px; ">　
+                    <%if(bb.getCategory().equals("notice")){ %>
+              	<i class="fa fa-file-text-o" aria-hidden="true"></i> notice
+              	<%}else if(bb.getCategory().equals("contribution")){ %>
+				<i class="fa fa-globe" aria-hidden="true"></i> contribution
+				<%}else if(bb.getCategory().equals("Event")){ %>
+				<i class="fa fa-gift" aria-hidden="true"></i> Event
+				<%}else if(bb.getCategory().equals("service")){ %>
+				 <i class="fa fa-star" aria-hidden="true"></i> service
+				<%}else if(bb.getCategory().equals("advertising")){ %>
+				<i class="fa fa-lightbulb-o" aria-hidden="true"></i> advertising
+				<%} %>
+                   </span>
+                  
+                   
+                     
+                	<span class="blog-subject-date">
+               		 <small>
+               		   <span class="glyphicon glyphicon-time"></span> 
                		Posted on 
                		 <%SimpleDateFormat sdf = new SimpleDateFormat("MMMMM dd, yyyy hh:mm a zzz");%>
                		  <%=sdf.format(bb.getDate())%>
                 	</small>
-                	</div>
+                	</span>
                 </div>
                 	
                 	
-                	<hr>
                   <!-- Posted on August 28, 2013 at 10:00 PM -->
                 
                 <%if(bb.getFile()!=null){ %>
-                
+             
                   <a href="./OurBlogPostAction.bl?num=<%=bb.getNum()%>&pageNum=<%=pageNum%>">
-    			<img src="./blog_upload/<%=bb.getFile()%>" style="border-radius:5px;"></img></a>
-    			
+                  
+    			<img src="./blog_upload/<%=bb.getFile()%>" style="border-radius:5px; max-width: 820px;"></img></a>
+    			 
     			 <hr>
                 <%} %>
-                
+             
                
                 <div style="overflow:hidden; height:100px;"><%=bb.getContent()%></div>
                 <a class="btn btn-primary" href="./OurBlogPostAction.bl?num=<%=bb.getNum()%>&pageNum=<%=pageNum%>">Read More <span class="glyphicon glyphicon-chevron-right"></span></a>

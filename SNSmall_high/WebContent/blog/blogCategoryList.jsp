@@ -13,6 +13,7 @@
 	<meta name="keywords" content="Creative, Onepage, Parallax, HTML5, Bootstrap, Popular, custom, personal, portfolio" /> 
 	<meta name="author" content=""> 
 	<title>HIMU - OnePage HTML Parallax template</title> 
+	<link href="./css/font-awesome.min.css" rel="stylesheet"> 
 	<link href="./css/bootstrap.min.css" rel="stylesheet">
 	<link href="./css/bootstrap.css" rel="stylesheet">
 	<link href="./css/header.css" rel="stylesheet">
@@ -31,7 +32,7 @@
      	        <div class="row">
 
             <!-- Blog Entries Column -->
-            <div class="col-md-8">
+            <div class="col-md-9">
 	<%
 	
 	String category = (String)request.getAttribute("category");
@@ -61,33 +62,53 @@ for(int i=0;i<categoryBlogList.size();i++){
 
                 <!-- First Blog Post -->
                
-                <h2>
-                    <a href="./OurBlogPostAction.bl?num=<%=bb.getNum()%>&pageNum=<%=pageNum%>">
-                    <%=bb.getSubject() %>
-                    </a>
-                     <small> by admin</small>
-                </h2>
-               
-                <p><span class="glyphicon glyphicon-time"></span> Posted on 
-                <%SimpleDateFormat sdf = new SimpleDateFormat("MMMMM dd, yyyy hh:mm a zzz");%>
-                 <%=sdf.format(bb.getDate())%>
-                </p>
-                <hr>  <!-- Posted on August 28, 2013 at 10:00 PM -->
+                <div class="blog-subject">
+                 
+                    <span style="font-size: 20px;"><%=bb.getSubject() %></span>
+                    <span style="font-size: 12px; ">　
+                    <%if(bb.getCategory().equals("notice")){ %>
+              	<i class="fa fa-file-text-o" aria-hidden="true"></i> notice
+              	<%}else if(bb.getCategory().equals("contribution")){ %>
+				<i class="fa fa-globe" aria-hidden="true"></i> contribution
+				<%}else if(bb.getCategory().equals("Event")){ %>
+				<i class="fa fa-gift" aria-hidden="true"></i> Event
+				<%}else if(bb.getCategory().equals("service")){ %>
+				 <i class="fa fa-star" aria-hidden="true"></i> service
+				<%}else if(bb.getCategory().equals("advertising")){ %>
+				<i class="fa fa-lightbulb-o" aria-hidden="true"></i> advertising
+				<%} %>
+                   </span>
+                  
+                   
+                     
+                <span class="blog-subject-date">
+               		 <small>
+               		   <span class="glyphicon glyphicon-time"></span> 
+               		Posted on 
+               		 <%SimpleDateFormat sdf = new SimpleDateFormat("MMMMM dd, yyyy hh:mm a zzz");%>
+               		  <%=sdf.format(bb.getDate())%>
+                	</small>
+                </span>	
+                </div>
+                	
+                	
+                  <!-- Posted on August 28, 2013 at 10:00 PM -->
                 
                 <%if(bb.getFile()!=null){ %>
-                
+             
                   <a href="./OurBlogPostAction.bl?num=<%=bb.getNum()%>&pageNum=<%=pageNum%>">
-    			<img src="./blog_upload/<%=bb.getFile()%>" style="border-radius:5px;"></img></a>
-    			
+                  
+    			<img src="./blog_upload/<%=bb.getFile()%>" style="border-radius:5px; max-width: 820px;"></img></a>
+    			 
     			 <hr>
                 <%} %>
-                
+             
                
                 <div style="overflow:hidden; height:100px;"><%=bb.getContent()%></div>
-                <a class="btn btn-primary" href="#">Read More <span class="glyphicon glyphicon-chevron-right"></span></a>
-
-               <hr style="border: 0; height: 1px; background: #ddd;">
-               <hr style="border: 0; height: 2px; background: #ddd;">
+                <a class="btn btn-primary" href="./OurBlogPostAction.bl?num=<%=bb.getNum()%>&pageNum=<%=pageNum%>">Read More <span class="glyphicon glyphicon-chevron-right"></span></a>
+                
+               
+               <hr style="border: 0; height: 2px; background: #e3e3e3;">
 
         <%}%>
 
@@ -98,7 +119,7 @@ if(count!=0){
 	 %><ul class="pager">
                     <li class="previous"><%
 	if(startPage > pageBlock){
-		%><a href="./OurBlog.bl?pageNum=<%=startPage-pageBlock%>">&larr; Older</a><%
+		%><a href="./OurBlogCategory.bl?category=<%=category %>&pageNum=<%=startPage-pageBlock%>">&larr; Older</a><%
 	}                    //get방식방법에서쓰는방식 파일이름? ...파라미터값 <%=..>쮹쮹~
 	%></li>
 	
@@ -106,7 +127,7 @@ if(count!=0){
 	// 다음
 	
 	if(endPage<pageCount){
-		%><a href="./OurBlog.bl?pageNum=<%=startPage+pageBlock%>">Newer &rarr;</a><%
+		%><a href="./OurBlogCategory.bl?category=<%=category %>&pageNum=<%=startPage+pageBlock%>">Newer &rarr;</a><%
 	}
 	%></li> </ul><%
 }

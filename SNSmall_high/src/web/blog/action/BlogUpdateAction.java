@@ -29,12 +29,14 @@ public class BlogUpdateAction implements Action{
 		HttpSession session = request.getSession();
 		String id= (String)session.getAttribute("id");
 		
-//		ActionForward forward = new ActionForward();
-//		if(id!="admin"){
-//			forward.setPath("./login.cl");
-//			forward.setRedirect(true);
-//			return forward;
-//		}
+		ActionForward forward = new ActionForward();
+		
+		if(id==null||!id.equals("admin")){
+			forward.setPath("./Login.cl");
+			forward.setRedirect(true);
+			return forward;
+		}
+		
 		int num =Integer.parseInt(multi.getParameter("num"));
 		bb.setNum(num);
 		bb.setSubject(multi.getParameter("subject"));
@@ -54,7 +56,7 @@ public class BlogUpdateAction implements Action{
 		
 		bdao.blogPostUpdate(bb);
 		
-		ActionForward forward = new ActionForward();
+		forward = new ActionForward();
 		forward.setPath("./OurBlogPostAction.bl?num="+num);
 		forward.setRedirect(true);
 		

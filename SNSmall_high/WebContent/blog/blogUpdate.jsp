@@ -47,6 +47,13 @@ function empty(){
 </script>
 </head>
 <body>
+
+<%
+String id = (String)session.getAttribute("id");
+if(id==null || !id.equals("admin")){
+	response.sendRedirect("./login.cl");
+}
+%>
 	
 <jsp:include page="../inc/header.jsp"/>
   <!-- Page Content -->

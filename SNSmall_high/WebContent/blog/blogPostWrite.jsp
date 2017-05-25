@@ -20,21 +20,22 @@
 <title>Insert title here</title>
 </head>
 <body>
-	
+<%
+String id = (String)session.getAttribute("id");
+if(id==null || !id.equals("admin")){
+	response.sendRedirect("./login.cl");}
+%>
 <jsp:include page="../inc/header.jsp"/>
   <!-- Page Content -->
   <div class="container">
     <div class="content">
-
-
-<div class="row">
-
+		<div class="row">
+		
             <div class="col-lg-8">
 
                 <span class="fontBig">Blog Posting</span><span class="fontSmall">by. admin</span>
 
-			<form action="./OurBlogPostingAction.bl" name="fr" method="post" onsubmit="return empty()" enctype="multipart/form-data">
-			
+				<form action="./OurBlogPostingAction.bl" name="fr" method="post" onsubmit="return empty()" enctype="multipart/form-data">
 				
 					<select style="width: 200px; margin-top: 20px;" id="category" name="category">
 						<option>notice</option>
@@ -44,11 +45,8 @@
 						<option>advertising</option>
 					</select>
 				
-				
 					<input type="text" name="subject" placeholder="Title" class="form-control" style="margin-top: 15px;">
-				
-				
-				
+
                 <hr>
                 
                 <input type="file" name="file">
@@ -58,12 +56,14 @@
                 <textarea rows="20" cols="100" class="form-control" name="content"></textarea>
 
                 <hr>
+                
                 <div class="col-lg-4"></div>
                 <div class="col-lg-4">
              		<input type="submit" value="posting" class="btn_submit">
              	</div>
                 <div class="col-lg-4"></div>
-			</form>
+				
+				</form>
                
                 <hr>
 

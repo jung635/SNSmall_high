@@ -12,5 +12,6 @@
 			
 	<a href="SnsSale.sn" class="list-group-item">SNS 판매내역</a>
 	<a href="#" class="list-group-item">쪽지함</a>
+	<a href="AlarmListView.al" class="list-group-item">메시지 리스트</a>
 </div>
   

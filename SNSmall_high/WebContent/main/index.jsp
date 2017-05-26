@@ -68,8 +68,6 @@ function productSearch_exe(){
 						<div> 
 							<h2 class="heading animated bounceInDown">'Himu' Onepage HTML Template</h2> 
 							<p class="animated bounceInUp">Fully Professional one page template</p> 
- 							<!-- <a class="btn btn-default slider-btn animated fadeIn" href="#">상품 검색</a> 
-							<a class="btn btn-default slider-btn animated fadeIn" href="#">SNS STAR 검색</a>   -->
 						</div> 
 					</div> 
 				</div>
@@ -77,8 +75,6 @@ function productSearch_exe(){
 					<div class="carousel-caption"> <div> 
 						<h2 class="heading animated bounceInDown">Get All in Onepage</h2> 
 						<p class="animated bounceInUp">Everything is outstanding </p>
-<!-- 						<a class="btn btn-default slider-btn animated fadeIn" href="#">상품 검색</a> 
-						<a class="btn btn-default slider-btn animated fadeIn" href="#">SNS STAR 검색</a>  -->
 					</div> 
 				</div> 
 			</div> 
@@ -87,8 +83,6 @@ function productSearch_exe(){
 					<div> 
 						<h2 class="heading animated bounceInRight">Fully Responsive Template</h2> 
 						<p class="animated bounceInLeft">100% Responsive HTML template</p> 
-<!-- 						<a class="btn btn-default slider-btn animated fadeIn" href="#">상품 검색</a> 
-						<a class="btn btn-default slider-btn animated fadeIn" href="#">SNS STAR 검색</a>  -->
 					</div> 
 				</div> 
 			</div>
@@ -242,8 +236,8 @@ function productSearch_exe(){
 			<div class="container">
 				<div class="row text-center">
 					<div class="col-sm-8 col-sm-offset-2">
-						<h2 class="title-one">Meet The Team</h2>
-						<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit.</p>
+						<h2 class="title-one">BEST SNS STARS</h2>
+						<p>가장 판매를 많이한 SNS STAR들입니다! STAR들이 판매하는 물건들을 구경해보세요. STAR들과 연락을 통해 더 많은 홍보를 할 수도 있습니다.!!</p>
 					</div>
 				</div>
 				<div id="team-carousel" class="carousel slide" data-interval="false">
@@ -362,158 +356,8 @@ function productSearch_exe(){
 							</div>
 						</div>
 						<%} %>
-<!--					<div class="col-sm-3 col-xs-12 portfolio-item html">
-						<div class="view efffect">
-							<div class="portfolio-image">
-								<img src="images/portfolio/1.jpg" alt=""></div> 
-								<div class="mask text-center">
-									<h3>Novel</h3>
-									<h4>Lorem ipsum dolor sit amet consectetur</h4>
-									<a href="#"><i class="fa fa-link"></i></a>
-									<a href="images/portfolio/big-item.jpg" data-gallery="prettyPhoto"><i class="fa fa-search-plus"></i></a>
-								</div>
-							</div>
-						</div>
- 						<div class="col-sm-3 col-xs-12 portfolio-item jooma">
-							<div class="view efffect" >
-								<div class="portfolio-image">
-									<img src="images/portfolio/2.jpg" alt="">
-								</div> 
-								<div class="mask text-center">
-									<h3>Novel</h3>
-									<h4>Lorem ipsum dolor sit amet consectetur</h4>
-									<a href="#"><i class="fa fa-link"></i></a>
-									<a href="images/portfolio/big-item4.jpg" data-gallery="prettyPhoto"><i class="fa fa-search-plus"></i></a>
-								</div>
-							</div>
-						</div>
-						<div class="col-sm-3 col-xs-12 portfolio-item wordpress">
-							<div class="view efffect">
-								<div class="portfolio-image">
-									<img src="images/portfolio/3.jpg" alt="">
-								</div> 
-								<div class="mask text-center">
-								<h3>Novel</h3>
-								<h4>Lorem ipsum dolor sit amet consectetur</h4>
-								<a href="#"><i class="fa fa-link"></i></a>
-								<a href="images/portfolio/big-item.jpg" data-gallery="prettyPhoto"><i class="fa fa-search-plus"></i></a>
-							</div>
-						</div>
 					</div>
-					<div class="col-sm-3 col-xs-12 portfolio-item megento">
-						<div class="view efffect">
-							<div class="portfolio-image">
-								<img src="images/portfolio/4.jpg" alt="">
-							</div> 
-							<div class="mask text-center">
-								<h3>Novel</h3>
-								<h4>Lorem ipsum dolor sit amet consectetur</h4>
-								<a href="#"><i class="fa fa-link"></i></a>
-								<a href="images/portfolio/big-item.jpg" data-gallery="prettyPhoto"><i class="fa fa-search-plus"></i></a>
-							</div>
-						</div>
-					</div>
-					<div class="col-sm-3 col-xs-12 portfolio-item html">
-						<div class="view efffect">
-							<div class="portfolio-image">
-								<img src="images/portfolio/5.jpg" alt="">
-							</div> <div class="mask text-center">
-							<h3>Novel</h3>
-							<h4>Lorem ipsum dolor sit amet consectetur</h4>
-							<a href="#"><i class="fa fa-link"></i></a>
-							<a href="images/portfolio/big-item.jpg" data-gallery="prettyPhoto"><i class="fa fa-search-plus"></i></a>
-						</div>
-					</div>
-				</div>
-				<div class="col-sm-3 col-xs-12 portfolio-item wordpress">
-					<div class="view efffect">
-						<div class="portfolio-image">
-							<img src="images/portfolio/6.jpg" alt="">
-						</div> 
-						<div class="mask text-center">
-							<h3>Novel</h3>
-							<h4>Lorem ipsum dolor sit amet consectetur</h4>
-							<a href="#"><i class="fa fa-link"></i></a>
-							<a href="images/portfolio/big-item.jpg" data-gallery="prettyPhoto"><i class="fa fa-search-plus"></i></a>
-						</div>
-					</div>
-				</div>
-				<div class="col-sm-3 col-xs-12 portfolio-item html">
-					<div class="view efffect">
-						<div class="portfolio-image">
-							<img src="images/portfolio/7.jpg" alt="">
-						</div> 
-						<div class="mask text-center">
-							<h3>Novel</h3>
-							<h4>Lorem ipsum dolor sit amet consectetur</h4>
-							<a href="#"><i class="fa fa-link"></i></a>
-							<a href="images/portfolio/big-item.jpg" data-gallery="prettyPhoto"><i class="fa fa-search-plus"></i></a>
-						</div>
-					</div>
-				</div>
-				<div class="col-sm-3 col-xs-12 portfolio-item joomla">
-					<div class="view efffect">
-						<div class="portfolio-image">
-							<img src="images/portfolio/8.jpg" alt=""></div> 
-							<div class="mask text-center">
-								<h3>Novel</h3>
-								<h4>Lorem ipsum dolor sit amet consectetur</h4>
-								<a href="#"><i class="fa fa-link"></i></a>
-								<a href="images/portfolio/big-item.jpg" data-gallery="prettyPhoto"><i class="fa fa-search-plus"></i></a>
-							</div>
-						</div>
-					</div>
-					<div class="col-sm-3 col-xs-12 portfolio-item html">
-						<div class="view efffect">
-							<div class="portfolio-image">
-								<img src="images/portfolio/9.jpg" alt="">
-							</div> 
-							<div class="mask text-center">
-								<h3>Novel</h3>
-								<h4>Lorem ipsum dolor sit amet consectetur</h4>
-								<a href="#"><i class="fa fa-link"></i></a>
-								<a href="images/portfolio/big-item.jpg" data-gallery="prettyPhoto"><i class="fa fa-search-plus"></i></a>
-							</div>
-						</div>
-					</div>
-					<div class="col-sm-3 col-xs-12 portfolio-item wordpress">
-						<div class="view efffect">
-							<div class="portfolio-image">
-								<img src="images/portfolio/10.jpg" alt=""></div> 
-								<div class="mask text-center">
-									<h3>Novel</h3>
-									<h4>Lorem ipsum dolor sit amet consectetur</h4>
-									<a href="#"><i class="fa fa-link"></i></a>
-									<a href="images/portfolio/big-item.jpg" data-gallery="prettyPhoto"><i class="fa fa-search-plus"></i></a>
-								</div>
-							</div>
-						</div>
-						<div class="col-sm-3 col-xs-12 portfolio-item joomla">
-							<div class="view efffect">
-								<div class="portfolio-image">
-									<img src="images/portfolio/11.jpg" alt=""></div> 
-									<div class="mask text-center">
-										<h3>Novel</h3>
-										<h4>Lorem ipsum dolor sit amet consectetur</h4>
-										<a href="#"><i class="fa fa-link"></i></a>
-										<a href="images/portfolio/big-item3.jpg" data-gallery="prettyPhoto"><i class="fa fa-search-plus"></i></a>
-									</div>
-								</div>
-							</div>
-							<div class="col-sm-3 col-xs-12 portfolio-item megento">
-								<div class="view efffect">
-									<div class="portfolio-image">
-										<img src="images/portfolio/12.jpg" alt=""></div> 
-										<div class="mask text-center">
-											<h3>Novel</h3>
-											<h4>Lorem ipsum dolor sit amet consectetur</h4>
-											<a href="#"><i class="fa fa-link"></i></a>
-											<a href="images/portfolio/big-item4.jpg" data-gallery="prettyPhoto"><i class="fa fa-search-plus"></i></a>
-										</div>
-									</div>
-								</div> -->
-							</div>
-						</div> 
+				</div> 
 
 					</section> <!--/#portfolio-->
 
@@ -744,7 +588,7 @@ function productSearch_exe(){
 									<div class="col-sm-8 col-sm-offset-2">
 										<div class="contact-heading">
 											<h2 class="title-one">Contact With Us</h2>
-											<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit</p>
+											<p>문의 사항 및 요구 사항이 있으면 연락해주세요.</p>
 										</div>
 									</div>
 								</div>
@@ -754,11 +598,11 @@ function productSearch_exe(){
 									<div class="pattern"></div>
 									<div class="row text-center clearfix">
 										<div class="col-sm-6">
-											<div class="contact-address"><address><p><span>Devs</span>Cluster</p><strong>36 North Kafrul<br>Dhaka Cantonment Area<br> Dhaka-1206, Bangladesh</strong><br><small>( Lorem ipsum dolor sit amet, consectetuer adipiscing elit )</small></address>
+											<div class="contact-address"><address><p><span>High</span>Cluster</p><strong>부산 부산진구 동천로 109<br> 삼한골든게이트 7층</strong><br><small>( 아이티윌부산교육센터  )</small></address>
 												<div class="social-icons">
-													<a href="#"><i class="fa fa-facebook"></i></a><a href="#"><i class="fa fa-twitter"></i></a>
-													<a href="#"><i class="fa fa-google-plus"></i></a><a href="#"><i class="fa fa-dribbble"></i></a>
-													<a href="#"><i class="fa fa-linkedin"></i></a>
+													<a href="http://blog.naver.com/mijinkim80"><i class="fa fa-facebook"></i></a><a href="https://twitter.com/MyloveKBS"><i class="fa fa-twitter"></i></a>
+													<a href="https://www.google.co.kr"><i class="fa fa-google-plus"></i></a><a href="https://dribbble.com/"><i class="fa fa-dribbble"></i></a>
+													<a href="https://www.linkedin.com/in/jeffweiner08"><i class="fa fa-linkedin"></i></a>
 												</div>
 											</div>
 										</div>

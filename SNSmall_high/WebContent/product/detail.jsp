@@ -312,7 +312,7 @@
                 <%if(productbean.getDetail_img()==null){ %>
                     <img class="img-responsive portfolio-item" src="http://placehold.it/500x300" alt="">
                     <%} else{%>
-                    <img class="img-responsive portfolio-item" src="./vendor_img/<%=productbean.getDetail_img() %>" alt="">
+                    <img class="img-responsive portfolio-item" src="./vendor_img/<%=productbean.getDetail_img() %>" style="width: 100%;" alt="">
                     <% }%>
                 </a>
             </div>
@@ -382,7 +382,7 @@
 		<footer>
 			<div class="row">
 				<div class="col-lg-12">
-					<p>Copyright &copy; Your Website 2014</p>
+					<p>Copyright &copy; Your Website 2017</p>
 				</div>
 			</div>
 			<!-- /.row -->

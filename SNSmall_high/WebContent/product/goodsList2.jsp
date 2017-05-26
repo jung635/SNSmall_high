@@ -60,9 +60,9 @@
             <div class="col-md-4 portfolio-item">
                 <a href="./ProductDetail.pr?product_num=<%=pb.getProduct_num() %>&pageNum=<%=pageNum%>">
                     <%if(pb.getMain_img()==null){ %>
-                    <img class="img-responsive" src="./qna_img/imgX.jpg">
+                    <img class="img-responsive" src="./qna_img/imgX.jpg" style="visibility: hidden; height: 300px !important;" alt="">
                     <%} else{%>
-                    <img class="img-responsive" src="./vendor_img/<%=pb.getMain_img() %>" alt="">
+                    <img class="img-responsive" src="./vendor_img/<%=pb.getMain_img() %>" style="height: 300px !important;" alt="">
                     <%} %>
                 </a>
                 <h3>

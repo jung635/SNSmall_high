@@ -99,7 +99,7 @@
 			return false;
 		}
 		/////자기소개 체크
-		if (document.fr.file.value == "") {
+		if (document.fr.content.value == "") {
 			alert("자기소개를 입력해주세요");
 			return false;
 		}

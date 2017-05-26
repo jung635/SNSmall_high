@@ -218,7 +218,7 @@ function addressFind() {
 			}
   				fullAddr += (extraAddr !== '' ? ' ('+ extraAddr +')' : '');
 			}
-			document.getElementById('address').value = fullAddr + ' '+ data.zonecode;
+			document.getElementById('address').value = fullAddr + '('+ data.zonecode + ')';
 			document.getElementById('address').focus();
 		}
 	}).open();

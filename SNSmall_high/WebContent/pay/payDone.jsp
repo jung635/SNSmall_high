@@ -70,6 +70,7 @@ String address = pb_list.get(0).getAddress();
 	</div>
 	<div id="pay_bottom">
 	<input type="button" value="구매목록" onclick="location.href='PayList.pa'">
+	<input type="button" value="일괄 취소" onclick="location.href='PayMultipleCancel.pa?order_num=<%=merchant_uid%>'">
 	<input type="button" value="확인" onclick="location.href='Main.cl'">
 </div>
         <!-- Footer -->

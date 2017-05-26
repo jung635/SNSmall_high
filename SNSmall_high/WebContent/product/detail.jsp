@@ -323,7 +323,7 @@
 				<%if(type.equals("client")){ %>
                     <div class="text-right">
                      	<div id="writing" style="margin-bottom: 14px; display: none;">
-                    	 	<form action="./QnaInsertAction.qn?product_num=<%=productbean.getProduct_num() %>&pageNum=<%=pageNum%>" method="post" enctype="multipart/form-data">
+                    	 	<form action="./QnaInsertAction.qn?product_num=<%=productbean.getProduct_num() %>&pageNum=<%=pageNum%>&vendor_id=<%=productbean.getVendor_id() %>" method="post" enctype="multipart/form-data">
 								<input type="hidden" name="client_id" value="<%=id%>">
 								<input type="hidden" name="stars" value="">
 								<div><textarea rows="3" cols="120" name="content"></textarea><br></div>

@@ -222,13 +222,35 @@ Connection con = null;
 	} //updateClient
 	
 	//회원수 구하기
-	public int getClientCount(){
+	public int getListCount(){
 		int num = 0;
 
 		try {
 			con = getConnection();
 			sql = "select count(*) from client where client_id != 'admin'";
 			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				num = rs.getInt(1);
+			}
+
+		} catch (Exception e) {e.printStackTrace();
+		} finally {if (rs != null) {try {rs.close();} catch (Exception ex) {}}
+			if (pstmt != null) {try {pstmt.close();} catch (Exception ex) {}}
+			if (con != null) {try {con.close();} catch (Exception ex) {}}}
+
+		return num;	
+	}
+	
+	//검색된 회원수 구하기
+	public int getListCountForSearch(String search){
+		int num = 0;
+
+		try {
+			con = getConnection();
+			sql = "select count(*) from client where client_id != 'admin' and name like ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, "%" + search + "%");
 			rs = pstmt.executeQuery();
 			if (rs.next()) {
 				num = rs.getInt(1);
@@ -286,5 +308,35 @@ Connection con = null;
 		if(pstmt != null){try {pstmt.close();}catch(Exception ex){}}
 		if(con != null){try {con.close();}catch(Exception ex) {}}}
 		return clientList;
-	}	
+	}
+	
+	//검색된 회원정보 목록 불러오기
+		public List<ClientBean> getClientList(int startRow, int pageSize, String search){
+			List<ClientBean> clientList = new ArrayList<ClientBean>();
+			try{
+				con = getConnection();
+				sql = "select * from client where client_id != 'admin' and name like ? order by client_id desc limit ?,?";
+				pstmt=con.prepareStatement(sql);
+				pstmt.setString(1, "%" + search + "%");
+				pstmt.setInt(2, startRow-1);
+				pstmt.setInt(3, pageSize);
+				rs = pstmt.executeQuery();
+				while(rs.next()){
+					ClientBean cl = new ClientBean();
+					cl.setClient_id(rs.getString("client_id"));
+					cl.setPass(rs.getString("pass"));
+					cl.setAddress(rs.getString("address"));
+					cl.setName(rs.getString("name"));
+					cl.setEmail(rs.getString("email"));
+					cl.setPhone(rs.getString("phone"));
+					cl.setPoint(rs.getInt("point"));
+					cl.setDate(rs.getDate("date"));
+					clientList.add(cl);
+				}
+			}catch(Exception e){e.printStackTrace();}
+			finally {if(rs != null){try {rs.close();}catch(Exception ex){}}
+			if(pstmt != null){try {pstmt.close();}catch(Exception ex){}}
+			if(con != null){try {con.close();}catch(Exception ex) {}}}
+			return clientList;
+		}
 }

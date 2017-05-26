@@ -33,7 +33,7 @@ public class SnsListAction implements Action{
 		
 		start = (pageSize*(currentPage-1));
 		end = start+pageSize-1;  
-		
+		System.out.println(pageNum);
 		List<Object> list = null ;
 	 	if(count!=0){
 	 		list = sdao.snsList(start, pageSize, category, order);

@@ -15,8 +15,7 @@ public class ClientListAction implements Action{
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		ClientDAO cldao = new ClientDAO();
 				
-		int count = cldao.getClientCount();
-		System.out.println(count);
+		int count = cldao.getListCount();
 		String pageNum = request.getParameter("pageNum");
 		if(pageNum == null) pageNum="1";
 		int currentPage=Integer.parseInt(pageNum);
@@ -28,14 +27,14 @@ public class ClientListAction implements Action{
 		int startPage = ((currentPage-1)/pageBlock)*pageBlock+1;
 		int endPage = startPage+pageBlock-1;
 		
-		start = (pageSize*(currentPage-1));
+//		start = (pageSize*(currentPage-1));
+		start = (currentPage-1)*pageSize+1;
 		end = start+pageSize-1;  
 		
 		List<ClientBean> list = null ;
 	 	if(count!=0){
 	 		list = cldao.getClientList(start, pageSize);
 		} 
-	 	System.out.println(list);
 	 	request.setAttribute("list", list);
 	 	request.setAttribute("count", count);
 	 	request.setAttribute("pageSize", pageSize);

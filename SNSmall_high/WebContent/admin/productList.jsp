@@ -1,4 +1,4 @@
-<%@page import="web.vendor.db.VendorBean"%>
+<%@page import="web.product.db.ProductBean"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -19,14 +19,14 @@
 </head>
 <body>
 <%
-
+String category = (String)request.getAttribute("category");
 String pageNum = (String)request.getAttribute("pageNum");
 int count = (Integer)request.getAttribute("count");
 int pageSize = (Integer)request.getAttribute("pageSize");
 int currentPage=Integer.parseInt(pageNum);
 int start = (Integer)request.getAttribute("start");
 int end = (Integer)request.getAttribute("end");
-List<VendorBean> list = (List<VendorBean>)request.getAttribute("list");
+List<ProductBean> list = (List<ProductBean>)request.getAttribute("list");
 %>
 <div class="container">
 	<div class="more_content">
@@ -42,13 +42,13 @@ List<VendorBean> list = (List<VendorBean>)request.getAttribute("list");
           	<%}else{ %>
 	            <div class="col-sm-6 col-md-3">
 	            	<table style="width: 900px;">
-						<tr><td>이름</td><td>아이디</td><td>주소</td><td>전화번호</td><td>회사명</td><td>수익금</td><td>가입날짜</td></tr>
+						<tr><td>아이디</td><td>카테고리</td><td>상품명</td><td>가격</td><td>수량</td><td>판매량</td><td>등록일</td></tr>
 						<%for(int i=0; i<list.size(); i++){
-							VendorBean vb = (VendorBean)list.get(i);
+							ProductBean pb = (ProductBean)list.get(i);
 						%>
-							<tr><td><%=vb.getPerson_name() %></td><td><%=vb.getVendor_id() %></td><td><%=vb.getAddress() %></td>
-							<td><%=vb.getPhone() %></td><td><%=vb.getCompany_name() %></td>
-							<td><%=vb.getVendor_profit() %></td><td><%=vb.getDate() %></td></tr>
+							<tr><td><%=pb.getVendor_id() %></td><td><%=pb.getCategory() %></td><td><%=pb.getSubject() %></td>
+							<td><%=pb.getPrice() %></td><td><%=pb.getAmount() %></td>
+							<td><%=pb.getCount() %></td><td><%=pb.getDate() %></td></tr>
 						<%} %>
 					</table>
 				</div>
@@ -69,7 +69,7 @@ List<VendorBean> list = (List<VendorBean>)request.getAttribute("list");
 		                   			</li>
 		                 		<%}else{ %>
 		                 			<li>
-		                        		<a href="VendorList.ad?pageNum=<%=startPage-pageBlock %>">&laquo;</a>
+		                        		<a href="ProductList.ad?pageNum=<%=startPage-pageBlock %>">&laquo;</a>
 		                  			</li>
 								<%}
 								
@@ -80,7 +80,7 @@ List<VendorBean> list = (List<VendorBean>)request.getAttribute("list");
 		                    		</li>
 		                   		 <%}else{ %>
 		                    		<li>
-										<a href="VendorList.ad?pageNum=<%=i %>"><%=i %></a>
+										<a href="ProductList.ad?pageNum=<%=i %>"><%=i %></a>
 		                    		</li>
 		                    	<%}} %>
 		                    <%if(endPage>=pageCount){ %>
@@ -89,14 +89,14 @@ List<VendorBean> list = (List<VendorBean>)request.getAttribute("list");
 		                    	</li>
 		                    <%}else{ %>
 		                    	<li>
-		                        	<a href="VendorList.ad?pageNum=<%=startPage+pageBlock %>">&raquo;</a>
+		                        	<a href="ProductList.ad?pageNum=<%=startPage+pageBlock %>">&raquo;</a>
 		                    	</li>
 	                    	<%}} %>
 	                	</ul>
 	            	</div>
 		   			<div class="clear"></div>
 		            <div>
-		        		<form action="SearchVendorList.ad">
+		        		<form action="SearchProductList.ad">
 		        			<input type="text" name="search">
 		        			<input type="submit" value="검색">
 	        			</form>

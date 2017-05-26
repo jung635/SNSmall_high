@@ -1,4 +1,4 @@
-<%@page import="web.vendor.db.VendorBean"%>
+<%@page import="web.board.db.BoardBean"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -19,14 +19,11 @@
 </head>
 <body>
 <%
-
+List boardList = (List)request.getAttribute("boardList");
 String pageNum = (String)request.getAttribute("pageNum");
-int count = (Integer)request.getAttribute("count");
-int pageSize = (Integer)request.getAttribute("pageSize");
+int count=((Integer)request.getAttribute("count")).intValue();
 int currentPage=Integer.parseInt(pageNum);
-int start = (Integer)request.getAttribute("start");
-int end = (Integer)request.getAttribute("end");
-List<VendorBean> list = (List<VendorBean>)request.getAttribute("list");
+
 %>
 <div class="container">
 	<div class="more_content">
@@ -37,18 +34,23 @@ List<VendorBean> list = (List<VendorBean>)request.getAttribute("list");
                 <jsp:include page="../inc/admin_left.jsp"/>
             </div>
             <div id="our-team">
-          	<%if(list==null){ %>
+          	<%if(boardList==null){ %>
           		리스트가 없습니다.
           	<%}else{ %>
 	            <div class="col-sm-6 col-md-3">
 	            	<table style="width: 900px;">
-						<tr><td>이름</td><td>아이디</td><td>주소</td><td>전화번호</td><td>회사명</td><td>수익금</td><td>가입날짜</td></tr>
-						<%for(int i=0; i<list.size(); i++){
-							VendorBean vb = (VendorBean)list.get(i);
+						<tr><td>구분</td><td>제목</td><td>글쓴이</td><td>등록일</td></tr>
+						<%for(int i=0; i<boardList.size(); i++){
+							BoardBean bb = (BoardBean)boardList.get(i);
 						%>
-							<tr><td><%=vb.getPerson_name() %></td><td><%=vb.getVendor_id() %></td><td><%=vb.getAddress() %></td>
-							<td><%=vb.getPhone() %></td><td><%=vb.getCompany_name() %></td>
-							<td><%=vb.getVendor_profit() %></td><td><%=vb.getDate() %></td></tr>
+							<tr><td><%=bb.getType() %></td>
+							<td>
+								<a href="./BoardDetail.ad?num=<%=bb.getNum()%>&pageNum=<%=pageNum%>">
+									<%=bb.getSubject() %>
+								</a>
+							</td>
+							<td><%=bb.getId() %></td><td><%=bb.getDate() %></td>
+							</tr>
 						<%} %>
 					</table>
 				</div>
@@ -58,10 +60,10 @@ List<VendorBean> list = (List<VendorBean>)request.getAttribute("list");
 					<div class="col-lg-12">
 	                	<ul class="pagination">
 	                 	<%if(count!=0){
-							int pageCount = (Integer)request.getAttribute("pageCount");
-							int pageBlock = (Integer)request.getAttribute("pageBlock");
-							int startPage = (Integer)request.getAttribute("startPage");
-							int endPage = (Integer)request.getAttribute("endPage");
+	                 		int pageCount=((Integer)request.getAttribute("pageCount")).intValue();
+	                 		int pageBlock=((Integer)request.getAttribute("pageBlock")).intValue();
+	                 		int startPage=((Integer)request.getAttribute("startPage")).intValue();
+	                 		int endPage=((Integer)request.getAttribute("endPage")).intValue();
 							if(endPage > pageCount){endPage=pageCount;}
 								if(currentPage<=10){ %>
 		                    		<li>
@@ -69,7 +71,7 @@ List<VendorBean> list = (List<VendorBean>)request.getAttribute("list");
 		                   			</li>
 		                 		<%}else{ %>
 		                 			<li>
-		                        		<a href="VendorList.ad?pageNum=<%=startPage-pageBlock %>">&laquo;</a>
+		                        		<a href="ProductList.ad?pageNum=<%=startPage-pageBlock %>">&laquo;</a>
 		                  			</li>
 								<%}
 								
@@ -80,7 +82,7 @@ List<VendorBean> list = (List<VendorBean>)request.getAttribute("list");
 		                    		</li>
 		                   		 <%}else{ %>
 		                    		<li>
-										<a href="VendorList.ad?pageNum=<%=i %>"><%=i %></a>
+										<a href="ProductList.ad?pageNum=<%=i %>"><%=i %></a>
 		                    		</li>
 		                    	<%}} %>
 		                    <%if(endPage>=pageCount){ %>
@@ -89,14 +91,14 @@ List<VendorBean> list = (List<VendorBean>)request.getAttribute("list");
 		                    	</li>
 		                    <%}else{ %>
 		                    	<li>
-		                        	<a href="VendorList.ad?pageNum=<%=startPage+pageBlock %>">&raquo;</a>
+		                        	<a href="ProductList.ad?pageNum=<%=startPage+pageBlock %>">&raquo;</a>
 		                    	</li>
 	                    	<%}} %>
 	                	</ul>
 	            	</div>
 		   			<div class="clear"></div>
 		            <div>
-		        		<form action="SearchVendorList.ad">
+		        		<form action="SearchProductList.ad">
 		        			<input type="text" name="search">
 		        			<input type="submit" value="검색">
 	        			</form>

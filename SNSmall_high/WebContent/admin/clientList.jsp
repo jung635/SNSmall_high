@@ -43,12 +43,12 @@ List<ClientBean> list = (List<ClientBean>)request.getAttribute("list");
           	<%}else{ %>
 	            <div class="col-sm-6 col-md-3">
 	            	<table style="width: 900px;">
-						<tr><td>이름</td><td>아이디</td><td>주소</td><td>전화번호</td><td>이름</td><td>이메일</td><td>포인트</td><td>가입날짜</td></tr>
+						<tr><td>이름</td><td>아이디</td><td>주소</td><td>전화번호</td><td>이메일</td><td>포인트</td><td>가입날짜</td></tr>
 						<%for(int i=0; i<list.size(); i++){
 							ClientBean cb = (ClientBean)list.get(i);
 						%>
 							<tr><td><%=cb.getName() %></td><td><%=cb.getClient_id() %></td><td><%=cb.getAddress() %></td>
-							<td><%=cb.getPhone() %></td><td><%=cb.getName() %></td><td><%=cb.getEmail() %></td>
+							<td><%=cb.getPhone() %></td><td><%=cb.getEmail() %></td>
 							<td><%=cb.getPoint() %></td><td><%=cb.getDate() %></td></tr>
 						<%} %>
 					</table>

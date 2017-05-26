@@ -5,16 +5,16 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import web.client.db.ClientBean;
-import web.client.db.ClientDAO;
+import web.product.db.ProductBean;
+import web.product.db.ProductDAO;
 
-public class SearchClientList implements Action {
+public class SearchProductList implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		ClientDAO cdao = new ClientDAO();
+		ProductDAO pdao = new ProductDAO();
 		String search = request.getParameter("search");
-		int count = cdao.getListCountForSearch(search);
+		int count = pdao.getListCount(search);
 		String pageNum = request.getParameter("pageNum");
 		if(pageNum == null) pageNum="1";
 		int currentPage=Integer.parseInt(pageNum);
@@ -30,9 +30,9 @@ public class SearchClientList implements Action {
 		start = (currentPage-1)*pageSize+1;
 		end = start+pageSize-1;  
 		
-		List<ClientBean> list = null ;
+		List<ProductBean> list = null ;
 	 	if(count!=0){
-	 		list = cdao.getClientList(start, pageSize, search);
+	 		list = pdao.getProductList(start, pageSize, search);
 		} 
 	 	
 	 	request.setAttribute("list", list);
@@ -48,7 +48,7 @@ public class SearchClientList implements Action {
 	 	request.setAttribute("search", search);
 	 	
 	 	ActionForward forward = new ActionForward();
-	 	forward.setPath("./admin/clientList.jsp");
+	 	forward.setPath("./admin/productList.jsp");
 	 	forward.setRedirect(false);
 		return forward;
 

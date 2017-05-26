@@ -47,7 +47,7 @@ Connection con = null;
 			pstmt.setString(4, qb.getContent());
 			pstmt.setString(5, qb.getQ_img());
 			pstmt.setInt(6, 0);
-			pstmt.setInt(7, 0);
+			pstmt.setInt(7, qb.getStars());
 			pstmt.executeUpdate();
 			
 		} catch (Exception e) {e.printStackTrace();}

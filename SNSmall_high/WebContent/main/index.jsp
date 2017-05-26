@@ -26,6 +26,7 @@
 	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="images/ico/apple-touch-icon-114-precomposed.png"> 
 	<link rel="apple-touch-icon-precomposed" sizes="72x72" href="images/ico/apple-touch-icon-72-precomposed.png"> 
 	<link rel="apple-touch-icon-precomposed" href="images/ico/apple-touch-icon-57-precomposed.png">
+	<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
 <script type="text/javascript">
 function snsSearch_exe(){
 	search = document.getElementById('product_name').value;
@@ -352,7 +353,11 @@ function productSearch_exe(){
 					<div class="col-sm-3 col-xs-12 portfolio-item <%=prob.getCategory()%>">
 						<div class="view efffect">
 							<div class="portfolio-image">
-								<img src="./vendor_img/<%=prob.getMain_img() %>" alt=""></div> 
+								<%if(prob.getMain_img()==null){ %>
+    	            		    		<div><img src="./qna_img/default.jpg" style="" alt=""></div>
+        			            <%} else{%>
+										<img src="./vendor_img/<%=prob.getMain_img() %>" alt=""></div>
+								<%} %> 
 								<div class="mask text-center">
 									<h3>Novel</h3>
 									<h4>Lorem ipsum dolor sit amet consectetur</h4>

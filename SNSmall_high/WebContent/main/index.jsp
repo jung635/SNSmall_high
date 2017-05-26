@@ -38,7 +38,7 @@ function productSearch_exe(){
 </script>
 </head>
 <body>
-	<script type="text/javascript" src=".main/alarm.js"></script> 
+<script type="text/javascript" src=".main/alarm.js"></script> 
 	<div class="preloader">
 		<div class="preloder-wrap">
 			<div class="preloder-inner"> 
@@ -746,7 +746,7 @@ function productSearch_exe(){
 										<div class="col-sm-6"> 
 											<div id="contact-form-section">
 												<div class="status alert alert-success" style="display: none"></div>
-												<form id="contact-form" class="contact" name="contact-form" method="post" action="send-mail.php">
+												<form id="contact-form" class="contact" name="contact-form" method="post" action="SendMail.cl">
 													<div class="form-group">
 														<input type="text" name="name" class="form-control name-field" required="required" placeholder="Your Name"></div>
 														<div class="form-group">

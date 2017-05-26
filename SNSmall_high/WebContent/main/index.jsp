@@ -1,3 +1,4 @@
+<%@page import="web.product.db.ProductBean"%>
 <%@page import="web.sns.db.SnsBean"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -335,15 +336,33 @@ function productSearch_exe(){
 				</div>
 				<ul class="portfolio-filter text-center">
 					<li><a class="btn btn-default active" href="#" data-filter="*">All</a></li>
-					<li><a class="btn btn-default" href="#" data-filter=".html">Fashion</a></li>
-					<li><a class="btn btn-default" href="#" data-filter=".wordpress">Beauty</a></li>
-					<li><a class="btn btn-default" href="#" data-filter=".joomla">Baby</a></li>
-					<li><a class="btn btn-default" href="#" data-filter=".megento">Daily</a></li>
-					<li><a class="btn btn-default" href="#" data-filter=".megento">WorkOut</a></li>
-					<li><a class="btn btn-default" href="#" data-filter=".megento">Etc</a></li>
+					<li><a class="btn btn-default" href="#" data-filter=".fashion">Fashion</a></li>
+					<li><a class="btn btn-default" href="#" data-filter=".beauty">Beauty</a></li>
+					<li><a class="btn btn-default" href="#" data-filter=".baby">Baby</a></li>
+					<li><a class="btn btn-default" href="#" data-filter=".daily">Daily</a></li>
+					<li><a class="btn btn-default" href="#" data-filter=".gym">WorkOut</a></li>
+					<li><a class="btn btn-default" href="#" data-filter=".etc">Etc</a></li>
 				</ul><!--/#portfolio-filter-->
 				<div class="portfolio-items">
-					<div class="col-sm-3 col-xs-12 portfolio-item html">
+					<%
+					List<ProductBean> product_list = (List<ProductBean>)request.getAttribute("product_list");
+					for(int i=0; i<product_list.size(); i++){
+						ProductBean prob = product_list.get(i);
+					%>
+					<div class="col-sm-3 col-xs-12 portfolio-item <%=prob.getCategory()%>">
+						<div class="view efffect">
+							<div class="portfolio-image">
+								<img src="./vendor_img/<%=prob.getMain_img() %>" alt=""></div> 
+								<div class="mask text-center">
+									<h3>Novel</h3>
+									<h4>Lorem ipsum dolor sit amet consectetur</h4>
+									<a href="#"><i class="fa fa-link"></i></a>
+									<a href="images/portfolio/big-item.jpg" data-gallery="prettyPhoto"><i class="fa fa-search-plus"></i></a>
+								</div>
+							</div>
+						</div>
+						<%} %>
+<!--					<div class="col-sm-3 col-xs-12 portfolio-item html">
 						<div class="view efffect">
 							<div class="portfolio-image">
 								<img src="images/portfolio/1.jpg" alt=""></div> 
@@ -355,7 +374,7 @@ function productSearch_exe(){
 								</div>
 							</div>
 						</div>
-						<div class="col-sm-3 col-xs-12 portfolio-item jooma">
+ 						<div class="col-sm-3 col-xs-12 portfolio-item jooma">
 							<div class="view efffect" >
 								<div class="portfolio-image">
 									<img src="images/portfolio/2.jpg" alt="">
@@ -492,7 +511,7 @@ function productSearch_exe(){
 											<a href="images/portfolio/big-item4.jpg" data-gallery="prettyPhoto"><i class="fa fa-search-plus"></i></a>
 										</div>
 									</div>
-								</div>
+								</div> -->
 							</div>
 						</div> 
 

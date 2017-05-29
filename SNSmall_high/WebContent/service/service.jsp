@@ -31,17 +31,12 @@
             </div>
         </div>
     </header>
-
         <hr>
-
         <div class="row">
             <div class="col-sm-8">
                 <h2>What We Do</h2>
                 <p>우리는 SNS STAR, 판매자, 구매자 모드에게 최고의 혜택을 드리기위해 노력하고있습니다. 실제로 많은 고객님들이 이러한 혜택들을 누리고 있습니다!</p>
                 <p>모든 고객분들과 소통하며 더 나은 서비스를 제공하기위해 노력중입니다. 요구사항이나 궁금한 점이 있으면 편하게 연락주시기 바랍니다.</p>
-                <p>
-                    <a class="btn btn-default btn-lg" href="#">Call to Action &raquo;</a>
-                </p>
             </div>
             <div class="col-sm-4">
                 <h2>Contact Us</h2>

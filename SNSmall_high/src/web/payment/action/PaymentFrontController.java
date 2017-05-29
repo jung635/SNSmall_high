@@ -36,6 +36,10 @@ public class PaymentFrontController extends HttpServlet {
 			forward = new ActionForward();
 			forward.setPath("./pay/payDone.jsp");
 			forward.setRedirect(false);
+		} else if (command.equals("/PayOneDone.pa")) {
+			forward = new ActionForward();
+			forward.setPath("./pay/payOneDone.jsp");
+			forward.setRedirect(false);
 		} else if (command.equals("/MyPage.pa")) {
 			forward = new ActionForward();
 			forward.setPath("./mypage/mypage.jsp");

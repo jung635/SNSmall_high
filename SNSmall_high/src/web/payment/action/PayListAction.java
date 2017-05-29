@@ -22,9 +22,12 @@ public class PayListAction implements Action {
 		String client_id="";
 		String vendor_id="";
 		List<String> order_num_list;
-		List<String> vendor_order_num_list;
+		List<PaymentBean> vendor_order_num_list;
 		List<List<PaymentBean>> pay_list_done = new ArrayList<>();
 		List<PaymentBean> pay_list = new ArrayList<>();
+		
+		String product_num = "";
+		System.out.println("타입 : "+type);
 		
 		PaymentDAO pdao = new PaymentDAO();
 		String method = request.getParameter("method");
@@ -46,14 +49,16 @@ public class PayListAction implements Action {
 		}else if(type.equals("vendor")){
 			vendor_id =(String)session.getAttribute("id");
 			vendor_order_num_list = pdao.getVendorOrderNumList(page, vendor_id, method);
-			
+
+
 			if(method.equals("payDone")){
 				for (int i=0; i<vendor_order_num_list.size(); i++){
-					pay_list_done.add(pdao.getPayment(vendor_order_num_list.get(i)));
+					PaymentBean pb = vendor_order_num_list.get(i);
+					System.out.print(pb.getOrder_num());
+					System.out.println(pb.getNum());
+					pay_list_done.add(pdao.getPayment(pb.getOrder_num(),pb.getNum()));
 				}
 				request.setAttribute("pay_list_done", pay_list_done);
-			}else if(method.equals("cancelList")){
-				
 			}else{
 				pay_list = pdao.getVendorPaymentById(page, vendor_id, method);
 				request.setAttribute("pay_list", pay_list);

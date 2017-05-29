@@ -23,7 +23,7 @@ public class CartListAction implements Action{
 		String client_id = (String)session.getAttribute("id");
 		
 		response.setContentType("text/html; charset=UTF-8");
-		PrintWriter out = response.getWriter();		
+		PrintWriter out = response.getWriter();
 		if(client_id.equals(null)){
 			out.println("<script>");
 			out.println("alert('회원만 볼수있습니다.');");

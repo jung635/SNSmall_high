@@ -27,13 +27,14 @@ Connection con = null;
 	PreparedStatement pstmt = null;
 	String sql = "";
 	ResultSet rs = null;
-	
+	ResultSet rs2 = null;
 	//찜리스트
 	public List getZzimList(String id){
 		
 		List<ZzimBean> list = new ArrayList<ZzimBean>();
 		try{
 			con = getConnection();
+			
 			sql = "select * from zzim where client_id=?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, id);
@@ -49,6 +50,15 @@ Connection con = null;
 				zb.setSns_id(rs.getString("sns_id"));
 				zb.setPrice(Integer.parseInt(rs.getString("price")));
 				zb.setDate(rs.getDate("date"));
+				
+				sql = "select * from product where product_num=?";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setInt(1, zb.getProduct_num());
+				rs2 = pstmt.executeQuery();
+				if(rs2.next()){
+					zb.setSubject(rs2.getString("subject"));					
+				}
+
 				list.add(zb);
 				
 			}

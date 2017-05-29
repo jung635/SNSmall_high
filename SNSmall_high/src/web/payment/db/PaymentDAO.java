@@ -351,7 +351,7 @@ Connection con = null;
 				pb.setState(rs.getString("state"));
 				pb.setNum(rs.getInt("num"));
 				pb.setUsedPoint(rs.getInt("usedPoint"));
-
+				
 				list.add(pb);
 			}
 
@@ -362,7 +362,43 @@ Connection con = null;
 
 		return list;
 	}
+	public List<PaymentBean> getPayment(String order_num,int num) {
+		List<PaymentBean> list = new ArrayList<>();
+		PaymentBean pb = null;
+		try {
+			con = getConnection();
+			sql = "select * from payment where num=? and order_num = ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, num);
+			pstmt.setString(2, order_num);
+			rs = pstmt.executeQuery();
 
+			while (rs.next()) {
+				pb = new PaymentBean();
+				pb.setAmount(rs.getInt("amount"));
+				pb.setDate(rs.getTimestamp("date"));
+				pb.setMessage(rs.getString("message"));
+				pb.setProduct_num(rs.getInt("product_num"));
+				pb.setOption1(rs.getString("option1"));
+				pb.setOption2(rs.getString("option2"));
+				pb.setOption3(rs.getString("option3"));
+				pb.setOrder_num(rs.getString("order_num"));
+				pb.setSns_id(rs.getString("sns_id"));
+				pb.setVendor_id(rs.getString("vendor_id"));
+				pb.setState(rs.getString("state"));
+				pb.setNum(rs.getInt("num"));
+				pb.setUsedPoint(rs.getInt("usedPoint"));
+				
+				list.add(pb);
+			}
+
+		} catch(Exception e){e.printStackTrace();}
+		finally{if(rs!=null){try{rs.close();}catch(SQLException ex){}}
+		if(pstmt!=null){try{pstmt.close();}catch(SQLException ex){}}
+		if(con!=null){try{con.close();}catch(SQLException ex){}}}
+
+		return list;
+	}
 	public PaymentBean getPaymentByNum(int num) {
 		PaymentBean pb = null;
 		try {
@@ -684,10 +720,11 @@ Connection con = null;
 	}
 	
 	// getorderNum 아이디,start,pageSize, order로 찾음 ----vendor
-	public List<String> getVendorOrderNumList(int pageSize, String vendor_id, String method) {
-		List<String> list = new ArrayList<String>();
-		StringBuffer sql = new StringBuffer("select order_num from payment where vendor_id=? and ");
+	public List<PaymentBean> getVendorOrderNumList(int pageSize, String vendor_id, String method) {
+		List<PaymentBean> list = new ArrayList<PaymentBean>();
+		StringBuffer sql = new StringBuffer("select num,order_num from payment where vendor_id=? and ");
 		String order_num = "";
+		int num=0;
 		try {
 			con = getConnection();
 			if (method.equals("payDone")) {
@@ -707,8 +744,12 @@ Connection con = null;
 			pstmt.setInt(2, pageSize);
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
-				order_num = rs.getString(1);
-				list.add(order_num);
+				order_num = rs.getString(2);
+				num= rs.getInt(1);
+				PaymentBean pb = new PaymentBean();
+				pb.setNum(num);
+				pb.setOrder_num(order_num);
+				list.add(pb);
 			}
 		} catch(Exception e){e.printStackTrace();}
 		finally{if(rs!=null){try{rs.close();}catch(SQLException ex){}}
@@ -847,31 +888,50 @@ Connection con = null;
 		return paymentList;
 	}//getPaymentList()
 	
-	public void payDetail(int num){
+	public List payDetail(int num){
+		List detailList = new ArrayList<>();
 		try{
-			ProductBean pb = new ProductBean();
+			
+			PaymentBean pb = new PaymentBean();
 			con = getConnection();
 			sql="select * from payment where num=?";
 			pstmt=con.prepareStatement(sql);
 			pstmt.setInt(1, num);
 			rs=pstmt.executeQuery();
 			if(rs.next()){
+				
+				pb.setAmount(rs.getInt("amount"));
+				pb.setDate(rs.getTimestamp("date"));
+				pb.setMessage(rs.getString("message"));
+				pb.setProduct_num(rs.getInt("product_num"));
 				pb.setOption1(rs.getString("option1"));
 				pb.setOption2(rs.getString("option2"));
 				pb.setOption3(rs.getString("option3"));
+				pb.setOrder_num(rs.getString("order_num"));
+				pb.setSns_id(rs.getString("sns_id"));
+				pb.setVendor_id(rs.getString("vendor_id"));
+				pb.setState(rs.getString("state"));
+				pb.setNum(rs.getInt("num"));
+				pb.setUsedPoint(rs.getInt("usedPoint"));
+				detailList.add(pb);
+				
 				sql="select * from product where product_num=?";
 				pstmt=con.prepareStatement(sql);
 				pstmt.setInt(1, rs.getInt("product_num"));
 				rs = pstmt.executeQuery();
 				if(rs.next()){
-					
-					pb.setSubject(rs.getString("subject"));
+					ProductBean prob = new ProductBean();
+					prob.setSubject(rs.getString("subject"));
+					prob.setPrice(rs.getInt("price"));
+					detailList.add(prob);
 				}
 			}
 		}catch(Exception e){e.printStackTrace();}
 		finally{if(rs!=null){try{rs.close();}catch(SQLException ex){}}
 			if(pstmt!=null){try{pstmt.close();}catch(SQLException ex){}}
 			if(con!=null){try{con.close();}catch(SQLException ex){}}}
+		
+		return detailList;
 	}
 	
 	

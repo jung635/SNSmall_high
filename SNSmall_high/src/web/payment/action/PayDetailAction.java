@@ -5,8 +5,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import web.payment.db.PaymentBean;
 import web.payment.db.PaymentDAO;
-import web.product.db.ProductBean;
-import web.product.db.ProductDAO;
+
+
 
 public class PayDetailAction implements Action {
 
@@ -15,13 +15,14 @@ public class PayDetailAction implements Action {
 
 		int num = Integer.parseInt(request.getParameter("num"));
 		
-		ProductDAO pdao = new ProductDAO();
+		PaymentDAO pdao = new PaymentDAO();
+		pdao.payDetail(num);
 		
 		
 		
 		
 		ActionForward forward = new ActionForward();
-		forward.setPath("./mypage/payDetail.jsp");
+		forward.setPath("./pay/payOneDone.jsp");
 		forward.setRedirect(false);
 		return forward;
 	}

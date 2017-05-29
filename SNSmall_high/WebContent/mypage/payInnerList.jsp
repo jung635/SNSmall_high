@@ -49,7 +49,7 @@ List<PaymentBean> pay_list_reult = new ArrayList<PaymentBean>();
 							SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 							String date = format.format(pb.getDate());
 							String subject = prob.getSubject();
-							if(prob.getSubject().length()>5){subject =prob.getSubject().substring(0,4)+"...";}
+							if(prob.getContent().length()>3){subject =prob.getContent().substring(0,4)+"...";}
 							
 							%>
 							

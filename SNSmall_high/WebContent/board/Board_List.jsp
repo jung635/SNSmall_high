@@ -64,7 +64,7 @@
                 <div class="col-md-10"></div>
                 <div class="col-md-2">
 	                <div class="writeLink">
-						<a href="./writeForm.bo">글게시</a>
+						<a href="./writeForm.bo" style="color: #fc7700 !important;">글게시</a>
 					</div>
 				</div>
 				

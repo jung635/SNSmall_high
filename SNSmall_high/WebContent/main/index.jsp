@@ -198,7 +198,7 @@ function productSearch_exe(){
 			<div class="row text-center">
 				<div class="col-sm-8 col-sm-offset-2">
 					<h2 class="title-one">Services</h2>
-					<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.</p>
+					<p>우리는 SNS STAR, 판매자, 구매자 모드에게 최고의 혜택을 드리기위해 노력하고있습니다. 실제로 많은 고객님들이 이러한 혜택들을 누리고 있습니다!</p>
 				</div>
 			</div>
 			<div class="row">
@@ -208,22 +208,22 @@ function productSearch_exe(){
 							<div class="col-sm-4">
 								<div class="single-service">
 									<i class="fa fa-star"></i>
-									<h2>Modern Design</h2>
-									<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore.</p>
+									<h2>SNS STAR</h2>
+									<p>SNS STAR는 더 유명해질 수 있는 기회를 얻고, 본인의 장점을 살려 이익을 낼 수 있습니다. 본인이 판매자가 되어 물건을 팔고, SNS STAR로써 홍보한다면 개인 쇼핑몰의 효과도 누릴 수 있습니다! 더이상 개인적으로 오는 상품문의에 일일히 답하실 필요가 없습니다. 우리의 서비스를 통해 이익과 편리함을 챙기세요</p>
 								</div>
 							</div>
 							<div class="col-sm-4">
 								<div class="single-service">
 									<i class="fa fa-shopping-cart"></i>
-									<h2>Web Development</h2>
-									<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy </p>
+									<h2>VENDOR</h2>
+									<p>SNS는 최고의 광고효과를 내고있습니다. 인기 많은 SNS STAR들에게 광고를 요청해보세요. 효과가 있을지 없을지 모르는 광고에 돈을 쏟지 않고, 확실한 경로를 통해 광고효과가 있을 때만 돈을 지불하는 시스템이 될 것입니다. 투명하게 나의 광고비가 어디에 소비되고 있는지 확인해보세요. 우리 서비스의 장점을 확인하실 수 있을 것입니다.</p>
 								</div>
 							</div>
 							<div class="col-sm-4">
 								<div class="single-service">
 									<i class="fa fa-users"></i>
-									<h2>Online Marketing</h2>
-									<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore.</p>
+									<h2>CLIENT</h2>
+									<p>SNS STAR들이 쓰고잇는 물건이 무엇인지, 어디서 살 수 있는지 알아보기 귀찮으셨을 겁니다. 클릭 한번으로 그들처럼 될 수 있습니다. 뿐만 아니라 우리 쇼핑몰에서만 만날 수 있는 SNS STAR들의 물건들을 쇼핑해보세요! 초특급 레어템들이 기다리고있습니다. 항상 준비중인 이벤트와 포인트 폭탄은 덤입니다. </p>
 								</div>
 							</div></div>
 						</div>

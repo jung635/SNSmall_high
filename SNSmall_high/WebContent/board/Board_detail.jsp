@@ -26,6 +26,7 @@
 	<link href="./css/header.css" rel="stylesheet">
 	<link href="./css/inner.css" rel="stylesheet">
 	<link href="./css/main.css" rel="stylesheet">
+	<link href="./css/board.css" rel="stylesheet">
 	
 	<script src="../js/jquery-3.2.0.js"></script>
 	<script type="text/javascript">
@@ -46,35 +47,40 @@
 	<div class="content">
   		<!-- Introduction Row -->
         <div class="row" style="margin-top: 43px">
-            <div class="col-lg-12">
-                <h1 class="page-header">홍보게시판</h1>
-                <p>SNS 스타와 판매자들간의 매칭을 위한 공간입니다.</p>
-            </div>
+<!--             <div class="col-lg-12"> -->
+<!--                 <h1 class="page-header">홍보게시판</h1> -->
+<!--                 <p>SNS 스타와 판매자들간의 매칭을 위한 공간입니다.</p> -->
+<!--             </div> -->
         </div>
 
         <!-- Team Members Row -->
-		<div class="row">
-            <div class="col-md-8">
-                <div class="panel panel-default text-center">
-					<table style="border-collapse: collapse; text-align: left; width:500;">
-							<tr>
-								<th>제목</th><td colspan="3"><%=bb.getSubject() %></td>
-							</tr>
+		<div class="row" style="margin-top: 20px;">
+		 	<div class="col-md-1"></div>
+            <div class="col-md-10">
+                <div class="panel panel-default text-center" style="border: none;">
+						<div class="col-md-12">
+							<div class="board-detail-subject"> <%=bb.getSubject() %> </div>
+						</div>
 						
-							<tr>
-								<th>글쓴이</th><td><%=bb.getId() %></td><th>등록일</th><td><%=bb.getDate() %></td>
-							</tr>
+						<div class="col-md-3">
+							<div class="board-detail-subject2">글쓴이</div>
+						</div>
+						<div class="col-md-3">
+							<div class="board-detail-subjext-con"><%=bb.getId() %></div>
+						</div>
+						<div class="col-md-3">
+							<div class="board-detail-subject2">등록일</div> 
+						</div>
+						<div class="col-md-3">
+							<div class="board-detail-subjext-con"><%=bb.getDate() %></div>
+						</div>
+						<div class="col-md-12">
+							<div class="board-detail-subjext-con"> <%=content %> </div>
 						
-							<tr>
-								<th>내용</th>
-								<td colspan="3" width="600"><%=content %></td>
-							</tr>
-							
-							<tr>
+					
 								
-							</tr>
-					</table>
 					<hr>
+					
 					<!-- [ 댓글 목록 출력-->
 					<a href="./BoardList.bo">목록보기</a> | <a href="">댓글 열기/닫기</a>
 					<%
@@ -83,6 +89,11 @@
 					 | <a href="./BoardUpdateForm.bo?num=<%=bb.getNum() %>">수정</a>
 					  | <a href="./BoardDelete.bo?num=<%=bb.getNum() %>" onclick="return d_confirm()">삭제</a>
 					
+					</div>
+					
+					<div class="col-md-12">
+					
+				
 					<%
 					}
 					for(int i = 0; i < replyList.size(); i++){
@@ -90,48 +101,58 @@
 						String replyContent = rb.getContent();
 						if(replyContent != null){replyContent = rb.getContent().replace("\r\n","<br>");}
 					%>
-					<table style="border-collapse: collapse; text-align: left; width:500;">
+					
+					<div class="col-md-12">
+						<hr>
+						</div>
 						
-						<tr>
-						<td style="text-align: left;"><%=rb.getId() %><br>
-						<%=replyContent %>
-						</td>
-						<td style="text-align: right;"><%=rb.getDate() %><br>
-						<%if(id != null && id.equals(rb.getId())){%>							
+					<div  class="col-md-8" style="text-align: left;">
+						<%=rb.getId() %>
+					</div>
+					<div  class="col-md-4">
+					<%=rb.getDate() %>
+					</div>
+					<div class="col-md-10" style="text-align: left; padding-top: 10px;">
+						&nbsp;&nbsp;<%=replyContent %>
+					</div>	
+						<div  class="col-md-2" style="text-align: left;">	
+						<%if(id != null && id.equals(rb.getId())){%>			
 						<a href="./replyDelete.re?num=<%=rb.getNum()%>" onclick="return d_confirm()">[삭제]</a>
 						<%} %>
-						</td></tr>
-					</table>				
+						</div>
+						
+						
+					
 					<%
 					}
-					%>					
+					%>
+					</div>				
 					<!-- 댓글 목록 출력 ]-->
 										
-	
+					<div class="col-md-12">
 					<!-- [ 댓글 입력란 -->
-					<hr>
+					<br>
 					<%if(id != null){ %>
 					<form action="./replyAction.re" method="post" name="fr">
 					<input type="hidden" name="re_ref" value="<%=bb.getNum()%>">
 					<input type="hidden" name="id" value="<%=id%>">
 					<input type="hidden" name="to_id" value="<%=bb.getId()%>">
-					
-					<table>
-					<tr><td>댓글 입력란</td></tr>
-					<tr><td><textarea rows="7" cols="81" name="content"></textarea></td>
-					<td><input type="submit" value="저장"></td></tr>					
-					</table>
-					
+					<textarea rows="3" cols="100" name="content" placeholder="　댓글을 입력해주세요."></textarea>
+					<input type="submit" class="comment-submit-btn" value="저장">	
+						
 					</form>
 					<%} %>
+					</div>
 					<!-- 댓글 입력란 ] -->
                 </div>
-            </div>                     
+            </div> 
+            <div class="col-md-1"></div>                    
 		</div>
 								
-        <hr>
+ 
         <!-- Footer -->
         <footer>
+        <hr>
             <div class="row">
                 <div class="col-lg-12">
                     <p>Copyright &copy; Your Website 2014</p>

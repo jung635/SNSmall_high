@@ -1,6 +1,5 @@
 @CHARSET "UTF-8";
 
-
 /*loginForm.jsp css*/
 .input_row {
     position: relative;
@@ -114,4 +113,48 @@
 .Snsaccount td{
 	padding:10px;
 	text-align: center;
+}
+
+/*joinIdCheck.jsp*/
+.bg_gray{
+	background-color:#e3e3e3 !important;
+}
+
+.idCheckForm{
+	margin-bottom: 50px;
+}
+.idCheck{
+	color:#43484E;
+}
+.bigIdCheck{
+	background-color:#fff;
+	border:1px solid #fff; 
+	color: red;
+	position: relative;
+	top:50px;
+	text-align: center;
+	padding: 50px 10px 50px 10px;
+	border-radius:10px; 
+}
+.idCheckBtn{
+	border:none;
+	background-color: #fc7700;
+	padding: 10px 40px 10px 40px;
+	margin-top: 40px;
+	color: #fff;
+	border-radius: 5px;
+}
+.idCheckBtn:hover{
+	background-color: #43484E;
+}
+.idCheckTxt{
+	border: none;
+	border-bottom: 2px double #c3c3c3;
+}
+
+.idCheckbtn2{
+	border: none;
+	padding: 5px;
+	border-radius: 5px;
+	font-size: 11px;
 }

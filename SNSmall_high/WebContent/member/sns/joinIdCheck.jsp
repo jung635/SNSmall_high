@@ -6,6 +6,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<link href="./css/member.css" rel="stylesheet">
 <script type="text/javascript">
 	
 	function result(){
@@ -15,7 +16,7 @@
 
 </script>
 </head>
-<body>
+<body class="bg_gray">
 
 <%
 request.setCharacterEncoding("utf-8");
@@ -23,20 +24,33 @@ request.setCharacterEncoding("utf-8");
 String sns_id = (String)request.getAttribute("sns_id");
 int check = Integer.parseInt(request.getAttribute("check").toString());
 
+%>
+<div class="bigIdCheck">
 
-if(check==1){
-	out.println("사용중인 아이디입니다");
-}else{
-	out.println("사용가능한 아이디입니다");
-	%>
-	<input type="button" value="아이디선택" onclick="result()">
+<form action="./IdCheckAction.sn" method="post" name="wfr" class="idCheckForm">
+<input type="text" name="sns_id" class="idCheckTxt" value="<%=sns_id%>" >
+<input type="submit" class="idCheckbtn2" value="중복 확인">
+</form>
+<%
+if(check==1){%>
+	<div class="idCheck">
+<% out.println("사용중인 아이디입니다."); %>
+	</div>
+<%
+}else{%>
+	<div class="idCheck">
+ <%	out.println("사용가능한 아이디입니다."); %>
+	<div>
+	<input type="button" value="아이디 선택" class="idCheckBtn" onclick="result()">
+	</div>
+	</div>
 	<%
 }
 
 %>
+
+
+
+</div>
 </body>
-<form action="./IdCheckAction.sn" method="post" name="wfr" >
-<input type="text" name="sns_id" value="<%=sns_id%>" >
-<input type="submit" value="중복확인">
-</form>
 </html>

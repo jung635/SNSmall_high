@@ -46,16 +46,16 @@ Connection con = null;
 			System.out.println("num= "+num);
 			
 			//3. sql insert   디비날짜 now()
-			sql="insert into memo(num, from_id, to_id, subject, content, re_ref, re_lev, re_seq, date) values(?, ?, ?, ?, ?, ?,?,?, now())";
+			sql="insert into memo(num, from_id, to_id, subject, content, date) values(?, ?, ?, ?, ?, now())";
 			pstmt=con.prepareStatement(sql);
 			pstmt.setInt(1, num); //첫번째 물음표 1, num에 입력될 값
 			pstmt.setString(2, meb.getFrom_id()); //두번째 물음표2, name에 입력될 값
 			pstmt.setString(3, meb.getTo_id()); //세번째 물음표3, pass에 입력될 값
 			pstmt.setString(4, meb.getSubject()); //다섯번째 물음표4, subject에 입력될 값
 			pstmt.setString(5, meb.getContent()); //여섯번째 물음표5, content에 입력될 값
-			pstmt.setInt(6, num); //일곱번째 물음표7, re_ref에 입력될 값  (답변글 그룹 ==일반글의  글번호 동일)
-			pstmt.setInt(7, 0); //일곱번째 물음표8, re_lev에 입력될 값  (답변글 들여쓰기, 일반글 들여쓰기 없음)
-			pstmt.setInt(8, 0); //일곱번째 물음표9, re_seq에 입력될 값  (답변글 순서 일반글 순서 맨위)
+			//pstmt.setInt(6, num); //일곱번째 물음표7, re_ref에 입력될 값  (답변글 그룹 ==일반글의  글번호 동일)
+			//pstmt.setInt(7, 0); //일곱번째 물음표8, re_lev에 입력될 값  (답변글 들여쓰기, 일반글 들여쓰기 없음)
+			//pstmt.setInt(8, 0); //일곱번째 물음표9, re_seq에 입력될 값  (답변글 순서 일반글 순서 맨위)
 			//4. 실행
 			pstmt.executeUpdate(); // insert, update, delete
 		}catch(Exception e){
@@ -528,25 +528,25 @@ Connection con = null;
 			// 답글순서 재배치
 			//3. update 조건 : re_ref 같은그룹, re_seq 기존값보다 큰값이 있으면
 			// 순서 바꾸기 re_seq 1증가
-			sql = "update memo set re_seq=re_seq+1 where re_ref=? and re_seq>?";
-			pstmt=con.prepareStatement(sql);
-			pstmt.setInt(1, meb.getRe_ref());
-			pstmt.setInt(2, meb.getRe_seq());
+			//sql = "update memo set re_seq=re_seq+1 where re_ref=? and re_seq>?";
+			//pstmt=con.prepareStatement(sql);
+			//pstmt.setInt(1, meb.getRe_ref());
+			//pstmt.setInt(2, meb.getRe_seq());
 			//4 실행
-			pstmt.executeUpdate(); // insert, update, delete
+			//pstmt.executeUpdate(); // insert, update, delete
 			
 			//3 sql insert   num구한값   re_ref 그대로
 			//               re_lev+1   re_seq+1
-			sql="insert into memo(num, from_id, to_id, subject, content, re_ref, re_lev, re_seq, date) values(?, ?, ?, ?, ?, ?, ?, ?, now())";
+			sql="insert into memo(num, from_id, to_id, subject, content, date) values(?, ?, ?, ?, ?, now())";
 			pstmt=con.prepareStatement(sql);
 			pstmt.setInt(1, num); //첫번째 물음표 1, num에 입력될 값
 			pstmt.setString(2, meb.getFrom_id()); //두번째 물음표2, name에 입력될 값
 			pstmt.setString(3, meb.getTo_id()); //두번째 물음표2, name에 입력될 값
 			pstmt.setString(4, meb.getSubject()); //다섯번째 물음표3, subject에 입력될 값
 			pstmt.setString(5, meb.getContent()); //여섯번째 물음표4, content에 입력될 값
-			pstmt.setInt(6, meb.getRe_ref()); //일곱번째 물음표5, re_ref 기존글  그룹번호 같게 함
-			pstmt.setInt(7, meb.getRe_lev()+1); //일곱번째 물음표6, re_lev 답변글 들여쓰기 기존글+1
-			pstmt.setInt(8, meb.getRe_seq()+1); //일곱번째 물음표7, re_seq 답변글  순서 기존글+1
+			//pstmt.setInt(6, meb.getRe_ref()); //일곱번째 물음표5, re_ref 기존글  그룹번호 같게 함
+			//pstmt.setInt(7, meb.getRe_lev()+1); //일곱번째 물음표6, re_lev 답변글 들여쓰기 기존글+1
+			//pstmt.setInt(8, meb.getRe_seq()+1); //일곱번째 물음표7, re_seq 답변글  순서 기존글+1
 			
 			//4. 실행
 			pstmt.executeUpdate(); // insert, update, delete

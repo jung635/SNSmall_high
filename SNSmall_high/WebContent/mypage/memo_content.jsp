@@ -8,7 +8,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
 	<meta name="description" content="Creative One Page Parallax Template">
 	<meta name="keywords" content="Creative, Onepage, Parallax, HTML5, Bootstrap, Popular, custom, personal, portfolio" /> 
@@ -18,6 +18,7 @@
 	<link href="./css/header.css" rel="stylesheet">
 	<link href="./css/inner.css" rel="stylesheet">
 	<link href="./css/main.css" rel="stylesheet"> 
+	<link href="./css/memo.css" rel="stylesheet">  
 	
 <title>Insert title here</title>
 
@@ -61,7 +62,7 @@ SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd");
     <!-- Page Content -->
         <div class="row">
             <div class="col-md-3">
-                <p class="lead"><%=id %></p>
+                <%-- <p class="lead"><%=id %></p> --%>
                 <jsp:include page="../inc/myinfo_sns_left.jsp"/>
             </div>
             <div class="col-md-9">
@@ -101,8 +102,8 @@ if(content !=null){
 <table border=1>
 <tr bgcolor="orange"><td>쪽지번호</td><td colspan=3><%=meb.getNum()%></td></tr>
 <tr bgcolor="#ffeecc"><td>받는사람</td><td><%=meb.getTo_id()%></td><td>작성일</td><td><%=sdf.format(meb.getDate())%></td></tr>
-<tr bgcolor="#ffeecc"><td>쪽지제목</td><td colspan=3><%=meb.getSubject()%></td></tr>
-<tr bgcolor="#ffeecc"><td>쪽지내용</td><td colspan=3><%=content%></td></tr>
+<tr bgcolor="#ffeecc"><td>쪽지제목</td><td colspan=3 class="subject"><%=meb.getSubject()%></td></tr>
+<tr bgcolor="#ffeecc"><td>쪽지내용</td><td colspan=3 class="content"><%=content%></td></tr>
 <tr bgcolor="#ffeecc"><td colspan=4>
 
 <!-- <input type="button" value="쪽지삭제" onclick="location.href='./MemoDelete.me?num=<%=meb.getNum()%>&pageNum=<%=pageNum%>'">-->

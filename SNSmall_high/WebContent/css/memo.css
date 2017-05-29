@@ -30,7 +30,7 @@ article form label{
 
 article form input{
 	display: inline-block;
-	background-color: #ffe8dd;
+	background-color: #ffeecc;
 	border:1px solid #999;
 	margin: 10px 5px;/* input 상자가 다시 정렬됨 */
 }
@@ -84,3 +84,57 @@ article form input.cancel{
 	background-position: center center;
 	margin: 0 0 0 20px;
 }
+
+
+/* 동위선택자~, + */
+table {
+	display: block;
+	
+}
+table tr {
+	border: 1px solid red;
+}
+table tr:hover {
+	background-color: #acf;
+	border: 1px solid blue;
+}
+
+table tr td{
+	text-align: center;
+	width: 250px;
+	height: 40px;
+	border: 1px solid gray;
+}
+
+table tr td.num{
+	width: 50px;
+	height: 40px;
+}
+
+table tr td#accPoint{
+	height: 40px;
+}
+
+table tr td.date{
+	width:50px;
+	height: 40px;
+}
+
+table tr td.subject{
+	padding:0 0 0 10px;
+	text-align: left;
+}
+
+table tr td.content{
+	padding:0 0 0 10px;
+	text-align: left;
+}
+
+
+
+
+
+
+
+
+

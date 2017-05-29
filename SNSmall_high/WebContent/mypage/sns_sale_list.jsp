@@ -21,6 +21,8 @@
 	<link href="./css/header.css" rel="stylesheet">
 	<link href="./css/inner.css" rel="stylesheet">
 	<link href="./css/main.css" rel="stylesheet"> 
+	<link href="./css/memo.css" rel="stylesheet">  
+	
 	
 <title>Insert title here</title>
 <script type="text/javascript">
@@ -31,15 +33,6 @@ function snsStatefn() {
     document.frmSearch.submit();
 }
 </script>
-<style>
-table,th,td {
-  border : 1px solid black;
-  border-collapse: collapse;
-}
-th,td {
-  padding: 5px;
-}
-</style>
 
 </head>
 <body>
@@ -61,7 +54,7 @@ System.out.println(pay_list.size()); */
     <!-- Page Content -->
         <div class="row">
             <div class="col-md-3">
-                <p class="lead"><%=id %></p>
+                <%-- <p class="lead"><%=id %></p> --%>
                 <jsp:include page="../inc/myinfo_sns_left.jsp"/>
             </div>
             <div class="col-md-9">
@@ -92,7 +85,7 @@ SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd");
 <div class="row">
     <div class="col-lg-12">
         <h1 class="page-header">판매내역 목록
-            <small>[판매 내역수 : <%=count %>]</small>
+            <small></small>
         </h1>
      </div>
 </div>
@@ -110,8 +103,8 @@ SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd");
 </select><br><br><!-- <div id="snselected"></div> -->
 </form>
 
-	<table border=1>
-		<tr align="center">
+	<table>
+		<tr bgcolor="orange">
 		<td>번호</td><td>아이디</td><td>수량</td><td>메시지</td>
 		<td>날짜</td><td>주문번호</td><td>옵션1</td><td>옵션2</td><td>옵션3</td>
 		<td>사용된포인트</td><td>상태표시</td></tr>
@@ -128,7 +121,7 @@ SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd");
 	//	snsState = pab.getState();
 	//	System.out.println("snsState >>> : "+snsState);
 %>
-		<tr align="center">
+		<tr bgcolor="#ffeecc">
 		<td><%=pab.getProduct_num()%></td><td><%=pab.getSns_id()%></td><td><%=pab.getAmount()%></td><td><%=pab.getMessage()%></td>
 		<td><%=sdf.format(pab.getDate()) %></td><td><%=pab.getOrder_num()%></td><td><%=pab.getOption1()%></td><td><%=pab.getOption2()%></td>
 		<td><%=pab.getOption3()%></td><td><%=pab.getUsedPoint()%></td><td><%=pab.getState()%></td>
@@ -138,9 +131,8 @@ SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd");
 	System.out.println("addPoint : "+addPoint);
 %>
 		<tr align="center">
-		<td>누적포인트</td><td></td><td></td><td></td>
-		<td></td><td></td><td></td><td></td>
-		<td></td><td><%=addPoint %></td><td></td>
+		<td id="accPoint">누적<br>포인트</td><td colspan=8></td><td><%=addPoint %>P</td>
+		<td><%=count %>개</td>
 		</tr>
 </table>
     <!-- /.container -->

@@ -8,7 +8,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
 	<meta name="description" content="Creative One Page Parallax Template">
 	<meta name="keywords" content="Creative, Onepage, Parallax, HTML5, Bootstrap, Popular, custom, personal, portfolio" /> 
@@ -18,19 +18,12 @@
 	<link href="./css/header.css" rel="stylesheet">
 	<link href="./css/inner.css" rel="stylesheet">
 	<link href="./css/main.css" rel="stylesheet"> 
+	<link href="./css/memo.css" rel="stylesheet">  
 
 	
 <title>Insert title here</title>
 
-<style>
-table,th,td {
-  border : 1px solid black;
-  border-collapse: collapse;
-}
-th,td {
-  padding: 5px;
-}
-</style>
+
 
 </head>
 <body>
@@ -45,7 +38,7 @@ String id = (String)session.getAttribute("id");
     <!-- Page Content -->
         <div class="row">
             <div class="col-md-3">
-                <p class="lead"><%=id %></p>
+                <%-- <p class="lead"><%=id %></p> --%>
                 <jsp:include page="../inc/myinfo_sns_left.jsp"/>
             </div>
             <div class="col-md-9">
@@ -83,7 +76,8 @@ if(id ==null ){
 
 <table border=1>
 <tr bgcolor="orange">
-	<td>번호</td><td>받는사람</td><td>제목</td><td>내용</td><td>날짜</td>
+	<td class="num">번호</td><td>받는사람</td><td>제목</td>
+	<td>내용</td><td class="date">날짜</td>
 </tr>
 <%
 	for(int i=0; i < memoList.size(); i++){
@@ -95,10 +89,8 @@ if(id ==null ){
 %>
 <tr bgcolor="#ffeecc">
 <td><%=meb.getNum() %></td><td><%=meb.getTo_id() %></td>
-<td>
-<a href="./MemoContent.me?num=<%=meb.getNum()%>&pageNum=<%=pageNum%>"><%= meb.getSubject()%></a></td>
-<td>
-<a href="./MemoContent.me?num=<%=meb.getNum()%>&pageNum=<%=pageNum%>"><%= meb.getContent()%></a></td>
+<td class="subject"><a href="./MemoContent.me?num=<%=meb.getNum()%>&pageNum=<%=pageNum%>"><%= meb.getSubject()%></a></td>
+<td class="content"><a href="./MemoContent.me?num=<%=meb.getNum()%>&pageNum=<%=pageNum%>"><%= meb.getContent()%></a></td>
 <td><%=sdf.format(meb.getDate()) %></td>
 </tr>
 <%

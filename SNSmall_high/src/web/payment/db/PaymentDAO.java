@@ -19,7 +19,7 @@ import web.sns.db.SnsBean;
 
 public class PaymentDAO {
 
-Connection con = null;
+	Connection con = null;
 	
 	private Connection getConnection() throws Exception{
 

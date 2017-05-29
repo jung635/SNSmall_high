@@ -394,14 +394,14 @@
 				</div>
 				<a name="policy_info"></a>
 		<div id="policy_info_box">
-			<div><h3>교환 / 반품 제한사항</h3></div>
+			<div><h3>배송정보</h3></div>
 			<div>
 				<table border="1">
 					<tr><th>배송방법</th><td>순차배송</td><th rowspan="2">배송비</th><td rowspan="2">무료배송<br>  - 도서산간 지역의 경우, 추가비용 발생가능</td></tr>
 					<tr><th>배송사</th><td>CJ GLS</td></tr>
 					<tr><th>묶음배송 여부</th><td colspan="3">가능</td></tr>
 				</table>
-				<br>
+				<div><h3>교환 / 반품 제한사항</h3></div>
 				<ul>
 					<li>주문/제작 상품의 경우, 상품의 제작이 이미 진행된 경우</li>
 					<li>고객의 사용, 시간경과, 일부 소비에 의하여 상품의 가치가 현저히 감소한 경우</li>

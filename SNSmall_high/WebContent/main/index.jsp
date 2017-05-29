@@ -207,14 +207,14 @@ function productSearch_exe(){
 						<div class="services row">
 							<div class="col-sm-4">
 								<div class="single-service">
-									<i class="fa fa-th"></i>
+									<i class="fa fa-star"></i>
 									<h2>Modern Design</h2>
 									<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore.</p>
 								</div>
 							</div>
 							<div class="col-sm-4">
 								<div class="single-service">
-									<i class="fa fa-html5"></i>
+									<i class="fa fa-shopping-cart"></i>
 									<h2>Web Development</h2>
 									<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy </p>
 								</div>
@@ -367,7 +367,7 @@ function productSearch_exe(){
 								<div class="row text-center">
 									<div class="col-sm-8 col-sm-offset-2">
 										<h2 class="title-one">Clients Say About Us</h2>
-										<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit. Lorem ipsum dolor sit amet, consectetuer adipiscing elit</p>
+										<p>우리회사는 SNS STAR, 판매자, 구매자 모두에게 최고의 혜택을 드리기위해 부단히 노력하고 있습니다. 우리의 서비스로 성공적인 비지니스를 이루고, 놀라운 혜택을 누리고 있는 회원님들을 만나보세요! 여러분도 그들중 하나가 될 수 있습니다.</p>
 									</div>
 								</div>
 								<div id="clients-carousel" class="carousel slide" data-ride="carousel"> <!-- Indicators -->
@@ -382,7 +382,7 @@ function productSearch_exe(){
 												<div class="media">
 													<img class="pull-left" src="images/clients/client1.jpg" alt="">
 													<div class="media-body">
-														<blockquote><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p><small>Someone famous in Source Title</small><a href="">www.yourwebsite.com</a></blockquote>
+														<blockquote><p>항상 SNS를 하면서 사고싶었던 물건을 찾거나 물어봐야했는데 바로 구매할 수 있는 사이트가 생겨서 너무 편합니다. 그리고 다른 곳에서 팔지 않는 희귀템들이 많아서 좋아요! .</p><small>정** 고객님</small><a href="">www.yourwebsite.com</a></blockquote>
 													</div>
 												</div>
 											</div>
@@ -392,7 +392,7 @@ function productSearch_exe(){
 												<div class="media">
 													<img class="pull-left" src="images/clients/client3.jpg" alt="">
 													<div class="media-body">
-														<blockquote><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p><small>Someone famous in Source Title</small><a href="">www.yourwebsite.com</a></blockquote>
+														<blockquote><p>광고료 선지불이 아닌 물건이 팔리는 만큼 광고료를 지불하기 때문에 더 효율적이었습니다. 판매액의 50%이상이 SNS STAR들을 통해 들어왔습니다!</p><small>김** 판매자님</small><a href="">www.yourwebsite.com</a></blockquote>
 													</div>
 												</div>
 											</div>
@@ -402,7 +402,7 @@ function productSearch_exe(){
 												<div class="media">
 													<img class="pull-left" src="images/clients/client2.jpg" alt="">
 													<div class="media-body">
-														<blockquote><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p><small>Someone famous in Source Title</small><a href="">www.yourwebsite.com</a></blockquote>
+														<blockquote><p>이전에는 광고 아닌척 글을 올렸지만 요새는 물건만 올려도 광고라는걸 알기때문에 대놓고 물건을 소개하는게 편해요. 무엇보다 부업같은 느낌이어서 쏠쏠하고 편합니다!</p><small>이** SNS STAR님</small><a href="">www.facebook.com</a></blockquote>
 													</div>
 												</div>
 											</div>

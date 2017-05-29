@@ -36,7 +36,7 @@ window.onscroll = changePos;
 function changePos() {
 	var skill_y = $('#skill').offset().top + $('#skill').height()-300;
 	var nav_y = $('#navigation .navbar').height()+8;
-	var sell_popular_y = $('#sell_popular_box').offset().top + $('#sell_popular_box').height()-300;
+	var sell_popular_y = $('#sell_popular_box').offset().top + $('#sell_popular_box').height()-100;
 	var sell_latest_y = $('#sell_latest_box').offset().top + $('#sell_latest_box').height()-500;
 	var policy_info_y = $('#policy_info_box').offset().top + $('#policy_info_box').height();
     var tab = document.getElementById("tab");
@@ -161,9 +161,9 @@ int rank_percent = (Integer)request.getAttribute("rank_percent");
             <div class="col-md-4">              
                 <h3><%=sb.getName() %></h3>
                 <ul>
+                    <li>이름: <%=sb.getName() %></li>
                     <li>주력 카테고리: <%=sb.getCategory() %></li>
                     <li>등급: <%=sb.getRank() %></li>
-                    <li>Adipiscing Elit</li>
                 </ul>
                  <h3>자기 소개</h3>
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae. Sed dui lorem, adipiscing in adipiscing et, interdum nec metus. Mauris ultricies, justo eu convallis placerat, felis enim.</p>
@@ -190,6 +190,7 @@ int rank_percent = (Integer)request.getAttribute("rank_percent");
         	String[] detail_img = sb.getDetail_img().split(","); %>
         <!-- Related Projects Row -->
         <div class="row">
+        	<a name="skill"></a>
             <div id="img_wrap">
             	<div>
             		<a class="prev" onclick="plusSlides(0,'<%=detail_img.length%>')">&#10094;</a>
@@ -218,7 +219,7 @@ int rank_percent = (Integer)request.getAttribute("rank_percent");
         	<img src="" id="big_img">
         </div>
 		<!-- skill bar start -->
-		<a name="skill"></a>
+		<a name="sell_popular"></a>
         <div id="skill">
 			<div class="col-sm-6">
 				<h3>Star Skills</h3>
@@ -255,7 +256,7 @@ int rank_percent = (Integer)request.getAttribute("rank_percent");
         </div>
         <!-- skill bar end -->
       	<div class="clear">
-      	<a name="sell_popular"></a>
+      	<a name="sell_latest"></a>
 		<div class="well" id="sell_popular_box">
 			<div><h3>가장 많이 판매한 상품</h3></div>
 			<%
@@ -274,7 +275,7 @@ int rank_percent = (Integer)request.getAttribute("rank_percent");
                	</div>
  			</div><%}} %>
 		</div>
-		<a name="sell_latest"></a>
+
 		<div class="well" id="sell_latest_box">
 			<div><h3>최근 판매한 상품</h3></div>
 			<%

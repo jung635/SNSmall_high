@@ -28,6 +28,7 @@
 	<link rel="apple-touch-icon-precomposed" href="images/ico/apple-touch-icon-57-precomposed.png">
 	<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
 <script type="text/javascript">
+$('#mainimg_item').
 function snsSearch_exe(){
 	search = document.getElementById('product_name').value;
 	location.href = 'SearchSnsList.sn?search='+search;
@@ -356,7 +357,7 @@ function productSearch_exe(){
 								<%if(prob.getMain_img()==null){ %>
     	            		    		<div><img src="./qna_img/default.jpg" style="" alt=""></div>
         			            <%} else{%>
-										<img src="./vendor_img/<%=prob.getMain_img() %>" alt=""></div>
+										<img id="mainimg_item" src="./vendor_img/<%=prob.getMain_img() %>" alt=""></div>
 								<%} %> 
 								<div class="mask text-center">
 									<h3>Novel</h3>

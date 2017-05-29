@@ -335,3 +335,42 @@ a.list-group-item:hover, a.list-group-item:focus {
 #pay_check{
 	margin-bottom: 63px;
 }
+
+/* Product Detail */
+#ourproduct{
+	background-color: #ffffff !important;
+	padding: 43px 0;
+}
+#ourproduct .socials_pro a .fa-facebook{
+	background: #3B5997 !important;
+}
+#ourproduct .socials_pro a .fa-twitter{
+	background: #29C5F6 !important;
+}
+#ourproduct .socials_pro a .fa-bold{
+	background: #FF5C93 !important;
+}
+#ourproduct .socials_pro a .fa-facebook:hover{
+	border-radius: 0px;
+    border: solid 1px !important;
+}
+#ourproduct .socials_pro a .fa-twitter:hover{
+	border-radius: 0px;
+    border: solid 1px !important;
+}
+#ourproduct .socials_pro a .fa-bold:hover{
+	border-radius: 0px;
+    border: solid 1px !important;
+}
+#ourproduct .socials_pro a i{
+	opacity: 1 !important;
+    color: #080808 !important;
+    border: 0px !important;
+    display: inline-block;
+    font-size: 16px;
+    height: 30px;
+    line-height: 28px;
+    margin-right: 5px;
+    text-align: center;
+    width: 30px;
+}

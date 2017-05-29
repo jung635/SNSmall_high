@@ -60,9 +60,9 @@
 	if(product_num==null){product_num="0";}
 	String sns_id = request.getParameter("sns_id");
 	if(sns_id==null){
-		url = "./SearchPass.cl";
+		url = "./loginAction.cl";
 	}else{
-// 		url = "./loginProductAction.cl";
+		url = "./loginProductAction.cl";
 	}
 
 %>

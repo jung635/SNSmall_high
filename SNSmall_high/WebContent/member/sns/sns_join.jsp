@@ -292,15 +292,15 @@
 		<div class="content">
 			<div class="col-md-2"></div>
 				 <div class="col-md-8">
-				<div class="join_subject">:) SNS celeb Join Us</div>
+				<div class="join_subject">　SNS celeb Join Us</div>
 
 				<form action="./SnsJoinAction.sn" id="join" name="fr" method="post"
 					onsubmit="return submitCheck()" enctype="multipart/form-data">
 					<input type="hidden" name="type" value="client"> <input
 						type="hidden" name="idDubOk">
 					<fieldset>
-						<legend>Basic Info</legend>
-						<table class="join_table">
+						<legend class="join-mini-subject">　Basic Info</legend>
+						<table class="join_table" style="margin-left: 20px;">
 							<tr>
 								<td><label>User ID</label></td>
 								<td><input type="text" name="sns_id" class="sns_id"
@@ -341,11 +341,12 @@
 						</table>
 					</fieldset>
 					
-					<legend>
-					<lable>SNS Account</lable>
+					<legend class="join-mini-subject">
+					<lable>　SNS Account</lable>
 					<span style="font-size: 7px;"> (SNS계정은 최소 1개이상 기입하세요.)</span>
 					</legend>
-						<table class="Snsaccount">
+					<div style="margin-left: 20px">
+						<table class="Snsaccount" >
 							<tr>
 								<td> Instagram <input type="checkbox" name="ckb1" id="ckb1" onchange="snschecked()"> </td>
 								<td> facebook <input type="checkbox" name="ckb2" id="ckb2" onchange="snschecked()"></td>
@@ -379,27 +380,29 @@
 								<span style="padding-right: 54px;">etc</span>
 								<input type="text" name="etc_ac" size=40> 
 							</div>
-						
-					<legend>
-						Profile Image
+						</div>
+					<legend  class="join-mini-subject" style="margin-top: 10px;">
+						　Profile Image
 					</legend>
-					<div id="imagePreview">
+					<div id="imagePreview" style="margin-left: 20px">
 						<img alt="이미지를등록하세요" src="./member/sns/sns_image/default_img.JPG" id="pre_img" style="display: block; width: 200px; height: 140px;">
 					</div>
-					<input type="file" name="file" id="image" onchange="InputImage()"><br>
-					<legend>
-						<lable>Sub Image</lable>
+					<input type="file" name="file" id="image" onchange="InputImage()" style="margin-left: 20px"><br>
+					<legend  class="join-mini-subject">
+						<lable>　Sub Image</lable>
 						<span style="font-size: 7px;"> (이미지는 최대 8개까지 업로드하세요.)</span>
 					</legend>
 					<input type="hidden" name="file_names" id="file_names" value="">
 					<input type="file" id="files" name="files" multiple><br>
-					Selected file
+					　　Selected file
 					<div id="selectedFiles"></div>
 					<br>
 					<!-- <input type="button" value="체크" onclick="check()"> -->
 					<legend></legend>
-					<label>Introduce</label><br>
+					<div style="margin-left: 20px">
+					<label>　Introduce</label><br>
 					<textarea rows="3" cols="80" name="content"></textarea>
+					</div>
 					<br>
 
 					<!-- <label>Phone Number</label> -->
@@ -408,14 +411,20 @@
 
 							<div class="clear"></div>
 						<hr>
-						<div id="buttons">
-							<input type="submit" value="Submit" class="submit"> <input
-								type="button" value="Cancel" class="cancel"
-								onclick="history.back()">
-						</div>
+							<div class="col-md-1"></div>
+							<div class="col-md-5"><input type="submit" value="Submit" class="join-btn"> </div>
+							<div class="col-md-5"><input type="button" value="Cancel" class="join-btn" onclick="history.back()"> </div>
+							<div class="col-md-1"></div>
 					</form>
 				</div>
+				
+				
 			</div>
+			
 		</div>
+
+<jsp:include page="../../inc/footer.jsp"/>
+	
+
 </body>
 </html>

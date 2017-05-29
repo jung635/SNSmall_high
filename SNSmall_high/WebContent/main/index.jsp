@@ -1,10 +1,7 @@
-<<<<<<< HEAD
 <%@page import="web.blog.db.BlogDAO"%>
 <%@page import="web.blog.db.BlogBean"%>
 <%@page import="java.text.SimpleDateFormat"%>
-=======
 <%@page import="web.product.db.ProductBean"%>
->>>>>>> e0c2ed9c028b83525ec1700e81001cc4ad906190
 <%@page import="web.sns.db.SnsBean"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -32,14 +29,8 @@
 	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="images/ico/apple-touch-icon-114-precomposed.png"> 
 	<link rel="apple-touch-icon-precomposed" sizes="72x72" href="images/ico/apple-touch-icon-72-precomposed.png"> 
 	<link rel="apple-touch-icon-precomposed" href="images/ico/apple-touch-icon-57-precomposed.png">
-<<<<<<< HEAD
-	
-</script>	
-	
 
-=======
 	<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
->>>>>>> e0c2ed9c028b83525ec1700e81001cc4ad906190
 <script type="text/javascript">
 $('#mainimg_item').
 function snsSearch_exe(){
@@ -55,12 +46,7 @@ function productSearch_exe(){
 </script>
 </head><!--/head-->
 <body>
-<<<<<<< HEAD
-
-	<script type="text/javascript" src=".main/alarm.js"></script> 
-=======
 <script type="text/javascript" src=".main/alarm.js"></script> 
->>>>>>> e0c2ed9c028b83525ec1700e81001cc4ad906190
 	<div class="preloader">
 		<div class="preloder-wrap">
 			<div class="preloder-inner"> 
@@ -668,7 +654,7 @@ function productSearch_exe(){
 								<%} 
 								
 								}else{
-								%>Æ÷½ºÆÃÀÌ Á¸ÀçÇÏÁö ¾Ê½À´Ï´Ù.<%
+								%>ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê½ï¿½ï¿½Ï´ï¿½.<%
 								}%>
 
 								</div> 

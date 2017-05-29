@@ -3,31 +3,83 @@
 
 /*Board_List css*/
 .board_table{
-	border: 1px double gray;
-	
+	margin: auto;
 }
-.board_table tr{
+.board_table th{
+	text-align: center;
+	width: 100px;
+	padding: 10px 5px 10px 5px;
+	border-bottom: 2px double #e3e3e3;
+	background-color: #ffc180;
+	border-left: 2px double white;
+	color:#43484E;
 }
 
-.board_table th{
-	text-align: center;	
+.board_table tr:hover{
+	background-color: #e3e3e3;
+}
+
+
+.board_table td{
+	padding: 8px;
+	border-bottom: 1px dotted #e3e3e3;
+}
+.board_table td{
+	padding: 8px;
+	border-bottom: 1px dotted #e3e3e3;
 }
 	
 .board_type{
-	border: 1px solid red;
 	text-align: center;
 }
 
 
 .board_subject{
-	border: 1px solid green;
 	text-align: left;
+	width: 350px;
+	padding-left: 10px;
 }
 .board_id{
-	border: 1px solid red;
+	width: 200px;
+
 }
 .board_date{
-	border: 1px solid red;
+	width: 200px;
 }
 
+.writeLink{
+	margin: 20px 5px 10px 0;
+}
+.page-num{
+	margin: 15px;
+}
+.search-text-box{
+	border: none;
+	width: 220px;
+}
+.search-text-big-box{
+	background-color: white;
+	border-bottom: 2px double #e3e3e3;
+}
+.search-btn{
+	border: none;
+	background-color: white;
+}
 
+/*Board_WriteForm.jsp*/
+
+.board-write-commit-btn, .board-write-cancel-btn{
+	padding:5px 80px 5px 80px;
+	background-color: #ffc180;
+	border: none;
+	margin:20px 20px 0 0;
+	font-weight: bold;
+	color:#43484E;
+}
+.board-write-subject-box{
+	border:none;
+	border-bottom: 2px double #ffc180;
+}
+.board-write-content-box{
+
+}

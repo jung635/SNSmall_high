@@ -61,12 +61,17 @@
 		 <div class="col-md-1"></div>
             <div class="col-md-10">
                 <p>SNS 스타와 판매자들간의 매칭을 위한 공간입니다.</p>
-                <div class="panel panel-default text-center">
+                <div class="col-md-10"></div>
+                <div class="col-md-2">
+	                <div class="writeLink">
+						<a href="./writeForm.bo">글게시</a>
+					</div>
+				</div>
+				
+                <div class="panel panel-default text-center" style="border-color: white;">
+                					
                 <div id="ajax_search">
                     <table class = "board_table">
-                    	<h3>
-							<a href="./writeForm.bo">글쓰기</a>
-						</h3>
 							<tr>
 								<th class="board_type">구분</th>
 								<th class="board_subject">제목</th>
@@ -95,6 +100,10 @@
 						<!-- 조건 for문 끝낼 부분 -->
 						
 					</table>
+					</div>
+					
+					 
+					<div class="page-num">
                     <!-- 페이지 넘버 부분 -->
                     <%if(count!=0){
                     		//이전페이지
@@ -118,14 +127,25 @@
                     		%>                    
                     <%}} %>
                     </div>
+                   </div>
                     <!-- 페이지 넘버 부분 -->
-                    <!-- 검색 -->
-                    <form action="./BoardSearch.bo" method="post">
-                    <input type="text" name="search" placeholder="검색어를 입력하세요"><input type="submit" value="검색" onclick="searchFunc()">
-                    </form>
-                    <!-- 검색 -->
-                </div>
-            </div>    
+                    <div class="col-md-4"></div>
+                    <div class="col-md-4">
+	                    <div class="search-box">
+		                    <!-- 검색 -->
+		                    <div class="search-text-big-box">
+		                    <form action="./BoardSearch.bo" method="post">
+		                    	<i class="fa fa-search" aria-hidden="true"></i>
+		                    	<input type="text" name="search" class="search-text-box" placeholder="　검색어를 입력하세요">
+								<input type="submit" value="검색" class="search-btn" onclick="searchFunc()">
+		                    		
+		                    </form>
+		                    </div>  
+		                    <!-- 검색 -->
+	                	</div>
+                	</div>
+                	<div class="col-md-4"></div>
+            </div>
             <div class="col-md-1"></div>                 
 		</div>
 						

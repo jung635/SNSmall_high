@@ -98,17 +98,16 @@ public class BlogDAO {
 			List blogList= new ArrayList();
 			
 			try{
-			//12 디비연결 메서드호출
 			con=getConnection();
-			//3 sql객체생성                                                                      
+                                                             
 			sql="select * from blog order by num desc limit ?,?";                    
 			pstmt= con.prepareStatement(sql);
-			pstmt.setInt(1,startRow-1); //limit가 그다음행부터 세기때문에 -1!
-			pstmt.setInt(2,pageSize);  //몇개글
-			//4 실행저장
+			pstmt.setInt(1,startRow-1); 
+			pstmt.setInt(2,pageSize);
+			
 			rs = pstmt.executeQuery();
 			
-			while(rs.next()){  //여러개 구문돌면서 나와야하니까!!
+			while(rs.next()){
 				
 				BlogBean bb = new BlogBean();
 				bb.setNum(rs.getInt("num"));
@@ -117,9 +116,8 @@ public class BlogDAO {
 				bb.setContent(rs.getString("content"));
 				bb.setFile(rs.getString("file"));
 				bb.setCategory(rs.getString("category"));
-				//bb라는 객체에 현재 위와같은 내용 다담음!
-			
-				blogList.add(bb);  //boardlist의 배열 한칸에 bb의내용을 담겠다!
+				
+				blogList.add(bb);  
 				}
 			
 			}catch(Exception e){
@@ -155,6 +153,7 @@ public class BlogDAO {
 					bb.setDate(rs.getTimestamp("date"));
 					bb.setFile(rs.getString("file"));
 				}
+				
 			}catch(Exception e){
 				e.printStackTrace();
 			}finally{
@@ -172,9 +171,10 @@ public class BlogDAO {
 			try{
 				con= getConnection();
 				                                   
-				sql="select count(*) from blog where subject like ?";  
+				sql="select count(*) from blog where subject like ? or content like ?";  
 				pstmt = con.prepareStatement(sql); 
 				pstmt.setString(1,"%"+search+"%"); 
+				pstmt.setString(2,"%"+search+"%");
 				rs = pstmt.executeQuery();
 				
 				if(rs.next()){
@@ -291,6 +291,7 @@ public class BlogDAO {
 			return categorybloglist;
 		}
 		
+		//blogPost
 		public void blogPostUpdate(BlogBean bb){
 			try{
 				con=getConnection();
@@ -320,6 +321,13 @@ public class BlogDAO {
 				pstmt.setInt(1, num);
 				
 				pstmt.executeUpdate();
+				
+				sql="update blog set num=num-1 where num>?";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setInt(1, num);
+				
+				pstmt.executeUpdate();
+				
 				
 			}catch(Exception e){
 				e.printStackTrace();

@@ -23,42 +23,34 @@
 <title>Insert title here</title>
 </head>
 <body>
+<%
+	String category = (String)request.getAttribute("category");
+	List categoryBlogList =(List)request.getAttribute("categoryBlogList");
+	String pageNum=(String)request.getAttribute("pageNum");
+	int count=((Integer)request.getAttribute("count")).intValue();
 	
+	int pageBlock=((Integer)request.getAttribute("pageBlock")).intValue();
+	int startPage=((Integer)request.getAttribute("startPage")).intValue();
+	int endPage=((Integer)request.getAttribute("endPage")).intValue();
+	int pageCount = ((Integer)request.getAttribute("pageCount")).intValue();
+%>
 <jsp:include page="../inc/header.jsp"/>
   <!-- Page Content -->
   <div class="container">
     <div class="content">
-
-     	        <div class="row">
-
+		<div class="row">
             <!-- Blog Entries Column -->
-            <div class="col-md-9">
-	<%
-	
-	String category = (String)request.getAttribute("category");
-	
-	List categoryBlogList =(List)request.getAttribute("categoryBlogList");
-	String pageNum=(String)request.getAttribute("pageNum");
-	int count=((Integer)request.getAttribute("count")).intValue();
-	%>
-                <h1 class="page-header">
+			<div class="col-md-9">
+				<h1 class="page-header">
                     <%= category%>
-                    <small><%=count%></small>
-                      
+                    <small><%=count%></small>         
                 </h1>
-		 <hr style="border: 0; height: 2px; background: #ddd;">
-
-<%
-int pageBlock=((Integer)request.getAttribute("pageBlock")).intValue();
-int startPage=((Integer)request.getAttribute("startPage")).intValue();
-int endPage=((Integer)request.getAttribute("endPage")).intValue();
-int pageCount = ((Integer)request.getAttribute("pageCount")).intValue();
-
-
-for(int i=0;i<categoryBlogList.size();i++){
-	BlogBean bb = (BlogBean)categoryBlogList.get(i);
-	
-%>
+			<hr style="border: 0; height: 2px; background: #ddd;">
+			
+			<%
+			for(int i=0;i<categoryBlogList.size();i++){
+				BlogBean bb = (BlogBean)categoryBlogList.get(i);	
+			%>
 
                 <!-- First Blog Post -->
                
@@ -66,29 +58,27 @@ for(int i=0;i<categoryBlogList.size();i++){
                  
                     <span style="font-size: 20px;"><%=bb.getSubject() %></span>
                     <span style="font-size: 12px; ">　
-                    <%if(bb.getCategory().equals("notice")){ %>
-              	<i class="fa fa-file-text-o" aria-hidden="true"></i> notice
-              	<%}else if(bb.getCategory().equals("contribution")){ %>
-				<i class="fa fa-globe" aria-hidden="true"></i> contribution
-				<%}else if(bb.getCategory().equals("Event")){ %>
-				<i class="fa fa-gift" aria-hidden="true"></i> Event
-				<%}else if(bb.getCategory().equals("service")){ %>
-				 <i class="fa fa-star" aria-hidden="true"></i> service
-				<%}else if(bb.getCategory().equals("advertising")){ %>
-				<i class="fa fa-lightbulb-o" aria-hidden="true"></i> advertising
-				<%} %>
+	                    <%if(bb.getCategory().equals("notice")){ %>
+	              			<i class="fa fa-file-text-o" aria-hidden="true"></i> notice
+	              		<%}else if(bb.getCategory().equals("contribution")){ %>
+							<i class="fa fa-globe" aria-hidden="true"></i> contribution
+						<%}else if(bb.getCategory().equals("Event")){ %>
+							<i class="fa fa-gift" aria-hidden="true"></i> Event
+						<%}else if(bb.getCategory().equals("service")){ %>
+							 <i class="fa fa-star" aria-hidden="true"></i> service
+						<%}else if(bb.getCategory().equals("advertising")){ %>
+							<i class="fa fa-lightbulb-o" aria-hidden="true"></i> advertising
+						<%} %>
                    </span>
-                  
-                   
-                     
-                <span class="blog-subject-date">
-               		 <small>
-               		   <span class="glyphicon glyphicon-time"></span> 
-               		Posted on 
-               		 <%SimpleDateFormat sdf = new SimpleDateFormat("MMMMM dd, yyyy hh:mm a zzz");%>
-               		  <%=sdf.format(bb.getDate())%>
-                	</small>
-                </span>	
+
+	                <span class="blog-subject-date">
+	               		 <small>
+	               		   <span class="glyphicon glyphicon-time"></span> 
+								Posted on 
+								<%SimpleDateFormat sdf = new SimpleDateFormat("MMMMM dd, yyyy hh:mm a zzz");%>
+								<%=sdf.format(bb.getDate())%>
+	                	</small>
+	                </span>	
                 </div>
                 	
                 	
@@ -96,54 +86,54 @@ for(int i=0;i<categoryBlogList.size();i++){
                 
                 <%if(bb.getFile()!=null){ %>
              
-                  <a href="./OurBlogPostAction.bl?num=<%=bb.getNum()%>&pageNum=<%=pageNum%>">
+                	<a href="./OurBlogPostAction.bl?num=<%=bb.getNum()%>&pageNum=<%=pageNum%>">
                   
-    			<img src="./blog_upload/<%=bb.getFile()%>" style="border-radius:5px; max-width: 820px;"></img></a>
+    				<img src="./blog_upload/<%=bb.getFile()%>" style="border-radius:5px; max-width: 820px;"></img></a>
     			 
     			 <hr>
-                <%} %>
+			<%} %>
              
                
                 <div style="overflow:hidden; height:100px;"><%=bb.getContent()%></div>
                 <a class="btn btn-primary" href="./OurBlogPostAction.bl?num=<%=bb.getNum()%>&pageNum=<%=pageNum%>">Read More <span class="glyphicon glyphicon-chevron-right"></span></a>
-                
-               
-               <hr style="border: 0; height: 2px; background: #e3e3e3;">
 
+               <hr style="border: 0; height: 2px; background: #e3e3e3;">
         <%}%>
 
 <!-- Pager -->
-<%
-if(count!=0){
-	// 이전        시작페이지가1~10인경우 이전이없다! 10초과면 이전글자보이게!
-	 %><ul class="pager">
-                    <li class="previous"><%
+	<%
+	if(count!=0){
+	%><ul class="pager">
+		<li class="previous">
+	<%
 	if(startPage > pageBlock){
-		%><a href="./OurBlogCategory.bl?category=<%=category %>&pageNum=<%=startPage-pageBlock%>">&larr; Older</a><%
-	}                    //get방식방법에서쓰는방식 파일이름? ...파라미터값 <%=..>쮹쮹~
-	%></li>
-	
+	%><a href="./OurBlogCategory.bl?category=<%=category %>&pageNum=<%=startPage-pageBlock%>">&larr; Older</a>
+	<%
+	}                   
+	%>
+		</li>
 	<li class="next" style="position: relative;"><%
-	// 다음
-	
+
 	if(endPage<pageCount){
 		%><a href="./OurBlogCategory.bl?category=<%=category %>&pageNum=<%=startPage+pageBlock%>">Newer &rarr;</a><%
 	}
-	%></li> </ul><%
+	%></li> 
+	  </ul>
+<%
 }
 %>
          
-            </div>
+			</div>
 
 <!-- Blog Sidebar Widgets Column -->
 <jsp:include page="../inc/blog_right.jsp"/>	
 
-        </div>
+		</div>
         <!-- /.row -->
          
          
  
-        </div>
+		</div>
 
         <hr>
 

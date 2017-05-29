@@ -49,4 +49,9 @@ footer {
 .categorySelect{
 	width: 50px;
 }
-
+.blogPost-subject{
+font-size: 15px; 
+background-color:#e3e3e3; 
+border-radius:5px; 
+padding: 10px 0 10px 20px;
+}

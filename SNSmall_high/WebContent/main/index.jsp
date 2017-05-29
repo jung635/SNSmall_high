@@ -615,7 +615,7 @@ function productSearch_exe(){
 							  
 							  if(count!=0){
 								  blogList=bdao.getBlogList(startRow, pageSize);
-							  }
+							  
 							  
 							  for(int i=0;i<blogList.size();i++){
 								  BlogBean bb = (BlogBean)blogList.get(i);
@@ -665,7 +665,11 @@ function productSearch_exe(){
 										</div>
 									</div>
 								</div>
-								<%} %>
+								<%} 
+								
+								}else{
+								%>포스팅이 존재하지 않습니다.<%
+								}%>
 
 								</div> 
 							</div> 

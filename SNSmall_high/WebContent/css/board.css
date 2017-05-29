@@ -1,7 +1,7 @@
 @CHARSET "UTF-8";
 
 
-/*Board_List css*/
+/* Board_List css */
 .board_table{
 	margin: auto;
 }
@@ -9,7 +9,7 @@
 	text-align: center;
 	width: 100px;
 	padding: 10px 5px 10px 5px;
-	border-bottom: 2px double #e3e3e3;
+	border-bottom: 2px double #fff;
 	background-color: #ffc180;
 	border-left: 2px double white;
 	color:#43484E;
@@ -66,7 +66,7 @@
 	background-color: white;
 }
 
-/*Board_WriteForm.jsp*/
+/* Board_WriteForm.jsp */
 
 .board-write-commit-btn, .board-write-cancel-btn{
 	padding:5px 80px 5px 80px;
@@ -80,6 +80,26 @@
 	border:none;
 	border-bottom: 2px double #ffc180;
 }
-.board-write-content-box{
 
+/* Board_detail.jsp */
+
+.board-detail-subject{
+	padding:15px;
+	background-color: #ffc180;
+	border-bottom: 2px double #fff;
+	font-size: 15px;
+}
+.board-detail-subject2{
+	padding:10px;
+	background-color: #e3e3e3;
+	border-bottom: 2px double #fff;	
+}
+.board-detail-subjext-con{
+	padding:10px;
+	text-align: left;
+}
+.comment-submit-btn{
+	border: none;
+	padding: 22px 10px 22px 10px;
+	margin-left: 0px;
 }

@@ -22,6 +22,7 @@
 	<link href="./css/header.css" rel="stylesheet">
 	<link href="./css/inner.css" rel="stylesheet">
 	<link href="./css/main.css" rel="stylesheet">
+	<link href="./css/board.css" rel="stylesheet">
 	
 	<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>	
 </head>
@@ -35,39 +36,48 @@
         <div class="row" style="margin-top: 43px">
             <div class="col-lg-12">
                 <h1 class="page-header">홍보게시판</h1>
-                <p>SNS 스타와 판매자들간의 매칭을 위한 공간입니다.</p>
+                <p>
+                SNS 스타와 판매자들간의 매칭을 위한 공간입니다.<br>
+               	매칭 외의 글 작성 시, 불이익이 생기니 주의해주시기 바랍니다.<br>
+               	비속어, 비방글 작성 시 제약이 생길 수 있습니다.
+                </p>
             </div>
         </div>
 	
 		<!-- 테이블 모양 테스트 -->
 		<div class="row">
+		<div class="col-md-2"></div>
             <div class="col-md-8">
-                <div class="panel panel-default text-center">
-                
-                    <h1>글수정 페이지</h1>
+                <div class="panel panel-default text-center" style="border:none;">
 						<form action="./BoardUpdateAction.bo" method="post" name="fr">
 							<table style="border-collapse: collapse;">
 								<input type="hidden" name="num" value=<%=bb.getNum()%>>
 								<input type="hidden" name="returnUrl" value=<%=returnUrl%>>
-								
 								<tr>
-									<th>제목</th><td><input type="text" size="93" name="subject" value="<%=bb.getSubject() %>"></td>
+									<td colspan="2"><input type="text" size="93" name="subject" class="board-write-subject-box"  style="margin: 20px;" placeholder="　제목" value="<%=bb.getSubject() %>"></td>
 								</tr>
 								
 								<tr>
-									<th>내용</th>
-									<td><textarea rows="20" cols="94" name="content"><%=bb.getContent() %></textarea></td>
+									<td colspan="2"><textarea rows="20" class="board-write-content-box" cols="94" name="content"  placeholder="　내용"><%=bb.getContent() %></textarea></td>
 								</tr>
 								
 								<tr>
-									<td colspan="2"><input type="submit" value="수정완료">
-										<input type="reset" value="취소" onclick="history.back()"></td>
+
 								</tr>
 							</table>
+							
+							<div class="col-md-2"></div>
+							<div class="col-md-8">
+							<input type="submit" class="board-write-commit-btn" value="수정">
+							<input type="reset" class="board-write-cancel-btn" value="취소" onclick="history.back()">
+							</div>
+							<div class="col-md-2"></div>
+							
 						</form>
                     
                 </div>
-            </div>                     
+            </div>
+            <div class="col-md-2"></div>                     
 		</div>
 						
         <hr>

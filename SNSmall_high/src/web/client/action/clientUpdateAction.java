@@ -19,7 +19,6 @@ public class clientUpdateAction implements Action{
 		String id = request.getParameter("id");
 		ClientDAO cldao = new ClientDAO();
 		response.setContentType("text/html; charset=UTF-8");
-		
 		ClientBean clb = new ClientBean();
 		clb.setClient_id(id);
 		clb.setPass(request.getParameter("pass"));

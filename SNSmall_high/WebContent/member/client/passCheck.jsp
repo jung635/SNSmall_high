@@ -31,10 +31,10 @@ function submitpassCheck(){
  <div class="content">
   <div class="more_content">
      <div class="col-md-3">
-   <jsp:include page="../../inc/myinfo_vendor_left.jsp"/>
+   <jsp:include page="../../inc/myinfo_client_left.jsp"/>
      </div>
      <div class="col-md-9">
-<form onsubmit="return submitpassCheck()" name="fr" action="./VendorPassConfirm.ve">
+<form onsubmit="return submitpassCheck()" name="fr" action="./ClientPassConfirm.cl">
 비밀번호 확인 : <input type="password" name="pass" id="pass">
 <input type="submit" value="비밀번호확인">
 </form> 

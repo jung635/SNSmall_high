@@ -52,6 +52,17 @@ public class ClientFrontController extends HttpServlet{
 			forward.setPath("./member/loginForm.jsp");
 			forward.setRedirect(false);
 			
+		}else if (command.equals("/SearchPass.cl")) {
+			forward = new ActionForward();
+			forward.setPath("./member/SearchPass.jsp");
+			forward.setRedirect(false);
+			
+		}else if(command.equals("/SearchPassAction.cl")){
+			action = new SearchPassAction();
+			try{
+				forward = action.execute(request, response);
+			}catch(Exception e){e.printStackTrace();}
+			
 		}else if(command.equals("/loginAction.cl")){
 			action = new loginAction();
 			try{
@@ -75,6 +86,12 @@ public class ClientFrontController extends HttpServlet{
 			forward = new ActionForward();
 			forward.setPath("./member/client/passCheck.jsp");
 			forward.setRedirect(false);
+			
+		}else if(command.equals("/ClientPassConfirm.cl")){
+			action = new ClientPassConfirm();
+			try{
+				forward = action.execute(request, response);
+			}catch(Exception e){e.printStackTrace();}
 			
 		}else if(command.equals("/clientView.cl")){
 			action = new clientView();

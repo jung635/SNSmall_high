@@ -7,6 +7,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
+
+import web.client.action.SecurityUtil;
 import web.sns.db.SnsBean;
 import web.sns.db.SnsDAO;
 
@@ -18,7 +20,11 @@ public class SnsJoinAction implements Action{
 		System.out.println("MemberJoinAction execute()");
 		
 		request.setCharacterEncoding("utf-8");
-		
+		// 비밀번호 암호화 코드 추가
+		String npass = request.getParameter("pass");
+		SecurityUtil su = new SecurityUtil();
+		String pass = su.encryptSHA256(npass);		
+		// 비밀번호 암호화 코드 추가
 		String realPate = request.getRealPath("/sns_pro_upload");
 		System.out.println(realPate);
 		int maxSize=5*1024*1024;
@@ -44,7 +50,7 @@ public class SnsJoinAction implements Action{
 		SnsBean sb= new SnsBean();
 		
 		sb.setSns_id(multi.getParameter("sns_id"));
-		sb.setPass(multi.getParameter("pass"));
+		sb.setPass(pass);
 		sb.setName(multi.getParameter("name"));
 		sb.setProfile_img(multi.getFilesystemName("file"));
 		sb.setDetail_img(multi.getParameter("file_names"));

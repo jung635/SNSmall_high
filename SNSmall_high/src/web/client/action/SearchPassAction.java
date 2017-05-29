@@ -7,18 +7,23 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import web.client.db.ClientDAO;
+import web.client.db.MemberTypeBean;
 
-public class mailAction implements Action{
+public class SearchPassAction implements Action{
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
 		request.setCharacterEncoding("utf-8");
-		request.setCharacterEncoding("utf-8"); 
-		String email = request.getParameter("email");
-		String authNum = request.getParameter("authNum");
-		String content="인증번호는"+authNum+"입니다.";
+		RandomPass rp = new RandomPass();
 		ClientDAO cldao = new ClientDAO();
+		String id = request.getParameter("id");
+		String name = request.getParameter("name");
+		String email = request.getParameter("email");
+		
+		String NewPass = rp.randomPw();
+		String content="임시 비밀번호는 "+NewPass+" 입니다.";
+		
 		boolean check = cldao.sendMail(email,content);
 		
 		if (check){
@@ -40,6 +45,6 @@ public class mailAction implements Action{
 			out.println("</script>");
 			out.close();
 			return null;
-		}	
+		}
 	}
 }

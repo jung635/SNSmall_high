@@ -30,12 +30,12 @@ var pass_reg =/^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[~,!,@,#,$,*,(,),=,+,_,.,|]).{8,20
  //이메일 전송
  function sendmail(){
 	 authMailClicked=true;
-	 if(document.fr.id.value==""){
+	 if(document.fr.email.value==""){
 			alert("이메일을 입력하세요");
 			document.fr.email.focus();
 			return;
 		}
-		fid=document.fr.id.value;
+	 var email = document.fr.email.value;
 	 window.open("./mailAction.cl?email="+email+"&authNum="+authnum,"","height=400 width=400");
 }
 

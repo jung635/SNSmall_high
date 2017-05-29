@@ -57,6 +57,12 @@ public class VendorFrontController extends HttpServlet{
 				forward = action.execute(request, response);
 			}catch(Exception e){e.printStackTrace();}
 			
+		}else if(command.equals("/VendorPassConfirm.ve")){
+			action = new VendorPassConfirm();
+			try{
+				forward = action.execute(request, response);
+			}catch(Exception e){e.printStackTrace();}
+			
 		}else if (command.equals("/passCheck.ve")) {
 			forward = new ActionForward();
 			forward.setPath("./member/vendor/passCheck.jsp");

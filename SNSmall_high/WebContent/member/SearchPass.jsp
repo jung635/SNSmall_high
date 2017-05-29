@@ -36,9 +36,16 @@
 			err_empty_id.style.display = 'block'
 			err_empty_pw.style.display = 'none'}
 		return false;
-	}else if(document.fr.pass.value == ""){
-		alert("Password를 입력하세요");
-		document.fr.pass.focus();
+	}else if(document.fr.name.value == ""){
+		alert("이름을 입력하세요");
+		document.fr.name.focus();
+		if(err_empty_pw.style.display == 'none'){
+			err_empty_pw.style.display = 'block'
+			err_empty_id.style.display = 'none'}
+		return false;
+	}else if(document.fr.email.value == ""){
+		alert("이메일을 입력하세요");
+		document.fr.email.focus();
 		if(err_empty_pw.style.display == 'none'){
 			err_empty_pw.style.display = 'block'
 			err_empty_id.style.display = 'none'}
@@ -60,9 +67,9 @@
 	if(product_num==null){product_num="0";}
 	String sns_id = request.getParameter("sns_id");
 	if(sns_id==null){
-		url = "./SearchPass.cl";
+		url = "./SearchPassAction.cl";
 	}else{
-// 		url = "./loginProductAction.cl";
+		url = "./loginProductAction.cl";
 	}
 
 %>
@@ -104,28 +111,34 @@
 					<div  id="err_empty_id" class="error" style="display:none; ">아이디를 입력해주세요.</div>
 					<div class="input_row" id="pw_area">
 						<span class="input_box">
-							<label for="pw" id="label_pw_area"  class="lbl">비밀번호</label>
-							<input type="password" id="pass" name="pass" tabindex="8" placeholder="비밀번호" class="int" maxlength="16">
+							<label for="pw" id="label_pw_area"  class="lbl">이름</label>
+							<input type="text" id="name" name="name" tabindex="8" placeholder="이름" class="int" maxlength="16">
 						</span>
 			
 <!-- 						<button type="button" disabled="" title="delete" id="pw_clear" class="wrg">삭제</button> -->
-						<div class="ly_v2" id="err_capslock" style="display:none;">
-							<div class="ly_box">
-								<p><strong>Caps Lock</strong>이 켜져 있습니다.</p>							</div>
-							<span class="sp ly_point"></span>
-						</div>
+<!-- 						<div class="ly_v2" id="err_capslock" style="display:none;"> -->
+<!-- 							<div class="ly_box"> -->
+<!-- 								<p><strong>Caps Lock</strong>이 켜져 있습니다.</p>							</div> -->
+<!-- 							<span class="sp ly_point"></span> -->
+<!-- 						</div> -->
 					</div>
-					<div class="error" id="err_empty_pw" style="display:none;">비밀번호를 입력해주세요.</div>
-					<input type="submit" title="로그인" alt="로그인" tabindex="12" value="로그인" class="btn_global" onclick="nclks('log.login',this,event)">
-					
+					<div class="error" id="err_empty_pw" style="display:none;">이름을 입력해주세요.</div>
+					<input type="submit" title="비밀번호찾기" alt="비밀번호찾기" tabindex="12" value="비밀번호찾기" class="btn_global" onclick="nclks('log.login',this,event)">
+					<div class="input_row" id="id_area">
+						<span class="input_box1">
+							<label for="id" id="label_id_area" class="lbl"   >이메일</label>
+							<input type="email" id="email" name="email" tabindex="7" accesskey="L" placeholder="이메일" class="int" maxlength="41" value="">
+						</span>
+<!-- 						<button type="button" disabled="" title="delete" id="id_clear" class="wrg">삭제</button> -->
+					</div>
+					<div  id="err_empty_id" class="error" style="display:none; ">이메일을 입력해주세요.</div>
 				</fieldset>
 
 					<legend class="blind"></legend>
 					
 					<div class="sub_member">
 					<a href="./common_join.sn" >회원가입</a>&nbsp;|
-					<a href="#">아이디 찾기</a>&nbsp;|
-					<a href="./SearchPass.cl">비밀번호 찾기</a>
+					<a href="#">아이디 찾기</a>
 					</div>
 					
 					<div class="clear"></div>

@@ -94,6 +94,29 @@ ResultSet rs = null;
 		
 		return check;
 	} // idDupCheck()
+	
+	// 비번 확인
+	public int  passConfirm(String id,String pass) {
+			int check = 0;
+			
+			try {
+				con = getConnection();
+				sql = "select pass from vendor where vendor_id=? and pass = ?";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, id);
+				pstmt.setString(2, pass);
+				rs = pstmt.executeQuery();
+				if(rs.next()){
+				if (pass.equals(rs.getString("pass"))) {
+					check=1;
+					return check; // 패스워드일치
+				}}				
+			} catch (Exception e) {e.printStackTrace();
+			} finally {if (con != null) {try {con.close();} catch (Exception e) {e.printStackTrace();}	}
+				if (pstmt != null) {try {pstmt.close();} catch (Exception e) {	e.printStackTrace();}}
+				if (rs != null) {try {rs.close();} catch (Exception e) {e.printStackTrace();}}}
+			return check;
+		} // 비번 확인
 			
 	// 판매자정보 불러오기
 	public VendorBean getVendor(String id) {

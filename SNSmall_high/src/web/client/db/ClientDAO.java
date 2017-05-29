@@ -127,6 +127,29 @@ Connection con = null;
 		return check;
 	} // idDupCheck()
 	
+	// 비번 확인
+		public int  passConfirm(String id,String pass) {
+			int check = 0;
+			
+			try {
+				con = getConnection();
+				sql = "select pass from client where client_id=? and pass = ?";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, id);
+				pstmt.setString(2, pass);
+				rs = pstmt.executeQuery();
+				if(rs.next()){
+				if (pass.equals(rs.getString("pass"))) {
+					check=1;
+					return check; // 패스워드일치
+				}}				
+			} catch (Exception e) {e.printStackTrace();
+			} finally {if (con != null) {try {con.close();} catch (Exception e) {e.printStackTrace();}	}
+				if (pstmt != null) {try {pstmt.close();} catch (Exception e) {	e.printStackTrace();}}
+				if (rs != null) {try {rs.close();} catch (Exception e) {e.printStackTrace();}}}
+			return check;
+		} // 비번 확인
+	
 	// 로그인 시 아이디 비번 확인, 타입 가져오기
 	public MemberTypeBean idCheck(String id, String pass) {
 		MemberTypeBean mtb = new MemberTypeBean();
@@ -163,9 +186,36 @@ Connection con = null;
 		return mtb;
 	}// idCheck() end
 	
+	// 로그인 시 아이디 비번 확인, 타입 가져오기
+	public String SearchPass(String id, String name) {
+		String email=null;
+		try {
+			con = getConnection();
+			// 모든 회원테이블에서 아이디 확인
+			sql = "select email from client where client_id=? and name=? union select email from vendor where vendor_id=? and name=? union select email from sns where sns_id=? and name=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, id);
+			pstmt.setString(2, name);
+			pstmt.setString(3, id);
+			pstmt.setString(4, name);
+			pstmt.setString(5, id);
+			pstmt.setString(6, name);
+			rs = pstmt.executeQuery();
+			// if 문으로 제어
+			if (rs.next()) { // rs 기억장소 중에 첫번째로 옮기는 메소드next()
+					email = rs.getString(1);
+			}
+			
+			} catch (Exception e) {e.printStackTrace();}
+		finally {if(rs != null){try {rs.close();} catch (Exception ex) {}}
+		if(pstmt != null){try {pstmt.close();}catch(Exception ex){}}
+		if(con != null){try {con.close();}catch(Exception ex) {}}}
+		
+		return email;
+	}// idCheck() end
+	
 	// 메일 보내기
 	public boolean sendMail(String email, String content) throws com.sun.xml.internal.messaging.saaj.packaging.mime.MessagingException {
-
 		boolean check = false;
 		final String id = "sunju635";
 		final String pass = "Tjswn635*";

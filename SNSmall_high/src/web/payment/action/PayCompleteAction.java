@@ -42,7 +42,7 @@ public class PayCompleteAction implements Action {
 		int point = Integer.parseInt(request.getParameter("point"));
 		String snsId_str = request.getParameter("snsId_str");
 		String[] sns_id = snsId_str.split(",");
-		
+		String address = request.getParameter("address");
 		String message = request.getParameter("message");
 		String option1_str = request.getParameter("option1_str");
 		String[] option1 = option1_str.split(",");
@@ -87,6 +87,7 @@ public class PayCompleteAction implements Action {
 			pb.setMessage(message);
 			pb.setOrder_num(merchant_uid);
 			pb.setProduct_num(Integer.parseInt(product[i]));
+			pb.setAddress(address);
 			if(i>=sns_id.length){
 				pb.setSns_id("");
 			}else{

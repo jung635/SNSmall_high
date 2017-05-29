@@ -138,6 +138,12 @@ public class ClientFrontController extends HttpServlet{
 				forward = action.execute(request, response);
 			}catch(Exception e){e.printStackTrace();}
 			
+		}else if (command.equals("/SendMail.cl")) {
+			action = new MailActionToUs();
+			try{
+				forward = action.execute(request, response);
+			}catch(Exception e){e.printStackTrace();}
+			
 		}
 		
 		

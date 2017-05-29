@@ -22,15 +22,17 @@ String type= (String)request.getAttribute("type");
 ClientDAO cdao = new ClientDAO();
 PaymentDAO pdao = new PaymentDAO();
 ProductDAO prodao = new ProductDAO();
-List<List<PaymentBean>> pay_list_done= new ArrayList<>();
-List<PaymentBean> pay_list= new ArrayList<>();
+List<List<PaymentBean>> pay_list_done = new ArrayList<>();
+List<PaymentBean> pay_list= (List<PaymentBean>)request.getAttribute("pay_list");
 List<PaymentBean> pay_list_reult = new ArrayList<PaymentBean>();
+
 %>
 	<h2><%=method %></h2>
 	<%if(pay_list_done == null&&pay_list == null){ %>
 		내역이 없습니다.
 	<%}if(method.equals("payDone")){
-	pay_list_done= (List<List<PaymentBean>>)request.getAttribute("pay_list_done");%>
+	pay_list_done= (List<List<PaymentBean>>)request.getAttribute("pay_list_done");
+	%>
 	
 					<%for(int i=0; i<pay_list_done.size(); i++){
 				String merchant_uid = "";
@@ -52,7 +54,7 @@ List<PaymentBean> pay_list_reult = new ArrayList<PaymentBean>();
 							<td><%=pb.getDate() %></td>
 							<td><%=pb.getState() %></td>
 							<td><%=pb.getOrder_num() %></td>
-							<td><input type="button" onclick="location.href='ProductDetail.pr?product_num=<%=prob.getProduct_num() %>'" value="주문 상세 조회"></td>
+							<td><input type="button" onclick="location.href='PayDetail.pa?num=<%=pb.getNum() %>'" value="주문 상세 조회"></td>
 							<td><%
 							//구매자 일때 취소 및 환불
 							if(type.equals("client")){

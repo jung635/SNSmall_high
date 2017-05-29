@@ -1,6 +1,10 @@
+<<<<<<< HEAD
 <%@page import="web.blog.db.BlogDAO"%>
 <%@page import="web.blog.db.BlogBean"%>
 <%@page import="java.text.SimpleDateFormat"%>
+=======
+<%@page import="web.product.db.ProductBean"%>
+>>>>>>> e0c2ed9c028b83525ec1700e81001cc4ad906190
 <%@page import="web.sns.db.SnsBean"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -28,11 +32,16 @@
 	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="images/ico/apple-touch-icon-114-precomposed.png"> 
 	<link rel="apple-touch-icon-precomposed" sizes="72x72" href="images/ico/apple-touch-icon-72-precomposed.png"> 
 	<link rel="apple-touch-icon-precomposed" href="images/ico/apple-touch-icon-57-precomposed.png">
+<<<<<<< HEAD
 	
 </script>	
 	
 
+=======
+	<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
+>>>>>>> e0c2ed9c028b83525ec1700e81001cc4ad906190
 <script type="text/javascript">
+$('#mainimg_item').
 function snsSearch_exe(){
 	search = document.getElementById('product_name').value;
 	location.href = 'SearchSnsList.sn?search='+search;
@@ -46,8 +55,12 @@ function productSearch_exe(){
 </script>
 </head><!--/head-->
 <body>
+<<<<<<< HEAD
 
 	<script type="text/javascript" src=".main/alarm.js"></script> 
+=======
+<script type="text/javascript" src=".main/alarm.js"></script> 
+>>>>>>> e0c2ed9c028b83525ec1700e81001cc4ad906190
 	<div class="preloader">
 		<div class="preloder-wrap">
 			<div class="preloder-inner"> 
@@ -344,15 +357,37 @@ function productSearch_exe(){
 				</div>
 				<ul class="portfolio-filter text-center">
 					<li><a class="btn btn-default active" href="#" data-filter="*">All</a></li>
-					<li><a class="btn btn-default" href="#" data-filter=".html">Fashion</a></li>
-					<li><a class="btn btn-default" href="#" data-filter=".wordpress">Beauty</a></li>
-					<li><a class="btn btn-default" href="#" data-filter=".joomla">Baby</a></li>
-					<li><a class="btn btn-default" href="#" data-filter=".megento">Daily</a></li>
-					<li><a class="btn btn-default" href="#" data-filter=".megento">WorkOut</a></li>
-					<li><a class="btn btn-default" href="#" data-filter=".megento">Etc</a></li>
+					<li><a class="btn btn-default" href="#" data-filter=".fashion">Fashion</a></li>
+					<li><a class="btn btn-default" href="#" data-filter=".beauty">Beauty</a></li>
+					<li><a class="btn btn-default" href="#" data-filter=".baby">Baby</a></li>
+					<li><a class="btn btn-default" href="#" data-filter=".daily">Daily</a></li>
+					<li><a class="btn btn-default" href="#" data-filter=".gym">WorkOut</a></li>
+					<li><a class="btn btn-default" href="#" data-filter=".etc">Etc</a></li>
 				</ul><!--/#portfolio-filter-->
 				<div class="portfolio-items">
-					<div class="col-sm-3 col-xs-12 portfolio-item html">
+					<%
+					List<ProductBean> product_list = (List<ProductBean>)request.getAttribute("product_list");
+					for(int i=0; i<product_list.size(); i++){
+						ProductBean prob = product_list.get(i);
+					%>
+					<div class="col-sm-3 col-xs-12 portfolio-item <%=prob.getCategory()%>">
+						<div class="view efffect">
+							<div class="portfolio-image">
+								<%if(prob.getMain_img()==null){ %>
+    	            		    		<div><img src="./qna_img/default.jpg" style="" alt=""></div>
+        			            <%} else{%>
+										<img id="mainimg_item" src="./vendor_img/<%=prob.getMain_img() %>" alt=""></div>
+								<%} %> 
+								<div class="mask text-center">
+									<h3>Novel</h3>
+									<h4>Lorem ipsum dolor sit amet consectetur</h4>
+									<a href="#"><i class="fa fa-link"></i></a>
+									<a href="images/portfolio/big-item.jpg" data-gallery="prettyPhoto"><i class="fa fa-search-plus"></i></a>
+								</div>
+							</div>
+						</div>
+						<%} %>
+<!--					<div class="col-sm-3 col-xs-12 portfolio-item html">
 						<div class="view efffect">
 							<div class="portfolio-image">
 								<img src="images/portfolio/1.jpg" alt=""></div> 
@@ -364,7 +399,7 @@ function productSearch_exe(){
 								</div>
 							</div>
 						</div>
-						<div class="col-sm-3 col-xs-12 portfolio-item jooma">
+ 						<div class="col-sm-3 col-xs-12 portfolio-item jooma">
 							<div class="view efffect" >
 								<div class="portfolio-image">
 									<img src="images/portfolio/2.jpg" alt="">
@@ -501,7 +536,7 @@ function productSearch_exe(){
 											<a href="images/portfolio/big-item4.jpg" data-gallery="prettyPhoto"><i class="fa fa-search-plus"></i></a>
 										</div>
 									</div>
-								</div>
+								</div> -->
 							</div>
 						</div> 
 
@@ -663,7 +698,7 @@ function productSearch_exe(){
 										<div class="col-sm-6"> 
 											<div id="contact-form-section">
 												<div class="status alert alert-success" style="display: none"></div>
-												<form id="contact-form" class="contact" name="contact-form" method="post" action="send-mail.php">
+												<form id="contact-form" class="contact" name="contact-form" method="post" action="SendMail.cl">
 													<div class="form-group">
 														<input type="text" name="name" class="form-control name-field" required="required" placeholder="Your Name"></div>
 														<div class="form-group">

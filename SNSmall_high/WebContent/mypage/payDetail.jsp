@@ -57,7 +57,7 @@ ClientBean cb = cdao.getMember(id);
             		<table>
             			<tr><th>수령인</th><td><%=cb.getName() %></td></tr>
             			<tr><th>연락처</th><td><%=cb.getPhone() %></td></tr>
-            			<tr><th>주소</th><td><%=cb.getAddress() %></td></tr>
+            			<tr><th>주소</th><td><%=pb.getAddress() %></td></tr>
             			<tr><th>배송메시지</th><td><%=pb.getMessage() %></td></tr>
             		</table>
             	</div>

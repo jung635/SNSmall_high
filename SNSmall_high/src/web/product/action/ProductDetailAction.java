@@ -36,7 +36,6 @@ public class ProductDetailAction implements Action{
 
 		ProductDAO productdao = new ProductDAO();
 		ProductBean productbean = productdao.getProduct(product_num);
-		
 		QnaDAO qdao = new QnaDAO();
 		
 //		int count = qdao.getQnaCount();

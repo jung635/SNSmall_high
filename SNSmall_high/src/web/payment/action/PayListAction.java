@@ -25,15 +25,15 @@ public class PayListAction implements Action {
 		List<String> vendor_order_num_list;
 		List<List<PaymentBean>> pay_list_done = new ArrayList<>();
 		List<PaymentBean> pay_list = new ArrayList<>();
-		
 		PaymentDAO pdao = new PaymentDAO();
 		String method = request.getParameter("method");
 		int page = Integer.parseInt(request.getParameter("page"));
 		
-		
 		if(type.equals("client")){
 			client_id =(String)session.getAttribute("id");
 			order_num_list = pdao.getOrderNumList(page, client_id, method);
+			for(int i=0; i<order_num_list.size(); i++){
+			}
 			
 			if(method.equals("payDone")){
 				for (int i=0; i<order_num_list.size(); i++){
@@ -43,6 +43,7 @@ public class PayListAction implements Action {
 			}else{
 				pay_list = pdao.getPaymentById(page, client_id, method);
 				request.setAttribute("pay_list", pay_list);
+				
 			}
 		}else if(type.equals("vendor")){
 			vendor_id =(String)session.getAttribute("id");

@@ -36,6 +36,7 @@ List<PaymentBean> pb_list = pdao.getPayment(merchant_uid);
 int length = pb_list.size();
 int price = 0;
 int usedPoint = 0;
+String address = pb_list.get(0).getAddress();
 %>
 <jsp:include page="../inc/header.jsp"/>
   <!-- Page Content -->
@@ -61,6 +62,7 @@ int usedPoint = 0;
 					%>
 				 <tr><td><%=prob.getSubject() %> (<%=option_all %>)</td><td><%=prob.getPrice() %></td><td><%=pb.getAmount() %></td></tr>
 				 <%} %>
+				 <tr><td>배송 주소</td><td colspan="3" style="text-align: right;"><%=address %></td></tr>
 				 <tr><td colspan="4" style="text-align: right;">사용한 포인트: <%=usedPoint %></td></tr>
 				 <tr><td colspan="4" style="text-align: right;">총 결제 금액: <%=price-usedPoint %></td></tr>
 			</table>
@@ -68,6 +70,7 @@ int usedPoint = 0;
 	</div>
 	<div id="pay_bottom">
 	<input type="button" value="구매목록" onclick="location.href='PayList.pa'">
+	<input type="button" value="일괄 취소" onclick="location.href='PayMultipleCancel.pa?order_num=<%=merchant_uid%>'">
 	<input type="button" value="확인" onclick="location.href='Main.cl'">
 </div>
         <!-- Footer -->

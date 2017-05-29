@@ -331,6 +331,7 @@ Connection con = null;
 		if(con != null){try {con.close();}catch(Exception ex) {}}}
 	} //passModify
 	
+<<<<<<< HEAD
 	//회원정보 목록 불러오기
 	public List<ClientBean> getClientList(int startRow, int pageSize){
 		List<ClientBean> clientList = new ArrayList<ClientBean>();
@@ -359,6 +360,48 @@ Connection con = null;
 		if(con != null){try {con.close();}catch(Exception ex) {}}}
 		return clientList;
 	}
+=======
+	
+	// 메일 보내기
+		public boolean sendMail(String content, String email, String subject) throws com.sun.xml.internal.messaging.saaj.packaging.mime.MessagingException {
+
+			boolean check = false;
+			final String id = "sunju635";
+			final String pass = "Tjswn635*";
+			int port = 25;
+			String host = "smtp.naver.com";
+			String from = "sunju635@naver.com";
+			
+			try {
+				Properties props = new Properties();
+				props.put("mail.stmp.starttls.enable", "true");
+				props.put("mail.smtp.auth", "true");
+				props.put("mail.smtp.host", host);
+				props.put("mail.smtp.port", port);
+
+				Session session = Session.getDefaultInstance(props, new javax.mail.Authenticator() {
+					protected PasswordAuthentication getPasswordAuthentication() {
+						return new PasswordAuthentication(id, pass);
+					}
+				});
+				
+				session.setDebug(true);
+				Message message = new MimeMessage(session);
+				message.setFrom(new InternetAddress(from));
+				message.setRecipient(Message.RecipientType.TO, new InternetAddress("sunju635@naver.com"));
+				message.setSubject(subject);
+				message.setContent(content, "text/html; charset=EUC-KR");
+				message.setText(content);
+
+				Transport.send(message);
+				check = true;
+					
+			} catch (Exception e) {check = false;}
+		
+			return check;
+		}	
+
+>>>>>>> e0c2ed9c028b83525ec1700e81001cc4ad906190
 	
 	//검색된 회원정보 목록 불러오기
 		public List<ClientBean> getClientList(int startRow, int pageSize, String search){

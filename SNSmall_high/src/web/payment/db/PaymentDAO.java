@@ -46,8 +46,8 @@ Connection con = null;
 				max = rs.getInt(1);
 			}
 
-			sql = "insert into payment(order_num, product_num, sns_id, vendor_id, client_id, amount, message, date, num, option1, option2, option3, state, usedPoint) "
-					+ "values(?,?,?,?,?,?,?,now(),?,?,?,?,?,?); ";
+			sql = "insert into payment(order_num, product_num, sns_id, vendor_id, client_id, amount, message, date, num, option1, option2, option3, state, usedPoint, address) "
+					+ "values(?,?,?,?,?,?,?,now(),?,?,?,?,?,?,?); ";
 			pstmt = con.prepareStatement(sql);
 			for (int i = 0; i < list_pb.size(); i++) {
 				pb = (PaymentBean) list_pb.get(i);
@@ -64,6 +64,7 @@ Connection con = null;
 				pstmt.setString(11, pb.getOption3());
 				pstmt.setString(12, state);
 				pstmt.setInt(13, pb.getUsedPoint());
+				pstmt.setString(14, pb.getAddress());
 				pstmt.executeUpdate();
 			}
 		} catch(Exception e){e.printStackTrace();}
@@ -350,6 +351,7 @@ Connection con = null;
 				pb.setState(rs.getString("state"));
 				pb.setNum(rs.getInt("num"));
 				pb.setUsedPoint(rs.getInt("usedPoint"));
+				pb.setAddress(rs.getString("address"));
 
 				list.add(pb);
 			}
@@ -387,6 +389,7 @@ Connection con = null;
 				pb.setNum(rs.getInt("num"));
 				pb.setUsedPoint(rs.getInt("usedPoint"));
 				pb.setClient_id(rs.getString("client_id"));
+				pb.setAddress(rs.getString("address"));
 
 			}
 
@@ -423,6 +426,7 @@ Connection con = null;
 				pb.setNum(rs.getInt("num"));
 				pb.setUsedPoint(rs.getInt("usedPoint"));
 				pb.setClient_id(rs.getString("client_id"));
+				pb.setAddress(rs.getString("address"));
 				
 				list.add(pb);
 			}
@@ -460,6 +464,7 @@ Connection con = null;
 				pb.setState(rs.getString("state"));
 				pb.setNum(rs.getInt("num"));
 				pb.setUsedPoint(rs.getInt("usedPoint"));
+				pb.setAddress(rs.getString("address"));
 
 				list.add(pb);
 			}
@@ -510,6 +515,7 @@ Connection con = null;
 				pb.setState(rs.getString("state"));
 				pb.setNum(rs.getInt("num"));
 				pb.setUsedPoint(rs.getInt("usedPoint"));
+				pb.setAddress(rs.getString("address"));
 
 				list.add(pb);
 			}
@@ -545,6 +551,7 @@ Connection con = null;
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
 				order_num = rs.getString(1);
+				//System.out.println(order_num);
 				list.add(order_num);
 			}
 		} catch(Exception e){e.printStackTrace();}
@@ -625,6 +632,7 @@ Connection con = null;
 				pab.setOption3(rs.getString("option3"));
 				pab.setUsedPoint(rs.getInt("usedPoint"));
 				pab.setState(rs.getString("state"));
+				pab.setAddress(rs.getString("address"));
 				//한사람의 데이터 => paymentList 한칸 저장
 				paymentList.add(pab);
 			}
@@ -675,6 +683,7 @@ Connection con = null;
 				pb.setState(rs.getString("state"));
 				pb.setNum(rs.getInt("num"));
 				pb.setUsedPoint(rs.getInt("usedPoint"));
+				pb.setAddress(rs.getString("address"));
 
 				list.add(pb);
 			}
@@ -791,6 +800,7 @@ Connection con = null;
 				pb.setOption3(rs.getString("option3"));
 				pb.setUsedPoint(rs.getInt("usedPoint"));
 				pb.setState(rs.getString("state"));
+				pb.setAddress(rs.getString("address"));
 
 				paymentList.add(pb);
 			}

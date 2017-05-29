@@ -285,8 +285,7 @@ var pass_reg =/^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[~,!,@,#,$,*,(,),=,+,_,.,|]).{8,20
 							</tr>
 							<tr>
 								<td><label>Email</label></td>
-								<td><input type="email" name="email"> <input type="button" value="인증메일 발송"
-									onclick="sendmail()"></td>
+								<td><input type="email" name="email"> <input type="button" value="인증메일 발송" onclick="sendmail()"></td>
 							</tr>
 							<tr>
 								<td><label></label></td>

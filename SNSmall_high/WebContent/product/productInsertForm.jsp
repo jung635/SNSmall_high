@@ -71,11 +71,11 @@ String id = (String)session.getAttribute("id");
 								<input type="hidden" name="vendor_id" value=<%=id%>>
 								<tr>
 									<td>상품명</td>
-									<td><input type="text" name="subject"></td>
+									<td><input type="text" name="subject" width="100"></td>
 								</tr>
 								<tr>
 									<td>제품정보</td>
-									<td><input type="text" name="content"></td>
+									<td><textarea rows="15" cols="100" name="content"></textarea></td>
 								</tr>
 								<tr>
 									<td>메인제품이미지</td>

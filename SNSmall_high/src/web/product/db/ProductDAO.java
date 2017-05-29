@@ -525,13 +525,7 @@ public class ProductDAO {
 			sql="delete from product where product_num=?";
 			pstmt=con.prepareStatement(sql);
 			pstmt.setInt(1, product_num);
-			pstmt.executeUpdate();
-			
-			sql = "update product set product_num=product_num-1 where product_num>?";
-			pstmt = con.prepareStatement(sql);
-			pstmt.setInt(1, product_num);
-			pstmt.executeUpdate();
-			
+			pstmt.executeUpdate();			
 		} catch (Exception e) {e.printStackTrace();}
 		finally {if(rs != null){try {rs.close();} catch (Exception ex) {}}
 		if(pstmt != null){try {pstmt.close();}catch(Exception ex){}}

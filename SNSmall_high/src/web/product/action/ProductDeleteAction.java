@@ -22,7 +22,7 @@ public class ProductDeleteAction implements Action{
 		file2.delete();			
 		
 		ActionForward forward=new ActionForward();
-		forward.setPath("./ProductList.pr");
+		forward.setPath("./MyPage.ve");
 		forward.setRedirect(true);
 		return forward;
 	}

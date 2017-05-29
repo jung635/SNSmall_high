@@ -20,6 +20,7 @@ public class mailAction implements Action{
 		String content="인증번호는"+authNum+"입니다.";
 		ClientDAO cldao = new ClientDAO();
 		boolean check = cldao.sendMail(email,content);
+		System.out.println("여기요");
 		
 		if (check){
 			response.setContentType("text/html; charset=UTF-8"); // 서버에서 클라이언트로 보내는 내용 타입 설정

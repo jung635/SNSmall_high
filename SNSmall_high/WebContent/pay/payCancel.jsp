@@ -21,6 +21,7 @@
 <title>Insert title here</title>
 <%
 List<PaymentBean> pb_list = (List<PaymentBean>)request.getAttribute("pb_list");
+System.out.println(pb_list.size());
 List<Integer> cancel_num = (List<Integer>)request.getAttribute("cancel_num"); 
 int usedPoint = (Integer)request.getAttribute("usedPoint");
 %>
@@ -65,7 +66,7 @@ String cancel_num_str = "";
 				int product_num = pb.getProduct_num();
 				ProductBean prob = prodao.getProduct(product_num);
 				for(int j=0; j<cancel_num.size(); j++){
-					if(cancel_num.get(j)==product_num){
+					if(cancel_num.get(j)==pb.getNum()){
 						cancel_num_str += pb.getNum()+",";
 						isCancel = true;
 					}

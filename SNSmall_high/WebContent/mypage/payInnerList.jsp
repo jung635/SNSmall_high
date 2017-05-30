@@ -50,7 +50,7 @@ List<PaymentBean> pay_list_reult = new ArrayList<PaymentBean>();
 							String date = format.format(pb.getDate());
 							String subject;
 							if(prob==null){
-								%><tr><td colspan="8">삭제된 상품 입니다.</td><td><input type="button" onclick="location.href='PayCancel.pa?num=<%=pb.getNum() %>'" value="주문 취소"></td></tr> <%
+								%><tr><td colspan="8">삭제된 상품 입니다.</td><td><input type="button" onclick="location.href='PayCancel.pa?num=<%=pb.getNum()%>&merchant_uid=<%=merchant_uid%>'" value="주문 취소"></td></tr> <%
 							}else{
 								subject = prob.getSubject();
 							
@@ -77,7 +77,7 @@ List<PaymentBean> pay_list_reult = new ArrayList<PaymentBean>();
 								}else if(pb.getState().equals("cancel")){
 									%>취소된 상품<%
 								}else{
-									%><div style="width: auto;"><input type="button" onclick="location.href='PayCancel.pa?num=<%=pb.getNum() %>'" value="주문 취소"></div><%
+									%><div style="width: auto;"><input type="button" onclick="location.href='PayCancel.pa?num=<%=pb.getNum()%>&merchant_uid=<%=merchant_uid%>'" value="주문 취소"></div><%
 								}
 							
 							}	

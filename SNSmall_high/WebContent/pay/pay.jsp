@@ -166,15 +166,20 @@ function pointChanged(price, myPoint){
 		document.getElementById('myPoint').innerText = myPoint-point;
 		document.getElementById('withPoint').checked = true;
 	}
-	
-	if(myPoint-point<0){
-		alert('포인트가 부족합니다.');
-	}else if(price-point<0){
+	if(price-point<0){
 		alert('포인트를 상품 가격 이상으로 사용하실 수 없습니다.');
-		return false;
+		document.getElementById('usingPoint').value = 0;
+		document.getElementById('myPoint').innerText = myPoint;
+		document.getElementById('withPoint').checked = false;
+	}else if(myPoint-point<0){
+		alert('포인트가 부족합니다.');
+		document.getElementById('usingPoint').value = 0;
+		document.getElementById('myPoint').innerText = myPoint;
+		document.getElementById('withPoint').checked = false;
 	}else{
 		document.getElementById('price_result').innerText = price-point;
 		document.getElementById('myPoint').innerText = myPoint-point;
+		document.getElementById('withPoint').checked = true;
 	}
 }
 
@@ -185,6 +190,8 @@ function allPointPay(){
 	
 	if(price-myPoint>0){
 		alert('포인트가 부족합니다.');
+		document.getElementById('usingPoint').value = 0;
+		document.getElementById('withPoint').checked = false;
 	}else{
 		alert('전액을 포인트로 계산합니다.');
 		document.getElementById('price_result').innerText = 0;

@@ -9,31 +9,22 @@ import javax.servlet.http.HttpSession;
 import web.client.db.ClientDAO;
 import web.client.db.MemberTypeBean;
 
-public class SearchPassAction implements Action{
+public class SearchIdAction implements Action{
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
 		request.setCharacterEncoding("utf-8");
-		RandomPass rp = new RandomPass();
 		ClientDAO cldao = new ClientDAO();
-		String id = request.getParameter("id");
 		String name = request.getParameter("name");
+		String phone = request.getParameter("phone");
 		String email = request.getParameter("email");
-		//아이디랑 이름으로 가입유무 조회
-		boolean passcheck = cldao.SearchPass(id, name);
-		// 있으면 임시비번 발송 후 디비에 임시버번으로  update
-		if(passcheck){			
-			String NewPass = rp.randomPw();
-			String content="임시 비밀번호는 "+NewPass+" 입니다.";
+
+		String findId = cldao.SearchId(name, phone);
+		String content = "귀하의 아이디는 "+findId+" 입니다.";
+		if(findId != null){			
 			boolean check = cldao.sendMail(email,content);
 			if (check){
-				// 비밀번호 암호화 코드 추가
-				String npass = NewPass;
-				SecurityUtil su = new SecurityUtil();
-				String pass = su.encryptSHA256(npass);		
-				// 비밀번호 암호화 코드 추가
-				cldao.updatePass(id, name, pass);
 				response.setContentType("text/html; charset=UTF-8"); // 서버에서 클라이언트로 보내는 내용 타입 설정
 				PrintWriter out = response.getWriter();
 				out.println("<script>");

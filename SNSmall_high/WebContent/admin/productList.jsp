@@ -16,6 +16,15 @@
 	<link href="./css/inner.css" rel="stylesheet">
 	<link href="./css/main.css" rel="stylesheet"> 
 <title>Insert title here</title>
+<script type="text/javascript">
+	/* 경고문 */
+	function d_confirm() {
+		if (confirm("삭제하시겠습니까?") == true) {
+		} else {
+			return false;
+		}
+	}
+</script>
 </head>
 <body>
 <%
@@ -42,13 +51,15 @@ List<ProductBean> list = (List<ProductBean>)request.getAttribute("list");
           	<%}else{ %>
 	            <div class="col-sm-6 col-md-3">
 	            	<table style="width: 900px;">
-						<tr><td>아이디</td><td>카테고리</td><td>상품명</td><td>가격</td><td>수량</td><td>판매량</td><td>등록일</td></tr>
+						<tr><td>아이디</td><td>카테고리</td><td>상품명</td><td>가격</td><td>수량</td><td>판매량</td><td>등록일</td><td>삭제</td></tr>
 						<%for(int i=0; i<list.size(); i++){
 							ProductBean pb = (ProductBean)list.get(i);
 						%>
 							<tr><td><%=pb.getVendor_id() %></td><td><%=pb.getCategory() %></td><td><%=pb.getSubject() %></td>
 							<td><%=pb.getPrice() %></td><td><%=pb.getAmount() %></td>
-							<td><%=pb.getCount() %></td><td><%=pb.getDate() %></td></tr>
+							<td><%=pb.getCount() %></td><td><%=pb.getDate() %></td>
+							<td><a href="./ProductDeleteByAdmin.ad?product_num=<%=pb.getProduct_num()%>" onclick="return d_confirm()">삭제</a></td>
+							</tr>
 						<%} %>
 					</table>
 				</div>

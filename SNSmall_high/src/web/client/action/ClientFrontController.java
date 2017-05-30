@@ -61,6 +61,28 @@ public class ClientFrontController extends HttpServlet{
 				forward = action.execute(request, response);
 			}catch(Exception e){e.printStackTrace();}
 			
+		}else if (command.equals("/SearchId.cl")) {
+			forward = new ActionForward();
+			forward.setPath("./member/SearchId.jsp");
+			forward.setRedirect(false);
+			
+		}else if(command.equals("/SearchIdAction.cl")){
+			action = new SearchIdAction();
+			try{
+				forward = action.execute(request, response);
+			}catch(Exception e){e.printStackTrace();}
+			
+		}else if (command.equals("/SearchIdForSns.cl")) {
+			forward = new ActionForward();
+			forward.setPath("./member/SearchIdForSns.jsp");
+			forward.setRedirect(false);
+			
+		}else if(command.equals("/SearchIdForSnsAction.cl")){
+			action = new SearchIdForSnsAction();
+			try{
+				forward = action.execute(request, response);
+			}catch(Exception e){e.printStackTrace();}
+			
 		}else if(command.equals("/loginAction.cl")){
 			action = new loginAction();
 			try{

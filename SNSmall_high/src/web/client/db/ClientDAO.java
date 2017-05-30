@@ -149,6 +149,33 @@ Connection con = null;
 				if (rs != null) {try {rs.close();} catch (Exception e) {e.printStackTrace();}}}
 			return check;
 		} // 비번 확인
+		
+	// 아이디 찾아서 리턴(일반/판매자용)
+	public String SearchId(String name, String phone) {
+		String findId=null;
+
+		try {
+			con = getConnection();
+			sql = "select client_id from client where name=? and phone = ? union select vendor_id from vendor where person_name=? and phone=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, name);
+			pstmt.setString(2, phone);
+			pstmt.setString(3, name);
+			pstmt.setString(4, phone);
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+			 findId = rs.getString(1);	
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (con != null) {try {con.close();} catch (Exception e) {e.printStackTrace();}}
+			if (pstmt != null) {try {pstmt.close();} catch (Exception e) {e.printStackTrace();}}
+			if (rs != null) {try {rs.close();} catch (Exception e) {e.printStackTrace();}}
+		}
+		return findId;
+	} // 비번 확인
 	
 	// 로그인 시 아이디 비번 확인, 타입 가져오기
 	public MemberTypeBean idCheck(String id, String pass) {
@@ -186,13 +213,13 @@ Connection con = null;
 		return mtb;
 	}// idCheck() end
 	
-	// 로그인 시 아이디 비번 확인, 타입 가져오기
-	public String SearchPass(String id, String name) {
-		String email=null;
+	// 비번찾기용 가입유무 확인
+	public boolean SearchPass(String id, String name) {
+		boolean check=false;
 		try {
 			con = getConnection();
 			// 모든 회원테이블에서 아이디 확인
-			sql = "select email from client where client_id=? and name=? union select email from vendor where vendor_id=? and name=? union select email from sns where sns_id=? and name=?";
+			sql = "select pass from client where client_id=? and name=? union select pass from vendor where vendor_id=? and person_name=? union select pass from sns where sns_id=? and name=?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, id);
 			pstmt.setString(2, name);
@@ -203,7 +230,8 @@ Connection con = null;
 			rs = pstmt.executeQuery();
 			// if 문으로 제어
 			if (rs.next()) { // rs 기억장소 중에 첫번째로 옮기는 메소드next()
-					email = rs.getString(1);
+					check=true;
+					return check;
 			}
 			
 			} catch (Exception e) {e.printStackTrace();}
@@ -211,8 +239,38 @@ Connection con = null;
 		if(pstmt != null){try {pstmt.close();}catch(Exception ex){}}
 		if(con != null){try {con.close();}catch(Exception ex) {}}}
 		
-		return email;
-	}// idCheck() end
+		return check;
+	}// 비번찾기
+	
+	// 임시비번 이메일 전송 후 디비에 업데이트
+	public void updatePass(String id, String name, String pass) {
+		
+		try {
+			con = getConnection();
+			// 모든 회원테이블에서 아이디 확인
+			sql = "update client set pass=? where client_id=? and name=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, pass);
+			pstmt.setString(2, id);
+			pstmt.setString(3, name);
+			pstmt.executeUpdate();
+			sql="update vendor set pass=? where vendor_id=? and person_name=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, pass);
+			pstmt.setString(2, id);
+			pstmt.setString(3, name);
+			pstmt.executeUpdate();
+			sql="update sns set pass=? where sns_id=? and name=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, pass);
+			pstmt.setString(2, id);
+			pstmt.setString(3, name);
+			pstmt.executeUpdate();
+			} catch (Exception e) {e.printStackTrace();}
+		finally {if(rs != null){try {rs.close();} catch (Exception ex) {}}
+		if(pstmt != null){try {pstmt.close();}catch(Exception ex){}}
+		if(con != null){try {con.close();}catch(Exception ex) {}}}
+	}// 임시비번 이메일 전송 후 디비에 업데이트
 	
 	// 메일 보내기
 	public boolean sendMail(String email, String content) throws com.sun.xml.internal.messaging.saaj.packaging.mime.MessagingException {

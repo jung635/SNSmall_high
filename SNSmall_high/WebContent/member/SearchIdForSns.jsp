@@ -27,21 +27,31 @@
 	
 	<script type="text/javascript">
 	
-	//Id,pass제어 
+	//Id,pass제어	
 	function confirmSubmit() {
-	if(document.fr.id.value == "") {
-		alert("ID를 입력하세요");
-		document.fr.id.focus();
-		if(err_empty_id.style.display == 'none'){
-			err_empty_id.style.display = 'block'
-			err_empty_pw.style.display = 'none'}
+	if(document.fr.name.value == "") {
+		alert("이름을 입력하세요");
+		document.fr.name.focus();
+		if(err_empty_name.style.display == 'none'){
+			err_empty_name.style.display = 'block'
+			err_empty_home.style.display = 'none'
+			err_empty_email.style.display = 'none'}
 		return false;
-	}else if(document.fr.pass.value == ""){
-		alert("Password를 입력하세요");
-		document.fr.pass.focus();
-		if(err_empty_pw.style.display == 'none'){
-			err_empty_pw.style.display = 'block'
-			err_empty_id.style.display = 'none'}
+	}else if(document.fr.home.value == ""){
+		alert("홈페이지 주소를 입력하세요");
+		document.fr.home.focus();
+		if(err_empty_home.style.display == 'none'){
+			err_empty_home.style.display = 'block'
+			err_empty_email.style.display = 'none'
+			err_empty_name.style.display = 'none'}
+		return false;
+	}else if(document.fr.email.value == ""){
+		alert("이메일을 입력하세요");
+		document.fr.email.focus();
+		if(err_empty_email.style.display == 'none'){
+			err_empty_email.style.display = 'block'
+			err_empty_home.style.display = 'none'
+			err_empty_name.style.display = 'none'}
 		return false;
 	}
 	
@@ -51,21 +61,7 @@
 	
 </head><!--/head-->
 <body>
-<%
-	String url = "";
-	String returnUrl = request.getParameter("returnUrl");
-	if(returnUrl==null){returnUrl = request.getHeader("referer");}
 
-	String product_num = request.getParameter("product_num");
-	if(product_num==null){product_num="0";}
-	String sns_id = request.getParameter("sns_id");
-	if(sns_id==null){
-		url = "./loginAction.cl";
-	}else{
-		url = "./loginProductAction.cl";
-	}
-
-%>
 	<div class="preloader">
 		<div class="preloder-wrap">
 			<div class="preloder-inner"> 
@@ -87,38 +83,43 @@
 			<div class="col-sm-3"></div>
 			<div class="col-sm-6">
 			
-				 <div class="login_subject">comming soon Logo</div> 
-				<form action="<%=url %>" id="join" name="fr" onsubmit="return confirmSubmit()">
-					<input type="hidden" name="returnUrl" value="<%=returnUrl%>">
-					<input type="hidden" name="product_num" value="<%=product_num%>">
-					<input type="hidden" name="sns_id" value="<%=sns_id%>">
-					<fieldset class="login_form">
+				 <div class="login_subject">ID 알려줌 페이지</div> 
+				<form action="SearchIdForSnsAction.cl" id="join" name="fr" onsubmit="return confirmSubmit()">
+					<fieldset class="login_form">				
 					
-					<div class="input_row" id="id_area">
+					<div class="input_row" id="name_area">
 						<span class="input_box1">
-							<label for="id" id="label_id_area" class="lbl"   >아이디</label>
-							<input type="text" id="id" name="id" tabindex="7" accesskey="L" placeholder="아이디" class="int" maxlength="41" value="">
+							<label for="name" id="label_name_area" class="lbl"   >이름</label>
+							<input type="text" id="name" name="name" tabindex="7" accesskey="L" placeholder="이름" class="int" maxlength="41" value="">
 						</span>
 <!-- 						<button type="button" disabled="" title="delete" id="id_clear" class="wrg">삭제</button> -->
 					</div>
-					<div  id="err_empty_id" class="error" style="display:none; ">아이디를 입력해주세요.</div>
+					<div  id="err_empty_name" class="error" style="display:none; ">이름을 입력해주세요.</div>
 					
-					<div class="input_row" id="pw_area">
+					<div class="input_row" id="home_area">
 						<span class="input_box">
-							<label for="pw" id="label_pw_area"  class="lbl">비밀번호</label>
-							<input type="password" id="pass" name="pass" tabindex="8" placeholder="비밀번호" class="int" maxlength="16">
+							<label for="home" id="label_phone_area"  class="lbl">홈페이지</label>
+							<input type="text" id="home" name="home" tabindex="8" placeholder="홈페이지" class="int" maxlength="16">
 						</span>
 			
 <!-- 						<button type="button" disabled="" title="delete" id="pw_clear" class="wrg">삭제</button> -->
-						<div class="ly_v2" id="err_capslock" style="display:none;">
-							<div class="ly_box">
-								<p><strong>Caps Lock</strong>이 켜져 있습니다.</p>							</div>
-							<span class="sp ly_point"></span>
-						</div>
+<!-- 						<div class="ly_v2" id="err_capslock" style="display:none;"> -->
+<!-- 							<div class="ly_box"> -->
+<!-- 								<p><strong>Caps Lock</strong>이 켜져 있습니다.</p>							</div> -->
+<!-- 							<span class="sp ly_point"></span> -->
+<!-- 						</div> -->
 					</div>
-					<div class="error" id="err_empty_pw" style="display:none;">비밀번호를 입력해주세요.</div>
-					<input type="submit" title="로그인" alt="로그인" tabindex="12" value="로그인" class="btn_global" onclick="nclks('log.login',this,event)">
+					<div class="error" id="err_empty_home" style="display:none;">홈페이지 주소를 입력해주세요.</div>
 					
+					<div class="input_row" id="email_area">
+						<span class="input_box1">
+							<label for="email" id="label_email_area" class="lbl"   >이메일</label>
+							<input type="email" id="email" name="email" tabindex="7" accesskey="L" placeholder="이메일" class="int" maxlength="41" value="">
+						</span>
+<!-- 						<button type="button" disabled="" title="delete" id="id_clear" class="wrg">삭제</button> -->
+					</div>
+					<div  id="err_empty_email" class="error" style="display:none; ">이메일을 입력해주세요.</div>
+					<input type="submit" title="아이디찾기" alt="아이디찾기" tabindex="12" value="아이디찾기" class="btn_global">									
 				</fieldset>
 
 					<legend class="blind"></legend>
@@ -127,8 +128,7 @@
 					<a href="./common_join.sn" >회원가입</a>&nbsp;|
 					<a href="./login.cl" >로그인</a>&nbsp;|
 					<a href="./SearchId.cl">아이디 찾기</a>&nbsp;|
-					<a href="./SearchPass.cl">비밀번호 찾기</a><br>
-					<a href="./SearchIdForSns.cl">SNS 아이디 찾기</a>
+					<a href="./SearchPass.cl">비밀번호 찾기</a>
 					</div>
 					
 					<div class="clear"></div>

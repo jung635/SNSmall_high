@@ -58,21 +58,7 @@
 	
 </head><!--/head-->
 <body>
-<%
-	String url = "";
-	String returnUrl = request.getParameter("returnUrl");
-	if(returnUrl==null){returnUrl = request.getHeader("referer");}
 
-	String product_num = request.getParameter("product_num");
-	if(product_num==null){product_num="0";}
-	String sns_id = request.getParameter("sns_id");
-	if(sns_id==null){
-		url = "./SearchPassAction.cl";
-	}else{
-		url = "./loginProductAction.cl";
-	}
-
-%>
 	<div class="preloader">
 		<div class="preloder-wrap">
 			<div class="preloder-inner"> 
@@ -94,11 +80,8 @@
 			<div class="col-sm-3"></div>
 			<div class="col-sm-6">
 			
-				 <div class="login_subject">comming soon Logo</div> 
-				<form action="<%=url %>" id="join" name="fr" onsubmit="return confirmSubmit()">
-					<input type="hidden" name="returnUrl" value="<%=returnUrl%>">
-					<input type="hidden" name="product_num" value="<%=product_num%>">
-					<input type="hidden" name="sns_id" value="<%=sns_id%>">
+				 <div class="login_subject">비밀번호 알려줌 페이지</div> 
+				<form action="SearchPassAction.cl" id="join" name="fr" onsubmit="return confirmSubmit()">
 					<fieldset class="login_form">
 					
 					<div class="input_row" id="id_area">
@@ -123,7 +106,6 @@
 <!-- 						</div> -->
 					</div>
 					<div class="error" id="err_empty_pw" style="display:none;">이름을 입력해주세요.</div>
-					<input type="submit" title="비밀번호찾기" alt="비밀번호찾기" tabindex="12" value="비밀번호찾기" class="btn_global" onclick="nclks('log.login',this,event)">
 					<div class="input_row" id="id_area">
 						<span class="input_box1">
 							<label for="id" id="label_id_area" class="lbl"   >이메일</label>
@@ -132,13 +114,16 @@
 <!-- 						<button type="button" disabled="" title="delete" id="id_clear" class="wrg">삭제</button> -->
 					</div>
 					<div  id="err_empty_id" class="error" style="display:none; ">이메일을 입력해주세요.</div>
+					<input type="submit" title="비밀번호찾기" alt="비밀번호찾기" tabindex="12" value="비밀번호찾기" class="btn_global">									
 				</fieldset>
 
 					<legend class="blind"></legend>
 					
 					<div class="sub_member">
 					<a href="./common_join.sn" >회원가입</a>&nbsp;|
-					<a href="#">아이디 찾기</a>
+					<a href="./login.cl" >로그인</a>&nbsp;|
+					<a href="./SearchId.cl">아이디 찾기</a><br>
+					<a href="./SearchIdForSns.cl">SNS 아이디 찾기</a>
 					</div>
 					
 					<div class="clear"></div>

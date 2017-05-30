@@ -31,7 +31,6 @@ public class PayDepositDoneAction implements Action{
 		ProductDAO prodao = new ProductDAO();
 		PaymentBean pb = pdao.getPaymentByNum(num);
 		SnsDAO sdao = new SnsDAO();
-		ProductBean prob = prodao.getProduct(pb.getProduct_num());
 		PaymentBean pb_sns = null;
 		int sns_profit = 0;
 		int add_point = 0;
@@ -72,7 +71,7 @@ public class PayDepositDoneAction implements Action{
 		
 		
 		//pdao.rankUpdate(pb.getSns_id(), all_sns_sell+Math.round(price_result), sb_sns.getRank());
-		long money = all_sns_sell+Math.round(pb.getPay_price());
+		long money = all_sns_sell+pb.getPay_price();
 		AlarmBean ab = new AlarmBean();
 		AlarmDAO adao = new AlarmDAO();
 		if(sb != null){

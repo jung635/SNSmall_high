@@ -31,7 +31,6 @@ public class PayCancelAction implements Action {
 		int add_point = 0;
 		int vendor_profit = 0;
 		int company_profit = 0;
-		double price_result = pb.getPay_price();
 		PaymentBean pb_sns = null;
 		long all_sns_sell = 0L;
 		List<PaymentBean> list_sns = new ArrayList<>();
@@ -51,15 +50,15 @@ public class PayCancelAction implements Action {
 			SnsBean sb = sdao.getSnsDetail(pb.getSns_id());
 			if(sb != null){
 				if(sb.getRank().equals("basic")){
-					sns_profit = (int)(price_result*0.05)/10*10;
+					sns_profit = (int)(pb.getPay_price()*0.05)/10*10;
 				}else if(sb.getRank().equals("plus")){
-					sns_profit = (int)(price_result*0.1)/10*10;
+					sns_profit = (int)(pb.getPay_price()*0.1)/10*10;
 				}else{
-					sns_profit = (int)(price_result*0.2/10*10);
+					sns_profit = (int)(pb.getPay_price()*0.2/10*10);
 				}
 			}
-			add_point = (int)(price_result*0.01)/10*10;
-			company_profit = (int)(price_result*0.1)/10*10;
+			add_point = (int)(pb.getPay_price()*0.01)/10*10;
+			company_profit = (int)(pb.getPay_price()*0.1)/10*10;
 			vendor_profit = pb.getPay_price()-company_profit-sns_profit;
 			
 	
@@ -79,7 +78,7 @@ public class PayCancelAction implements Action {
 				}
 			}
 			
-			long money = all_sns_sell+Math.round(price_result);
+			long money = all_sns_sell+pb.getPay_price();
 			if(sb != null){
 				if( sb.getRank().equals("plus")){
 					if(money<277360){//테스트

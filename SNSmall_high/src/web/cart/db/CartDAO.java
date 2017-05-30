@@ -69,6 +69,7 @@ public List<CartBean> getCartList(String client_id){
 				if(rs2.next()){
 				CartBean cb = new CartBean();
 				cb.setNum(rs.getInt("num"));
+				cb.setClient_id(rs.getString("client_id"));
 				cb.setProduct_num(rs.getInt("product_num"));
 				cb.setSns_id(rs.getString("sns_id"));
 				cb.setVendor_id(rs.getString("vendor_id"));

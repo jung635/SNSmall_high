@@ -15,6 +15,7 @@ public class CartAddAction implements Action{
 		
 		HttpSession session = request.getSession();
 		String client_id = (String)session.getAttribute("id");
+		String sns_id = (String)session.getAttribute("link_id");
 		ActionForward forward = new ActionForward();
 		
 		
@@ -36,6 +37,7 @@ public class CartAddAction implements Action{
 		cb.setOption3(option3);
 		cb.setPrice(allprice);
 		cb.setAmount(amount);
+		cb.setSns_id(sns_id);
 		//sns 해야됨
 		cdao.CartAdd(cb);
 		forward.setRedirect(true);

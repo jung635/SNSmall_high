@@ -45,15 +45,20 @@ List<PaymentBean> pay_list_reult = new ArrayList<PaymentBean>();
 							PaymentBean pb = pay_list_reult.get(j);
 							merchant_uid = pb.getOrder_num();
 							ProductBean prob = prodao.getProduct(pb.getProduct_num()); 
-							int price = pb.getAmount()*prob.getPrice();
+							int price=0;
 							SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 							String date = format.format(pb.getDate());
-							String subject = prob.getSubject();
-							if(prob.getContent().length()>3){subject =prob.getContent().substring(0,4)+"...";}
+							String subject;
+							if(prob.getSubject().equals("null")){
+								%><tr><td>삭제된 상품 입니다.</td></tr> <%
+							}else{
+								subject = prob.getSubject();
 							
-							%>
 							
-						<tr>
+						%><tr><%
+					
+							price = pb.getAmount()*prob.getPrice();
+								if(prob.getContent().length()>3){subject =prob.getContent().substring(0,4)+"...";}%>
 							<td><img src="./vendor_img/<%=prob.getMain_img() %>" style="width: 130px; height: 90px"></div></td>
 							<td><%=subject %></td>
 							<td><%=prob.getContent() %></td>
@@ -91,7 +96,7 @@ List<PaymentBean> pay_list_reult = new ArrayList<PaymentBean>();
 								}else{
 									%>비고<%
 								}
-							} %></td>
+							}} %></td>
 						</tr>
 						<%}%>
 					</table>

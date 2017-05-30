@@ -16,23 +16,25 @@ public class SnsSale implements Action{
 		System.out.println("SnsSale execute()");
 		
 		// 세션값 제어
-//		HttpSession session=request.getSession();
-//		String id = (String)session.getAttribute("wndms4142");
-
-		String id = "abc";
-		HttpSession session = request.getSession();
+		HttpSession session=request.getSession();
+		String id = (String)session.getAttribute("id");
+		
 		session.setAttribute("id", id);
-		System.out.println("id : "+id);
+		//System.out.println("id : "+id);
 		
 		String snsState=request.getParameter("snsState");
-				
+		if(snsState==null){
+			snsState="";
+		}
+		System.out.println("snsState 1 : "+request.getParameter("snsState"));
+		System.out.println("snsState 2 : "+snsState);
 		// PaymentDAO padao 객체 생성
 		PaymentDAO padao = new PaymentDAO();
 		
 //-----------------------------------------------------		
 		//판매내역 전체 개수
 		// int count = padao.getPaymentCount() 메서드 호출
-		int count = padao.getPaymentCount();
+		int count = padao.getPaymentCount(snsState, id);
 		
 		//한 페이지에 보여줄 글의 개수
 		int pageSize=5;
@@ -66,7 +68,8 @@ public class SnsSale implements Action{
 		}		
 		
 		// 저장
-		
+		//System.out.println("snsState 3 : "+snsState);
+		request.setAttribute("snsState", snsState); // String형
 		request.setAttribute("paymentList", paymentList); // 리스트형
 		request.setAttribute("pageNum", pageNum); // String형
 		request.setAttribute("count", count); // int형

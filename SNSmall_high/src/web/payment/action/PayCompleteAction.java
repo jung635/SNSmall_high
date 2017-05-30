@@ -15,6 +15,7 @@ import javax.servlet.http.HttpSession;
 
 import web.alarm.db.AlarmBean;
 import web.alarm.db.AlarmDAO;
+import web.cart.db.CartDAO;
 import web.payment.db.PaymentBean;
 import web.payment.db.PaymentDAO;
 import web.product.db.ProductBean;
@@ -127,6 +128,10 @@ public class PayCompleteAction implements Action {
 			list_pb.add(pb);
 			//사용한 포인트 빼기
 			pdao.subPoint(point_each, id);
+			//cart 제외
+			//CartDAO cdao = new CartDAO();
+			//cdao.cartDelete(id, pb.getProduct_num());
+			
 			//amount 빼기
 			if(method.equals("deposit")){
 				pdao.subAmount(pb.getAmount(), pb.getProduct_num());

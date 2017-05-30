@@ -99,7 +99,7 @@
 					<div class="input_row" id="home_area">
 						<span class="input_box">
 							<label for="home" id="label_phone_area"  class="lbl">홈페이지</label>
-							<input type="text" id="home" name="home" tabindex="8" placeholder="홈페이지" class="int" maxlength="16">
+							<input type="text" id="home" name="home" tabindex="8" placeholder="홈페이지" class="int" maxlength="40">
 						</span>
 			
 <!-- 						<button type="button" disabled="" title="delete" id="pw_clear" class="wrg">삭제</button> -->

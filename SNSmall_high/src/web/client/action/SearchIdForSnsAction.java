@@ -17,10 +17,10 @@ public class SearchIdForSnsAction implements Action{
 		request.setCharacterEncoding("utf-8");
 		ClientDAO cldao = new ClientDAO();
 		String name = request.getParameter("name");
-		String phone = request.getParameter("phone");
+		String home = request.getParameter("home");
 		String email = request.getParameter("email");
 
-		String findId = cldao.SearchId(name, phone);
+		String findId = cldao.SearchIdForSns(name, home);
 		String content = "귀하의 아이디는 "+findId+" 입니다.";
 		if(findId != null){			
 			boolean check = cldao.sendMail(email,content);

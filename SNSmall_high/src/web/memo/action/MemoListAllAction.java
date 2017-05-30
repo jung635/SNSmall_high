@@ -1,4 +1,4 @@
-package web.sns.action;
+package web.memo.action;
 
 import java.util.List;
 
@@ -6,54 +6,46 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import web.payment.db.PaymentDAO;
+import web.memo.db.MemoDAO;
 
-
-public class SnsSale implements Action{
+public class MemoListAllAction implements Action{
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		System.out.println("SnsSale execute()");
-		
+
+		System.out.println("Memo List All execute()");
+
 		// 세션값 제어
 		HttpSession session=request.getSession();
 		String id = (String)session.getAttribute("id");
 		
-		session.setAttribute("id", id);
-		//System.out.println("id : "+id);
-		
-		String snsState=request.getParameter("snsState");
-		if(snsState==null){
-			snsState="";
-		}
-		System.out.println("snsState 1 : "+request.getParameter("snsState"));
-		System.out.println("snsState 2 : "+snsState);
-		// PaymentDAO padao 객체 생성
-		PaymentDAO padao = new PaymentDAO();
-		
-//-----------------------------------------------------		
-		//판매내역 전체 개수
-		// int count = padao.getPaymentCount() 메서드 호출
-		int count = padao.getPaymentCount(snsState, id);
-		
-		//한 페이지에 보여줄 글의 개수
-		int pageSize=5;
+		System.out.println("id : "+id);
+		// MemoDAO medao 객체 생성
+		MemoDAO medao = new MemoDAO();
+				
+		// 메모 전체글 개수
+		// int count = medao.getMemoCount() 메서드 호출
+		int count = medao.getMemoCountAll(id);
+
+		// 한 페이지에 보여줄 글의 개수
+		int pageSize=10;
 		//현페이지가 몇 페이지인지 가져오기
 		String pageNum = request.getParameter("pageNum");
 		if(pageNum==null){  // pageNum없으면
 			pageNum="1";	// 무조건 1페이지
 		}
-		
+
 		//시작행 구하기 1   11   21   31...    <= pageNum, pageSize 조합
 		int currentPage=Integer.parseInt(pageNum);
 		int startRow = (currentPage-1)*pageSize+1;
 
 		//끝행 구하기(오라클 끝행 필요함.)
 		int endRow = currentPage*pageSize;
-		
-		// List paymentList = 매서드 호출 getPaymentList()
-		List paymentList = (List)padao.getPaymentList(snsState, id, startRow, pageSize);
 
+
+		// List memoListAll = 매서드 호출 getMemoListAll(시작행, 몇개)
+		List memoListAll=medao.getMemoListAll(id, startRow, pageSize);
+				
 		//전체 페이지 수 구하기   게시판글  50개 한 화면에 보여줄 글개수 10 => 5 페이지
 		//						56개 한 화면에 보여줄 글개수 10 => 5 페이지 + 1(나머지) =>6
 		int pageCount =count/pageSize + (count%pageSize==0 ? 0 : 1);
@@ -65,25 +57,24 @@ public class SnsSale implements Action{
 		int endPage=startPage+pageBlock-1;
 		if(endPage > pageCount){
 			endPage=pageCount;
-		}		
-		
-		// 저장
-		//System.out.println("snsState 3 : "+snsState);
-		request.setAttribute("snsState", snsState); // String형
-		request.setAttribute("paymentList", paymentList); // 리스트형
+		}
+			
+		// 데이터 저장 count   boardList   pageCount   pageNum   pageBlock   startPage   endPage
+				
+		request.setAttribute("memoListAll", memoListAll); // 리스트형
 		request.setAttribute("pageNum", pageNum); // String형
 		request.setAttribute("count", count); // int형
 		request.setAttribute("pageCount", pageCount); // int형
 		request.setAttribute("pageBlock", pageBlock); // int형
 		request.setAttribute("startPage", startPage); // int형
 		request.setAttribute("endPage", endPage); // int형
-		
-
-		// 이동  ./mypage/list.jsp
+				
+		// 이동  ./mypage/memo_list.jsp
 		ActionForward forward = new ActionForward();
-		forward.setPath("./mypage/sns_sale_list.jsp");
+		forward.setPath("./mypage/memo_list_all.jsp");
 		forward.setRedirect(false);
 		return forward;
+		
 	}
 
 }

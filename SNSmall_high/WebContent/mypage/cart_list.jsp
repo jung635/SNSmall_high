@@ -39,7 +39,7 @@ function myfunction(){
 			product_num += document.form1.product_num_input[i].value+","; 
 			amount += document.form1.amount_input[i].value+","; 
 			vendor_id += document.form1.vendor_id_input[i].value+","; 
-			if(cb.getSns_id()==null){
+			if((document.form1.sns_id_input[i].value)==null){
 				sns_id=" ,";
 			}else{
 				sns_id += document.form1.sns_id_input[i].value+","; 
@@ -51,15 +51,15 @@ function myfunction(){
 		}
 	}
 	document.getElementById("price").innerText=sum;
-	document.getElementById("client_id").innerText=client_id;
-	document.getElementById("product_num").innerText=product_num;
-	document.getElementById("amount").innerText=amount;
-	document.getElementById("vendor_id").innerText=vendor_id;
-	document.getElementById("sns_id").innerText=sns_id;
-	document.getElementById("option1").innerText=option1;
-	document.getElementById("option2").innerText=option2;
-	document.getElementById("option3").innerText=option3;
-	document.getElementById("num").innerText=num;
+	document.getElementById("client_id").value=client_id;
+	document.getElementById("product_num").value=product_num;
+	document.getElementById("amount").value=amount;
+	document.getElementById("vendor_id").value=vendor_id;
+	document.getElementById("sns_id").value=sns_id;
+	document.getElementById("option1").value=option1;
+	document.getElementById("option2").value=option2;
+	document.getElementById("option3").value=option3;
+	document.getElementById("num").value=num;
 }
 
 
@@ -117,7 +117,15 @@ for(int i=0;i<cl.size();i++){
 	int price=cb.getPrice();
 	ProductBean prob = pdao.getProduct(cb.getProduct_num()); 
 %>
-
+<input type="hidden" name = "num_input" value="<%=cb.getNum()%>">
+<input type="hidden" name = "client_id_input" value="<%=cb.getClient_id()%>">
+<input type="hidden" name = "product_num_input" value="<%=cb.getProduct_num()%>">
+<input type="hidden" name = "amount_input" value="<%=cb.getAmount()%>">
+<input type="hidden" name = "vendor_id_input" value="<%=cb.getVendor_id()%>">
+<input type="hidden" name = "sns_id_input" value="<%=cb.getSns_id()%>">
+<input type="hidden" name = "option1_input" value="<%=cb.getOption1()%>">
+<input type="hidden" name = "option2_input" value="<%=cb.getOption2()%>">
+<input type="hidden" name = "option3_input" value="<%=cb.getOption3()%>">
 <input type="checkbox" name="check" value="<%=cb.getPrice()%>" onchange="myfunction()" checked>
 
 <!-- 장바구니 정보 -->
@@ -144,30 +152,22 @@ for(int i=0;i<cl.size();i++){
 <a href="./Cart_Delete.ca?num=<%=cb.getNum()%>"><input type="button" name="delete" value="삭제"></a>
 <br>
 <!-- 정보 끝 -->
-<input type="hidden" name = "num_input" value="<%=cb.getNum()%>">
-<input type="hidden" name = "client_id_input" value="<%=cb.getClient_id()%>">
-<input type="hidden" name = "product_num_input" value="<%=cb.getProduct_num()%>">
-<input type="hidden" name = "amount_input" value="<%=cb.getAmount()%>">
-<input type="hidden" name = "vendor_id_input" value="<%=cb.getVendor_id()%>">
-<input type="hidden" name = "sns_id_input" value="<%=cb.getSns_id()%>">
-<input type="hidden" name = "option1_input" value="<%=cb.getOption1()%>">
-<input type="hidden" name = "option2_input" value="<%=cb.getOption2()%>">
-<input type="hidden" name = "option3_input" value="<%=cb.getOption3()%>">
+
  <br>
 <%sum = sum+price;} 
 %>
 
 <br>
 총가격 :<span id="price"><%=sum %></span>
-<input type="hidden" name = "num" value="<%=num%>">
-<input type="hidden" name = "client_id" value="<%=client_id%>">
-<input type="hidden" name = "product_num" value="<%=product_num%>">
-<input type="hidden" name = "amount" value="<%=amount%>">
-<input type="hidden" name = "vendor_id" value="<%=vendor_id%>">
-<input type="hidden" name = "sns_id" value="<%=sns_id%>">
-<input type="hidden" name = "option1" value="<%=option1%>">
-<input type="hidden" name = "option2" value="<%=option2%>">
-<input type="hidden" name = "option3" value="<%=option3%>">
+<input type="hidden" name = "num" id="num" value="<%=num%>">
+<input type="hidden" name = "client_id" id="client_id" value="<%=client_id%>">
+<input type="hidden" name = "product_num" id="product_num" value="<%=product_num%>">
+<input type="hidden" name = "amount" id="amount" value="<%=amount%>">
+<input type="hidden" name = "vendor_id" id="vendor_id" value="<%=vendor_id%>">
+<input type="hidden" name = "sns_id" id="sns_id" value="<%=sns_id%>">
+<input type="hidden" name = "option1" id="option1" value="<%=option1%>">
+<input type="hidden" name = "option2" id="option2" value="<%=option2%>">
+<input type="hidden" name = "option3" id="option3" value="<%=option3%>">
 <%
 
 //체크가 되어있으면 합하기 아니면 합하기 X

@@ -24,7 +24,7 @@ public class CartListAction implements Action{
 		
 		response.setContentType("text/html; charset=UTF-8");
 		PrintWriter out = response.getWriter();
-		if(client_id.equals(null)){
+		if(client_id==null){
 			out.println("<script>");
 			out.println("alert('회원만 볼수있습니다.');");
 			out.println("history.back();");

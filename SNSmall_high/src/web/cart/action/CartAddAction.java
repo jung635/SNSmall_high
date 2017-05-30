@@ -1,5 +1,7 @@
 package web.cart.action;
 
+import java.io.PrintWriter;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -18,6 +20,16 @@ public class CartAddAction implements Action{
 		String sns_id = (String)session.getAttribute("link_id");
 		ActionForward forward = new ActionForward();
 		
+		response.setContentType("text/html; charset=UTF-8");
+		PrintWriter out = response.getWriter();
+		if(client_id==null){
+			out.println("<script>");
+			out.println("alert('로그인이 필요한 서비스 입니다.');");
+			out.println("history.back();");
+			out.println("</script>");
+			out.close();
+			return null;
+		}
 		
 		int product_num = Integer.parseInt(request.getParameter("product_num"));
 		String vendor_id = request.getParameter("vendor_id");

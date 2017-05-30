@@ -27,6 +27,11 @@ String type = (String)session.getAttribute("type");
 String product_str = request.getParameter("product_num");
 String amount_str = request.getParameter("amount"); //갯수
 String vendorId_str = request.getParameter("vendor_id");
+String cart_str = "";
+if(request.getParameter("cart_num") != null){
+	cart_str = request.getParameter("cart_num");
+}
+System.out.println("cart_num: "+ cart_str);
 String option1_str = "";
 String option2_str = "";
 String option3_str = "";
@@ -101,6 +106,7 @@ function card(){
 		   option3_str : '<%=option3_str%>',
 		   method : method,
 		   address : address,
+		   cart_str : '<%=cart_str%>'
 	   }
 	}, function(rsp) {
 	    if ( rsp.success ) {
@@ -122,6 +128,7 @@ function card(){
 	        		option3_str : rsp.custom_data.option3_str,
 	        		method : rsp.custom_data.method,
 	        		address : rsp.custom_data.address,
+	        		cart_str : rsp.custom_data.cart_str,
 	    		},
 	    		success : function(result, status){
 	    			console.log(result);
@@ -257,6 +264,7 @@ String address = cdao.getMember(id).getAddress();
 		<input type="hidden" name="option2_str" value='<%=option2_str %>'>
 		<input type="hidden" name="option3_str" value='<%=option3_str %>'>
 		<input type="hidden" name="merchant_uid" value='<%=merchant_uid %>'>
+		<input type="hidden" name="cart_str" value='<%=cart_str %>'>
 		<div id="title">
 			<h1>주문/결제</h1>
 			<hr>

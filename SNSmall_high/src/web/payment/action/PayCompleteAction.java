@@ -52,6 +52,8 @@ public class PayCompleteAction implements Action {
 		String option3_str = request.getParameter("option3_str");
 		String[] option3 = option3_str.split(",");
 		String method = request.getParameter("method");
+		String cart_str = request.getParameter("cart_str");
+		String[] cart_num = cart_str.split(",");
 		String state = "";
 		if (method.equals("card")||method.equals("withPoint"))
 			state = "payDone";
@@ -129,8 +131,9 @@ public class PayCompleteAction implements Action {
 			//사용한 포인트 빼기
 			pdao.subPoint(point_each, id);
 			//cart 제외
-			//CartDAO cdao = new CartDAO();
-			//cdao.cartDelete(id, pb.getProduct_num());
+			CartDAO cdao = new CartDAO();
+			System.out.println(cart_num[i]);
+			//cdao.cartDelete(id, cart_num[i]);
 			
 			//amount 빼기
 			if(method.equals("deposit")){

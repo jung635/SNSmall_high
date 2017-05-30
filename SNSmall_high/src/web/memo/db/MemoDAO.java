@@ -43,7 +43,7 @@ Connection con = null;
 			if(rs.next()){
 				num=rs.getInt(1)+1;
 			}
-			System.out.println("num= "+num);
+			//System.out.println("num= "+num);
 			
 			//3. sql insert   디비날짜 now()
 			sql="insert into memo(num, from_id, to_id, subject, content, date) values(?, ?, ?, ?, ?, now())";
@@ -84,7 +84,7 @@ Connection con = null;
 			sql = "select count(*) from memo where from_id=?";
 			pstmt=con.prepareStatement(sql);
 			pstmt.setString(1, id); //
-			System.out.println("id : "+id);
+			//System.out.println("id : "+id);
 			//4. rs 실행저장
 			rs = pstmt.executeQuery();
 			//5. rs 데이터 있으면 count 저장
@@ -120,7 +120,7 @@ Connection con = null;
 			sql = "select count(*) from memo where to_id=?";
 			pstmt=con.prepareStatement(sql);
 			pstmt.setString(1, id); //
-			System.out.println("id get : "+id);
+			//System.out.println("id get : "+id);
 			
 			//4. rs 실행저장
 			rs = pstmt.executeQuery();
@@ -129,7 +129,7 @@ Connection con = null;
 			//5. rs 데이터 있으면 count 저장
 			if(rs.next()){
 				count = rs.getInt(1);
-				System.out.println("count get: "+count);
+				//System.out.println("count get: "+count);
 			}
 		}
 		catch(Exception e){e.printStackTrace();}
@@ -161,7 +161,7 @@ Connection con = null;
 			pstmt.setString(1, id); //
 			pstmt.setString(2, id); //
 			
-			System.out.println("id get : "+id);
+			//System.out.println("id get : "+id);
 			
 			//4. rs 실행저장
 			rs = pstmt.executeQuery();
@@ -170,7 +170,7 @@ Connection con = null;
 			//5. rs 데이터 있으면 count 저장
 			if(rs.next()){
 				count = rs.getInt(1);
-				System.out.println("count get: "+count);
+				//System.out.println("count get: "+count);
 			}
 		}
 		catch(Exception e){e.printStackTrace();}
@@ -453,7 +453,7 @@ Connection con = null;
 		String sql="";
 		ResultSet rs=null;
 		int check=-1;
-		System.out.println("num : "+num);
+		//System.out.println("num : "+num);
 		try{
 			//예외가 발생할 것 같은 명령문
 			//1단계 드라이버로더			//2단계 디비연결

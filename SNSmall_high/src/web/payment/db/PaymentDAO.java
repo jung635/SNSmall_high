@@ -574,13 +574,13 @@ Connection con = null;
 				pstmt=con.prepareStatement(sql);
 				pstmt.setString(1, snsState);
 				pstmt.setString(2, id);
-				System.out.println("sns_id and state : "+id);
+				//System.out.println("sns_id and state : "+id);
 				
 			}else{
 				sql = "select count(*) from payment where sns_id=?";
 				pstmt=con.prepareStatement(sql);
 				pstmt.setString(1, id);
-				System.out.println("sns_id : "+id);
+				//System.out.println("sns_id : "+id);
 			}
 			
 			
@@ -623,7 +623,7 @@ Connection con = null;
 			}else{
 				sql="select * from payment where sns_id=? limit ?,?";
 				//sql="select * from payment where state in ('done', 'cancel') and sns_id=? limit ?,?";
-				System.out.println("id : "+id);
+				//System.out.println("id : "+id);
 				pstmt=con.prepareStatement(sql);
 				pstmt.setString(1, id);
 				pstmt.setInt(2, startRow-1); //시작행 -1

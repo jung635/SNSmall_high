@@ -116,7 +116,7 @@ SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd");
 		//PaymentBean pab= 한칸의 데이터 가져와서 저장 .get()
 		PaymentBean pab = (PaymentBean)paymentList.get(i);
 		//부모                                                      자식
-		System.out.println("i : "+i);
+		//System.out.println("i : "+i);
 		addPoint+=pab.getUsedPoint();
 	//	snsState = pab.getState();
 	//	System.out.println("snsState >>> : "+snsState);
@@ -128,7 +128,7 @@ SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd");
 		</tr>
 <%
 	}
-	System.out.println("addPoint : "+addPoint);
+	//System.out.println("addPoint : "+addPoint);
 %>
 		<tr align="center">
 		<td id="accPoint">누적<br>포인트</td><td colspan=8></td><td><%=addPoint %>P</td>

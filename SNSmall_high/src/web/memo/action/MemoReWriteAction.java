@@ -3,6 +3,8 @@ package web.memo.action;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import web.alarm.db.AlarmBean;
+import web.alarm.db.AlarmDAO;
 import web.memo.db.MemoBean;
 import web.memo.db.MemoDAO;
 
@@ -33,6 +35,15 @@ public class MemoReWriteAction implements Action{
 		MemoDAO medao = new MemoDAO();
 		// 메서드 호출 reInsertMemo(meb);
 		medao.reInsertMemo(meb);
+		
+		
+		AlarmBean ab = new AlarmBean(); 
+		ab.setContent("답글이 도착했습니다");
+		ab.setId(request.getParameter("to_id"));
+		ab.setMove("MemoListGet.me");		
+		
+		AlarmDAO adao = new AlarmDAO();
+		adao.insertAlarm(ab);
 		
 		//이동 ./MemoList.me
 		ActionForward forward = new ActionForward();

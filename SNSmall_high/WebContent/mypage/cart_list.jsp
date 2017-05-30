@@ -38,8 +38,11 @@ function myfunction(){
 </head>
 <body>
 <jsp:include page="../inc/header.jsp"/>
-<%String id = (String)session.getAttribute("id");
+<%
+request.setCharacterEncoding("utf-8");
+String id = (String)session.getAttribute("id");
 String type = (String)session.getAttribute("type");
+
 %>
   <!-- Page Content -->
   <div class="container">
@@ -78,7 +81,7 @@ String sns_id="";
 String option1="";
 String option2="";
 String option3="";
-int num=0;
+String num="";
 for(int i=0;i<cl.size();i++){
 	CartBean cb = (CartBean)cl.get(i);
 
@@ -125,7 +128,7 @@ if(cb.getSns_id()==null){
 option1	+= cb.getOption1()+","; 
 option2 += cb.getOption2()+","; 
 option3 += cb.getOption3()+","; 
-num = cb.getNum();
+num += cb.getNum()+",";
 %>
 
  <br>

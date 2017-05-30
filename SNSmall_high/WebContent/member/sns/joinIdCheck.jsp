@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>아이디 중복확인</title>
 <link href="./css/member.css" rel="stylesheet">
 <script type="text/javascript">
 	

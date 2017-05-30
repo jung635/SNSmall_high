@@ -412,7 +412,7 @@
 							<div class="clear"></div>
 						<hr>
 							<div class="col-md-1"></div>
-							<div class="col-md-5"><input type="submit" value="Submit" class="join-btn"> </div>
+							<div class="col-md-5"><input type="submit" value="Join" class="join-btn"> </div>
 							<div class="col-md-5"><input type="button" value="Cancel" class="join-btn" onclick="history.back()"> </div>
 							<div class="col-md-1"></div>
 					</form>

@@ -108,6 +108,11 @@
 	padding: 5px;
 	font-size: 10px;
 }
+.dup2{
+	border: none;
+	padding: 3px 12px 3px 12px;;
+	font-size: 11px;	
+}
 
 .join_subject{
 	font-size: 30px;

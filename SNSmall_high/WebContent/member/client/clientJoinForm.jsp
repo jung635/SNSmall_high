@@ -175,7 +175,7 @@ var pass_reg =/^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[~,!,@,#,$,*,(,),=,+,_,.,|]).{8,20
  	var pwd=document.fr.pass.value;
  	
  	if(!pass_reg.test(pwd)){
- 		document.getElementById("passCheckDisplay").innerHTML="비밀번호는 영문자, 숫자, 특수문자 조합 10-20자리로 구성해주세요.";	
+ 		document.getElementById("passCheckDisplay").innerHTML="영문자, 숫자, 특수문자 조합 10-20자리로 구성해주세요.";	
  	}else{
  		document.getElementById("passCheckDisplay").innerHTML="OK!";	
  		
@@ -246,7 +246,7 @@ var pass_reg =/^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[~,!,@,#,$,*,(,),=,+,_,.,|]).{8,20
 		<div class="content">
 			<div class="col-md-2"></div>
 				 <div class="col-md-8">
-				<div class="join_subject">:) Client Join Us</div>
+				<div class="join_subject">　Client Join Us</div>
 
 				<form action="./clientJoinAction.cl" id="join" name="fr"
 					onsubmit="return submitCheck()">
@@ -254,12 +254,12 @@ var pass_reg =/^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[~,!,@,#,$,*,(,),=,+,_,.,|]).{8,20
 						type="hidden" name="idDubOk">
 
 					<fieldset>
-						<legend>Basic Info</legend>
-						<table class="join_table">
+						<legend class="join-mini-subject">　Basic Info</legend>
+						<table class="join_table" style="margin-left: 20px;">
 							<tr>
 								<td><label>User ID</label></td>
 								<td><input type="text" name="id" class="id"
-									onkeyup="idCheck()"> <input type="button" value="중복확인"
+									onkeyup="idCheck()"> <input type="button" value="dup. check"
 									class="dup" onclick="idDupCheck()"></td>
 								<td><span id="idCheckDisplay"></span></td>
 							</tr>
@@ -275,6 +275,7 @@ var pass_reg =/^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[~,!,@,#,$,*,(,),=,+,_,.,|]).{8,20
 									onkeyup="passCheck()"></td>
 								<td><span id="passdbCheckDisplay"></span></td>
 							</tr>
+							<tr><td colspan="2"></td></tr>
 							<tr>
 								<td><label>Name</label></td>
 								<td><input type="text" name="name"></td>
@@ -285,18 +286,18 @@ var pass_reg =/^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[~,!,@,#,$,*,(,),=,+,_,.,|]).{8,20
 							</tr>
 							<tr>
 								<td><label>Email</label></td>
-								<td><input type="email" name="email"> <input type="button" value="인증메일 발송" onclick="sendmail()"></td>
+								<td><input type="email" name="email"> <input type="button" value="인증메일 발송" class="dup2" onclick="sendmail()"></td>
 							</tr>
 							<tr>
 								<td><label></label></td>
 								<td><input type="text" name="authInputNum"> <input
-									type="button" value="인증확인" onclick="authCheck()"></td>
+									type="button" value="인증확인" class="dup2" onclick="authCheck()"></td>
 							</tr>
 							<tr>
 								<td><label>Address</label></td>
 								<td><input type="text" name="postcode" id="postcode"
 									placeholder="우편번호"> <input type="button"
-									onclick="sample6_execDaumPostcode()" value="우편번호 찾기"></td>
+									onclick="sample6_execDaumPostcode()"  value="우편번호 찾기" class="dup2"></td>
 							</tr>
 							<tr>
 								<td><label></label></td>
@@ -312,11 +313,11 @@ var pass_reg =/^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[~,!,@,#,$,*,(,),=,+,_,.,|]).{8,20
 								</fieldset>
 
 								<div class="clear"></div>
-								<div id="buttons">
-									<input type="submit" value="Submit" class="submit"> <input
-										type="button" value="Cancel" class="cancel"
-										onclick="history.back()">
-								</div>
+						<hr>
+							<div class="col-md-1"></div>
+							<div class="col-md-5"><input type="submit" value="Join" class="join-btn"> </div>
+							<div class="col-md-5"><input type="button" value="Cancel" class="join-btn" onclick="history.back()"> </div>
+							<div class="col-md-1"></div>
 								</form>
 								</div>
 								</div>

@@ -122,7 +122,6 @@
   <servlet-mapping>
   	<servlet-name>AlarmFrontController</servlet-name>
   	<url-pattern>*.al</url-pattern>
-<<<<<<< .merge_file_a07600
   </servlet-mapping>  
   
     <servlet>
@@ -133,9 +132,6 @@
   	<servlet-name>AdminFrontController</servlet-name>
   	<url-pattern>*.ad</url-pattern>
   </servlet-mapping> 
-  
-=======
-  </servlet-mapping>
 
 	<servlet>
 		<servlet-name>MemoFrontController</servlet-name>
@@ -146,6 +142,5 @@
 		<url-pattern>*.me</url-pattern>
 	</servlet-mapping>   
 
->>>>>>> .merge_file_a09968
 </web-app>
 

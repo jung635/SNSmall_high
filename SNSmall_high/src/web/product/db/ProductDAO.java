@@ -101,8 +101,6 @@ public class ProductDAO {
 				pb.setAmount(rs.getInt("amount"));
 				pb.setCount(rs.getInt("count"));
 				pb.setDate(rs.getDate("date"));
-			}else{
-				pb.setSubject("null");
 			}
 			
 		} catch (Exception e) {e.printStackTrace();}

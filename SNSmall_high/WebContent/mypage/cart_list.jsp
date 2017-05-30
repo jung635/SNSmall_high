@@ -134,7 +134,7 @@ num = cb.getNum();
 
 <br>
 총가격 :<span id="price"><%=sum %></span>
-<input type="hidden" name = "num" value="<%=client_id%>">
+<input type="hidden" name = "num" value="<%=num%>">
 <input type="hidden" name = "client_id" value="<%=client_id%>">
 <input type="hidden" name = "product_num" value="<%=product_num%>">
 <input type="hidden" name = "amount" value="<%=amount%>">

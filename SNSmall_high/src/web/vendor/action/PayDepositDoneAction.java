@@ -33,7 +33,6 @@ public class PayDepositDoneAction implements Action{
 		SnsDAO sdao = new SnsDAO();
 		ProductBean prob = prodao.getProduct(pb.getProduct_num());
 		PaymentBean pb_sns = null;
-		ProductBean prob_sns = null;
 		int sns_profit = 0;
 		int add_point = 0;
 		int vendor_profit = 0;
@@ -42,21 +41,21 @@ public class PayDepositDoneAction implements Action{
 		List<PaymentBean> list_sns = new ArrayList<>();
 		
 		pdao.depositPay(num);
-		double price_result = (double)prob.getPrice()*(double)pb.getAmount();
+		//double price_result =  pb.getPay_price();
 		
 		SnsBean sb = sdao.getSnsDetail(pb.getSns_id());
 		if(sb != null){
 			if(sb.getRank().equals("basic")){
-				sns_profit = (int)(price_result*0.05)/10*10;
+				sns_profit = (int)(pb.getPay_price()*0.05)/10*10;
 			}else if(sb.getRank().equals("plus")){
-				sns_profit = (int)(price_result*0.1)/10*10;
+				sns_profit = (int)(pb.getPay_price()*0.1)/10*10;
 			}else{
-				sns_profit = (int)(price_result*0.2/10*10);
+				sns_profit = (int)(pb.getPay_price()*0.2/10*10);
 			}
 		}
-		add_point = (int)(price_result*0.01)/10*10;
-		company_profit = (int)(price_result*0.1)/10*10;
-		vendor_profit = ((prob.getPrice()*pb.getAmount())-company_profit-sns_profit);
+		add_point = (int)(pb.getPay_price()*0.01)/10*10;
+		company_profit = (int)(pb.getPay_price()*0.1)/10*10;
+		vendor_profit = pb.getPay_price()-company_profit-sns_profit;
 		pdao.addSnsPay(sns_profit, pb.getAmount(), pb.getSns_id());
 		pdao.addVendorProfit(vendor_profit, pb.getVendor_id());
 		pdao.addPoint(add_point, id);
@@ -66,15 +65,14 @@ public class PayDepositDoneAction implements Action{
 		list_sns = pdao.getSnsPaymentList(pb.getSns_id());
 		for(int j=0; j<list_sns.size(); j++){
 			pb_sns = list_sns.get(j);
-			prob_sns = prodao.getProduct(pb_sns.getProduct_num());
 			if(pb_sns.getState().equals("payDone") || pb_sns.getState().equals("done") || pb_sns.getState().equals("delivery")){
-				all_sns_sell += (long)prob_sns.getPrice()*(long)pb_sns.getAmount();
+				all_sns_sell += pb_sns.getPay_price();
 			}
 		}
 		
 		
 		//pdao.rankUpdate(pb.getSns_id(), all_sns_sell+Math.round(price_result), sb_sns.getRank());
-		long money = all_sns_sell+Math.round(price_result);
+		long money = all_sns_sell+Math.round(pb.getPay_price());
 		AlarmBean ab = new AlarmBean();
 		AlarmDAO adao = new AlarmDAO();
 		if(sb != null){

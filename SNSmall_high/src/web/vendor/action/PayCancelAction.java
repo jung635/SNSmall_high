@@ -26,18 +26,14 @@ public class PayCancelAction implements Action {
 		int payNum = Integer.parseInt(request.getParameter("num"));
 		PaymentDAO pdao = new PaymentDAO();
 		PaymentBean pb = pdao.getPaymentByNum(payNum);
-		ProductDAO prodao = new ProductDAO();
-		ProductBean prob = prodao.getProduct(pb.getProduct_num());
 		SnsDAO sdao = new SnsDAO();
 		int sns_profit = 0;
 		int add_point = 0;
 		int vendor_profit = 0;
 		int company_profit = 0;
-		double price_result = (double)prob.getPrice()*(double)pb.getAmount();
+		double price_result = pb.getPay_price();
 		PaymentBean pb_sns = null;
-		ProductBean prob_sns = null;
 		long all_sns_sell = 0L;
-		List<PaymentBean> list_pb = new ArrayList<>();
 		List<PaymentBean> list_sns = new ArrayList<>();
 		pdao.deletePay(payNum);
 		AlarmBean ab = new AlarmBean();
@@ -64,7 +60,7 @@ public class PayCancelAction implements Action {
 			}
 			add_point = (int)(price_result*0.01)/10*10;
 			company_profit = (int)(price_result*0.1)/10*10;
-			vendor_profit = ((prob.getPrice()*pb.getAmount())-company_profit-sns_profit);
+			vendor_profit = pb.getPay_price()-company_profit-sns_profit;
 			
 	
 			pdao.subSnsPay(sns_profit, pb.getAmount(), pb.getSns_id());
@@ -78,9 +74,8 @@ public class PayCancelAction implements Action {
 			list_sns = pdao.getSnsPaymentList(pb.getSns_id());
 			for(int j=0; j<list_sns.size(); j++){
 				pb_sns = list_sns.get(j);
-				prob_sns = prodao.getProduct(pb_sns.getProduct_num());
 				if(pb_sns.getState().equals("payDone") || pb_sns.getState().equals("done") || pb_sns.getState().equals("delivery")){
-					all_sns_sell += (long)prob_sns.getPrice()*(long)pb_sns.getAmount();
+					all_sns_sell += pb_sns.getPay_price();
 				}
 			}
 			

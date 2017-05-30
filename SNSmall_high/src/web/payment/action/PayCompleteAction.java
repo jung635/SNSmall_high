@@ -115,10 +115,12 @@ public class PayCompleteAction implements Action {
 			if(i==amount.length-1){
 				point_each = usedPoint_each;
 				price_result = (double)prob.getPrice()*(double)pb.getAmount();
+				pb.setPay_price(price_result.intValue());
 			}else{
 				price_result = (double)prob.getPrice()*(double)pb.getAmount();
 				point_each = (int)((price_result/(double)price)*point)/10*10;
 				usedPoint_each -= point_each;
+				pb.setPay_price(price_result.intValue());
 			}
 			//사용된 포인트 각 물건에 주기
 			pb.setUsedPoint(point_each);

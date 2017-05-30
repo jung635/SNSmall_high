@@ -20,8 +20,6 @@ public class PayCancelAction implements Action {
 		String order_num = request.getParameter("order_num");
 		PaymentDAO pdao = new PaymentDAO();
 		PaymentBean pb = pdao.getPaymentByNum(payNum);
-		ProductDAO prodao = new ProductDAO();
-		ProductBean prob = prodao.getProduct(pb.getProduct_num());
 		ActionForward forward = new ActionForward();
 		int cancel_point = pb.getUsedPoint();
 		List<Integer> cancel_num = new ArrayList<>();
@@ -31,7 +29,7 @@ public class PayCancelAction implements Action {
 		request.setAttribute("cancel_num", cancel_num);
 		request.setAttribute("cancel_point", cancel_point);
 		request.setAttribute("pb_list", pb_list);
-		request.setAttribute("price", prob.getPrice() * pb.getAmount());
+		request.setAttribute("price", pb.getPay_price());
 		request.setAttribute("usedPoint", pb.getUsedPoint());
 		forward.setPath("./pay/payCancel.jsp");
 		forward.setRedirect(false);

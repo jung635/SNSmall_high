@@ -261,19 +261,26 @@ int rank_percent = (Integer)request.getAttribute("rank_percent");
 			<%
 			if(popular_list!=null){
 			for(int i=0; i<popular_size; i++){
-				pb = pdao.getProduct(popular_list.get(i));%>
-			<div class="col-sm-3 col-xs-6">
-				<div>
-				<a href="ProductDetail.pr?product_num=<%=pb.getProduct_num()%>">
-					<img class="img-responsive portfolio-item" id="sns_imgs" src="./vendor_img/<%=pb.getMain_img() %>" alt="">
-               	</a>
-               	</div>
-               	<a name="sell_latest"></a>
-               	<div>
-               		이름: <%=pb.getSubject() %><br>
-               		가격: <%=pb.getPrice() %>
-               	</div>
- 			</div><%}} %>
+				pb = pdao.getProduct(popular_list.get(i));
+				if(pb==null){%>
+					<div class="col-sm-3 col-xs-6">
+						<div>
+							삭제된 상품입니다.
+		               	</div>
+ 					</div>
+				<%}else{%>
+					<div class="col-sm-3 col-xs-6">
+						<div>
+						<a href="ProductDetail.pr?product_num=<%=pb.getProduct_num()%>">
+							<img class="img-responsive portfolio-item" id="sns_imgs" src="./vendor_img/<%=pb.getMain_img() %>" alt="">
+		               	</a>
+		               	</div>
+		               	<a name="sell_latest"></a>
+		               	<div>
+		               		이름: <%=pb.getSubject() %><br>
+		               		가격: <%=pb.getPrice() %>
+		               	</div>
+		 			</div><%}}} %>
 		</div>
 
 		<div class="well" id="sell_latest_box">
@@ -281,16 +288,26 @@ int rank_percent = (Integer)request.getAttribute("rank_percent");
 			<%
 			if(latest_list != null){
 			for(int i=0; i<latest_size; i++){
-				pb = pdao.getProduct(latest_list.get(i));%>
-			<div class="col-sm-3 col-xs-6">
-				 <a href="ProductDetail.pr?product_num=<%=pb.getProduct_num()%>">
-					<img class="img-responsive portfolio-item" id="sns_imgs" src="./vendor_img/<%=pb.getMain_img() %>" alt="">
-               	 </a>
-               	 <div>
-               		이름: <%=pb.getSubject() %><br>
-               		가격: <%=pb.getPrice() %>
-               	</div>
-            </div> <%}} %>
+				pb = pdao.getProduct(latest_list.get(i));
+			if(pb==null){%>
+					<div class="col-sm-3 col-xs-6">
+						<div>
+							삭제된 상품입니다.
+		               	</div>
+ 					</div>
+				<%}else{%>
+					<div class="col-sm-3 col-xs-6">
+						<div>
+						<a href="ProductDetail.pr?product_num=<%=pb.getProduct_num()%>">
+							<img class="img-responsive portfolio-item" id="sns_imgs" src="./vendor_img/<%=pb.getMain_img() %>" alt="">
+		               	</a>
+		               	</div>
+		               	<a name="sell_latest"></a>
+		               	<div>
+		               		이름: <%=pb.getSubject() %><br>
+		               		가격: <%=pb.getPrice() %>
+		               	</div>
+		 			</div><%}}} %>
 		</div>
 		
 		<a name="policy_info"></a>

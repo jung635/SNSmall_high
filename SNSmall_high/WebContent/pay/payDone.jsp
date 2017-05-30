@@ -33,6 +33,8 @@
 String merchant_uid = request.getParameter("merchant_uid");
 PaymentDAO pdao = new PaymentDAO();
 List<PaymentBean> pb_list = pdao.getPayment(merchant_uid);
+System.out.println(pb_list);
+System.out.println(merchant_uid);
 int length = pb_list.size();
 int price = 0;
 int usedPoint = 0;

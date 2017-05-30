@@ -22,15 +22,44 @@
 <script type="text/javascript">
 function myfunction(){
 	var sum=0;
+	var client_id ="";
+	var product_num ="";
+	var amount="";
+	var vendor_id ="";
+	var sns_id="";
+	var option1="";
+	var option2="";
+	var option3="";
+	var num="";
 	var checklength = document.form1.check.length;
 	for(i=0;i<checklength;i++){
 		if(document.form1.check[i].checked){
 			sum+=parseInt(document.form1.check[i].value);
-
+			client_id += document.form1.client_id_input[i].value+","; 
+			product_num += document.form1.product_num_input[i].value+","; 
+			amount += document.form1.amount_input[i].value+","; 
+			vendor_id += document.form1.vendor_id_input[i].value+","; 
+			if(cb.getSns_id()==null){
+				sns_id=" ,";
+			}else{
+				sns_id += document.form1.sns_id_input[i].value+","; 
+			}
+			option1	+= document.form1.option1_input[i].value+","; 
+			option2 += document.form1.option2_input[i].value+","; 
+			option3 += document.form1.option3_input[i].value+","; 
+			num += document.form1.num_input[i].value+",";
 		}
 	}
 	document.getElementById("price").innerText=sum;
-
+	document.getElementById("client_id").innerText=client_id;
+	document.getElementById("product_num").innerText=product_num;
+	document.getElementById("amount").innerText=amount;
+	document.getElementById("vendor_id").innerText=vendor_id;
+	document.getElementById("sns_id").innerText=sns_id;
+	document.getElementById("option1").innerText=option1;
+	document.getElementById("option2").innerText=option2;
+	document.getElementById("option3").innerText=option3;
+	document.getElementById("num").innerText=num;
 }
 
 
@@ -66,13 +95,6 @@ List<CartBean> cblist = new ArrayList<CartBean>();
 
 <%
 int sum=0;
-
-List cl = (List)request.getAttribute("CartList"); 
-
-ProductDAO pdao = new ProductDAO();
-
-
-
 String client_id ="";
 String product_num ="";
 String amount="";
@@ -82,6 +104,13 @@ String option1="";
 String option2="";
 String option3="";
 String num="";
+List cl = (List)request.getAttribute("CartList"); 
+
+ProductDAO pdao = new ProductDAO();
+
+
+
+
 for(int i=0;i<cl.size();i++){
 	CartBean cb = (CartBean)cl.get(i);
 
@@ -112,25 +141,18 @@ for(int i=0;i<cl.size();i++){
 판매자 아이디 :<%=cb.getVendor_id() %>
 구매자 아이디 :<%=cb.getClient_id()%>
 </a>
-<a href="./Cart_Delete.ca?product_num=<%=cb.getProduct_num()%>"><input type="button" name="delete" value="삭제"></a>
+<a href="./Cart_Delete.ca?num=<%=cb.getNum()%>"><input type="button" name="delete" value="삭제"></a>
 <br>
 <!-- 정보 끝 -->
-
-<%client_id += cb.getClient_id()+","; 
-product_num += cb.getProduct_num()+","; 
-amount += cb.getAmount()+","; 
-vendor_id += cb.getVendor_id().toString()+","; 
-if(cb.getSns_id()==null){
-	sns_id=" ,";
-}else{
-	sns_id += cb.getSns_id()+","; 
-}
-option1	+= cb.getOption1()+","; 
-option2 += cb.getOption2()+","; 
-option3 += cb.getOption3()+","; 
-num += cb.getNum()+",";
-%>
-
+<input type="hidden" name = "num_input" value="<%=cb.getNum()%>">
+<input type="hidden" name = "client_id_input" value="<%=cb.getClient_id()%>">
+<input type="hidden" name = "product_num_input" value="<%=cb.getProduct_num()%>">
+<input type="hidden" name = "amount_input" value="<%=cb.getAmount()%>">
+<input type="hidden" name = "vendor_id_input" value="<%=cb.getVendor_id()%>">
+<input type="hidden" name = "sns_id_input" value="<%=cb.getSns_id()%>">
+<input type="hidden" name = "option1_input" value="<%=cb.getOption1()%>">
+<input type="hidden" name = "option2_input" value="<%=cb.getOption2()%>">
+<input type="hidden" name = "option3_input" value="<%=cb.getOption3()%>">
  <br>
 <%sum = sum+price;} 
 %>

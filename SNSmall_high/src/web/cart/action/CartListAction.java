@@ -26,7 +26,7 @@ public class CartListAction implements Action{
 		
 		response.setContentType("text/html; charset=UTF-8");
 		PrintWriter out = response.getWriter();
-				
+
 		if(client_id.equals(null)){
 			
 			out.println("<script>");
@@ -36,6 +36,7 @@ public class CartListAction implements Action{
 			out.close();
 			return null;
 		}
+		
 		List<CartBean> CartList = cdao.getCartList(client_id);
 		request.setAttribute("CartList", CartList);
 		ActionForward forward = new ActionForward();

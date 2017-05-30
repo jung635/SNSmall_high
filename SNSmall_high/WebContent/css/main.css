@@ -685,8 +685,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .single-member {
 	height:430px;
-	background-color:#9a9999;
-	border: 2px solid #fc4300;
+    background-color: rgb(255, 155, 32);
 	color: black;
 	padding: 18px;
 	text-align:center;
@@ -1626,10 +1625,10 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .single-member a{
-	color: rgb(255, 210, 106);
+    color: #f6f6f6;
 }
 .single-member small{
-    color: #fbfbfb;
+    color: #fd0101;
 }
 #ranking_sns{
 	display: inline;
@@ -1651,12 +1650,12 @@ h1, h2, h3, h4, h5, h6 {
     font-size: 2em;
     font-weight: bold;
     line-height: 1;
-    color: #fff;
+    color: #000;
     text-align: center;
     white-space: nowrap;
     vertical-align: baseline;
     border-radius: .25em;
-    background-color: #fd0558;
+    background-color: #a0fd05;
     position: absolute;
 }
 /*main search btn*/

@@ -75,8 +75,6 @@ function productSearch_exe(){
 						<div> 
 							<h2 class="heading animated bounceInDown">'Himu' Onepage HTML Template</h2> 
 							<p class="animated bounceInUp">Fully Professional one page template</p> 
- 							<!-- <a class="btn btn-default slider-btn animated fadeIn" href="#">상품 검색</a> 
-							<a class="btn btn-default slider-btn animated fadeIn" href="#">SNS STAR 검색</a>   -->
 						</div> 
 					</div> 
 				</div>
@@ -84,8 +82,6 @@ function productSearch_exe(){
 					<div class="carousel-caption"> <div> 
 						<h2 class="heading animated bounceInDown">Get All in Onepage</h2> 
 						<p class="animated bounceInUp">Everything is outstanding </p>
-<!-- 						<a class="btn btn-default slider-btn animated fadeIn" href="#">상품 검색</a> 
-						<a class="btn btn-default slider-btn animated fadeIn" href="#">SNS STAR 검색</a>  -->
 					</div> 
 				</div> 
 			</div> 
@@ -94,8 +90,6 @@ function productSearch_exe(){
 					<div> 
 						<h2 class="heading animated bounceInRight">Fully Responsive Template</h2> 
 						<p class="animated bounceInLeft">100% Responsive HTML template</p> 
-<!-- 						<a class="btn btn-default slider-btn animated fadeIn" href="#">상품 검색</a> 
-						<a class="btn btn-default slider-btn animated fadeIn" href="#">SNS STAR 검색</a>  -->
 					</div> 
 				</div> 
 			</div>
@@ -211,7 +205,7 @@ function productSearch_exe(){
 			<div class="row text-center">
 				<div class="col-sm-8 col-sm-offset-2">
 					<h2 class="title-one">Services</h2>
-					<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.</p>
+					<p>우리는 SNS STAR, 판매자, 구매자 모드에게 최고의 혜택을 드리기위해 노력하고있습니다. 실제로 많은 고객님들이 이러한 혜택들을 누리고 있습니다!</p>
 				</div>
 			</div>
 			<div class="row">
@@ -220,23 +214,23 @@ function productSearch_exe(){
 						<div class="services row">
 							<div class="col-sm-4">
 								<div class="single-service">
-									<i class="fa fa-th"></i>
-									<h2>Modern Design</h2>
-									<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore.</p>
+									<i class="fa fa-star"></i>
+									<h2>SNS STAR</h2>
+									<p>SNS STAR는 더 유명해질 수 있는 기회를 얻고, 본인의 장점을 살려 이익을 낼 수 있습니다. 본인이 판매자가 되어 물건을 팔고, SNS STAR로써 홍보한다면 개인 쇼핑몰의 효과도 누릴 수 있습니다! 더이상 개인적으로 오는 상품문의에 일일히 답하실 필요가 없습니다. 우리의 서비스를 통해 이익과 편리함을 챙기세요</p>
 								</div>
 							</div>
 							<div class="col-sm-4">
 								<div class="single-service">
-									<i class="fa fa-html5"></i>
-									<h2>Web Development</h2>
-									<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy </p>
+									<i class="fa fa-shopping-cart"></i>
+									<h2>VENDOR</h2>
+									<p>SNS는 최고의 광고효과를 내고있습니다. 인기 많은 SNS STAR들에게 광고를 요청해보세요. 효과가 있을지 없을지 모르는 광고에 돈을 쏟지 않고, 확실한 경로를 통해 광고효과가 있을 때만 돈을 지불하는 시스템이 될 것입니다. 투명하게 나의 광고비가 어디에 소비되고 있는지 확인해보세요. 우리 서비스의 장점을 확인하실 수 있을 것입니다.</p>
 								</div>
 							</div>
 							<div class="col-sm-4">
 								<div class="single-service">
 									<i class="fa fa-users"></i>
-									<h2>Online Marketing</h2>
-									<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore.</p>
+									<h2>CLIENT</h2>
+									<p>SNS STAR들이 쓰고있는 물건이 무엇인지, 어디서 살 수 있는지 알아보기 귀찮으셨을 겁니다. 클릭 한번으로 그들처럼 될 수 있습니다. 뿐만 아니라 우리 쇼핑몰에서만 만날 수 있는 SNS STAR들의 물건들을 쇼핑해보세요! 초특급 레어템들이 기다리고있습니다. 항상 준비중인 이벤트와 포인트 폭탄은 덤입니다. </p>
 								</div>
 							</div></div>
 						</div>
@@ -249,8 +243,8 @@ function productSearch_exe(){
 			<div class="container">
 				<div class="row text-center">
 					<div class="col-sm-8 col-sm-offset-2">
-						<h2 class="title-one">Meet The Team</h2>
-						<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit.</p>
+						<h2 class="title-one">BEST SNS STARS</h2>
+						<p>가장 판매를 많이한 SNS STAR들입니다! STAR들이 판매하는 물건들을 구경해보세요. STAR들과 연락을 통해 더 많은 홍보를 할 수도 있습니다.!!</p>
 					</div>
 				</div>
 				<div id="team-carousel" class="carousel slide" data-interval="false">
@@ -373,158 +367,8 @@ function productSearch_exe(){
 							</div>
 						</div>
 						<%} %>
-<!--					<div class="col-sm-3 col-xs-12 portfolio-item html">
-						<div class="view efffect">
-							<div class="portfolio-image">
-								<img src="images/portfolio/1.jpg" alt=""></div> 
-								<div class="mask text-center">
-									<h3>Novel</h3>
-									<h4>Lorem ipsum dolor sit amet consectetur</h4>
-									<a href="#"><i class="fa fa-link"></i></a>
-									<a href="images/portfolio/big-item.jpg" data-gallery="prettyPhoto"><i class="fa fa-search-plus"></i></a>
-								</div>
-							</div>
-						</div>
- 						<div class="col-sm-3 col-xs-12 portfolio-item jooma">
-							<div class="view efffect" >
-								<div class="portfolio-image">
-									<img src="images/portfolio/2.jpg" alt="">
-								</div> 
-								<div class="mask text-center">
-									<h3>Novel</h3>
-									<h4>Lorem ipsum dolor sit amet consectetur</h4>
-									<a href="#"><i class="fa fa-link"></i></a>
-									<a href="images/portfolio/big-item4.jpg" data-gallery="prettyPhoto"><i class="fa fa-search-plus"></i></a>
-								</div>
-							</div>
-						</div>
-						<div class="col-sm-3 col-xs-12 portfolio-item wordpress">
-							<div class="view efffect">
-								<div class="portfolio-image">
-									<img src="images/portfolio/3.jpg" alt="">
-								</div> 
-								<div class="mask text-center">
-								<h3>Novel</h3>
-								<h4>Lorem ipsum dolor sit amet consectetur</h4>
-								<a href="#"><i class="fa fa-link"></i></a>
-								<a href="images/portfolio/big-item.jpg" data-gallery="prettyPhoto"><i class="fa fa-search-plus"></i></a>
-							</div>
-						</div>
 					</div>
-					<div class="col-sm-3 col-xs-12 portfolio-item megento">
-						<div class="view efffect">
-							<div class="portfolio-image">
-								<img src="images/portfolio/4.jpg" alt="">
-							</div> 
-							<div class="mask text-center">
-								<h3>Novel</h3>
-								<h4>Lorem ipsum dolor sit amet consectetur</h4>
-								<a href="#"><i class="fa fa-link"></i></a>
-								<a href="images/portfolio/big-item.jpg" data-gallery="prettyPhoto"><i class="fa fa-search-plus"></i></a>
-							</div>
-						</div>
-					</div>
-					<div class="col-sm-3 col-xs-12 portfolio-item html">
-						<div class="view efffect">
-							<div class="portfolio-image">
-								<img src="images/portfolio/5.jpg" alt="">
-							</div> <div class="mask text-center">
-							<h3>Novel</h3>
-							<h4>Lorem ipsum dolor sit amet consectetur</h4>
-							<a href="#"><i class="fa fa-link"></i></a>
-							<a href="images/portfolio/big-item.jpg" data-gallery="prettyPhoto"><i class="fa fa-search-plus"></i></a>
-						</div>
-					</div>
-				</div>
-				<div class="col-sm-3 col-xs-12 portfolio-item wordpress">
-					<div class="view efffect">
-						<div class="portfolio-image">
-							<img src="images/portfolio/6.jpg" alt="">
-						</div> 
-						<div class="mask text-center">
-							<h3>Novel</h3>
-							<h4>Lorem ipsum dolor sit amet consectetur</h4>
-							<a href="#"><i class="fa fa-link"></i></a>
-							<a href="images/portfolio/big-item.jpg" data-gallery="prettyPhoto"><i class="fa fa-search-plus"></i></a>
-						</div>
-					</div>
-				</div>
-				<div class="col-sm-3 col-xs-12 portfolio-item html">
-					<div class="view efffect">
-						<div class="portfolio-image">
-							<img src="images/portfolio/7.jpg" alt="">
-						</div> 
-						<div class="mask text-center">
-							<h3>Novel</h3>
-							<h4>Lorem ipsum dolor sit amet consectetur</h4>
-							<a href="#"><i class="fa fa-link"></i></a>
-							<a href="images/portfolio/big-item.jpg" data-gallery="prettyPhoto"><i class="fa fa-search-plus"></i></a>
-						</div>
-					</div>
-				</div>
-				<div class="col-sm-3 col-xs-12 portfolio-item joomla">
-					<div class="view efffect">
-						<div class="portfolio-image">
-							<img src="images/portfolio/8.jpg" alt=""></div> 
-							<div class="mask text-center">
-								<h3>Novel</h3>
-								<h4>Lorem ipsum dolor sit amet consectetur</h4>
-								<a href="#"><i class="fa fa-link"></i></a>
-								<a href="images/portfolio/big-item.jpg" data-gallery="prettyPhoto"><i class="fa fa-search-plus"></i></a>
-							</div>
-						</div>
-					</div>
-					<div class="col-sm-3 col-xs-12 portfolio-item html">
-						<div class="view efffect">
-							<div class="portfolio-image">
-								<img src="images/portfolio/9.jpg" alt="">
-							</div> 
-							<div class="mask text-center">
-								<h3>Novel</h3>
-								<h4>Lorem ipsum dolor sit amet consectetur</h4>
-								<a href="#"><i class="fa fa-link"></i></a>
-								<a href="images/portfolio/big-item.jpg" data-gallery="prettyPhoto"><i class="fa fa-search-plus"></i></a>
-							</div>
-						</div>
-					</div>
-					<div class="col-sm-3 col-xs-12 portfolio-item wordpress">
-						<div class="view efffect">
-							<div class="portfolio-image">
-								<img src="images/portfolio/10.jpg" alt=""></div> 
-								<div class="mask text-center">
-									<h3>Novel</h3>
-									<h4>Lorem ipsum dolor sit amet consectetur</h4>
-									<a href="#"><i class="fa fa-link"></i></a>
-									<a href="images/portfolio/big-item.jpg" data-gallery="prettyPhoto"><i class="fa fa-search-plus"></i></a>
-								</div>
-							</div>
-						</div>
-						<div class="col-sm-3 col-xs-12 portfolio-item joomla">
-							<div class="view efffect">
-								<div class="portfolio-image">
-									<img src="images/portfolio/11.jpg" alt=""></div> 
-									<div class="mask text-center">
-										<h3>Novel</h3>
-										<h4>Lorem ipsum dolor sit amet consectetur</h4>
-										<a href="#"><i class="fa fa-link"></i></a>
-										<a href="images/portfolio/big-item3.jpg" data-gallery="prettyPhoto"><i class="fa fa-search-plus"></i></a>
-									</div>
-								</div>
-							</div>
-							<div class="col-sm-3 col-xs-12 portfolio-item megento">
-								<div class="view efffect">
-									<div class="portfolio-image">
-										<img src="images/portfolio/12.jpg" alt=""></div> 
-										<div class="mask text-center">
-											<h3>Novel</h3>
-											<h4>Lorem ipsum dolor sit amet consectetur</h4>
-											<a href="#"><i class="fa fa-link"></i></a>
-											<a href="images/portfolio/big-item4.jpg" data-gallery="prettyPhoto"><i class="fa fa-search-plus"></i></a>
-										</div>
-									</div>
-								</div> -->
-							</div>
-						</div> 
+				</div> 
 
 					</section> <!--/#portfolio-->
 
@@ -534,7 +378,7 @@ function productSearch_exe(){
 								<div class="row text-center">
 									<div class="col-sm-8 col-sm-offset-2">
 										<h2 class="title-one">Clients Say About Us</h2>
-										<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit. Lorem ipsum dolor sit amet, consectetuer adipiscing elit</p>
+										<p>우리회사는 SNS STAR, 판매자, 구매자 모두에게 최고의 혜택을 드리기위해 부단히 노력하고 있습니다. 우리의 서비스로 성공적인 비지니스를 이루고, 놀라운 혜택을 누리고 있는 회원님들을 만나보세요! 여러분도 그들중 하나가 될 수 있습니다.</p>
 									</div>
 								</div>
 								<div id="clients-carousel" class="carousel slide" data-ride="carousel"> <!-- Indicators -->
@@ -549,7 +393,7 @@ function productSearch_exe(){
 												<div class="media">
 													<img class="pull-left" src="images/clients/client1.jpg" alt="">
 													<div class="media-body">
-														<blockquote><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p><small>Someone famous in Source Title</small><a href="">www.yourwebsite.com</a></blockquote>
+														<blockquote><p>항상 SNS를 하면서 사고싶었던 물건을 찾거나 물어봐야했는데 바로 구매할 수 있는 사이트가 생겨서 너무 편합니다. 그리고 다른 곳에서 팔지 않는 희귀템들이 많아서 좋아요! .</p><small>정** 고객님</small><a href="">www.yourwebsite.com</a></blockquote>
 													</div>
 												</div>
 											</div>
@@ -559,7 +403,7 @@ function productSearch_exe(){
 												<div class="media">
 													<img class="pull-left" src="images/clients/client3.jpg" alt="">
 													<div class="media-body">
-														<blockquote><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p><small>Someone famous in Source Title</small><a href="">www.yourwebsite.com</a></blockquote>
+														<blockquote><p>광고료 선지불이 아닌 물건이 팔리는 만큼 광고료를 지불하기 때문에 더 효율적이었습니다. 판매액의 50%이상이 SNS STAR들을 통해 들어왔습니다!</p><small>김** 판매자님</small><a href="">www.yourwebsite.com</a></blockquote>
 													</div>
 												</div>
 											</div>
@@ -569,7 +413,7 @@ function productSearch_exe(){
 												<div class="media">
 													<img class="pull-left" src="images/clients/client2.jpg" alt="">
 													<div class="media-body">
-														<blockquote><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p><small>Someone famous in Source Title</small><a href="">www.yourwebsite.com</a></blockquote>
+														<blockquote><p>이전에는 광고 아닌척 글을 올렸지만 요새는 물건만 올려도 광고라는걸 알기때문에 대놓고 물건을 소개하는게 편해요. 무엇보다 부업같은 느낌이어서 쏠쏠하고 편합니다!</p><small>이** SNS STAR님</small><a href="">www.facebook.com</a></blockquote>
 													</div>
 												</div>
 											</div>
@@ -667,7 +511,7 @@ function productSearch_exe(){
 									<div class="col-sm-8 col-sm-offset-2">
 										<div class="contact-heading">
 											<h2 class="title-one">Contact With Us</h2>
-											<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit</p>
+											<p>문의 사항 및 요구 사항이 있으면 연락해주세요.</p>
 										</div>
 									</div>
 								</div>
@@ -677,11 +521,11 @@ function productSearch_exe(){
 									<div class="pattern"></div>
 									<div class="row text-center clearfix">
 										<div class="col-sm-6">
-											<div class="contact-address"><address><p><span>Devs</span>Cluster</p><strong>36 North Kafrul<br>Dhaka Cantonment Area<br> Dhaka-1206, Bangladesh</strong><br><small>( Lorem ipsum dolor sit amet, consectetuer adipiscing elit )</small></address>
+											<div class="contact-address"><address><p><span>High</span>Cluster</p><strong>부산 부산진구 동천로 109<br> 삼한골든게이트 7층</strong><br><small>( 아이티윌부산교육센터  )</small></address>
 												<div class="social-icons">
-													<a href="#"><i class="fa fa-facebook"></i></a><a href="#"><i class="fa fa-twitter"></i></a>
-													<a href="#"><i class="fa fa-google-plus"></i></a><a href="#"><i class="fa fa-dribbble"></i></a>
-													<a href="#"><i class="fa fa-linkedin"></i></a>
+													<a href="http://blog.naver.com/mijinkim80"><i class="fa fa-facebook"></i></a><a href="https://twitter.com/MyloveKBS"><i class="fa fa-twitter"></i></a>
+													<a href="https://www.google.co.kr"><i class="fa fa-google-plus"></i></a><a href="https://dribbble.com/"><i class="fa fa-dribbble"></i></a>
+													<a href="https://www.linkedin.com/in/jeffweiner08"><i class="fa fa-linkedin"></i></a>
 												</div>
 											</div>
 										</div>

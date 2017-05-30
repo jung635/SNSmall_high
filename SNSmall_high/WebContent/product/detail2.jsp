@@ -1,10 +1,10 @@
 <%@page import="web.product.db.ProductBean"%>
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+    pageEncoding="utf-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
 	<meta name="description" content="Creative One Page Parallax Template">
 	<meta name="keywords" content="Creative, Onepage, Parallax, HTML5, Bootstrap, Popular, custom, personal, portfolio" /> 
@@ -77,13 +77,13 @@ $(document).ready(function(){
                 <h3>Project Details</h3>
                 <ul>
                 <%//ProductBean pb = (ProductBean)request.getAttribute("pb"); %>
-                    <li>이름:</li>
+                    <li>�씠由�:</li>
                     <li>Dolor Sit Amet</li>
                     <li>Consectetur</li>
                     <li>Adipiscing Elit</li>
                 </ul>
             </div>
-		  <button onclick="location.href='http://localhost:8080/SNSmall/Pay.pa?num=1'">결제</button>
+		  <button onclick="location.href='http://localhost:8080/SNSmall/Pay.pa?num=1'">寃곗젣</button>
         </div>
         <!-- /.row -->
 

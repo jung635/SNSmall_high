@@ -1,3 +1,5 @@
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="java.sql.Timestamp"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="web.product.db.ProductBean"%>
 <%@page import="web.product.db.ProductDAO"%>
@@ -13,6 +15,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+	<link href="./css/Pay.css?ver=15" rel="stylesheet"> 
 </head>
 <body>
 <%
@@ -22,39 +25,48 @@ String type= (String)request.getAttribute("type");
 ClientDAO cdao = new ClientDAO();
 PaymentDAO pdao = new PaymentDAO();
 ProductDAO prodao = new ProductDAO();
-List<List<PaymentBean>> pay_list_done = new ArrayList<>();
-List<PaymentBean> pay_list= (List<PaymentBean>)request.getAttribute("pay_list");
+List<List<PaymentBean>> pay_list_done= new ArrayList<>();
+List<PaymentBean> pay_list= new ArrayList<>();
 List<PaymentBean> pay_list_reult = new ArrayList<PaymentBean>();
-
 %>
 	<h2><%=method %></h2>
 	<%if(pay_list_done == null&&pay_list == null){ %>
 		내역이 없습니다.
-	<%}if(method.equals("payDone")){
-	pay_list_done= (List<List<PaymentBean>>)request.getAttribute("pay_list_done");
-	%>
-	
+	<%}
+	if(method.equals("payDone")){
+	pay_list_done= (List<List<PaymentBean>>)request.getAttribute("pay_list_done");%>
+
 					<%for(int i=0; i<pay_list_done.size(); i++){
 				String merchant_uid = "";
 				pay_list_reult = pay_list_done.get(i);%>
 				<div class="well">
-					<table>
+					<table style="width:800px;">
 						<%for(int j=0; j<pay_list_reult.size(); j++){
 							PaymentBean pb = pay_list_reult.get(j);
 							merchant_uid = pb.getOrder_num();
 							ProductBean prob = prodao.getProduct(pb.getProduct_num()); 
-							int price = pb.getAmount()*prob.getPrice();
-							%>
+							int price=0;
+							SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+							String date = format.format(pb.getDate());
+							String subject;
+							if(prob==null){
+								%><tr><td colspan="8">삭제된 상품 입니다.</td><td><input type="button" onclick="location.href='PayCancel.pa?num=<%=pb.getNum() %>'" value="주문 취소"></td></tr> <%
+							}else{
+								subject = prob.getSubject();
 							
-						<tr>
-							<td><img src="./vendor_img/<%=prob.getMain_img() %>" style="width: 130px; height: 90px"></td>
-							<td><%=prob.getSubject() %></td>
+							
+						%><tr><%
+					
+							price = pb.getAmount()*prob.getPrice();
+								if(prob.getContent().length()>3){subject =prob.getContent().substring(0,4)+"...";}%>
+							<td><img src="./vendor_img/<%=prob.getMain_img() %>" style="width: 130px; height: 90px"></div></td>
+							<td><%=subject %></td>
 							<td><%=prob.getContent() %></td>
 							<td><%=price %></td>
-							<td><%=pb.getDate() %></td>
+							<td><%=date %></td>
 							<td><%=pb.getState() %></td>
 							<td><%=pb.getOrder_num() %></td>
-							<td><input type="button" onclick="location.href='PayDetail.pa?num=<%=pb.getNum() %>'" value="주문 상세 조회"></td>
+							<td><input type="button" onclick="location.href='PayOneDone.pa?num=<%=pb.getNum()%>&merchant_uid=<%=merchant_uid%>'" value="주문 상세 조회"></td>
 							<td><%
 							//구매자 일때 취소 및 환불
 							if(type.equals("client")){
@@ -65,7 +77,7 @@ List<PaymentBean> pay_list_reult = new ArrayList<PaymentBean>();
 								}else if(pb.getState().equals("cancel")){
 									%>취소된 상품<%
 								}else{
-									%><input type="button" onclick="location.href='PayCancel.pa?num=<%=pb.getNum() %>&order_num=<%=pb.getOrder_num() %>'" value="주문 취소"><%
+									%><div style="width: auto;"><input type="button" onclick="location.href='PayCancel.pa?num=<%=pb.getNum() %>'" value="주문 취소"></div><%
 								}
 							
 							}	
@@ -84,7 +96,7 @@ List<PaymentBean> pay_list_reult = new ArrayList<PaymentBean>();
 								}else{
 									%>비고<%
 								}
-							} %></td>
+							}} %></td>
 						</tr>
 						<%}%>
 					</table>
@@ -106,7 +118,10 @@ List<PaymentBean> pay_list_reult = new ArrayList<PaymentBean>();
 			%></th></tr>
 			<%for(int i=0; i<pay_list.size(); i++){
 					PaymentBean pb = pay_list.get(i);
-				ProductBean prob = prodao.getProduct(pb.getProduct_num()); %>
+				ProductBean prob = prodao.getProduct(pb.getProduct_num());
+											if(prob==null){
+								%><tr><td colspan="8">삭제된 상품 입니다.</td><td><input type="button" onclick="location.href='PayCancel.pa?num=<%=pb.getNum() %>'" value="주문 취소"></td></tr> <%
+							}%>
 			<tr>
 				<td><img src="./vendor_img/<%=prob.getMain_img() %>" style="width: 130px; height: 90px"></td>
 				<td><%=prob.getSubject() %></td>
@@ -126,7 +141,7 @@ List<PaymentBean> pay_list_reult = new ArrayList<PaymentBean>();
 								}else if(pb.getState().equals("cancelHold")||pb.getState().equals("w_cancelHold")){
 									%>취소 대기중<%
 								}else{
-									%><input type="button" onclick="location.href='PayCancel.pa?num=<%=pb.getNum() %>&order_num=<%=pb.getOrder_num() %>'" value="주문 취소"><%
+									%><input type="button" onclick="location.href='PayCancel.pa?num=<%=pb.getNum() %>'" value="주문 취소"><%
 								}
 							
 							}	

@@ -42,111 +42,118 @@ function myfunction(){
 String type = (String)session.getAttribute("type");
 %>
   <!-- Page Content -->
-	<div class="container">
-		<div class="more_content">
-			<!-- Page Content -->
-			<div class="row">
-
-				<div class="col-md-3">
-					<p class="lead"><%=id %></p>
-					<%if(type.equals("client")){ %>
-					<jsp:include page="../inc/myinfo_client_left.jsp" />
-					<%}else if(type.equals("vendor")){ %>
-					<jsp:include page="../inc/myinfo_vendor_left.jsp" />
-					<%} %>
-				</div>
-				<div class="col-md-9">
-					<%
+  <div class="container">
+    <div class="more_content">
+    <!-- Page Content -->
+        <div class="row">
+        
+            <div class="col-md-3">
+                <p class="lead"><%=id %></p>
+                <%if(type.equals("client")){ %>
+                <jsp:include page="../inc/myinfo_client_left.jsp"/>
+                <%}else if(type.equals("vendor")){ %>
+                <jsp:include page="../inc/myinfo_vendor_left.jsp"/>
+                <%} %>
+            </div>
+            <div class="col-md-9">
+<%
 List<CartBean> cblist = new ArrayList<CartBean>();
 %>
-					<form action="Pay.pa" method="post" name="form1">
+<form action="Pay.pa" method="post" name="form1">
 
-						<%
-							int sum = 0;
+<%
+int sum=0;
 
-							List cl = (List) request.getAttribute("CartList");
+List cl = (List)request.getAttribute("CartList"); 
 
-							ProductDAO pdao = new ProductDAO();
+ProductDAO pdao = new ProductDAO();
 
-							String client_id = "";
-							String product_num = "";
-							String amount = "";
-							String vendor_id = "";
-							String sns_id = "";
-							String option1 = "";
-							String option2 = "";
-							String option3 = "";
-							for (int i = 0; i < cl.size(); i++) {
-								CartBean cb = (CartBean) cl.get(i);
 
-								int price = cb.getPrice();
-								ProductBean prob = pdao.getProduct(cb.getProduct_num());
-						%>
 
-						<input type="checkbox" name="check" value="<%=cb.getPrice()%>"
-							onchange="myfunction()" checked>
+String client_id ="";
+String product_num ="";
+String amount="";
+String vendor_id ="";
+String sns_id="";
+String option1="";
+String option2="";
+String option3="";
+int num=0;
+for(int i=0;i<cl.size();i++){
+	CartBean cb = (CartBean)cl.get(i);
 
-						<!-- 장바구니 정보 -->
-						<a href="ProductDetail.pr?product_num=<%=prob.getProduct_num()%>">
-							물품 번호:<%=cb.getProduct_num()%> 이미지:<img
-							src="./vendor_img/<%=prob.getMain_img()%>"> 품명:<%=cb.getSubject()%>
-							<%
-								if (cb.getOption1() != null) {
-							%>/<%=cb.getOption1()%> <%
- 	}
- 		if (cb.getOption2() != null) {
- %> /<%=cb.getOption2()%>
-							<%
-								}
-									if (cb.getOption3() != null) {
-							%> /<%=cb.getOption3()%>
-							<%
-								}
-							%> 수량:<%=cb.getAmount()%> 가격:<%=cb.getPrice()%> 판매자 아이디 :<%=cb.getVendor_id()%>
-							구매자 아이디 :<%=cb.getClient_id()%>
-						</a> <a href="./Cart_Delete.ca?product_num=<%=cb.getProduct_num()%>"><input
-							type="button" name="delete" value="삭제"></a> <br>
-						<!-- 정보 끝 -->
+	int price=cb.getPrice();
+	ProductBean prob = pdao.getProduct(cb.getProduct_num()); 
+%>
 
-						<%
-							client_id += cb.getClient_id() + ",";
-								product_num += cb.getProduct_num() + ",";
-								amount += cb.getAmount() + ",";
-								vendor_id += cb.getVendor_id().toString() + ",";
-								if (cb.getSns_id() == null) {
-									sns_id = " ,";
-								} else {
-									sns_id += cb.getSns_id() + ",";
-								}
-								option1 += cb.getOption1() + ",";
-								option2 += cb.getOption2() + ",";
-								option3 += cb.getOption3() + ",";
-						%>
+<input type="checkbox" name="check" value="<%=cb.getPrice()%>" onchange="myfunction()" checked>
 
-						<br>
-						<%
-							sum = sum + price;
-							}
-						%>
+<!-- 장바구니 정보 -->
+<a href="ProductDetail.pr?product_num=<%=prob.getProduct_num() %>">
+물품 번호:<%=cb.getProduct_num() %>
+이미지:<img src="./vendor_img/<%=prob.getMain_img() %>">
+품명:<%=cb.getSubject()%>
+<%if(cb.getOption1()!=null){
+	%>/<%=cb.getOption1()%>
+	
+	<%}if(cb.getOption2()!=null){ %>
+	/<%=cb.getOption2()%>
+	<%}if(cb.getOption3()!=null){%>
+		/<%=cb.getOption3() %><%
+	}
 
-						<br> 총가격 :<span id="price"><%=sum%></span> <input
-							type="hidden" name="client_id" value="<%=client_id%>"> <input
-							type="hidden" name="product_num" value="<%=product_num%>">
-						<input type="hidden" name="amount" value="<%=amount%>"> <input
-							type="hidden" name="vendor_id" value="<%=vendor_id%>"> <input
-							type="hidden" name="sns_id" value="<%=sns_id%>"> <input
-							type="hidden" name="option1" value="<%=option1%>"> <input
-							type="hidden" name="option2" value="<%=option2%>"> <input
-							type="hidden" name="option3" value="<%=option3%>">
-						<%
-							//체크가 되어있으면 합하기 아니면 합하기 X
-						%>
-						<br> <input type="submit" value="결제하기">
-					</form>
-				</div>
-			</div>
-		</div>
-	</div>
+%>
+
+수량:<%=cb.getAmount() %>
+가격:<%=cb.getPrice() %>
+판매자 아이디 :<%=cb.getVendor_id() %>
+구매자 아이디 :<%=cb.getClient_id()%>
+</a>
+<a href="./Cart_Delete.ca?product_num=<%=cb.getProduct_num()%>"><input type="button" name="delete" value="삭제"></a>
+<br>
+<!-- 정보 끝 -->
+
+<%client_id += cb.getClient_id()+","; 
+product_num += cb.getProduct_num()+","; 
+amount += cb.getAmount()+","; 
+vendor_id += cb.getVendor_id().toString()+","; 
+if(cb.getSns_id()==null){
+	sns_id=" ,";
+}else{
+	sns_id += cb.getSns_id()+","; 
+}
+option1	+= cb.getOption1()+","; 
+option2 += cb.getOption2()+","; 
+option3 += cb.getOption3()+","; 
+num = cb.getNum();
+%>
+
+ <br>
+<%sum = sum+price;} 
+%>
+
+<br>
+총가격 :<span id="price"><%=sum %></span>
+<input type="hidden" name = "num" value="<%=num%>">
+<input type="hidden" name = "client_id" value="<%=client_id%>">
+<input type="hidden" name = "product_num" value="<%=product_num%>">
+<input type="hidden" name = "amount" value="<%=amount%>">
+<input type="hidden" name = "vendor_id" value="<%=vendor_id%>">
+<input type="hidden" name = "sns_id" value="<%=sns_id%>">
+<input type="hidden" name = "option1" value="<%=option1%>">
+<input type="hidden" name = "option2" value="<%=option2%>">
+<input type="hidden" name = "option3" value="<%=option3%>">
+<%
+
+//체크가 되어있으면 합하기 아니면 합하기 X
+%>
+ <br>
+	<input type="submit" value="결제하기">
+ </form>
+</div>
+</div>
+</div>
+</div>
 
 
 

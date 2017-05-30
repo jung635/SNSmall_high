@@ -36,20 +36,20 @@
             </div>
             <div class="col-md-9">
 <h1>찜 목록</h1>
-<form action="">
+<div class="well">
 <%
 List<ZzimBean> list=(List)request.getAttribute("list");
 ZzimBean zb = new ZzimBean();
 %>
-<table border="1">
-<tr><th>물품번호</th><th>물품명</th><th>가격</th><th>날짜</th><th>삭제</th></tr>
+<table border="1" style="width:800px;">
+<tr><th>물품번호</th><th>물품명</th><th>가격</th><th>날짜</th><th>바로가기</th><th>삭제</th></tr>
 <%
 for(int i=0;i<list.size();i++){
 	zb = list.get(i);
 	%>
-	<tr><a href="#"><td><%=zb.getProduct_num() %></td><td>aaa</td><td><%=zb.getPrice() %></td><td><%=zb.getDate() %></td></a><td>
-
-	<a href="./ZzimDeleteAction.zz?product_num=<%=zb.getProduct_num()%>"><input type="button" name="delete" value="삭제"></a></td></tr>
+	<tr><td><%=zb.getProduct_num() %></td><td><%=zb.getSubject() %></td><td><%=zb.getPrice() %></td><td><%=zb.getDate() %></td>
+	<td><a href="./ProductDetail.pr?product_num=<%=zb.getProduct_num()%>"><input type="button" value="바로가기"></a></td>
+	<td><a href="./ZzimDeleteAction.zz?product_num=<%=zb.getProduct_num()%>"><input type="button" name="delete" value="삭제"></a></td></tr>
 
 	<%
 }
@@ -58,11 +58,7 @@ for(int i=0;i<list.size();i++){
 %>
 </a>
 </table>
-
-
-
-
- </form>
+</div>
 </div>
 </div>
 </div>

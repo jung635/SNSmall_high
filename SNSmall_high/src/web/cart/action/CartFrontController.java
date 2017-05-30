@@ -33,6 +33,14 @@ public class CartFrontController extends HttpServlet{
 				e.printStackTrace();
 			}
 		
+		}else if(command.equals("/Cart_Delete.ca")){
+			action=new CartDeleteAction();
+			try {
+				forward=action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		
 		}
 		
 		

@@ -82,9 +82,9 @@ public class ProductDAO {
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, num);
 			rs = pstmt.executeQuery();
-			
+			pb = new ProductBean();
 			if(rs.next()){
-				pb = new ProductBean();
+				
 				pb.setProduct_num(num);
 				pb.setVendor_id(rs.getString("vendor_id"));
 				pb.setCategory(rs.getString("category"));

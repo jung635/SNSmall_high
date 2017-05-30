@@ -16,30 +16,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<!-- <header id="navigation"> 
-		<div class="navbar navbar-inverse navbar-fixed-top" role="banner"> 
-			<div class="container"> 
-				<div class="navbar-header"> 
-					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"> 
-						<span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> 
-					</button> 
-					<a class="navbar-brand" href="index.html"><h1><img src="images/logo.png" alt="logo"></h1></a> 
-				</div> 
-				<div class="collapse navbar-collapse"> 
-					<ul class="nav navbar-nav navbar-right"> 
-						<li class="scroll active"><a href="#navigation">Home</a></li> 
-						<li class="scroll"><a href="test.jsp">List</a></li> 
-						<li class="scroll"><a href="#services">Services</a></li> 
-						<li class="scroll"><a href="#our-team">Our Team</a></li> 
-						<li class="scroll"><a href="#portfolio">Portfolio</a></li> 
-						<li class="scroll"><a href="#clients">Clients</a></li> 
-						<li class="scroll"><a href="#blog">Blog</a></li> 
-						<li class="scroll"><a href="#contact">Contact</a></li> 
-					</ul> 
-				</div> 
-			</div> 
-		</div>/navbar 
-	</header> /#navigation  -->
 	<jsp:include page="../inc/header.jsp"/>
   <!-- Page Content -->
   <div class="container">
@@ -55,30 +31,25 @@
             </div>
         </div>
     </header>
-
         <hr>
-
         <div class="row">
             <div class="col-sm-8">
                 <h2>What We Do</h2>
-                <p>Introduce the visitor to the business using clear, informative text. Use well-targeted keywords within your sentences to make sure search engines can find the business.</p>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Et molestiae similique eligendi reiciendis sunt distinctio odit? Quia, neque, ipsa, adipisci quisquam ullam deserunt accusantium illo iste exercitationem nemo voluptates asperiores.</p>
-                <p>
-                    <a class="btn btn-default btn-lg" href="#">Call to Action &raquo;</a>
-                </p>
+                <p>우리는 SNS STAR, 판매자, 구매자 모드에게 최고의 혜택을 드리기위해 노력하고있습니다. 실제로 많은 고객님들이 이러한 혜택들을 누리고 있습니다!</p>
+                <p>모든 고객분들과 소통하며 더 나은 서비스를 제공하기위해 노력중입니다. 요구사항이나 궁금한 점이 있으면 편하게 연락주시기 바랍니다.</p>
             </div>
             <div class="col-sm-4">
                 <h2>Contact Us</h2>
                 <address>
-                    <strong>Start Bootstrap</strong>
-                    <br>3481 Melrose Place
-                    <br>Beverly Hills, CA 90210
+                    <strong>ITWILL</strong>
+                    <br>부산 부산진구 동천로 109
+                    <br>삼한골든게이트 7층
                     <br>
                 </address>
                 <address>
                     <abbr title="Phone">P:</abbr>(123) 456-7890
                     <br>
-                    <abbr title="Email">E:</abbr> <a href="mailto:#">name@example.com</a>
+                    <abbr title="Email">E:</abbr> <a href="mailto:#">hongcine@itwillbs.co.kr</a>
                 </address>
             </div>
         </div>
@@ -88,19 +59,19 @@
 
         <div class="row">
             <div class="col-sm-4">
-                <img class="img-circle img-responsive img-center" src="http://placehold.it/300x300" alt="">
-                <h2>Marketing Box #1</h2>
-                <p>These marketing boxes are a great place to put some information. These can contain summaries of what the company does, promotional information, or anything else that is relevant to the company. These will usually be below-the-fold.</p>
+                <img class="img-circle img-responsive img-center" src="images/join/sns2.gif" alt="">
+                <h2>SNS STAR</h2>
+                <p>SNS STAR는 더 유명해질 수 있는 기회를 얻고, 본인의 장점을 살려 이익을 낼 수 있습니다. 본인이 판매자가 되어 물건을 팔고, SNS STAR로써 홍보한다면 개인 쇼핑몰의 효과도 누릴 수 있습니다! 더이상 개인적으로 오는 상품문의에 일일히 답하실 필요가 없습니다. 우리의 서비스를 통해 이익과 편리함을 챙기세요.</p>
             </div>
             <div class="col-sm-4">
-                <img class="img-circle img-responsive img-center" src="http://placehold.it/300x300" alt="">
-                <h2>Marketing Box #2</h2>
-                <p>The images are set to be circular and responsive. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.</p>
+                <img class="img-circle img-responsive img-center" src="images/join/vendor2.gif" alt="">
+                <h2>VENDOR</h2>
+                <p>SNS는 최고의 광고효과를 내고있습니다. 인기 많은 SNS STAR들에게 광고를 요청해보세요. 효과가 있을지 없을지 모르는 광고에 돈을 쏟지 않고, 확실한 경로를 통해 광고효과가 있을 때만 돈을 지불하는 시스템이 될 것입니다. 투명하게 나의 광고비가 어디에 소비되고 있는지 확인해보세요. 우리 서비스의 장점을 확인하실 수 있을 것입니다. </p>
             </div>
             <div class="col-sm-4">
-                <img class="img-circle img-responsive img-center" src="http://placehold.it/300x300" alt="">
-                <h2>Marketing Box #3</h2>
-                <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.</p>
+                <img class="img-circle img-responsive img-center" src="images/join/custom2.gif" alt="">
+                <h2>CLIENT</h2>
+                <p>SNS STAR들이 쓰고있는 물건이 무엇인지, 어디서 살 수 있는지 알아보기 귀찮으셨을 겁니다. 클릭 한번으로 그들처럼 될 수 있습니다. 뿐만 아니라 우리 쇼핑몰에서만 만날 수 있는 SNS STAR들의 물건들을 쇼핑해보세요! 초특급 레어템들이 기다리고있습니다. 항상 준비중인 이벤트와 포인트 폭탄은 덤입니다. </p>
             </div>
         </div>
         <!-- /.row -->

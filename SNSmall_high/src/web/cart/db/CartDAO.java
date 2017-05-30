@@ -126,6 +126,25 @@ public List<CartBean> getCartList(String client_id){
 			if(con!=null){try {con.close();}catch(SQLException ex) {}}
 		}
 
+	}//add end
+	
+	//cart delete
+	public void CartDelete(String client_id,int product_num){
+		try{
+			con = getConnection();
+			sql = "delete from cart where client_id=? && product_num=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, client_id);
+			pstmt.setInt(2, product_num);
+			pstmt.executeUpdate();
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally {
+			if(rs!=null){try {rs.close();}catch(SQLException ex){}}
+			if(pstmt!=null){try {pstmt.close();}catch(SQLException ex){}}
+			if(con!=null){try {con.close();}catch(SQLException ex) {}}
+		}
+
 	}
 
 	

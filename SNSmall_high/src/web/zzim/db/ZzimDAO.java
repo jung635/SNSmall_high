@@ -27,13 +27,14 @@ Connection con = null;
 	PreparedStatement pstmt = null;
 	String sql = "";
 	ResultSet rs = null;
-	
+	ResultSet rs2 = null;
 	//찜리스트
 	public List getZzimList(String id){
 		
 		List<ZzimBean> list = new ArrayList<ZzimBean>();
 		try{
 			con = getConnection();
+			
 			sql = "select * from zzim where client_id=?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, id);
@@ -41,12 +42,23 @@ Connection con = null;
 			rs=pstmt.executeQuery();
 			
 			while (rs.next()){
+				
+				
 				ZzimBean zb = new ZzimBean();
 				zb.setClient_id(rs.getString("client_id"));
 				zb.setProduct_num(Integer.parseInt(rs.getString("product_num")));
 				zb.setSns_id(rs.getString("sns_id"));
 				zb.setPrice(Integer.parseInt(rs.getString("price")));
 				zb.setDate(rs.getDate("date"));
+				
+				sql = "select * from product where product_num=?";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setInt(1, zb.getProduct_num());
+				rs2 = pstmt.executeQuery();
+				if(rs2.next()){
+					zb.setSubject(rs2.getString("subject"));					
+				}
+
 				list.add(zb);
 				
 			}
@@ -104,8 +116,13 @@ Connection con = null;
 	public void ZzimAddAction(ZzimBean zb){
 		try{
 			con = getConnection();
-			sql="insert into zzim values(?,?,?,?,?)";
-			
+			sql="insert into zzim values(?,?,?,?,now())";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1,zb.getProduct_num());
+			pstmt.setString(2, zb.getSns_id());
+			pstmt.setString(3,zb.getClient_id());
+			pstmt.setInt(4,zb.getPrice());
+			pstmt.executeUpdate();
 			
 		}catch (Exception e){
 			e.printStackTrace();		
@@ -125,7 +142,40 @@ Connection con = null;
 				}
 			}
 		}
-		return ;
+		
 	}
-	
+	public int ZzimCheckAction(String id,int product_num){
+		int check=0;
+		try{
+			
+			con = getConnection();
+			sql = "select * from zzim where client_id=? and product_num=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, id);
+			pstmt.setInt(2, product_num);
+			
+			rs = pstmt.executeQuery();
+			if(rs.next()){
+				check=1;
+			}
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally {
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		return check;
+	}
 }

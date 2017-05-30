@@ -36,6 +36,10 @@ public class PaymentFrontController extends HttpServlet {
 			forward = new ActionForward();
 			forward.setPath("./pay/payDone.jsp");
 			forward.setRedirect(false);
+		} else if (command.equals("/PayOneDone.pa")) {
+			forward = new ActionForward();
+			forward.setPath("./pay/payOneDone.jsp");
+			forward.setRedirect(false);
 		} else if (command.equals("/MyPage.pa")) {
 			forward = new ActionForward();
 			forward.setPath("./mypage/mypage.jsp");
@@ -44,13 +48,6 @@ public class PaymentFrontController extends HttpServlet {
 			forward = new ActionForward();
 			forward.setPath("./mypage/mypay_list.jsp");
 			forward.setRedirect(false);
-		} else if (command.equals("/PayInnerList.pa")) {
-			action = new PayListAction();
-			try {
-				forward = action.execute(request, response);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
 		} else if (command.equals("/PayInnerList.pa")) {
 			action = new PayListAction();
 			try {

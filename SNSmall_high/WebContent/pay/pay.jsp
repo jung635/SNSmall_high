@@ -233,9 +233,8 @@ String[] option1 = option1_str.split(",");
 String[] option2 = option2_str.split(",");
 String[] option3 = option3_str.split(",");
 String[] amount = amount_str.split(",");
+String[] product_num = product_str.split(",");
 ProductDAO pdao = new ProductDAO();
-List<ProductBean> product_list = pdao.getProduct(product_str);
-int list_size = product_list.size(); 
 int price=0;
 String address = cdao.getMember(id).getAddress();
 %>
@@ -267,10 +266,10 @@ String address = cdao.getMember(id).getAddress();
 		<div id="product_info">
 			<div id="title_in"><h2>상품 정보</h2></div>
 			<table id="product" border="1">
-				<tr><th rowspan="<%=list_size+1 %>"  style="width: 150px;">배송상품</th><th>배송상품 이름</th><th>수량</th><th>가격</th></tr>
-	 			<%for(int i=0; i<list_size; i++){ 
+				<tr><th rowspan="<%=product_num.length+1 %>"  style="width: 150px;">배송상품</th><th>배송상품 이름</th><th>수량</th><th>가격</th></tr>
+	 			<%for(int i=0; i<product_num.length; i++){ 
 	 				String option_all = "";
-					ProductBean pb = (ProductBean)product_list.get(i);
+					ProductBean pb = pdao.getProduct(Integer.parseInt(product_num[i]));
  					if(i<option1.length && option1[i].trim().length()>0){
 						option_all += option1[i]+"/";
 					}

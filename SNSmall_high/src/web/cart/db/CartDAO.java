@@ -135,7 +135,7 @@ public List<CartBean> getCartList(String client_id){
 	}//add end
 	
 	//cart delete
-	public void CartDelete(String client_id,int product_num){
+	public void cartDelete(String client_id,int product_num){
 		try{
 			con = getConnection();
 			sql = "delete from cart where client_id=? && product_num=?";

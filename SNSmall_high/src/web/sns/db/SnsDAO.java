@@ -429,6 +429,7 @@ public class SnsDAO {
 					pb = new PaymentBean();
 					pb.setProduct_num(rs.getInt("product_num"));
 					pb.setAmount(rs.getInt("amount"));
+					pb.setPay_price(rs.getInt("pay_price"));
 					list.add(pb);
 			}
 		}catch(Exception e){e.printStackTrace();}
@@ -452,6 +453,7 @@ public class SnsDAO {
 					pb = new PaymentBean();
 					pb.setProduct_num(rs.getInt("product_num"));
 					pb.setAmount(rs.getInt("amount"));
+					pb.setPay_price(rs.getInt("pay_price"));
 					list.add(pb);
 			}
 		}catch(Exception e){e.printStackTrace();}
@@ -482,6 +484,7 @@ public class SnsDAO {
 							pb = new PaymentBean();
 							pb.setProduct_num(rs.getInt("product_num"));
 							pb.setAmount(rs.getInt("amount"));
+							pb.setPay_price(rs.getInt("pay_price"));
 							list.add(pb);
 						}
 					}

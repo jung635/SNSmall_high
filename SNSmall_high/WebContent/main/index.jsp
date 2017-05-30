@@ -204,8 +204,8 @@ function productSearch_exe(){
 		<div class="container">
 			<div class="row text-center">
 				<div class="col-sm-8 col-sm-offset-2">
-					<h2 class="title-one">Services</h2>
-					<p>우리는 SNS STAR, 판매자, 구매자 모드에게 최고의 혜택을 드리기위해 노력하고있습니다. 실제로 많은 고객님들이 이러한 혜택들을 누리고 있습니다!</p>
+					<h2 class="title-one" style="color:#43484E;">Services</h2>
+					<p style="color:#43484E; font-weight: bold;">우리는 SNS STAR, 판매자, 구매자 모드에게 최고의 혜택을 드리기위해 노력하고있습니다. 실제로 많은 고객님들이 이러한 혜택들을 누리고 있습니다!</p>
 				</div>
 			</div>
 			<div class="row">
@@ -378,7 +378,7 @@ function productSearch_exe(){
 								<div class="row text-center">
 									<div class="col-sm-8 col-sm-offset-2">
 										<h2 class="title-one">Clients Say About Us</h2>
-										<p>우리회사는 SNS STAR, 판매자, 구매자 모두에게 최고의 혜택을 드리기위해 부단히 노력하고 있습니다. 우리의 서비스로 성공적인 비지니스를 이루고, 놀라운 혜택을 누리고 있는 회원님들을 만나보세요! 여러분도 그들중 하나가 될 수 있습니다.</p>
+										<p style="background-color: rgba(0, 0, 0, 0.5); padding: 20px 0 20px 0;">우리회사는 SNS STAR, 판매자, 구매자  모두에게 최고의 혜택을 드리기위해 부단히 노력하고 있습니다.<br> 우리의 서비스로 성공적인 비지니스를 이루고, 놀라운 혜택을 누리고 있는 회원님들을 만나보세요! <br>여러분도 그들중 하나가 될 수 있습니다.</p>
 									</div>
 								</div>
 								<div id="clients-carousel" class="carousel slide" data-ride="carousel"> <!-- Indicators -->
@@ -429,8 +429,11 @@ function productSearch_exe(){
 							<div class="row text-center clearfix">
 								<div class="col-sm-8 col-sm-offset-2">
 									<h2 class="title-one">Our Blog</h2>
-									<p class="blog-heading">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
-										<a href="./OurBlog.bl"><button>Go to our blog</button></a>
+									<p class="blog-heading">(shop name)몰의 다양한 사회기여를 위한 활동과 이벤트, 여러가지 광고를 블로그를 통해 보실 수 있습니다.<br>
+									(shop name)몰의 새로운 소식을 먼저 보러가세요. &nbsp;
+										<a href="./OurBlog.bl"><button class="blog-go-btn">Go to our Blog
+										<i class="fa fa-arrow-right" aria-hidden="true"></i>
+										</button></a>
 									</p>
 								</div>
 							</div> 

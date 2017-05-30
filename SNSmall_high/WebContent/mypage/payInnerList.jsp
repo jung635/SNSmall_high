@@ -49,8 +49,8 @@ List<PaymentBean> pay_list_reult = new ArrayList<PaymentBean>();
 							SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 							String date = format.format(pb.getDate());
 							String subject;
-							if(prob.getSubject().equals("null")){
-								%><tr><td>삭제된 상품 입니다.</td></tr> <%
+							if(prob==null){
+								%><tr><td colspan="8">삭제된 상품 입니다.</td><td><input type="button" onclick="location.href='PayCancel.pa?num=<%=pb.getNum() %>'" value="주문 취소"></td></tr> <%
 							}else{
 								subject = prob.getSubject();
 							
@@ -118,7 +118,10 @@ List<PaymentBean> pay_list_reult = new ArrayList<PaymentBean>();
 			%></th></tr>
 			<%for(int i=0; i<pay_list.size(); i++){
 					PaymentBean pb = pay_list.get(i);
-				ProductBean prob = prodao.getProduct(pb.getProduct_num()); %>
+				ProductBean prob = prodao.getProduct(pb.getProduct_num());
+											if(prob==null){
+								%><tr><td colspan="8">삭제된 상품 입니다.</td><td><input type="button" onclick="location.href='PayCancel.pa?num=<%=pb.getNum() %>'" value="주문 취소"></td></tr> <%
+							}%>
 			<tr>
 				<td><img src="./vendor_img/<%=prob.getMain_img() %>" style="width: 130px; height: 90px"></td>
 				<td><%=prob.getSubject() %></td>

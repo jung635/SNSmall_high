@@ -78,6 +78,7 @@ String sns_id="";
 String option1="";
 String option2="";
 String option3="";
+int num=0;
 for(int i=0;i<cl.size();i++){
 	CartBean cb = (CartBean)cl.get(i);
 
@@ -124,7 +125,7 @@ if(cb.getSns_id()==null){
 option1	+= cb.getOption1()+","; 
 option2 += cb.getOption2()+","; 
 option3 += cb.getOption3()+","; 
-
+num = cb.getNum();
 %>
 
  <br>
@@ -133,6 +134,7 @@ option3 += cb.getOption3()+",";
 
 <br>
 총가격 :<span id="price"><%=sum %></span>
+<input type="hidden" name = "num" value="<%=client_id%>">
 <input type="hidden" name = "client_id" value="<%=client_id%>">
 <input type="hidden" name = "product_num" value="<%=product_num%>">
 <input type="hidden" name = "amount" value="<%=amount%>">

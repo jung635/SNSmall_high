@@ -32,6 +32,7 @@ String option3_str = request.getParameter("option3_str");
 String[] option3 = option3_str.split(",");
 String method = request.getParameter("method");
 String address = request.getParameter("address");
+String cart_str = request.getParameter("cart_str");
 %>
 <%
 /* Date date = new Date();
@@ -55,6 +56,7 @@ SimpleDateFormat sdf = new SimpleDateFormat("yyyy년 MM월 dd일 hh시mm분 까�
 		<input type="hidden" name="price" value='<%=price %>'>
 		<input type="hidden" name="method" value='<%=method %>'>
 		<input type="hidden" name="address" value='<%=address %>'>
+		<input type="hidden" name="cart_str" value='<%=cart_str %>'>
 <table>
 	<tr>
 		<td>입금 은행</td>

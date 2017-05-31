@@ -13,6 +13,7 @@
 	<meta name="keywords" content="Creative, Onepage, Parallax, HTML5, Bootstrap, Popular, custom, personal, portfolio" /> 
 	<meta name="author" content=""> 
 	<title>HIMU - OnePage HTML Parallax template</title> 
+	<link href="./css/font-awesome.min.css" rel="stylesheet"> 
 	<link href="./css/bootstrap.min.css" rel="stylesheet">
 	<link href="./css/bootstrap.css" rel="stylesheet">
 	<link href="./css/header.css" rel="stylesheet">
@@ -25,24 +26,18 @@
 	
 <jsp:include page="../inc/header.jsp"/>
   <!-- Page Content -->
-  <div class="container">
-    <div class="content">
-
-     	        <div class="row">
+	<div class="container">
+		<div class="content">
+			<div class="row">
+				<div class="blogHomeTopImg">
+					<div class="blog-content-header">
+						&nbsp;himu 's Blog
+					</div>
+				</div>  
 
             <!-- Blog Entries Column -->
-            <div class="col-md-8">
-
-                <h1 class="page-header">
-                    www's Blog
-                    <small>Welcome to our Blog</small>
-                    
-                 <span >
-                    <a href="./OurBlogPosting.bl"><button class="posting_btn">Posting</button></a>
-                 </span>     
-                </h1>
-		 <hr style="border: 0; height: 2px; background: #ddd;">
-
+            <div class="col-md-9">
+ 
 <%
 List blogList=(List)request.getAttribute("blogList");
 String pageNum=(String)request.getAttribute("pageNum");
@@ -51,44 +46,63 @@ int pageBlock=((Integer)request.getAttribute("pageBlock")).intValue();
 int startPage=((Integer)request.getAttribute("startPage")).intValue();
 int endPage=((Integer)request.getAttribute("endPage")).intValue();
 int pageCount = ((Integer)request.getAttribute("pageCount")).intValue();
-
-
-
-for(int i=0;i<blogList.size();i++){
-	BlogBean bb = (BlogBean)blogList.get(i);
-	
 %>
-
+ 		<hr>
+		 &nbsp;전체보기 &nbsp;(<%=count %>)
+		<hr>
+<%
+for(int i=0;i<blogList.size();i++){
+	BlogBean bb = (BlogBean)blogList.get(i);	
+%>
                 <!-- First Blog Post -->
                
-                <h2>
-                    <a href="./OurBlogPostAction.bl?num=<%=bb.getNum()%>&pageNum=<%=pageNum%>">
-                    <%=bb.getSubject() %>
-                    </a>
-                     <small> by admin</small>
-                </h2>
-               
-                <p><span class="glyphicon glyphicon-time"></span> Posted on 
-                <%SimpleDateFormat sdf = new SimpleDateFormat("MMMMM dd, yyyy hh:mm a zzz");%>
-                 <%=sdf.format(bb.getDate())%>
-                </p>
-                <hr>  <!-- Posted on August 28, 2013 at 10:00 PM -->
+                <div class="blog-subject">
+                 
+                    <span style="font-size: 20px;"><%=bb.getSubject() %></span>
+                    <span style="font-size: 12px;">　
+                    
+                    	<%if(bb.getCategory().equals("notice")){ %>
+		              		<i class="fa fa-file-text-o" aria-hidden="true"></i> notice
+		              	<%}else if(bb.getCategory().equals("contribution")){ %>
+							<i class="fa fa-globe" aria-hidden="true"></i> contribution
+						<%}else if(bb.getCategory().equals("Event")){ %>
+							<i class="fa fa-gift" aria-hidden="true"></i> Event
+						<%}else if(bb.getCategory().equals("service")){ %>
+							<i class="fa fa-star" aria-hidden="true"></i> service
+						<%}else if(bb.getCategory().equals("advertising")){ %>
+							<i class="fa fa-lightbulb-o" aria-hidden="true"></i> advertising
+						<%} %>
+                   </span>
+                  
+                   
+                     
+                	<span class="blog-subject-date">
+               			<small>
+               		   		<span class="glyphicon glyphicon-time"></span> 
+               				Posted on 
+               		 		<%SimpleDateFormat sdf = new SimpleDateFormat("MMMMM dd, yyyy hh:mm a zzz");%>
+               		  		<%=sdf.format(bb.getDate())%>
+                		</small>
+                	</span>
+                </div>
+                	
+                	
+                  <!-- Posted on August 28, 2013 at 10:00 PM -->
                 
                 <%if(bb.getFile()!=null){ %>
-                
-                  <a href="./OurBlogPostAction.bl?num=<%=bb.getNum()%>&pageNum=<%=pageNum%>">
-    			<img src="./blog_upload/<%=bb.getFile()%>" style="border-radius:5px;"></img></a>
-    			
+             
+                	<a href="./OurBlogPostAction.bl?num=<%=bb.getNum()%>&pageNum=<%=pageNum%>">
+                  
+    				<img src="./blog_upload/<%=bb.getFile()%>" style="border-radius:5px; max-width: 820px;"></img></a>
+    			 
     			 <hr>
                 <%} %>
-                
+             
                
                 <div style="overflow:hidden; height:100px;"><%=bb.getContent()%></div>
-                <a class="btn btn-primary" href="#">Read More <span class="glyphicon glyphicon-chevron-right"></span></a>
-
-               <hr style="border: 0; height: 1px; background: #ddd;">
-               <hr style="border: 0; height: 2px; background: #ddd;">
-
+                <a class="btn btn-primary" href="./OurBlogPostAction.bl?num=<%=bb.getNum()%>&pageNum=<%=pageNum%>">Read More <span class="glyphicon glyphicon-chevron-right"></span></a>
+  
+               <hr style="border: 0; height: 2px; background: #e3e3e3;">
         <%}%>
 
 <!-- Pager -->
@@ -117,12 +131,9 @@ if(count!=0){
 <!-- Blog Sidebar Widgets Column -->
 <jsp:include page="../inc/blog_right.jsp"/>	
 
-        </div>
-        <!-- /.row -->
-         
-         
- 
-        </div>
+			</div>
+        <!-- /.row --> 
+		</div>
 
         <hr>
 
@@ -137,8 +148,7 @@ if(count!=0){
             <!-- /.row -->
         </footer>
 
-    </div>
-   </div>
+	</div>
     <!-- /.container -->
 
     <!-- jQuery -->

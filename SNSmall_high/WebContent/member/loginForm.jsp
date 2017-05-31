@@ -102,6 +102,7 @@
 <!-- 						<button type="button" disabled="" title="delete" id="id_clear" class="wrg">삭제</button> -->
 					</div>
 					<div  id="err_empty_id" class="error" style="display:none; ">아이디를 입력해주세요.</div>
+					
 					<div class="input_row" id="pw_area">
 						<span class="input_box">
 							<label for="pw" id="label_pw_area"  class="lbl">비밀번호</label>
@@ -123,9 +124,11 @@
 					<legend class="blind"></legend>
 					
 					<div class="sub_member">
-					<a href="#" >회원가입</a>&nbsp;|
-					<a href="#">아이디 찾기</a>&nbsp;|
-					<a href="#">비밀번호 찾기</a>
+					<a href="./common_join.sn" >회원가입</a>&nbsp;|
+					<a href="./login.cl" >로그인</a>&nbsp;|
+					<a href="./SearchId.cl">아이디 찾기</a>&nbsp;|
+					<a href="./SearchPass.cl">비밀번호 찾기</a><br>
+					<a href="./SearchIdForSns.cl">SNS 아이디 찾기</a>
 					</div>
 					
 					<div class="clear"></div>

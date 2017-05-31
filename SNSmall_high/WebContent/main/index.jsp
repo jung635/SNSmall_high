@@ -1,3 +1,6 @@
+<%@page import="web.blog.db.BlogDAO"%>
+<%@page import="web.blog.db.BlogBean"%>
+<%@page import="java.text.SimpleDateFormat"%>
 <%@page import="web.product.db.ProductBean"%>
 <%@page import="web.sns.db.SnsBean"%>
 <%@page import="java.util.List"%>
@@ -26,18 +29,22 @@
 	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="images/ico/apple-touch-icon-114-precomposed.png"> 
 	<link rel="apple-touch-icon-precomposed" sizes="72x72" href="images/ico/apple-touch-icon-72-precomposed.png"> 
 	<link rel="apple-touch-icon-precomposed" href="images/ico/apple-touch-icon-57-precomposed.png">
+
+	<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
 <script type="text/javascript">
+// $('#mainimg_item').
 function snsSearch_exe(){
 	search = document.getElementById('product_name').value;
 	location.href = 'SearchSnsList.sn?search='+search;
 }
+
 function productSearch_exe(){
 	search = document.getElementById('product_name').value;
 	location.href = './ProductSearchList.pr?search='+search;
 }
 
 </script>
-</head>
+</head><!--/head-->
 <body>
 <script type="text/javascript" src=".main/alarm.js"></script> 
 	<div class="preloader">
@@ -197,8 +204,8 @@ function productSearch_exe(){
 		<div class="container">
 			<div class="row text-center">
 				<div class="col-sm-8 col-sm-offset-2">
-					<h2 class="title-one">Services</h2>
-					<p>우리는 SNS STAR, 판매자, 구매자 모드에게 최고의 혜택을 드리기위해 노력하고있습니다. 실제로 많은 고객님들이 이러한 혜택들을 누리고 있습니다!</p>
+					<h2 class="title-one" style="color:#43484E;">Services</h2>
+					<p style="color:#43484E; font-weight: bold;">우리는 SNS STAR, 판매자, 구매자 모드에게 최고의 혜택을 드리기위해 노력하고있습니다. 실제로 많은 고객님들이 이러한 혜택들을 누리고 있습니다!</p>
 				</div>
 			</div>
 			<div class="row">
@@ -346,7 +353,11 @@ function productSearch_exe(){
 					<div class="col-sm-3 col-xs-12 portfolio-item <%=prob.getCategory()%>">
 						<div class="view efffect">
 							<div class="portfolio-image">
-								<img src="./vendor_img/<%=prob.getMain_img() %>" alt=""></div> 
+								<%if(prob.getMain_img()==null){ %>
+    	            		    		<div><img src="./qna_img/default.jpg" style="" alt=""></div>
+        			            <%} else{%>
+										<img id="mainimg_item" src="./vendor_img/<%=prob.getMain_img() %>" alt=""></div>
+								<%} %> 
 								<div class="mask text-center">
 									<h3>Novel</h3>
 									<h4>Lorem ipsum dolor sit amet consectetur</h4>
@@ -367,7 +378,7 @@ function productSearch_exe(){
 								<div class="row text-center">
 									<div class="col-sm-8 col-sm-offset-2">
 										<h2 class="title-one">Clients Say About Us</h2>
-										<p>우리회사는 SNS STAR, 판매자, 구매자 모두에게 최고의 혜택을 드리기위해 부단히 노력하고 있습니다. 우리의 서비스로 성공적인 비지니스를 이루고, 놀라운 혜택을 누리고 있는 회원님들을 만나보세요! 여러분도 그들중 하나가 될 수 있습니다.</p>
+										<p style="background-color: rgba(0, 0, 0, 0.5); padding: 20px 0 20px 0;">우리회사는 SNS STAR, 판매자, 구매자  모두에게 최고의 혜택을 드리기위해 부단히 노력하고 있습니다.<br> 우리의 서비스로 성공적인 비지니스를 이루고, 놀라운 혜택을 누리고 있는 회원님들을 만나보세요! <br>여러분도 그들중 하나가 될 수 있습니다.</p>
 									</div>
 								</div>
 								<div id="clients-carousel" class="carousel slide" data-ride="carousel"> <!-- Indicators -->
@@ -418,166 +429,81 @@ function productSearch_exe(){
 							<div class="row text-center clearfix">
 								<div class="col-sm-8 col-sm-offset-2">
 									<h2 class="title-one">Our Blog</h2>
-									<p class="blog-heading">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p>
+									<p class="blog-heading">(shop name)몰의 다양한 사회기여를 위한 활동과 이벤트, 여러가지 광고를 블로그를 통해 보실 수 있습니다.<br>
+									(shop name)몰의 새로운 소식을 먼저 보러가세요. &nbsp;
+										<a href="./OurBlog.bl"><button class="blog-go-btn">Go to our Blog
+										<i class="fa fa-arrow-right" aria-hidden="true"></i>
+										</button></a>
+									</p>
 								</div>
 							</div> 
 							<div class="row">
+							<%BlogDAO bdao = new BlogDAO();
+							  int count = bdao.getBlogListCount();
+							  SimpleDateFormat sdf=new SimpleDateFormat("yyyy.MM.dd");
+							  
+							  int startRow= 1;
+							  int pageSize = 3;
+							  List blogList = null;
+							  
+							  if(count!=0){
+								  blogList=bdao.getBlogList(startRow, pageSize);
+							  
+							  
+							  for(int i=0;i<blogList.size();i++){
+								  BlogBean bb = (BlogBean)blogList.get(i);
+											%>
 								<div class="col-sm-4">
 									<div class="single-blog">
-										<img src="images/blog/1.jpg" alt="" />
-										<h2>Lorem ipsum dolor sit amet</h2>
+									  <%if(bb.getFile()!=null){ %>
+										<img src="./blog_upload/<%=bb.getFile()%>" style="border-radius:5px; height: 210px;"></img>
+										<%} %>
+										<h2><%=bb.getSubject() %></h2>
 										<ul class="post-meta">
-											<li><i class="fa fa-pencil-square-o"></i><strong> Posted By:</strong> John</li>
-											<li><i class="fa fa-clock-o"></i><strong> Posted On:</strong> Apr 15 2014</li>
+											<li><i class="fa fa-pencil-square-o"></i><strong> Posted By:</strong> admin</li>
+											<li><i class="fa fa-clock-o"></i><strong> Posted On:</strong><%=sdf.format(bb.getDate())%></li>
 										</ul>
+										<%if(bb.getFile()!=null){ %>
 										<div class="blog-content">
-											<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p>
+											<div class="blog-content-limit">
+												<%=bb.getContent() %>
+											</div>
+											
 										</div>
-										<a href="" class="btn btn-primary" data-toggle="modal" data-target="#blog-detail">Read More</a>
+										<%}else if(bb.getFile()==null){%>
+										<div class="blog-content-long">
+											<p class="blog-content-long-limit"><%=bb.getContent() %></p>
+										</div>
+										<%} %>
+										<a href="" class="btn btn-primary" data-toggle="modal" data-target="#blog-detail<%=i%>">Read More</a>
 									</div>
-									<div class="modal fade" id="blog-detail" tabindex="-1" role="dialog" aria-hidden="true">
+									<div class="modal fade" id="blog-detail<%=i %>" tabindex="-1" role="dialog" aria-hidden="true">
 										<div class="modal-dialog">
 											<div class="modal-content">
 												<div class="modal-body">
 													<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-													<img src="images/blog/3.jpg" alt="" />
-													<h2>Lorem ipsum dolor sit amet</h2>
-													<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p><p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p>
+													<%if(bb.getFile()!=null){ %>
+													<div class="modal-in-img" style="background-image: url('./blog_upload/<%=bb.getFile()%>');">
+													</div>
+													<%} %>
+													<h2><%=bb.getSubject() %></h2>
+													<%	String content = bb.getContent();
+													
+													if(content!=null){
+													content = bb.getContent().replace("\r\n", "<br>");
+													} %>
+													<p><%=content %></p>
 												</div> 
 											</div>
 										</div>
 									</div>
 								</div>
-								<div class="col-sm-4">
-									<div class="single-blog">
-										<img src="images/blog/2.jpg" alt="" />
-										<h2>Lorem ipsum dolor sit amet</h2>
-										<ul class="post-meta">
-											<li><i class="fa fa-pencil-square-o"></i><strong> Posted By:</strong> John</li>
-											<li><i class="fa fa-clock-o"></i><strong> Posted On:</strong> Apr 15 2014</li>
-										</ul>
-										<div class="blog-content">
-											<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p>
-										</div>
-										<a href="" class="btn btn-primary" data-toggle="modal" data-target="#blog-two">Read More</a>
-									</div>
-									<div class="modal fade" id="blog-two" tabindex="-1" role="dialog" aria-hidden="true">
-										<div class="modal-dialog">
-											<div class="modal-content">
-												<div class="modal-body">
-													<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-													<img src="images/blog/2.jpg" alt="" />
-													<h2>Lorem ipsum dolor sit amet</h2>
-													<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p><p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="col-sm-4">
-									<div class="single-blog">
-										<img src="images/blog/3.jpg" alt="" />
-										<h2>Lorem ipsum dolor sit amet</h2>
-										<ul class="post-meta">
-											<li><i class="fa fa-pencil-square-o"></i><strong> Posted By:</strong> John</li>
-											<li><i class="fa fa-clock-o"></i><strong> Posted On:</strong> Apr 15 2014</li>
-										</ul>
-										<div class="blog-content">
-											<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p>
-										</div>
-										<a href="" class="btn btn-primary" data-toggle="modal" data-target="#blog-three">Read More</a>
-									</div>
-									<div class="modal fade" id="blog-three" tabindex="-1" role="dialog" aria-hidden="true">
-										<div class="modal-dialog">
-											<div class="modal-content">
-												<div class="modal-body">
-													<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-													<img src="images/blog/3.jpg" alt="" />
-													<h2>Lorem ipsum dolor sit amet</h2>
-													<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p><p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p>
-												</div> 
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="col-sm-4">
-									<div class="single-blog">
-										<img src="images/blog/3.jpg" alt="" />
-										<h2>Lorem ipsum dolor sit amet</h2>
-										<ul class="post-meta">
-											<li><i class="fa fa-pencil-square-o"></i><strong> Posted By:</strong> John</li>
-											<li><i class="fa fa-clock-o"></i><strong> Posted On:</strong> Apr 15 2014</li>
-										</ul>
-										<div class="blog-content">
-											<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p>
-										</div>
-										<a href="" class="btn btn-primary" data-toggle="modal" data-target="#blog-four">Read More</a></div>
-										<div class="modal fade" id="blog-four" tabindex="-1" role="dialog" aria-hidden="true">
-											<div class="modal-dialog">
-												<div class="modal-content">
-													<div class="modal-body">
-														<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-														<img src="images/blog/3.jpg" alt="" />
-														<h2>Lorem ipsum dolor sit amet</h2>
-														<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p><p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p>
-													</div> 
-												</div>
-											</div>
-										</div>
-									</div>
-									<div class="col-sm-4">
-										<div class="single-blog">
-											<img src="images/blog/2.jpg" alt="" />
-											<h2>Lorem ipsum dolor sit amet</h2>
-											<ul class="post-meta">
-												<li><i class="fa fa-pencil-square-o"></i><strong> Posted By:</strong> John</li>
-												<li><i class="fa fa-clock-o"></i><strong> Posted On:</strong> Apr 15 2014</li>
-											</ul>
-											<div class="blog-content">
-												<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p>
-											</div>
-											<a href="" class="btn btn-primary" data-toggle="modal" data-target="#blog-six">Read More</a>
-										</div>
-										<div class="modal fade" id="blog-six" tabindex="-1" role="dialog" aria-hidden="true">
-											<div class="modal-dialog">
-												<div class="modal-content">
-													<div class="modal-body">
-														<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-														<img src="images/blog/2.jpg" alt="" />
-														<h2>Lorem ipsum dolor sit amet</h2>
-														<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p><p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p>
-													</div> 
-												</div>
-											</div>
-										</div>
-									</div>
+								<%} 
+								
+								}else{
+								%>�������� �������� �ʽ��ϴ�.<%
+								}%>
 
-									<div class="col-sm-4">
-										<div class="single-blog">
-											<img src="images/blog/1.jpg" alt="" />
-											<h2>Lorem ipsum dolor sit amet</h2>
-											<ul class="post-meta">
-												<li><i class="fa fa-pencil-square-o"></i><strong> Posted By:</strong> John</li>
-												<li><i class="fa fa-clock-o"></i><strong> Posted On:</strong> Apr 15 2014</li>
-											</ul>
-											<div class="blog-content">
-												<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p>
-											</div>
-											<a href="" class="btn btn-primary" data-toggle="modal" data-target="#blog-seven">Read More</a>
-										</div>
-										<div class="modal fade" id="blog-seven" tabindex="-1" role="dialog" aria-hidden="true">
-											<div class="modal-dialog">
-												<div class="modal-content">
-													<div class="modal-body">
-														<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-														<img src="images/blog/1.jpg" alt="" />
-														<h2>Lorem ipsum dolor sit amet</h2>
-														<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p><p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p>
-													</div> 
-												</div>
-											</div>
-										</div>
-									</div> 
 								</div> 
 							</div> 
 						</section> <!--/#blog-->

@@ -33,8 +33,6 @@
 String merchant_uid = request.getParameter("merchant_uid");
 PaymentDAO pdao = new PaymentDAO();
 List<PaymentBean> pb_list = pdao.getPayment(merchant_uid);
-System.out.println(pb_list);
-System.out.println(merchant_uid);
 int length = pb_list.size();
 int price = 0;
 int usedPoint = 0;
@@ -52,19 +50,26 @@ String address = pb_list.get(0).getAddress();
 				for(int i=0; i<length; i++){
 					String option_all = "";
 					PaymentBean pb = pb_list.get(i);
-					int product_num = pb.getProduct_num();
-					ProductDAO prodao = new ProductDAO();
-					ProductBean prob = prodao.getProduct(product_num);
-					price += prob.getPrice()*pb.getAmount();
-					usedPoint += pb.getUsedPoint();
-					if(pb.getOption1().trim().length() != 0) option_all += pb.getOption1()+"/";
-					if(pb.getOption2().trim().length() != 0) option_all += pb.getOption2()+"/";
-					if(pb.getOption3().trim().length() != 0) option_all += pb.getOption3()+"/";
-					if(option_all.length()>0) option_all = option_all.substring(0,option_all.length()-1);
+						int product_num = pb.getProduct_num();
+						ProductDAO prodao = new ProductDAO();
+						ProductBean prob = prodao.getProduct(product_num);
+						if(prob != null){
+						price += pb.getPay_price();
+						usedPoint += pb.getUsedPoint();
+						if(pb.getOption1().trim().length() != 0) option_all += pb.getOption1()+"/";
+						if(pb.getOption2().trim().length() != 0) option_all += pb.getOption2()+"/";
+						if(pb.getOption3().trim().length() != 0) option_all += pb.getOption3()+"/";
+						if(option_all.length()>0) option_all = option_all.substring(0,option_all.length()-1);
+						
 					%>
-				 <tr><td><%=prob.getSubject() %> (<%=option_all %>)</td><td><%=prob.getPrice() %></td><td><%=pb.getAmount() %></td></tr>
-				 <%} %>
+					 <tr><td><%=prob.getSubject() %> (<%=option_all %>)</td><td><%=prob.getPrice() %></td><td><%=pb.getAmount() %></td></tr>
+				 <%}else{
+					 usedPoint += pb.getUsedPoint();
+					 price += pb.getPay_price(); %>
+					 <tr><td colspan="3">삭제된 상품입니다</td></tr>
+				 <%}} %>
 				 <tr><td>배송 주소</td><td colspan="3" style="text-align: right;"><%=address %></td></tr>
+				 <tr><td colspan="4" style="text-align: right;">총 금액: <%=price %></td></tr>
 				 <tr><td colspan="4" style="text-align: right;">사용한 포인트: <%=usedPoint %></td></tr>
 				 <tr><td colspan="4" style="text-align: right;">총 결제 금액: <%=price-usedPoint %></td></tr>
 			</table>

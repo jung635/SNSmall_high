@@ -28,6 +28,11 @@ String product_str = request.getParameter("product_num");
 String amount_str = request.getParameter("amount"); //갯수
 System.out.print(amount_str);
 String vendorId_str = request.getParameter("vendor_id");
+String cart_str = "";
+if(request.getParameter("cart_num") != null){
+	cart_str = request.getParameter("cart_num");
+}
+System.out.println("cart_num: "+ cart_str);
 String option1_str = "";
 String option2_str = "";
 String option3_str = "";
@@ -102,6 +107,7 @@ function card(){
 		   option3_str : '<%=option3_str%>',
 		   method : method,
 		   address : address,
+		   cart_str : '<%=cart_str%>'
 	   }
 	}, function(rsp) {
 	    if ( rsp.success ) {
@@ -123,6 +129,7 @@ function card(){
 	        		option3_str : rsp.custom_data.option3_str,
 	        		method : rsp.custom_data.method,
 	        		address : rsp.custom_data.address,
+	        		cart_str : rsp.custom_data.cart_str,
 	    		},
 	    		success : function(result, status){
 	    			console.log(result);
@@ -167,15 +174,20 @@ function pointChanged(price, myPoint){
 		document.getElementById('myPoint').innerText = myPoint-point;
 		document.getElementById('withPoint').checked = true;
 	}
-	
-	if(myPoint-point<0){
-		alert('포인트가 부족합니다.');
-	}else if(price-point<0){
+	if(price-point<0){
 		alert('포인트를 상품 가격 이상으로 사용하실 수 없습니다.');
-		return false;
+		document.getElementById('usingPoint').value = 0;
+		document.getElementById('myPoint').innerText = myPoint;
+		document.getElementById('withPoint').checked = false;
+	}else if(myPoint-point<0){
+		alert('포인트가 부족합니다.');
+		document.getElementById('usingPoint').value = 0;
+		document.getElementById('myPoint').innerText = myPoint;
+		document.getElementById('withPoint').checked = false;
 	}else{
 		document.getElementById('price_result').innerText = price-point;
 		document.getElementById('myPoint').innerText = myPoint-point;
+		document.getElementById('withPoint').checked = true;
 	}
 }
 
@@ -186,6 +198,8 @@ function allPointPay(){
 	
 	if(price-myPoint>0){
 		alert('포인트가 부족합니다.');
+		document.getElementById('usingPoint').value = 0;
+		document.getElementById('withPoint').checked = false;
 	}else{
 		alert('전액을 포인트로 계산합니다.');
 		document.getElementById('price_result').innerText = 0;
@@ -234,9 +248,8 @@ String[] option1 = option1_str.split(",");
 String[] option2 = option2_str.split(",");
 String[] option3 = option3_str.split(",");
 String[] amount = amount_str.split(",");
+String[] product_num = product_str.split(",");
 ProductDAO pdao = new ProductDAO();
-List<ProductBean> product_list = pdao.getProduct(product_str);
-int list_size = product_list.size(); 
 int price=0;
 String address = cdao.getMember(id).getAddress();
 %>
@@ -252,6 +265,7 @@ String address = cdao.getMember(id).getAddress();
 		<input type="hidden" name="option2_str" value='<%=option2_str %>'>
 		<input type="hidden" name="option3_str" value='<%=option3_str %>'>
 		<input type="hidden" name="merchant_uid" value='<%=merchant_uid %>'>
+		<input type="hidden" name="cart_str" value='<%=cart_str %>'>
 		<div id="title">
 			<h1>주문/결제</h1>
 			<hr>
@@ -268,10 +282,10 @@ String address = cdao.getMember(id).getAddress();
 		<div id="product_info">
 			<div id="title_in"><h2>상품 정보</h2></div>
 			<table id="product" border="1">
-				<tr><th rowspan="<%=list_size+1 %>"  style="width: 150px;">배송상품</th><th>배송상품 이름</th><th>수량</th><th>가격</th></tr>
-	 			<%for(int i=0; i<list_size; i++){ 
+				<tr><th rowspan="<%=product_num.length+1 %>"  style="width: 150px;">배송상품</th><th>배송상품 이름</th><th>수량</th><th>가격</th></tr>
+	 			<%for(int i=0; i<product_num.length; i++){ 
 	 				String option_all = "";
-					ProductBean pb = (ProductBean)product_list.get(i);
+					ProductBean pb = pdao.getProduct(Integer.parseInt(product_num[i]));
  					if(i<option1.length && option1[i].trim().length()>0){
 						option_all += option1[i]+"/";
 					}

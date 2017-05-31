@@ -1,3 +1,4 @@
+<%@page import="web.board.db.BoardBean"%>
 <%@page import="web.sns.db.SnsBean"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=utf-8"
@@ -5,6 +6,11 @@
 <!DOCTYPE html>
 <html>
 <head>
+<%
+	BoardBean bb = (BoardBean)request.getAttribute("bb");
+	/* 이전페이지 받아옴 */
+	String returnUrl = request.getHeader("referer");
+%>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
 	<meta name="description" content="Creative One Page Parallax Template">
@@ -16,6 +22,7 @@
 	<link href="./css/header.css" rel="stylesheet">
 	<link href="./css/inner.css" rel="stylesheet">
 	<link href="./css/main.css" rel="stylesheet">
+	<link href="./css/board.css" rel="stylesheet">
 	
 	<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>	
 </head>
@@ -29,43 +36,48 @@
         <div class="row" style="margin-top: 43px">
             <div class="col-lg-12">
                 <h1 class="page-header">홍보게시판</h1>
-                <p>SNS 스타와 판매자들간의 매칭을 위한 공간입니다.</p>
+                <p>
+                SNS 스타와 판매자들간의 매칭을 위한 공간입니다.<br>
+               	매칭 외의 글 작성 시, 불이익이 생기니 주의해주시기 바랍니다.<br>
+               	비속어, 비방글 작성 시 제약이 생길 수 있습니다.
+                </p>
             </div>
         </div>
-
-        <!-- Team Members Row -->
-		<div class="row">
-            <div class="col-md-4">
-                <div class="panel panel-default text-center">
-                    <div class="panel-heading">
-                        <h3 class="panel-title">Basic</h3>
-                    </div>
-
-                    <ul class="list-group">
-                        <li class="list-group-item"><span id="standard"><strong>기본</strong></span> 판매액</li>
-                        <li class="list-group-item"><strong>5%</strong> Profit</li>
-<!--                         <li class="list-group-item"><strong>Unlimited</strong> Email Accounts</li>
-                        <li class="list-group-item"><strong>10GB</strong> Disk Space</li>
-                        <li class="list-group-item"><strong>100GB</strong> Monthly Bandwidth</li>
- -->                        <li class="list-group-item"><a href="snsList.sn?category=basic&order=sell" class="btn btn-primary">Basic SNS스타 보기</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>                     
-		</div>
-		
+	
 		<!-- 테이블 모양 테스트 -->
 		<div class="row">
+		<div class="col-md-2"></div>
             <div class="col-md-8">
-                <div class="panel panel-default text-center">
-                    <table>
-                    	<tr style="border-bottom: 1px double gray;"><th>구분</th><th>제목</th><th>글쓴이</th><th>등록일</th></tr>
-						<tr><td>sns</td><td>나 유명해 쪽지줘나 유명해나 유명해나 유명해나 유명해나 유명해나 유명해나 유명해나 유명해나 유명해나 유명해</td><td>김허세</td><td>오늘</td></tr>
-						<tr><td>판매자</td><td>팔꺼많아</td><td>다팜</td><td>어저께</td></tr>
-					</table>
+                <div class="panel panel-default text-center" style="border:none;">
+						<form action="./BoardUpdateAction.bo" method="post" name="fr">
+							<table style="border-collapse: collapse;">
+								<input type="hidden" name="num" value=<%=bb.getNum()%>>
+								<input type="hidden" name="returnUrl" value=<%=returnUrl%>>
+								<tr>
+									<td colspan="2"><input type="text" size="93" name="subject" class="board-write-subject-box"  style="margin: 20px;" placeholder="　제목" value="<%=bb.getSubject() %>"></td>
+								</tr>
+								
+								<tr>
+									<td colspan="2"><textarea rows="20" class="board-write-content-box" cols="94" name="content"  placeholder="　내용"><%=bb.getContent() %></textarea></td>
+								</tr>
+								
+								<tr>
+
+								</tr>
+							</table>
+							
+							<div class="col-md-2"></div>
+							<div class="col-md-8">
+							<input type="submit" class="board-write-commit-btn" value="수정">
+							<input type="reset" class="board-write-cancel-btn" value="취소" onclick="history.back()">
+							</div>
+							<div class="col-md-2"></div>
+							
+						</form>
                     
                 </div>
-            </div>                     
+            </div>
+            <div class="col-md-2"></div>                     
 		</div>
 						
         <hr>

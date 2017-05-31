@@ -24,7 +24,38 @@
 
 	//submit제어
 	function submitCheck() {
-
+		if (document.fr.name.value == "") {
+			alert("이름을 입력해 주세요!");
+			document.fr.name.focus();
+			return false;
+		}
+		if (document.fr.content.value == "") {
+			alert("자기소개를 입력해주세요");
+			return false;
+		}
+		
+		/////sns계정 체크
+		account_count
+		if(document.fr.instagram_ac.value != ""){
+			account_count+=1;
+		}
+		if(document.fr.facebook_ac.value != ""){
+			account_count+=1;
+		}
+		if(document.fr.twitter_ac.value != ""){
+			account_count+=1;
+		}
+		if(document.fr.blog_ac.value != ""){
+			account_count+=1;
+		}
+		if(document.fr.etc_ac.value != ""){
+			account_count+=1;
+		}
+		
+		if(account_count==0){
+		alert("SNS계정을 1개이상 입력해주세요");
+		return false;
+		}
 	}
 
 	//프로필메인이미지 미리보기 구현

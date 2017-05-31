@@ -98,17 +98,16 @@ public class BlogDAO {
 			List blogList= new ArrayList();
 			
 			try{
-			//12 디비연결 메서드호출
 			con=getConnection();
-			//3 sql객체생성                                                                      
+                                                             
 			sql="select * from blog order by num desc limit ?,?";                    
 			pstmt= con.prepareStatement(sql);
-			pstmt.setInt(1,startRow-1); //limit가 그다음행부터 세기때문에 -1!
-			pstmt.setInt(2,pageSize);  //몇개글
-			//4 실행저장
+			pstmt.setInt(1,startRow-1); 
+			pstmt.setInt(2,pageSize);
+			
 			rs = pstmt.executeQuery();
 			
-			while(rs.next()){  //여러개 구문돌면서 나와야하니까!!
+			while(rs.next()){
 				
 				BlogBean bb = new BlogBean();
 				bb.setNum(rs.getInt("num"));
@@ -117,9 +116,8 @@ public class BlogDAO {
 				bb.setContent(rs.getString("content"));
 				bb.setFile(rs.getString("file"));
 				bb.setCategory(rs.getString("category"));
-				//bb라는 객체에 현재 위와같은 내용 다담음!
-			
-				blogList.add(bb);  //boardlist의 배열 한칸에 bb의내용을 담겠다!
+				
+				blogList.add(bb);  
 				}
 			
 			}catch(Exception e){
@@ -155,6 +153,7 @@ public class BlogDAO {
 					bb.setDate(rs.getTimestamp("date"));
 					bb.setFile(rs.getString("file"));
 				}
+				
 			}catch(Exception e){
 				e.printStackTrace();
 			}finally{
@@ -166,15 +165,16 @@ public class BlogDAO {
 			
 		}
 		
-		public int getBoardCount(String search){
+		public int getBlogSearchCount(String search){
 			
 			int count=0;
 			try{
 				con= getConnection();
 				                                   
-				sql="select count(*) from blog where subject like ?";  
+				sql="select count(*) from blog where subject like ? or content like ?";  
 				pstmt = con.prepareStatement(sql); 
 				pstmt.setString(1,"%"+search+"%"); 
+				pstmt.setString(2,"%"+search+"%");
 				rs = pstmt.executeQuery();
 				
 				if(rs.next()){
@@ -198,11 +198,12 @@ public class BlogDAO {
 			
 			try{
 				con=getConnection();
-				sql="select * from blog where subject like ? order by num desc limit ?,?";
+				sql="select * from blog where subject like ? or content like ? order by num desc limit ?,?";
 				pstmt=con.prepareStatement(sql);
 				pstmt.setString(1, "%"+search+"%");
-				pstmt.setInt(2, startRow-1);
-				pstmt.setInt(3, pageSize);
+				pstmt.setString(2, "%"+search+"%");
+				pstmt.setInt(3, startRow-1);
+				pstmt.setInt(4, pageSize);
 				
 				rs= pstmt.executeQuery();
 				
@@ -226,6 +227,115 @@ public class BlogDAO {
 			}
 			return bloglist;
 		}
+		
+		public int getBlogCategoryListCount(String category){
+			
+			int count=0;
+			try{
+				con= getConnection();
+				                                   
+				sql="select count(*) from blog where category=?";  
+				pstmt = con.prepareStatement(sql); 
+				pstmt.setString(1,category); 
+				rs = pstmt.executeQuery();
+				
+				if(rs.next()){
+					count = rs.getInt(1); 
+				}
+				
+			}catch(Exception e){
+				e.printStackTrace();
+			}finally{
+				if(con!=null){try{con.close();}catch(SQLException ex){}}
+				if(pstmt!=null){try{pstmt.close();}catch(SQLException ex){}}
+				if(rs!=null){try{rs.close();}catch(SQLException ex){}}
+			}
+			
+			return count;
+			
+		}
+		
+		public List<BlogBean> getCategoryBlogList(int startRow,int pageSize,String category){
+			List<BlogBean> categorybloglist = new ArrayList<BlogBean>();
+			
+			try{
+				con=getConnection();
+				sql="select * from blog where category=? order by num desc limit ?,?";
+				
+				pstmt=con.prepareStatement(sql);
+				pstmt.setString(1,category);
+				pstmt.setInt(2, startRow-1);
+				pstmt.setInt(3, pageSize);
+				
+				rs= pstmt.executeQuery();
+	
+				while(rs.next()){
+					BlogBean bb = new BlogBean();
+					bb.setNum(rs.getInt("num"));
+					bb.setSubject(rs.getString("subject"));
+					bb.setCategory(rs.getString("category"));
+					bb.setContent(rs.getString("content"));
+					bb.setDate(rs.getTimestamp("date"));
+					bb.setFile(rs.getString("file"));
+					
+					categorybloglist.add(bb);}
+				
+				
+			}catch(Exception e){
+				e.printStackTrace();
+			}finally{
+				if(con!=null){try{con.close();}catch(SQLException e){}}
+				if(pstmt!=null){try{pstmt.close();}catch(SQLException e){}}
+				if(rs!=null){try{rs.close();}catch(SQLException e){}}
+			}
+			return categorybloglist;
+		}
+		
+		//blogPost
+		public void blogPostUpdate(BlogBean bb){
+			try{
+				con=getConnection();
+				sql="update blog set category=?,subject=?,content=?,file=? where num=?";
+				pstmt=con.prepareStatement(sql);
+				pstmt.setString(1, bb.getCategory());
+				pstmt.setString(2, bb.getSubject());
+				pstmt.setString(3, bb.getContent());
+				pstmt.setString(4, bb.getFile());
+				pstmt.setInt(5, bb.getNum());
+				
+				pstmt.executeUpdate();
+				
+			}catch(Exception e){
+				e.printStackTrace();
+			}finally{
+				if(pstmt!=null){try{ pstmt.close(); }catch(SQLException ex){}}
+				if(con!=null){try {con.close();}catch(SQLException ex){}}}
+			}
+		
+		public void blogPostDelete(int num){
+			try{
+				con=getConnection();
+				
+				sql="delete from blog where num=?";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setInt(1, num);
+				
+				pstmt.executeUpdate();
+				
+				sql="update blog set num=num-1 where num>?";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setInt(1, num);
+				
+				pstmt.executeUpdate();
+				
+				
+			}catch(Exception e){
+				e.printStackTrace();
+			}finally{
+				if(pstmt!=null){try{ pstmt.close(); }catch(SQLException ex){}}
+				if(con!=null){try {con.close();}catch(SQLException ex){}}}
+		
+			}
 		
 		
 		

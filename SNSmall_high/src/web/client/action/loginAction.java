@@ -18,6 +18,12 @@ public class loginAction implements Action{
 		request.setCharacterEncoding("utf-8");
 		String id = request.getParameter("id");
 		String pass = request.getParameter("pass");
+		// 비밀번호 암호화 코드 추가
+/*		String npass = request.getParameter("pass");
+		SecurityUtil su = new SecurityUtil();
+		String pass = su.encryptSHA256(npass);	*/	
+		// 비밀번호 암호화 코드 추가
+		
 		String returnUrl = request.getParameter("returnUrl");
 		
 		ClientDAO cldao = new ClientDAO();

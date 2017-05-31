@@ -19,7 +19,7 @@ import web.sns.db.SnsBean;
 
 public class PaymentDAO {
 
-Connection con = null;
+	Connection con = null;
 	
 	private Connection getConnection() throws Exception{
 
@@ -605,8 +605,9 @@ Connection con = null;
 		return list;
 	}
 	
+
 	// 전체 글의 개수 구하기 getPaymentCount()----------------------------------------------------------------
-	public int getPaymentCount(){
+	public int getPaymentCount(String snsState, String id){
 		Connection con=null;
 		PreparedStatement pstmt=null;
 		String sql="";
@@ -617,8 +618,20 @@ Connection con = null;
 			//1, 2 디비연결 메서드 호출
 			con=getConnection();	
 			//3. sql함수 count(*) 구하기
-			sql = "select count(*) from payment where sns_id='wndms4142'";
-			pstmt=con.prepareStatement(sql);
+			
+			if(!snsState.equals("")){
+				sql = "select count(*) from payment where state=? and sns_id=?";
+				pstmt=con.prepareStatement(sql);
+				pstmt.setString(1, snsState);
+				pstmt.setString(2, id);
+				
+			}else{
+				sql = "select count(*) from payment where sns_id=?";
+				pstmt=con.prepareStatement(sql);
+				pstmt.setString(1, id);
+			}
+			
+			
 			//4. rs 실행저장
 			rs = pstmt.executeQuery();
 			//5. rs 데이터 있으면 count 저장
@@ -646,20 +659,21 @@ Connection con = null;
 		try{
 			con=getConnection();
 			//3. sql member 모든 데이터 가져오기
-			if(snsState!=null){
-			sql="select * from payment where state=? and sns_id=? limit ?,?";
-			pstmt=con.prepareStatement(sql);
-			pstmt.setString(1, snsState); //첫번째 물음표 1, snsState 상태에 입력될 값
-			pstmt.setString(2, id);
-			pstmt.setInt(3, startRow-1); //시작행 -1
-			pstmt.setInt(4, pageSize); //몇개글
+			if(!snsState.equals("")){
+				sql="select * from payment where state=? and sns_id=? limit ?,?";
+				pstmt=con.prepareStatement(sql);
+				pstmt.setString(1, snsState); //첫번째 물음표 1, snsState 상태에 입력될 값
+				pstmt.setString(2, id);
+				pstmt.setInt(3, startRow-1); //시작행 -1
+				pstmt.setInt(4, pageSize); //몇개글
 			}else{
-				
-			sql="select * from payment where state='done' or state='cancel' and sns_id=? limit ?,?";
-			pstmt=con.prepareStatement(sql);
-			pstmt.setString(1, id);
-			pstmt.setInt(2, startRow-1); //시작행 -1
-			pstmt.setInt(3, pageSize); //몇개글
+				sql="select * from payment where sns_id=? limit ?,?";
+				//sql="select * from payment where state in ('done', 'cancel') and sns_id=? limit ?,?";
+				pstmt=con.prepareStatement(sql);
+				pstmt.setString(1, id);
+				pstmt.setInt(2, startRow-1); //시작행 -1
+				pstmt.setInt(3, pageSize); //몇개글
+			
 			}
 			rs=pstmt.executeQuery();
 			while(rs.next()){ //첫행 데이터 있으면  true
@@ -690,7 +704,9 @@ Connection con = null;
 			if(con!=null){try{con.close();}catch(SQLException ex){}}}
 		
 		return paymentList;
-	}//getPaymentList(String snsState)
+	}//getPaymentList(String snsState)	
+	
+	
 	public List<PaymentBean> getVendorPaymentById(int pageSize, String vendor_id, String method) {
 		List<PaymentBean> list = new ArrayList<PaymentBean>();
 		StringBuffer sql = new StringBuffer("select * from payment where vendor_id = ? and ");

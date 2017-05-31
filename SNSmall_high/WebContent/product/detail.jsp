@@ -72,6 +72,23 @@
 	});
 	
 	function gocart(){
+		if(document.gfr.option1.value == ""){
+			alert("option1을 선택하세요");
+			document.gfr.option1.focus();
+			return false;
+		}else if(document.gfr.option2 != null){
+			if(document.gfr.option2.value == ""){
+				alert("option2을 선택하세요");
+				document.gfr.option2.focus();
+				return false;
+			}else if(document.gfr.option3 != null){
+				if(document.gfr.option3.value == ""){
+					alert("option3을 선택하세요");
+					document.gfr.option3.focus();
+					return false;
+				}
+			}
+		}
 		document.gfr.action="./CartAdd.ca";
 		document.gfr.method="post";
 		document.gfr.submit();
@@ -162,7 +179,6 @@
 
 	<%
 	String returnUrl = request.getHeader("referer");
-	System.out.println(returnUrl);
 	
 	ProductBean productbean = (ProductBean)request.getAttribute("productbean");
 	String sns_id = (String)request.getAttribute("sns_id");
@@ -178,10 +194,8 @@
 	
 	String pageNum = (String)request.getAttribute("pageNum");
 	if(pageNum == null){pageNum="1";}
-	
+
 	String [] o1 = productbean.getOption1().split(",");
-	String [] o2 = productbean.getOption2().split(",");
-	String [] o3 = productbean.getOption3().split(",");
 	int amount = productbean.getAmount();
 	int allprice = productbean.getPrice();
 	String content = productbean.getContent().replace("\r\n", "<br>");
@@ -230,10 +244,11 @@
 			<input type="hidden" name="sns_id" value="<%=sns_id%>">
 			<input type="hidden" name="vendor_id" value="<%=productbean.getVendor_id()%>">
 			
-            <div class="col-md-4">
+            <div class="col-md-4" id="ourproduct">
+            	<div>
                 <h3><%=productbean.getSubject() %></h3>
                 <p><%=content %></p>
-                <h3>Product Details</h3>
+                
                  <select name="option1">
  					<option value=""><%=o1[0] %> 선택하세요</option>
  					<%for(int i=1; i<o1.length; i++){ %>
@@ -241,7 +256,8 @@
 					<%} %>
  				</select>
   				<br>
-				<%if(o2 != null){ %>
+				<%if(productbean.getOption2() != null){ 
+				String [] o2 = productbean.getOption2().split(",");%>
 				<select name="option2">
  					<option value=""><%=o2[0] %> 선택하세요</option>
  						<%for(int i=1; i<o2.length; i++){ %>
@@ -249,13 +265,15 @@
  						<%} %>
  				</select>
  				<br>
-				<%}if(o3 != null){ %>
+				<%}if(productbean.getOption3() != null){ 
+				String [] o3 = productbean.getOption3().split(",");%>
  				<select name="option3">
  					<option value=""><%=o3[0] %> 선택하세요</option>
  						<%for(int i=1; i<o3.length; i++){ %>
   							<option value="<%=o3[i]%>"><%=o3[i] %></option>
   						<%} %>
   				</select>
+  				</div>
                  <br>
                  <%}%>
                  <script type="text/javascript">
@@ -272,29 +290,32 @@
                 		}
                 	}
                 	</script>
+                <div>
 				잔여수량: <input type="text" name="rest_amount" value="<%=peace%> / <%=productbean.getAmount()%>"><br>
 				<%
 				if(peace==0){%>
 					<h2>SOLD OUT</h2>
 				<%}else{%>
-				수량: <input type="text" name="amount" value="1">
+				선택수량: <input type="text" name="amount" value="1">
 				<button type="button" onclick="plus()">+</button>
 				<button type="button" onclick="minus()">-</button><br>
-				가격: <input type="text" id="allprice" name="allprice" value="<%=productbean.getPrice()%>">
+				구매가격: <input type="text" id="allprice" name="allprice" value="<%=productbean.getPrice()%>">
 				<%} %>
+				</div>
 				<br>
+				<div>
 				<%if(peace!=0){%>
-                <a class="btn btn-success" onclick="gocart()">Into Cart</a>
-                <a class="btn btn-success" onclick="return gobuy()">Get it</a>
+                <a class="btn btn-success" onclick="gocart()">카트담기</a>
+                <a class="btn btn-success" onclick="return gobuy()">사러가기</a>
                 <% if(type.equals("sns")){%>
-                <br>
-				<i class="fa fa-facebook-square" aria-hidden="true" 
-					onclick="sendSns('facebook', 'http://sunju635.cafe24.com/SNSmall_high/ProductDetail.pr?product_num=<%=productbean.getProduct_num()%>&sns_id=<%=sns_id %>', '안녕')"></i>
-				<i class="fa fa-twitter" aria-hidden="true" 
-					onclick="sendSns('twitter', 'http://sunju635.cafe24.com/SNSmall_high/ProductDetail.pr?product_num=<%=productbean.getProduct_num()%>&sns_id=<%=sns_id %>', '안녕')"></i>
-				<i class="fa fa-bold" aria-hidden="true" 
-					onclick="sendSns('blog', 'http://sunju635.cafe24.com/SNSmall_high/ProductDetail.pr?product_num=<%=productbean.getProduct_num()%>&sns_id=<%=sns_id %>', '안녕')"></i>
+				</div>
+				<br>
+                <div class="socials_pro">
+				<a href="#" onclick="sendSns('facebook', 'http://sunju635.cafe24.com/SNSmall_high/ProductDetail.pr?product_num=<%=productbean.getProduct_num()%>&sns_id=<%=sns_id %>', '안녕')"><i class="fa fa-facebook"></i></a>
+				<a href="#" onclick="sendSns('twitter', 'http://sunju635.cafe24.com/SNSmall_high/ProductDetail.pr?product_num=<%=productbean.getProduct_num()%>&sns_id=<%=sns_id %>', '안녕')"><i class="fa fa-twitter"></i></a>
+				<a href="#" onclick="sendSns('blog', 'http://sunju635.cafe24.com/SNSmall_high/ProductDetail.pr?product_num=<%=productbean.getProduct_num()%>&sns_id=<%=sns_id %>', '안녕')"><i class="fa fa-bold"></i></a>
                 <%}} %>
+                </div>
             </div>
 			</form>
         </div>
@@ -304,7 +325,7 @@
         <div class="row">
 
             <div class="col-lg-12">
-                <h3 class="page-header">Related Projects</h3>
+                <h3 class="page-header">상 세 내 용</h3>
             </div>
 
             <div class="col-sm-3 col-xs-6" id="product_detail_img">
@@ -312,7 +333,7 @@
                 <%if(productbean.getDetail_img()==null){ %>
                     <img class="img-responsive portfolio-item" src="http://placehold.it/500x300" alt="">
                     <%} else{%>
-                    <img class="img-responsive portfolio-item" src="./vendor_img/<%=productbean.getDetail_img() %>" style="width: 100%;" alt="">
+                    <img class="img-responsive portfolio-item" src="./vendor_img/<%=productbean.getDetail_img() %>" style="width: 100% !important;" alt="">
                     <% }%>
                 </a>
             </div>
@@ -326,7 +347,7 @@
                     	 	<form action="./QnaInsertAction.qn?product_num=<%=productbean.getProduct_num() %>&pageNum=<%=pageNum%>&vendor_id=<%=productbean.getVendor_id() %>" method="post" enctype="multipart/form-data">
 								<input type="hidden" name="client_id" value="<%=id%>">
 								<input type="hidden" name="stars" value="">
-								<div><textarea rows="3" cols="120" name="content"></textarea><br></div>
+								<div><textarea rows="3" cols="120" name="content" style="width: 100%;"></textarea><br></div>
 								<div id="qnastar"><span class="glyphicon glyphicon-star"></span>
 								<span id="star1" class="glyphicon glyphicon-star-empty"></span>
 								<span id="star2" class="glyphicon glyphicon-star-empty"></span>
@@ -370,14 +391,28 @@
 						</div>
 					</div>
 					<%} %>
-					
-					<hr>
-
 				</div>
+				<a name="policy_info"></a>
+		<div id="policy_info_box">
+			<div><h3>교환 / 반품 제한사항</h3></div>
+			<div>
+				<table border="1">
+					<tr><th>배송방법</th><td>순차배송</td><th rowspan="2">배송비</th><td rowspan="2">무료배송<br>  - 도서산간 지역의 경우, 추가비용 발생가능</td></tr>
+					<tr><th>배송사</th><td>CJ GLS</td></tr>
+					<tr><th>묶음배송 여부</th><td colspan="3">가능</td></tr>
+				</table>
+				<br>
+				<ul>
+					<li>주문/제작 상품의 경우, 상품의 제작이 이미 진행된 경우</li>
+					<li>고객의 사용, 시간경과, 일부 소비에 의하여 상품의 가치가 현저히 감소한 경우</li>
+					<li>세트상품 일부 사용, 구성품을 분실하였거나 취급 부주의로 인한 파손/고장/오염으로 재판매 불가한 경우</li>
+					<li>모니터 해상도의 차이로 인해 색상, 이미지가 실제와 달라, 고객이 단순 변심으로 교환/반품을 무료로 요청하는 경우</li>
+					<li>제조사의 사정 (신모델 출시 등) 및 부품 가격 변동 등에 의해 무료 교환/반품으로 요청하는 경우</li>
+				</ul>
+			</div>
+		</div>
         <!-- /.row -->
-
 		<hr>
-
         <!-- Footer -->
 		<footer>
 			<div class="row">

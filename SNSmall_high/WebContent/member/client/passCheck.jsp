@@ -1,13 +1,9 @@
-<%@page import="web.product.db.ProductBean"%>
-<%@page import="java.util.List"%>
-<%@page import="web.client.db.ClientDAO"%>
-<%@page import="web.client.db.ClientBean"%>
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
 	<meta name="description" content="Creative One Page Parallax Template">
 	<meta name="keywords" content="Creative, Onepage, Parallax, HTML5, Bootstrap, Popular, custom, personal, portfolio" /> 
@@ -19,66 +15,29 @@
 	<link href="./css/main.css" rel="stylesheet"> 
 <title>Insert title here</title>
 <script type="text/javascript">
- 		function fun1() {
-		if (document.fr.pass2.value != document.fr.pass.value) {
-			alert("ºñ¹Ğ¹øÈ£°¡ ÀÏÄ¡ÇÏÁö ¾Ê½À´Ï´Ù.");
-			document.fr.pass2.focus();
-		return false;		
- 		}
- 		}
- </script>
+function submitpassCheck(){
+	if(document.fr.pass.value==""){
+ 		alert("ë¹„ë°€ë²ˆí˜¸ë¥¼ ì…ë ¥í•´ ì£¼ì„¸ìš”");
+ 		document.fr.pass.focus();
+ 		return false;
+ 	}	
+}
+</script>
+
 </head>
 <body>
 <jsp:include page="../../inc/header.jsp"/>
-	<%
-		String pass = (String) session.getAttribute("pass");
-	%>
-	<!-- Page Content -->
-  <div class="container">
-    <div class="more_content">
-    <!-- Page Content -->
-        <div class="row">
-        
-            <div class="col-md-3">
-<%--                 <p class="lead"><%=id %></p> --%>
-                <jsp:include page="../../inc/myinfo_client_left.jsp"/>               
-            </div>
-            <div class="col-md-9">
-                <!-- ¸ŞÀÎ ³»¿ë -->
-                <div class="thumbnail">
-						<form action="./clientUpdateForm.cl" id="join" method="post"
-							name="fr" onsubmit="return fun1()">
-							<fieldset>
-								<legend>ºñ¹Ğ¹øÈ£ È®ÀÎ</legend>
-								<input type="hidden" name="pass" value="<%=pass%>">
-								<label>ÇöÀç ºñ¹Ğ¹øÈ£</label> <input type="password" name="pass2"
-									required><br>
-
-							</fieldset>
-
-							<div id="buttons">
-								<input type="submit" value="È®ÀÎ" class="submit"> <input
-									type="reset" value="Ãë¼Ò" class="cancel" onclick="location.href='./MyPage.cl'">
-							</div>
-						</form>
-				</div>
-				<!-- ¸ŞÀÎ ³»¿ë -->
-            </div>
-        </div>
-    </div>
-    <!-- /.container -->
-    <div class="container">
-        <hr>
-        <!-- Footer -->
-        <footer>
-            <div class="row">
-                <div class="col-lg-12">
-                    <p>Copyright &copy; Your Website 2014</p>
-                </div>
-            </div>
-        </footer>
-    </div>
-  </div>
-    <!-- /.container -->
+<div class="container">
+ <div class="content">
+  <div class="more_content">
+     <div class="col-md-3">
+   <jsp:include page="../../inc/myinfo_client_left.jsp"/>
+     </div>
+     <div class="col-md-9">
+<form onsubmit="return submitpassCheck()" name="fr" action="./ClientPassConfirm.cl">
+ë¹„ë°€ë²ˆí˜¸ í™•ì¸ : <input type="password" name="pass" id="pass">
+<input type="submit" value="ë¹„ë°€ë²ˆí˜¸í™•ì¸">
+</form> 
+</div></div></div></div>
 </body>
 </html>

@@ -15,6 +15,7 @@ import javax.servlet.http.HttpSession;
 
 import web.alarm.db.AlarmBean;
 import web.alarm.db.AlarmDAO;
+import web.cart.db.CartDAO;
 import web.payment.db.PaymentBean;
 import web.payment.db.PaymentDAO;
 import web.product.db.ProductBean;
@@ -51,6 +52,8 @@ public class PayCompleteAction implements Action {
 		String option3_str = request.getParameter("option3_str");
 		String[] option3 = option3_str.split(",");
 		String method = request.getParameter("method");
+		String cart_str = request.getParameter("cart_str");
+		String[] cart_num = cart_str.split(",");
 		String state = "";
 		if (method.equals("card")||method.equals("withPoint"))
 			state = "payDone";
@@ -127,6 +130,11 @@ public class PayCompleteAction implements Action {
 			list_pb.add(pb);
 			//사용한 포인트 빼기
 			pdao.subPoint(point_each, id);
+			//cart 제외
+			CartDAO cdao = new CartDAO();
+			System.out.println(cart_num[i]);
+			//cdao.cartDelete(id, cart_num[i]);
+			
 			//amount 빼기
 			if(method.equals("deposit")){
 				pdao.subAmount(pb.getAmount(), pb.getProduct_num());

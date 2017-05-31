@@ -102,6 +102,38 @@ public class BoardDAO {
 		return boardList;
 	}//getBoardList() END
 	
+	// 게시판 검색글 목록 불러오기
+		public List<BoardBean> getSearchBoardList(int startRow, int pageSize, String search){
+			List<BoardBean> boardList = new ArrayList<BoardBean>();
+			try{
+				con = getConnection();
+				sql = "select * from board where subject like ? or content like ? order by num desc limit ?,?";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, "%"+search+"%");
+				pstmt.setString(2, "%"+search+"%");
+				pstmt.setInt(3, startRow-1);
+				pstmt.setInt(4, pageSize);
+				rs = pstmt.executeQuery();
+				while(rs.next()){
+					BoardBean bb = new BoardBean();
+					bb.setNum(rs.getInt(1));
+					bb.setId(rs.getString(2));
+					bb.setSubject(rs.getString(3));
+					bb.setContent(rs.getString(4));
+					bb.setDate(rs.getDate(5));
+					bb.setType(rs.getString(6));
+					boardList.add(bb);				
+				}
+			}catch(Exception e){
+				e.printStackTrace();
+			}finally{
+				if (rs != null) {try {rs.close();} catch (SQLException ex) {}	}
+				if (pstmt != null) {try {pstmt.close();} catch (SQLException ex) {}}
+				if (con != null) {try {con.close();} catch (SQLException ex) {	}}
+			}
+			return boardList;
+		}//getBoardList() END
+	
 	// 글내용 가져오기
 	public BoardBean getBoard(int num){
 		BoardBean bb = new BoardBean();
@@ -131,5 +163,46 @@ public class BoardDAO {
 		}
 		return bb;		
 	}// getBoard() end
+	
+	// 글수정
+	public void updateBoard(BoardBean bb){
+		try{
+			con = getConnection();			
+			sql = "update board set subject=?, content=? where num=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, bb.getSubject());
+			pstmt.setString(2, bb.getContent());
+			pstmt.setInt(3, bb.getNum());
+			pstmt.executeUpdate();			
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally{
+			if (rs != null) {try {rs.close();} catch (SQLException ex) {}	}
+			if (pstmt != null) {try {pstmt.close();} catch (SQLException ex) {}}
+			if (con != null) {try {con.close();} catch (SQLException ex) {	}}
+		}
+	}//updateBoard() END
+	
+	// 글삭제
+	public void deleteBoard(int num){
+		try{
+			con = getConnection();			
+			sql = "delete from board where num=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, num);
+			pstmt.executeUpdate();
+			
+			sql = "update board set num=num-1 where num>?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, num);
+			pstmt.executeUpdate();			
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally{
+			if (rs != null) {try {rs.close();} catch (SQLException ex) {}	}
+			if (pstmt != null) {try {pstmt.close();} catch (SQLException ex) {}}
+			if (con != null) {try {con.close();} catch (SQLException ex) {	}}
+		}
+	}
 	
 }

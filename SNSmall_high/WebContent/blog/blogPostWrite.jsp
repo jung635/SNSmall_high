@@ -9,6 +9,7 @@
 	<meta name="keywords" content="Creative, Onepage, Parallax, HTML5, Bootstrap, Popular, custom, personal, portfolio" /> 
 	<meta name="author" content=""> 
 	<title>HIMU - OnePage HTML Parallax template</title> 
+	<link href="./css/font-awesome.min.css" rel="stylesheet"> 
 	<link href="./css/bootstrap.min.css" rel="stylesheet">
 	<link href="./css/bootstrap.css" rel="stylesheet">
 	<link href="./css/header.css" rel="stylesheet">
@@ -19,35 +20,33 @@
 <title>Insert title here</title>
 </head>
 <body>
-	
+<%
+String id = (String)session.getAttribute("id");
+if(id==null || !id.equals("admin")){
+	response.sendRedirect("./login.cl");}
+%>
 <jsp:include page="../inc/header.jsp"/>
   <!-- Page Content -->
   <div class="container">
     <div class="content">
-
-
-<div class="row">
-
+		<div class="row">
+		
             <div class="col-lg-8">
 
                 <span class="fontBig">Blog Posting</span><span class="fontSmall">by. admin</span>
 
-			<form action="./OurBlogPostingAction.bl" name="fr" method="post" onsubmit="return empty()" enctype="multipart/form-data">
-			
+				<form action="./OurBlogPostingAction.bl" name="fr" method="post" onsubmit="return empty()" enctype="multipart/form-data">
 				
 					<select style="width: 200px; margin-top: 20px;" id="category" name="category">
-						<option>　notice</option>
-						<option>　contribution</option>
-						<option>　Event</option>
-						<option>　service</option>
-						<option>　advertising</option>
+						<option>notice</option>
+						<option>contribution</option>
+						<option>Event</option>
+						<option>service</option>
+						<option>advertising</option>
 					</select>
 				
-				
 					<input type="text" name="subject" placeholder="Title" class="form-control" style="margin-top: 15px;">
-				
-				
-				
+
                 <hr>
                 
                 <input type="file" name="file">
@@ -57,12 +56,14 @@
                 <textarea rows="20" cols="100" class="form-control" name="content"></textarea>
 
                 <hr>
+                
                 <div class="col-lg-4"></div>
                 <div class="col-lg-4">
              		<input type="submit" value="posting" class="btn_submit">
              	</div>
                 <div class="col-lg-4"></div>
-			</form>
+				
+				</form>
                
                 <hr>
 
@@ -83,7 +84,7 @@
         <footer>
             <div class="row">
                 <div class="col-lg-12">
-                    <p>Copyright &copy; Your Website 2014</p>
+                    <p>Copyright &copy; Your Website 2017</p>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>

@@ -57,22 +57,28 @@ public class ProductUpdateAction implements Action{
 		prb.setAmount(Integer.parseInt(multi.getParameter("amount")));
 				
 		// 파일변경 시 기존 파일 삭제 {
-				if(main_img != null && !main_img.equals(pre_main_img)){
-					System.out.println(realPath+"\\"+pre_main_img);
-					File file = new File(realPath+"\\"+pre_main_img);
-					file.delete();
-				}
-				
-				if(detail_img != null && !detail_img.equals(pre_detail_img)){
-					System.out.println(realPath+"\\"+pre_detail_img);
-					File file = new File(realPath+"\\"+pre_detail_img);
-					file.delete();
-				}
+			if (main_img != null && !main_img.equals(pre_main_img)) {
+				System.out.println(realPath + "\\" + pre_main_img);
+				File file = new File(realPath + "\\" + pre_main_img);
+				file.delete();
+				prb.setMain_img(multi.getFilesystemName("main_img"));
+			} else {
+				prb.setMain_img(multi.getParameter("pre_main_img"));
+			}
+			
+			if (detail_img != null && !detail_img.equals(pre_detail_img)) {
+				System.out.println(realPath + "\\" + pre_detail_img);
+				File file = new File(realPath + "\\" + pre_detail_img);
+				file.delete();
+				prb.setDetail_img(multi.getFilesystemName("detail_img"));
+			} else {
+				prb.setDetail_img(multi.getParameter("pre_detail_img"));
+			}
 		// }파일변경 시 기존 파일 삭제
 		prdao.updateProduct(prb);
 		
 		ActionForward forward = new ActionForward();		
-		forward.setPath("./ProductListAction.pr");
+		forward.setPath("./MyPage.ve");
 		forward.setRedirect(true);
 		
 		return forward;		 

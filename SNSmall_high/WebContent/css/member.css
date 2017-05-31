@@ -1,6 +1,5 @@
 @CHARSET "UTF-8";
 
-
 /*loginForm.jsp css*/
 .input_row {
     position: relative;
@@ -100,18 +99,92 @@
 }
 
 /*sns.snsjoin.jsp css*/
+
 .join_table td{
 	padding-bottom: 10px;
 }
+.dup{
+	border: none;
+	padding: 5px;
+	font-size: 10px;
+}
+.dup2{
+	border: none;
+	padding: 3px 12px 3px 12px;;
+	font-size: 11px;	
+}
 
 .join_subject{
-	font-size: 25px;
+	font-size: 30px;
 	margin: 50px 0 25px 10px;
+	font-weight: 700;
+	color:#fc7700;s
 }
 .Snsaccount{
-	background-color: #ddd;
+	background-color: #f5f5f5;
 }
 .Snsaccount td{
 	padding:10px;
 	text-align: center;
+}
+.join-mini-subject{
+	background-color: #43484E;
+	border-top-right-radius: 30px;
+	color: #fff;
+}
+.join-btn{
+	background-color: #fc7700;
+	padding: 5px 100px 5px 100px;
+	color:#fff;
+	border: none;
+	margin-bottom: 30px;
+	border-radius: 5px;
+}
+.join-btn:hover{
+	background-color: #43484E;
+	
+}
+
+/*joinIdCheck.jsp*/
+.bg_gray{
+	background-color:#e3e3e3 !important;
+}
+
+.idCheckForm{
+	margin-bottom: 50px;
+}
+.idCheck{
+	color:#43484E;
+}
+.bigIdCheck{
+	background-color:#fff;
+	border:1px solid #fff; 
+	color: red;
+	position: relative;
+	top:50px;
+	text-align: center;
+	padding: 50px 10px 50px 10px;
+	border-radius:10px; 
+}
+.idCheckBtn{
+	border:none;
+	background-color: #fc7700;
+	padding: 10px 40px 10px 40px;
+	margin-top: 40px;
+	color: #fff;
+	border-radius: 5px;
+}
+.idCheckBtn:hover{
+	background-color: #43484E;
+}
+.idCheckTxt{
+	border: none;
+	border-bottom: 2px double #c3c3c3;
+}
+
+.idCheckbtn2{
+	border: none;
+	padding: 5px;
+	border-radius: 5px;
+	font-size: 11px;
 }

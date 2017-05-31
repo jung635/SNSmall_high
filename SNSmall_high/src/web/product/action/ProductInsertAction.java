@@ -48,7 +48,7 @@ public class ProductInsertAction implements Action{
 		prdao.insertProduct(prb);
 				
 		ActionForward forward = new ActionForward();		
-		forward.setPath("./Main.ve");
+		forward.setPath("./MyPage.ve");
 		forward.setRedirect(true);
 		
 		return forward;		 

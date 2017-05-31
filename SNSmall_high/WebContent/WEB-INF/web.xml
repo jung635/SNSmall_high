@@ -132,6 +132,24 @@
   	<servlet-name>AdminFrontController</servlet-name>
   	<url-pattern>*.ad</url-pattern>
   </servlet-mapping> 
+  	<servlet>
+		<servlet-name>MemoFrontController</servlet-name>
+		<servlet-class>web.memo.action.MemoFrontController</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>MemoFrontController</servlet-name>
+		<url-pattern>*.me</url-pattern>
+	</servlet-mapping>   
+	
+	
+	  <servlet>
+  	<servlet-name>BlogFrontController</servlet-name>
+  	<servlet-class>web.blog.action.BlogFrontController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>BlogFrontController</servlet-name>
+  	<url-pattern>*.bl</url-pattern>
+  </servlet-mapping>
   
 </web-app>
 

@@ -6,6 +6,7 @@ import java.sql.Timestamp;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import web.client.action.SecurityUtil;
 import web.vendor.db.VendorBean;
 import web.vendor.db.VendorDAO;
 
@@ -19,6 +20,11 @@ public class vendorJoinAction implements Action{
 		
 		request.setCharacterEncoding("utf-8");
 		String id = request.getParameter("id");
+		// 비밀번호 암호화 코드 추가
+		String npass = request.getParameter("pass");
+		SecurityUtil su = new SecurityUtil();
+		String pass = su.encryptSHA256(npass);		
+		// 비밀번호 암호화 코드 추가
 		VendorDAO vdao = new VendorDAO();
 		response.setContentType("text/html; charset=UTF-8");
 		PrintWriter out = response.getWriter();
@@ -34,7 +40,7 @@ public class vendorJoinAction implements Action{
 		
 		VendorBean vb = new VendorBean();
 		vb.setVendor_id(request.getParameter("id"));
-		vb.setPass(request.getParameter("pass"));
+		vb.setPass(pass);
 		vb.setPerson_name(request.getParameter("name"));
 		vb.setCompany_name(request.getParameter("company"));
 		vb.setPhone(request.getParameter("phone"));

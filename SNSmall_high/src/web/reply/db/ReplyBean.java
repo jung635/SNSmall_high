@@ -3,8 +3,8 @@ package web.reply.db;
 import java.sql.Date;
 
 public class ReplyBean {
-	int num,reply_num,re_lev,re_seq;
-	String id,reply_content;
+	int num,re_ref,re_lev,re_seq;
+	String id,content;
 	Date date;
 	public int getNum() {
 		return num;
@@ -12,12 +12,7 @@ public class ReplyBean {
 	public void setNum(int num) {
 		this.num = num;
 	}
-	public int getReply_num() {
-		return reply_num;
-	}
-	public void setReply_num(int reply_num) {
-		this.reply_num = reply_num;
-	}
+
 	public int getRe_lev() {
 		return re_lev;
 	}
@@ -36,11 +31,18 @@ public class ReplyBean {
 	public void setId(String id) {
 		this.id = id;
 	}
-	public String getReply_content() {
-		return reply_content;
+	
+	public int getRe_ref() {
+		return re_ref;
 	}
-	public void setReply_content(String reply_content) {
-		this.reply_content = reply_content;
+	public void setRe_ref(int re_ref) {
+		this.re_ref = re_ref;
+	}
+	public String getContent() {
+		return content;
+	}
+	public void setContent(String content) {
+		this.content = content;
 	}
 	public Date getDate() {
 		return date;

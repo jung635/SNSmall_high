@@ -18,7 +18,7 @@ public class SnsListAction implements Action{
 		String order = request.getParameter("order");
 		if(order == null) order = "sell";
 		String rank = request.getParameter("rank");
-		if(rank == null) order = "all";
+		if(rank == null) rank = "all";
 		int count = sdao.getListCount(category, rank);
 		String pageNum = request.getParameter("pageNum");
 		if(pageNum == null) pageNum="1";
@@ -33,7 +33,6 @@ public class SnsListAction implements Action{
 		
 		start = (pageSize*(currentPage-1));
 		end = start+pageSize-1;  
-		
 		List<Object> list = null ;
 	 	if(count!=0){
 	 		list = sdao.snsList(start, pageSize, category, order);

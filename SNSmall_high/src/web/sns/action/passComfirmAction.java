@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import web.client.action.SecurityUtil;
 import web.sns.db.SnsBean;
 import web.sns.db.SnsDAO;
 
@@ -29,7 +30,12 @@ public class passComfirmAction implements Action{
 			return forward;
 		}
 		
-		String pass = request.getParameter("pass");
+//		String pass = request.getParameter("pass");
+		// 비밀번호 암호화 코드 추가
+		String npass = request.getParameter("pass");
+		SecurityUtil su = new SecurityUtil();
+		String pass = su.encryptSHA256(npass);		
+		// 비밀번호 암호화 코드 추가
 		
 		SnsDAO sdao = new SnsDAO();
 		int check= sdao.passCheck(id, pass);

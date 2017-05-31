@@ -54,8 +54,6 @@ public class PayListAction implements Action {
 			if(method.equals("payDone")){
 				for (int i=0; i<vendor_order_num_list.size(); i++){
 					PaymentBean pb = vendor_order_num_list.get(i);
-					System.out.print(pb.getOrder_num());
-					System.out.println(pb.getNum());
 					pay_list_done.add(pdao.getPayment(pb.getOrder_num(),pb.getNum()));
 				}
 				request.setAttribute("pay_list_done", pay_list_done);

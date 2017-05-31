@@ -10,7 +10,6 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-
 	<title>HIMU - OnePage HTML Parallax template</title> 
 	<link href="./css/bootstrap.min.css" rel="stylesheet">
 	<link href="./css/header.css" rel="stylesheet">
@@ -18,7 +17,6 @@
 	<link href="./css/main.css" rel="stylesheet"> 
 <title>Insert title here</title>
 <!-- 체크박스에 체크가 되어있으면 function에서 합쳐서 합가격 리턴  -->
-
 <script type="text/javascript">
 function myfunction(){
 	var sum=0;

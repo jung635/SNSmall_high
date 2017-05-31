@@ -10,8 +10,6 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
-import web.client.db.ClientBean;
-
 public class ProductDAO {
 
 	Connection con = null;
@@ -28,53 +26,6 @@ public class ProductDAO {
 	String sql = "";
 	ResultSet rs = null;
 
-	
-	// getProduct()
-	public List<ProductBean> getProduct(String num) {
-		ProductBean pb = null;
-		List<ProductBean> list = new ArrayList<ProductBean>();
-		
-		try {
-			con = getConnection();
-			String[] number = num.split(",");
-			StringBuffer sql = new StringBuffer("select * from product where product_num IN(");
-
-			for (int i = 0; i < number.length; i++) {
-				if (i == number.length - 1) {sql.append("?");}
-				else {sql.append("?,");}
-			}
-			sql.append(")");
-			pstmt = con.prepareStatement(sql.toString());
-			for (int i = 0; i < number.length; i++) {
-				pstmt.setString(i + 1, number[i]);
-			}
-
-			rs = pstmt.executeQuery();
-			while (rs.next()) {
-				pb = new ProductBean();
-				pb = new ProductBean();
-				pb.setVendor_id(rs.getString("vendor_id"));
-				pb.setCategory(rs.getString("category"));
-				pb.setSubject(rs.getString("subject"));
-				pb.setContent(rs.getString("content"));
-				pb.setMain_img(rs.getString("main_img"));
-				pb.setDetail_img(rs.getString("detail_img"));
-				pb.setOption1(rs.getString("option1"));
-				pb.setOption2(rs.getString("option2"));
-				pb.setOption3(rs.getString("option3"));
-				pb.setPrice(rs.getInt("price"));
-				pb.setAmount(rs.getInt("amount"));
-				pb.setCount(rs.getInt("count"));
-				list.add(pb);
-			}
-		} catch (Exception e) {e.printStackTrace();}
-		finally {if(rs != null){try {rs.close();} catch (Exception ex) {}}
-		if(pstmt != null){try {pstmt.close();}catch(Exception ex){}}
-		if(con != null){try {con.close();}catch(Exception ex) {}}}
-		
-		return list;
-	}
-
 	// getProduct()
 	public ProductBean getProduct(int num) {
 		ProductBean pb = null;
@@ -84,9 +35,9 @@ public class ProductDAO {
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, num);
 			rs = pstmt.executeQuery();
-			pb = new ProductBean();
+			
 			if(rs.next()){
-				
+				pb = new ProductBean();
 				pb.setProduct_num(num);
 				pb.setVendor_id(rs.getString("vendor_id"));
 				pb.setCategory(rs.getString("category"));
@@ -193,6 +144,120 @@ public class ProductDAO {
 		if(con != null){try {con.close();}catch(Exception ex) {}}}
 		return productList;
 	}
+	
+	//물품갯수 구하기
+	public int getListCount() {
+		int num = 0;
+
+		try {
+		con = getConnection();
+		sql = "select count(*) from product";
+		pstmt = con.prepareStatement(sql);
+		rs = pstmt.executeQuery();
+		if (rs.next()) {
+			num = rs.getInt(1);
+		}
+	} catch (Exception e) {e.printStackTrace();
+	} finally {if (rs != null) {try {rs.close();} catch (Exception ex) {}}
+		if (pstmt != null) {try {pstmt.close();} catch (Exception ex) {}}
+		if (con != null) {try {con.close();} catch (Exception ex) {}}}
+		return num;	
+	}
+	
+	//검색된 물품갯수 구하기
+		public int getListCount(String search) {
+			int num = 0;
+
+			try {
+			con = getConnection();
+			sql = "select count(*) from product where subject like ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, "%"+search+"%");
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				num = rs.getInt(1);
+			}
+		} catch (Exception e) {e.printStackTrace();
+		} finally {if (rs != null) {try {rs.close();} catch (Exception ex) {}}
+			if (pstmt != null) {try {pstmt.close();} catch (Exception ex) {}}
+			if (con != null) {try {con.close();} catch (Exception ex) {}}}
+			return num;	
+		}
+	
+	//물품리스트 (모든물품리스트) for admin
+		public List<ProductBean> getProductList(int startRow, int pageSize){
+			List<ProductBean> productList = new ArrayList<ProductBean>();
+			try{
+				con = getConnection();
+				sql = "select * from product order by product_num desc limit ?,?";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setInt(1, startRow-1);
+				pstmt.setInt(2, pageSize);
+				rs = pstmt.executeQuery();
+			
+			while(rs.next()){
+				ProductBean pb = new ProductBean();
+				pb.setProduct_num(rs.getInt("product_num"));
+				pb.setVendor_id(rs.getString("vendor_id"));
+				pb.setCategory(rs.getString("category"));
+				pb.setSubject(rs.getString("subject"));
+				pb.setContent(rs.getString("content"));
+				pb.setMain_img(rs.getString("main_img"));
+				pb.setDetail_img(rs.getString("detail_img"));
+				pb.setOption1(rs.getString("option1"));
+				pb.setOption2(rs.getString("option2"));
+				pb.setOption3(rs.getString("option3"));
+				pb.setPrice(rs.getInt("price"));
+				pb.setAmount(rs.getInt("amount"));
+				pb.setCount(rs.getInt("count"));
+				pb.setDate(rs.getDate("date"));
+				productList.add(pb);
+			}
+				
+			} catch (Exception e) {e.printStackTrace();}
+			finally {if(rs != null){try {rs.close();}catch(Exception ex){}}
+			if(pstmt != null){try {pstmt.close();}catch(Exception ex){}}
+			if(con != null){try {con.close();}catch(Exception ex) {}}}
+			return productList;
+		}
+		
+		//검색된 물품리스트  for admin
+		public List<ProductBean> getProductList(int startRow, int pageSize, String search){
+			List<ProductBean> productList = new ArrayList<ProductBean>();
+			try{
+				con = getConnection();
+				sql = "select * from product where subject like ? order by product_num desc limit ?,?";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, "%"+search+"%");
+				pstmt.setInt(2, startRow-1);
+				pstmt.setInt(3, pageSize);
+				rs = pstmt.executeQuery();
+			
+			while(rs.next()){
+				ProductBean pb = new ProductBean();
+				pb.setProduct_num(rs.getInt("product_num"));
+				pb.setVendor_id(rs.getString("vendor_id"));
+				pb.setCategory(rs.getString("category"));
+				pb.setSubject(rs.getString("subject"));
+				pb.setContent(rs.getString("content"));
+				pb.setMain_img(rs.getString("main_img"));
+				pb.setDetail_img(rs.getString("detail_img"));
+				pb.setOption1(rs.getString("option1"));
+				pb.setOption2(rs.getString("option2"));
+				pb.setOption3(rs.getString("option3"));
+				pb.setPrice(rs.getInt("price"));
+				pb.setAmount(rs.getInt("amount"));
+				pb.setCount(rs.getInt("count"));
+				pb.setDate(rs.getDate("date"));
+				productList.add(pb);
+			}
+				
+			} catch (Exception e) {e.printStackTrace();}
+			finally {if(rs != null){try {rs.close();}catch(Exception ex){}}
+			if(pstmt != null){try {pstmt.close();}catch(Exception ex){}}
+			if(con != null){try {con.close();}catch(Exception ex) {}}}
+			return productList;
+		}
 	
 	// 등록상품정보 DB 삽입
 	public void insertProduct(ProductBean prb){
@@ -405,21 +470,30 @@ public class ProductDAO {
 	}// updateProduct() end
 	
 	// 등록 상품 삭제
-	public void deleteProduct(int product_num){
-
+	public int deleteProduct(int product_num){
+		int check = 0;
 		try {
 			con=getConnection();
 			//3 sql num해당하는 상품 삭제
-			sql="delete from product where product_num=?";
+			sql ="select * from payment where product_num=?";
 			pstmt=con.prepareStatement(sql);
 			pstmt.setInt(1, product_num);
-
-			pstmt.executeUpdate();
-			
+			rs = pstmt.executeQuery();
+			if(rs.next()){
+				// 결과값이 있으면 아무것도 안함.
+			}else{
+				// 없으면 삭제 진행
+				sql="delete from product where product_num=?";
+				pstmt=con.prepareStatement(sql);
+				pstmt.setInt(1, product_num);
+				pstmt.executeUpdate();
+				check=1;
+			}			
 		} catch (Exception e) {e.printStackTrace();}
 		finally {if(rs != null){try {rs.close();} catch (Exception ex) {}}
 		if(pstmt != null){try {pstmt.close();}catch(Exception ex){}}
 		if(con != null){try {con.close();}catch(Exception ex) {}}}
+		return check;
 	}//deleteProduct()
 	
 	

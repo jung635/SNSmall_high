@@ -56,8 +56,6 @@ public class SnsDetailAction implements Action{
 			all_amount_allstar += pb.getAmount();
 		}
 		
-		System.out.println("all_price_allstar"+all_price_allstar);
-		System.out.println("all_price"+all_price);
 
 		
 		//카테고리 내 가격, 총 량 랭크 계산

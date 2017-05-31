@@ -192,7 +192,6 @@ public class SnsDAO {
 			pstmt.setInt(1, start);
 			pstmt.setInt(2, pageSize);
 			rs = pstmt.executeQuery();
-			System.out.println(sql.toString());
 			while (rs.next()) {
 				sb = new SnsBean();
 				sb.setContent(rs.getString("content"));

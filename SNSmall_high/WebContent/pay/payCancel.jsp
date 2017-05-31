@@ -21,7 +21,6 @@
 <title>Insert title here</title>
 <%
 List<PaymentBean> pb_list = (List<PaymentBean>)request.getAttribute("pb_list");
-System.out.println(pb_list.size());
 List<Integer> cancel_num = (List<Integer>)request.getAttribute("cancel_num"); 
 int usedPoint = (Integer)request.getAttribute("usedPoint");
 %>

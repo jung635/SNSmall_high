@@ -32,7 +32,6 @@
 
 	<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
 <script type="text/javascript">
-// $('#mainimg_item').
 function snsSearch_exe(){
 	search = document.getElementById('product_name').value;
 	location.href = 'SearchSnsList.sn?search='+search;

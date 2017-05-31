@@ -470,19 +470,30 @@ public class ProductDAO {
 	}// updateProduct() end
 	
 	// 등록 상품 삭제
-	public void deleteProduct(int product_num){
-
+	public int deleteProduct(int product_num){
+		int check = 0;
 		try {
 			con=getConnection();
 			//3 sql num해당하는 상품 삭제
-			sql="delete from product where product_num=?";
+			sql ="select * from payment where product_num=?";
 			pstmt=con.prepareStatement(sql);
 			pstmt.setInt(1, product_num);
-			pstmt.executeUpdate();			
+			rs = pstmt.executeQuery();
+			if(rs.next()){
+				// 결과값이 있으면 아무것도 안함.
+			}else{
+				// 없으면 삭제 진행
+				sql="delete from product where product_num=?";
+				pstmt=con.prepareStatement(sql);
+				pstmt.setInt(1, product_num);
+				pstmt.executeUpdate();
+				check=1;
+			}			
 		} catch (Exception e) {e.printStackTrace();}
 		finally {if(rs != null){try {rs.close();} catch (Exception ex) {}}
 		if(pstmt != null){try {pstmt.close();}catch(Exception ex){}}
 		if(con != null){try {con.close();}catch(Exception ex) {}}}
+		return check;
 	}//deleteProduct()
 	
 	

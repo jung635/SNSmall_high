@@ -99,7 +99,7 @@ public class ClientFrontController extends HttpServlet{
 			
 		}else if(command.equals("/MyPage.cl")){
 			forward = new ActionForward();
-			forward.setPath("./mypage/mypage_client.jsp");
+			forward.setPath("./mypage/mypay_list.jsp");
 			forward.setRedirect(false);
 			
 		}else if(command.equals("/passCheck.cl")){

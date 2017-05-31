@@ -80,7 +80,7 @@
 			<div class="col-sm-3"></div>
 			<div class="col-sm-6">
 			
-				 <div class="login_subject">비밀번호 알려줌 페이지</div> 
+				 <div class="login_subject">비밀번호 찾기 페이지</div> 
 				<form action="SearchPassAction.cl" id="join" name="fr" onsubmit="return confirmSubmit()">
 					<fieldset class="login_form">
 					

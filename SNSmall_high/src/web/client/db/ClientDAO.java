@@ -175,7 +175,36 @@ Connection con = null;
 			if (rs != null) {try {rs.close();} catch (Exception e) {e.printStackTrace();}}
 		}
 		return findId;
-	} // 비번 확인
+	} // 아이디 찾아서 리턴(일반/판매자용)
+	
+	// 아이디 찾아서 리턴(SNS용)
+		public String SearchIdForSns(String name, String home) {
+			String findId=null;
+
+			try {
+				con = getConnection();
+				sql = "select sns_id from sns where name=? and (Instagram = ? or facebook = ? or twitter = ? or blog = ? or etc = ?)";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, name);
+				pstmt.setString(2, home);
+				pstmt.setString(3, home);
+				pstmt.setString(4, home);
+				pstmt.setString(5, home);
+				pstmt.setString(6, home);			
+				rs = pstmt.executeQuery();
+				if (rs.next()) {
+				 findId = rs.getString(1);	
+				}
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				if (con != null) {try {con.close();} catch (Exception e) {e.printStackTrace();}}
+				if (pstmt != null) {try {pstmt.close();} catch (Exception e) {e.printStackTrace();}}
+				if (rs != null) {try {rs.close();} catch (Exception e) {e.printStackTrace();}}
+			}
+			return findId;
+		} // 아이디 찾아서 리턴(SNS용)
 	
 	// 로그인 시 아이디 비번 확인, 타입 가져오기
 	public MemberTypeBean idCheck(String id, String pass) {

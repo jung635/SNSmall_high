@@ -16,7 +16,8 @@
 	<link href="./css/bootstrap.min.css" rel="stylesheet">
 	<link href="./css/header.css" rel="stylesheet">
 	<link href="./css/inner.css" rel="stylesheet">
-	<link href="./css/main.css" rel="stylesheet"> 
+	<link href="./css/main.css" rel="stylesheet">
+	<link href="./css/product.css" rel="stylesheet">  
 <title>Insert title here</title>
 </head>
 <body>
@@ -46,23 +47,24 @@
                 <jsp:include page="../inc/myinfo_vendor_left.jsp"/>               
             </div>
             <div class="col-md-9">
-                <div class="thumbnail">
-						<h1>
-							등록된 상품목록 [ 상품 개수 :
-							<%=count%>]
-						</h1>
+                <div style="margin: 50px 0 50px 0">
+						<div class="product-top-tit">
+							등록된 상품목록 <span>[ 상품 개수 : <%=count%>]</span>
+						</div>
 						<h3>
 							<a href="./ProductInsert.pr">상품등록</a>
 						</h3>
-						<table border="1">
+						<div class="table-responsive">
+
+						<table class="regist_product">
 							<tr>
 								<td>번호</td>
-								<td>이미지</td>
-								<td>제목</td>
+								<td style="padding: 5px 0 5px 0;">이미지</td>
+								<td style="min-width: 200px;">제목</td>
 								<td>수량</td>
 								<td>가격</td>
 								<td>날짜</td>
-								<td>수정/삭제</td>
+								<td>변경사항</td>
 							</tr>
 							<%
 								if(productList != null){
@@ -71,9 +73,9 @@
 							%>
 							<tr>
 								<td><%=prb.getProduct_num()%></td>
-								<td><img src="./vendor_img/<%=prb.getMain_img()%>"
-									width="50" height="50"></td>
-								<td><%=prb.getSubject()%></a></td>
+								<td style="padding: 5px 0 5px 0;"><img src="./vendor_img/<%=prb.getMain_img()%>"
+									width="100" height="80"></td>
+								<td style="min-width: 200px;"><%=prb.getSubject()%></a></td>
 								<td><%=prb.getAmount()%></td>
 								<td><%=prb.getPrice()%></td>
 								<td><%=prb.getDate()%></td>
@@ -86,6 +88,7 @@
 								}
 							%>
 						</table>
+						</div>
 						<%
 							if (count != 0) {
 								if (startPage > pageBlock) {

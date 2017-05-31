@@ -36,7 +36,7 @@ array=s.split(",");
 
 %>
 <div class="container">
- <div class="content">
+ 
   <div class="more_content">
      <div class="col-md-3">
    <jsp:include page="../inc/myinfo_sns_left.jsp"/>
@@ -81,6 +81,6 @@ array=s.split(",");
 				</div>
 			</div>
 		</div>
-	</div>
+	
 </body>
 </html>

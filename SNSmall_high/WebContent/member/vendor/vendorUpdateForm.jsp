@@ -17,7 +17,8 @@
 	<link href="./css/bootstrap.min.css" rel="stylesheet">
 	<link href="./css/header.css" rel="stylesheet">
 	<link href="./css/inner.css" rel="stylesheet">
-	<link href="./css/main.css" rel="stylesheet"> 
+	<link href="./css/main.css" rel="stylesheet">  
+	<link href="./css/member.css" rel="stylesheet"> 
 <title>Insert title here</title>
 <script type="text/javascript">
 //우편번호 검색
@@ -90,15 +91,21 @@ function sample6_execDaumPostcode() {
                 <jsp:include page="../../inc/myinfo_vendor_left.jsp"/>               
             </div>
             <div class="col-md-9">
-                <div class="thumbnail">
+            			<div class="col-md-9">아이디</div>
+						<div class="col-md-3"><%=id%></div>
+   						
 						<form action="./vendorUpdateAction.ve" id="vendor" method="post"
 							name="fr">
-
+						<div class="col-md-9">아이디</div>
+						<div class="col-md-3"><%=id%></div>
+						
+						<div class="col-md-9">아이디</div>
+						<div class="col-md-3"><%=id%></div>
+						
+						<div class="col-md-9">아이디</div>
+						<div class="col-md-3"><%=id%></div>
 							<table>
-								<tr>
-									<td class="left"><label>아이디</label></td>
-									<td class="left"><%=id%></td>
-								</tr>
+								
 								<tr>
 									<td class="left"><label>비밀번호</label></td>
 									<td class="left"><input type="button" onclick="location.href='./passModify.ve'" value="변경하기"></td>
@@ -139,7 +146,7 @@ function sample6_execDaumPostcode() {
 
 							</div>
 						</form>
-					</div>
+					
             </div>
         </div>
     </div>

@@ -171,7 +171,8 @@ if(count!=0){
 
 %>  
 </div>
-</div>  
+</div> 
+</div> 
     
         <hr>
         <!-- Footer -->

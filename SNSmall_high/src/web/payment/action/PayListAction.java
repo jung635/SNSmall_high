@@ -58,8 +58,8 @@ public class PayListAction implements Action {
 				}
 				request.setAttribute("pay_list_done", pay_list_done);
 			}else{
-				pay_list = pdao.getVendorPaymentById(page, vendor_id, method);
-				request.setAttribute("pay_list", pay_list);
+				pay_list2 = pdao.getVendorPaymentById(page, vendor_id, method);
+				request.setAttribute("pay_list", pay_list2);
 			}
 			
 		}

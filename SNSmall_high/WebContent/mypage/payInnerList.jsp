@@ -15,7 +15,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-	<link href="./css/Pay.css?ver=15" rel="stylesheet"> 
+	<link href="./css/Pay.css?ver=20" rel="stylesheet"> 
 </head>
 <body>
 <%
@@ -49,6 +49,7 @@ List<PaymentBean> pay_list_reult = new ArrayList<PaymentBean>();
 							SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 							String date = format.format(pb.getDate());
 							String subject;
+							String content="";
 							if(prob==null){
 								%><tr><td colspan="8">삭제된 상품 입니다. 상품정보에 대한 문의는 회사를 통해주시기 바랍니다.(<%=pb.getOrder_num() %>)</td>
 								<td><%
@@ -71,10 +72,10 @@ List<PaymentBean> pay_list_reult = new ArrayList<PaymentBean>();
 						%><tr><%
 					
 							price = pb.getAmount()*prob.getPrice();
-								if(prob.getContent().length()>3){subject =prob.getContent().substring(0,4)+"...";}%>
+								if(prob.getContent().length()>3){content =prob.getContent().substring(0,4)+"...";}%>
 							<td><img src="./vendor_img/<%=prob.getMain_img() %>" style="width: 130px; height: 90px"></div></td>
 							<td><%=subject %></td>
-							<td><%=prob.getContent() %></td>
+							<td><%=content %></td>
 							<td><%=price %></td>
 							<td><%=date %></td>
 							<td><%=pb.getState() %></td>

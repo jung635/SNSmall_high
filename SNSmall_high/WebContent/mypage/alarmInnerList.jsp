@@ -8,7 +8,7 @@
 <body>
 <%String id = (String)session.getAttribute("id");
 String type = (String)session.getAttribute("type");
-SimpleDateFormat sdf = new SimpleDateFormat("yyyy-mm-dd hh:mm");
+SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm");
 %>
 			<%List<Map<String, Object>> list = (List)request.getAttribute("list"); 
 			Map<String, Object> map = null;

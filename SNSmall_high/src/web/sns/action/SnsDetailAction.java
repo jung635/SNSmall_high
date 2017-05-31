@@ -42,20 +42,17 @@ public class SnsDetailAction implements Action{
 		
 		//전체 가격, 총 량 랭크 계산
 		List<PaymentBean> payment_list = sdao.snsProductList(sns_id);
-		ProductDAO pdao = new ProductDAO();
 		PaymentBean pb;
 		for(int i=0; i<payment_list.size(); i++){
 			pb = payment_list.get(i);
-			ProductBean prob = pdao.getProduct(pb.getProduct_num());
-			all_price += prob.getPrice()*pb.getAmount();
+			all_price += pb.getPay_price();
 			all_amount += pb.getAmount();
 		}
 
 		List<PaymentBean> payment_list_allstar = sdao.snsProductList();
 		for(int i=0; i<payment_list_allstar.size(); i++){
 			pb = payment_list_allstar.get(i);
-			ProductBean prob = pdao.getProduct(pb.getProduct_num());
-			all_price_allstar += prob.getPrice()*pb.getAmount();
+			all_price_allstar += pb.getPay_price();
 			all_amount_allstar += pb.getAmount();
 		}
 		
@@ -65,8 +62,7 @@ public class SnsDetailAction implements Action{
 		List<PaymentBean> payment_list_catstar = sdao.snsProductListByCat(sb.getCategory());
 		for(int i=0; i<payment_list_catstar.size(); i++){
 			pb = payment_list_catstar.get(i);
-			ProductBean prob = pdao.getProduct(pb.getProduct_num());
-			all_price_catstar += prob.getPrice()*pb.getAmount();
+			all_price_catstar += pb.getPay_price();
 			all_amount_catstar += pb.getAmount();
 		}
 		

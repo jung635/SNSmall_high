@@ -17,21 +17,19 @@ public class PayCancelAction implements Action {
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
 		int payNum = Integer.parseInt(request.getParameter("num"));
-		String order_num = request.getParameter("order_num");
+		String order_num = request.getParameter("merchant_uid");
 		PaymentDAO pdao = new PaymentDAO();
 		PaymentBean pb = pdao.getPaymentByNum(payNum);
-		ProductDAO prodao = new ProductDAO();
-		ProductBean prob = prodao.getProduct(pb.getProduct_num());
 		ActionForward forward = new ActionForward();
 		int cancel_point = pb.getUsedPoint();
 		List<Integer> cancel_num = new ArrayList<>();
-		cancel_num.add(pb.getProduct_num());
+		cancel_num.add(pb.getNum());
 		List<PaymentBean> pb_list = pdao.getPayment(order_num);
 
 		request.setAttribute("cancel_num", cancel_num);
 		request.setAttribute("cancel_point", cancel_point);
 		request.setAttribute("pb_list", pb_list);
-		request.setAttribute("price", prob.getPrice() * pb.getAmount());
+		request.setAttribute("price", pb.getPay_price());
 		request.setAttribute("usedPoint", pb.getUsedPoint());
 		forward.setPath("./pay/payCancel.jsp");
 		forward.setRedirect(false);

@@ -7,8 +7,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-
-
 public class CartFrontController extends HttpServlet{
 
 	protected void doProcess(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -29,6 +27,14 @@ public class CartFrontController extends HttpServlet{
 		
 		}else if(command.equals("/CartAdd.ca")){
 			action=new CartAddAction();
+			try {
+				forward=action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		
+		}else if(command.equals("/Cart_Delete.ca")){
+			action=new CartDeleteAction();
 			try {
 				forward=action.execute(request, response);
 			} catch (Exception e) {

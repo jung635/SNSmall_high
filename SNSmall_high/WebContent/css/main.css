@@ -597,7 +597,7 @@ h1, h2, h3, h4, h5, h6 {
 ======================*/
 
 #services {
-  background-image: url("../images/services/service-bg2.gif");
+  background-image: url("../images/services/service001.gif");
   color:#fff;
   text-align:center;
   background-color:	#0A0A13;
@@ -685,8 +685,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .single-member {
 	height:430px;
-	background-color:#9a9999;
-	border: 2px solid #fc4300;
+    background-color: rgb(255, 155, 32);
 	color: black;
 	padding: 18px;
 	text-align:center;
@@ -937,8 +936,9 @@ h1, h2, h3, h4, h5, h6 {
 ======================*/
 
 #clients{
-	background-image: url("../images/clients/client-bg.jpg");
+	background-image: url("../images/clients/client-bg1.jpg");
 	background-color:#0A0A13;
+	background-size:cover;
 }
 
 #clients h2 {
@@ -947,7 +947,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 #clients p {
-	color:#fff
+	color:#fff;
 }
 
 #clients-carousel  {
@@ -958,7 +958,7 @@ h1, h2, h3, h4, h5, h6 {
 #clients-carousel 
 .carousel-inner {
 	display:inline-block;
-	width:60%
+	width:66%
 }
 
 .carousel-inner blockquote {
@@ -989,7 +989,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 #clients-carousel .item {
-	background:#43484E
+	background-color:rgba(0, 0, 0, 0.5);
 }
 
 #clients-carousel 
@@ -1162,7 +1162,7 @@ h1, h2, h3, h4, h5, h6 {
     margin-top: -25px;
 }
 .modal-in-img{
-	 height: 350px;
+	 height:220px;
 	 padding:10px;
 	 background-size:100%;
 	 background-repeat: no-repeat;
@@ -1553,7 +1553,7 @@ h1, h2, h3, h4, h5, h6 {
    opacity: 1;
 }
 
-/* 수정 사항 */
+/* �닔�젙 �궗�빆 */
 #item2{
 	background-size: cover;
     height: 100%;
@@ -1626,10 +1626,10 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .single-member a{
-	color: rgb(255, 210, 106);
+    color: #f6f6f6;
 }
 .single-member small{
-    color: #fbfbfb;
+    color: #fd0101;
 }
 #ranking_sns{
 	display: inline;
@@ -1651,12 +1651,12 @@ h1, h2, h3, h4, h5, h6 {
     font-size: 2em;
     font-weight: bold;
     line-height: 1;
-    color: #fff;
+    color: #000;
     text-align: center;
     white-space: nowrap;
     vertical-align: baseline;
     border-radius: .25em;
-    background-color: #fd0558;
+    background-color: #a0fd05;
     position: absolute;
 }
 /*main search btn*/
@@ -1733,4 +1733,34 @@ h1, h2, h3, h4, h5, h6 {
     -webkit-appearance: none;
     margin: 0px;
 }
-
+.goBlog-btn{
+	padding:3px 6px 3px 6px;
+	background-color: #fc7700;
+	border-radius:5px;
+	border: 1px solid #fc7700;
+	font-size: 13px;
+	color: #fff;
+	margin-left: 10px;
+	
+}
+.goBlog-btn:hover{
+	padding:3px 6px 3px 6px;
+	background-color: #fff;
+	border-radius:5px;
+	border: 1px solid #fc7700;
+	font-size: 13px;
+	color: #43484E;
+	margin-left: 10px;
+}
+.blog-go-btn{
+	margin-top: 20px;
+	border: none;
+	background-color: #fc7700;
+	padding: 5px 10px 5px 10px;
+	font-size: 15px;
+	border-radius:5px;
+}
+.blog-go-btn:hover{
+	background-color:#43484E;
+	color:#fff;
+}

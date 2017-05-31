@@ -25,8 +25,22 @@
 	<link href="./css/header.css" rel="stylesheet">
 	<link href="./css/inner.css" rel="stylesheet">
 	<link href="./css/main.css" rel="stylesheet">
+	<link href="./css/board.css" rel="stylesheet">
 	
-	<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>	
+	<script type="text/javascript" src="./js/jquery-3.2.0.js" ></script>
+	<script type="text/javascript">
+	/* Ajax 검색 test */
+		function searchFunc(){
+			$.ajax({
+				url:'./BoardSearch.bo',
+				type:'post',
+				data:{search:$('#search').val()},
+				success:function(data){
+					$('#ajax_search').html(data);
+				}
+			});
+		}
+	</script>	
 </head>
 <body>
 
@@ -38,38 +52,58 @@
   		<!-- Introduction Row -->
         <div class="row" style="margin-top: 43px">
             <div class="col-lg-12">
-                <h1 class="page-header">홍보게시판</h1>
-                <p>SNS 스타와 판매자들간의 매칭을 위한 공간입니다.</p>
+                <h1 class="page-header">홍보게시판</h1>       
             </div>
         </div>
         	
 		<!-- 테이블 모양 테스트 -->
 		<div class="row">
-            <div class="col-md-8">
-                <div class="panel panel-default text-center">
-                    <table>
-                    	<h3>
-							<a href="./writeForm.bo">글쓰기</a>
-						</h3>
-                    	<tr style="border-bottom: 1px double gray;"><th>구분</th><th>제목</th><th>글쓴이</th><th>등록일</th></tr>
-						
-						<!-- 조건 for문 시작할 부분 -->
-						<%for(int i=0; i<boardList.size(); i++){
+		 <div class="col-md-1"></div>
+            <div class="col-md-10">
+                <p>SNS 스타와 판매자들간의 매칭을 위한 공간입니다.</p>
+                <div class="col-md-10"></div>
+                <div class="col-md-2">
+	                <div class="writeLink">
+						<a href="./writeForm.bo" style="color: #fc7700 !important;">글게시</a>
+					</div>
+				</div>
+				
+                <div class="panel panel-default text-center" style="border-color: white;">
+                					
+                <div id="ajax_search">
+                    <table class = "board_table">
+							<tr>
+								<th class="board_type">구분</th>
+								<th class="board_subject">제목</th>
+								<th class="board_id">글쓴이</th>
+								<th class="board_date">등록일</th>
+							</tr>
+
+							<!-- 조건 for문 시작할 부분 -->
+						<%
+						if(boardList!=null){
+						for(int i=0; i<boardList.size(); i++){
 							BoardBean bb = (BoardBean)boardList.get(i);
 							%>
-						
-						<tr><td><%=bb.getType() %></td>
-							<td>
-							<a href="./BoardDetail.bo?num=<%=bb.getNum()%>&pageNum=<%=pageNum%>">
-							<%=bb.getSubject() %>
-							</a>	
-							</td>							
-						<td><%=bb.getId() %></td><td><%=bb.getDate() %></td></tr>
-						
-						<%} %>
+
+							<tr>
+								<td class="board_type"><%=bb.getType()%></td>
+								<td class="board_subject"><a
+									href="./BoardDetail.bo?num=<%=bb.getNum()%>&pageNum=<%=pageNum%>">
+										<%=bb.getSubject()%>
+								</a></td>
+								<td class="board_id"><%=bb.getId()%></td>
+								<td class="board_date"><%=bb.getDate()%></td>
+							</tr>
+
+							<%} %>
 						<!-- 조건 for문 끝낼 부분 -->
 						
 					</table>
+					</div>
+					
+					 
+					<div class="page-num">
                     <!-- 페이지 넘버 부분 -->
                     <%if(count!=0){
                     		//이전페이지
@@ -90,12 +124,29 @@
                     			<a href="./BoardList.bo?pageNum=<%=startPage+pageBlock%>">Next</a>
                     		<%
                     		}
-                    		%>
-                    
-                    <%} %>
+                    		%>                    
+                    <%}} %>
+                    </div>
+                   </div>
                     <!-- 페이지 넘버 부분 -->
-                </div>
-            </div>                     
+                    <div class="col-md-4"></div>
+                    <div class="col-md-4">
+	                    <div class="search-box">
+		                    <!-- 검색 -->
+		                    <div class="search-text-big-box">
+		                    <form action="./BoardSearch.bo" method="post">
+		                    	<i class="fa fa-search" aria-hidden="true"></i>
+		                    	<input type="text" name="search" class="search-text-box" placeholder="　검색어를 입력하세요">
+								<input type="submit" value="검색" class="search-btn" onclick="searchFunc()">
+		                    		
+		                    </form>
+		                    </div>  
+		                    <!-- 검색 -->
+	                	</div>
+                	</div>
+                	<div class="col-md-4"></div>
+            </div>
+            <div class="col-md-1"></div>                 
 		</div>
 						
         <hr>

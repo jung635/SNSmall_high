@@ -3,12 +3,12 @@
 <%@page import="java.util.List"%>
 <%@page import="web.sns.db.SnsBean"%>
 <%@page import="web.product.db.ProductBean"%>
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html class="csstransforms csstransforms3d csstransitions">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
 	<meta name="description" content="Creative One Page Parallax Template">
 	<meta name="keywords" content="Creative, Onepage, Parallax, HTML5, Bootstrap, Popular, custom, personal, portfolio" /> 
@@ -36,7 +36,7 @@ window.onscroll = changePos;
 function changePos() {
 	var skill_y = $('#skill').offset().top + $('#skill').height()-300;
 	var nav_y = $('#navigation .navbar').height()+8;
-	var sell_popular_y = $('#sell_popular_box').offset().top + $('#sell_popular_box').height()-300;
+	var sell_popular_y = $('#sell_popular_box').offset().top + $('#sell_popular_box').height()-100;
 	var sell_latest_y = $('#sell_latest_box').offset().top + $('#sell_latest_box').height()-500;
 	var policy_info_y = $('#policy_info_box').offset().top + $('#policy_info_box').height();
     var tab = document.getElementById("tab");
@@ -80,7 +80,7 @@ $(document).ready(function(){
 	showSlides(0,5);
 }); 
 
-//ÀÌ¹ÌÁö Å©°Ô ¶ç¿ì±â
+//ì´ë¯¸ì§€ í¬ê²Œ ë„ìš°ê¸°
 function view(img){
 	var src = $(img).attr('src');
 	$('#big_img').attr("src", src);
@@ -120,7 +120,9 @@ function showSlides(n, full_length) {
 </head>
 <body>
 <jsp:include page="../inc/header.jsp"/>
-<%SnsBean sb= (SnsBean)request.getAttribute("sb");
+<%
+String type= (String)session.getAttribute("type");
+SnsBean sb= (SnsBean)request.getAttribute("sb");
 int latest_size = 0;
 int popular_size = 0;
 List<Integer> latest_list = new ArrayList<>();
@@ -161,15 +163,17 @@ int rank_percent = (Integer)request.getAttribute("rank_percent");
             <div class="col-md-4">              
                 <h3><%=sb.getName() %></h3>
                 <ul>
-                    <li>ÁÖ·Â Ä«Å×°í¸®: <%=sb.getCategory() %></li>
-                    <li>µî±Ş: <%=sb.getRank() %></li>
-                    <li>Adipiscing Elit</li>
+                    <li>ì´ë¦„: <%=sb.getName() %></li>
+                    <li>ì£¼ë ¥ ì¹´í…Œê³ ë¦¬: <%=sb.getCategory() %></li>
+                    <li>ë“±ê¸‰: <%=sb.getRank() %></li>
                 </ul>
-                 <h3>ÀÚ±â ¼Ò°³</h3>
+                 <h3>ìê¸° ì†Œê°œ</h3>
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae. Sed dui lorem, adipiscing in adipiscing et, interdum nec metus. Mauris ultricies, justo eu convallis placerat, felis enim.</p>
             </div>
             <section id="our-team">
-            	<div><input type="button" value="ÂÊÁöº¸³»±â" style="float:right"></div>
+            	<%if(type.equals("vendor")){ %>
+            	<div><input type="button" value="ìª½ì§€ë³´ë‚´ê¸°" style="float:right"></div>
+            	<%} %>
 				<div class="socials">
 						<%if(sb.getFacebook().trim().length()!=0){%>
 							<a href="<%=sb.getFacebook()%>"><i class="fa fa-facebook"></i></a>
@@ -209,10 +213,10 @@ int rank_percent = (Integer)request.getAttribute("rank_percent");
 			</div>
 		</div><%} %>
 		<div id="tab">
-			<a href="#skill" id="t_skill">½ºÅ¸ ½ºÅ³ È®ÀÎ</a>
-			<a href="#sell_popular" id="t_sell_popular">¸¹ÀÌ ÆÇ¸ÅÇÑ »óÇ°</a>
-			<a href="#sell_latest" id="t_sell_latest">ÃÖ±Ù ÆÇ¸ÅÇÑ »óÇ°</a>
-			<a href="#policy_info" id="t_policy_info">¾È³»»çÇ× È®ÀÎ</a>
+			<a href="#skill" id="t_skill">ìŠ¤íƒ€ ìŠ¤í‚¬ í™•ì¸</a>
+			<a href="#sell_popular" id="t_sell_popular">ë§ì´ íŒë§¤í•œ ìƒí’ˆ</a>
+			<a href="#sell_latest" id="t_sell_latest">ìµœê·¼ íŒë§¤í•œ ìƒí’ˆ</a>
+			<a href="#policy_info" id="t_policy_info">ì•ˆë‚´ì‚¬í•­ í™•ì¸</a>
 		</div>
         <div id="bigimg_active">
         	<img src="" id="big_img">
@@ -225,28 +229,29 @@ int rank_percent = (Integer)request.getAttribute("rank_percent");
 				<div class="skill-bar">
 					<div class="skillbar clearfix " data-percent="<%=all_price_rank%>%">
 						<div class="skillbar-title">
-							<span>ÀüÃ¼ ÆÇ¸Å¾×</span>
+							<span>ì „ì²´ íŒë§¤ì•¡</span>
 						</div>
 						<div class="skillbar-bar"></div>
 						<div class="skill-bar-percent"><%=all_price_rank%>%</div>
 					</div> <!-- End Skill Bar -->
 					<div class="skillbar clearfix" data-percent="<%=all_amount_rank%>%">
-						<div class="skillbar-title"><span>ÀüÃ¼ ÆÇ¸Å·®</span></div>
+						<div class="skillbar-title"><span>ì „ì²´ íŒë§¤ëŸ‰</span></div>
 						<div class="skillbar-bar"></div>
 						<div class="skill-bar-percent"><%=all_amount_rank%>%</div>
 					</div> <!-- End Skill Bar -->
 					<div class="skillbar clearfix " data-percent="<%=cat_price_rank%>%">
-						<div class="skillbar-title"><span>ÁÖ·Â Ä«Å×°í¸® ³» ÆÇ¸Å¾×</span></div>
+						<div class="skillbar-title"><span>ì£¼ë ¥ ì¹´í…Œê³ ë¦¬ ë‚´ íŒë§¤ì•¡</span></div>
 						<div class="skillbar-bar"></div>
 						<div class="skill-bar-percent"><%=cat_price_rank%>%</div>
 					</div>	
+					<a name="sell_popular"></a>
 					<div class="skillbar clearfix " data-percent="<%=cat_amount_rank%>%">
-						<div class="skillbar-title"><span>ÁÖ·Â Ä«Å×°í¸® ³» ÆÇ¸Å·®</span></div>
+						<div class="skillbar-title"><span>ì£¼ë ¥ ì¹´í…Œê³ ë¦¬ ë‚´ íŒë§¤ëŸ‰</span></div>
 						<div class="skillbar-bar"></div>
 						<div class="skill-bar-percent"><%=cat_amount_rank%>%</div>
 					</div>	
 					<div class="skillbar clearfix " data-percent=<%=rank_percent%>%>
-						<div class="skillbar-title"><span>µî±Ş</span></div>
+						<div class="skillbar-title"><span>ë“±ê¸‰</span></div>
 						<div class="skillbar-bar"></div>
 						<div class="skill-bar-percent"><%=rank_percent%>%</div>
 					</div> <!-- End Skill Bar -->
@@ -255,59 +260,76 @@ int rank_percent = (Integer)request.getAttribute("rank_percent");
         </div>
         <!-- skill bar end -->
       	<div class="clear">
-      	<a name="sell_popular"></a>
 		<div class="well" id="sell_popular_box">
-			<div><h3>°¡Àå ¸¹ÀÌ ÆÇ¸ÅÇÑ »óÇ°</h3></div>
+			<div><h3>ê°€ì¥ ë§ì´ íŒë§¤í•œ ìƒí’ˆ</h3></div>
 			<%
 			if(popular_list!=null){
 			for(int i=0; i<popular_size; i++){
-				pb = pdao.getProduct(popular_list.get(i));%>
-			<div class="col-sm-3 col-xs-6">
-				<div>
-				<a href="ProductDetail.pr?product_num=<%=pb.getProduct_num()%>">
-					<img class="img-responsive portfolio-item" id="sns_imgs" src="./vendor_img/<%=pb.getMain_img() %>" alt="">
-               	</a>
-               	</div>
-               	<div>
-               		ÀÌ¸§: <%=pb.getSubject() %><br>
-               		°¡°İ: <%=pb.getPrice() %>
-               	</div>
- 			</div><%}} %>
+				pb = pdao.getProduct(popular_list.get(i));
+				if(pb==null){%>
+					<div class="col-sm-3 col-xs-6">
+						<div>
+							ì‚­ì œëœ ìƒí’ˆì…ë‹ˆë‹¤.
+		               	</div>
+ 					</div>
+				<%}else{%>
+					<div class="col-sm-3 col-xs-6">
+						<div>
+						<a href="ProductDetail.pr?product_num=<%=pb.getProduct_num()%>">
+							<img class="img-responsive portfolio-item" id="sns_imgs" src="./vendor_img/<%=pb.getMain_img() %>" alt="">
+		               	</a>
+		               	</div>
+		               	<a name="sell_latest"></a>
+		               	<div>
+		               		ì´ë¦„: <%=pb.getSubject() %><br>
+		               		ê°€ê²©: <%=pb.getPrice() %>
+		               	</div>
+		 			</div><%}}} %>
 		</div>
-		<a name="sell_latest"></a>
+
 		<div class="well" id="sell_latest_box">
-			<div><h3>ÃÖ±Ù ÆÇ¸ÅÇÑ »óÇ°</h3></div>
+			<div><h3>ìµœê·¼ íŒë§¤í•œ ìƒí’ˆ</h3></div>
 			<%
 			if(latest_list != null){
 			for(int i=0; i<latest_size; i++){
-				pb = pdao.getProduct(latest_list.get(i));%>
-			<div class="col-sm-3 col-xs-6">
-				 <a href="ProductDetail.pr?product_num=<%=pb.getProduct_num()%>">
-					<img class="img-responsive portfolio-item" id="sns_imgs" src="./vendor_img/<%=pb.getMain_img() %>" alt="">
-               	 </a>
-               	 <div>
-               		ÀÌ¸§: <%=pb.getSubject() %><br>
-               		°¡°İ: <%=pb.getPrice() %>
-               	</div>
-            </div> <%}} %>
+				pb = pdao.getProduct(latest_list.get(i));
+			if(pb==null){%>
+					<div class="col-sm-3 col-xs-6">
+						<div>
+							ì‚­ì œëœ ìƒí’ˆì…ë‹ˆë‹¤.
+		               	</div>
+ 					</div>
+				<%}else{%>
+					<div class="col-sm-3 col-xs-6">
+						<div>
+						<a href="ProductDetail.pr?product_num=<%=pb.getProduct_num()%>">
+							<img class="img-responsive portfolio-item" id="sns_imgs" src="./vendor_img/<%=pb.getMain_img() %>" alt="">
+		               	</a>
+		               	</div>
+		               	<a name="sell_latest"></a>
+		               	<div>
+		               		ì´ë¦„: <%=pb.getSubject() %><br>
+		               		ê°€ê²©: <%=pb.getPrice() %>
+		               	</div>
+		 			</div><%}}} %>
 		</div>
 		
 		<a name="policy_info"></a>
 		<div id="policy_info_box">
-			<div><h3>¾È³» »çÇ× È®ÀÎ</h3></div>
+			<div><h3>ì•ˆë‚´ ì‚¬í•­ í™•ì¸</h3></div>
 			<div>
 				<ul>
-					<li>SNS ½ºÅ¸µéÀÇ Á¤º¸¿Í ¿ì¸® È¸»ç¿Í´Â ÀüÇô ¹«°üÇÕ´Ï´Ù.</li>
-					<li>SNS ½ºÅ¸µé°ú ¹°°Ç Á¤º¸ ¹× ÆÇ¸Å °úÁ¤Àº ÀüÇô ¹«°üÇÕ´Ï´Ù.</li>
-					<li>SNS ½ºÅ¸µéÀÇ skill°ú ½ÇÁ¦ ÆÇ¸Å ¹°°ÇÀº ´Ù¼Ò Â÷ÀÌ°¡ ÀÖÀ» ¼ö ÀÖ½À´Ï´Ù.</li>
-					<li>ÀÚ¼¼ÇÑ ÆÇ¸Å »çÇ×Àº ÆÇ¸ÅÀÚ¿¡°Ô ¹®ÀÇÇÏ½Ã±â ¹Ù¶ø´Ï´Ù.</li>
-					<li>SNS ½ºÅ¸ÀÇ °³ÀÎÀûÀÎ ¿¬¶ôÃ³´Â ¿äÃ» ÇÏ½Ã´õ¶óµµ È¸»ç¿¡¼­ Á¦°øÇÏÁö ¾Ê½À´Ï´Ù.</li>
-					<li>SNS ½ºÅ¸¿Í ÄÁÅØÀº  ÂÊÁö¸¦ ÀÌ¿ëÇØÁÖ½Ã±â ¹Ù¶ø´Ï´Ù.</li>
-					<li>SNS ½ºÅ¸¿¡ Á¦°øµÇ´Â  profitÀº µî±Ş¸¶´Ù ´Ù¸¨´Ï´Ù.</li>
+					<li>SNS ìŠ¤íƒ€ë“¤ì˜ ì •ë³´ì™€ ìš°ë¦¬ íšŒì‚¬ì™€ëŠ” ì „í˜€ ë¬´ê´€í•©ë‹ˆë‹¤.</li>
+					<li>SNS ìŠ¤íƒ€ë“¤ê³¼ ë¬¼ê±´ ì •ë³´ ë° íŒë§¤ ê³¼ì •ì€ ì „í˜€ ë¬´ê´€í•©ë‹ˆë‹¤.</li>
+					<li>SNS ìŠ¤íƒ€ë“¤ì˜ skillê³¼ ì‹¤ì œ íŒë§¤ ë¬¼ê±´ì€ ë‹¤ì†Œ ì°¨ì´ê°€ ìˆì„ ìˆ˜ ìˆìŠµë‹ˆë‹¤.</li>
+					<li>ìì„¸í•œ íŒë§¤ ì‚¬í•­ì€ íŒë§¤ìì—ê²Œ ë¬¸ì˜í•˜ì‹œê¸° ë°”ëë‹ˆë‹¤.</li>
+					<li>SNS ìŠ¤íƒ€ì˜ ê°œì¸ì ì¸ ì—°ë½ì²˜ëŠ” ìš”ì²­ í•˜ì‹œë”ë¼ë„ íšŒì‚¬ì—ì„œ ì œê³µí•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.</li>
+					<li>SNS ìŠ¤íƒ€ì™€ ì»¨í…ì€  ìª½ì§€ë¥¼ ì´ìš©í•´ì£¼ì‹œê¸° ë°”ëë‹ˆë‹¤.</li>
+					<li>SNS ìŠ¤íƒ€ì— ì œê³µë˜ëŠ”  profitì€ ë“±ê¸‰ë§ˆë‹¤ ë‹¤ë¦…ë‹ˆë‹¤.</li>
 				</ul>
 				<table border="1">
-					<tr><td>µî±Ş</td><td>Premium</td><td>Plus</td><td>Basic</td></tr>
-					<tr><td>±âÁØ</td><td>1Ãµ¸¸¿ø ÀÌ»ó</td><td>500¸¸¿ø ÀÌ»ó</td><td>±âº»</td></tr>
+					<tr><td>ë“±ê¸‰</td><td>Premium</td><td>Plus</td><td>Basic</td></tr>
+					<tr><td>ê¸°ì¤€</td><td>1ì²œë§Œì› ì´ìƒ</td><td>500ë§Œì› ì´ìƒ</td><td>ê¸°ë³¸</td></tr>
 					<tr><td>profit</td><td>20%</td><td>10%</td><td>5%</td></tr>
 				</table>
 			</div>

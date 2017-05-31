@@ -1,37 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link href="../css/default.css" rel="stylesheet" type="text/css">
-<link href="../css/subpage.css" rel="stylesheet" type="text/css">
-<!--[if lt IE 9]>
-<script src="http://ie7-js.googlecode.com/svn/version/2.1(beta4)/IE9.js" type="text/javascript"></script>
-<script src="http://ie7-js.googlecode.com/svn/version/2.1(beta4)/ie7-squish.js" type="text/javascript"></script>
-<script src="http://html5shim.googlecode.com/svn/trunk/html5.js" type="text/javascript"></script>
-<![endif]-->
-<!--[if IE 6]>
- <script src="../script/DD_belatedPNG_0.0.8a.js"></script>
- <script>
-   /* EXAMPLE */
-   DD_belatedPNG.fix('#wrap');
-   DD_belatedPNG.fix('#main_img');   
-
- </script>
- <![endif]-->
- 
-<%-- <%request.setCharacterEncoding("utf-8"); 
-StringBuffer buffer = new StringBuffer();
-for(int i=0; i<=6; i++){
-	int num = (int)(Math.random()*10);
-	buffer.append(num);
-}
-
-String authNum = buffer.toString();
-
-
-%> --%>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Creative One Page Parallax Template">
+<meta name="keywords"
+	content="Creative, Onepage, Parallax, HTML5, Bootstrap, Popular, custom, personal, portfolio" />
+<meta name="author" content="">
+<title>HIMU - OnePage HTML Parallax template</title>
+<link href="./css/bootstrap.min.css" rel="stylesheet">
+<link href="./css/header.css" rel="stylesheet">
+<link href="./css/inner.css" rel="stylesheet">
+<link href="./css/main.css" rel="stylesheet">
+<link href="./css/member.css" rel="stylesheet">  
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <script type="text/javascript">
  var authMailClicked=false;
@@ -193,7 +176,7 @@ var pass_reg =/^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[~,!,@,#,$,*,(,),=,+,_,.,|]).{8,20
  	var pwd=document.fr.pass.value;
  	
  	if(!pass_reg.test(pwd)){
- 		document.getElementById("passCheckDisplay").innerHTML="비밀번호는 영문자, 숫자, 특수문자 조합 8-20자리로 구성해주세요.";	
+ 		document.getElementById("passCheckDisplay").innerHTML="영문자, 숫자, 특수문자 조합 8-20자리로 구성해주세요.";	
  	}else{
  		document.getElementById("passCheckDisplay").innerHTML="OK!";	
  		
@@ -257,78 +240,82 @@ var pass_reg =/^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[~,!,@,#,$,*,(,),=,+,_,.,|]).{8,20
  </script>
 </head>
 <body>
-<!-- 오른쪽 슬라이더 -->
-<!-- 오른쪽 슬라이더 -->
 
-<div id="wrap">
+	<jsp:include page="../../inc/header.jsp" />
 
-<!-- 본문들어가는 곳 -->
-<!-- 본문메인이미지 -->
-<div id="sub_img_member"></div>
-<!-- 본문메인이미지 -->
+	<div class="container">
+		<div class="content">
+			<div class="col-md-2"></div>
+			<div class="col-md-8">
+				<div class="join_subject">　Vendor Join Us</div>
+				
+				<form action="./vendorJoinAction.ve" id="join" name="fr"
+					onsubmit="return submitCheck()">
+					<input type="hidden" name="type" value="client"> <input
+						type="hidden" name="idDubOk">
 
-<!-- 본문내용 -->
-<article>
-<h1>회원가입(판매자용)</h1>
-<form action="./vendorJoinAction.ve" id="join" name="fr" onsubmit="return submitCheck()">
-<input type="hidden" name="type" value="client">
-<input type="hidden" name="idDubOk">
+					<fieldset>
+						<legend class="join-mini-subject">　Basic Info</legend>
+						<table class = "join_table"  style="margin-left: 20px;">
+							<tr>
+								<td><label>User ID</label></td>
+								<td><input type="text" name="id" class="id"
+									onkeyup="idCheck()"> <input type="button" value="dup_check"
+									class="dup" onclick="idDupCheck()"></td>
+								<td><span id="idCheckDisplay"></span></td>
+							</tr>
+							<tr>
+								<td><label>Password</label></td>
+								<td><input type="password" name="pass" onkeyup="passFormCheck()"></td>
+								<td><span id="passCheckDisplay"></span></td>								
+							</tr>
+							<tr>
+								<td><label>Retype Password &nbsp; </label></td> 
+									<td><input type="password" name="pass2" onkeyup="passCheck()"></td>
+									<td><span id="passdbCheckDisplay"></span></td> 
+							</tr>
+							<tr>
+								<td><label>Name</label></td>
+								<td><input type="text" name="name"></td>
+							</tr>
+							<tr>
+								<td><label>Company</label></td>
+								<td><input type="text" name="company"></td>
+							</tr>
+							<tr>
+								<td><label>Phone</label></td>
+								<td><input type="text" name="phone"></td>
+							</tr>
+							<tr>
+								<td><label>Address</label></td>
+								<td><input type="text" name="postcode" id="postcode"
+									placeholder="우편번호"> <input type="button"
+									onclick="sample6_execDaumPostcode()" value="우편번호 찾기" class="dup2"></td>
+							</tr>
+							<tr>
+								<td><label></label></td>
+								<td><input type="text" name="address" id="address"
+									placeholder="주소"></td>
+							</tr>
+							<tr>
+								<td><label></label></td>
+								<td><input type="text" name="address2" id="address2"
+									placeholder="상세주소"></td>
+							</tr>
+						</table>
+					</fieldset>
 
-<fieldset>
-<legend>필수 항목</legend>
-<!-- <label>가입유형</label> -->
-<!-- <select name="type"> -->
-<!--     <option value="client" selected>일반회원</option> -->
-<!--     <option value="vendor">판매자</option>    -->
-<!--  </select><br><br> -->
-<label>아이디</label>
-<input type="text" name="id" class="id" onkeyup="idCheck()">
-<input type="button" value="중복확인" class="dup" onclick="idDupCheck()"><span id="idCheckDisplay"></span><br>
-
-<label>비밀번호</label>
-<input type="password" name="pass" onkeyup="passFormCheck()"><span id="passCheckDisplay"></span><br>
-<label>비밀번호 확인</label>
-<input type="password" name="pass2"  onkeyup="passCheck()"><span id="passdbCheckDisplay"></span><br>
-<label>이름</label>
-<input type="text" name="name"><br>
-<label>회사명</label>
-<input type="text" name="company"><br>
-<label>연락처</label>
-<input type="text" name="phone"><br>
-<label>주소</label>
-<input type="text" name="postcode" id="postcode" placeholder="우편번호">
-<input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기"><br>
-<label></label>
-<input type="text" name="address" id="address" placeholder="주소"><br>
-<label></label>
-<input type="text" name="address2" id="address2" placeholder="상세주소"><br>
-<!-- <label>E-Mail</label>
-<input type="email" name="email"><input type="button" value="인증메일 발송" onclick="sendmail()"><br>
-<label></label>
-<input type="text" name="authInputNum"><input type="button" value="인증확인" onclick="authCheck()"><br> -->
-</fieldset>
-
-<!-- <fieldset> -->
-<!-- <legend>Optional</legend> -->
-
-
-
-
-<!-- <label>Phone Number</label> -->
-<!-- <input type="text" name="phone" id="phone"><br> -->
-<!-- </fieldset> -->
-
-<div class="clear"></div>
-<div id="buttons">
-<input type="submit" value="Submit" class="submit">
-<input type="button" value="Cancel" class="cancel" onclick="history.back()">
-</div>
-</form>
-</article>
-<!-- 본문내용 -->
-<!-- 본문들어가는 곳 -->
-<div class="clear"></div>
-<%-- <jsp:include page="../inc/bottom.jsp"/> --%>
-</div>
+					<div class="clear"></div>
+					<hr>
+							<div class="col-md-1"></div>
+							<div class="col-md-5"><input type="submit" value="Join" class="join-btn"> </div>
+							<div class="col-md-5"><input type="button" value="Cancel" class="join-btn" onclick="history.back()"> </div>
+							<div class="col-md-1"></div>
+							
+						</form>
+					</div>
+			</div>
+		</div>
+	</div>
 </body>
 </html>

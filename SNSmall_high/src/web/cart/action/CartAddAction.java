@@ -1,5 +1,7 @@
 package web.cart.action;
 
+import java.io.PrintWriter;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -11,12 +13,25 @@ public class CartAddAction implements Action{
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		// TODO Auto-generated method stub
+		// 한글처리
+		request.setCharacterEncoding("utf-8");
+		
 		
 		HttpSession session = request.getSession();
 		String client_id = (String)session.getAttribute("id");
+		String sns_id = (String)session.getAttribute("link_id");
 		ActionForward forward = new ActionForward();
 		
+		response.setContentType("text/html; charset=UTF-8");
+		PrintWriter out = response.getWriter();
+		if(client_id==null){
+			out.println("<script>");
+			out.println("alert('로그인이 필요한 서비스 입니다.');");
+			out.println("history.back();");
+			out.println("</script>");
+			out.close();
+			return null;
+		}
 		
 		int product_num = Integer.parseInt(request.getParameter("product_num"));
 		String vendor_id = request.getParameter("vendor_id");
@@ -36,6 +51,7 @@ public class CartAddAction implements Action{
 		cb.setOption3(option3);
 		cb.setPrice(allprice);
 		cb.setAmount(amount);
+		cb.setSns_id(sns_id);
 		//sns 해야됨
 		cdao.CartAdd(cb);
 		forward.setRedirect(true);

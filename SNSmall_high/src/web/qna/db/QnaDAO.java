@@ -14,7 +14,7 @@ import javax.sql.DataSource;
 
 public class QnaDAO {
 
-Connection con = null;
+	Connection con = null;
 	
 	private Connection getConnection() throws Exception{
 

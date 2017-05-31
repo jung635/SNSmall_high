@@ -39,6 +39,102 @@ public class AdminFrontController extends HttpServlet {
 				e.printStackTrace();
 			}
 
+		} else if (command.equals("/ClientList.ad")) {
+			action = new ClientListAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+
+		} else if (command.equals("/SearchClientList.ad")) {
+			action = new SearchClientList();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+
+		} else if (command.equals("/VendorList.ad")) {
+			action = new VendorListAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+
+		} else if (command.equals("/SearchVendorList.ad")) {
+			action = new SearchVendorList();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+
+		} else if (command.equals("/ProductList.ad")) {
+			action = new ProductListAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+
+		} else if (command.equals("/SearchProductList.ad")) {
+			action = new SearchProductList();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+
+		} else if (command.equals("/BoardList.ad")) {
+			action = new BoardListAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+
+		} else if (command.equals("/BoardDetail.ad")) {
+			action = new BoardDetailAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+
+		} else if (command.equals("/SearchBoardList.ad")) {
+			action = new SearchBoardList();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+
+		} else if (command.equals("/OurBlog.ad")) {
+			action = new BlogList();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+
+		} else if (command.equals("/OurBlogPostAction.ad")) {
+			action = new BlogContentAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+
+		} else if (command.equals("/ProductDeleteByAdmin.ad")) {
+			action = new ProductDeleteByAdmin();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+
 		}
 
 		if (forward != null) {

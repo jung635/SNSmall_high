@@ -13,6 +13,7 @@
 	<link href="./css/header.css" rel="stylesheet">
 	<link href="./css/inner.css" rel="stylesheet">
 	<link href="./css/main.css" rel="stylesheet"> 
+	<link href="./css/product.css" rel="stylesheet"> 
 <title>Insert title here</title>
 <script type="text/javascript">
 	function submitCheck(){
@@ -26,6 +27,12 @@
 	 		document.fr.amount.focus();
 	 		return false;
 	 	}
+		if(document.fr.opt_name1.value==""&&document.fr.opt_name2.value==""&&document.fr.opt_name3.value==""){
+			alert("옵션을 하나이상은 입력해야합니다.");
+			document.fr.amount.focus();
+			return false;
+		}
+		
 	}
 </script>
 </head>
@@ -46,71 +53,75 @@ String id = (String)session.getAttribute("id");
             </div>
             <div class="col-md-9">
                 <!-- 마이페이지 메인 -->
-                <div class="thumbnail">
-						<h1>상품등록 페이지</h1>
+              <div style="margin: 50px 0 50px 0">
+						<div class="product-top-tit">　Product Registration</div>
 						<form action="./ProductInsertAction.pr" method="post" name="fr"
-							enctype="multipart/form-data" onsubmit="return submitCheck()">
-							<table border="1">
-								<tr>
-									<td>카테고리</td>
-									<td><select name="category">
-											<option value="fashion">패션</option>
-											<option value="beauty">뷰티</option>
-											<option value="baby">육아</option>
-											<option value="daily">일상</option>
-											<option value="gym">운동</option>
-											<option value="etc">기타</option>
-									</select></td>
-								</tr>
-								<input type="hidden" name="vendor_id" value=<%=id%>>
-								<tr>
-									<td>상품명</td>
-									<td><input type="text" name="subject"></td>
-								</tr>
-								<tr>
-									<td>제품정보</td>
-									<td><input type="text" name="content"></td>
-								</tr>
-								<tr>
-									<td>메인제품이미지</td>
-									<td><input type="file" name="main_img"></td>
-								</tr>
-								<tr>
-									<td>상세이미지</td>
-									<td><input type="file" name="detail_img"></td>
-								</tr>
-								<tr>
-									<td>옵션1</td>
-									<td>옵션명<input type="text" name="opt_name1">옵션<input
-										type="text" name="option1"></td>
-								</tr>
-								<tr>
-									<td>옵션2</td>
-									<td>옵션명<input type="text" name="opt_name2">옵션<input
-										type="text" name="option2"></td>
-								</tr>
-								<tr>
-									<td>옵션3</td>
-									<td>옵션명<input type="text" name="opt_name3">옵션<input
-										type="text" name="option3"></td>
-								</tr>
-								<tr>
-									<td>판매가</td>
-									<td><input type="text" name="price"></td>
-								</tr>
-								<tr>
-									<td>수량</td>
-									<td><input type="text" name="amount"></td>
-								</tr>
-								<tr>
-									<td colspan="2"><input type="submit" value="상품등록">
-										<input type="reset" value="다시등록"></td>
-								</tr>
-							</table>
+							enctype="multipart/form-data" onsubmit="return submitCheck()" class="product-form">
+							<input type="hidden" name="vendor_id" value=<%=id%>>
+							<div class="col-md-3 product-tit">카테고리</div>
+							<div class="col-md-9 product-con">
+								<select name="category" style="width: 160px;">
+									<option value="fashion">패션</option>
+									<option value="beauty">뷰티</option>
+									<option value="baby">육아</option>
+									<option value="daily">일상</option>
+									<option value="gym">운동</option>
+									<option value="etc">기타</option>
+								</select>
+							</div>
+							
+							<div class="col-md-3 product-tit">상품명</div>
+							<div class="col-md-9 product-con">
+								<input type="text" name="subject" width="100">
+							</div>
+							
+							<div class="col-md-3 product-tit">제품정보</div>
+							<div class="col-md-9 product-con">
+								<textarea rows="15" cols="80" name="content"></textarea>
+							</div>
+							
+							<div class="col-md-3 product-tit">메인제품이미지</div>
+							<div class="col-md-9 product-con"><input type="file" name="main_img"></div>
+							<div class="col-md-3 product-tit">상세이미지</div>
+							<div class="col-md-9 product-con"><input type="file" name="detail_img"></div>
+							<div class="col-md-3 product-tit">옵션1</div>
+							<div class="col-md-9 product-con">
+								옵션명　<input type="text" name="opt_name1" placeholder="ex)사이즈">
+								옵션　<input type="text" name="option1" placeholder="ex)small,medium,large">
+							</div>
+							<div class="col-md-3 product-tit">옵션2</div>
+							<div class="col-md-9 product-con">
+								옵션명　<input type="text" name="opt_name2" placeholder="ex)사이즈">
+								옵션　<input type="text" name="option2" placeholder="ex)220,225,230,235">
+							</div>
+							<div class="col-md-3 product-tit">옵션3</div>
+							<div class="col-md-9 product-con">
+								옵션명　<input type="text" name="opt_name3" placeholder="ex)세트">
+								옵션　<input type="text" name="option3" placeholder="ex)A,B,C">
+							</div>
+							<div class="col-md-3 product-tit">판매가</div>
+							<div class="col-md-9 product-con">
+								<input type="text" name="price">
+							</div>
+							<div class="col-md-3 product-tit">수량</div>
+							<div class="col-md-9 product-con">
+								<input type="text" name="amount">
+							</div>
+							
+							<div class="col-md-12">
+							<hr>
+							</div>
+							<div class="col-md-6">
+								<input type="submit" class="pro-in-btn" value="상품등록">
+							</div>
+							<div class="col-md-6">
+								<input type="reset" class="pro-in-btn" value="초기화">	
+							</div>
+						
 						</form>
 					</div>
 				<!-- 마이페이지 메인 -->
-            </div>
+           </div>
         </div>
     </div>
     <!-- /.container -->

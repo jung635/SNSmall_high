@@ -22,6 +22,7 @@ public class BlogPostingAction implements Action{
 		MultipartRequest multi= new MultipartRequest(request, realPate,maxSize,"utf-8",new DefaultFileRenamePolicy());
 		
 		BlogBean bb = new BlogBean();
+		
 		bb.setSubject(multi.getParameter("subject"));
 		bb.setCategory(multi.getParameter("category"));
 		bb.setFile(multi.getFilesystemName("file"));

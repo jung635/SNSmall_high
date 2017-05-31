@@ -1,3 +1,4 @@
+<%@page import="web.zzim.db.ZzimDAO"%>
 <%@page import="web.product.db.ProductBean"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=utf-8"
@@ -16,9 +17,11 @@
 	<link href="css/inner.css" rel="stylesheet">
 	<link href="css/main.css" rel="stylesheet">
 <title>Insert title here</title>
+
 </head>
 <body>
 <%
+	String id = (String)session.getAttribute("id");
 	String pageNum = (String)request.getAttribute("pageNum");
 	String category = (String)request.getAttribute("category");
 	String order = (String)request.getAttribute("order");
@@ -56,6 +59,10 @@
         <%}else{%>
 		<%for(int i=0; i<productList.size(); i++){
 			ProductBean pb = (ProductBean)productList.get(i);
+			ZzimDAO zdao = new ZzimDAO();
+			int product_num = pb.getProduct_num();
+			int check = zdao.ZzimCheckAction(id,product_num);
+			
 		%>
             <div class="col-md-4 portfolio-item">
                 <a href="./ProductDetail.pr?product_num=<%=pb.getProduct_num() %>&pageNum=<%=pageNum%>">
@@ -69,7 +76,9 @@
                     <a href="./ProductDetail.pr?product_num=<%=pb.getProduct_num() %>&pageNum=<%=pageNum%>"><%=pb.getSubject() %></a>
                 </h3>
                 <p><%=pb.getPrice() %>원</p>
-                <p><%=pb.getDate() %></p>
+                <p><%=pb.getDate() %><a href="ZzimAddAction.zz?product_num=<%=pb.getProduct_num() %>&subject=<%=pb.getSubject() %>&price=<%=pb.getPrice() %>">
+                <%if(check==0){ %>찜하기<img src="./vendor_img/zzimheart.jpg">
+                <%}else if(check==1){ %>찜한상품<img src="./vendor_img/zzimfullheart.jpg"><%} %></a></p>
             </div>
 		<%}} %>
 

@@ -23,19 +23,17 @@ public class PayMultipleCancelAction implements Action {
 		int price = 0;
 		int usedPoint = 0;
 		List<Integer> cancel_num = new ArrayList<>();
-		ProductDAO prodao = new ProductDAO();
 		ActionForward forward = new ActionForward();
 
 		for (int i = 0; i < pb_list.size(); i++) {
 			pb = pb_list.get(i);
-			ProductBean prob = prodao.getProduct(pb.getProduct_num());
-			price += prob.getPrice() * pb.getAmount();
+			price += pb.getPay_price();
 			usedPoint += pb.getUsedPoint();
-			System.out.println(pb.getState());
+			
 			if (pb.getState().equals("cancel") || pb.getState().equals("cancelHold")
 					|| pb.getState().equals("w_cancelHold")) {
 			} else {
-				cancel_num.add(pb.getProduct_num());
+				cancel_num.add(pb.getNum());
 				cancel_point += pb.getUsedPoint();
 			}
 		}

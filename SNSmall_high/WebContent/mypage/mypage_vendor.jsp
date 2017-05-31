@@ -2,12 +2,12 @@
 <%@page import="java.util.List"%>
 <%@page import="web.client.db.ClientDAO"%>
 <%@page import="web.client.db.ClientBean"%>
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
 	<meta name="description" content="Creative One Page Parallax Template">
 	<meta name="keywords" content="Creative, Onepage, Parallax, HTML5, Bootstrap, Popular, custom, personal, portfolio" /> 
@@ -16,8 +16,18 @@
 	<link href="./css/bootstrap.min.css" rel="stylesheet">
 	<link href="./css/header.css" rel="stylesheet">
 	<link href="./css/inner.css" rel="stylesheet">
-	<link href="./css/main.css" rel="stylesheet"> 
+	<link href="./css/main.css" rel="stylesheet">
+	<link href="./css/product.css" rel="stylesheet">  
 <title>Insert title here</title>
+	<script type="text/javascript">
+		/* ê²½ê³ ë¬¸ */
+		function d_confirm(){
+			if(confirm("ì‚­ì œí•˜ì‹œê² ìŠµë‹ˆê¹Œ?")==true){
+			}else{
+				return false;
+			}
+		}		
+	</script>
 </head>
 <body>
 <jsp:include page="../inc/header.jsp"/>
@@ -46,23 +56,24 @@
                 <jsp:include page="../inc/myinfo_vendor_left.jsp"/>               
             </div>
             <div class="col-md-9">
-                <div class="thumbnail">
-						<h1>
-							µî·ÏµÈ »óÇ°¸ñ·Ï [ »óÇ° °³¼ö :
-							<%=count%>]
-						</h1>
+                <div style="margin: 50px 0 50px 0">
+						<div class="product-top-tit">
+							ë“±ë¡ëœ ìƒí’ˆëª©ë¡ <span>[ ìƒí’ˆ ê°œìˆ˜ : <%=count%>]</span>
+						</div>
 						<h3>
-							<a href="./ProductInsert.pr">»óÇ°µî·Ï</a>
+							<a href="./ProductInsert.pr">ìƒí’ˆë“±ë¡</a>
 						</h3>
-						<table border="1">
+						<div class="table-responsive">
+
+						<table class="regist_product">
 							<tr>
-								<td>¹øÈ£</td>
-								<td>ÀÌ¹ÌÁö</td>
-								<td>Á¦¸ñ</td>
-								<td>¼ö·®</td>
-								<td>°¡°İ</td>
-								<td>³¯Â¥</td>
-								<td>¼öÁ¤/»èÁ¦</td>
+								<td>ë²ˆí˜¸</td>
+								<td style="padding: 5px 0 5px 0;">ì´ë¯¸ì§€</td>
+								<td style="min-width: 200px;">ì œëª©</td>
+								<td>ìˆ˜ëŸ‰</td>
+								<td>ê°€ê²©</td>
+								<td>ë‚ ì§œ</td>
+								<td>ë³€ê²½ì‚¬í•­</td>
 							</tr>
 							<%
 								if(productList != null){
@@ -71,25 +82,26 @@
 							%>
 							<tr>
 								<td><%=prb.getProduct_num()%></td>
-								<td><img src="./vendor_img/<%=prb.getMain_img()%>"
-									width="50" height="50"></td>
-								<td><%=prb.getSubject()%></a></td>
+								<td style="padding: 5px 0 5px 0;"><img src="./vendor_img/<%=prb.getMain_img()%>"
+									width="100" height="80"></td>
+								<td style="min-width: 200px;"><%=prb.getSubject()%></a></td>
 								<td><%=prb.getAmount()%></td>
 								<td><%=prb.getPrice()%></td>
 								<td><%=prb.getDate()%></td>
 								<td><a
-									href="./ProductUpdate.pr?product_num=<%=prb.getProduct_num()%>">¼öÁ¤</a>
+									href="./ProductUpdate.pr?product_num=<%=prb.getProduct_num()%>">ìˆ˜ì •</a>
 									/ <a
-									href="./ProductDelete.pr?product_num=<%=prb.getProduct_num()%>">»èÁ¦</a></td>
+									href="./ProductDelete.pr?product_num=<%=prb.getProduct_num()%>" onclick="return d_confirm()">ì‚­ì œ</a></td>
 							</tr>
 							<%
 								}
 							%>
 						</table>
+						</div>
 						<%
 							if (count != 0) {
 								if (startPage > pageBlock) {
-						%><a href="./ProductListAction.pr?pageNum=<%=startPage - pageBlock%>">[ÀÌÀü]</a>
+						%><a href="./ProductListAction.pr?pageNum=<%=startPage - pageBlock%>">[ì´ì „]</a>
 						<%
 							}
 								// 1..10  11..20  21...30
@@ -99,7 +111,7 @@
 						<%
 							}
 									if (endPage < pageCount) {
-						%><a href="./ProductListAction.pr?pageNum=<%=startPage + pageBlock%>">[´ÙÀ½]</a>
+						%><a href="./ProductListAction.pr?pageNum=<%=startPage + pageBlock%>">[ë‹¤ìŒ]</a>
 						<%
 							}
 								}

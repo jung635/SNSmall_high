@@ -1,9 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+    pageEncoding="utf-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>Insert title here</title>
 </head>
 
@@ -67,7 +67,7 @@ function sendSns(sns, url, txt)
         case 'kakaotalk':
             o = {
                 method:'web2app',
-                param:'sendurl?msg=' + _txt + '&url=' + _url + '&type=link&apiver=2.0.1&appver=2.0&appid=dev.epiloum.net&appname=' + encodeURIComponent('Epiloum °³¹ß³ëÆ®'),
+                param:'sendurl?msg=' + _txt + '&url=' + _url + '&type=link&apiver=2.0.1&appver=2.0&appid=dev.epiloum.net&appname=' + encodeURIComponent('Epiloum ê°œë°œë…¸íŠ¸'),
                 a_store:'itms-apps://itunes.apple.com/app/id362057947?mt=8',
                 g_store:'market://details?id=com.kakao.talk',
                 a_proto:'kakaolink://',
@@ -78,7 +78,7 @@ function sendSns(sns, url, txt)
         case 'kakaostory':
             o = {
                 method:'web2app',
-                param:'posting?post=' + _txt + _br + _url + '&apiver=1.0&appver=2.0&appid=dev.epiloum.net&appname=' + encodeURIComponent('Epiloum °³¹ß³ëÆ®'),
+                param:'posting?post=' + _txt + _br + _url + '&apiver=1.0&appver=2.0&appid=dev.epiloum.net&appname=' + encodeURIComponent('Epiloum ê°œë°œë…¸íŠ¸'),
                 a_store:'itms-apps://itunes.apple.com/app/id486244601?mt=8',
                 g_store:'market://details?id=com.kakao.story',
                 a_proto:'storylink://',
@@ -98,7 +98,7 @@ function sendSns(sns, url, txt)
             break;
  
         default:
-            alert('Áö¿øÇÏÁö ¾Ê´Â SNSÀÔ´Ï´Ù.');
+            alert('ì§€ì›í•˜ì§€ ì•ŠëŠ” SNSì…ë‹ˆë‹¤.');
             return false;
     }
  
@@ -122,22 +122,22 @@ function sendSns(sns, url, txt)
             }
             else
             {
-                alert('ÀÌ ±â´ÉÀº ¸ğ¹ÙÀÏ¿¡¼­¸¸ »ç¿ëÇÒ ¼ö ÀÖ½À´Ï´Ù.');
+                alert('ì´ ê¸°ëŠ¥ì€ ëª¨ë°”ì¼ì—ì„œë§Œ ì‚¬ìš©í•  ìˆ˜ ìˆìŠµë‹ˆë‹¤.');
             }
             break;
     }
 }
 </script>
 <body>
-<button onclick="sendSns('facebook', 'http://sunju635.cafe24.com/SNSmall/Main.cl', '¾È³ç')">ÆäÀÌ½ººÏ</button>
-<button onclick="sendSns('kakaotalk', 'http://localhost:8080/Test/sns_test.jsp', '¾È³ç')">Ä«Ä«¿À</button>
-<button onclick="sendSns('twitter', 'http://localhost:8080/Test/sns_test.jsp', '¾È³ç')">Æ®À§ÅÍ</button>
-<button onclick="sendSns('me2day', 'http://localhost:8080/Test/sns_test.jsp', '¾È³ç')">me2day</button>
-<button onclick="sendSns('kakaostory', 'http://localhost:8080/Test/sns_test.jsp', '¾È³ç')">kakaostory</button>
-<button onclick="sendSns('band', 'http://localhost:8080/Test/sns_test.jsp', '¾È³ç')">band</button>
-<button onclick="sendSns('blog', 'http://localhost:8080/Test/sns_test.jsp', '¾È³ç')">ºí·Î±×</button>
-<button onclick="sendSns('line', 'http://localhost:8080/Test/sns_test.jsp', '¾È³ç')">¶óÀÎ</button>
-<button onclick="sendSns('pholar', 'http://localhost:8080/Test/sns_test.jsp', '¾È³ç')">pholar</button>
-<button onclick="sendSns('google', 'http://www.naver.com', '¾È³ç')">google</button>
+<button onclick="sendSns('facebook', 'http://sunju635.cafe24.com/SNSmall/Main.cl', 'ì•ˆë…•')">í˜ì´ìŠ¤ë¶</button>
+<button onclick="sendSns('kakaotalk', 'http://localhost:8080/Test/sns_test.jsp', 'ì•ˆë…•')">ì¹´ì¹´ì˜¤</button>
+<button onclick="sendSns('twitter', 'http://localhost:8080/Test/sns_test.jsp', 'ì•ˆë…•')">íŠ¸ìœ„í„°</button>
+<button onclick="sendSns('me2day', 'http://localhost:8080/Test/sns_test.jsp', 'ì•ˆë…•')">me2day</button>
+<button onclick="sendSns('kakaostory', 'http://localhost:8080/Test/sns_test.jsp', 'ì•ˆë…•')">kakaostory</button>
+<button onclick="sendSns('band', 'http://localhost:8080/Test/sns_test.jsp', 'ì•ˆë…•')">band</button>
+<button onclick="sendSns('blog', 'http://localhost:8080/Test/sns_test.jsp', 'ì•ˆë…•')">ë¸”ë¡œê·¸</button>
+<button onclick="sendSns('line', 'http://localhost:8080/Test/sns_test.jsp', 'ì•ˆë…•')">ë¼ì¸</button>
+<button onclick="sendSns('pholar', 'http://localhost:8080/Test/sns_test.jsp', 'ì•ˆë…•')">pholar</button>
+<button onclick="sendSns('google', 'http://www.naver.com', 'ì•ˆë…•')">google</button>
 </body>
 </html>

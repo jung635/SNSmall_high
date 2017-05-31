@@ -68,7 +68,8 @@ public List<CartBean> getCartList(String client_id){
 				
 				if(rs2.next()){
 				CartBean cb = new CartBean();
-				
+				cb.setNum(rs.getInt("num"));
+				cb.setClient_id(rs.getString("client_id"));
 				cb.setProduct_num(rs.getInt("product_num"));
 				cb.setSns_id(rs.getString("sns_id"));
 				cb.setVendor_id(rs.getString("vendor_id"));
@@ -97,26 +98,51 @@ public List<CartBean> getCartList(String client_id){
 		
 		return CartList;
 	}
-
+	
 	//장바구니에 추가하기
 	public void CartAdd(CartBean cb){
 		try{
+			int num=0;
 			con = getConnection();
-			
-			
-			
-			sql = "insert into cart values(?,?,?,?,?,?,?,?,?,now())";
+			sql="select max(num) from cart";
 			pstmt = con.prepareStatement(sql);
-			pstmt.setInt(1, cb.getProduct_num());
-			pstmt.setString(2, cb.getSns_id());
-			pstmt.setString(3, cb.getClient_id());
-			pstmt.setString(4, cb.getVendor_id());
-			pstmt.setString(5, cb.getOption1());
-			pstmt.setString(6, cb.getOption2());
-			pstmt.setString(7, cb.getOption3());
-			pstmt.setInt(8, cb.getAmount());
-			pstmt.setInt(9, cb.getPrice());
+			rs=pstmt.executeQuery();
 			
+			if(rs.next()){
+				num =rs.getInt(1);
+			sql = "insert into cart values(?,?,?,?,?,?,?,?,?,?,now())";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, (num+1));
+			pstmt.setInt(2, cb.getProduct_num());
+			pstmt.setString(3, cb.getSns_id());
+			pstmt.setString(4, cb.getClient_id());
+			pstmt.setString(5, cb.getVendor_id());
+			pstmt.setString(6, cb.getOption1());
+			pstmt.setString(7, cb.getOption2());
+			pstmt.setString(8, cb.getOption3());
+			pstmt.setInt(9, cb.getAmount());
+			pstmt.setInt(10, cb.getPrice());
+			
+			pstmt.executeUpdate();
+			}
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally {
+			if(rs!=null){try {rs.close();}catch(SQLException ex){}}
+			if(pstmt!=null){try {pstmt.close();}catch(SQLException ex){}}
+			if(con!=null){try {con.close();}catch(SQLException ex) {}}
+		}
+
+	}//add end
+	
+	//cart delete
+	public void cartDelete(String client_id,int product_num){
+		try{
+			con = getConnection();
+			sql = "delete from cart where client_id=? && product_num=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, client_id);
+			pstmt.setInt(2, product_num);
 			pstmt.executeUpdate();
 		}catch(Exception e){
 			e.printStackTrace();

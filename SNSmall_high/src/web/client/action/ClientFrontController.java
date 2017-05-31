@@ -7,8 +7,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-
-
 public class ClientFrontController extends HttpServlet{
 
 	protected void doProcess(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -52,6 +50,39 @@ public class ClientFrontController extends HttpServlet{
 			forward.setPath("./member/loginForm.jsp");
 			forward.setRedirect(false);
 			
+		}else if (command.equals("/SearchPass.cl")) {
+			forward = new ActionForward();
+			forward.setPath("./member/SearchPass.jsp");
+			forward.setRedirect(false);
+			
+		}else if(command.equals("/SearchPassAction.cl")){
+			action = new SearchPassAction();
+			try{
+				forward = action.execute(request, response);
+			}catch(Exception e){e.printStackTrace();}
+			
+		}else if (command.equals("/SearchId.cl")) {
+			forward = new ActionForward();
+			forward.setPath("./member/SearchId.jsp");
+			forward.setRedirect(false);
+			
+		}else if(command.equals("/SearchIdAction.cl")){
+			action = new SearchIdAction();
+			try{
+				forward = action.execute(request, response);
+			}catch(Exception e){e.printStackTrace();}
+			
+		}else if (command.equals("/SearchIdForSns.cl")) {
+			forward = new ActionForward();
+			forward.setPath("./member/SearchIdForSns.jsp");
+			forward.setRedirect(false);
+			
+		}else if(command.equals("/SearchIdForSnsAction.cl")){
+			action = new SearchIdForSnsAction();
+			try{
+				forward = action.execute(request, response);
+			}catch(Exception e){e.printStackTrace();}
+			
 		}else if(command.equals("/loginAction.cl")){
 			action = new loginAction();
 			try{
@@ -68,13 +99,19 @@ public class ClientFrontController extends HttpServlet{
 			
 		}else if(command.equals("/MyPage.cl")){
 			forward = new ActionForward();
-			forward.setPath("./mypage/mypage_client.jsp");
+			forward.setPath("./mypage/mypay_list.jsp");
 			forward.setRedirect(false);
 			
 		}else if(command.equals("/passCheck.cl")){
 			forward = new ActionForward();
 			forward.setPath("./member/client/passCheck.jsp");
 			forward.setRedirect(false);
+			
+		}else if(command.equals("/ClientPassConfirm.cl")){
+			action = new ClientPassConfirm();
+			try{
+				forward = action.execute(request, response);
+			}catch(Exception e){e.printStackTrace();}
 			
 		}else if(command.equals("/clientView.cl")){
 			action = new clientView();

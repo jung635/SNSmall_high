@@ -19,6 +19,7 @@ public class PaymentBean {
 	private String state;
 	private int usedPoint;
 	private String address;
+	private int pay_price;
 
 	public int getProduct_num() {
 		return product_num;
@@ -138,6 +139,14 @@ public class PaymentBean {
 
 	public void setAddress(String address) {
 		this.address = address;
+	}
+
+	public int getPay_price() {
+		return pay_price;
+	}
+
+	public void setPay_price(int pay_price) {
+		this.pay_price = pay_price;
 	}
 
 }

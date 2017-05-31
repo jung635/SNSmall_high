@@ -4,33 +4,60 @@
 <%@page import="java.util.List"%>
 <%@page import="web.cart.db.CartDAO"%>
 <%@page import="web.cart.db.CartBean"%>
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+    pageEncoding="utf-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<title>HIMU - OnePage HTML Parallax template</title> 
 	<link href="./css/bootstrap.min.css" rel="stylesheet">
 	<link href="./css/header.css" rel="stylesheet">
 	<link href="./css/inner.css" rel="stylesheet">
 	<link href="./css/main.css" rel="stylesheet"> 
 <title>Insert title here</title>
-<!-- Ã¼Å©¹Ú½º¿¡ Ã¼Å©°¡ µÇ¾îÀÖÀ¸¸é function¿¡¼­ ÇÕÃÄ¼­ ÇÕ°¡°İ ¸®ÅÏ  -->
-
+<!-- ì²´í¬ë°•ìŠ¤ì— ì²´í¬ê°€ ë˜ì–´ìˆìœ¼ë©´ functionì—ì„œ í•©ì³ì„œ í•©ê°€ê²© ë¦¬í„´  -->
 <script type="text/javascript">
 function myfunction(){
 	var sum=0;
+	var client_id ="";
+	var product_num ="";
+	var amount="";
+	var vendor_id ="";
+	var sns_id="";
+	var option1="";
+	var option2="";
+	var option3="";
+	var num="";
 	var checklength = document.form1.check.length;
 	for(i=0;i<checklength;i++){
 		if(document.form1.check[i].checked){
 			sum+=parseInt(document.form1.check[i].value);
-
+			client_id += document.form1.client_id_input[i].value+","; 
+			product_num += document.form1.product_num_input[i].value+","; 
+			amount += document.form1.amount_input[i].value+","; 
+			vendor_id += document.form1.vendor_id_input[i].value+","; 
+			if((document.form1.sns_id_input[i].value)==null){
+				sns_id=" ,";
+			}else{
+				sns_id += document.form1.sns_id_input[i].value+","; 
+			}
+			option1	+= document.form1.option1_input[i].value+","; 
+			option2 += document.form1.option2_input[i].value+","; 
+			option3 += document.form1.option3_input[i].value+","; 
+			num += document.form1.num_input[i].value+",";
 		}
 	}
 	document.getElementById("price").innerText=sum;
-
+	document.getElementById("client_id").value=client_id;
+	document.getElementById("product_num").value=product_num;
+	document.getElementById("amount").value=amount;
+	document.getElementById("vendor_id").value=vendor_id;
+	document.getElementById("sns_id").value=sns_id;
+	document.getElementById("option1").value=option1;
+	document.getElementById("option2").value=option2;
+	document.getElementById("option3").value=option3;
+	document.getElementById("num").value=num;
 }
 
 
@@ -38,8 +65,11 @@ function myfunction(){
 </head>
 <body>
 <jsp:include page="../inc/header.jsp"/>
-<%String id = (String)session.getAttribute("id");
+<%
+request.setCharacterEncoding("utf-8");
+String id = (String)session.getAttribute("id");
 String type = (String)session.getAttribute("type");
+
 %>
   <!-- Page Content -->
   <div class="container">
@@ -63,13 +93,6 @@ List<CartBean> cblist = new ArrayList<CartBean>();
 
 <%
 int sum=0;
-
-List cl = (List)request.getAttribute("CartList"); 
-
-ProductDAO pdao = new ProductDAO();
-
-
-
 String client_id ="";
 String product_num ="";
 String amount="";
@@ -78,23 +101,39 @@ String sns_id="";
 String option1="";
 String option2="";
 String option3="";
+String num="";
+List cl = (List)request.getAttribute("CartList"); 
+
+ProductDAO pdao = new ProductDAO();
+
+
+
+
 for(int i=0;i<cl.size();i++){
 	CartBean cb = (CartBean)cl.get(i);
 
 	int price=cb.getPrice();
 	ProductBean prob = pdao.getProduct(cb.getProduct_num()); 
 %>
-
+<input type="hidden" name = "num_input" value="<%=cb.getNum()%>">
+<input type="hidden" name = "client_id_input" value="<%=cb.getClient_id()%>">
+<input type="hidden" name = "product_num_input" value="<%=cb.getProduct_num()%>">
+<input type="hidden" name = "amount_input" value="<%=cb.getAmount()%>">
+<input type="hidden" name = "vendor_id_input" value="<%=cb.getVendor_id()%>">
+<input type="hidden" name = "sns_id_input" value="<%=cb.getSns_id()%>">
+<input type="hidden" name = "option1_input" value="<%=cb.getOption1()%>">
+<input type="hidden" name = "option2_input" value="<%=cb.getOption2()%>">
+<input type="hidden" name = "option3_input" value="<%=cb.getOption3()%>">
 <input type="checkbox" name="check" value="<%=cb.getPrice()%>" onchange="myfunction()" checked>
 
-<!-- Àå¹Ù±¸´Ï Á¤º¸ -->
+<!-- ì¥ë°”êµ¬ë‹ˆ ì •ë³´ -->
 <a href="ProductDetail.pr?product_num=<%=prob.getProduct_num() %>">
-¹°Ç° ¹øÈ£:<%=cb.getProduct_num() %>
-ÀÌ¹ÌÁö:<img src="./vendor_img/<%=prob.getMain_img() %>">
-Ç°¸í:<%=cb.getSubject()%>
+ë¬¼í’ˆ ë²ˆí˜¸:<%=cb.getProduct_num() %>
+ì´ë¯¸ì§€:<img src="./vendor_img/<%=prob.getMain_img() %>">
+í’ˆëª…:<%=cb.getSubject()%>
 <%if(cb.getOption1()!=null){
 	%>/<%=cb.getOption1()%>
-
+	
 	<%}if(cb.getOption2()!=null){ %>
 	/<%=cb.getOption2()%>
 	<%}if(cb.getOption3()!=null){%>
@@ -103,49 +142,36 @@ for(int i=0;i<cl.size();i++){
 
 %>
 
-¼ö·®:<%=cb.getAmount() %>
-°¡°İ:<%=cb.getPrice() %>
-ÆÇ¸ÅÀÚ ¾ÆÀÌµğ :<%=cb.getVendor_id() %>
-±¸¸ÅÀÚ ¾ÆÀÌµğ :<%=cb.getClient_id()%>
+ìˆ˜ëŸ‰:<%=cb.getAmount() %>
+ê°€ê²©:<%=cb.getPrice() %>
+íŒë§¤ì ì•„ì´ë”” :<%=cb.getVendor_id() %>
+êµ¬ë§¤ì ì•„ì´ë”” :<%=cb.getClient_id()%>
 </a>
-<a href="./Cart_Delete.ca?product_num=<%=cb.getProduct_num()%>"><input type="button" name="delete" value="»èÁ¦"></a>
+<a href="./Cart_Delete.ca?num=<%=cb.getNum()%>"><input type="button" name="delete" value="ì‚­ì œ"></a>
 <br>
-<!-- Á¤º¸ ³¡ -->
-
-<%client_id += cb.getClient_id()+","; 
-product_num += cb.getProduct_num()+","; 
-amount += cb.getAmount()+","; 
-vendor_id += cb.getVendor_id().toString()+","; 
-if(cb.getSns_id()==null){
-	sns_id +=" ,";
-}else{
-	sns_id += cb.getSns_id()+","; 
-}
-option1	+= cb.getOption1()+","; 
-option2 += cb.getOption2()+","; 
-option3 += cb.getOption3()+","; 
-
-%>
+<!-- ì •ë³´ ë -->
 
  <br>
 <%sum = sum+price;} 
 %>
 
 <br>
-ÃÑ°¡°İ :<span id="price"><%=sum %></span>
-<input type="hidden" name = "client_id" value="<%=client_id%>">
-<input type="hidden" name = "product_num" value="<%=product_num%>">
-<input type="hidden" name = "amount" value="<%=amount%>">
-<input type="hidden" name = "vendor_id" value="<%=vendor_id%>">
-<input type="hidden" name = "sns_id" value="<%=sns_id%>">
-<input type="hidden" name = "option1" value="<%=option1%>">
-<input type="hidden" name = "option2" value="<%=option2%>">
-<input type="hidden" name = "option3" value="<%=option3%>">
+ì´ê°€ê²© :<span id="price"><%=sum %></span>
+<input type="hidden" name = "num" id="num" value="<%=num%>">
+<input type="hidden" name = "client_id" id="client_id" value="<%=client_id%>">
+<input type="hidden" name = "product_num" id="product_num" value="<%=product_num%>">
+<input type="hidden" name = "amount" id="amount" value="<%=amount%>">
+<input type="hidden" name = "vendor_id" id="vendor_id" value="<%=vendor_id%>">
+<input type="hidden" name = "sns_id" id="sns_id" value="<%=sns_id%>">
+<input type="hidden" name = "option1" id="option1" value="<%=option1%>">
+<input type="hidden" name = "option2" id="option2" value="<%=option2%>">
+<input type="hidden" name = "option3" id="option3" value="<%=option3%>">
 <%
-//Ã¼Å©°¡ µÇ¾îÀÖÀ¸¸é ÇÕÇÏ±â ¾Æ´Ï¸é ÇÕÇÏ±â X
+
+//ì²´í¬ê°€ ë˜ì–´ìˆìœ¼ë©´ í•©í•˜ê¸° ì•„ë‹ˆë©´ í•©í•˜ê¸° X
 %>
  <br>
-	<input type="submit" value="°áÁ¦ÇÏ±â">
+	<input type="submit" value="ê²°ì œí•˜ê¸°">
  </form>
 </div>
 </div>

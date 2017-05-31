@@ -20,8 +20,7 @@ public class BlogSearchAction implements Action{
 		
 		BlogDAO bdao = new BlogDAO();
 		
-		
-		int count = bdao.getBoardCount(search);
+		int count = bdao.getBlogSearchCount(search);
 		
 		int pageSize=5;
 		
@@ -38,12 +37,29 @@ public class BlogSearchAction implements Action{
 			blogList = bdao.getBlogList(startRow, pageSize, search);
 		}
 		
+		 int pageCount = count/pageSize+(count%pageSize==0? 0:1);
+			//한 화면에 보여줄 페이지 번호 개수 
+			 int pageBlock=1;
+			//시작페이지 번호 구하기  1~10=>1 , 11~20=>11 , 21~30=>21
+			 int startPage = ((currentPage-1)/pageBlock)*pageBlock+1;
+			//끝페이지 번호 구하기
+			 int endPage= startPage+pageBlock-1;
+			 
+			 if(endPage>pageCount){
+				 endPage=pageCount;
+			 }
 		
 			request.setAttribute("blogList", blogList);
-		   
+			request.setAttribute("search", search);
+			
 		    request.setAttribute("count", count);
-			request.setAttribute("pageNum",pageNum);  //currentPage 랑 동일
-			//이동 ./board/list.jsp
+			request.setAttribute("pageNum",pageNum);  
+			
+		 	request.setAttribute("pageCount",pageCount);
+			request.setAttribute("pageBlock",pageBlock);
+			request.setAttribute("startPage",startPage);
+			request.setAttribute("endPage",endPage);
+			
 			ActionForward forward = new ActionForward();
 			forward.setPath("./blog/blogSearch.jsp");
 			forward.setRedirect(false);

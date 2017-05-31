@@ -19,7 +19,7 @@ import web.sns.db.SnsBean;
 
 public class PaymentDAO {
 
-Connection con = null;
+	Connection con = null;
 	
 	private Connection getConnection() throws Exception{
 
@@ -46,8 +46,8 @@ Connection con = null;
 				max = rs.getInt(1);
 			}
 
-			sql = "insert into payment(order_num, product_num, sns_id, vendor_id, client_id, amount, message, date, num, option1, option2, option3, state, usedPoint, address) "
-					+ "values(?,?,?,?,?,?,?,now(),?,?,?,?,?,?,?); ";
+			sql = "insert into payment(order_num, product_num, sns_id, vendor_id, client_id, amount, message, date, num, option1, option2, option3, state, usedPoint, address, pay_price) "
+					+ "values(?,?,?,?,?,?,?,now(),?,?,?,?,?,?,?,?); ";
 			pstmt = con.prepareStatement(sql);
 			for (int i = 0; i < list_pb.size(); i++) {
 				pb = (PaymentBean) list_pb.get(i);
@@ -65,6 +65,7 @@ Connection con = null;
 				pstmt.setString(12, state);
 				pstmt.setInt(13, pb.getUsedPoint());
 				pstmt.setString(14, pb.getAddress());
+				pstmt.setInt(15, pb.getPay_price());
 				pstmt.executeUpdate();
 			}
 		} catch(Exception e){e.printStackTrace();}
@@ -352,7 +353,7 @@ Connection con = null;
 				pb.setNum(rs.getInt("num"));
 				pb.setUsedPoint(rs.getInt("usedPoint"));
 				pb.setAddress(rs.getString("address"));
-
+				pb.setPay_price(rs.getInt("pay_price"));
 				list.add(pb);
 			}
 
@@ -363,7 +364,47 @@ Connection con = null;
 
 		return list;
 	}
+	
+	
+	public List<PaymentBean> getPayment(String order_num,int num) {
+		List<PaymentBean> list = new ArrayList<>();
+		PaymentBean pb = null;
+		try {
+			con = getConnection();
+			sql = "select * from payment where num=? and order_num = ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, num);
+			pstmt.setString(2, order_num);
+			rs = pstmt.executeQuery();
 
+			while (rs.next()) {
+				pb = new PaymentBean();
+				pb.setAmount(rs.getInt("amount"));
+				pb.setDate(rs.getTimestamp("date"));
+				pb.setMessage(rs.getString("message"));
+				pb.setProduct_num(rs.getInt("product_num"));
+				pb.setOption1(rs.getString("option1"));
+				pb.setOption2(rs.getString("option2"));
+				pb.setOption3(rs.getString("option3"));
+				pb.setOrder_num(rs.getString("order_num"));
+				pb.setSns_id(rs.getString("sns_id"));
+				pb.setVendor_id(rs.getString("vendor_id"));
+				pb.setState(rs.getString("state"));
+				pb.setNum(rs.getInt("num"));
+				pb.setUsedPoint(rs.getInt("usedPoint"));
+				
+				list.add(pb);
+			}
+
+		} catch(Exception e){e.printStackTrace();}
+		finally{if(rs!=null){try{rs.close();}catch(SQLException ex){}}
+		if(pstmt!=null){try{pstmt.close();}catch(SQLException ex){}}
+		if(con!=null){try{con.close();}catch(SQLException ex){}}}
+
+		return list;
+	}
+	
+	
 	public PaymentBean getPaymentByNum(int num) {
 		PaymentBean pb = null;
 		try {
@@ -390,6 +431,7 @@ Connection con = null;
 				pb.setUsedPoint(rs.getInt("usedPoint"));
 				pb.setClient_id(rs.getString("client_id"));
 				pb.setAddress(rs.getString("address"));
+				pb.setPay_price(rs.getInt("pay_price"));
 
 			}
 
@@ -427,6 +469,7 @@ Connection con = null;
 				pb.setUsedPoint(rs.getInt("usedPoint"));
 				pb.setClient_id(rs.getString("client_id"));
 				pb.setAddress(rs.getString("address"));
+				pb.setPay_price(rs.getInt("pay_price"));
 				
 				list.add(pb);
 			}
@@ -465,6 +508,7 @@ Connection con = null;
 				pb.setNum(rs.getInt("num"));
 				pb.setUsedPoint(rs.getInt("usedPoint"));
 				pb.setAddress(rs.getString("address"));
+				pb.setPay_price(rs.getInt("pay_price"));
 
 				list.add(pb);
 			}
@@ -516,6 +560,7 @@ Connection con = null;
 				pb.setNum(rs.getInt("num"));
 				pb.setUsedPoint(rs.getInt("usedPoint"));
 				pb.setAddress(rs.getString("address"));
+				pb.setPay_price(rs.getInt("pay_price"));
 
 				list.add(pb);
 			}
@@ -551,7 +596,6 @@ Connection con = null;
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
 				order_num = rs.getString(1);
-				//System.out.println(order_num);
 				list.add(order_num);
 			}
 		} catch(Exception e){e.printStackTrace();}
@@ -561,8 +605,9 @@ Connection con = null;
 		return list;
 	}
 	
+
 	// 전체 글의 개수 구하기 getPaymentCount()----------------------------------------------------------------
-	public int getPaymentCount(){
+	public int getPaymentCount(String snsState, String id){
 		Connection con=null;
 		PreparedStatement pstmt=null;
 		String sql="";
@@ -573,8 +618,20 @@ Connection con = null;
 			//1, 2 디비연결 메서드 호출
 			con=getConnection();	
 			//3. sql함수 count(*) 구하기
-			sql = "select count(*) from payment where sns_id='wndms4142'";
-			pstmt=con.prepareStatement(sql);
+			
+			if(!snsState.equals("")){
+				sql = "select count(*) from payment where state=? and sns_id=?";
+				pstmt=con.prepareStatement(sql);
+				pstmt.setString(1, snsState);
+				pstmt.setString(2, id);
+				
+			}else{
+				sql = "select count(*) from payment where sns_id=?";
+				pstmt=con.prepareStatement(sql);
+				pstmt.setString(1, id);
+			}
+			
+			
 			//4. rs 실행저장
 			rs = pstmt.executeQuery();
 			//5. rs 데이터 있으면 count 저장
@@ -602,20 +659,21 @@ Connection con = null;
 		try{
 			con=getConnection();
 			//3. sql member 모든 데이터 가져오기
-			if(snsState!=null){
-			sql="select * from payment where state=? and sns_id=? limit ?,?";
-			pstmt=con.prepareStatement(sql);
-			pstmt.setString(1, snsState); //첫번째 물음표 1, snsState 상태에 입력될 값
-			pstmt.setString(2, id);
-			pstmt.setInt(3, startRow-1); //시작행 -1
-			pstmt.setInt(4, pageSize); //몇개글
+			if(!snsState.equals("")){
+				sql="select * from payment where state=? and sns_id=? limit ?,?";
+				pstmt=con.prepareStatement(sql);
+				pstmt.setString(1, snsState); //첫번째 물음표 1, snsState 상태에 입력될 값
+				pstmt.setString(2, id);
+				pstmt.setInt(3, startRow-1); //시작행 -1
+				pstmt.setInt(4, pageSize); //몇개글
 			}else{
-				
-			sql="select * from payment where state='done' or state='cancel' and sns_id=? limit ?,?";
-			pstmt=con.prepareStatement(sql);
-			pstmt.setString(1, id);
-			pstmt.setInt(2, startRow-1); //시작행 -1
-			pstmt.setInt(3, pageSize); //몇개글
+				sql="select * from payment where sns_id=? limit ?,?";
+				//sql="select * from payment where state in ('done', 'cancel') and sns_id=? limit ?,?";
+				pstmt=con.prepareStatement(sql);
+				pstmt.setString(1, id);
+				pstmt.setInt(2, startRow-1); //시작행 -1
+				pstmt.setInt(3, pageSize); //몇개글
+			
 			}
 			rs=pstmt.executeQuery();
 			while(rs.next()){ //첫행 데이터 있으면  true
@@ -633,6 +691,7 @@ Connection con = null;
 				pab.setUsedPoint(rs.getInt("usedPoint"));
 				pab.setState(rs.getString("state"));
 				pab.setAddress(rs.getString("address"));
+				pab.setPay_price(rs.getInt("pay_price"));
 				//한사람의 데이터 => paymentList 한칸 저장
 				paymentList.add(pab);
 			}
@@ -645,7 +704,9 @@ Connection con = null;
 			if(con!=null){try{con.close();}catch(SQLException ex){}}}
 		
 		return paymentList;
-	}//getPaymentList(String snsState)
+	}//getPaymentList(String snsState)	
+	
+	
 	public List<PaymentBean> getVendorPaymentById(int pageSize, String vendor_id, String method) {
 		List<PaymentBean> list = new ArrayList<PaymentBean>();
 		StringBuffer sql = new StringBuffer("select * from payment where vendor_id = ? and ");
@@ -684,6 +745,7 @@ Connection con = null;
 				pb.setNum(rs.getInt("num"));
 				pb.setUsedPoint(rs.getInt("usedPoint"));
 				pb.setAddress(rs.getString("address"));
+				pb.setPay_price(rs.getInt("pay_price"));
 
 				list.add(pb);
 			}
@@ -695,10 +757,11 @@ Connection con = null;
 	}
 	
 	// getorderNum 아이디,start,pageSize, order로 찾음 ----vendor
-	public List<String> getVendorOrderNumList(int pageSize, String vendor_id, String method) {
-		List<String> list = new ArrayList<String>();
-		StringBuffer sql = new StringBuffer("select order_num from payment where vendor_id = ? and ");
+	public List<PaymentBean> getVendorOrderNumList(int pageSize, String vendor_id, String method) {
+		List<PaymentBean> list = new ArrayList<PaymentBean>();
+		StringBuffer sql = new StringBuffer("select num,order_num from payment where vendor_id=? and ");
 		String order_num = "";
+		int num=0;
 		try {
 			con = getConnection();
 			if (method.equals("payDone")) {
@@ -718,8 +781,12 @@ Connection con = null;
 			pstmt.setInt(2, pageSize);
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
-				order_num = rs.getString(1);
-				list.add(order_num);
+				order_num = rs.getString(2);
+				num= rs.getInt(1);
+				PaymentBean pb = new PaymentBean();
+				pb.setNum(num);
+				pb.setOrder_num(order_num);
+				list.add(pb);
 			}
 		} catch(Exception e){e.printStackTrace();}
 		finally{if(rs!=null){try{rs.close();}catch(SQLException ex){}}
@@ -801,6 +868,7 @@ Connection con = null;
 				pb.setUsedPoint(rs.getInt("usedPoint"));
 				pb.setState(rs.getString("state"));
 				pb.setAddress(rs.getString("address"));
+				pb.setPay_price(rs.getInt("pay_price"));
 
 				paymentList.add(pb);
 			}
@@ -811,6 +879,52 @@ Connection con = null;
 		
 		return paymentList;
 	}//getPaymentList()
+	
+	public List payDetail(int num){
+		List detailList = new ArrayList<>();
+		try{
+			
+			PaymentBean pb = new PaymentBean();
+			con = getConnection();
+			sql="select * from payment where num=?";
+			pstmt=con.prepareStatement(sql);
+			pstmt.setInt(1, num);
+			rs=pstmt.executeQuery();
+			if(rs.next()){
+				
+				pb.setAmount(rs.getInt("amount"));
+				pb.setDate(rs.getTimestamp("date"));
+				pb.setMessage(rs.getString("message"));
+				pb.setProduct_num(rs.getInt("product_num"));
+				pb.setOption1(rs.getString("option1"));
+				pb.setOption2(rs.getString("option2"));
+				pb.setOption3(rs.getString("option3"));
+				pb.setOrder_num(rs.getString("order_num"));
+				pb.setSns_id(rs.getString("sns_id"));
+				pb.setVendor_id(rs.getString("vendor_id"));
+				pb.setState(rs.getString("state"));
+				pb.setNum(rs.getInt("num"));
+				pb.setUsedPoint(rs.getInt("usedPoint"));
+				detailList.add(pb);
+				
+				sql="select * from product where product_num=?";
+				pstmt=con.prepareStatement(sql);
+				pstmt.setInt(1, rs.getInt("product_num"));
+				rs = pstmt.executeQuery();
+				if(rs.next()){
+					ProductBean prob = new ProductBean();
+					prob.setSubject(rs.getString("subject"));
+					prob.setPrice(rs.getInt("price"));
+					detailList.add(prob);
+				}
+			}
+		}catch(Exception e){e.printStackTrace();}
+		finally{if(rs!=null){try{rs.close();}catch(SQLException ex){}}
+			if(pstmt!=null){try{pstmt.close();}catch(SQLException ex){}}
+			if(con!=null){try{con.close();}catch(SQLException ex){}}}
+		
+		return detailList;
+	}
 	
 	
 }

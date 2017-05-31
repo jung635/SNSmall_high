@@ -50,7 +50,20 @@ List<PaymentBean> pay_list_reult = new ArrayList<PaymentBean>();
 							String date = format.format(pb.getDate());
 							String subject;
 							if(prob==null){
-								%><tr><td colspan="8">삭제된 상품 입니다. 상품정보에 대한 문의는 회사를 통해주시기 바랍니다.(<%=pb.getOrder_num() %>)</td><td><input type="button" onclick="location.href='PayCancel.pa?num=<%=pb.getNum()%>&merchant_uid=<%=merchant_uid%>'" value="주문 취소"></td></tr> <%
+								%><tr><td colspan="8">삭제된 상품 입니다. 상품정보에 대한 문의는 회사를 통해주시기 바랍니다.(<%=pb.getOrder_num() %>)</td>
+								<td><%
+							//구매자 일때 취소 및 환불
+							if(type.equals("client")){
+								if(pb.getState().equals("delivery")){
+									%>배송중일때는 취소요청이 불가 합니다<%
+								}else if(pb.getState().equals("cancelHold")||pb.getState().equals("w_cancelHold")){
+									%>취소 대기중<%
+								}else if(pb.getState().equals("cancel")){
+									%>취소된 상품<%
+								}else{
+									%><div style="width: auto;"><input type="button" onclick="location.href='PayCancel.pa?num=<%=pb.getNum()%>&merchant_uid=<%=merchant_uid%>'" value="주문 취소"></div><%
+								}
+							}
 							}else{
 								subject = prob.getSubject();
 							

@@ -33,7 +33,7 @@ public class PayMultipleCancelAction implements Action {
 			if (pb.getState().equals("cancel") || pb.getState().equals("cancelHold")
 					|| pb.getState().equals("w_cancelHold")) {
 			} else {
-				cancel_num.add(pb.getProduct_num());
+				cancel_num.add(pb.getNum());
 				cancel_point += pb.getUsedPoint();
 			}
 		}

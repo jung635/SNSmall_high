@@ -120,7 +120,9 @@ function showSlides(n, full_length) {
 </head>
 <body>
 <jsp:include page="../inc/header.jsp"/>
-<%SnsBean sb= (SnsBean)request.getAttribute("sb");
+<%
+String type= (String)session.getAttribute("type");
+SnsBean sb= (SnsBean)request.getAttribute("sb");
 int latest_size = 0;
 int popular_size = 0;
 List<Integer> latest_list = new ArrayList<>();
@@ -169,7 +171,9 @@ int rank_percent = (Integer)request.getAttribute("rank_percent");
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae. Sed dui lorem, adipiscing in adipiscing et, interdum nec metus. Mauris ultricies, justo eu convallis placerat, felis enim.</p>
             </div>
             <section id="our-team">
+            	<%if(type.equals("vendor")){ %>
             	<div><input type="button" value="쪽지보내기" style="float:right"></div>
+            	<%} %>
 				<div class="socials">
 						<%if(sb.getFacebook().trim().length()!=0){%>
 							<a href="<%=sb.getFacebook()%>"><i class="fa fa-facebook"></i></a>

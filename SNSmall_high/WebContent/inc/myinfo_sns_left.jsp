@@ -8,13 +8,6 @@
 				<a href="passConfirm.sn"  class="list-group-item">내 정보 수정</a>
 				<a href="#"  class="list-group-item">회원 탈퇴</a>
 			</div>
-<<<<<<< .merge_file_a08204
-			</div>
-			
-	<a href="SnsSale.sn" class="list-group-item">SNS 판매내역</a>
-	<a href="#" class="list-group-item">쪽지함</a>
-	<a href="AlarmListView.al" class="list-group-item">메시지 리스트</a>
-=======
 	</div>
 		<a href="SnsSale.sn" class="list-group-item">SNS 판매내역</a>	
 	<div id="showbtn">		
@@ -25,6 +18,5 @@
 			<a href="MemoList.me"  class="list-group-item">보낸 쪽지함</a>
 		</div>
 	</div>
->>>>>>> .merge_file_a07632
 </div>
   

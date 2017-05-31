@@ -35,7 +35,10 @@ function check(){
 	if('<%=cancel_num.size()%>'==0){
 		alert('이미 취소신청을 하거나 취소된 상품은 취소신청이 불가능 합니다.');
 		history.back();
-	}else if('<%=usedPoint%>'>0){
+	}else if('<%=cancel_num.size()%>'<'<%=pb_list.size()%>'){
+		alert('이미 취소신청을 하거나 취소된 상품은 취소신청이 불가능 합니다.');
+	}
+	if('<%=usedPoint%>'>0){
 		alert('포인트를 사용한 배송은 해당 상품 퍼센트에 해당하는 포인트만 돌려받을 수 있습니다.');
 	}
 }
@@ -78,13 +81,20 @@ String cancel_num_str = "";
 					<tr><td><%=prob.getSubject() %></td><td><%=prob.getPrice() %></td><td><%=pb.getAmount() %></td><td><%=pb.getAmount()*prob.getPrice() %></td></tr>
 				 <%}
 				}else{
+					for(int j=0; j<cancel_num.size(); j++){
+						if(cancel_num.get(j)==pb.getNum()){
+							cancel_num_str += pb.getNum()+",";
+							isCancel = true;
+						}
+					}
 				 	if(isCancel){%>
-					 	<tr style="font-style: italic; font-weight: bold;"><td>삭제된 상품입니다.(취소상품)</td></tr>
+					 	<tr style="font-style: italic; font-weight: bold;"><td colspan="4">삭제된 상품입니다.(취소상품)</td></tr>
 					<%}else{%>
 						<tr><td colspan="4">삭제된 상품입니다.</td></tr>
 			 <%}}}%>
-			<tr><td colspan="5" style="text-align: right;">사용한 포인트: <%=usedPoint %></td></tr>
+			
 			<tr><td colspan="5" style="text-align: right;">총 금액: <%=price %></td></tr>
+			<tr><td colspan="5" style="text-align: right;">사용한 포인트: <%=usedPoint %></td></tr>
 	 		<tr><td colspan="5" style="text-align: right; font-style: italic; font-weight: bold; "> 회수 받을 포인트: <%=cancel_point %></td></tr>
 	 		<tr><td colspan="5" style="text-align: right;">총 결제 금액: <%=price-usedPoint %></td></tr>
 		</table>
@@ -96,6 +106,7 @@ String cancel_num_str = "";
 		<input type="button" value="확인">
 		<%} %>
 	</div>
+		
 	<!-- Footer -->
 	<footer>
 		<div class="row">

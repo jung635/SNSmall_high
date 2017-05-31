@@ -13,6 +13,7 @@
 	<link href="./css/header.css" rel="stylesheet">
 	<link href="./css/inner.css" rel="stylesheet">
 	<link href="./css/main.css" rel="stylesheet">
+	<link href="./css/member.css" rel="stylesheet">  
 <title>Insert title here</title>
 </head>
 <body>
@@ -25,18 +26,19 @@
         <!-- Introduction Row -->
         <div class="row">
             <div class="col-lg-12">
-                <h1 class="page-header">회원가입 
-                    <small>It's Nice to Meet You!</small>
-                </h1>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sint, explicabo dolores ipsam aliquam inventore corrupti eveniet quisquam quod totam laudantium repudiandae obcaecati ea consectetur debitis velit facere nisi expedita vel?</p>
+            <br>
+                <div class="join_subject" style="color:#43484E;">회원가입 
+                </div>
+                
             </div>
         </div>
-vendor</a></span>
+
         <!-- Team Members Row -->
         <div class="row">
             <div class="col-lg-12">
-                <h2 class="page-header">Type</h2>
+              <div class="join-mini-subject" style="margin-bottom: 100px;"><h2 style="padding: 2px 0 6px 0;">　Type</h2></div>
             </div>
+ 
             <div class="col-lg-4 col-sm-6 text-center">
                 <a href="clientJoin.cl">
                 	<img class="img-circle img-responsive img-center" src="images/join/custom2.gif" alt="">
@@ -44,7 +46,7 @@ vendor</a></span>
                 	<h3>일반회원
                  		<small>Client</small>
                 	</h3>
-                	<p>일반 회원으로 가입하시면<br> 물품을 구매할 수 있으며,<br> 각종 포인트 혜택을 받을 수 있습니다.</p>
+                	<p>일반 회원으로 가입하시면<br> 물품을 구매할 수 있으며,<br> 각종 포인트 혜택을 받으실 수 있습니다.</p>
                 
             </div>
             <div class="col-lg-4 col-sm-6 text-center">
@@ -65,10 +67,9 @@ vendor</a></span>
                 	</h3>
                 <p>Social Network <br>Services/Sites Celebrity로<br> 홍보와 판매자와 소통할 수 있습니다.</p>
             </div>
-          
         </div>
 
-        <hr>
+        <hr style="margin-top: 100px;">
 
         <!-- Footer -->
         <footer>

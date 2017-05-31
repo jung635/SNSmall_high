@@ -14,9 +14,7 @@ public class CartListAction implements Action{
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-
-		//한글 처리 추가
-		request.setCharacterEncoding("utf-8");
+		// TODO Auto-generated method stub
 		
 		request.setCharacterEncoding("utf-8");
 		HttpSession session = request.getSession();
@@ -26,9 +24,7 @@ public class CartListAction implements Action{
 		
 		response.setContentType("text/html; charset=UTF-8");
 		PrintWriter out = response.getWriter();
-
-		if(client_id.equals(null)){
-			
+		if(client_id==null){
 			out.println("<script>");
 			out.println("alert('회원만 볼수있습니다.');");
 			out.println("history.back();");

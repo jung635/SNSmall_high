@@ -24,6 +24,7 @@ $(document).ready(function(){
 </script>
 </head>
 <body>
+<%request.setCharacterEncoding("utf-8"); %>
 	<!-- <header id="navigation"> 
 		<div class="navbar navbar-inverse navbar-fixed-top" role="banner"> 
 			<div class="container"> 

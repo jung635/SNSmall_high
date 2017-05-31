@@ -139,7 +139,7 @@ public List<CartBean> getCartList(String client_id){
 	public void cartDelete(String client_id,int product_num){
 		try{
 			con = getConnection();
-			sql = "delete from cart where client_id=? && product_num=?";
+			sql = "delete from cart where client_id=? && num=?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, client_id);
 			pstmt.setInt(2, product_num);

@@ -42,7 +42,7 @@ List<Object> list = (List<Object>)request.getAttribute("list");
           	<li><a href="SnsList.ad?category=<%=category %>&order=date">최신순</a></li>
           	<li><a href="SnsList.ad?category=<%=category %>&order=sell">판매량순</a></li>
           	<li><a href="SnsList.ad?category=<%=category %>&order=sns_profit">판매액순</a></li>
-          	<li class="dropbtn"><a href="snsList.sn?category=<%=category %>&order=sns_profit">등급별</a>
+          	<li class="dropbtn"><a href="snsList.ad?category=<%=category %>&order=sns_profit">등급별</a>
   				<div class="dropdown-content-rank">
   				<a href="SnsList.ad?category=basic&order=sell">basic</a>
   				<a href="SnsList.ad?category=plus&order=sell">plus</a>

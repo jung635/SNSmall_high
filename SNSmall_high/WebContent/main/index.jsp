@@ -354,18 +354,19 @@ function productSearch_exe(){
 						<div class="view efffect">
 							<div class="portfolio-image">
 								<%if(prob.getMain_img()==null){ %>
-    	            		    		<div><img src="./qna_img/default.jpg" style="" alt=""></div>
+    	            		    		<div><img src="./qna_img/default.jpg" alt=""></div>
         			            <%} else{%>
 										<img id="mainimg_item" src="./vendor_img/<%=prob.getMain_img() %>" alt=""></div>
 								<%} %> 
 								<div class="mask text-center">
 									<h3>Novel</h3>
 									<h4>Lorem ipsum dolor sit amet consectetur</h4>
-									<a href="#"><i class="fa fa-link"></i></a>
+									<a href="./ProductDetail.pr?product_num=<%=prob.getProduct_num()%>"><i class="fa fa-link"></i></a>
 									<a href="images/portfolio/big-item.jpg" data-gallery="prettyPhoto"><i class="fa fa-search-plus"></i></a>
 								</div>
 							</div>
 						</div>
+						<%=prob.getProduct_num() %>
 						<%} %>
 <!--					<div class="col-sm-3 col-xs-12 portfolio-item html">
 						<div class="view efffect">

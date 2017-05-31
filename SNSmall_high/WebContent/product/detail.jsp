@@ -275,32 +275,32 @@
   						<%} %>
   				</select>
   				</div>
-                 <br>
-                 <%}%>
-                 <script type="text/javascript">
-                 	function plus(){
-                		if(document.gfr.amount.value<<%=peace%>){
-                			document.gfr.amount.value++;
+				<%}%>
+				<script type="text/javascript">
+					function plus(){
+						if(document.gfr.amount.value<<%=peace%>){
+							document.gfr.amount.value++;
 							document.getElementById("allprice").value=<%=allprice%>*document.gfr.amount.value;
-                		}
-                	}
-                	function minus(){
-                		if(document.gfr.amount.value>1){
-                			document.gfr.amount.value--;
-                			document.getElementById("allprice").value=<%=allprice%>*document.gfr.amount.value;
-                		}
-                	}
-                	</script>
-                <div>
+						}
+					}
+					function minus(){
+						if(document.gfr.amount.value>1){
+							document.gfr.amount.value--;
+							document.getElementById("allprice").value=<%=allprice%>*document.gfr.amount.value;
+						}
+					}
+				</script>
+				<br>
+				<div>
 				잔여수량: <input type="text" name="rest_amount" value="<%=peace%> / <%=productbean.getAmount()%>"><br>
 				<%
 				if(peace==0){%>
 					<h2>SOLD OUT</h2>
 				<%}else{%>
-				선택수량: <input type="text" name="amount" value="1">
-				<button type="button" onclick="plus()">+</button>
-				<button type="button" onclick="minus()">-</button><br>
-				구매가격: <input type="text" id="allprice" name="allprice" value="<%=productbean.getPrice()%>">
+					선택수량: <input type="text" name="amount" value="1">
+					<button type="button" onclick="plus()">+</button>
+					<button type="button" onclick="minus()">-</button><br>
+					구매가격: <input type="text" id="allprice" name="allprice" value="<%=productbean.getPrice()%>">
 				<%} %>
 				</div>
 				<br>
@@ -329,12 +329,12 @@
                 <h3 class="page-header">상 세 내 용</h3>
             </div>
 
-            <div class="col-sm-3 col-xs-6" id="product_detail_img">
+            <div class="col-sm-3 col-xs-6" id="product_detail_img" style="width: 100%; margin: auto;">
                 <a href="#">
                 <%if(productbean.getDetail_img()==null){ %>
                     <img class="img-responsive portfolio-item" src="http://placehold.it/500x300" alt="">
                     <%} else{%>
-                    <img class="img-responsive portfolio-item" src="./vendor_img/<%=productbean.getDetail_img() %>" style="width: 100% !important;" alt="">
+                    <img class="img-responsive portfolio-item" src="./vendor_img/<%=productbean.getDetail_img() %>" alt="">
                     <% }%>
                 </a>
             </div>

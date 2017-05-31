@@ -1,0 +1,48 @@
+@CHARSET "UTF-8";
+
+/* productInsertForm.jsp */
+.product-top-tit{
+	color:#fff;
+	font-size:30px;
+	background-color: #43484E;
+	border-top-right-radius: 30px;
+	margin:30px 0 30px 20px; 
+}
+
+.product-tit{
+	background-color:#e3e3e3;
+	padding: 5px 0 5px 0;
+	text-align: center;
+	border-right: 3px solid #fc7700;
+	margin-bottom: 2px;
+}
+
+.product-con{
+	padding: 5px 0 5px 10px;
+	margin-bottom: 5px;
+}
+.pro-in-btn{
+	border: none;
+	padding: 10px 100px 10px 100px;
+	background-color: #fc7700;
+	border-radius:10px;
+	margin: 30px;
+	font-weight: bold;
+	color: #fff;
+}
+.pro-in-btn:hover{
+	background-color: #43484E;
+}
+.product-form{
+	padding: 10px 0 30px 50px;
+}
+
+/* mypage_vendor.jsp */
+
+.regist_product{
+	margin: 10px 0 30px 50px;
+}
+.regist_product td{
+	padding: 5px 20px 5px 20px;
+	text-align: center;
+}

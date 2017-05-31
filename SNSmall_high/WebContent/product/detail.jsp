@@ -181,7 +181,8 @@
 	String returnUrl = request.getHeader("referer");
 	
 	ProductBean productbean = (ProductBean)request.getAttribute("productbean");
-	String sns_id = (String)request.getAttribute("sns_id");
+	//String sns_id = (String)request.getAttribute("sns_id");
+	String sns_id = (String)session.getAttribute("sns_id");
 	if(sns_id == null){sns_id = "";}
 	
 	String id = (String)session.getAttribute("id");

@@ -18,7 +18,6 @@ public class PayCancelAction implements Action {
 
 		int payNum = Integer.parseInt(request.getParameter("num"));
 		String order_num = request.getParameter("merchant_uid");
-		System.out.println(order_num);
 		PaymentDAO pdao = new PaymentDAO();
 		PaymentBean pb = pdao.getPaymentByNum(payNum);
 		ActionForward forward = new ActionForward();

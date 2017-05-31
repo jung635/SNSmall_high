@@ -65,17 +65,24 @@ String cancel_num_str = "";
 				boolean isCancel = false;
 				int product_num = pb.getProduct_num();
 				ProductBean prob = prodao.getProduct(product_num);
-				for(int j=0; j<cancel_num.size(); j++){
-					if(cancel_num.get(j)==pb.getNum()){
-						cancel_num_str += pb.getNum()+",";
-						isCancel = true;
+				if(prob != null){
+					for(int j=0; j<cancel_num.size(); j++){
+						if(cancel_num.get(j)==pb.getNum()){
+							cancel_num_str += pb.getNum()+",";
+							isCancel = true;
+						}
 					}
-				}
-				if(isCancel){%>
-					<tr style="font-style: italic; font-weight: bold;"><td><%=prob.getSubject() %>(취소상품)</td><td><%=prob.getPrice() %></td><td><%=pb.getAmount() %></td><td><%=pb.getAmount()*prob.getPrice() %></td></tr>
+					if(isCancel){%>
+						<tr style="font-style: italic; font-weight: bold;"><td><%=prob.getSubject() %>(취소상품)</td><td><%=prob.getPrice() %></td><td><%=pb.getAmount() %></td><td><%=pb.getAmount()*prob.getPrice() %></td></tr>
 				<%}else{%>
 					<tr><td><%=prob.getSubject() %></td><td><%=prob.getPrice() %></td><td><%=pb.getAmount() %></td><td><%=pb.getAmount()*prob.getPrice() %></td></tr>
-			 <%}}%>
+				 <%}
+				}else{
+				 	if(isCancel){%>
+					 	<tr style="font-style: italic; font-weight: bold;"><td>삭제된 상품입니다.(취소상품)</td></tr>
+					<%}else{%>
+						<tr><td colspan="4">삭제된 상품입니다.</td></tr>
+			 <%}}}%>
 			<tr><td colspan="5" style="text-align: right;">사용한 포인트: <%=usedPoint %></td></tr>
 			<tr><td colspan="5" style="text-align: right;">총 금액: <%=price %></td></tr>
 	 		<tr><td colspan="5" style="text-align: right; font-style: italic; font-weight: bold; "> 회수 받을 포인트: <%=cancel_point %></td></tr>

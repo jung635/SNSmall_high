@@ -50,7 +50,7 @@ List<PaymentBean> pay_list_reult = new ArrayList<PaymentBean>();
 							String date = format.format(pb.getDate());
 							String subject;
 							if(prob==null){
-								%><tr><td colspan="8">삭제된 상품 입니다.</td><td><input type="button" onclick="location.href='PayCancel.pa?num=<%=pb.getNum()%>&merchant_uid=<%=merchant_uid%>'" value="주문 취소"></td></tr> <%
+								%><tr><td colspan="8">삭제된 상품 입니다. 상품정보에 대한 문의는 회사를 통해주시기 바랍니다.(<%=pb.getOrder_num() %>)</td><td><input type="button" onclick="location.href='PayCancel.pa?num=<%=pb.getNum()%>&merchant_uid=<%=merchant_uid%>'" value="주문 취소"></td></tr> <%
 							}else{
 								subject = prob.getSubject();
 							
@@ -120,7 +120,7 @@ List<PaymentBean> pay_list_reult = new ArrayList<PaymentBean>();
 					PaymentBean pb = pay_list.get(i);
 				ProductBean prob = prodao.getProduct(pb.getProduct_num());
 											if(prob==null){
-								%><tr><td colspan="8">삭제된 상품 입니다.</td><td><input type="button" onclick="location.href='PayCancel.pa?num=<%=pb.getNum() %>'" value="주문 취소"></td></tr> <%
+								%><tr><td colspan="8">삭제된 상품 입니다. 상품정보에 대한 문의는 회사를 통해주시기 바랍니다.(<%=pb.getOrder_num() %>)</td><td><input type="button" onclick="location.href='PayCancel.pa?num=<%=pb.getNum() %>&merchant_uid=<%=pb.getOrder_num()%>'" value="주문 취소"></td></tr> <%
 							}%>
 			<tr>
 				<td><img src="./vendor_img/<%=prob.getMain_img() %>" style="width: 130px; height: 90px"></td>

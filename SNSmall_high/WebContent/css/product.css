@@ -46,3 +46,23 @@
 	padding: 5px 20px 5px 20px;
 	text-align: center;
 }
+.regist_product tr{
+	border-bottom: 1px solid #fc7700;
+}
+.top-pro-tr{
+	background-color: #e3e3e3;
+	font-size: 13px;
+
+}
+.top-pro-tr td{
+	border-bottom:3px solid #fff;
+	border-right: 3px solid #fff;
+}
+
+.pro-regist-go-btn{
+	background-color: #fc7700;
+	color: #fff;
+	padding: 5px 10px 5px 10px;
+	margin-bottom: 5px;
+	border-radius:5px;
+}

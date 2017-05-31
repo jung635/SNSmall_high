@@ -18,6 +18,15 @@
 	<link href="./css/inner.css" rel="stylesheet">
 	<link href="./css/main.css" rel="stylesheet"> 
 <title>Insert title here</title>
+	<script type="text/javascript">
+		/* 경고문 */
+		function d_confirm(){
+			if(confirm("삭제하시겠습니까?")==true){
+			}else{
+				return false;
+			}
+		}		
+	</script>
 </head>
 <body>
 <jsp:include page="../inc/header.jsp"/>
@@ -80,7 +89,7 @@
 								<td><a
 									href="./ProductUpdate.pr?product_num=<%=prb.getProduct_num()%>">수정</a>
 									/ <a
-									href="./ProductDelete.pr?product_num=<%=prb.getProduct_num()%>">삭제</a></td>
+									href="./ProductDelete.pr?product_num=<%=prb.getProduct_num()%>" onclick="return d_confirm()">삭제</a></td>
 							</tr>
 							<%
 								}

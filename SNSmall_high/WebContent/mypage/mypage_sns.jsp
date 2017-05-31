@@ -15,6 +15,7 @@
 	<link href="./css/header.css" rel="stylesheet">
 	<link href="./css/inner.css" rel="stylesheet">
 	<link href="./css/main.css" rel="stylesheet"> 
+	<link href="./css/member.css" rel="stylesheet"> 
 <title>Insert title here</title>
 </head>
 <body>
@@ -41,43 +42,111 @@ array=s.split(",");
      <div class="col-md-3">
    <jsp:include page="../inc/myinfo_sns_left.jsp"/>
      </div>
-     <div class="col-md-9">
-
-<legend>Basic info</legend>
-<table>
-<tr> <td>아이디</td><td><%=id %></td> </tr>
-<tr> <td>이름</td><td><%=sb.getName() %></td> </tr>
-<tr> <td>카테고리</td><td><%=sb.getCategory() %></td> </tr>
-</table>
-<legend>SNS Acount</legend>
-<table class="Snsaccount">
-			<tr> <td>Instagram</td><td> <%if(sb.getInstagram()==null || sb.getInstagram().equals("")){%>미등록<%}else{%><%=sb.getInstagram()%><%}%> </td> </tr>
-			<tr> <td>Facebook</td><td> <%if(sb.getFacebook()==null || sb.getFacebook().equals("")){%>미등록<%}else{%><%=sb.getFacebook()%><%}%> </td> </tr>
-			<tr> <td>Twitter</td><td> <%if(sb.getTwitter()==null || sb.getTwitter().equals("")){%>미등록<%}else{%><%=sb.getTwitter()%><%}%> </td> </tr>
-			<tr> <td>Blog</td><td> <%if(sb.getBlog()==null || sb.getBlog().equals("")){%>미등록<%}else{%><%=sb.getBlog()%><%}%> </td> </tr>
-			<tr> <td>Etc</td><td>  <%if(sb.getEtc()==null || sb.getEtc().equals("")){%>미등록<%}else{%><%=sb.getEtc()%><%}%>  </td> </tr>
-</table>
-<legend>total sale</legend>
-<table>
-<tr> <td>rank</td><td><%=sb.getRank() %></td> </tr>
-<tr> <td>sell</td><td><%=sb.getSell() %></td> </tr>
-<tr> <td>profit</td><td><%=sb.getSns_profit() %></td> </tr>
-</table>
-<legend>introduce</legend>
-<%=sb.getContent() %>
-<legend>Profile Image</legend>
-<img src="./sns_pro_upload/<%=sb.getProfile_img()%>" width="200" height="100">
-
-
-<legend>Sub Image</legend>
-<table>
- <tr><td>
-  <% for(int i=0; i<array.length;i++){%>
-    <img src="./sns_pro_upload/<%=array[i]%>"  width="100" height="100">
-  <%} %>
- </td><tr>
-				</table>
+		<div class="col-md-9">
+			<div style="margin: 50px 0 50px 0">
+				<div class="info-top-tit">　내정보 보기</div>
 				
+				<div class="vendor_info">
+	<table>
+	<tr> 
+		<td> <span class="mini-tit">Main Image</span> </td>
+		<td>　　　　</td>
+		<td> <span class="mini-tit">Sub Image</span> </td> </tr>
+	<tr> 
+		<td>
+			<div class="img-bg"><img src="./sns_pro_upload/<%=sb.getProfile_img()%>" width="200" height="200" style="margin: 10px 50px 10px 0; border-radius:8px;"></div>
+		</td>
+		<td>　　　　</td>
+		<td>
+		
+		<div>
+		<%  if(array.length<=3){
+		for(int i=0;i<array.length;i++){%>
+    		<img src="./sns_pro_upload/<%=array[i]%>"  width="100" height="100">
+  <%	}
+		}else if(array.length>=3){
+			for(int i=0; i<=3;i++){%>
+			<img src="./sns_pro_upload/<%=array[i]%>"  width="100" height="100">	
+		<%}%>
+	<br> 
+	<%for(int i=4;i<array.length;i++){%>
+		<img src="./sns_pro_upload/<%=array[i]%>"  width="100" height="100">
+	<%}
+	}%>	
+		</div>
+		</td>
+	</tr>
+	</table>			
+				
+
+					<legend>　Basic info</legend>
+					
+						<div class="col-md-3 info-tit">ID</div>
+						<div class="col-md-9 info-con"><%=id %></div>
+						
+						<div class="col-md-3 info-tit">Name</div>
+						<div class="col-md-9  info-con"><%=sb.getName() %></div>
+						
+						<div class="col-md-3 info-tit">Category</div>
+						<div class="col-md-9 info-con"><%=sb.getCategory() %></div>
+						
+						<div class="col-md-3 info-tit">Introduce</div>
+						<div class="col-md-9 info-con"><%=sb.getContent() %></div>
+						
+					<legend>　SNS Acount</legend>
+						
+						<div class="col-md-3 info-tit">Instagram</div>
+						<div class="col-md-9 info-con">
+							<%if(sb.getInstagram()==null || sb.getInstagram().equals("")){%>미등록<%}else{%><%=sb.getInstagram()%><%}%>
+						</div>
+						
+						<div class="col-md-3 info-tit">Facebook</div>
+						<div class="col-md-9 info-con">
+							 <%if(sb.getFacebook()==null || sb.getFacebook().equals("")){%>미등록<%}else{%><%=sb.getFacebook()%><%}%> 
+						</div>
+						
+						<div class="col-md-3 info-tit">Twitter</div>
+						<div class="col-md-9 info-con">
+							<%if(sb.getTwitter()==null || sb.getTwitter().equals("")){%>미등록<%}else{%><%=sb.getTwitter()%><%}%>
+						</div>
+						
+						<div class="col-md-3 info-tit">Blog</div>
+						<div class="col-md-9 info-con">
+							<%if(sb.getBlog()==null || sb.getBlog().equals("")){%>미등록<%}else{%><%=sb.getBlog()%><%}%>
+						</div>
+						
+						<div class="col-md-3 info-tit">Etc</div>
+						<div class="col-md-9 info-con">
+							<%if(sb.getEtc()==null || sb.getEtc().equals("")){%>미등록<%}else{%><%=sb.getEtc()%><%}%>
+						</div>
+						
+						<legend>total sale</legend>
+						
+						<div class="col-md-3 info-tit">Rank</div>
+						<div class="col-md-9 info-con"><%=sb.getRank() %></div>
+						
+						<div class="col-md-3 info-tit">Sell</div>
+						<div class="col-md-9 info-con"><%=sb.getSell() %></div>
+						
+						<div class="col-md-3 info-tit">Profit</div>
+						<div class="col-md-9 info-con"><%=sb.getSns_profit() %></div>
+		
+						
+						<div class="col-md-3"></div>
+						<div class="col-md-9"></div>
+						
+						<div class="col-md-3"></div>
+						<div class="col-md-9"></div>
+						
+						<div class="col-md-3"></div>
+						<div class="col-md-9"></div>
+
+
+
+ 
+ 
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>

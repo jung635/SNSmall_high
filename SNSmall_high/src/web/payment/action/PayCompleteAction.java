@@ -133,7 +133,7 @@ public class PayCompleteAction implements Action {
 			//cart 제외
 			CartDAO cdao = new CartDAO();
 			System.out.println(cart_num[i]);
-			//cdao.cartDelete(id, cart_num[i]);
+			cdao.cartDelete(id, Integer.parseInt(cart_num[i]));
 			
 			//amount 빼기
 			if(method.equals("deposit")){

@@ -136,13 +136,13 @@ public List<CartBean> getCartList(String client_id){
 	}//add end
 	
 	//cart delete
-	public void cartDelete(String client_id,int product_num){
+	public void cartDelete(String client_id,int num){
 		try{
 			con = getConnection();
 			sql = "delete from cart where client_id=? && num=?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, client_id);
-			pstmt.setInt(2, product_num);
+			pstmt.setInt(2, num);
 			pstmt.executeUpdate();
 		}catch(Exception e){
 			e.printStackTrace();

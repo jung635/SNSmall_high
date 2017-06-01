@@ -57,23 +57,24 @@ array=s.split(",");
 			<div class="img-bg"><img src="./sns_pro_upload/<%=sb.getProfile_img()%>" width="200" height="200" style="margin: 10px 50px 10px 0; border-radius:8px;"></div>
 		</td>
 		<td>　　　　</td>
-		<td>
+		<td style="background-color: #e3e3e3;">
 		
-		<div>
+		
 		<%  if(array.length<=3){
 		for(int i=0;i<array.length;i++){%>
-    		<img src="./sns_pro_upload/<%=array[i]%>"  width="100" height="100">
+		
+    		<img src="./sns_pro_upload/<%=array[i]%>"  width="100" height="100" ">
   <%	}
 		}else if(array.length>=3){
 			for(int i=0; i<=3;i++){%>
-			<img src="./sns_pro_upload/<%=array[i]%>"  width="100" height="100">	
+			<img src="./sns_pro_upload/<%=array[i]%>"  width="100" height="100">
 		<%}%>
 	<br> 
 	<%for(int i=4;i<array.length;i++){%>
 		<img src="./sns_pro_upload/<%=array[i]%>"  width="100" height="100">
 	<%}
 	}%>	
-		</div>
+		
 		</td>
 	</tr>
 	</table>			
@@ -120,7 +121,7 @@ array=s.split(",");
 							<%if(sb.getEtc()==null || sb.getEtc().equals("")){%>미등록<%}else{%><%=sb.getEtc()%><%}%>
 						</div>
 						
-						<legend>total sale</legend>
+						<legend>　Total Sale</legend>
 						
 						<div class="col-md-3 info-tit">Rank</div>
 						<div class="col-md-9 info-con"><%=sb.getRank() %></div>

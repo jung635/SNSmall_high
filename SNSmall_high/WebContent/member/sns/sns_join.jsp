@@ -417,13 +417,14 @@
 							<div class="col-md-1"></div>
 					</form>
 				</div>
-				
+			
+			<jsp:include page="../../inc/footer.jsp"/>	
 				
 			</div>
 			
 		</div>
 
-<jsp:include page="../../inc/footer.jsp"/>
+
 	
 
 </body>

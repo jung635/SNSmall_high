@@ -13,7 +13,8 @@
 	<link href="./css/bootstrap.min.css" rel="stylesheet">
 	<link href="./css/header.css" rel="stylesheet">
 	<link href="./css/inner.css" rel="stylesheet">
-	<link href="./css/main.css" rel="stylesheet"> 
+	<link href="./css/main.css" rel="stylesheet">
+	<link href="./css/member.css" rel="stylesheet"> 
 <title>Insert title here</title>
 <script type="text/javascript">
 function submitpassCheck(){
@@ -29,16 +30,26 @@ function submitpassCheck(){
 <body>
 <jsp:include page="../../inc/header.jsp"/>
 <div class="container">
- <div class="content">
   <div class="more_content">
      <div class="col-md-3">
    <jsp:include page="../../inc/myinfo_sns_left.jsp"/>
      </div>
      <div class="col-md-9">
-<form onsubmit="return submitpassCheck()" name="fr" action="./passComfirmAction.sn">
-비밀번호 확인 : <input type="password" name="pass" id="pass">
-<input type="submit" value="비밀번호확인">
-</form> 
-</div></div></div></div>
+     	<div class="col-md-6">
+     	
+			<form onsubmit="return submitpassCheck()" name="fr" action="./passComfirmAction.sn">
+				<span class="pass-conf-cont">비밀번호 확인</span>
+				<input type="password" name="pass" id="pass" class="pass-conf-txt">
+				
+				<div class="col-md-6"><input type="submit" value="확인" class="ok-btn"></div>
+				<div class="col-md-6"></div>
+			</form>
+		</div>
+</div>
+<jsp:include page="../../inc/footer.jsp"/>
+</div></div>
+
+
+
 </body>
 </html>

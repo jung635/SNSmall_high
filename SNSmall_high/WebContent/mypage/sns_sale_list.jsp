@@ -111,22 +111,27 @@ SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd");
 
 <%
 	//String snsState="";
-
-	for(int i=0; i < paymentList.size(); i++){
-		//PaymentBean pab= 한칸의 데이터 가져와서 저장 .get()
-		PaymentBean pab = (PaymentBean)paymentList.get(i);
-		//부모                                                      자식
-		//System.out.println("i : "+i);
-		addPoint+=pab.getUsedPoint();
-	//	snsState = pab.getState();
-	//	System.out.println("snsState >>> : "+snsState);
+	if(paymentList.size()!=0){
+		for(int i=0; i < paymentList.size(); i++){
+			//PaymentBean pab= 한칸의 데이터 가져와서 저장 .get()
+			PaymentBean pab = (PaymentBean)paymentList.get(i);
+			//부모                                                      자식
+			//System.out.println("i : "+i);
+			addPoint+=pab.getUsedPoint();
+		//	snsState = pab.getState();
+		//	System.out.println("snsState >>> : "+snsState);
 %>
-		<tr bgcolor="#ffeecc">
+	<tr bgcolor="#ffeecc">
 		<td><%=pab.getProduct_num()%></td><td><%=pab.getSns_id()%></td><td><%=pab.getAmount()%></td><td><%=pab.getMessage()%></td>
 		<td><%=sdf.format(pab.getDate()) %></td><td><%=pab.getOrder_num()%></td><td><%=pab.getOption1()%></td><td><%=pab.getOption2()%></td>
 		<td><%=pab.getOption3()%></td><td><%=pab.getUsedPoint()%></td><td><%=pab.getState()%></td>
-		</tr>
+	</tr>
 <%
+		}
+	}else{
+	%>
+	<tr><td colspan=11>판매내역이 없습니다.</td></tr>
+	<%
 	}
 	//System.out.println("addPoint : "+addPoint);
 %>

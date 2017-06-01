@@ -265,8 +265,8 @@ int rank_percent = (Integer)request.getAttribute("rank_percent");
 		<div class="well" id="sell_popular_box">
 			<div><h3>가장 많이 판매한 상품</h3></div>
 			<%
-			if(popular_list==null){%>
-				판매한 상품이 없습니다.
+			if(popular_list.size()==0){%>
+				<div>판매한 상품이 없습니다.</div>
 			<%}else{
 			for(int i=0; i<popular_size; i++){
 				pb = pdao.getProduct(popular_list.get(i));
@@ -294,7 +294,7 @@ int rank_percent = (Integer)request.getAttribute("rank_percent");
 		<div class="well" id="sell_latest_box">
 			<div><h3>최근 판매한 상품</h3></div>
 			<%
-			if(latest_list==null){%>
+			if(latest_list.size()==0){%>
 				판매한 상품이 없습니다.
 			<%}else{
 			for(int i=0; i<latest_size; i++){

@@ -253,7 +253,7 @@ function productSearch_exe(){
 					<div class="carousel-inner team-members">
 						<div class="row item active">
 							<%List<SnsBean> list = (List<SnsBean>)request.getAttribute("list");
-							if(list == null){%>
+							if(list.size()==0){%>
 								리스트가 없습니다.
 							<%}else{
 								for(int i=0; i<4; i++){
@@ -350,6 +350,9 @@ function productSearch_exe(){
 				<div class="portfolio-items">
 					<%
 					List<ProductBean> product_list = (List<ProductBean>)request.getAttribute("product_list");
+					if(product_list.size()==0){%>
+						리스트가 없습니다.
+					<%}else{
 					for(int i=0; i<product_list.size(); i++){
 						ProductBean prob = product_list.get(i);
 					%>
@@ -361,17 +364,20 @@ function productSearch_exe(){
         			            <%} else{%>
 										<img id="mainimg_item" src="./vendor_img/<%=prob.getMain_img() %>" alt=""></div>
 								<%} %> 
-								<div class="mask text-center">
-									<h3>Novel</h3>
-									<h4>Lorem ipsum dolor sit amet consectetur</h4>
-									<a href="#"><i class="fa fa-link"></i></a>
-									<a href="images/portfolio/big-item.jpg" data-gallery="prettyPhoto"><i class="fa fa-search-plus"></i></a>
-								</div>
-							</div>
+						<div class="mask text-center">
+							<h3>Novel</h3>
+							<h4>Lorem ipsum dolor sit amet consectetur</h4>
+							<a href="ProductDetail.pr?product_num=<%=prob.getProduct_num()%>"><i class="fa fa-link"></i></a>
+							<%if(prob.getMain_img()==null){ %>
+    	            		    <a href="./qna_img/default.jpg" data-gallery="prettyPhoto"><i class="fa fa-search-plus"></i></a>
+        			        <%} else{%>
+        			        	<a href="./vendor_img/<%=prob.getMain_img() %>" data-gallery="prettyPhoto"><i class="fa fa-search-plus"></i></a>
+							<%} %> 
 						</div>
-						<%} %>
 					</div>
-				</div> 
+				</div>
+				<%}} %>
+			</div>
 
 					</section> <!--/#portfolio-->
 

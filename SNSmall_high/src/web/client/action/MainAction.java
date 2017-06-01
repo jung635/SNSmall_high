@@ -22,6 +22,10 @@ public class MainAction implements Action{
 		ProductDAO prodao = new ProductDAO();
 		List<ProductBean> product_list = prodao.getProductList(1, 12, "not", "count");
 		request.setAttribute("product_list", product_list);
+		for(int i=0; i<product_list.size(); i++){
+			System.out.println(product_list.get(i).getSubject());
+		}
+		
 		
 		
 		ActionForward forward = new ActionForward();

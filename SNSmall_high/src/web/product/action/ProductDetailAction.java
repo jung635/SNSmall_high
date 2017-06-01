@@ -23,7 +23,11 @@ public class ProductDetailAction implements Action{
 		String id = (String)session.getAttribute("id");
 		String type = (String)session.getAttribute("type");
 		String sns_id = request.getParameter("sns_id");
-		if(sns_id == null){sns_id = "";}
+		if(sns_id == null){
+			sns_id = "";
+		}else{
+			session.setAttribute("sns_id", sns_id);
+		}
 		
 		int product_num = Integer.parseInt(request.getParameter("product_num"));
 		String pageNum = request.getParameter("pageNum");
@@ -64,7 +68,6 @@ public class ProductDetailAction implements Action{
 		request.setAttribute("pageNum", pageNum);
 		request.setAttribute("id", id);
 		request.setAttribute("type", type);
-		request.setAttribute("sns_id", sns_id);
 		
 		ActionForward forward = new ActionForward();
 		forward.setPath("./product/detail.jsp");

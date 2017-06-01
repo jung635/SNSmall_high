@@ -18,8 +18,8 @@ $(document).ready(function(){
 	String type = (String) session.getAttribute("type");
 %> 
 <script type="text/javascript" src="inc/alarm.js"></script> 
-		<div class="navbar navbar-inverse navbar-fixed-top" role="banner"> 
-			<div class="container">
+		<div class="navbar navbar-inverse navbar-fixed-top" role="banner" > 
+			<div class="container" >
 			<div style="position: relative;">
 			
 			<!-- 로그인/조인 부분 수정 --> 

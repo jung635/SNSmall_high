@@ -57,18 +57,24 @@
             </div>
             <div class="col-md-9">
                 <div style="margin: 50px 0 50px 0">
-						<div class="product-top-tit">
-							등록된 상품목록 <span>[ 상품 개수 : <%=count%>]</span>
+						<div class="product-top-tit" style="font-size: 25px; padding: 7px 0 7px 0;">							　등록된 상품목록 
+							<span style="font-size: 12px;">
+							&nbsp;&nbsp;　[　상품 개수　:　<%=count%>　]
+							</span>
 						</div>
-						<h3>
-							<a href="./ProductInsert.pr">상품등록</a>
-						</h3>
+							<div class="col-md-10"></div>
+							<div class="col-md-2">
+								<a href="./ProductInsert.pr">
+								<span class="pro-regist-go-btn">상품등록</span>
+								</a>
+							</div>
+							<br>
 						<div class="table-responsive">
 
 						<table class="regist_product">
-							<tr>
+							<tr class="top-pro-tr">
 								<td>번호</td>
-								<td style="padding: 5px 0 5px 0;">이미지</td>
+								<td style="padding: 10px 0 10px 0;">이미지</td>
 								<td style="min-width: 200px;">제목</td>
 								<td>수량</td>
 								<td>가격</td>
@@ -82,9 +88,9 @@
 							%>
 							<tr>
 								<td><%=prb.getProduct_num()%></td>
-								<td style="padding: 5px 0 5px 0;"><img src="./vendor_img/<%=prb.getMain_img()%>"
+								<td style="padding: 10px 0 10px 0;"><img src="./vendor_img/<%=prb.getMain_img()%>"
 									width="100" height="80"></td>
-								<td style="min-width: 200px;"><%=prb.getSubject()%></a></td>
+								<td style="min-width: 200px; overflow: hidden;"><%=prb.getSubject()%></a></td>
 								<td><%=prb.getAmount()%></td>
 								<td><%=prb.getPrice()%></td>
 								<td><%=prb.getDate()%></td>

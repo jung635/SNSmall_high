@@ -121,12 +121,14 @@ function showSlides(n, full_length) {
 <body>
 <jsp:include page="../inc/header.jsp"/>
 <%
-String type= (String)session.getAttribute("type");
+String type = "";
+if((String)session.getAttribute("type") != null)
+type= (String)session.getAttribute("type");
 SnsBean sb= (SnsBean)request.getAttribute("sb");
 int latest_size = 0;
 int popular_size = 0;
-List<Integer> latest_list = new ArrayList<>();
-List<Integer> popular_list = new ArrayList<>();
+List<Integer> latest_list = null;
+List<Integer> popular_list = null;
 if(request.getAttribute("latest_list") != null){
 	latest_list= (List<Integer>)request.getAttribute("latest_list");
 	latest_size = (latest_list.size()>4) ? 4:latest_list.size();
@@ -263,7 +265,9 @@ int rank_percent = (Integer)request.getAttribute("rank_percent");
 		<div class="well" id="sell_popular_box">
 			<div><h3>가장 많이 판매한 상품</h3></div>
 			<%
-			if(popular_list!=null){
+			if(popular_list.size()==0){%>
+				<div>판매한 상품이 없습니다.</div>
+			<%}else{
 			for(int i=0; i<popular_size; i++){
 				pb = pdao.getProduct(popular_list.get(i));
 				if(pb==null){%>
@@ -284,13 +288,15 @@ int rank_percent = (Integer)request.getAttribute("rank_percent");
 		               		이름: <%=pb.getSubject() %><br>
 		               		가격: <%=pb.getPrice() %>
 		               	</div>
-		 			</div><%}}} %>
+		 			</div><%}}}%>
 		</div>
 
 		<div class="well" id="sell_latest_box">
 			<div><h3>최근 판매한 상품</h3></div>
 			<%
-			if(latest_list != null){
+			if(latest_list.size()==0){%>
+				판매한 상품이 없습니다.
+			<%}else{
 			for(int i=0; i<latest_size; i++){
 				pb = pdao.getProduct(latest_list.get(i));
 			if(pb==null){%>

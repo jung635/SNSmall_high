@@ -252,74 +252,77 @@ function productSearch_exe(){
 					<div class="carousel-inner team-members">
 						<div class="row item active">
 							<%List<SnsBean> list = (List<SnsBean>)request.getAttribute("list");
-							for(int i=0; i<4; i++){
-								SnsBean sb = list.get(i);%>
-								<div class="col-sm-6 col-md-3">
-									<div class="single-member">
-										<div id="profile_img_wrap">
-											<%if(i==0){%>
-												<span id="ranking_sns_first">1등!</span>
-											<%}else{ %>
-												<span id="ranking_sns"><%=i+1 %>등</span>
-											<%} %>
-											<img src="./sns_pro_upload/<%=sb.getProfile_img() %>" alt="team member" />
-										</div>
-										<div id="star_list_detail">
-											<h3><a href="SnsDetailAction.sn?sns_id=<%=sb.getSns_id()%>"><%=sb.getName() %></a>
-											<small><%=sb.getCategory() %>/<%=sb.getRank() %></small></h3>
-											<p><%=sb.getContent() %></p>
-										</div>
-										<div class="socials">
-											<%if(sb.getFacebook().trim().length()!=0){%>
-												<a href="<%=sb.getFacebook()%>"><i class="fa fa-facebook"></i></a>
-											<%}if(sb.getTwitter().trim().length()!=0){%>							
-											<a href="<%=sb.getTwitter()%>"><i class="fa fa-twitter"></i></a>
-											<%}if(sb.getInstagram().trim().length()!=0){%>			
-											<a href="<%=sb.getInstagram()%>"><i class="fa fa-instagram"></i></a>
-											<%}if(sb.getBlog().trim().length()!=0){%>	
-											<a href="<%=sb.getBlog()%>"><i class="fa fa-bold"></i></a>
-											<%}if(sb.getEtc().trim().length()!=0){%>	
-											<a href="<%=sb.getEtc()%>"><i class="fa fa-smile-o"></i></a>
-											<%} %>
-										</div>
-									</div>
-								</div>
-							<%} %>
-						</div>
-						<div class="row item">
-							<%for(int i=4; i<8; i++){
-								SnsBean sb = list.get(i);%>
-								<div class="col-sm-6 col-md-3">
-									<div class="single-member">
-										<div id="profile_img_wrap">
-											<%if(i==0){%>
-												<span id="ranking_sns_first">1등!</span>
-											<%}else{ %>
-												<span id="ranking_sns"><%=i+1 %>등</span>
-											<%} %>										
-											<img src="./sns_pro_upload/<%=sb.getProfile_img() %>" alt="team member" />
-										</div>
-										<div id="star_list_detail">
-											<h3><a href="SnsDetailAction.sn?sns_id=<%=sb.getSns_id()%>"><%=sb.getName() %></a>
-											<small><%=sb.getCategory() %>/<%=sb.getRank() %></small></h3>
-											<p><%=sb.getContent() %></p>
-										</div>
-										<div class="socials">
-											<%if(sb.getFacebook().trim().length()!=0){%>
-												<a href="<%=sb.getFacebook()%>"><i class="fa fa-facebook"></i></a>
-											<%}if(sb.getTwitter().trim().length()!=0){%>							
-											<a href="<%=sb.getTwitter()%>"><i class="fa fa-twitter"></i></a>
-											<%}if(sb.getInstagram().trim().length()!=0){%>			
-											<a href="<%=sb.getInstagram()%>"><i class="fa fa-instagram"></i></a>
-											<%}if(sb.getBlog().trim().length()!=0){%>	
-											<a href="<%=sb.getBlog()%>"><i class="fa fa-bold"></i></a>
-											<%}if(sb.getEtc().trim().length()!=0){%>	
-											<a href="<%=sb.getEtc()%>"><i class="fa fa-smile-o"></i></a>
-											<%} %>
+							if(list.size()==0){%>
+								리스트가 없습니다.
+							<%}else{
+								for(int i=0; i<4; i++){
+									SnsBean sb = list.get(i);%>
+									<div class="col-sm-6 col-md-3">
+										<div class="single-member">
+											<div id="profile_img_wrap">
+												<%if(i==0){%>
+													<span id="ranking_sns_first">1등!</span>
+												<%}else{ %>
+													<span id="ranking_sns"><%=i+1 %>등</span>
+												<%} %>
+												<img src="./sns_pro_upload/<%=sb.getProfile_img() %>" alt="team member" />
+											</div>
+											<div id="star_list_detail">
+												<h3><a href="SnsDetailAction.sn?sns_id=<%=sb.getSns_id()%>"><%=sb.getName() %></a>
+												<small><%=sb.getCategory() %>/<%=sb.getRank() %></small></h3>
+												<p><%=sb.getContent() %></p>
+											</div>
+											<div class="socials">
+												<%if(sb.getFacebook().trim().length()!=0){%>
+													<a href="<%=sb.getFacebook()%>"><i class="fa fa-facebook"></i></a>
+												<%}if(sb.getTwitter().trim().length()!=0){%>							
+												<a href="<%=sb.getTwitter()%>"><i class="fa fa-twitter"></i></a>
+												<%}if(sb.getInstagram().trim().length()!=0){%>			
+												<a href="<%=sb.getInstagram()%>"><i class="fa fa-instagram"></i></a>
+												<%}if(sb.getBlog().trim().length()!=0){%>	
+												<a href="<%=sb.getBlog()%>"><i class="fa fa-bold"></i></a>
+												<%}if(sb.getEtc().trim().length()!=0){%>	
+												<a href="<%=sb.getEtc()%>"><i class="fa fa-smile-o"></i></a>
+												<%} %>
+											</div>
 										</div>
 									</div>
-								</div>
 								<%} %>
+							</div>
+							<div class="row item">
+								<%for(int i=4; i<8; i++){
+									SnsBean sb = list.get(i);%>
+									<div class="col-sm-6 col-md-3">
+										<div class="single-member">
+											<div id="profile_img_wrap">
+												<%if(i==0){%>
+													<span id="ranking_sns_first">1등!</span>
+												<%}else{ %>
+													<span id="ranking_sns"><%=i+1 %>등</span>
+												<%} %>										
+												<img src="./sns_pro_upload/<%=sb.getProfile_img() %>" alt="team member" />
+											</div>
+											<div id="star_list_detail">
+												<h3><a href="SnsDetailAction.sn?sns_id=<%=sb.getSns_id()%>"><%=sb.getName() %></a>
+												<small><%=sb.getCategory() %>/<%=sb.getRank() %></small></h3>
+												<p><%=sb.getContent() %></p>
+											</div>
+											<div class="socials">
+												<%if(sb.getFacebook().trim().length()!=0){%>
+													<a href="<%=sb.getFacebook()%>"><i class="fa fa-facebook"></i></a>
+												<%}if(sb.getTwitter().trim().length()!=0){%>							
+												<a href="<%=sb.getTwitter()%>"><i class="fa fa-twitter"></i></a>
+												<%}if(sb.getInstagram().trim().length()!=0){%>			
+												<a href="<%=sb.getInstagram()%>"><i class="fa fa-instagram"></i></a>
+												<%}if(sb.getBlog().trim().length()!=0){%>	
+												<a href="<%=sb.getBlog()%>"><i class="fa fa-bold"></i></a>
+												<%}if(sb.getEtc().trim().length()!=0){%>	
+												<a href="<%=sb.getEtc()%>"><i class="fa fa-smile-o"></i></a>
+												<%} %>
+											</div>
+										</div>
+									</div>
+								<%}} %>
 						</div>
 					</div>
 				</div>
@@ -346,6 +349,9 @@ function productSearch_exe(){
 				<div class="portfolio-items">
 					<%
 					List<ProductBean> product_list = (List<ProductBean>)request.getAttribute("product_list");
+					if(product_list.size()==0){%>
+						리스트가 없습니다.
+					<%}else{
 					for(int i=0; i<product_list.size(); i++){
 						ProductBean prob = product_list.get(i);
 					%>
@@ -353,21 +359,24 @@ function productSearch_exe(){
 						<div class="view efffect">
 							<div class="portfolio-image">
 								<%if(prob.getMain_img()==null){ %>
-    	            		    		<div><img src="./qna_img/default.jpg" style="" alt=""></div>
+    	            		    		<img src="./qna_img/default.jpg" style="" alt=""></div>
         			            <%} else{%>
 										<img id="mainimg_item" src="./vendor_img/<%=prob.getMain_img() %>" alt=""></div>
 								<%} %> 
-								<div class="mask text-center">
-									<h3>Novel</h3>
-									<h4>Lorem ipsum dolor sit amet consectetur</h4>
-									<a href="#"><i class="fa fa-link"></i></a>
-									<a href="images/portfolio/big-item.jpg" data-gallery="prettyPhoto"><i class="fa fa-search-plus"></i></a>
-								</div>
-							</div>
+						<div class="mask text-center">
+							<h3>Novel</h3>
+							<h4>Lorem ipsum dolor sit amet consectetur</h4>
+							<a href="ProductDetail.pr?product_num=<%=prob.getProduct_num()%>"><i class="fa fa-link"></i></a>
+							<%if(prob.getMain_img()==null){ %>
+    	            		    <a href="./qna_img/default.jpg" data-gallery="prettyPhoto"><i class="fa fa-search-plus"></i></a>
+        			        <%} else{%>
+        			        	<a href="./vendor_img/<%=prob.getMain_img() %>" data-gallery="prettyPhoto"><i class="fa fa-search-plus"></i></a>
+							<%} %> 
 						</div>
-						<%} %>
 					</div>
-				</div> 
+				</div>
+				<%}} %>
+			</div>
 
 					</section> <!--/#portfolio-->
 

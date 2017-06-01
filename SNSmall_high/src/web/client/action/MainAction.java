@@ -23,7 +23,6 @@ public class MainAction implements Action{
 		List<ProductBean> product_list = prodao.getProductList(1, 12, "not", "count");
 		request.setAttribute("product_list", product_list);
 		
-		
 		ActionForward forward = new ActionForward();
 		forward.setPath("./main/index.jsp");
 		forward.setRedirect(false);

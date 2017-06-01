@@ -66,8 +66,6 @@ List<PaymentBean> pay_list_reult = new ArrayList<PaymentBean>();
 							}
 							}else{
 								subject = prob.getSubject();
-							
-							
 						%><tr><%
 					
 							price = pb.getAmount()*prob.getPrice();

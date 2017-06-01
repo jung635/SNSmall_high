@@ -305,7 +305,7 @@
 				</div>
 				<br>
 				<div>
-				<%if(peace!=0){%>
+				<%if(peace!=0 && type.equals("client")){%>
                 <a class="btn btn-success" onclick="gocart()">카트담기</a>
                 <a class="btn btn-success" onclick="return gobuy()">사러가기</a>
                 <% if(type.equals("sns")){%>

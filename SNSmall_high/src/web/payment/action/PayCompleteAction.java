@@ -53,6 +53,7 @@ public class PayCompleteAction implements Action {
 		String[] option3 = option3_str.split(",");
 		String method = request.getParameter("method");
 		String cart_str = request.getParameter("cart_str");
+		System.out.println("cart_str: "+cart_str);
 		String[] cart_num = cart_str.split(",");
 		String state = "";
 		if (method.equals("card")||method.equals("withPoint"))
@@ -132,8 +133,10 @@ public class PayCompleteAction implements Action {
 			pdao.subPoint(point_each, id);
 			//cart 제외
 			CartDAO cdao = new CartDAO();
-			System.out.println(cart_num[i]);
-			cdao.cartDelete(id, Integer.parseInt(cart_num[i]));
+			
+			if(!cart_num[i].equals("")){
+				cdao.cartDelete(id, Integer.parseInt(cart_num[i]));
+			}
 			
 			//amount 빼기
 			if(method.equals("deposit")){

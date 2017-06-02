@@ -22,6 +22,7 @@
 <body>
 <%
 	String id = (String)session.getAttribute("id");
+	String type = (String)session.getAttribute("type");
 	String pageNum = (String)request.getAttribute("pageNum");
 	String category = (String)request.getAttribute("category");
 	String order = (String)request.getAttribute("order");
@@ -77,9 +78,12 @@
                 </h3>
                 <p><%=pb.getPrice() %>원</p>
                 <p><%=pb.getDate() %><a href="ZzimAddAction.zz?product_num=<%=pb.getProduct_num() %>&subject=<%=pb.getSubject() %>&price=<%=pb.getPrice() %>">
-                <%if(check==0){ %>찜하기<img src="./vendor_img/zzimheart.jpg">
-                <%}else if(check==1){ %>찜한상품<img src="./vendor_img/zzimfullheart.jpg"><%} %></a></p>
-            </div>
+                
+				<%if(type.equals("client")){
+						if(check==0){ %>찜하기<img src="./vendor_img/zzimheart.jpg">
+				<%}else if(check==1){ %>찜한상품<img src="./vendor_img/zzimfullheart.jpg"><%} %></a></p>
+				<%}%>
+		  </div>	
 		<%}} %>
 
 		<div class="clear"></div>

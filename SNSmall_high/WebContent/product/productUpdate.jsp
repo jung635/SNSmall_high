@@ -19,14 +19,30 @@
 <script type="text/javascript">
 	function submitCheck(){		
 		if(document.fr.price.value==""){
-	 		alert("가격을 입력해 주세요!");
+	 		alert("판매가를 입력해 주세요!");
 	 		document.fr.price.focus();
 	 		return false;
+	 	}
+		if(document.fr.price.value != ""){	 		
+	 		var regNumber = /^[0-9]*$/;
+			var inputNumber = document.fr.price.value;
+			if(!regNumber.test(inputNumber)){
+				alert("판매가는 숫자만 입력가능합니다.");
+				return false;
+			}
 	 	}
 		if(document.fr.amount.value==""){
 	 		alert("수량을 입력해 주세요!");
 	 		document.fr.amount.focus();
 	 		return false;
+	 	}
+		if(document.fr.price.value != ""){	 		
+	 		var regNumber = /^[0-9]*$/;
+			var inputNumber = document.fr.amount.value;
+			if(!regNumber.test(inputNumber)){
+				alert("수량은 숫자만 입력가능합니다.");
+				return false;
+			}
 	 	}
 		if(document.fr.opt_name1.value==""&&document.fr.opt_name2.value==""&&document.fr.opt_name3.value==""){
 			alert("옵션을 하나이상은 입력해야합니다.");
@@ -37,10 +53,21 @@
 	}
 	
 	function numkeyCheck(){
-		var keyValue = event.keyCode;
-		if(!(keyValue==8||keyValue==9||keyValue==13||keyValue==46||keyValue==144||
-			      (keyValue>=48&&keyValue<=57)||keyValue==110||keyValue==190)) {
-			      event.returnValue = false;
+// 		var keyValue = event.keyCode;
+// 		if(!(keyValue==8||keyValue==9||keyValue==13||keyValue==46||keyValue==144||
+// 			      (keyValue>=48&&keyValue<=57)||keyValue==110||keyValue==190)) {
+// 			      event.returnValue = false;
+// 		}
+		var regNumber = /^[0-9]*$/;
+		var inputNumber = document.fr.price.value;
+		var inputNumber2 = document.fr.amount.value;
+		if(!regNumber.test(inputNumber)){
+			alert('숫자만 입력해주세요.');
+			return false;
+		}
+		if(!regNumber.test(inputNumber2)){
+			alert('숫자만 입력해주세요.');
+			return false;
 		}
 	}
 </script>
@@ -125,11 +152,11 @@ String opt_name3 = (String)request.getAttribute("opt_name3");
 							</div>
 							<div class="col-md-3 product-tit">판매가</div>
 							<div class="col-md-9 product-con">
-								<input type="text" name="price" onkeypress="numkeyCheck()" onblur="numkeyCheck()" style="ime-mode:disabled;" value=<%=prb.getPrice() %>>
+								<input type="text" name="price" onkeyup="return numkeyCheck()" style="ime-mode:disabled;" value=<%=prb.getPrice() %>>
 							</div>
 							<div class="col-md-3 product-tit">수량</div>
 							<div class="col-md-9 product-con">
-								<input type="text" name="amount" onkeypress="numkeyCheck()" onblur="numkeyCheck()" style="ime-mode:disabled;" value=<%=prb.getAmount() %>>
+								<input type="text" name="amount" onkeyup="return numkeyCheck()" style="ime-mode:disabled;" value=<%=prb.getAmount() %>>
 							</div>
 							
 							<div class="col-md-12">

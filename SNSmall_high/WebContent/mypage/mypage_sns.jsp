@@ -15,6 +15,7 @@
 	<link href="./css/header.css" rel="stylesheet">
 	<link href="./css/inner.css" rel="stylesheet">
 	<link href="./css/main.css" rel="stylesheet"> 
+	<link href="./css/member.css" rel="stylesheet"> 
 <title>Insert title here</title>
 </head>
 <body>
@@ -24,7 +25,7 @@ String id = (String)session.getAttribute("id");
 String type= (String)session.getAttribute("type");
 
 if(id==null){
-	response.sendRedirect("./Login.ve");  
+	response.sendRedirect("./login.cl");  
 }
 
 SnsBean sb = (SnsBean)request.getAttribute("sb");
@@ -41,46 +42,152 @@ array=s.split(",");
      <div class="col-md-3">
    <jsp:include page="../inc/myinfo_sns_left.jsp"/>
      </div>
-     <div class="col-md-9">
+		<div class="col-md-9">
+			<div style="margin: 50px 0 50px 0">
+				<div class="top-subject">내 정보 보기</div>
 
-<legend>Basic info</legend>
-<table>
-<tr> <td>아이디</td><td><%=id %></td> </tr>
-<tr> <td>이름</td><td><%=sb.getName() %></td> </tr>
-<tr> <td>카테고리</td><td><%=sb.getCategory() %></td> </tr>
-</table>
-<legend>SNS Acount</legend>
-<table class="Snsaccount">
-			<tr> <td>Instagram</td><td> <%if(sb.getInstagram()==null || sb.getInstagram().equals("")){%>미등록<%}else{%><%=sb.getInstagram()%><%}%> </td> </tr>
-			<tr> <td>Facebook</td><td> <%if(sb.getFacebook()==null || sb.getFacebook().equals("")){%>미등록<%}else{%><%=sb.getFacebook()%><%}%> </td> </tr>
-			<tr> <td>Twitter</td><td> <%if(sb.getTwitter()==null || sb.getTwitter().equals("")){%>미등록<%}else{%><%=sb.getTwitter()%><%}%> </td> </tr>
-			<tr> <td>Blog</td><td> <%if(sb.getBlog()==null || sb.getBlog().equals("")){%>미등록<%}else{%><%=sb.getBlog()%><%}%> </td> </tr>
-			<tr> <td>Etc</td><td>  <%if(sb.getEtc()==null || sb.getEtc().equals("")){%>미등록<%}else{%><%=sb.getEtc()%><%}%>  </td> </tr>
-</table>
-<legend>total sale</legend>
-<table>
-<tr> <td>rank</td><td><%=sb.getRank() %></td> </tr>
-<tr> <td>sell</td><td><%=sb.getSell() %></td> </tr>
-<tr> <td>profit</td><td><%=sb.getSns_profit() %></td> </tr>
-</table>
-<legend>introduce</legend>
-<%=sb.getContent() %>
-<legend>Profile Image</legend>
-<img src="./sns_pro_upload/<%=sb.getProfile_img()%>" width="200" height="100">
+					<div class="col-md-12 table-liner-top">
+						<div class="col-md-4 table-colorBg-top">
+						<span class="table-txt">아이디</span>
+						</div>
+						<div class="col-md-8 pass-conf-text"><%=id %></div>
+					</div>
+					
+					<div class="col-md-12 table-liner">
+						<div class="col-md-4 table-colorBg">
+						<span class="table-txt">이름</span>
+						</div>
+						<div class="col-md-8 pass-conf-text"><%=sb.getName() %></div>
+					</div>
+					
+					<div class="col-md-12 table-liner">
+						<div class="col-md-4 table-colorBg">
+						<span class="table-txt">카테고리</span>
+						</div>
+						<div class="col-md-8 pass-conf-text"><%=sb.getCategory() %></div>
+					</div>
+					
+					<div class="col-md-12 table-liner">
+						<div class="col-md-4 table-colorBg">
+						<span class="table-txt">SNS계정</span>
+						</div>
+						<div class="col-md-8 pass-conf-text">
+						
+						<div class="col-md-3 info-tit">Instagram</div>
+						<div class="col-md-9 info-con">
+							<%if(sb.getInstagram()==null || sb.getInstagram().equals("")){%>미등록<%}else{%><%=sb.getInstagram()%><%}%>
+						</div>
+						
+						<div class="col-md-3 info-tit">Facebook</div>
+						<div class="col-md-9 info-con">
+							 <%if(sb.getFacebook()==null || sb.getFacebook().equals("")){%>미등록<%}else{%><%=sb.getFacebook()%><%}%> 
+						</div>
+						
+						<div class="col-md-3 info-tit">Twitter</div>
+						<div class="col-md-9 info-con">
+							<%if(sb.getTwitter()==null || sb.getTwitter().equals("")){%>미등록<%}else{%><%=sb.getTwitter()%><%}%>
+						</div>
+						
+						<div class="col-md-3 info-tit">Blog</div>
+						<div class="col-md-9 info-con">
+							<%if(sb.getBlog()==null || sb.getBlog().equals("")){%>미등록<%}else{%><%=sb.getBlog()%><%}%>
+						</div>
+						
+						<div class="col-md-3 info-tit">Etc</div>
+						<div class="col-md-9 info-con">
+							<%if(sb.getEtc()==null || sb.getEtc().equals("")){%>미등록<%}else{%><%=sb.getEtc()%><%}%>
+						</div>
+						
+						</div>
+					</div>
+					
+					<div class="col-md-12 table-liner">
+						<div class="col-md-4 table-colorBg">
+						<span class="table-txt">소개글</span>
+						</div>
+						<div class="col-md-8 pass-conf-text"><%=sb.getContent() %></div>
+					</div>
+					
+					<div class="col-md-12 table-liner">
+						<div class="col-md-4 table-colorBg">
+						<span class="table-txt">메인이미지</span>
+						</div>
+						<div class="col-md-8 pass-conf-text">
+						
+						</div>
+					</div>
+					
+					<div class="col-md-12 table-liner">
+						<div class="col-md-4 table-colorBg">
+						<span class="table-txt">소개글</span>
+						</div>
+						<div class="col-md-8 pass-conf-text"><%=sb.getContent() %></div>
+					</div>
+					
+					
+						<legend>　Total Sale</legend>
+						
+						<div class="col-md-3 info-tit">Rank</div>
+						<div class="col-md-9 info-con"><%=sb.getRank() %></div>
+						
+						<div class="col-md-3 info-tit">Sell</div>
+						<div class="col-md-9 info-con"><%=sb.getSell() %></div>
+						
+						<div class="col-md-3 info-tit">Profit</div>
+						<div class="col-md-9 info-con"><%=sb.getSns_profit() %></div>
+		
+						
+						<div class="col-md-3"></div>
+						<div class="col-md-9"></div>
+						
+						<div class="col-md-3"></div>
+						<div class="col-md-9"></div>
+						
+						<div class="col-md-3"></div>
+						<div class="col-md-9"></div>
 
 
-<legend>Sub Image</legend>
-<table>
- <tr><td>
-  <% for(int i=0; i<array.length;i++){%>
-    <img src="./sns_pro_upload/<%=array[i]%>"  width="100" height="100">
-  <%} %>
- </td><tr>
-				</table>
-				
+
+	<table>
+	<tr> 
+		<td> <span class="mini-tit">Main Image</span> </td>
+		<td>　　　　</td>
+		<td> <span class="mini-tit">Sub Image</span> </td> </tr>
+	<tr> 
+		<td>
+			<div class="img-bg"><img src="./sns_pro_upload/<%=sb.getProfile_img()%>" width="200" height="200" style="margin: 10px 50px 10px 0; border-radius:8px;"></div>
+		</td>
+		<td>　　　　</td>
+		<td style="background-color: #e3e3e3;">
+		
+		
+		<%  if(array.length<=3){
+		for(int i=0;i<array.length;i++){%>
+		
+    		<img src="./sns_pro_upload/<%=array[i]%>"  width="100" height="100" ">
+  <%	}
+		}else if(array.length>=3){
+			for(int i=0; i<=3;i++){%>
+			<img src="./sns_pro_upload/<%=array[i]%>"  width="100" height="100">
+		<%}%>
+	<br> 
+	<%for(int i=4;i<array.length;i++){%>
+		<img src="./sns_pro_upload/<%=array[i]%>"  width="100" height="100">
+	<%}
+	}%>	
+		
+		</td>
+	</tr>
+	</table>			
+
+
+ 
+ 
+						</div>
+					</div>
 				</div>
 			</div>
-		</div>
+
 	
 </body>
 </html>

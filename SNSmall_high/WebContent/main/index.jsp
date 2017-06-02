@@ -454,46 +454,58 @@ function productSearch_exe(){
 							  int pageSize = 3;
 							  List blogList = null;
 							  
-							  if(count!=0){
+							 
 								  blogList=bdao.getBlogList(startRow, pageSize);
 							  
 							  
-							  for(int i=0;i<blogList.size();i++){
-								  BlogBean bb = (BlogBean)blogList.get(i);
+							  for(int i=0;i<3;i++){
+									  
+									  BlogBean bb = null;
+									  if(i<blogList.size()){
+									  bb = (BlogBean)blogList.get(i); }
 											%>
 								<div class="col-sm-4">
 									<div class="single-blog">
-									  <%if(bb.getFile()!=null){ %>
+									  <%if(bb!=null && bb.getFile()!=null){ %>
 										<img src="./blog_upload/<%=bb.getFile()%>" style="border-radius:5px; height: 210px;"></img>
 										<%} %>
+									  <%if(bb!=null){ %>
 										<h2><%=bb.getSubject() %></h2>
 										<ul class="post-meta">
 											<li><i class="fa fa-pencil-square-o"></i><strong> Posted By:</strong> admin</li>
 											<li><i class="fa fa-clock-o"></i><strong> Posted On:</strong><%=sdf.format(bb.getDate())%></li>
 										</ul>
-										<%if(bb.getFile()!=null){ %>
+										<%} %>
+										<%if(bb!=null &&bb.getFile()!=null){ %>
 										<div class="blog-content">
 											<div class="blog-content-limit">
 												<%=bb.getContent() %>
 											</div>
 											
 										</div>
-										<%}else if(bb.getFile()==null){%>
+										<%}else if(bb!=null && bb.getFile()==null){%>
 										<div class="blog-content-long">
 											<p class="blog-content-long-limit"><%=bb.getContent() %></p>
 										</div>
+										<%}else if(bb==null){ %>
+										<div class="blog-content-long">
+											<p>포스팅이 존재하지 않습니다</p>
+										</div>
 										<%} %>
+										<%if(bb!=null){ %>
 										<a href="" class="btn btn-primary" data-toggle="modal" data-target="#blog-detail<%=i%>">Read More</a>
+										<%} %>
 									</div>
 									<div class="modal fade" id="blog-detail<%=i %>" tabindex="-1" role="dialog" aria-hidden="true">
 										<div class="modal-dialog">
 											<div class="modal-content">
 												<div class="modal-body">
 													<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-													<%if(bb.getFile()!=null){ %>
+													<%if(bb!=null&&bb.getFile()!=null){ %>
 													<div class="modal-in-img" style="background-image: url('./blog_upload/<%=bb.getFile()%>');">
 													</div>
-													<%} %>
+													<%}%>
+													<%if(bb!=null){ %>
 													<h2><%=bb.getSubject() %></h2>
 													<%	String content = bb.getContent();
 													
@@ -501,15 +513,14 @@ function productSearch_exe(){
 													content = bb.getContent().replace("\r\n", "<br>");
 													} %>
 													<p><%=content %></p>
+													<%} %>
 												</div> 
 											</div>
 										</div>
 									</div>
 								</div>
-								<%} 
+								<%
 								
-								}else{
-								%>�������� �������� �ʽ��ϴ�.<%
 								}%>
 
 								</div> 

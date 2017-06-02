@@ -45,10 +45,16 @@ function d_confirm(){
                 <!-- Blog Post -->
 		<%BlogBean bb = (BlogBean)request.getAttribute("bb");
 		String returnUrl = request.getHeader("referer");
-  		String pageNum = (String)request.getAttribute("pageNum");%>
+  		String pageNum = (String)request.getAttribute("pageNum");
+  		String id = (String)session.getAttribute("id");
   		
-<%--   		<a href="./OurBlogPostUpdate.ad?num=<%=bb.getNum()%>&pageNum=<%=pageNum%>">수정하기</a>&nbsp;| --%>
-<%-- 				<a href="./OurBlogPostDeleteAction.ad?num=<%=bb.getNum()%>&pageNum=<%=pageNum%>" onclick="return d_confirm()">삭제</a> --%>
+  		if(id!=null){
+  			if(id.equals("admin")){
+  		%>
+  				<a href="./OurBlogPostUpdate.bl?num=<%=bb.getNum()%>&pageNum=<%=pageNum%>">수정하기</a>&nbsp;|
+				<a href="./OurBlogPostDeleteAction.bl?num=<%=bb.getNum()%>&pageNum=<%=pageNum%>" onclick="return d_confirm()">삭제</a>
+		<%} 
+		}%>		
                 <!-- Title -->
                 <div style="font-size: 15px;">
                 <%if(bb.getCategory().equals("notice")){ %>

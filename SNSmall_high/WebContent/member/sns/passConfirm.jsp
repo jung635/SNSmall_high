@@ -13,7 +13,8 @@
 	<link href="./css/bootstrap.min.css" rel="stylesheet">
 	<link href="./css/header.css" rel="stylesheet">
 	<link href="./css/inner.css" rel="stylesheet">
-	<link href="./css/main.css" rel="stylesheet"> 
+	<link href="./css/main.css" rel="stylesheet">
+	<link href="./css/member.css" rel="stylesheet"> 
 <title>Insert title here</title>
 <script type="text/javascript">
 function submitpassCheck(){
@@ -27,18 +28,50 @@ function submitpassCheck(){
 
 </head>
 <body>
+<%String id = (String)session.getAttribute("id");
+  if(id==null){
+	  response.sendRedirect("./login.cl");  
+  }
+%>
+
 <jsp:include page="../../inc/header.jsp"/>
 <div class="container">
- <div class="content">
   <div class="more_content">
      <div class="col-md-3">
    <jsp:include page="../../inc/myinfo_sns_left.jsp"/>
      </div>
      <div class="col-md-9">
-<form onsubmit="return submitpassCheck()" name="fr" action="./passComfirmAction.sn">
-비밀번호 확인 : <input type="password" name="pass" id="pass">
-<input type="submit" value="비밀번호확인">
-</form> 
-</div></div></div></div>
+   <div style="margin: 50px 0 50px 0">
+    <div class="top-subject">회원정보 확인</div>
+    <br>    
+     　<span style="color:#fc7700"><%=id %></span>　님의 정보를 안전하게 보호하기 위해 비밀번호를 다시 한번 확인 합니다.
+     <hr style="border-color: white; margin: 4px;">
+			<form onsubmit="return submitpassCheck()" name="fr" action="./passComfirmAction.sn">
+				<div class="col-md-12 table-liner-top">
+				<div class="col-md-4 table-colorBg-top"><span class="table-txt">계정</span></div>
+				<div class="col-md-4 pass-conf-text"><%=id %></div>
+				<div class="col-md-4"></div>
+				</div>
+				<div class="col-md-12 table-liner" style="border-top: none;">
+				<div class="col-md-4 table-colorBg"><span class="table-txt">비밀번호</span></div>
+				<div class="col-md-4 pass-conf-txt">
+				<input type="password" name="pass" id="pass" class="form-control">
+				</div>
+				<div class="col-md-4"></div>
+				</div>
+				
+				<div class="col-md-5"></div>
+				<div class="col-md-2"><input type="submit" value="확인" class="ok-btn"></div>
+				
+				<div class="col-md-5"></div>
+			</form>
+		
+	</div> 
+</div>
+<jsp:include page="../../inc/footer.jsp"/>
+</div></div>
+
+
+
 </body>
 </html>

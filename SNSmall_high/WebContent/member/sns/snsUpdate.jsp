@@ -15,6 +15,7 @@
 <link href="./css/header.css" rel="stylesheet">
 <link href="./css/inner.css" rel="stylesheet">
 <link href="./css/main.css" rel="stylesheet">
+<link href="./css/member.css" rel="stylesheet">
 <title>Insert title here</title>
 <script src="./js/jquery.js"></script>
 <script type="text/javascript">
@@ -71,7 +72,7 @@
 					var newPreview = document.getElementById("imagePreview");
 					ImagePre = new Image();
 					ImagePre.style.width = "200px";
-					ImagePre.style.height = "140px";
+					ImagePre.style.height = "200px";
 					newPreview.appendChild(ImagePre);
 					if (ProimagePreview.style.display == 'block') {
 						ProimagePreview.style.display = 'none';
@@ -263,20 +264,32 @@ function snschecked5(){
 	<jsp:include page="../../inc/header.jsp" />
 
 	<div class="container">
-		<div class="content">
+		
 			<div class="more_content">
 				<div class="col-md-3">
 					<jsp:include page="../../inc/myinfo_sns_left.jsp" />
 				</div>
 				<div class="col-md-9">
-				
-				<h3>회원정보 수정</h3>
-					<legend>Basic info</legend>
-					<label>ID</label>
-					<%=id%><br>
-					<label>Password</label> <input type="button" id="passChange" value="비밀번호 변경">
-					<div style="display: none;">
-						<form action="./passChangeAction.sn"  name="pr" onsubmit="return passCheck()">
+				 <div style="margin: 50px 0 50px 0">
+					<div class="top-subject">내 정보 수정</div>
+					
+					
+					<div class="col-md-12 table-liner-top">
+						<div class="col-md-4 table-colorBg-top">
+							<span class="table-txt">계정</span>
+						</div>
+						<div class="col-md-4 pass-conf-text"><%=id %></div>
+						<div class="col-md-4"></div>
+					</div>
+					
+					<div class="col-md-12 table-liner">
+						<div class="col-md-4 table-colorBg">
+							<span class="table-txt">비밀번호</span>
+						</div>
+						<div class="col-md-4 pass-conf-text">
+							<input type="button" id="passChange" value="비밀번호 변경">
+							<div style="display: none;">
+							<form action="./passChangeAction.sn"  name="pr" onsubmit="return passCheck()">
 							new password &nbsp;&nbsp;
 							<input type="password" name="newpass" id="newpass" onkeyup="passFormCheck()">
 							<span id="passCheckDisplay"></span><br>
@@ -285,46 +298,54 @@ function snschecked5(){
 							<input type="submit" value="변경">
 						</form>
 					</div>
-
-
+						</div>
+						<div class="col-md-4"></div>
+					</div>
+					
 					<form action="./SnsUpdateAction.sn" method="post" name="fr"
 						onsubmit="return submitCheck()" enctype="multipart/form-data">
-						<table>
-
-
-
-							<tr>
-								<td><label>name</label></td>
-								<td colspan="3"><input type="text" name="name"
-									value="<%=sb.getName()%>"></td>
-							</tr>
-							<tr>
-								<td><label>category</label></td>
-								<td>
-									<div class="form-group">
-										<select id="mySelect" name="myselect" class="form-control">
-											<option <%if (sb.getCategory().equals("fashion")) {%> selected
-												<%}%>>fashion</option>
-											<option <%if (sb.getCategory().equals("beauty")) {%> selected
-												<%}%>>beauty</option>
-											<option <%if (sb.getCategory().equals("baby")) {%> selected
-												<%}%>>baby</option>
-											<option <%if (sb.getCategory().equals("daily")) {%> selected
-												<%}%>>daily</option>
-											<option <%if (sb.getCategory().equals("gym")) {%> selected
-												<%}%>>gym</option>
-											<option <%if (sb.getCategory().equals("etc")) {%> selected
-												<%}%>>etc</option>
-										</select>
-									</div>
-								</td>
-								<td colspan="2"></td>
-							</tr>
-						</table>
+					<div class="col-md-12 table-liner">
+						<div class="col-md-4 table-colorBg">
+							<span class="table-txt">이름</span>
+						</div>
+						<div class="col-md-4 pass-conf-txt">
+						<input type="text" value="<%=sb.getName()%>" class="form-control">
+						</div>
+						<div class="col-md-4"></div>
+					</div>
+					
+					<div class="col-md-12 table-liner">
+						<div class="col-md-4 table-colorBg">
+							<span class="table-txt">카테고리</span>
+						</div>
+						<div class="col-md-4" style="padding: 10px 0 5px 20px;">
+							<div class="form-group" style="margin-bottom: 0px;">
+									<select id="mySelect" name="myselect" class="form-control">
+										<option <%if (sb.getCategory().equals("fashion")) {%> selected
+											<%}%>>fashion</option>
+										<option <%if (sb.getCategory().equals("beauty")) {%> selected
+											<%}%>>beauty</option>
+										<option <%if (sb.getCategory().equals("baby")) {%> selected
+											<%}%>>baby</option>
+										<option <%if (sb.getCategory().equals("daily")) {%> selected
+											<%}%>>daily</option>
+										<option <%if (sb.getCategory().equals("gym")) {%> selected
+											<%}%>>gym</option>
+										<option <%if (sb.getCategory().equals("etc")) {%> selected
+											<%}%>>etc</option>
+									</select>
+								</div>
 						
-						<legend>SNS Acount</legend>
-						
-						<table class="Snsaccount">
+						</div>
+						<div class="col-md-4"></div>
+					</div>
+					
+					<div class="col-md-12 table-liner">
+						<div class="col-md-4 table-colorBg">
+							<span class="table-txt">SNS 계정</span>
+						</div>
+						<div class="col-md-8 pass-conf-txt">
+							<table class="Snsaccount">
 							<tr>
 								<td> Instagram <input type="checkbox" name="ckb1" id="ckb1" onchange="snschecked()" <%if(!(sb.getInstagram().equals(""))){%>checked<%}%>> </td>
 								<td> facebook <input type="checkbox" name="ckb2" id="ckb2" onchange="snschecked2()" <%if(!(sb.getFacebook().equals(""))){%>checked<%}%>></td>
@@ -392,9 +413,18 @@ function snschecked5(){
 								<input type="text" name="etc_ac" size=40 value="<%=sb.getEtc()%>"> 
 							</div>
 						<%} %>
-						<legend>Profile Image</legend>
+						
+						
+						</div>
+					</div>
 
 
+					<div class="col-md-12 table-liner">
+						<div class="col-md-4 table-colorBg">
+							<span class="table-txt">프로필 이미지</span>
+						</div>
+						<div class="col-md-4 pass-conf-text">
+						
 						<div id="ProimagePreview" style="display: block;">
 							<img src="./sns_pro_upload/<%=sb.getProfile_img()%>"
 								style="width: 200px; height: 140px;">
@@ -402,13 +432,20 @@ function snschecked5(){
 						<div id="imagePreview"></div>
 
 						<input type="hidden" name="one_file"
-							value="<%=sb.getProfile_img()%>"> <input type="file"
-							name="file" id="image" onchange="InputImage()"
-							style="width: 80px;">
-
-
-						<legend>Sub Image</legend>
-
+							value="<%=sb.getProfile_img()%>"> 
+							<input type="file" name="file" id="image" onchange="InputImage()" style="width: 80px;">
+						
+						</div>
+						<div class="col-md-4"></div>
+					</div>
+						
+						
+						<div class="col-md-12 table-liner">
+						<div class="col-md-4 table-colorBg">
+							<span class="table-txt">서브 이미지</span>
+						</div>
+						<div class="col-md-4 pass-conf-text">
+						
 						<input type="hidden" name="orgin_file_names" id="orgin_file_names"
 							value="<%=sb.getDetail_img()%>"> <input type="hidden"
 							name="file_names" id="file_names" value=""> <input
@@ -418,25 +455,41 @@ function snschecked5(){
 
 						selected Image<br>
 
-						<textarea rows="2" cols="80" name="selected_img" id="selected_img"
-							readonly="readonly"><%=sb.getDetail_img()%></textarea>
-
-
-
-
-						<legend>introduce</legend>
-
-						<textarea rows="3" cols="80" name="content"><%=sb.getContent()%></textarea>
-
+						<textarea rows="2" cols="100" name="selected_img" id="selected_img"
+							readonly="readonly" class="form-control"><%=sb.getDetail_img()%></textarea>
+						
+						
+						</div>
+						<div class="col-md-4"></div>
+						</div>
+					
+						<div class="col-md-12 table-liner">
+						<div class="col-md-4 table-colorBg">
+							<span class="table-txt">소개글</span>
+						</div>
+						<div class="col-md-4 pass-conf-txt">
+							<textarea rows="3" cols="70" name="content" class="form-control"><%=sb.getContent()%></textarea>
+						</div>
+						<div class="col-md-4"></div>
+					</div>
+	
 						<hr>
-
-						<input type="submit" value="글수정">
+						<div class="col-md-12">	
+						<div class="col-md-4"></div>
+						<div class="col-md-4">
+							<input type="submit" value="글수정" class="colmd-4-btn">
+						</div>
+						<div class="col-md-4"></div>
+						</div>
 					</form>
 
 				</div>
+				
+				<jsp:include page="../../inc/footer.jsp"/>
+				
+				</div>
 			</div>
 		</div>
-	</div>
-
+	
 </body>
 </html>

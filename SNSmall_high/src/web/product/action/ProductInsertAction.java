@@ -15,7 +15,6 @@ public class ProductInsertAction implements Action{
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response)throws Exception{
 		
 		String realPath = request.getRealPath("/vendor_img");
-		System.out.println("물리적경로:"+realPath);
 		int maxSize = 5*1024*1024;
 		MultipartRequest multi = 
 				new MultipartRequest(request, realPath, maxSize, "utf-8", 

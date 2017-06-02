@@ -94,39 +94,47 @@
 								<td><%=prb.getAmount()%></td>
 								<td><%=prb.getPrice()%></td>
 								<td><%=prb.getDate()%></td>
-								<td><a
-									href="./ProductUpdate.pr?product_num=<%=prb.getProduct_num()%>">수정</a>
-									/ <a
-									href="./ProductDelete.pr?product_num=<%=prb.getProduct_num()%>" onclick="return d_confirm()">삭제</a></td>
+								<td><a href="./ProductUpdate.pr?product_num=<%=prb.getProduct_num()%>">수정</a>
+									/ <a href="./ProductDelete.pr?product_num=<%=prb.getProduct_num()%>" onclick="return d_confirm()">삭제</a>
+								</td>
 							</tr>
 							<%
 								}
-							%>
-						</table>
-						</div>
-						<%
 							if (count != 0) {
 								if (startPage > pageBlock) {
-						%><a href="./ProductListAction.pr?pageNum=<%=startPage - pageBlock%>">[이전]</a>
-						<%
-							}
+							%>
+							<a href="./ProductListAction.pr?pageNum=<%=startPage - pageBlock%>">[이전]</a>
+							<%
+								}
 								// 1..10  11..20  21...30
 								for (int i = startPage; i <= endPage; i++) {
-						%><a href="./ProductListAction.pr?pageNum=<%=i%>">[<%=i%>]
-						</a>
-						<%
-							}
-									if (endPage < pageCount) {
-						%><a href="./ProductListAction.pr?pageNum=<%=startPage + pageBlock%>">[다음]</a>
-						<%
-							}
+							%>
+							<a href="./ProductListAction.pr?pageNum=<%=i%>">[<%=i%>]</a>
+							<%
 								}
-							}
-						%>
+								if (endPage < pageCount) {
+							%><a href="./ProductListAction.pr?pageNum=<%=startPage + pageBlock%>">[다음]</a>
+							<%
+								}
+							}%>
+						</table>
+								<%
+							}else if(productList == null){%>
+							<tr>
+							<td colspan="7">등록된 상품이 없습니다.</td>
+							</tr>
+							</table>
+						<%}%>
+							
+						
+							
+							
+						</div>						
 					</div>
             </div>
         </div>
     </div>
+ </div>
     <!-- /.container -->
     <div class="container">
         <hr>
@@ -139,7 +147,6 @@
             </div>
         </footer>
     </div>
-  </div>
     <!-- /.container -->
 </body>
 </html>

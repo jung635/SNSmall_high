@@ -29,8 +29,6 @@ public class ProductListAction implements Action{
 //		start = (pageSize*(currentPage-1));
 		start = (currentPage-1)*pageSize+1;
 		end = start+pageSize-1;  
-		System.out.println(count);
-		System.out.println(pageNum);
 		List<ProductBean> list = null ;
 	 	if(count!=0){
 	 		list = pdao.getProductList(start, pageSize);

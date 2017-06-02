@@ -12,7 +12,6 @@ import web.product.db.ProductDAO;
 public class ProductListAction implements Action{
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response)throws Exception{
-		System.out.println("ProductListAction execute()");
 		
 		request.setCharacterEncoding("utf-8");
 		//HttpSession session = request.getSession();

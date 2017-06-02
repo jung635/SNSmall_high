@@ -46,6 +46,7 @@ if(request.getParameter("option3")!=null){
 }
 
 String snsId_str = request.getParameter("sns_id");
+System.out.println("sns: "+snsId_str);
 ClientBean cb = new ClientBean();
 ClientDAO cdao = new ClientDAO();
 cb = cdao.getMember(id);

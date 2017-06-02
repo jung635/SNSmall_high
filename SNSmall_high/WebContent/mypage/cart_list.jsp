@@ -38,7 +38,7 @@ function myfunction(){
 			product_num += document.form1.product_num_input[i].value+","; 
 			amount += document.form1.amount_input[i].value+","; 
 			vendor_id += document.form1.vendor_id_input[i].value+","; 
-			if((document.form1.sns_id_input[i].value)==null){
+			if((document.form1.sns_id_input[i].value)=="null"){
 				sns_id=" ,";
 			}else{
 				sns_id += document.form1.sns_id_input[i].value+","; 
@@ -166,7 +166,7 @@ for(int i=0;i<cl.size();i++){
 
 <br>
 총가격 :<span id="price"><%=sum %></span>
-<input type="hidden" name = "num" id="num" value="<%=num%>">
+<input type="hidden" name = "cart_num" id="num" value="<%=num%>">
 <input type="hidden" name = "client_id" id="client_id" value="<%=client_id%>">
 <input type="hidden" name = "product_num" id="product_num" value="<%=product_num%>">
 <input type="hidden" name = "amount" id="amount" value="<%=amount%>">

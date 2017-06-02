@@ -63,6 +63,8 @@ if(pb.getOption3() != null && !pb.getOption3().equals("") && !pb.getOption3().eq
 if(option_all.length()>0) option_all = option_all.substring(0,option_all.length()-1);
 %>
  <tr><td><%=merchant_uid%></td><td><%=prob.getSubject() %> (<%=option_all %>)</td><td><%=prob.getPrice() %></td><td><%=pb.getAmount() %></td></tr>
+
+ <tr><td>배송지</td><td colspan="3" style="text-align: left;"><%=pb.getAddress() %></td></tr>
  <%} %>
  <tr><td colspan="4" style="text-align: right;">사용한 포인트: <%=usedPoint %></td></tr>
  <tr><td colspan="4" style="text-align: right;">총 결제 금액: <%=totalprice %></td></tr>

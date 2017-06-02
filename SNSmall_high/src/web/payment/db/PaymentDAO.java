@@ -720,7 +720,7 @@ public class PaymentDAO {
 			} else if (method.equals("delivery")) {
 				sql.append("state = 'delivery'");
 			} else if (method.equals("cancelHold")) {
-				sql.append("state = 'cancelHold' or state = 'cancel' or state = 'w_cancelHold'");
+				sql.append("(state = 'cancelHold' or state = 'cancel' or state = 'w_cancelHold')");
 			} else if (method.equals("waiting")) {
 				sql.append("state = 'waiting'");
 			}
@@ -891,7 +891,7 @@ public class PaymentDAO {
 			pstmt.setInt(1, num);
 			rs=pstmt.executeQuery();
 			if(rs.next()){
-				
+				pb.setAddress(rs.getString("address"));
 				pb.setAmount(rs.getInt("amount"));
 				pb.setDate(rs.getTimestamp("date"));
 				pb.setMessage(rs.getString("message"));

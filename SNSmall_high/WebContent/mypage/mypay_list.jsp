@@ -53,7 +53,7 @@ function showCustomer(str) {
 }
 
 function more() {
-	page += 2;
+	page += 4;
 	var xhttp;    
 	if (method == "") {
     	document.getElementById("txtHint").innerHTML = "";

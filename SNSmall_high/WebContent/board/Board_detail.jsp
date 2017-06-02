@@ -36,7 +36,15 @@
 			}else{
 				return false;
 			}
-		}		
+		}
+		
+		function replyOnOff(){
+			if(reply_box.style.display=='none'){
+				reply_box.style.display='block'
+			}else{
+				reply_box.style.display='none'
+			}
+		}
 	</script>	
 </head>
 <body>
@@ -82,7 +90,7 @@
 					<hr>
 					
 					<!-- [ 댓글 목록 출력-->
-					<a href="./BoardList.bo">목록보기</a> | <a href="">댓글 열기/닫기</a>
+					<a href="./BoardList.bo">목록보기</a> | <a href="javascript:replyOnOff()">댓글 열기/닫기</a>
 					<%
 					if(id.equals(bb.getId())&&id!=null){
 					%>
@@ -90,12 +98,11 @@
 					  | <a href="./BoardDelete.bo?num=<%=bb.getNum() %>" onclick="return d_confirm()">삭제</a>
 					
 					</div>
-					
-					<div class="col-md-12">
+					<%} %>
+					<div class="col-md-12" id="reply_box" style="display:block;">
 					
 				
 					<%
-					}
 					for(int i = 0; i < replyList.size(); i++){
 						ReplyBean rb = (ReplyBean)replyList.get(i);	
 						String replyContent = rb.getContent();

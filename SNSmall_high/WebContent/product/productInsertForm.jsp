@@ -34,6 +34,14 @@
 		}
 		
 	}
+	
+	function numkeyCheck(){
+		var keyValue = event.keyCode;
+		if(!(keyValue==8||keyValue==9||keyValue==13||keyValue==46||keyValue==144||
+			      (keyValue>=48&&keyValue<=57)||keyValue==110||keyValue==190)) {
+			      event.returnValue = false;
+		}
+	}
 </script>
 </head>
 <body>
@@ -72,7 +80,7 @@ String id = (String)session.getAttribute("id");
 							
 							<div class="col-md-3 product-tit">상품명</div>
 							<div class="col-md-9 product-con">
-								<input type="text" name="subject" width="100">
+								<input type="text" name="subject" width="100" required>
 							</div>
 							
 							<div class="col-md-3 product-tit">제품정보</div>
@@ -101,11 +109,11 @@ String id = (String)session.getAttribute("id");
 							</div>
 							<div class="col-md-3 product-tit">판매가</div>
 							<div class="col-md-9 product-con">
-								<input type="text" name="price">
+								<input type="number" name="price" onkeypress="numkeyCheck()" onblur="numkeyCheck()" style="ime-mode:disabled;">
 							</div>
 							<div class="col-md-3 product-tit">수량</div>
 							<div class="col-md-9 product-con">
-								<input type="text" name="amount">
+								<input type="number" name="amount" onkeypress="numkeyCheck()" onblur="numkeyCheck()" style="ime-mode:disabled;">
 							</div>
 							
 							<div class="col-md-12">

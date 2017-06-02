@@ -17,7 +17,7 @@
 	<link href="./css/product.css" rel="stylesheet"> 
 <title>Insert title here</title>
 <script type="text/javascript">
-	function submitCheck(){
+	function submitCheck(){		
 		if(document.fr.price.value==""){
 	 		alert("가격을 입력해 주세요!");
 	 		document.fr.price.focus();
@@ -34,6 +34,14 @@
 			return false;
 		}
 		
+	}
+	
+	function numkeyCheck(){
+		var keyValue = event.keyCode;
+		if(!(keyValue==8||keyValue==9||keyValue==13||keyValue==46||keyValue==144||
+			      (keyValue>=48&&keyValue<=57)||keyValue==110||keyValue==190)) {
+			      event.returnValue = false;
+		}
 	}
 </script>
 </head>
@@ -59,10 +67,10 @@ String opt_name3 = (String)request.getAttribute("opt_name3");
                 <!-- 마이페이지 메인 -->
               <div style="margin: 50px 0 50px 0">
 						<div class="product-top-tit">　Product Update Page</div>
-						<form action="./ProductUpdateAction.pr" method="post" enctype="multipart/form-data" class="product-form">
-<input type="hidden" name="product_num" value=<%=prb.getProduct_num()%>>
-<input type="hidden" name="pre_main_img" value=<%=prb.getMain_img() %>>
-<input type="hidden" name="pre_detail_img" value=<%=prb.getDetail_img() %>>
+						<form action="./ProductUpdateAction.pr" name="fr" method="post" enctype="multipart/form-data" class="product-form" onsubmit="return submitCheck()">
+							<input type="hidden" name="product_num" value=<%=prb.getProduct_num()%>>
+							<input type="hidden" name="pre_main_img" value=<%=prb.getMain_img() %>>
+							<input type="hidden" name="pre_detail_img" value=<%=prb.getDetail_img() %>>
 			
 							<div class="col-md-3 product-tit">카테고리</div>
 							<div class="col-md-9 product-con">
@@ -97,21 +105,31 @@ String opt_name3 = (String)request.getAttribute("opt_name3");
 							</div>
 							<div class="col-md-3 product-tit">옵션2</div>
 							<div class="col-md-9 product-con">
+								<%if(opt_name2 != null){ %>
 								옵션명　<input type="text" name="opt_name2" placeholder="ex)사이즈" value=<%=opt_name2 %>>
 								옵션　<input type="text" name="option2" placeholder="ex)220,225,230,235" value=<%=prb.getOption2() %>>
+								<%}else{ %>
+								옵션명　<input type="text" name="opt_name2" placeholder="ex)사이즈">
+								옵션　<input type="text" name="option2" placeholder="ex)220,225,230,235">
+								<%} %>
 							</div>
 							<div class="col-md-3 product-tit">옵션3</div>
 							<div class="col-md-9 product-con">
+								<%if(opt_name3 != null){ %>
 								옵션명　<input type="text" name="opt_name3" placeholder="ex)세트" value=<%=opt_name3 %>>
 								옵션　<input type="text" name="option3" placeholder="ex)A,B,C" value=<%=prb.getOption3() %>>
+								<%}else{ %>
+								옵션명　<input type="text" name="opt_name3" placeholder="ex)세트">
+								옵션　<input type="text" name="option3" placeholder="ex)A,B,C">
+								<%} %>
 							</div>
 							<div class="col-md-3 product-tit">판매가</div>
 							<div class="col-md-9 product-con">
-								<input type="text" name="price" value=<%=prb.getPrice() %>>
+								<input type="text" name="price" onkeypress="numkeyCheck()" onblur="numkeyCheck()" style="ime-mode:disabled;" value=<%=prb.getPrice() %>>
 							</div>
 							<div class="col-md-3 product-tit">수량</div>
 							<div class="col-md-9 product-con">
-								<input type="text" name="amount" value=<%=prb.getAmount() %>>
+								<input type="text" name="amount" onkeypress="numkeyCheck()" onblur="numkeyCheck()" style="ime-mode:disabled;" value=<%=prb.getAmount() %>>
 							</div>
 							
 							<div class="col-md-12">

@@ -98,8 +98,9 @@
 									/ <a href="./ProductDelete.pr?product_num=<%=prb.getProduct_num()%>" onclick="return d_confirm()">삭제</a>
 								</td>
 							</tr>
+							<%}%>							
+						</table>
 							<%
-								}
 							if (count != 0) {
 								if (startPage > pageBlock) {
 							%>
@@ -109,21 +110,19 @@
 								// 1..10  11..20  21...30
 								for (int i = startPage; i <= endPage; i++) {
 							%>
-							<a href="./ProductListAction.pr?pageNum=<%=i%>">[<%=i%>]</a>
+							<a href="./MyPage.ve?pageNum=<%=i%>">[<%=i%>]</a>
 							<%
 								}
 								if (endPage < pageCount) {
 							%><a href="./ProductListAction.pr?pageNum=<%=startPage + pageBlock%>">[다음]</a>
 							<%
 								}
-							}%>
-						</table>
-								<%
+							}
 							}else if(productList == null){%>
 							<tr>
 							<td colspan="7">등록된 상품이 없습니다.</td>
 							</tr>
-							</table>
+						</table>
 						<%}%>
 							
 						

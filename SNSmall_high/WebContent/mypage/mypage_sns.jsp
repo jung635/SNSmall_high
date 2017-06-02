@@ -25,7 +25,7 @@ String id = (String)session.getAttribute("id");
 String type= (String)session.getAttribute("type");
 
 if(id==null){
-	response.sendRedirect("./Login.ve");  
+	response.sendRedirect("./login.cl");  
 }
 
 SnsBean sb = (SnsBean)request.getAttribute("sb");
@@ -44,9 +44,110 @@ array=s.split(",");
      </div>
 		<div class="col-md-9">
 			<div style="margin: 50px 0 50px 0">
-				<div class="info-top-tit">　내정보 보기</div>
-				
-				<div class="vendor_info">
+				<div class="top-subject">내 정보 보기</div>
+
+					<div class="col-md-12 table-liner-top">
+						<div class="col-md-4 table-colorBg-top">
+						<span class="table-txt">아이디</span>
+						</div>
+						<div class="col-md-8 pass-conf-text"><%=id %></div>
+					</div>
+					
+					<div class="col-md-12 table-liner">
+						<div class="col-md-4 table-colorBg">
+						<span class="table-txt">이름</span>
+						</div>
+						<div class="col-md-8 pass-conf-text"><%=sb.getName() %></div>
+					</div>
+					
+					<div class="col-md-12 table-liner">
+						<div class="col-md-4 table-colorBg">
+						<span class="table-txt">카테고리</span>
+						</div>
+						<div class="col-md-8 pass-conf-text"><%=sb.getCategory() %></div>
+					</div>
+					
+					<div class="col-md-12 table-liner">
+						<div class="col-md-4 table-colorBg">
+						<span class="table-txt">SNS계정</span>
+						</div>
+						<div class="col-md-8 pass-conf-text">
+						
+						<div class="col-md-3 info-tit">Instagram</div>
+						<div class="col-md-9 info-con">
+							<%if(sb.getInstagram()==null || sb.getInstagram().equals("")){%>미등록<%}else{%><%=sb.getInstagram()%><%}%>
+						</div>
+						
+						<div class="col-md-3 info-tit">Facebook</div>
+						<div class="col-md-9 info-con">
+							 <%if(sb.getFacebook()==null || sb.getFacebook().equals("")){%>미등록<%}else{%><%=sb.getFacebook()%><%}%> 
+						</div>
+						
+						<div class="col-md-3 info-tit">Twitter</div>
+						<div class="col-md-9 info-con">
+							<%if(sb.getTwitter()==null || sb.getTwitter().equals("")){%>미등록<%}else{%><%=sb.getTwitter()%><%}%>
+						</div>
+						
+						<div class="col-md-3 info-tit">Blog</div>
+						<div class="col-md-9 info-con">
+							<%if(sb.getBlog()==null || sb.getBlog().equals("")){%>미등록<%}else{%><%=sb.getBlog()%><%}%>
+						</div>
+						
+						<div class="col-md-3 info-tit">Etc</div>
+						<div class="col-md-9 info-con">
+							<%if(sb.getEtc()==null || sb.getEtc().equals("")){%>미등록<%}else{%><%=sb.getEtc()%><%}%>
+						</div>
+						
+						</div>
+					</div>
+					
+					<div class="col-md-12 table-liner">
+						<div class="col-md-4 table-colorBg">
+						<span class="table-txt">소개글</span>
+						</div>
+						<div class="col-md-8 pass-conf-text"><%=sb.getContent() %></div>
+					</div>
+					
+					<div class="col-md-12 table-liner">
+						<div class="col-md-4 table-colorBg">
+						<span class="table-txt">메인이미지</span>
+						</div>
+						<div class="col-md-8 pass-conf-text">
+						
+						</div>
+					</div>
+					
+					<div class="col-md-12 table-liner">
+						<div class="col-md-4 table-colorBg">
+						<span class="table-txt">소개글</span>
+						</div>
+						<div class="col-md-8 pass-conf-text"><%=sb.getContent() %></div>
+					</div>
+					
+					
+						<legend>　Total Sale</legend>
+						
+						<div class="col-md-3 info-tit">Rank</div>
+						<div class="col-md-9 info-con"><%=sb.getRank() %></div>
+						
+						<div class="col-md-3 info-tit">Sell</div>
+						<div class="col-md-9 info-con"><%=sb.getSell() %></div>
+						
+						<div class="col-md-3 info-tit">Profit</div>
+						<div class="col-md-9 info-con"><%=sb.getSns_profit() %></div>
+		
+						
+						<div class="col-md-3"></div>
+						<div class="col-md-9"></div>
+						
+						<div class="col-md-3"></div>
+						<div class="col-md-9"></div>
+						
+						<div class="col-md-3"></div>
+						<div class="col-md-9"></div>
+
+
+
 	<table>
 	<tr> 
 		<td> <span class="mini-tit">Main Image</span> </td>
@@ -78,70 +179,6 @@ array=s.split(",");
 		</td>
 	</tr>
 	</table>			
-				
-
-					<legend>　Basic info</legend>
-					
-						<div class="col-md-3 info-tit">ID</div>
-						<div class="col-md-9 info-con"><%=id %></div>
-						
-						<div class="col-md-3 info-tit">Name</div>
-						<div class="col-md-9  info-con"><%=sb.getName() %></div>
-						
-						<div class="col-md-3 info-tit">Category</div>
-						<div class="col-md-9 info-con"><%=sb.getCategory() %></div>
-						
-						<div class="col-md-3 info-tit">Introduce</div>
-						<div class="col-md-9 info-con"><%=sb.getContent() %></div>
-						
-					<legend>　SNS Acount</legend>
-						
-						<div class="col-md-3 info-tit">Instagram</div>
-						<div class="col-md-9 info-con">
-							<%if(sb.getInstagram()==null || sb.getInstagram().equals("")){%>미등록<%}else{%><%=sb.getInstagram()%><%}%>
-						</div>
-						
-						<div class="col-md-3 info-tit">Facebook</div>
-						<div class="col-md-9 info-con">
-							 <%if(sb.getFacebook()==null || sb.getFacebook().equals("")){%>미등록<%}else{%><%=sb.getFacebook()%><%}%> 
-						</div>
-						
-						<div class="col-md-3 info-tit">Twitter</div>
-						<div class="col-md-9 info-con">
-							<%if(sb.getTwitter()==null || sb.getTwitter().equals("")){%>미등록<%}else{%><%=sb.getTwitter()%><%}%>
-						</div>
-						
-						<div class="col-md-3 info-tit">Blog</div>
-						<div class="col-md-9 info-con">
-							<%if(sb.getBlog()==null || sb.getBlog().equals("")){%>미등록<%}else{%><%=sb.getBlog()%><%}%>
-						</div>
-						
-						<div class="col-md-3 info-tit">Etc</div>
-						<div class="col-md-9 info-con">
-							<%if(sb.getEtc()==null || sb.getEtc().equals("")){%>미등록<%}else{%><%=sb.getEtc()%><%}%>
-						</div>
-						
-						<legend>　Total Sale</legend>
-						
-						<div class="col-md-3 info-tit">Rank</div>
-						<div class="col-md-9 info-con"><%=sb.getRank() %></div>
-						
-						<div class="col-md-3 info-tit">Sell</div>
-						<div class="col-md-9 info-con"><%=sb.getSell() %></div>
-						
-						<div class="col-md-3 info-tit">Profit</div>
-						<div class="col-md-9 info-con"><%=sb.getSns_profit() %></div>
-		
-						
-						<div class="col-md-3"></div>
-						<div class="col-md-9"></div>
-						
-						<div class="col-md-3"></div>
-						<div class="col-md-9"></div>
-						
-						<div class="col-md-3"></div>
-						<div class="col-md-9"></div>
-
 
 
  
@@ -150,7 +187,7 @@ array=s.split(",");
 					</div>
 				</div>
 			</div>
-		</div>
+
 	
 </body>
 </html>

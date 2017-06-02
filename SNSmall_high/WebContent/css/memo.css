@@ -1,5 +1,9 @@
 @CHARSET "UTF-8";
 
+body{
+	margin-left: 20px;
+}
+
 /* join us */
 
 article form{
@@ -29,36 +33,48 @@ article form label{
 }
 
 article form input{
+
 	display: inline-block;
 	background-color: #ffeecc;
 	border:1px solid #999;
 	margin: 10px 5px;/* input 상자가 다시 정렬됨 */
 }
 
-article form input.from_id{
+article form input#from_id{
+	width: 120px;
+	height: 22px;
+}
+
+article form input#to_id{
+	width: 120px;
+	height: 22px;
+}
+
+article form input#to_pass{
 	width: 100px;
 	height: 18px;
 }
 
-article form input.to_pass{
-	width: 100px;
-	height: 18px;
-}
 
-
-article form input.subject{
+article form input#subject{
 	width: 200px;
-	height: 18px;
+	height: 22px;
 }
 
-article form textarea.content{
+article form textarea#content{
 	padding: 0;
 	margin: 10px 5px;
 	}
 	
-article form input.content{
+article form input#content{
 	width: 300px;
 	height: 18px;
+}
+
+article form textarea#content{
+	background-color: #d9efff;
+	color: black;
+	
 }
 
 
@@ -70,6 +86,7 @@ article form input.submit, article form input.cancel{
 	box-shadow: 3px 3px 2px #ccc;
 	font-size: 14px;
 	color:black;
+	margin-left: 110px;
 }
 
 article form input.submit{
@@ -129,6 +146,7 @@ table tr td.content{
 	padding:0 0 0 10px;
 	text-align: left;
 }
+
 
 
 

@@ -23,14 +23,18 @@
 	
 <title>Insert title here</title>
 
-
-
+<script type="text/javascript">
+function memopen(){
+	//alert("창열기");
+	//windown.open(열고자하는 문서 주소, 창이름, 옵션);
+	window.open("./MemoWrite.me", "쪽지쓰기", "width=550, height=525, top=100, left=100");
+}
+</script>
 </head>
 <body>
 <jsp:include page="../inc/header.jsp"/>
 <%
 String id = (String)session.getAttribute("id");
-
 %>
   <!-- Page Content -->
   <div class="container">
@@ -60,7 +64,6 @@ SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd");
 if(id ==null ){
  	response.sendRedirect("./Main.cl");
 }
-
 %>
 <div class="row">
     <div class="col-lg-12">
@@ -71,8 +74,7 @@ if(id ==null ){
 </div>
 <div class="row">
 
-
-<h3><a href="./MemoWrite.me">[쪽지쓰기]</a></h3>
+<h3><a href="#" onclick="memopen()">[쪽지쓰기]</a></h3>
 
 <table border=1>
 <tr bgcolor="orange">
@@ -80,21 +82,28 @@ if(id ==null ){
 	<td>내용</td><td class="date">날짜</td>
 </tr>
 <%
-	for(int i=0; i < memoList.size(); i++){
-		//memoBean meb= 한칸의 데이터 가져와서 저장 .get()
-		MemoBean meb = (MemoBean)memoList.get(i); //downcasting
-		// 자바빈(MemoBean) 변수=배열한칸 접근 배열변수.get()
-		//부모                                                      자식
+	if(memoList.size()!=0){
+		for(int i=0; i < memoList.size(); i++){
+			//memoBean meb= 한칸의 데이터 가져와서 저장 .get()
+			MemoBean meb = (MemoBean)memoList.get(i); //downcasting
+			// 자바빈(MemoBean) 변수=배열한칸 접근 배열변수.get()
+			//부모                                                      자식
 		
 %>
-<tr bgcolor="#ffeecc">
-<td><%=meb.getNum() %></td><td><%=meb.getTo_id() %></td>
-<td class="subject"><a href="./MemoContent.me?num=<%=meb.getNum()%>&pageNum=<%=pageNum%>"><%= meb.getSubject()%></a></td>
-<td class="content"><a href="./MemoContent.me?num=<%=meb.getNum()%>&pageNum=<%=pageNum%>"><%= meb.getContent()%></a></td>
-<td><%=sdf.format(meb.getDate()) %></td>
-</tr>
+	<tr bgcolor="#ffeecc">
+		<td><%=meb.getNum() %></td><td><%=meb.getTo_id() %></td>
+		<td class="subject"><a href="./MemoContent.me?num=<%=meb.getNum()%>&pageNum=<%=pageNum%>"><%= meb.getSubject()%></a></td>
+		<td class="content"><a href="./MemoContent.me?num=<%=meb.getNum()%>&pageNum=<%=pageNum%>"><%= meb.getContent()%></a></td>
+		<td><%=sdf.format(meb.getDate()) %></td>
+	</tr>
 <%
-}
+		}
+	}else{
+	%>
+	<tr><td colspan=5>쪽지가 없습니다.</td></tr>
+	<%	
+	}
+
 %>
 </table>
     <!-- /.container -->

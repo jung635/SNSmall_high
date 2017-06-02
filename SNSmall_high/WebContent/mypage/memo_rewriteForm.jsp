@@ -52,13 +52,21 @@ function check(){
 		document.fr.content.focus();
 		return false;
 	}
+	
+	if(confirm("답글를 보내시겠습니까?")){
+		
+		window.close();
+	}else{
+		document.fr.reset();
+		return false;
+	}
 
 }
 </script>
 
 </head>
 <body>
-<jsp:include page="../inc/header.jsp"/>
+<%-- <jsp:include page="../inc/header.jsp"/> --%>
 <%
 String id = (String)session.getAttribute("id");
 
@@ -67,31 +75,13 @@ String id = (String)session.getAttribute("id");
 //  num   re_ref   re_lev   re_seq 파라미터 가져오기
 String to_id = request.getParameter("to_id");
 String from_id = request.getParameter("from_id");
-int num = Integer.parseInt(request.getParameter("num"));
-int re_ref = Integer.parseInt(request.getParameter("re_ref"));
-int re_lev = Integer.parseInt(request.getParameter("re_lev"));
-int re_seq = Integer.parseInt(request.getParameter("re_seq"));
+//int num = Integer.parseInt(request.getParameter("num"));
+String num = request.getParameter("num");
+//int re_ref = Integer.parseInt(request.getParameter("re_ref"));
+//int re_lev = Integer.parseInt(request.getParameter("re_lev"));
+//int re_seq = Integer.parseInt(request.getParameter("re_seq"));
 
 %>
-  <!-- Page Content -->
-  <div class="container">
-    <div class="more_content">
-    <!-- Page Content -->
-        <div class="row">
-            <div class="col-md-3">
-                <p class="lead"><%=id %></p>
-                <jsp:include page="../inc/myinfo_sns_left.jsp"/>
-            </div>
-            <div class="col-md-9">
-
-<div class="row">
-    <div class="col-lg-12">
-        <h1 class="page-header">쪽지글 목록
-            <small></small>
-        </h1>
-     </div>
-</div>
-<div class="row">
 
 <h3>쪽지글 답하기</h3>
 
@@ -102,35 +92,13 @@ int re_seq = Integer.parseInt(request.getParameter("re_seq"));
 <input type="hidden" name="from_id" value="<%=to_id %>">
 <label for="to_id">받는사람 </label> <input type="text" name="to_id" value="<%=from_id%>"   id="to_id" class="to_id"><br>
 <label for="subject">제목 </label> <input type="text" name="subject" value="[답글]"  id="subject" class="subject"><br>
-<label for="content">내용 </label> <textarea rows="10" cols="20" name="content"  id="content" class="content"></textarea><br>
+<label for="content">내용 </label> <textarea rows="10" cols="50" name="content"  id="content" class="content"></textarea><br>
 <input type="submit" value="쪽지 답하기" class="submit">
 	<input type="reset" value="다시 쓰기" class="cancel">
 </form>
 </fieldset>
 </article>
 
-    <!-- /.container -->
-<!--     <div class="container"> -->
-    
-<div class="row text-center">
-<div class="col-lg-12">
-<ul class="pagination">
 
-</div>
-</div>  
-    
-        <hr>
-        <!-- Footer -->
-        <footer>
-            <div class="row">
-                <div class="col-lg-12">
-                    <p>Copyright &copy; Your Website 2014</p>
-                </div>
-            </div>
-        </footer>
-    </div>
-  </div>
-    <!-- /.container -->
-    <!-- jQuery -->
 </body>
 </html>

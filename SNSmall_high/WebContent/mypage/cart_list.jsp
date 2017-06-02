@@ -18,6 +18,7 @@
 <title>Insert title here</title>
 <!-- 체크박스에 체크가 되어있으면 function에서 합쳐서 합가격 리턴  -->
 <script type="text/javascript">
+
 function myfunction(){
 	var sum=0;
 	var client_id ="";
@@ -61,6 +62,13 @@ function myfunction(){
 }
 
 
+function check1(){
+	if(document.form1.amount.value==null){
+		
+	}else{
+		document.form1.submit();
+	}
+}
 </script>
 </head>
 <body>
@@ -128,8 +136,8 @@ for(int i=0;i<cl.size();i++){
 
 <!-- 장바구니 정보 -->
 <a href="ProductDetail.pr?product_num=<%=prob.getProduct_num() %>">
+<img src="./vendor_img/<%=prob.getMain_img() %>" height="150px" width="200px">
 물품 번호:<%=cb.getProduct_num() %>
-이미지:<img src="./vendor_img/<%=prob.getMain_img() %>">
 품명:<%=cb.getSubject()%>
 <%if(cb.getOption1()!=null){
 	%>/<%=cb.getOption1()%>
@@ -146,6 +154,7 @@ for(int i=0;i<cl.size();i++){
 가격:<%=cb.getPrice() %>
 판매자 아이디 :<%=cb.getVendor_id() %>
 구매자 아이디 :<%=cb.getClient_id()%>
+
 </a>
 <a href="./Cart_Delete.ca?num=<%=cb.getNum()%>"><input type="button" name="delete" value="삭제"></a>
 <br>
@@ -166,10 +175,7 @@ for(int i=0;i<cl.size();i++){
 <input type="hidden" name = "option1" id="option1" value="<%=option1%>">
 <input type="hidden" name = "option2" id="option2" value="<%=option2%>">
 <input type="hidden" name = "option3" id="option3" value="<%=option3%>">
-<%
-
-//체크가 되어있으면 합하기 아니면 합하기 X
-%>
+<%System.out.println("sum : "+sum); %>
  <br>
 	<input type="submit" value="결제하기">
  </form>

@@ -40,6 +40,9 @@
 <%
 List<ZzimBean> list=(List)request.getAttribute("list");
 ZzimBean zb = new ZzimBean();
+if(list.size()==0){
+	%>찜을 해주세요. <%
+}else{
 %>
 <table border="1" style="width:800px;">
 <tr><th>물품번호</th><th>물품명</th><th>가격</th><th>날짜</th><th>바로가기</th><th>삭제</th></tr>
@@ -52,6 +55,7 @@ for(int i=0;i<list.size();i++){
 	<td><a href="./ZzimDeleteAction.zz?product_num=<%=zb.getProduct_num()%>"><input type="button" name="delete" value="삭제"></a></td></tr>
 
 	<%
+}
 }
 
 

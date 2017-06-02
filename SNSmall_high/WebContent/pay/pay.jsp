@@ -26,7 +26,6 @@ String id = (String)session.getAttribute("id");
 String type = (String)session.getAttribute("type");
 String product_str = request.getParameter("product_num");
 String amount_str = request.getParameter("amount"); //갯수
-System.out.print(amount_str);
 String vendorId_str = request.getParameter("vendor_id");
 String cart_str = "";
 if(request.getParameter("cart_num") != null){

@@ -116,7 +116,7 @@ function showSlides(n, full_length) {
 	}
 } 
 function memopen(id){
-	//alert("창열기");
+	//alert(id);
 	//windown.open(열고자하는 문서 주소, 창이름, 옵션);
 	window.open("./MemoWrite.me?toId="+id, "쪽지쓰기", "width=550, height=525, top=100, left=100");
 }
@@ -178,7 +178,7 @@ int rank_percent = (Integer)request.getAttribute("rank_percent");
             </div>
             <section id="our-team">
             	<%if(type.equals("vendor")){ %>
-            	<div><input type="button" value="쪽지보내기" style="float:right" onclick="memopen(<%=sb.getSns_id()%>)"></div>
+            	<div><input type="button" value="쪽지보내기" style="float:right" onclick="memopen('<%=sb.getSns_id()%>')"></div>
             	<%} %>
 				<div class="socials">
 						<%if(sb.getFacebook().trim().length()!=0){%>

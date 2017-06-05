@@ -118,7 +118,7 @@ function sample6_execDaumPostcode() {
 									<span class="table-txt">비밀번호</span>
 								</div>
 								<div class="col-md-4 pass-conf-txt">
-									<input type="button" onclick="location.href='./passModify.cl'" value="변경하기">
+									<input type="button" onclick="location.href='./passModify.cl'" value="변경하기" class="dup4">
 								</div>
 								<div class="col-md-4"></div>
 							</div>
@@ -128,9 +128,9 @@ function sample6_execDaumPostcode() {
 									<span class="table-txt">주소</span>
 								</div>
 								<div class="col-md-4 pass-conf-txt">
-									<input type="text" name="postcode" id="postcode" placeholder="우편번호" value="<%=postcode%>" class="form-control">
-									<input type="text" name="address" id="address" placeholder="주소" value="<%=address%>" class="form-control">	
-									<input type="text" name="address2" id="address2" placeholder="상세주소" value="<%=address2%>" class="form-control">
+									<input type="text" name="postcode" id="postcode" placeholder="우편번호" value="<%=postcode%>" class="form-control" style="margin-bottom: 5px;">
+									<input type="text" name="address" id="address" placeholder="주소" value="<%=address%>" class="form-control" style="margin-bottom: 5px;">	
+									<input type="text" name="address2" id="address2" placeholder="상세주소" value="<%=address2%>" class="form-control" style="margin-bottom: 5px;">
 								</div>
 								<div class="col-md-4">
 									<input type="button" onclick="sample6_execDaumPostcode()" class="dup3" value="우편번호 찾기">
@@ -139,33 +139,14 @@ function sample6_execDaumPostcode() {
 							
 							<div class="col-md-12 table-liner">
 								<div class="col-md-4 table-colorBg">
-									<span class="table-txt">주소</span>
+									<span class="table-txt">연락처</span>
 								</div>
 								<div class="col-md-4 pass-conf-txt">
-									<input type="button" onclick="location.href='./passModify.cl'" value="변경하기">
+									<input type="text" name="phone" value="<%=clb.getPhone()%>" class="form-control">
 								</div>
 								<div class="col-md-4"></div>
 							</div>
-							
-							
-							
-							<table>
-								
-													
-								<tr>
-									<td class="left"><label></label></td>
-									<td class="left"></td></tr>
-								<tr>
-									<td class="left"></td><td></td>
-								</tr>
-								<tr>
-									<td class="left"></td><td></td>
-								</tr>
-								<tr>
-									<td class="left"><label>연락처</label></td>
-									<td class="left"><input type="text" name="phone" value="<%=clb.getPhone()%>"></td>
-								</tr>																
-							</table>
+						
 							<input type="hidden" name="pass" value="<%=clb.getPass()%>">
 							<input type="hidden" name="id" value="<%=id%>">
 							

@@ -1,22 +1,22 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+    pageEncoding="utf-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>Insert title here</title>
 </head>
 <body>
     <form>
-        <!-- ¼Û½Å ¸Þ½ÃÁö ÀÛ¼ºÇÏ´Â Ã¢ -->
+        <!-- ì†¡ì‹  ë©”ì‹œì§€ ìž‘ì„±í•˜ëŠ” ì°½ -->
         <input id="textMessage" type="text">
-        <!-- ¼Û½Å ¹öÆ° -->
+        <!-- ì†¡ì‹  ë²„íŠ¼ -->
         <input onclick="sendMessage()" value="Send" type="button">
-        <!-- Á¾·á ¹öÆ° -->
+        <!-- ì¢…ë£Œ ë²„íŠ¼ -->
         <input onclick="disconnect()" value="Disconnect" type="button">
     </form>
     <br />
-    <!-- °á°ú ¸Þ½ÃÁö º¸¿©ÁÖ´Â Ã¢ -->
+    <!-- ê²°ê³¼ ë©”ì‹œì§€ ë³´ì—¬ì£¼ëŠ” ì°½ -->
     <textarea id="messageTextArea" rows="10" cols="50"></textarea>
      
     <script type="text/javascript">
@@ -36,13 +36,20 @@
         };
 
         webSocket.onmessage = function(message){
-            messageTextArea.value += "Recieve From Server => "+message.data+"\n";
+        	//alert(message.data);
+        	var jsonData = JSON.parse(message.data);
+        	//alert(jsonData.username);
+            //if(jsonData.message != null) {
+            if(jsonData.message != null) {
+                messageTextArea.value += jsonData.message + "\n"
+            };
+            //messageTextArea.value += "Recieve From Server => "+message.data+"\n";
         };
 
         function sendMessage(){
             var message = document.getElementById("textMessage");
-            messageTextArea.value += "Send to Server => "+message.value+"\n";
-           // message=["¹Ý°©½À´Ï´Ù","test"];
+            //messageTextArea.value += "Send to Server => "+message.value+"\n";
+           // message=["ë°˜ê°‘ìŠµë‹ˆë‹¤","test"];
             webSocket.send(message.value);
             //webSocket.send(message.value);
             message.value = "";

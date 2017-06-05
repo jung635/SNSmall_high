@@ -52,7 +52,7 @@
   		<!-- Introduction Row -->
         <div class="row" style="margin-top: 43px">
             <div class="col-lg-12">
-                <h1 class="page-header">홍보게시판</h1>       
+                <h1 class="page-header">매칭게시판</h1>       
             </div>
         </div>
         	

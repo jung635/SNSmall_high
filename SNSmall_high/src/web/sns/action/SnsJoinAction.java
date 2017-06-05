@@ -36,14 +36,15 @@ public class SnsJoinAction implements Action{
 		
 		int check= sdao.joinIdCheck(sns_id);
 		
-		
+		response.setContentType("text/html; charset=UTF-8");
+		PrintWriter out=response.getWriter();
 		if(check==1){
-			response.setContentType("text/html; charset=UTF-8");
-			PrintWriter out=response.getWriter();
+			
 			out.println("<script>");
 			out.println("alert('다른 아이디를 입력하세요');");
 			out.println("history.back();");
 			out.println("</script>");
+			out.close();
 			return null;
 		}		
 		
@@ -65,12 +66,13 @@ public class SnsJoinAction implements Action{
 		
 		
 		sdao.insertMember_sns(sb);
-				
-		ActionForward forward = new ActionForward();
-		forward.setPath("./login.ve");
-		forward.setRedirect(true);
-				
-		return forward;
+		out.println("<script>");
+		out.println("alert('회원가입이 완료되었습니다.');");
+		out.println("location.href='./login.ve'");
+		out.println("</script>");
+		out.close();
+		
+		return null;
 	
 	}
 

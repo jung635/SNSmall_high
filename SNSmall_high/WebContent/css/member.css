@@ -294,3 +294,9 @@ border-bottom: 1px solid #ccc;
 .colmd-4-btn:hover{
 	background-color: #fc7700;
 }
+.dup3{
+	border: none;
+	padding: 3px 12px 3px 12px;;
+	font-size: 11px;
+	margin: 15px;	
+}

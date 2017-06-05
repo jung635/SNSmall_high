@@ -350,6 +350,15 @@ a.list-group-item:hover, a.list-group-item:focus {
 #ourproduct .socials_pro a .fa-bold{
 	background: #FF5C93 !important;
 }
+#ourproduct .socials_pro a .fa-linkedin-square {
+    background: #D13D2F !important;
+}
+#ourproduct .socials_pro a .fa-github-alt {
+    background: #C12DFF !important;
+}
+#ourproduct .socials_pro a .fa-globe {
+    background: #828282 !important;
+}
 #ourproduct .socials_pro a .fa-facebook:hover{
 	border-radius: 0px;
     border: solid 1px !important;
@@ -359,6 +368,18 @@ a.list-group-item:hover, a.list-group-item:focus {
     border: solid 1px !important;
 }
 #ourproduct .socials_pro a .fa-bold:hover{
+	border-radius: 0px;
+    border: solid 1px !important;
+}
+#ourproduct .socials_pro a .fa-linkedin-square:hover{
+	border-radius: 0px;
+    border: solid 1px !important;
+}
+#ourproduct .socials_pro a .fa-github-alt:hover{
+	border-radius: 0px;
+    border: solid 1px !important;
+}
+#ourproduct .socials_pro a .fa-globe:hover{
 	border-radius: 0px;
     border: solid 1px !important;
 }

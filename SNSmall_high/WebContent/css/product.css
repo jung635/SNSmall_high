@@ -74,3 +74,8 @@
 	list-style: none;
 	font-weight: bold;
 }
+
+
+.categorys li a:active{
+	color: #fff !important; background: #ef7f00 !important;
+}

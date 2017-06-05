@@ -17,7 +17,11 @@
 	<link href="css/inner.css" rel="stylesheet">
 	<link href="css/main.css?ver=1" rel="stylesheet">
 	<link href="css/product.css?ver=1" rel="stylesheet">
+	<script src="js/jquery.js"></script>
 <title>Insert title here</title>
+
+
+
 
 </head>
 <body>
@@ -42,8 +46,9 @@
                     <small>Amazing goods</small>
                 </h1>
                 
+                
                 <ul class="categorys">
-                <li class="active"><a href="ProductList.pr" style="padding: 20px 58px 20px 58px;">전체&nbsp;
+                <li><a href="ProductList.pr" style="padding: 20px 58px 20px 58px;">전체&nbsp;
                 <i class="fa fa-sort-down" aria-hidden="true"></i>
                 </a></li>
                 <li><a href="ProductList.pr?category=fashion" style="padding: 20px 58px 20px 58px;">패션</a></li>
@@ -56,6 +61,9 @@
                 
             </div>
         </div>
+        
+        
+        
         
         <!-- Team Members Row -->
         <div class="row">
@@ -162,7 +170,7 @@
     <!-- /.container -->
 
     <!-- jQuery -->
-    <script src="js/jquery.js"></script>
+    
 
     <!-- Bootstrap Core JavaScript -->
     <script src="js/bootstrap.min.js"></script>

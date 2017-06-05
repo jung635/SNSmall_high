@@ -20,9 +20,6 @@
 	<script src="js/jquery.js"></script>
 <title>Insert title here</title>
 
-
-
-
 </head>
 <body>
 <%
@@ -47,7 +44,7 @@
                 </h1>
                 
                 
-                <ul class="categorys">
+                <ul class="nav nav-pills">
                 <li><a href="ProductList.pr" style="padding: 20px 58px 20px 58px;">전체&nbsp;
                 <i class="fa fa-sort-down" aria-hidden="true"></i>
                 </a></li>

@@ -76,6 +76,6 @@
 }
 
 
-.categorys li a:active{
+.nav-pills li a:active{
 	color: #fff !important; background: #ef7f00 !important;
 }

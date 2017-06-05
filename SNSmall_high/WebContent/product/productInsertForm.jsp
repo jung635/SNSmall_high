@@ -15,8 +15,19 @@
 	<link href="./css/main.css" rel="stylesheet"> 
 	<link href="./css/product.css" rel="stylesheet"> 
 <title>Insert title here</title>
-<script type="text/javascript">
+<script src="./js/jquery-3.2.0.js"></script>
 
+<script type="text/javascript">
+	// 가격, 수량에 숫자만 입력
+	$(document).ready(function(){
+		$('input:text[name=price]').keyup(function(){
+			$(this).val( $(this).val().replace(/[^0-9]/g,"") );
+		});
+		$('input:text[name=amount]').keyup(function(){
+			$(this).val( $(this).val().replace(/[^0-9]/g,"") );
+		});
+	});
+	
 	function submitCheck() {
 		if (document.fr.price.value == "") {
 			alert("판매가를 입력해 주세요!");
@@ -54,19 +65,6 @@
 
 	}
 
-	function numkeyCheck() {
-		var regNumber = /^[0-9]*$/;
-		var inputNumber = document.fr.price.value;
-		var inputNumber2 = document.fr.amount.value;
-		if (!regNumber.test(inputNumber)) {
-			alert('숫자만 입력해주세요.');
-			return false;
-		}
-		if (!regNumber.test(inputNumber2)) {
-			alert('숫자만 입력해주세요.');
-			return false;
-		}
-	}
 </script>
 </head>
 <body>
@@ -134,11 +132,11 @@ String id = (String)session.getAttribute("id");
 							</div>
 							<div class="col-md-3 product-tit">판매가</div>
 							<div class="col-md-9 product-con">
-								<input type="number" name="price" onkeyup="numkeyCheck()" style="ime-mode:disabled;">
+								<input type="text" name="price" style="ime-mode:disabled;">
 							</div>
 							<div class="col-md-3 product-tit">수량</div>
 							<div class="col-md-9 product-con">
-								<input type="number" name="amount" onkeyup="numkeyCheck()" style="ime-mode:disabled;">
+								<input type="text" name="amount" style="ime-mode:disabled;">
 							</div>
 							
 							<div class="col-md-12">

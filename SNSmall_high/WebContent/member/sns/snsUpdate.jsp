@@ -140,7 +140,9 @@
 	//비밀번호변경
 	$(document).ready(function() {
 		$('#passChange').click(function() {
-			$(this).next().toggle('slow', function() {
+			$('#passChWall').toggle('fast',function(){
+			});
+			$(this).next().toggle('fast', function() {
 			});
 		});
 	});
@@ -284,10 +286,10 @@ function snschecked5(){
 					
 					<div class="col-md-12 table-liner">
 						<div class="col-md-4 table-colorBg">
-							<span class="table-txt">비밀번호</span>
+							<span class="table-txt">비밀번호</span><span id="passChWall" style="display: none;"><br><br><br><br><br><br><br></span>
 						</div>
 						<div class="col-md-4 pass-conf-text">
-							<input type="button" id="passChange" value="비밀번호 변경">
+							<input type="button" id="passChange" value="비밀번호 변경" class="dup4" style="margin-top: 0px;">
 							<div style="display: none;">
 							<form action="./passChangeAction.sn"  name="pr" onsubmit="return passCheck()">
 							new password &nbsp;&nbsp;
@@ -295,7 +297,7 @@ function snschecked5(){
 							<span id="passCheckDisplay"></span><br>
 							retype password<input type="password" name="newpass2" onkeyup="passCheck()">
 							<span id="passdbCheckDisplay"></span><br>
-							<input type="submit" value="변경">
+							<input type="submit" value="변경" class="dup4">
 						</form>
 					</div>
 						</div>
@@ -421,7 +423,7 @@ function snschecked5(){
 
 					<div class="col-md-12 table-liner">
 						<div class="col-md-4 table-colorBg">
-							<span class="table-txt">프로필 이미지</span>
+							<span class="table-txt">프로필 이미지<br><br><br><br><br><br><br><br><br></span>
 						</div>
 						<div class="col-md-4 pass-conf-text">
 						
@@ -442,7 +444,7 @@ function snschecked5(){
 						
 						<div class="col-md-12 table-liner">
 						<div class="col-md-4 table-colorBg">
-							<span class="table-txt">서브 이미지</span>
+							<span class="table-txt">서브 이미지<br><br><br><br><br><br></span>
 						</div>
 						<div class="col-md-4 pass-conf-text">
 						
@@ -477,7 +479,7 @@ function snschecked5(){
 						<div class="col-md-12">	
 						<div class="col-md-4"></div>
 						<div class="col-md-4">
-							<input type="submit" value="글수정" class="colmd-4-btn">
+							<input type="submit" value="회원 정보 수정" class="colmd-4-btn">
 						</div>
 						<div class="col-md-4"></div>
 						</div>

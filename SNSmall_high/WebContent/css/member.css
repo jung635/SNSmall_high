@@ -294,7 +294,7 @@ border-bottom: 1px solid #ccc;
 	font-weight:bold;
 	background-color: #B2D8AC;
 	border-radius: 5px;
-	padding: 10px 100px 10px 100px;
+	padding: 10px 70px 10px 70px;
 	color:#43484E;
 	margin: 30px 0 0 50px;
 }
@@ -313,4 +313,57 @@ border-bottom: 1px solid #ccc;
 	padding: 3px 12px 3px 12px;;
 	font-size: 11px;
 	margin-top: 8px;
+}
+
+/* phone_auth.jsp */
+
+.phone_back{
+	background-color: #f5f5f5;
+	margin: 20px 10px 10px 10px;
+	padding: 17px;
+	border: 1px solid #e3e3e3;
+}
+.phone_back td{
+	font-size: 12px;
+	font-weight: bold;
+	padding: 5px;
+}
+.ph_txt_box{
+	border: 1px solid #c5c5c5;
+	height: 30px;
+	padding-left: 5px;
+	font-size: 12px;
+}
+.ph_mini_font{
+	font-size: 7px;
+}
+.ph_mini_btn{
+	border: 1px solid #c5c5c5;
+	background-color: #fff;
+	font-size: 11px;
+	color:#c5c5c5;
+	letter-spacing: 0px;
+	padding: 1px;
+}
+.ph_gender_box{
+	border: 1px solid #999;
+	background-color: white;
+	padding: 10px 12px 10px 12px;
+}
+.ph-oks{
+	border-radius:5px;
+	padding: 10px 100px 10px 100px;
+	background-color: #999;
+	border:none;
+	color: #fff;
+	font-weight: bold;
+}
+.ph-cancle{
+	padding: 10px 40px 10px 40px;
+	background-color: #fff;
+	color: #999;
+	border: 1px solid #999;
+	border-radius:5px;
+	margin: 10px 5px 0 30px;
+	font-weight: bold;
 }

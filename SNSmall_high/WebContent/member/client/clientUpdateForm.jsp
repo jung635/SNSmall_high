@@ -109,7 +109,7 @@ function sample6_execDaumPostcode() {
 									<span class="table-txt">이름</span>
 								</div>
 								<div class="col-md-4 pass-conf-txt">
-									<input type="text" value="<%=clb.getName()%>" class="form-control">
+									<input type="text" name="name value="<%=clb.getName()%>" class="form-control">
 								</div>
 								<div class="col-md-4"></div>
 							</div>
@@ -154,7 +154,7 @@ function sample6_execDaumPostcode() {
 							<div class="col-md-12">	
 								<div class="col-md-4"></div>
 								<div class="col-md-4">
-									<input type="submit" value="글수정" class="colmd-4-btn">
+									<input type="submit" value="회원 정보 수정" class="colmd-4-btn">
 								</div>
 								<div class="col-md-4"></div>
 							</div>

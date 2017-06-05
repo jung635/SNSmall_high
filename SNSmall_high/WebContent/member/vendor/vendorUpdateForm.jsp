@@ -92,62 +92,86 @@ function sample6_execDaumPostcode() {
                 <jsp:include page="../../inc/myinfo_vendor_left.jsp"/>               
             </div>
             <div class="col-md-9">
-            			<div class="col-md-9">아이디</div>
-						<div class="col-md-3"><%=id%></div>
-   						
-						<form action="./vendorUpdateAction.ve" id="vendor" method="post"
-							name="fr">
-						<div class="col-md-9">아이디</div>
-						<div class="col-md-3"><%=id%></div>
+            		 <div style="margin: 50px 0 50px 0">
+				<div class="top-subject">내 정보 수정</div>	
 						
-						<div class="col-md-9">아이디</div>
-						<div class="col-md-3"><%=id%></div>
-						
-						<div class="col-md-9">아이디</div>
-						<div class="col-md-3"><%=id%></div>
-							<table>
-								
-								<tr>
-									<td class="left"><label>비밀번호</label></td>
-									<td class="left"><input type="button" onclick="location.href='./passModify.ve'" value="변경하기"></td>
-								</tr>
-								<tr>
-									<td class="left"><label>이름</label></td>
-									<td class="left"><input type="text" name="name" value="<%=vb.getPerson_name()%>"></td>
-								</tr>
-								<tr>
-									<td class="left"><label>회사명</label></td>
-									<td class="left"><input type="text" name="company" value="<%=vb.getCompany_name()%>"></td>
-								</tr>
-								<tr>
-									<td class="left"><label>주소</label></td>
-									<td class="left"><input type="text" name="postcode" id="postcode" placeholder="우편번호" value="<%=postcode%>">
-									<input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기"></td></tr>
-								<tr>
-									<td class="left"></td><td><input type="text" name="address" id="address" placeholder="주소" value="<%=address%>"></td>
-								</tr>
-								<tr>
-									<td class="left"></td><td><input type="text" name="address2" id="address2" placeholder="상세주소" value="<%=address2%>"></td>
-								</tr>
-								<tr>
-									<td class="left"><label>연락처</label></td>
-									<td class="left"><input type="text" name="phone" value="<%=vb.getPhone()%>"></td>
-								</tr>
-								<tr>
-									<td class="left"><label>판매금액</label></td>
-									<td class="left"><%=vb.getVendor_profit()%></td>
-								</tr>								
-							</table>
+							
+							<div class="col-md-12 table-liner-top">
+								<div class="col-md-4 table-colorBg-top">
+									<span class="table-txt">아이디</span>
+								</div>
+								<div class="col-md-4 pass-conf-text"><%=id %></div>
+								<div class="col-md-4"></div>
+							</div>
+							
+							<div class="col-md-12 table-liner">
+								<div class="col-md-4 table-colorBg">
+									<span class="table-txt">비밀번호</span>
+								</div>
+								<div class="col-md-4 pass-conf-txt">
+									<input type="button" onclick="location.href='./passModify.ve'" value="변경하기" class="dup4">
+								</div>
+								<div class="col-md-4"></div>
+							</div>
+							
+							<div class="col-md-12 table-liner">
+								<div class="col-md-4 table-colorBg">
+									<span class="table-txt">이름</span>
+								</div>
+								<div class="col-md-4 pass-conf-txt">
+									<input type="text" name="name" value="<%=vb.getPerson_name()%>" class="form-control">
+								</div>
+								<div class="col-md-4"></div>
+							</div>
+							
+							<div class="col-md-12 table-liner">
+								<div class="col-md-4 table-colorBg">
+									<span class="table-txt">회사명</span>
+								</div>
+								<div class="col-md-4 pass-conf-txt">
+									<input type="text" name="company" class="form-control" value="<%=vb.getCompany_name()%>">
+								</div>
+								<div class="col-md-4"></div>
+							</div>
+							
+							<div class="col-md-12 table-liner">
+								<div class="col-md-4 table-colorBg">
+									<span class="table-txt">연락처</span>
+								</div>
+								<div class="col-md-4 pass-conf-txt">
+									<input type="text" name="phone" value="<%=vb.getPhone()%>" class="form-control">
+								</div>
+								<div class="col-md-4"></div>
+							</div>
+							
+							<div class="col-md-12 table-liner">
+								<div class="col-md-4 table-colorBg">
+									<span class="table-txt">주소<br><br><br><br><br><br></span>
+								</div>
+								<div class="col-md-4 pass-conf-txt">
+									<input type="text" name="postcode" id="postcode" placeholder="우편번호" value="<%=postcode%>" class="form-control" style="margin-bottom: 5px;">
+									<input type="text" name="address" id="address" placeholder="주소" value="<%=address%>" class="form-control" style="margin-bottom: 5px;">
+									<input type="text" name="address2" id="address2" placeholder="상세주소" value="<%=address2%>" class="form-control" style="margin-bottom: 5px;">
+									
+								</div>
+								<div class="col-md-4"><input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기" class="dup3"></div>
+							</div>
+					
+	
 							<input type="hidden" name="pass" value="<%=vb.getPass()%>">
 							<input type="hidden" name="id" value="<%=id%>">
 							
-							<div id="buttons">
-								<input type="submit" value="수정" class="submit">
-								<input type="reset" value="확인" class="cancel" onclick="location.href='./vendorView.ve'">
-
+							<div class="col-md-12">	
+								<div class="col-md-4"></div>
+								<div class="col-md-4">
+									<input type="submit" value="회원 정보 수정" class="colmd-4-btn">
+								</div>
+								<div class="col-md-4"></div>
 							</div>
+							
 						</form>
-					
+					</div>
+				</div>	
             </div>
         </div>
     </div>

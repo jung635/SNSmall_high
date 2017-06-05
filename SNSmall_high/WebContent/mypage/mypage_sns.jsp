@@ -69,7 +69,7 @@ array=s.split(",");
 					
 					<div class="col-md-12 table-liner">
 						<div class="col-md-4 table-colorBg">
-						<span class="table-txt">SNS계정</span>
+						<span class="table-txt">SNS계정<br><br><br><br><br></span>
 						</div>
 						<div class="col-md-8 pass-conf-text">
 						
@@ -110,15 +110,6 @@ array=s.split(",");
 					
 					<div class="col-md-12 table-liner">
 						<div class="col-md-4 table-colorBg">
-						<span class="table-txt">메인이미지</span>
-						</div>
-						<div class="col-md-8 pass-conf-text">
-						
-						</div>
-					</div>
-					
-					<div class="col-md-12 table-liner">
-						<div class="col-md-4 table-colorBg">
 						<span class="table-txt">소개글</span>
 						</div>
 						<div class="col-md-8 pass-conf-text"><%=sb.getContent() %></div>
@@ -126,7 +117,7 @@ array=s.split(",");
 					
 					<div class="col-md-12 table-liner">
 						<div class="col-md-4 table-colorBg">
-							<span class="table-txt">메인 이미지</span>
+							<span class="table-txt">메인 이미지<br><br><br><br><br><br><br><br><br><br><br></span>
 						</div>
 						<div class="col-md-8 pass-conf-text">
 							<img src="./sns_pro_upload/<%=sb.getProfile_img()%>" width="200" height="200" style="margin: 0px 0px 10px 0; border-radius:8px;">
@@ -135,7 +126,9 @@ array=s.split(",");
 					
 					<div class="col-md-12 table-liner">
 						<div class="col-md-4 table-colorBg">
-						<span class="table-txt">서브이미지</span>
+						<span class="table-txt">서브이미지<br><br><br><br><br><br>
+						<%if(array.length>=5){ %><br><br><br><br><br><%}%>
+						</span>
 						</div>
 						<div class="col-md-8 pass-conf-text">
 						
@@ -157,27 +150,29 @@ array=s.split(",");
 						</div>
 					</div>
 					
-					<div class="col-md-12 table-liner">
-						<div class="col-md-4 table-colorBg">
+					<div class="col-md-12" style="margin-top: 50px;"><div class="top-subject" style="border-color: #B2D8AC">SN# 판매 정보</div></div>
+				
+					<div class="col-md-12 table-liner-top">
+						<div class="col-md-4 table-colorBg-top" style="background-color: #B2D8AC">
 						<span class="table-txt">등급</span>
 						</div>
 						<div class="col-md-8 pass-conf-text"><%=sb.getRank() %></div>
 					</div>
 					
 					<div class="col-md-12 table-liner">
-						<div class="col-md-4 table-colorBg">
+						<div class="col-md-4 table-colorBg" style="background-color: #B2D8AC">
 						<span class="table-txt">판매량</span>
 						</div>
 						<div class="col-md-8 pass-conf-text"><%=sb.getSell() %></div>
 					</div>
 					
 					<div class="col-md-12 table-liner">
-						<div class="col-md-4 table-colorBg">
+						<div class="col-md-4 table-colorBg" style="background-color: #B2D8AC">
 						<span class="table-txt">이익</span>
 						</div>
 						<div class="col-md-8 pass-conf-text"><%=sb.getSns_profit() %></div>
-					</div>
-					
+					</div>	
+						
 						</div>
 						<jsp:include page="../inc/footer.jsp"/>
 					</div>

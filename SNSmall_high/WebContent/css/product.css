@@ -66,3 +66,11 @@
 	margin-bottom: 5px;
 	border-radius:5px;
 }
+.categorys li{
+	float: left;
+	background-color: #fff;
+	border: 1px solid #ffc180;
+	padding: 15px 5px 15px 5px;
+	list-style: none;
+	font-weight: bold;
+}

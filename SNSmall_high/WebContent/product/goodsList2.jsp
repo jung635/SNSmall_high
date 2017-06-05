@@ -16,6 +16,7 @@
 	<link href="css/header.css" rel="stylesheet">
 	<link href="css/inner.css" rel="stylesheet">
 	<link href="css/main.css?ver=1" rel="stylesheet">
+	<link href="css/product.css?ver=1" rel="stylesheet">
 <title>Insert title here</title>
 
 </head>
@@ -40,7 +41,19 @@
                 <h1 class="page-header">Product List
                     <small>Amazing goods</small>
                 </h1>
-           <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sint, explicabo dolores ipsam aliquam inventore corrupti eveniet quisquam quod totam laudantium repudiandae obcaecati ea consectetur debitis velit facere nisi expedita vel?</p>
+                
+                <ul class="categorys">
+                <li class="active"><a href="ProductList.pr" style="padding: 20px 58px 20px 58px;">전체&nbsp;
+                <i class="fa fa-sort-down" aria-hidden="true"></i>
+                </a></li>
+                <li><a href="ProductList.pr?category=fashion" style="padding: 20px 58px 20px 58px;">패션</a></li>
+                <li><a href="ProductList.pr?category=beauty" style="padding: 20px 58px 20px 58px;">뷰티</a></li>
+                <li><a href="ProductList.pr?category=baby" style="padding: 20px 58px 20px 58px;">육아</a></li>
+                <li><a href="ProductList.pr?category=daily" style="padding: 20px 58px 20px 58px;">일상</a></li>
+                <li><a href="ProductList.pr?category=gym" style="padding: 20px 58px 20px 58px;">운동</a></li>
+           		<li><a href="ProductList.pr?category=etc" style="padding: 20px 58px 20px 58px;">기타</a></li>
+                </ul>
+                
             </div>
         </div>
         

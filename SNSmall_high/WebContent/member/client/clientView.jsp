@@ -85,7 +85,7 @@
 				
 				<div class="col-md-12" style="margin-top: 50px;"><div class="top-subject" style="border-color: #B2D8AC">SN# 개인 정보</div></div>
 				
-				<div class="col-md-12 table-liner-top">
+					<div class="col-md-12 table-liner-top">
 						<div class="col-md-4 table-colorBg-top" style="background-color: #B2D8AC">
 						<span class="table-txt">포인트</span>
 						</div>

@@ -150,11 +150,14 @@ function sample6_execDaumPostcode() {
 							<input type="hidden" name="pass" value="<%=clb.getPass()%>">
 							<input type="hidden" name="id" value="<%=id%>">
 							
-							<div id="buttons">
-								<input type="submit" value="수정" class="submit">
-								<input type="reset" value="확인" class="cancel" onclick="location.href='./clientView.cl'">
-
+							<div class="col-md-12">	
+								<div class="col-md-4"></div>
+								<div class="col-md-4">
+									<input type="submit" value="글수정" class="colmd-4-btn">
+								</div>
+								<div class="col-md-4"></div>
 							</div>
+							
 						</form>
 					</div>
             </div>

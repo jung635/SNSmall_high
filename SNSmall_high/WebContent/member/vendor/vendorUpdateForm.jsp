@@ -20,6 +20,7 @@
 	<link href="./css/main.css" rel="stylesheet">  
 	<link href="./css/member.css" rel="stylesheet"> 
 <title>Insert title here</title>
+<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <script type="text/javascript">
 //우편번호 검색
 function sample6_execDaumPostcode() {

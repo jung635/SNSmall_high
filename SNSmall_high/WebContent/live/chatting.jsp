@@ -37,11 +37,14 @@
 
         webSocket.onmessage = function(message){
         	//alert(message.data);
-        	var jsonData = JSON.parse(message.data);
+        	//var jsonData = JSON.parse(message.data);
         	//alert(jsonData.username);
             //if(jsonData.message != null) {
-            if(jsonData.message != null) {
+            /* if(jsonData.message != null) {
                 messageTextArea.value += jsonData.message + "\n"
+            }; */
+            if(message != null) {
+                messageTextArea.value += message.data + "\n"
             };
             //messageTextArea.value += "Recieve From Server => "+message.data+"\n";
         };

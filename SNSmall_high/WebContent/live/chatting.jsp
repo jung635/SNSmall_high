@@ -20,7 +20,8 @@
     <textarea id="messageTextArea" rows="10" cols="50"></textarea>
      
     <script type="text/javascript">
-        var webSocket = new WebSocket("ws://localhost:8080/SNSmall_high/websocket");
+       // var webSocket = new WebSocket("ws://localhost:8080/SNSmall_high/websocket");
+        var webSocket = new WebSocket("ws://" + location.host + "/websocket");
         var messageTextArea = document.getElementById("messageTextArea");
 
         webSocket.onopen = function(message){

@@ -52,7 +52,7 @@ String content="";
 							String date = format.format(pb.getDate());
 							String subject;
 							if(prob==null){
-								%><tr><td colspan="8">삭제된 상품 입니다. 상품정보에 대한 문의는 회사를 통해주시기 바랍니다.(<%=pb.getOrder_num() %>)</td>
+								%><tr><td colspan="9">삭제된 상품 입니다. 상품정보에 대한 문의는 회사를 통해주시기 바랍니다.(<%=pb.getOrder_num() %>)</td>
 								<td><%
 							//구매자 일때 취소 및 환불
 							if(type.equals("client")){

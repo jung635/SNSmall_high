@@ -38,7 +38,6 @@ public class CartListAction implements Action{
 		ActionForward forward = new ActionForward();
 		forward.setPath("./mypage/cart_list.jsp");
 		forward.setRedirect(false);
-		System.out.println(forward.getPath());
 		return forward;
 	}
 

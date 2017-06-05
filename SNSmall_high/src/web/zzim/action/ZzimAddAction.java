@@ -41,8 +41,17 @@ public class ZzimAddAction implements Action{
 		zb.setSubject(subject);
 		zb.setClient_id(client_id);
 		ZzimDAO zdao = new ZzimDAO();
+		int check=zdao.ZzimCheckAction(client_id, product_num);
+		//check=0 : 해당하는 것이 DB에 저장되어있지 않다
+		if(check==0){
 		zdao.ZzimAddAction(zb);
-		
+		}else{
+			out.println("<script>");
+			out.println("alert('이미 추가된 상품 입니다.');");
+			out.println("history.back();");
+			out.println("</script>");
+			out.close();
+		}
 		forward.setPath("./ZzimList.zz");
 		forward.setRedirect(true);
 		

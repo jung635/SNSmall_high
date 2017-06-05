@@ -73,7 +73,7 @@
 					
 					<div class="col-md-12 table-liner">
 						<div class="col-md-4 table-colorBg">
-						<span class="table-txt">주소</span>
+						<span class="table-txt">주소<br><br><br></span>
 						</div>
 						<div class="col-md-8 pass-conf-text">
 						<%=postcode%><br>

@@ -18,15 +18,9 @@ public class ClientPassConfirm implements Action{
 		String id = (String)session.getAttribute("id");
 		String pass = request.getParameter("pass");
 		// 비밀번호 암호화 코드 추가
-<<<<<<< HEAD
 //		String npass = request.getParameter("pass");
 //		SecurityUtil su = new SecurityUtil();
 //		String pass = su.encryptSHA256(npass);		
-=======
-/*		String npass = request.getParameter("pass");
-		SecurityUtil su = new SecurityUtil();
-		String pass = su.encryptSHA256(npass);	*/	
->>>>>>> 3bbfdb21c9f3b72c958911746fe7b3f373e1ff59
 		// 비밀번호 암호화 코드 추가
 		
 		ClientDAO cldao = new ClientDAO();

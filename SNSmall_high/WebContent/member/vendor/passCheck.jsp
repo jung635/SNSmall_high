@@ -45,7 +45,7 @@ function submitpassCheck(){
     <br>    
      　<span style="color:#fc7700"><%=id %></span>　님의 정보를 안전하게 보호하기 위해 비밀번호를 다시 한번 확인 합니다.
      <hr style="border-color: white; margin: 4px;">
-			<form onsubmit="return submitpassCheck()" name="fr" action="./passComfirmAction.sn">
+			<form onsubmit="return submitpassCheck()" name="fr" action="./VendorPassConfirm.ve">
 				<div class="col-md-12 table-liner-top">
 				<div class="col-md-4 table-colorBg-top"><span class="table-txt">계정</span></div>
 				<div class="col-md-4 pass-conf-text"><%=id %></div>

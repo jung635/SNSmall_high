@@ -26,7 +26,36 @@
 	<link rel="apple-touch-icon-precomposed" href="images/ico/apple-touch-icon-57-precomposed.png">
 	
 	<script type="text/javascript">
-	
+	var authMailClicked=false;
+	var authCheckChecked=false;
+	var authNumCheck=false;
+	var authnum =(Math.floor)(Math.random()*1000000);
+	 //이메일 전송
+	 function sendmail(){
+		 authMailClicked=true;
+		 if(document.fr.email.value==""){
+				alert("이메일을 입력하세요");
+				document.fr.email.focus();
+				return;
+			}
+		 var email = document.fr.email.value;
+		 window.open("./mailAction.cl?email="+email+"&authNum="+authnum,"","height=400 width=400");
+	}
+
+	 //이메일 인증 체크
+	 function authCheck(){
+	 	authCheckChecked=true;
+		authInputNum = document.fr.input_num.value;
+	 	if(authInputNum==authnum){
+			alert('인증성공!');
+			authNumCheck=true;
+		}else{
+			alert('인증실패!'); 
+			authNumCheck=false;
+
+		}  	
+	} 
+	 
 	//Id,pass제어 
 	function confirmSubmit() {
 	if(document.fr.id.value == "") {
@@ -50,9 +79,23 @@
 			err_empty_pw.style.display = 'block'
 			err_empty_id.style.display = 'none'}
 		return false;
+	}else if(!authMailClicked){
+		alert("메일 인증을 해주세요");
+		return false;
+ 	}else if(document.fr.input_num.value==""){
+ 		document.fr.input_num.focus();
+		alert("메일 인증번호를 입력해주세요");
+		return false;
+ 	}else if(!authCheckChecked){
+		alert("인증번호를 확인해주세요");
+		return false;
+	}else if(!authNumCheck){
+		document.fr.input_num.focus();
+		alert("인증번호가 맞지 않습니다.");
+		return false;
 	}
 	
-}
+	}
 
 	</script>
 	
@@ -106,14 +149,32 @@
 <!-- 						</div> -->
 					</div>
 					<div class="error" id="err_empty_pw" style="display:none;">이름을 입력해주세요.</div>
-					<div class="input_row" id="id_area">
+					<div class="input_row" id="email_area">
 						<span class="input_box1">
-							<label for="id" id="label_id_area" class="lbl"   >이메일</label>
+						<div class="col-sm-10">
+						<label for="id" id="label_email_area" class="lbl"   >이메일</label>
+						
 							<input type="email" id="email" name="email" tabindex="7" accesskey="L" placeholder="이메일" class="int" maxlength="41" value="">
+						</div>
+						<div class="col-sm-2"><input type="button" value="전송" style="border: none; background-color: #fff; margin-top:2px; font-size: 20px;" onclick="sendmail()"></div>
+							
 						</span>
 <!-- 						<button type="button" disabled="" title="delete" id="id_clear" class="wrg">삭제</button> -->
 					</div>
-					<div  id="err_empty_id" class="error" style="display:none; ">이메일을 입력해주세요.</div>
+					
+					<div class="input_row" id="input_num_area">
+						<span class="input_box1">
+						<div class="col-sm-10">
+						<label for="id" id="label_input_num_area" class="lbl"   >인증번호</label>
+						
+							<input type="password" id="input_num" name="input_num" tabindex="7" accesskey="L" placeholder="인증번호" class="int" maxlength="41" value="">
+						</div>
+						<div class="col-sm-2"><input type="button" value="확인" style="border: none; background-color: #fff; margin-top:2px; font-size: 20px;" onclick="authCheck()"></div>
+							
+						</span>
+<!-- 						<button type="button" disabled="" title="delete" id="id_clear" class="wrg">삭제</button> -->
+					</div>
+					
 					<input type="submit" title="비밀번호찾기" alt="비밀번호찾기" tabindex="12" value="비밀번호찾기" class="btn_global">									
 				</fieldset>
 

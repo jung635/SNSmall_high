@@ -52,7 +52,6 @@ public class CartAddAction implements Action{
 		cb.setPrice(allprice);
 		cb.setAmount(amount);
 		cb.setSns_id(sns_id);
-		//sns 해야됨
 		cdao.CartAdd(cb);
 		forward.setRedirect(true);
 		forward.setPath("./CartList.ca");

@@ -14,57 +14,114 @@
 	<link href="./css/bootstrap.min.css" rel="stylesheet">
 	<link href="./css/header.css" rel="stylesheet">
 	<link href="./css/inner.css" rel="stylesheet">
-	<link href="./css/main.css" rel="stylesheet"> 
+	<link href="./css/main.css?ver=3002" rel="stylesheet"> 
 <title>Insert title here</title>
 <!-- 체크박스에 체크가 되어있으면 function에서 합쳐서 합가격 리턴  -->
+<script src="./js/jquery-3.2.0.js"></script>
 <script type="text/javascript">
+$(document).ready(function(){
+	$('input[name=check]').click(function(){
+	 	var sum=0;
+	 	var client_id ="";
+	 	var product_num ="";
+	 	var amount="";
+	 	var vendor_id ="";
+	 	var sns_id="";
+	 	var option1="";
+	 	var option2="";
+	 	var option3="";
+	 	var num="";
+		$('input[name=check]').each(function(i){
+			if($('input[name=check]').eq(i).val()==null){sumtoint=0;}
+			
+			$('input[name=price]').val(sum);
+				if($('input[name=check]').eq(i).is(":checked")){
+					client_id+=$('input[name=client_id_input]').eq(i).val()+",";
+					$('input[name=client_id]').val(client_id);
+					
+					var sumtoint = $('input[name=check]').eq(i).val();
+					sum+=parseInt(sumtoint);
+					$('input[name=price]').val(sum);
+					
+					product_num+=$('input[name=product_num_input]').eq(i).val()+",";
+					$('input[name=product_num]').val(product_num);
+					
+					amount+=$('input[name=amount_input]').eq(i).val()+",";
+					$('input[name=amount]').val(amount);
+					
+					vendor_id+=$('input[name=vendor_id_input]').eq(i).val()+",";
+					$('input[name=vendor_id]').val(vendor_id);
+					
+					if($('input[name=sns_id_input]').eq(i).val()!=null){
+						sns_id+=$('input[name=sns_id_input]').eq(i).val()+",";
+						$('input[name=sns_id]').val(sns_id);						
+					}
+					
+					option1+=$('input[name=option1_input]').eq(i).val()+",";
+					$('input[name=option1]').val(option1);	
 
+					option2+=$('input[name=option2_input]').eq(i).val()+",";
+					$('input[name=option2]').val(option1);
+					
+					option3+=$('input[name=option3_input]').eq(i).val()+",";
+					$('input[name=option3]').val(option3);	
+					
+					num+=$('input[name=num_unput]').eq(i).val()+",";
+					$('input[name=num]').val(num);	
+					
+				}
+		});
+	});
+});
 function myfunction(){
-	var sum=0;
-	var client_id ="";
-	var product_num ="";
-	var amount="";
-	var vendor_id ="";
-	var sns_id="";
-	var option1="";
-	var option2="";
-	var option3="";
-	var num="";
-	var checklength = document.form1.check.length;
-	for(i=0;i<checklength;i++){
-		if(document.form1.check[i].checked){
-			sum+=parseInt(document.form1.check[i].value);
-			client_id += document.form1.client_id_input[i].value+","; 
-			product_num += document.form1.product_num_input[i].value+","; 
-			amount += document.form1.amount_input[i].value+","; 
-			vendor_id += document.form1.vendor_id_input[i].value+","; 
-			if((document.form1.sns_id_input[i].value)==null){
-				sns_id=" ,";
-			}else{
-				sns_id += document.form1.sns_id_input[i].value+","; 
-			}
-			option1	+= document.form1.option1_input[i].value+","; 
-			option2 += document.form1.option2_input[i].value+","; 
-			option3 += document.form1.option3_input[i].value+","; 
-			num += document.form1.num_input[i].value+",";
-		}
-	}
-	document.getElementById("price").innerText=sum;
-	document.getElementById("client_id").value=client_id;
-	document.getElementById("product_num").value=product_num;
-	document.getElementById("amount").value=amount;
-	document.getElementById("vendor_id").value=vendor_id;
-	document.getElementById("sns_id").value=sns_id;
-	document.getElementById("option1").value=option1;
-	document.getElementById("option2").value=option2;
-	document.getElementById("option3").value=option3;
-	document.getElementById("num").value=num;
+	
+	
+// 	var sum=0;
+// 	var client_id ="";
+// 	var product_num ="";
+// 	var amount="";
+// 	var vendor_id ="";
+// 	var sns_id="";
+// 	var option1="";
+// 	var option2="";
+// 	var option3="";
+// 	var num="";
+// 	var checklength = document.form1.check.length;
+// 	for(i=0;i<checklength;i++){
+// 		if(document.form1.check[i].checked){
+// 			sum+=parseInt(document.form1.check[i].value);
+// 			client_id += document.form1.client_id_input[i].value+","; 
+// 			product_num += document.form1.product_num_input[i].value+","; 
+// 			amount += document.form1.amount_input[i].value+","; 
+// 			vendor_id += document.form1.vendor_id_input[i].value+","; 
+// 			if((document.form1.sns_id_input[i].value)==null){
+// 				sns_id=" ,";
+// 			}else{
+// 				sns_id += document.form1.sns_id_input[i].value+","; 
+// 			}
+// 			option1	+= document.form1.option1_input[i].value+","; 
+// 			option2 += document.form1.option2_input[i].value+","; 
+// 			option3 += document.form1.option3_input[i].value+","; 
+// 			num += document.form1.num_input[i].value+",";
+// 		}
+// 	}
+// 	document.getElementById("price").innerText=sum;
+// 	document.getElementById("client_id").value=client_id;
+// 	document.getElementById("product_num").value=product_num;
+// 	document.getElementById("amount").value=amount;
+// 	document.getElementById("vendor_id").value=vendor_id;
+// 	document.getElementById("sns_id").value=sns_id;
+// 	document.getElementById("option1").value=option1;
+// 	document.getElementById("option2").value=option2;
+// 	document.getElementById("option3").value=option3;
+// 	document.getElementById("num").value=num;
 }
 
 
 function check1(){
-	if(document.form1.amount.value==null){
-		
+	if(document.form1.price.value==0){
+		alert("체크된 상품이 없습니다.");
+		return false;
 	}else{
 		document.form1.submit();
 	}
@@ -132,7 +189,7 @@ for(int i=0;i<cl.size();i++){
 <input type="hidden" name = "option1_input" value="<%=cb.getOption1()%>">
 <input type="hidden" name = "option2_input" value="<%=cb.getOption2()%>">
 <input type="hidden" name = "option3_input" value="<%=cb.getOption3()%>">
-<input type="checkbox" name="check" value="<%=cb.getPrice()%>" onchange="myfunction()" checked>
+<input type="checkbox" name="check" id="check" value="<%=cb.getPrice()%>" onchange="myfunction()">
 
 <!-- 장바구니 정보 -->
 <a href="ProductDetail.pr?product_num=<%=prob.getProduct_num() %>">
@@ -165,7 +222,8 @@ for(int i=0;i<cl.size();i++){
 %>
 
 <br>
-총가격 :<span id="price"><%=sum %></span>
+총가격 :<input type="text" name="price" value="0" readonly>
+
 <input type="hidden" name = "num" id="num" value="<%=num%>">
 <input type="hidden" name = "client_id" id="client_id" value="<%=client_id%>">
 <input type="hidden" name = "product_num" id="product_num" value="<%=product_num%>">
@@ -175,9 +233,8 @@ for(int i=0;i<cl.size();i++){
 <input type="hidden" name = "option1" id="option1" value="<%=option1%>">
 <input type="hidden" name = "option2" id="option2" value="<%=option2%>">
 <input type="hidden" name = "option3" id="option3" value="<%=option3%>">
-<%System.out.println("sum : "+sum); %>
  <br>
-	<input type="submit" value="결제하기">
+	<input type="button" value="결제하기" onclick="check1()">
  </form>
 </div>
 </div>

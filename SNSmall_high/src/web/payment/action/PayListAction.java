@@ -42,8 +42,8 @@ public class PayListAction implements Action {
 				}
 				request.setAttribute("pay_list_done", pay_list_done);
 			}else{
-				pay_list = pdao.getPaymentById(page, client_id, method);
-				request.setAttribute("pay_list2", pay_list);
+				pay_list2 = pdao.getPaymentById(page, client_id, method);
+				request.setAttribute("pay_list2", pay_list2);
 			}
 		}else if(type.equals("vendor")){
 			vendor_id =(String)session.getAttribute("id");

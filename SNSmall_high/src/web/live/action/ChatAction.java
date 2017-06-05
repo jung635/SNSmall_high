@@ -1,27 +1,19 @@
 package web.live.action;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.websocket.OnClose;
 import javax.websocket.OnError;
 import javax.websocket.OnMessage;
 import javax.websocket.OnOpen;
 import javax.websocket.server.ServerEndpoint;
 @ServerEndpoint("/websocket")
-public class ChatAction implements Action{
-
-	@Override
-	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		
-		return null;
-	}
+public class ChatAction{
 	
 	 @OnOpen
 	    public void handleOpen(){
 	        System.out.println("client is now connected...");
 	    }
 	    /**
-	     * À¥ ¼ÒÄÏÀ¸·ÎºÎÅÍ ¸Þ½ÃÁö°¡ ¿À¸é È£ÃâµÇ´Â ÀÌº¥Æ®
+	     * ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Îºï¿½ï¿½ï¿½ ï¿½Þ½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ È£ï¿½ï¿½Ç´ï¿½ ï¿½Ìºï¿½Æ®
 	     * @param message
 	     * @return
 	     */
@@ -33,14 +25,14 @@ public class ChatAction implements Action{
 	        return replymessage;
 	    }
 	    /**
-	     * À¥ ¼ÒÄÏÀÌ ´ÝÈ÷¸é È£ÃâµÇ´Â ÀÌº¥Æ®
+	     * ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ È£ï¿½ï¿½Ç´ï¿½ ï¿½Ìºï¿½Æ®
 	     */
 	    @OnClose
 	    public void handleClose(){
 	        System.out.println("client is now disconnected...");
 	    }
 	    /**
-	     * À¥ ¼ÒÄÏÀÌ ¿¡·¯°¡ ³ª¸é È£ÃâµÇ´Â ÀÌº¥Æ®
+	     * ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ È£ï¿½ï¿½Ç´ï¿½ ï¿½Ìºï¿½Æ®
 	     * @param t
 	     */
 	    @OnError

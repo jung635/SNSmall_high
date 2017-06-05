@@ -41,14 +41,7 @@ public class LiveFrontController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		}else if(command.equals("/ChatAction.li")){
-			action = new ChatAction();
-			try {
-				forward = action.execute(request, response);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		} else if(command.equals("/Chatting.li")){
+		}else if(command.equals("/Chatting.li")){
 			forward = new ActionForward();
 			forward.setPath("./live/chatting.jsp");
 			forward.setRedirect(false);

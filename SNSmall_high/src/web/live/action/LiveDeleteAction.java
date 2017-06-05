@@ -16,7 +16,7 @@ public class LiveDeleteAction implements Action{
 		LiveDAO ldao = new LiveDAO();
 		ldao.deleteLive(video_id);
 		out.println("<script>");
-		//out.println("window.close();");
+		out.println("window.close();");
 		out.println("</script>");
 		return null;
 	}

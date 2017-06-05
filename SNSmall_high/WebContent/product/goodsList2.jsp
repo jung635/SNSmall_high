@@ -15,7 +15,7 @@
 	<link href="css/bootstrap.min.css" rel="stylesheet">
 	<link href="css/header.css" rel="stylesheet">
 	<link href="css/inner.css" rel="stylesheet">
-	<link href="css/main.css" rel="stylesheet">
+	<link href="css/main.css?ver=1" rel="stylesheet">
 <title>Insert title here</title>
 
 </head>
@@ -77,8 +77,8 @@
                 </h3>
                 <p><%=pb.getPrice() %>원</p>
                 <p><%=pb.getDate() %><a href="ZzimAddAction.zz?product_num=<%=pb.getProduct_num() %>&subject=<%=pb.getSubject() %>&price=<%=pb.getPrice() %>">
-                <%if(check==0){ %>찜하기<img src="./vendor_img/zzimheart.jpg">
-                <%}else if(check==1){ %>찜한상품<img src="./vendor_img/zzimfullheart.jpg"><%} %></a></p>
+                <%if(check==0){ %>찜하기<img src="./vendor_img/zzimheart.jpg" height="20px;">
+                <%}else if(check==1){ %>찜한상품<img src="./vendor_img/zzimfullheart.jpg" height="20px"><%} %></a></p>
             </div>
 		<%}} %>
 

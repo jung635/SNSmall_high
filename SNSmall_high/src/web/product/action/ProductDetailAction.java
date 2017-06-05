@@ -25,7 +25,7 @@ public class ProductDetailAction implements Action{
 		if(sns_id == null){
 			sns_id = "";
 		}else{
-			session.setAttribute("sns_id", sns_id);
+			session.setAttribute("link_id", sns_id);
 		}
 		
 		int product_num = Integer.parseInt(request.getParameter("product_num"));

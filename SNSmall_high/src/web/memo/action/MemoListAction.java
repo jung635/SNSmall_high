@@ -14,13 +14,13 @@ public class MemoListAction implements Action{
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
-		System.out.println("Memo List execute()");
+		//System.out.println("Memo List execute()");
 		
 		// 세션값 제어
 		HttpSession session=request.getSession();
 		String id = (String)session.getAttribute("id");
 		
-		System.out.println("id : "+id);
+		//System.out.println("id : "+id);
 		// MemoDAO medao 객체 생성
 		MemoDAO medao = new MemoDAO();
 				

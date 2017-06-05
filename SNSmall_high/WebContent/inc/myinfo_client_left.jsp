@@ -14,6 +14,5 @@
 	<a href="ZzimList.zz" class="list-group-item">찜 목록</a>
 	<a href="CartList.ca" class="list-group-item">장바구니</a>
 	<a href="AlarmListView.al" class="list-group-item">메시지 리스트</a>
-	<a href="./CartList.ca" class="list-group-item">장바구니</a>
 </div>
   

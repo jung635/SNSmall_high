@@ -30,6 +30,8 @@ public class SnsDetailAction implements Action{
 		int all_amount_rank = 0;
 		int cat_amount_rank = 0;
 		int rank_percent = 0;
+		int latest_size = 0;
+		int popular_size = 0;
 		
 		SnsDAO sdao = new SnsDAO();
 	
@@ -79,9 +81,12 @@ public class SnsDetailAction implements Action{
 		}else{
 			rank_percent = 100;
 		}
-		
+		latest_size = (latest_list.size()>4) ? 4:latest_list.size();
+		popular_size = (popular_list.size()>4) ? 4:popular_list.size();
 
 		request.setAttribute("sb", sb);
+		request.setAttribute("latest_size", latest_size);
+		request.setAttribute("popular_size", popular_size);
 		request.setAttribute("all_price_rank", all_price_rank);
 		request.setAttribute("cat_price_rank", cat_price_rank);
 		request.setAttribute("all_amount_rank", all_amount_rank);

@@ -11,7 +11,7 @@ public class MemoContentGetAction implements Action{
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
-		System.out.println("Memo Content Get execute()");
+		//System.out.println("Memo Content Get execute()");
 		
 		// num, pageNum 파리미터 가져오기
 		int num = Integer.parseInt(request.getParameter("num"));

@@ -38,6 +38,8 @@ function fncheckdelete(para_getNum){
 		return;
 	}
 }
+
+
  
 </script>
 </head>
@@ -99,7 +101,8 @@ if(content !=null){
 
 <!-- <input type="button" value="쪽지삭제" onclick="location.href='./MemoDeleteGet.me?num=<%=meb.getNum()%>&pageNum=<%=pageNum%>'">-->
 <input type="button" value="쪽지삭제" onclick="javascript:fncheckdelete(<%=meb.getNum()%>);">
-<input type="button" value="답글쓰기" onclick="location.href='./MemoReWrite.me?num=<%=meb.getNum()%>&re_ref=<%=meb.getRe_ref()%>&re_lev=<%=meb.getRe_lev()%>&re_seq=<%=meb.getRe_seq()%>&from_id=<%=meb.getFrom_id()%>&to_id=<%=meb.getTo_id()%>'">
+<input type="button" value="답글쓰기" onclick="javascript:memoreopen(<%=meb.getNum()%>, '<%=meb.getFrom_id()%>', '<%=meb.getTo_id()%>');">
+<%-- <input type="button" value="답글쓰기" onclick="location.href='./MemoReWrite.me?num=<%=meb.getNum()%>&from_id=<%=meb.getFrom_id()%>&to_id=<%=meb.getTo_id()%>'"> --%>
 <input type="button" value="쪽지목록" onclick="location.href='./MemoListGet.me?pageNum=<%=pageNum%>'"></td></tr>
 </table>
 
@@ -107,6 +110,11 @@ if(content !=null){
        <input type="hidden" name="num" value="">
 </form>
 
+<form action="./MemoReWrite.me?pageNum=<%=pageNum %>&from_id=<%=meb.getFrom_id()%>&to_id=<%=meb.getTo_id() %>" method="post" name="frmrewrite" >
+       <input type="hidden" name="num" value="">
+       <input type="hidden" name="from_id" value="">
+       <input type="hidden" name="to_id" value="">
+</form>
 
     <!-- /.container -->
 <!--     <div class="container"> -->
@@ -133,6 +141,32 @@ if(content !=null){
   </div>
     <!-- /.container -->
     <!-- jQuery -->
-    
+   
+<script type="text/javascript">
+function memoreopen(para_getNum, para_getFrom_id, para_getTo_id){
+	
+	window.open("./MemoReWrite.me?num=<%=meb.getNum()%>&from_id=<%=meb.getFrom_id()%>&to_id=<%=meb.getTo_id()%>", "답장하기", "width=540, height=490, top=100, left=100");
+	
+<%-- 	window.open("image_test.jsp?num="+number+"&picture=<%=pb.getFile() %>"
+		?pageNum=<%=pageNum %>&from_id=<%=meb.getFrom_id()%>&to_id=<%=meb.getTo_id() %> --%>
+		
+//  	if(para_getNum!=""){
+		
+// 		document.frmrewrite.num.value=para_getNum;
+// 		document.frmrewrite.from_id.value=para_getFrom_id;
+// 		document.frmrewrite.to_id.value=para_getTo_id;
+		
+		
+//  		/* document.write("num : "+document.frmrewrite.num.value+"from_id : "+document.frmrewrite.from_id.value+"to_id : "+document.frmrewrite.to_id.value); */
+		
+// 	}else{
+// 		alert("메모가 이상하다");
+// 		return;
+// 	}
+	
+}
+
+</script>
+
 </body>
 </html>

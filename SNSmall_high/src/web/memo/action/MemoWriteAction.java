@@ -14,7 +14,7 @@ public class MemoWriteAction implements Action{
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		System.out.println("MemoWriteAction execute()");
+		//System.out.println("MemoWriteAction execute()");
 		
 		//한글처리
 		request.setCharacterEncoding("utf-8");
@@ -36,12 +36,14 @@ public class MemoWriteAction implements Action{
 		 MemoDAO medao = new MemoDAO();
 		// 메서드 호출 insertMemo(meb)
 		 medao.insertMemo(meb);
+		
 		 
 		AlarmBean ab = new AlarmBean(); 
-		ab.setContent("메모_알람_테스트 > ");
-		ab.setId(request.getParameter("from_id"));
-		ab.setMove("memo");
-		 
+		ab.setContent("쪽지가 도착했습니다");
+		ab.setId(request.getParameter("to_id"));
+		ab.setMove("MemoListGet.me");
+	
+		
 		AlarmDAO adao = new AlarmDAO();
 		adao.insertAlarm(ab);
 		

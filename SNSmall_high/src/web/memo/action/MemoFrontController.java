@@ -136,14 +136,14 @@ public class MemoFrontController extends HttpServlet{
 	
 	@Override	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("doGet()메서드 호출");
+		//System.out.println("doGet()메서드 호출");
 		// doProcess() 메서드 호출
 		doProcess(request, response);
 	}
 
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("doPost()메서드 호출");
+		//System.out.println("doPost()메서드 호출");
 		// doProcess() 메서드 호출
 		doProcess(request, response);
 	}

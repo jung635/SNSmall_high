@@ -574,20 +574,20 @@ public class PaymentDAO {
 	// getorderNum 아이디,start,pageSize, order로 찾음
 	public List<String> getOrderNumList(int pageSize, String client_id, String method) {
 		List<String> list = new ArrayList<String>();
-		StringBuffer sql = new StringBuffer("select order_num from payment where client_id = ? and ");
+		StringBuffer sql = new StringBuffer("select order_num from payment where client_id = ? ");
 		String order_num = "";
 		try {
 			con = getConnection();
 			if (method.equals("payDone")) {
-				sql.append("state = 'payDone' or state = 'delivery' or state = 'cancelHold' or state = 'waiting' or state = 'cancel' or state = 'w_cancelHold' ");
+				sql.append(" ");
 			} else if (method.equals("done")) {
-				sql.append("state = 'done'");
+				sql.append(" and state = 'done'");
 			} else if (method.equals("delivery")) {
-				sql.append("state = 'delivery'");
+				sql.append(" and state = 'delivery'");
 			} else if (method.equals("cancelHold")) {
-				sql.append("state = 'cancelHold' or state = 'cancel' or state = 'w_cancelHold'");
+				sql.append(" and state = 'cancelHold' or state = 'cancel' or state = 'w_cancelHold'");
 			} else if (method.equals("waiting")) {
-				sql.append("state = 'waiting'");
+				sql.append(" and state = 'waiting'");
 			}
 			sql.append(" group by order_num order by date desc limit ? ");
 			pstmt = con.prepareStatement(sql.toString());
@@ -720,7 +720,7 @@ public class PaymentDAO {
 			} else if (method.equals("delivery")) {
 				sql.append("state = 'delivery'");
 			} else if (method.equals("cancelHold")) {
-				sql.append("state = 'cancelHold' or state = 'cancel' or state = 'w_cancelHold'");
+				sql.append("(state = 'cancelHold' or state = 'cancel' or state = 'w_cancelHold')");
 			} else if (method.equals("waiting")) {
 				sql.append("state = 'waiting'");
 			}
@@ -891,7 +891,7 @@ public class PaymentDAO {
 			pstmt.setInt(1, num);
 			rs=pstmt.executeQuery();
 			if(rs.next()){
-				
+				pb.setAddress(rs.getString("address"));
 				pb.setAmount(rs.getInt("amount"));
 				pb.setDate(rs.getTimestamp("date"));
 				pb.setMessage(rs.getString("message"));

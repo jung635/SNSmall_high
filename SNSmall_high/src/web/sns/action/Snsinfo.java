@@ -13,7 +13,7 @@ public class Snsinfo implements Action {
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
-		System.out.println("SnsInfo execute()");
+		//System.out.println("SnsInfo execute()");
 		
 		//세션제어
 		HttpSession session = request.getSession();

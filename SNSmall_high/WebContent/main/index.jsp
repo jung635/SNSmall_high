@@ -252,10 +252,13 @@ function productSearch_exe(){
 					<div class="carousel-inner team-members">
 						<div class="row item active">
 							<%List<SnsBean> list = (List<SnsBean>)request.getAttribute("list");
+							int length = 0;
 							if(list.size()==0){%>
 								리스트가 없습니다.
 							<%}else{
-								for(int i=0; i<4; i++){
+								if(list.size()<4) length = list.size();
+								else length = 4;
+								for(int i=0; i<length; i++){
 									SnsBean sb = list.get(i);%>
 									<div class="col-sm-6 col-md-3">
 										<div class="single-member">
@@ -290,39 +293,43 @@ function productSearch_exe(){
 								<%} %>
 							</div>
 							<div class="row item">
-								<%for(int i=4; i<8; i++){
-									SnsBean sb = list.get(i);%>
-									<div class="col-sm-6 col-md-3">
-										<div class="single-member">
-											<div id="profile_img_wrap">
-												<%if(i==0){%>
-													<span id="ranking_sns_first">1등!</span>
-												<%}else{ %>
-													<span id="ranking_sns"><%=i+1 %>등</span>
-												<%} %>										
-												<img src="./sns_pro_upload/<%=sb.getProfile_img() %>" alt="team member" />
-											</div>
-											<div id="star_list_detail">
-												<h3><a href="SnsDetailAction.sn?sns_id=<%=sb.getSns_id()%>"><%=sb.getName() %></a>
-												<small><%=sb.getCategory() %>/<%=sb.getRank() %></small></h3>
-												<p><%=sb.getContent() %></p>
-											</div>
-											<div class="socials">
-												<%if(sb.getFacebook().trim().length()!=0){%>
-													<a href="<%=sb.getFacebook()%>"><i class="fa fa-facebook"></i></a>
-												<%}if(sb.getTwitter().trim().length()!=0){%>							
-												<a href="<%=sb.getTwitter()%>"><i class="fa fa-twitter"></i></a>
-												<%}if(sb.getInstagram().trim().length()!=0){%>			
-												<a href="<%=sb.getInstagram()%>"><i class="fa fa-instagram"></i></a>
-												<%}if(sb.getBlog().trim().length()!=0){%>	
-												<a href="<%=sb.getBlog()%>"><i class="fa fa-bold"></i></a>
-												<%}if(sb.getEtc().trim().length()!=0){%>	
-												<a href="<%=sb.getEtc()%>"><i class="fa fa-smile-o"></i></a>
-												<%} %>
+								<%
+								if(list.size()>4){
+									if(list.size()<8) length = list.size();
+									else length = 8;
+									for(int i=4; i<8; i++){
+										SnsBean sb = list.get(i);%>
+										<div class="col-sm-6 col-md-3">
+											<div class="single-member">
+												<div id="profile_img_wrap">
+													<%if(i==0){%>
+														<span id="ranking_sns_first">1등!</span>
+													<%}else{ %>
+														<span id="ranking_sns"><%=i+1 %>등</span>
+													<%} %>										
+													<img src="./sns_pro_upload/<%=sb.getProfile_img() %>" alt="team member" />
+												</div>
+												<div id="star_list_detail">
+													<h3><a href="SnsDetailAction.sn?sns_id=<%=sb.getSns_id()%>"><%=sb.getName() %></a>
+													<small><%=sb.getCategory() %>/<%=sb.getRank() %></small></h3>
+													<p><%=sb.getContent() %></p>
+												</div>
+												<div class="socials">
+													<%if(sb.getFacebook().trim().length()!=0){%>
+														<a href="<%=sb.getFacebook()%>"><i class="fa fa-facebook"></i></a>
+													<%}if(sb.getTwitter().trim().length()!=0){%>							
+													<a href="<%=sb.getTwitter()%>"><i class="fa fa-twitter"></i></a>
+													<%}if(sb.getInstagram().trim().length()!=0){%>			
+													<a href="<%=sb.getInstagram()%>"><i class="fa fa-instagram"></i></a>
+													<%}if(sb.getBlog().trim().length()!=0){%>	
+													<a href="<%=sb.getBlog()%>"><i class="fa fa-bold"></i></a>
+													<%}if(sb.getEtc().trim().length()!=0){%>	
+													<a href="<%=sb.getEtc()%>"><i class="fa fa-smile-o"></i></a>
+													<%} %>
+												</div>
 											</div>
 										</div>
-									</div>
-								<%}} %>
+								<%}}} %>
 						</div>
 					</div>
 				</div>

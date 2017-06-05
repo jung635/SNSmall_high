@@ -115,7 +115,9 @@ function showSlides(n, full_length) {
 		}
 	}
 } 
-
+function memopen(id){
+	window.open("./MemoWrite.me?toId="+id, "쪽지쓰기", "width=550, height=525, top=100, left=100");
+}
 </script>
 </head>
 <body>
@@ -125,25 +127,23 @@ String type = "";
 if((String)session.getAttribute("type") != null)
 type= (String)session.getAttribute("type");
 SnsBean sb= (SnsBean)request.getAttribute("sb");
-int latest_size = 0;
-int popular_size = 0;
-List<Integer> latest_list = null;
-List<Integer> popular_list = null;
-if(request.getAttribute("latest_list") != null){
-	latest_list= (List<Integer>)request.getAttribute("latest_list");
-	latest_size = (latest_list.size()>4) ? 4:latest_list.size();
-}
-if(request.getAttribute("popular_list") != null){
-	popular_list= (List<Integer>)request.getAttribute("popular_list");
-	popular_size = (popular_list.size()>4) ? 4:popular_list.size();
-}
-ProductDAO pdao = new ProductDAO();
-ProductBean pb;
+int latest_size = (Integer)request.getAttribute("latest_size");
+int popular_size = (Integer)request.getAttribute("popular_size");
 int all_price_rank = (Integer)request.getAttribute("all_price_rank");
 int cat_price_rank = (Integer)request.getAttribute("cat_price_rank");
 int all_amount_rank = (Integer)request.getAttribute("all_amount_rank");
 int cat_amount_rank = (Integer)request.getAttribute("cat_amount_rank");
 int rank_percent = (Integer)request.getAttribute("rank_percent");
+List<Integer> latest_list = null;
+List<Integer> popular_list = null;
+if(request.getAttribute("latest_list") != null){
+	latest_list= (List<Integer>)request.getAttribute("latest_list");
+}
+if(request.getAttribute("popular_list") != null){
+	popular_list= (List<Integer>)request.getAttribute("popular_list");
+}
+ProductDAO pdao = new ProductDAO();
+ProductBean pb;
 %>
 <!-- Page Content -->
 <div class="container">
@@ -174,7 +174,7 @@ int rank_percent = (Integer)request.getAttribute("rank_percent");
             </div>
             <section id="our-team">
             	<%if(type.equals("vendor")){ %>
-            	<div><input type="button" value="쪽지보내기" style="float:right"></div>
+            	<div><input type="button" value="쪽지보내기" style="float:right" onclick="memopen('<%=sb.getSns_id()%>')"></div>
             	<%} %>
 				<div class="socials">
 						<%if(sb.getFacebook().trim().length()!=0){%>

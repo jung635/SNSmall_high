@@ -12,7 +12,7 @@ public class MemoDeleteGetAction implements Action{
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
-		System.out.println("Memo Delete Get execute()");
+		//System.out.println("Memo Delete Get execute()");
 		
 		//한글처리
 		request.setCharacterEncoding("utf-8");

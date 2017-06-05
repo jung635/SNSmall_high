@@ -56,6 +56,7 @@ public class SnsDAO {
 				sb.setBlog(rs.getString("blog"));
 				sb.setEtc(rs.getString("etc"));
 				sb.setRank(rs.getString("rank"));
+				sb.setSns_id(rs.getString("sns_id"));
 			}
 		} catch (Exception e) {e.printStackTrace();
 		} finally {if (rs != null) {try {rs.close();} catch (Exception ex) {}}

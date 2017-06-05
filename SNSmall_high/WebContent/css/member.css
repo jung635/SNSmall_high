@@ -204,12 +204,18 @@
 }
 .ok-btn{
 	border: none;
-	background-color: #43484E;
+	background-color: #B2D8AC;
 	padding: 10px 50px 10px 50px;
-	color: #fff;
+	color: #43484E;
+	font-weight:bold;
 	margin: 30px 0 50px 0;
 	border-radius:10px;
 	
+}
+.ok-btn:hover{
+	background-color: #43484E;
+	color: #fff;
+
 }
 /* mypage_sns.jsp */
 
@@ -285,12 +291,26 @@ border-bottom: 1px solid #ccc;
 }
 .colmd-4-btn{
 	border:none;
-	background-color: #43484E;
+	font-weight:bold;
+	background-color: #B2D8AC;
 	border-radius: 5px;
 	padding: 10px 100px 10px 100px;
-	color:#fff;
+	color:#43484E;
 	margin: 30px 0 0 50px;
 }
 .colmd-4-btn:hover{
-	background-color: #fc7700;
+	background-color: #43484E;
+	color: #fff;
+}
+.dup3{
+	border: none;
+	padding: 3px 12px 3px 12px;;
+	font-size: 11px;
+	margin: 15px;	
+}
+.dup4{
+	border: none;
+	padding: 3px 12px 3px 12px;;
+	font-size: 11px;
+	margin-top: 8px;
 }

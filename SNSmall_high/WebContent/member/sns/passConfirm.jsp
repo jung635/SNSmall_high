@@ -42,7 +42,7 @@ function submitpassCheck(){
      </div>
      <div class="col-md-9">
    <div style="margin: 50px 0 50px 0">
-    <div class="top-subject">회원정보 확인</div>
+    <div class="top-subject">회원 정보 확인</div>
     <br>    
      　<span style="color:#fc7700"><%=id %></span>　님의 정보를 안전하게 보호하기 위해 비밀번호를 다시 한번 확인 합니다.
      <hr style="border-color: white; margin: 4px;">

@@ -17,6 +17,7 @@
 	<link href="./css/header.css" rel="stylesheet">
 	<link href="./css/inner.css" rel="stylesheet">
 	<link href="./css/main.css" rel="stylesheet"> 
+	<link href="./css/member.css" rel="stylesheet"> 
 <title>Insert title here</title>
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <script type="text/javascript">
@@ -90,46 +91,74 @@ function sample6_execDaumPostcode() {
                 <jsp:include page="../../inc/myinfo_client_left.jsp"/>               
             </div>
             <div class="col-md-9">
-                <div class="thumbnail">
+               <div style="margin: 50px 0 50px 0">
+					<div class="top-subject">내 정보 수정</div>
 						<form action="./clientUpdateAction.cl" id="client" method="post"
 							name="fr">
 
-							<table>
-								<tr>
-									<td class="left"><label>아이디</label></td>
-									<td class="left"><%=id%></td>
-								</tr>
-								<tr>
-									<td class="left"><label>비밀번호</label></td>
-									<td class="left"><input type="button" onclick="location.href='./passModify.cl'" value="변경하기"></td>
-								</tr>
-								<tr>
-									<td class="left"><label>이름</label></td>
-									<td class="left"><input type="text" name="name" value="<%=clb.getName()%>"></td>
-								</tr>								
-								<tr>
-									<td class="left"><label>주소</label></td>
-									<td class="left"><input type="text" name="postcode" id="postcode" placeholder="우편번호" value="<%=postcode%>">
-									<input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기"></td></tr>
-								<tr>
-									<td class="left"></td><td><input type="text" name="address" id="address" placeholder="주소" value="<%=address%>"></td>
-								</tr>
-								<tr>
-									<td class="left"></td><td><input type="text" name="address2" id="address2" placeholder="상세주소" value="<%=address2%>"></td>
-								</tr>
-								<tr>
-									<td class="left"><label>연락처</label></td>
-									<td class="left"><input type="text" name="phone" value="<%=clb.getPhone()%>"></td>
-								</tr>																
-							</table>
+							<div class="col-md-12 table-liner-top">
+								<div class="col-md-4 table-colorBg-top">
+									<span class="table-txt">아이디</span>
+								</div>
+								<div class="col-md-4 pass-conf-text"><%=id %></div>
+								<div class="col-md-4"></div>
+							</div>
+
+							<div class="col-md-12 table-liner">
+								<div class="col-md-4 table-colorBg">
+									<span class="table-txt">이름</span>
+								</div>
+								<div class="col-md-4 pass-conf-txt">
+									<input type="text" value="<%=clb.getName()%>" class="form-control">
+								</div>
+								<div class="col-md-4"></div>
+							</div>
+					
+							<div class="col-md-12 table-liner">
+								<div class="col-md-4 table-colorBg">
+									<span class="table-txt">비밀번호</span>
+								</div>
+								<div class="col-md-4 pass-conf-txt">
+									<input type="button" onclick="location.href='./passModify.cl'" value="변경하기" class="dup4">
+								</div>
+								<div class="col-md-4"></div>
+							</div>
+
+							<div class="col-md-12 table-liner">
+								<div class="col-md-4 table-colorBg">
+									<span class="table-txt">주소</span>
+								</div>
+								<div class="col-md-4 pass-conf-txt">
+									<input type="text" name="postcode" id="postcode" placeholder="우편번호" value="<%=postcode%>" class="form-control" style="margin-bottom: 5px;">
+									<input type="text" name="address" id="address" placeholder="주소" value="<%=address%>" class="form-control" style="margin-bottom: 5px;">	
+									<input type="text" name="address2" id="address2" placeholder="상세주소" value="<%=address2%>" class="form-control" style="margin-bottom: 5px;">
+								</div>
+								<div class="col-md-4">
+									<input type="button" onclick="sample6_execDaumPostcode()" class="dup3" value="우편번호 찾기">
+								</div>
+							</div>
+							
+							<div class="col-md-12 table-liner">
+								<div class="col-md-4 table-colorBg">
+									<span class="table-txt">연락처</span>
+								</div>
+								<div class="col-md-4 pass-conf-txt">
+									<input type="text" name="phone" value="<%=clb.getPhone()%>" class="form-control">
+								</div>
+								<div class="col-md-4"></div>
+							</div>
+						
 							<input type="hidden" name="pass" value="<%=clb.getPass()%>">
 							<input type="hidden" name="id" value="<%=id%>">
 							
-							<div id="buttons">
-								<input type="submit" value="수정" class="submit">
-								<input type="reset" value="확인" class="cancel" onclick="location.href='./clientView.cl'">
-
+							<div class="col-md-12">	
+								<div class="col-md-4"></div>
+								<div class="col-md-4">
+									<input type="submit" value="글수정" class="colmd-4-btn">
+								</div>
+								<div class="col-md-4"></div>
 							</div>
+							
 						</form>
 					</div>
             </div>

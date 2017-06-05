@@ -15,7 +15,7 @@
 	<link href="./css/header.css" rel="stylesheet">
 	<link href="./css/inner.css" rel="stylesheet">
 	<link href="./css/main.css" rel="stylesheet"> 
-	<link href="./css/member.css" rel="stylesheet"> 
+	<link href="./css/member.css" rel="stylesheet">
 <title>Insert title here</title>
 </head>
 <body>
@@ -124,44 +124,22 @@ array=s.split(",");
 						<div class="col-md-8 pass-conf-text"><%=sb.getContent() %></div>
 					</div>
 					
+					<div class="col-md-12 table-liner">
+						<div class="col-md-4 table-colorBg">
+							<span class="table-txt">메인 이미지</span>
+						</div>
+						<div class="col-md-8 pass-conf-text">
+							<img src="./sns_pro_upload/<%=sb.getProfile_img()%>" width="200" height="200" style="margin: 0px 0px 10px 0; border-radius:8px;">
+						</div>
+					</div>
 					
-						<legend>　Total Sale</legend>
+					<div class="col-md-12 table-liner">
+						<div class="col-md-4 table-colorBg">
+						<span class="table-txt">서브이미지</span>
+						</div>
+						<div class="col-md-8 pass-conf-text">
 						
-						<div class="col-md-3 info-tit">Rank</div>
-						<div class="col-md-9 info-con"><%=sb.getRank() %></div>
-						
-						<div class="col-md-3 info-tit">Sell</div>
-						<div class="col-md-9 info-con"><%=sb.getSell() %></div>
-						
-						<div class="col-md-3 info-tit">Profit</div>
-						<div class="col-md-9 info-con"><%=sb.getSns_profit() %></div>
-		
-						
-						<div class="col-md-3"></div>
-						<div class="col-md-9"></div>
-						
-						<div class="col-md-3"></div>
-						<div class="col-md-9"></div>
-						
-						<div class="col-md-3"></div>
-						<div class="col-md-9"></div>
-
-
-
-	<table>
-	<tr> 
-		<td> <span class="mini-tit">Main Image</span> </td>
-		<td>　　　　</td>
-		<td> <span class="mini-tit">Sub Image</span> </td> </tr>
-	<tr> 
-		<td>
-			<div class="img-bg"><img src="./sns_pro_upload/<%=sb.getProfile_img()%>" width="200" height="200" style="margin: 10px 50px 10px 0; border-radius:8px;"></div>
-		</td>
-		<td>　　　　</td>
-		<td style="background-color: #e3e3e3;">
-		
-		
-		<%  if(array.length<=3){
+							<%  if(array.length<=3){
 		for(int i=0;i<array.length;i++){%>
 		
     		<img src="./sns_pro_upload/<%=array[i]%>"  width="100" height="100" ">
@@ -175,15 +153,33 @@ array=s.split(",");
 		<img src="./sns_pro_upload/<%=array[i]%>"  width="100" height="100">
 	<%}
 	}%>	
-		
-		</td>
-	</tr>
-	</table>			
-
-
- 
- 
+						
 						</div>
+					</div>
+					
+					<div class="col-md-12 table-liner">
+						<div class="col-md-4 table-colorBg">
+						<span class="table-txt">등급</span>
+						</div>
+						<div class="col-md-8 pass-conf-text"><%=sb.getRank() %></div>
+					</div>
+					
+					<div class="col-md-12 table-liner">
+						<div class="col-md-4 table-colorBg">
+						<span class="table-txt">판매량</span>
+						</div>
+						<div class="col-md-8 pass-conf-text"><%=sb.getSell() %></div>
+					</div>
+					
+					<div class="col-md-12 table-liner">
+						<div class="col-md-4 table-colorBg">
+						<span class="table-txt">이익</span>
+						</div>
+						<div class="col-md-8 pass-conf-text"><%=sb.getSns_profit() %></div>
+					</div>
+					
+						</div>
+						<jsp:include page="../inc/footer.jsp"/>
 					</div>
 				</div>
 			</div>

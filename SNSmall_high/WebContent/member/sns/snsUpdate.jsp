@@ -22,7 +22,10 @@
 	var iamge_extend_count = false;
 	var id_reg = /^(?=.*[a-zA-Z])(?=.*[0-9]).{5,10}$/;
 	var pass_reg = /^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[~,!,@,#,$,*,(,),=,+,_,.,|]).{10,20}$/;
-
+	
+	var snsaccount_ck = 0;
+	
+	
 	//submit제어
 	function submitCheck() {
 		if (document.fr.name.value == "") {
@@ -30,11 +33,34 @@
 			document.fr.name.focus();
 			return false;
 		}
+		 
+		//sns 계정 1개이상 입력하게 제어
+		
+		if(document.fr.instagram_ac.value!=""){
+			snsaccount_ck +=1;
+		}
+		if(document.fr.facebook_ac.value!=""){
+			snsaccount_ck +=1;
+		}
+		if(document.fr.twitter_ac.value!=""){
+			snsaccount_ck +=1;
+		}
+		if(document.fr.blog_ac.value!=""){
+			snsaccount_ck +=1;
+		}
+		if(document.fr.etc_ac.value!=""){
+			snsaccount_ck +=1;
+		}
+		
+        if(snsaccount_ck==0){
+        	alert("sns계정을 한개 이상 입력해주세요.");
+        	return false;
+        }
+		
 		if (document.fr.content.value == "") {
 			alert("자기소개를 입력해주세요");
 			return false;
 		}
-			
 	}
 
 	//프로필메인이미지 미리보기 구현
@@ -170,6 +196,9 @@
 
 		}
 	}
+	
+
+	
 	
 	//체크박스 디스플레이
 	function snschecked(){

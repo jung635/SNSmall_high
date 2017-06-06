@@ -15,7 +15,7 @@ public class LiveOpenAction implements Action{
 		String sns_id = request.getParameter("sns_id");
 		String video_id = request.getParameter("video_id");
 		String token = request.getParameter("token");
-		int product_num = Integer.parseInt(request.getParameter("proudct_num"));
+		int product_num = Integer.parseInt(request.getParameter("product_num"));
 		LiveDAO ldao = new LiveDAO();
 		ldao.insertLive(sns_id, video_id, product_num, token);
 		

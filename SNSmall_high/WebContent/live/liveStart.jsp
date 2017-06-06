@@ -8,7 +8,7 @@
 </head>
 <body>
 <%String id = "test";
-int proudct_num = 1;%>
+int product_num = 1;%>
 <script>
 var token;
 var video_id;
@@ -60,8 +60,8 @@ function makeLive() {
     }, function(response) {
     	console.log(response);
     video_id = response.id;
-    //location.href="LiveList.li?sns_id=<%=id%>&video_id="+response.id+"&token="+token+"&proudct_num=<%=proudct_num%>";
-    window.open("LiveOpen.li?sns_id=<%=id%>&video_id="+response.id+"&token="+token+"&proudct_num=<%=proudct_num%>", "live_view" , "width=800,height=800");
+    //location.href="LiveList.li?sns_id=<%=id%>&video_id="+response.id+"&token="+token+"&proudct_num=<%=product_num%>";
+    window.open("LiveOpen.li?sns_id=<%=id%>&video_id="+response.id+"&token="+token+"&product_num=<%=product_num%>", "live_view" , "width=800,height=800");
     });
   });
 };

@@ -1,17 +1,18 @@
-<%@ page language="java" contentType="text/html; charset=utf-8"
-    pageEncoding="utf-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 </head>
 <body>
-<%String video_id = (String)request.getAttribute("video_id");
-String token = (String)request.getAttribute("token");%>
+<%
+String video_id = request.getParameter("video_id");
+String token = request.getParameter("token");
+%>
 <script>
 var token;
-var video_id;
 window.fbAsyncInit = function() {
 	FB.init({
       appId            : '1685211914841647',
@@ -19,6 +20,7 @@ window.fbAsyncInit = function() {
       xfbml            : true,
       version          : 'v2.9'
     });
+	getLive();
     FB.AppEvents.logPageView();
 };
 
@@ -33,6 +35,7 @@ window.fbAsyncInit = function() {
 function getLive(){
 	 FB.api('<%=video_id%>', function (response) {
 	    	console.log(response);
+	    	console.log(token);
 	    	 // alert(accessToken);
 	    	//alert(response.status);
 	      if (response && !response.error) {
@@ -41,26 +44,8 @@ function getLive(){
 	      }
 	    },{access_token: '<%=token%>'});
  }
- 
-function deleteLive(){
-	alert('방송을 종료합니다.');
-	FB.api(
-		'<%=video_id%>',
-		'POST',
-		{"end_live_video":"true"},
-			function(response) {
-			console.log(response);
-				 if (response && !response.error) {
-	    		     location.href="LiveDelete.li?video_id=<%=video_id%>";
-	    		 }
-	    },{access_token: '<%=token%>'}
-	);
- }
- 
 
 </script>
-<button id="getLiveinfo" onclick="getLive()">내 방송화면 보기</button>
-<button id="getLiveinfo" onclick="deleteLive()">방송 그만하기</button>
-<div id="live" style="width: 300px"></div>
+<div id="live" style="width:100px"></div>
 </body>
 </html>

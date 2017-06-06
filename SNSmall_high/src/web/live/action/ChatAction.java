@@ -1,51 +1,74 @@
 package web.live.action;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Iterator;
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.websocket.OnClose;
 import javax.websocket.OnError;
 import javax.websocket.OnMessage;
 import javax.websocket.OnOpen;
+import javax.websocket.Session;
 import javax.websocket.server.ServerEndpoint;
-@ServerEndpoint("/websocket")
-public class ChatAction implements Action{
 
-	@Override
-	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		
-		return null;
-	}
-	
-	 @OnOpen
-	    public void handleOpen(){
-	        System.out.println("client is now connected...");
+import org.json.simple.JSONObject;
+
+@ServerEndpoint("/websocket")
+public class ChatAction{
+
+	static List<Session> users = Collections.synchronizedList(new ArrayList<>());
+	 JSONObject obj = null;
+	 String username = "";
+	 String send_mesg = "";
+		@OnOpen
+	    public void handleOpen(Session session){
+			System.out.println("session:"+session.getId());
+			users .add(session);
 	    }
-	    /**
-	     * À¥ ¼ÒÄÏÀ¸·ÎºÎÅÍ ¸Þ½ÃÁö°¡ ¿À¸é È£ÃâµÇ´Â ÀÌº¥Æ®
-	     * @param message
-	     * @return
-	     */
 	    @OnMessage
-	    public String handleMessage(String message){
-	        System.out.println("receive from client : "+message);
-	        String replymessage = "echo "+message;
-	        System.out.println("send to client : "+replymessage);
-	        return replymessage;
+	    public void handleMessage(String message, Session session){
+	    	
+	    	 username = (String)session.getUserProperties().get("id");
+	    	 
+	    	 try{
+		         if(username == null){
+		             session.getUserProperties().put("id", session.getId());
+		             username = (String)session.getUserProperties().get("id");
+		         	//obj =  new JSONObject();
+		        	//obj.put("username", username);
+		        	//obj.put("message", username+"ë‹˜ ìž…ìž¥");
+		             send_mesg = username+"ë‹˜ ìž…ìž¥";
+		             //session.getBasicRemote().sendText(obj.toJSONString());
+		             session.getBasicRemote().sendText(send_mesg);
+		         }
+		         	//obj =  new JSONObject();
+		        	//obj.put("username", username);
+		        	//obj.put("message", username + ":" + message);
+		         send_mesg = username + ":" + message;
+		         Iterator<Session> iterator = users.iterator();
+		         while(iterator.hasNext()){
+		             //iterator.next().getBasicRemote().sendText(obj.toJSONString());
+		             iterator.next().getBasicRemote().sendText(send_mesg);
+		         }
+	    	 }catch(Exception e){
+	    		 e.printStackTrace();
+	    	 }
 	    }
-	    /**
-	     * À¥ ¼ÒÄÏÀÌ ´ÝÈ÷¸é È£ÃâµÇ´Â ÀÌº¥Æ®
-	     */
+
 	    @OnClose
-	    public void handleClose(){
-	        System.out.println("client is now disconnected...");
+	    public void handleClose(Session session){
+	 	    	users.remove(session);
+		        System.out.println("client is now disconnected...");
 	    }
-	    /**
-	     * À¥ ¼ÒÄÏÀÌ ¿¡·¯°¡ ³ª¸é È£ÃâµÇ´Â ÀÌº¥Æ®
-	     * @param t
-	     */
 	    @OnError
 	    public void handleError(Throwable t){
 	        t.printStackTrace();
 	    }
 
 }
+
+

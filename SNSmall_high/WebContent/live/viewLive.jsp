@@ -49,6 +49,7 @@ function getLive(){
 	      if (response && !response.error) {
 	        //alert(response);
 	        document.getElementById('live').innerHTML=response.embed_html;
+	        
 	      }
 	    },{access_token: '<%=token%>'});
  }
@@ -60,6 +61,11 @@ function press(){
  	 }
   }
   
+$(window).bind("beforeunload", function (){
+
+	        alert("테스트");//chrome 브라우저에서는 alert창을 먹어버린다
+
+});  
 var config = {
 		apiKey: "AIzaSyAJ04h5-aCRcg_FoDyNRq93Z9EWB0ebUgQ",
 		authDomain: "snsmall-6f75b.firebaseapp.com",

@@ -5,6 +5,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<script src="https://www.gstatic.com/firebasejs/4.1.1/firebase.js"></script>
 </head>
 <body>
 <%
@@ -77,70 +78,23 @@ function sendMessage(){
 	});
 }
 
-firebase.database().ref('1').limitToLast(1).on('child_added',function(data, prevChildKey){
+firebase.database().ref('<%=video_id%>').limitToLast(1).on('child_added',function(data, prevChildKey){
 	console.log(data.val()); 
-	document.getElementById("messageTextArea").value += data.val().message;
+	document.getElementById("messageTextArea").value += "<%=id%>:" +  data.val().message + "\n";
 });	
    
 </script>
 <button id="getLiveinfo" onclick="getLive()">내 방송화면 보기</button>
 <button id="getLiveinfo" onclick="deleteLive()">방송 그만하기</button>
 <div id="live" style="width: 300px"></div>
-       <!-- 송신 메시지 작성하는 창 -->
-       <input id="textMessage" type="text"  onkeyup="press()" >
-       <!-- 송신 버튼 -->
-       <input onclick="sendMessage()" value="Send" type="button">
-       <!-- 종료 버튼 -->
-       <input onclick="disconnect()" value="Disconnect" type="button">
-   <br />
-   <!-- 결과 메시지 보여주는 창 -->
-   <textarea id="messageTextArea" rows="10" cols="50"></textarea>
-    
-   <script type="text/javascript">
-<%--       var webSocket = new WebSocket("ws://localhost:8080/SNSmall_high/websocket");
-      //var webSocket = new WebSocket("wss://www.sunju635.cafe24.com/SNSmall_high/websocket");
-       var messageTextArea = document.getElementById("messageTextArea");
-
-       webSocket.onopen = function(message){
-       	sendOpenMessage();
-       };
-
-       webSocket.onclose = function(message){
-           messageTextArea.value += "Server Disconnect...\n";
-       };
-
-       webSocket.onerror = function(message){
-           messageTextArea.value += "error...\n";
-       };
-
-       webSocket.onmessage = function(message){
-           if(message != null) {
-               messageTextArea.value += message.data + "\n"
-           };
-       };
-
-       function sendMessage(){
-       	var message = document.getElementById("textMessage");
-       	var obj = new Object();
-       	obj.message = message.value;
-       	obj.id = "<%=id%>";
-       	obj.video_id = "<%=video_id%>";
-          
-           webSocket.send(JSON.stringify(obj));
-           message.value = "";
-       }
-       function sendOpenMessage(){
-       	var obj = new Object();
-       	obj.message = "서버 연결 완료";
-       	obj.id = "<%=id%>";
-       	obj.video_id = "<%=video_id%>";
-           var message = document.getElementById("textMessage");
-           webSocket.send(JSON.stringify(obj));
-           message.value = "";
-       }
-       function disconnect(){
-           webSocket.close();
-       } --%>
-   </script>
+<!-- 송신 메시지 작성하는 창 -->
+<input id="textMessage" type="text"  onkeyup="press()" >
+<!-- 송신 버튼 -->
+<input onclick="sendMessage()" value="Send" type="button">
+<!-- 종료 버튼 -->
+<input onclick="disconnect()" value="Disconnect" type="button">
+<br />
+<!-- 결과 메시지 보여주는 창 -->
+<textarea id="messageTextArea" rows="10" cols="50"></textarea>
 </body>
 </html>

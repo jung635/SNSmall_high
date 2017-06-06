@@ -20,8 +20,8 @@
     <textarea id="messageTextArea" rows="10" cols="50"></textarea>
      
     <script type="text/javascript">
-       // var webSocket = new WebSocket("ws://localhost:8080/SNSmall_high/websocket");
-        var webSocket = new WebSocket("ws://" + location.host + "/websocket");
+       //var webSocket = new WebSocket("ws://localhost:8080/SNSmall_high/websocket");
+        var webSocket = new WebSocket("ws://sunju635.cafe24.com:80/websocket");
         var messageTextArea = document.getElementById("messageTextArea");
 
         webSocket.onopen = function(message){
@@ -51,10 +51,14 @@
         };
 
         function sendMessage(){
+        	var obj = new Object();
+        	obj.message = "보내는 메세지";
+        	obj.id = "idtest";
+        	obj.video_id = "video_idtest";
             var message = document.getElementById("textMessage");
-            //messageTextArea.value += "Send to Server => "+message.value+"\n";
+            //messageTextArea.value += "Send to Server => "+JSON.stringify(obj)+"\n";
            // message=["반갑습니다","test"];
-            webSocket.send(message.value);
+            webSocket.send(JSON.stringify(obj));
             //webSocket.send(message.value);
             message.value = "";
         }

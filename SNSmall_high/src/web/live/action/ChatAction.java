@@ -16,12 +16,13 @@ import javax.websocket.Session;
 import javax.websocket.server.ServerEndpoint;
 
 import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
 
 @ServerEndpoint("/websocket")
 public class ChatAction{
 
 	static List<Session> users = Collections.synchronizedList(new ArrayList<>());
-	 JSONObject obj = null;
+	 //JSONObject obj = null;
 	 String username = "";
 	 String send_mesg = "";
 		@OnOpen
@@ -31,10 +32,12 @@ public class ChatAction{
 	    }
 	    @OnMessage
 	    public void handleMessage(String message, Session session){
-	    	
+
 	    	 username = (String)session.getUserProperties().get("id");
 	    	 
 	    	 try{
+	 	    	JSONObject json = (JSONObject)new JSONParser().parse(message);
+	 	    	System.out.println(json.get("id"));
 		         if(username == null){
 		             session.getUserProperties().put("id", session.getId());
 		             username = (String)session.getUserProperties().get("id");

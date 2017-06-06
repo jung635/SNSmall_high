@@ -312,7 +312,7 @@ function makeLive() {
     window.open("LiveOpen.li?sns_id=<%=id%>&video_id="+response.id+"&token="+token+"&product_num=<%=productbean.getProduct_num()%>", "live_view" , "width=800,height=800");
     });
   });
-};
+}
 </script>
 	<%
 	String returnUrl = request.getHeader("referer");

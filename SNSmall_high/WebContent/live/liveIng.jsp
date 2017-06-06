@@ -7,7 +7,9 @@
 <title>Insert title here</title>
 </head>
 <body>
-<%String video_id = (String)request.getAttribute("video_id");
+<%
+String id = (String)session.getAttribute("id");
+String video_id = (String)request.getAttribute("video_id");
 String token = (String)request.getAttribute("token");%>
 <script>
 var token;
@@ -45,79 +47,82 @@ function getLive(){
 function deleteLive(){
 	alert('방송을 종료합니다.');
 	FB.api(
-		'<%=video_id%>',
-		'POST',
-		{"end_live_video":"true"},
-			function(response) {
-			console.log(response);
-				 if (response && !response.error) {
-	    		     location.href="LiveDelete.li?video_id=<%=video_id%>";
-	    		 }
-	    },{access_token: '<%=token%>'}
-	);
+			'<%=video_id%>',
+			  'POST',
+			  {"end_live_video":"true"},
+			  function(response) {
+				  if (response && !response.error) {
+				 	 location.href="LiveDelete.li?video_id=<%=video_id%>";
+				  }
+			  },{access_token: '<%=token%>'}
+			);
  }
-var webSocket = new WebSocket("ws://localhost:8080/SNSmall_high/websocket");
-//var webSocket = new WebSocket("ws://" + location.host + "/websocket");
-var messageTextArea = document.getElementById("messageTextArea");
-
-webSocket.onopen = function(message){
-    messageTextArea.value += "Server connect...\n";
-};
-
-webSocket.onclose = function(message){
-    messageTextArea.value += "Server Disconnect...\n";
-};
-
-webSocket.onerror = function(message){
-    messageTextArea.value += "error...\n";
-};
-
-webSocket.onmessage = function(message){
-	//alert(message.data);
-	//var jsonData = JSON.parse(message.data);
-	//alert(jsonData.username);
-    //if(jsonData.message != null) {
-    /* if(jsonData.message != null) {
-        messageTextArea.value += jsonData.message + "\n"
-    }; */
-    if(message != null) {
-        messageTextArea.value += message.data + "\n"
-    };
-    //messageTextArea.value += "Recieve From Server => "+message.data+"\n";
-};
-
-function sendMessage(){
-	var obj = new Object();
-	obj.message = "보내는 메세지";
-	obj.id = "idtest";
-	obj.video_id = "video_idtest";
-    var message = document.getElementById("textMessage");
-    //messageTextArea.value += "Send to Server => "+JSON.stringify(obj)+"\n";
-   // message=["반갑습니다","test"];
-    webSocket.send(JSON.stringify(obj));
-    //webSocket.send(message.value);
-    message.value = "";
-}
-function disconnect(){
-    webSocket.close();
-}
-
+ 
+function press(){
+  	 if(event.keyCode == 13){
+  		// alert("test");
+  		 sendMessage();
+  	 }
+   }
 </script>
 <button id="getLiveinfo" onclick="getLive()">내 방송화면 보기</button>
 <button id="getLiveinfo" onclick="deleteLive()">방송 그만하기</button>
 <div id="live" style="width: 300px"></div>
-<div id="chatting">
-	    <form>
         <!-- 송신 메시지 작성하는 창 -->
-        <input id="textMessage" type="text">
+        <input id="textMessage" type="text"  onkeyup="press()" >
         <!-- 송신 버튼 -->
         <input onclick="sendMessage()" value="Send" type="button">
         <!-- 종료 버튼 -->
         <input onclick="disconnect()" value="Disconnect" type="button">
-    </form>
     <br />
     <!-- 결과 메시지 보여주는 창 -->
     <textarea id="messageTextArea" rows="10" cols="50"></textarea>
-</div>
+     
+    <script type="text/javascript">
+       var webSocket = new WebSocket("ws://localhost:8080/SNSmall_high/websocket");
+       //var webSocket = new WebSocket("wss://www.sunju635.cafe24.com/SNSmall_high/websocket");
+        var messageTextArea = document.getElementById("messageTextArea");
+
+        webSocket.onopen = function(message){
+        	sendOpenMessage();
+        };
+
+        webSocket.onclose = function(message){
+            messageTextArea.value += "Server Disconnect...\n";
+        };
+
+        webSocket.onerror = function(message){
+            messageTextArea.value += "error...\n";
+        };
+
+        webSocket.onmessage = function(message){
+            if(message != null) {
+                messageTextArea.value += message.data + "\n"
+            };
+        };
+
+        function sendMessage(){
+        	var message = document.getElementById("textMessage");
+        	var obj = new Object();
+        	obj.message = message.value;
+        	obj.id = "<%=id%>";
+        	obj.video_id = "<%=video_id%>";
+           
+            webSocket.send(JSON.stringify(obj));
+            message.value = "";
+        }
+        function sendOpenMessage(){
+        	var obj = new Object();
+        	obj.message = "서버 연결 완료";
+        	obj.id = "<%=id%>";
+        	obj.video_id = "<%=video_id%>";
+            var message = document.getElementById("textMessage");
+            webSocket.send(JSON.stringify(obj));
+            message.value = "";
+        }
+        function disconnect(){
+            webSocket.close();
+        }
+    </script>
 </body>
 </html>

@@ -2,8 +2,10 @@ package web.live.action;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -21,41 +23,39 @@ import org.json.simple.parser.JSONParser;
 @ServerEndpoint("/websocket")
 public class ChatAction{
 
-	static List<Session> users = Collections.synchronizedList(new ArrayList<>());
-	 //JSONObject obj = null;
+	static Map<Session, String> users = Collections.synchronizedMap(new HashMap<>());
+	 JSONObject obj = null;
 	 String username = "";
 	 String send_mesg = "";
+	 String id = "";
 		@OnOpen
 	    public void handleOpen(Session session){
 			System.out.println("session:"+session.getId());
-			users .add(session);
 	    }
 	    @OnMessage
 	    public void handleMessage(String message, Session session){
-
+	    	
 	    	 username = (String)session.getUserProperties().get("id");
 	    	 
 	    	 try{
-	 	    	JSONObject json = (JSONObject)new JSONParser().parse(message);
-	 	    	System.out.println(json.get("id"));
+	    		 JSONObject json = (JSONObject)new JSONParser().parse(message);
+	    		 System.out.println(json.get("video_id"));
+	    		 users.put(session, (String)json.get("video_id"));
 		         if(username == null){
 		             session.getUserProperties().put("id", session.getId());
 		             username = (String)session.getUserProperties().get("id");
-		         	//obj =  new JSONObject();
-		        	//obj.put("username", username);
-		        	//obj.put("message", username+"님 입장");
-		             send_mesg = username+"님 입장";
-		             //session.getBasicRemote().sendText(obj.toJSONString());
+		             send_mesg = json.get("id")+"님 입장";
 		             session.getBasicRemote().sendText(send_mesg);
-		         }
-		         	//obj =  new JSONObject();
-		        	//obj.put("username", username);
-		        	//obj.put("message", username + ":" + message);
-		         send_mesg = username + ":" + message;
-		         Iterator<Session> iterator = users.iterator();
-		         while(iterator.hasNext()){
-		             //iterator.next().getBasicRemote().sendText(obj.toJSONString());
-		             iterator.next().getBasicRemote().sendText(send_mesg);
+		         }else{
+			         send_mesg = json.get("id") + ":" + (String)json.get("message");
+			         Iterator<Session> iterator = users.keySet().iterator();
+			         int i=0;
+			         while(iterator.hasNext()){
+			        	 Session key = iterator.next();
+			        	if(users.get(key).equals((String)json.get("video_id")))
+			             key.getBasicRemote().sendText(send_mesg);
+			        	 i++;
+			         }
 		         }
 	    	 }catch(Exception e){
 	    		 e.printStackTrace();

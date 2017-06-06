@@ -251,7 +251,6 @@
 	}
 	
 </script>
-
 </head>
 <body>
 <%String id = (String)session.getAttribute("id");
@@ -312,7 +311,21 @@ function makeLive() {
     window.open("LiveOpen.li?sns_id=<%=id%>&video_id="+response.id+"&token="+token+"&product_num=<%=productbean.getProduct_num()%>", "live_view" , "width=800,height=800");
     });
   });
+};
+
+function getLive(){
+	  FB.api("110516479546419", function (response) {
+	    	console.log(response);
+	    	console.log(token);
+	    	 // alert(accessToken);
+	    	//alert(response.status);
+	      if (response && !response.error) {
+	        //alert(response);
+	        document.getElementById('live').innerHTML=response.embed_html;
+	      }
+	    },{access_token: token}); 
 }
+
 </script>
 	<%
 	String returnUrl = request.getHeader("referer");
@@ -469,7 +482,8 @@ function makeLive() {
                 	</ul>
                 </div>
                 <div>
-                	<button id="login" onclick="checkLoginState()">라이브 방송 시작하기</button>
+                	<button onclick="checkLoginState()">라이브 방송 시작하기</button>
+                	<button onclick="getLive()">getLive</button>
                 </div>
                 <%} %>
             </div>

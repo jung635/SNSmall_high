@@ -7,25 +7,30 @@
 <title>Insert title here</title>
 </head>
 <body>
-    <form>
         <!-- 송신 메시지 작성하는 창 -->
-        <input id="textMessage" type="text">
+        <input id="textMessage" type="text" onkeydown="press()">
         <!-- 송신 버튼 -->
         <input onclick="sendMessage()" value="Send" type="button">
         <!-- 종료 버튼 -->
         <input onclick="disconnect()" value="Disconnect" type="button">
-    </form>
     <br />
     <!-- 결과 메시지 보여주는 창 -->
     <textarea id="messageTextArea" rows="10" cols="50"></textarea>
      
     <script type="text/javascript">
-       //var webSocket = new WebSocket("ws://localhost:8080/SNSmall_high/websocket");
-        var webSocket = new WebSocket("ws://sunju635.cafe24.com:80/websocket");
-        var messageTextArea = document.getElementById("messageTextArea");
+    function press(){
+   	 if(event.keyCode == 13){
+   		// alert("test");
+   		 sendMessage();
+   	 }
+    }
+       var webSocket = new WebSocket("ws://localhost:8080/SNSmall_high/websocket");
+       //var webSocket = new WebSocket("ws://sunju635.cafe24.com:80/SNSmall_high/websocket");
+       // var messageTextArea = document.getElementById("messageTextArea");
 
         webSocket.onopen = function(message){
-            messageTextArea.value += "Server connect...\n";
+        	sendOpenMessage();
+            //messageTextArea.value += "Server connect...\n";
         };
 
         webSocket.onclose = function(message){
@@ -51,8 +56,21 @@
         };
 
         function sendMessage(){
+        	var message = document.getElementById("textMessage");
         	var obj = new Object();
-        	obj.message = "보내는 메세지";
+        	obj.message = message.value;
+        	obj.id = "idtest";
+        	obj.video_id = "video_idtest";
+           
+            //messageTextArea.value += "Send to Server => "+JSON.stringify(obj)+"\n";
+           // message=["반갑습니다","test"];
+            webSocket.send(JSON.stringify(obj));
+            //webSocket.send(message.value);
+            message.value = "";
+        }
+        function sendOpenMessage(){
+        	var obj = new Object();
+        	obj.message = "서버 연결 완료";
         	obj.id = "idtest";
         	obj.video_id = "video_idtest";
             var message = document.getElementById("textMessage");

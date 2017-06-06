@@ -15,10 +15,13 @@
 	<link href="css/bootstrap.min.css" rel="stylesheet">
 	<link href="css/header.css" rel="stylesheet">
 	<link href="css/inner.css" rel="stylesheet">
-	<link href="css/main.css?ver=1" rel="stylesheet">
-	<link href="css/product.css?ver=1" rel="stylesheet">
-	<script src="js/jquery.js"></script>
+	<link href="css/main.css" rel="stylesheet">
+	<link href="css/product.css" rel="stylesheet">
+
 <title>Insert title here</title>
+<script type="text/javascript">
+
+</script>
 
 </head>
 <body>
@@ -44,21 +47,7 @@
                 </h1>
                 
                 
-                <ul class="nav nav-pills">
-                <li><a href="ProductList.pr" style="padding: 20px 58px 20px 58px;">전체&nbsp;
-                <i class="fa fa-sort-down" aria-hidden="true"></i>
-                </a></li>
-                <li><a href="ProductList.pr?category=fashion" style="padding: 20px 58px 20px 58px;">패션</a></li>
-                <li><a href="ProductList.pr?category=beauty" style="padding: 20px 58px 20px 58px;">뷰티</a></li>
-                <li><a href="ProductList.pr?category=baby" style="padding: 20px 58px 20px 58px;">육아</a></li>
-                <li><a href="ProductList.pr?category=daily" style="padding: 20px 58px 20px 58px;">일상</a></li>
-                <li><a href="ProductList.pr?category=gym" style="padding: 20px 58px 20px 58px;">운동</a></li>
-           		<li><a href="ProductList.pr?category=etc" style="padding: 20px 58px 20px 58px;">기타</a></li>
-                </ul>
-                
-            </div>
-        </div>
-        
+ 
         
         
         
@@ -165,7 +154,7 @@
     </div>
   </div>
     <!-- /.container -->
-
+	<script src="js/jquery.js"></script>
     <!-- jQuery -->
     
 

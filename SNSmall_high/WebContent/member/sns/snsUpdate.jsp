@@ -34,29 +34,7 @@
 			alert("자기소개를 입력해주세요");
 			return false;
 		}
-		
-		/////sns계정 체크
-		account_count
-		if(document.fr.instagram_ac.value != ""){
-			account_count+=1;
-		}
-		if(document.fr.facebook_ac.value != ""){
-			account_count+=1;
-		}
-		if(document.fr.twitter_ac.value != ""){
-			account_count+=1;
-		}
-		if(document.fr.blog_ac.value != ""){
-			account_count+=1;
-		}
-		if(document.fr.etc_ac.value != ""){
-			account_count+=1;
-		}
-		
-		if(account_count==0){
-		alert("SNS계정을 1개이상 입력해주세요");
-		return false;
-		}
+			
 	}
 
 	//프로필메인이미지 미리보기 구현
@@ -147,10 +125,10 @@
 		});
 	});
 	
-	function passCheck(){
+	function passCheckSubmit(){
 	//////비밀번호 유형 체크
 		if (document.pr.newpass.value == "") {
-			alert("비밀번호를 입력해 주세요!");
+			alert("비밀번호를 입력해주세요");
 			document.pr.newpass.focus();
 			return false;
 		} else if (!pass_reg.test(document.pr.newpass.value)) {
@@ -160,13 +138,12 @@
 		}
 		//////비밀번호 일치 체크
 		if (document.pr.newpass2.value == "") {
-			alert("비밀번호를 확인해 주세요!");
+			alert("비밀번호를 다시한번 입력해주세요");
 			document.pr.newpass2.focus();
 			return false;
-		}
-		if (document.pr.newpass.value != document.pr.newpass2.value) {
-			alert("비밀번호가 일치하지 않습니다!");
-			document.pr.pass2.focus();
+		}else if(document.pr.newpass.value != document.pr.newpass2.value) {
+			alert("비밀번호가 일치하지 않습니다");
+			document.pr.newpass2.focus();
 			return false;
 		}
 	}
@@ -187,7 +164,7 @@
 		var pwd = document.pr.newpass.value;
 
 		if (!pass_reg.test(pwd)) {
-			document.getElementById("passCheckDisplay").innerHTML = "비밀번호는 영문, 숫자, 특수문자 조합 10-20자리로 구성해주세요.";
+			document.getElementById("passCheckDisplay").innerHTML = "영문,숫자,특수문자 조합 10-20자리로 구성해주세요.";
 		} else {
 			document.getElementById("passCheckDisplay").innerHTML = "OK!";
 
@@ -286,16 +263,16 @@ function snschecked5(){
 					
 					<div class="col-md-12 table-liner">
 						<div class="col-md-4 table-colorBg">
-							<span class="table-txt">비밀번호</span><span id="passChWall" style="display: none;"><br><br><br><br><br><br><br></span>
+							<span class="table-txt">비밀번호</span><span id="passChWall" style="display: none;"><br><br><br><br><br><br><br><br><br><br></span>
 						</div>
 						<div class="col-md-4 pass-conf-text">
 							<input type="button" id="passChange" value="비밀번호 변경" class="dup4" style="margin-top: 0px;">
 							<div style="display: none;">
-							<form action="./passChangeAction.sn"  name="pr" onsubmit="return passCheck()">
+							<form action="./passChangeAction.sn"  name="pr" onsubmit="return passCheckSubmit()">
 							new password &nbsp;&nbsp;
-							<input type="password" name="newpass" id="newpass" onkeyup="passFormCheck()">
+							<input type="password" name="newpass" id="newpass" onkeyup="passFormCheck()"><br>
 							<span id="passCheckDisplay"></span><br>
-							retype password<input type="password" name="newpass2" onkeyup="passCheck()">
+							retype password<input type="password" id="newpass2" name="newpass2" onkeyup="passCheck()"><br>
 							<span id="passdbCheckDisplay"></span><br>
 							<input type="submit" value="변경" class="dup4">
 						</form>
@@ -311,7 +288,7 @@ function snschecked5(){
 							<span class="table-txt">이름</span>
 						</div>
 						<div class="col-md-4 pass-conf-txt">
-						<input type="text" value="<%=sb.getName()%>" class="form-control">
+						<input type="text" name="name" value="<%=sb.getName()%>" class="form-control">
 						</div>
 						<div class="col-md-4"></div>
 					</div>

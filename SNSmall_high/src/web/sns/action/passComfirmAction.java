@@ -18,8 +18,6 @@ public class passComfirmAction implements Action{
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
-		System.out.println("sns_pass_confirmaction execute()");
-		
 		HttpSession session = request.getSession();
 		String id = (String)session.getAttribute("id");
 		

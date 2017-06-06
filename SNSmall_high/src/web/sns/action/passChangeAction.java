@@ -14,7 +14,6 @@ public class passChangeAction implements Action{
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
-		System.out.println("passChangeAction execute()");
 		
 		//세션제어
 		HttpSession session = request.getSession();

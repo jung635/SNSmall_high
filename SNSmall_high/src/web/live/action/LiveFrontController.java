@@ -16,11 +16,24 @@ public class LiveFrontController extends HttpServlet {
 		String command = requestURI.substring(contextPath.length());
 		ActionForward forward = null;
 		Action action = null;
-		if (command.equals("/Live.li")) {
-			System.out.println("test");
+		if(command.equals("/LiveOpen.li")){
+			action = new LiveOpenAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}else if(command.equals("/LiveStart.li")){
 			forward = new ActionForward();
-			forward.setPath("./live/liveUpload.jsp");
+			forward.setPath("./live/liveStart.jsp");
 			forward.setRedirect(false);
+		}else if(command.equals("/LiveDelete.li")){
+			action = new LiveDeleteAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}else if(command.equals("/LiveList.li")){
 			action = new LiveListAction();
 			try {
@@ -28,7 +41,19 @@ public class LiveFrontController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		}  
+		}else if(command.equals("/ChatAction.li")){
+			action = new ChatAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} else if(command.equals("/Chatting.li")){
+			forward = new ActionForward();
+			forward.setPath("./live/chatting.jsp");
+			forward.setRedirect(false);
+		}      
+  
 
 		if (forward != null) {
 			if (forward.isRedirect()) {

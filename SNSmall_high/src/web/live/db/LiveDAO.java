@@ -30,12 +30,15 @@ public class LiveDAO {
 	ResultSet rs = null;
 	
 	
-	public void insertLive(String sns_id) {
+	public void insertLive(String sns_id, String video_id, int product_num, String token) {
 		try {
 			con = getConnection();
-			sql = "insert into live(id) values(?); ";
+			sql = "insert into live(id, video_id, product_num, token) values(?, ?, ?, ?); ";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, sns_id);
+			pstmt.setString(2, video_id);
+			pstmt.setInt(3, product_num);
+			pstmt.setString(4, token);
 			pstmt.executeUpdate();
 			
 		} catch(Exception e){e.printStackTrace();}
@@ -56,6 +59,9 @@ public class LiveDAO {
 			while (rs.next()) {
 				lb = new LiveBean();
 				lb.setSns_id(rs.getString("id"));
+				lb.setVideo_id(rs.getString("video_id"));
+				lb.setProduct_num(rs.getInt("product_num"));
+				lb.setToken(rs.getString("token"));
 				list.add(lb);
 			}
 
@@ -65,5 +71,19 @@ public class LiveDAO {
 		if(con!=null){try{con.close();}catch(SQLException ex){}}}
 
 		return list;
+	}
+	
+	public void deleteLive(String video_id){
+		try {
+			con = getConnection();
+			sql = "delete from live where video_id=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, video_id);
+			pstmt.executeUpdate();
+
+		} catch(Exception e){e.printStackTrace();}
+		finally{if(rs!=null){try{rs.close();}catch(SQLException ex){}}
+		if(pstmt!=null){try{pstmt.close();}catch(SQLException ex){}}
+		if(con!=null){try{con.close();}catch(SQLException ex){}}}
 	}
 }

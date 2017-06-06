@@ -58,6 +58,30 @@ function press(){
  		 sendMessage();
  	 }
   }
+  
+var config = {
+		apiKey: "AIzaSyAJ04h5-aCRcg_FoDyNRq93Z9EWB0ebUgQ",
+		authDomain: "snsmall-6f75b.firebaseapp.com",
+		databaseURL: "https://snsmall-6f75b.firebaseio.com",
+		projectId: "snsmall-6f75b",
+		storageBucket: "snsmall-6f75b.appspot.com",
+		messagingSenderId: "856975526156"
+};
+firebase.initializeApp(config);
+
+function sendMessage(){
+	console.log('sendMessage');
+	firebase.database().ref('<%=video_id%>').push({
+		userId: '<%=id%>',
+		message: document.getElementById("textMessage").value,
+	});
+}
+
+firebase.database().ref('1').limitToLast(1).on('child_added',function(data, prevChildKey){
+	console.log(data.val()); 
+	document.getElementById("messageTextArea").value += data.val().message;
+});	
+   
 </script>
 <button id="getLiveinfo" onclick="getLive()">내 방송화면 보기</button>
 <button id="getLiveinfo" onclick="deleteLive()">방송 그만하기</button>
@@ -73,7 +97,7 @@ function press(){
    <textarea id="messageTextArea" rows="10" cols="50"></textarea>
     
    <script type="text/javascript">
-      var webSocket = new WebSocket("ws://localhost:8080/SNSmall_high/websocket");
+<%--       var webSocket = new WebSocket("ws://localhost:8080/SNSmall_high/websocket");
       //var webSocket = new WebSocket("wss://www.sunju635.cafe24.com/SNSmall_high/websocket");
        var messageTextArea = document.getElementById("messageTextArea");
 
@@ -116,7 +140,7 @@ function press(){
        }
        function disconnect(){
            webSocket.close();
-       }
+       } --%>
    </script>
 </body>
 </html>

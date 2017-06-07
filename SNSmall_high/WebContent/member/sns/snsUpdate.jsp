@@ -22,7 +22,10 @@
 	var iamge_extend_count = false;
 	var id_reg = /^(?=.*[a-zA-Z])(?=.*[0-9]).{5,10}$/;
 	var pass_reg = /^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[~,!,@,#,$,*,(,),=,+,_,.,|]).{10,20}$/;
-
+	
+	var snsaccount_ck = 0;
+	
+	
 	//submit제어
 	function submitCheck() {
 		if (document.fr.name.value == "") {
@@ -30,32 +33,33 @@
 			document.fr.name.focus();
 			return false;
 		}
+		 
+		//sns 계정 1개이상 입력하게 제어
+		
+		if(document.fr.instagram_ac.value!=""){
+			snsaccount_ck +=1;
+		}
+		if(document.fr.facebook_ac.value!=""){
+			snsaccount_ck +=1;
+		}
+		if(document.fr.twitter_ac.value!=""){
+			snsaccount_ck +=1;
+		}
+		if(document.fr.blog_ac.value!=""){
+			snsaccount_ck +=1;
+		}
+		if(document.fr.etc_ac.value!=""){
+			snsaccount_ck +=1;
+		}
+		
+        if(snsaccount_ck==0){
+        	alert("sns계정을 한개 이상 입력해주세요.");
+        	return false;
+        }
+		
 		if (document.fr.content.value == "") {
 			alert("자기소개를 입력해주세요");
 			return false;
-		}
-		
-		/////sns계정 체크
-		account_count
-		if(document.fr.instagram_ac.value != ""){
-			account_count+=1;
-		}
-		if(document.fr.facebook_ac.value != ""){
-			account_count+=1;
-		}
-		if(document.fr.twitter_ac.value != ""){
-			account_count+=1;
-		}
-		if(document.fr.blog_ac.value != ""){
-			account_count+=1;
-		}
-		if(document.fr.etc_ac.value != ""){
-			account_count+=1;
-		}
-		
-		if(account_count==0){
-		alert("SNS계정을 1개이상 입력해주세요");
-		return false;
 		}
 	}
 
@@ -140,15 +144,17 @@
 	//비밀번호변경
 	$(document).ready(function() {
 		$('#passChange').click(function() {
-			$(this).next().toggle('slow', function() {
+			$('#passChWall').toggle('fast',function(){
+			});
+			$(this).next().toggle('fast', function() {
 			});
 		});
 	});
 	
-	function passCheck(){
+	function passCheckSubmit(){
 	//////비밀번호 유형 체크
 		if (document.pr.newpass.value == "") {
-			alert("비밀번호를 입력해 주세요!");
+			alert("비밀번호를 입력해주세요");
 			document.pr.newpass.focus();
 			return false;
 		} else if (!pass_reg.test(document.pr.newpass.value)) {
@@ -158,13 +164,12 @@
 		}
 		//////비밀번호 일치 체크
 		if (document.pr.newpass2.value == "") {
-			alert("비밀번호를 확인해 주세요!");
+			alert("비밀번호를 다시한번 입력해주세요");
 			document.pr.newpass2.focus();
 			return false;
-		}
-		if (document.pr.newpass.value != document.pr.newpass2.value) {
-			alert("비밀번호가 일치하지 않습니다!");
-			document.pr.pass2.focus();
+		}else if(document.pr.newpass.value != document.pr.newpass2.value) {
+			alert("비밀번호가 일치하지 않습니다");
+			document.pr.newpass2.focus();
 			return false;
 		}
 	}
@@ -185,12 +190,15 @@
 		var pwd = document.pr.newpass.value;
 
 		if (!pass_reg.test(pwd)) {
-			document.getElementById("passCheckDisplay").innerHTML = "비밀번호는 영문, 숫자, 특수문자 조합 10-20자리로 구성해주세요.";
+			document.getElementById("passCheckDisplay").innerHTML = "영문,숫자,특수문자 조합 10-20자리로 구성해주세요.";
 		} else {
 			document.getElementById("passCheckDisplay").innerHTML = "OK!";
 
 		}
 	}
+	
+
+	
 	
 	//체크박스 디스플레이
 	function snschecked(){
@@ -284,18 +292,18 @@ function snschecked5(){
 					
 					<div class="col-md-12 table-liner">
 						<div class="col-md-4 table-colorBg">
-							<span class="table-txt">비밀번호</span>
+							<span class="table-txt">비밀번호</span><span id="passChWall" style="display: none;"><br><br><br><br><br><br><br><br><br><br></span>
 						</div>
 						<div class="col-md-4 pass-conf-text">
-							<input type="button" id="passChange" value="비밀번호 변경">
+							<input type="button" id="passChange" value="비밀번호 변경" class="dup4" style="margin-top: 0px;">
 							<div style="display: none;">
-							<form action="./passChangeAction.sn"  name="pr" onsubmit="return passCheck()">
+							<form action="./passChangeAction.sn"  name="pr" onsubmit="return passCheckSubmit()">
 							new password &nbsp;&nbsp;
-							<input type="password" name="newpass" id="newpass" onkeyup="passFormCheck()">
+							<input type="password" name="newpass" id="newpass" onkeyup="passFormCheck()"><br>
 							<span id="passCheckDisplay"></span><br>
-							retype password<input type="password" name="newpass2" onkeyup="passCheck()">
+							retype password<input type="password" id="newpass2" name="newpass2" onkeyup="passCheck()"><br>
 							<span id="passdbCheckDisplay"></span><br>
-							<input type="submit" value="변경">
+							<input type="submit" value="변경" class="dup4">
 						</form>
 					</div>
 						</div>
@@ -309,7 +317,7 @@ function snschecked5(){
 							<span class="table-txt">이름</span>
 						</div>
 						<div class="col-md-4 pass-conf-txt">
-						<input type="text" value="<%=sb.getName()%>" class="form-control">
+						<input type="text" name="name" value="<%=sb.getName()%>" class="form-control">
 						</div>
 						<div class="col-md-4"></div>
 					</div>
@@ -421,7 +429,7 @@ function snschecked5(){
 
 					<div class="col-md-12 table-liner">
 						<div class="col-md-4 table-colorBg">
-							<span class="table-txt">프로필 이미지</span>
+							<span class="table-txt">프로필 이미지<br><br><br><br><br><br><br><br><br></span>
 						</div>
 						<div class="col-md-4 pass-conf-text">
 						
@@ -442,7 +450,7 @@ function snschecked5(){
 						
 						<div class="col-md-12 table-liner">
 						<div class="col-md-4 table-colorBg">
-							<span class="table-txt">서브 이미지</span>
+							<span class="table-txt">서브 이미지<br><br><br><br><br><br></span>
 						</div>
 						<div class="col-md-4 pass-conf-text">
 						
@@ -477,7 +485,7 @@ function snschecked5(){
 						<div class="col-md-12">	
 						<div class="col-md-4"></div>
 						<div class="col-md-4">
-							<input type="submit" value="글수정" class="colmd-4-btn">
+							<input type="submit" value="회원 정보 수정" class="colmd-4-btn">
 						</div>
 						<div class="col-md-4"></div>
 						</div>

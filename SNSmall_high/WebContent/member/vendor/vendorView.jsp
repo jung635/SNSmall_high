@@ -49,46 +49,63 @@
             <div class="col-md-9">
                 <div style="margin: 50px 0 50px 0">
                 		
-                		<div class="info-top-tit">　내정보 보기</div>
+                		<div class="top-subject">내 정보 보기</div>
                 		
-                		<div class="vendor_info">
-                
-						<div class="col-md-3 info-tit">아이디</div>
-						<div class="col-md-9 info-con"><%=id%></div>
-						
-						<div class="col-md-3 info-tit">이름</div>
-						<div class="col-md-9 info-con"><%=vb.getPerson_name()%></div>
-						
-						<div class="col-md-3 info-tit">회사명</div>
-						<div class="col-md-9 info-con"><%=vb.getCompany_name()%></div>
-						
-						<div class="col-md-3 info-tit">주소</div>
-						<div class="col-md-9 info-con" >
-						<%=postcode%><br>
-						<%=address%><br>
-						<%=address2%>
-						</div>
-						
-						
-						
-						<div class="col-md-3 info-tit">연락처</div>
-						<div class="col-md-9 info-con"><%=vb.getPhone()%></div>
-						
-						<div class="col-md-3 info-tit">판매금액</div>
-						<div class="col-md-9 info-con"><%=vb.getVendor_profit()%></div>
-						
-						</div>
-						<div class="col-md-12">
-						<hr>
-						</div>
-							<input type="hidden" name="pass" value="<%=vb.getPass()%>">
-							<input type="hidden" name="id" value="<%=id%>">
-							
-							<div class="col-md-4"></div>
-							<div class="col-md-4">
-								<input type="button" value="확인" class="ok-btn" onclick="location.href='./MyPage.ve'">
+                		<div class="col-md-12 table-liner-top">
+							<div class="col-md-4 table-colorBg-top">
+								<span class="table-txt">아이디</span>
 							</div>
-							<div class="col-md-4"></div>
+							<div class="col-md-8 pass-conf-text"><%=id %></div>
+						</div>
+						
+						<div class="col-md-12 table-liner">
+							<div class="col-md-4 table-colorBg">
+								<span class="table-txt">이름</span>
+							</div>
+							<div class="col-md-8 pass-conf-text"><%=vb.getPerson_name()%></div>
+						</div>
+						
+						<div class="col-md-12 table-liner">
+							<div class="col-md-4 table-colorBg">
+								<span class="table-txt">회사명</span>
+							</div>
+							<div class="col-md-8 pass-conf-text"><%=vb.getCompany_name()%></div>
+						</div>
+						
+						<div class="col-md-12 table-liner">
+							<div class="col-md-4 table-colorBg">
+								<span class="table-txt">주소<br><br><br></span>
+							</div>
+							<div class="col-md-8 pass-conf-text">
+								<%=postcode%><br>
+								<%=address%><br>
+								<%=address2%>
+							</div>
+						</div>
+                		
+                		<div class="col-md-12 table-liner">
+							<div class="col-md-4 table-colorBg">
+								<span class="table-txt">연락처</span>
+							</div>
+							<div class="col-md-8 pass-conf-text"><%=vb.getPhone()%></div>
+						</div>
+						
+						<div class="col-md-12" style="margin-top: 50px;"><div class="top-subject" style="border-color: #B2D8AC">SN# 판매 정보</div></div>
+						
+						<div class="col-md-12 table-liner-top">
+							<div class="col-md-4 table-colorBg-top" style="background-color: #B2D8AC">
+							<span class="table-txt">판매금액</span>
+							</div>
+							<div class="col-md-8 pass-conf-text"><%=vb.getVendor_profit()%></div>
+						</div>
+						
+						<input type="hidden" name="pass" value="<%=vb.getPass()%>">
+						<input type="hidden" name="id" value="<%=id%>">
+						
+						
+						
+						</div>
+		
 					</div>
             </div>
         </div>

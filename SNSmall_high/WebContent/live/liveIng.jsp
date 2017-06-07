@@ -49,30 +49,31 @@ var config = {
 firebase.initializeApp(config);
 
 function getLive(){
-	 FB.api('<%=video_id%>', function (response) {
-	    	console.log(response);
-	    	 // alert(accessToken);
-	    	//alert(response.status);
+ 	 FB.api('<%=video_id%>?fields=permalink_url',function (response) {
 	      if (response && !response.error) {
-	        //alert(response);
-	        document.getElementById('live').innerHTML=response.embed_html;
+	        console.log(response);
+	        document.getElementById('liveDiv').setAttribute('data-href',"https://www.facebook.com"+response.permalink_url);
 	      }
 	    },{access_token: '<%=token%>'});
- }
  
-function deleteLive(){
-	alert('방송을 종료합니다.');
-	FB.api(
-			'<%=video_id%>',
-			  'POST',
-			  {"end_live_video":"true"},
-			  function(response) {
-				  if (response && !response.error) {
-				 	 location.href="LiveDelete.li?video_id=<%=video_id%>&product_num=<%=product_num%>";
-				  }
-			  },{access_token: '<%=token%>'}
-			);
- }
+ 	function deleteLive(){
+ 		alert('방송을 종료합니다.');
+ 		 firebase.database().ref('<%=video_id%>').push({
+ 				userId: '<%=id%>',
+ 				message: "채팅이 종료되었습니다.",
+ 				status: 'off',
+ 			});
+ 		FB.api(
+ 				'<%=video_id%>?end_live_video=true',
+ 				  'POST',
+ 				  function(response) {
+ 					  console.log(response);
+ 					  if (response && !response.error) {
+ 					 	 location.href="LiveDelete.li?video_id=<%=video_id%>&product_num=<%=product_num%>";
+ 					  }
+ 				  },{access_token: '<%=token%>'}
+ 				);
+ 	 }
  
 function press(){
   	 if(event.keyCode == 13){

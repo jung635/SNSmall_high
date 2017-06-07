@@ -9,6 +9,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
 </head>
 <body>
+<div id="fb-root"></div>
 <%
 String id = (String)session.getAttribute("id");
 if(id==null){%>
@@ -35,40 +36,28 @@ window.fbAsyncInit = function() {
     FB.AppEvents.logPageView();
 };
 
+
 (function(d, s, id) {
-   var js, fjs = d.getElementsByTagName(s)[0];
-   if (d.getElementById(id)) return;
-   js = d.createElement(s); js.id = id;
-   js.src = "//connect.facebook.net/ko_KR/sdk.js#xfbml=1&version=v2.9&appId=1685211914841647";
-   fjs.parentNode.insertBefore(js, fjs);
- }(document, 'script', 'facebook-jssdk'));
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/ko_KR/sdk.js#xfbml=1&version=v2.9&appId=1185421938235757";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));
 
 function getLive(){
-  	 FB.api('me/<%=video_id%>', {"fields":"permalink_url"},function (response) {
-	    	//console.log(response);
-	    	//console.log(token);
-	    	 // alert(accessToken);
-	    	//alert(response.status);
+  	 FB.api('<%=video_id%>?fields=permalink_url',function (response) {
 	      if (response && !response.error) {
-	        //alert(response);
 	        console.log(response);
-	        document.getElementById('live').innerHTML=response.embed_html;
-	        
+	        document.getElementById('liveDiv').setAttribute('data-href',"https://www.facebook.com"+response.permalink_url);
+	        //document.getElementById('bq').setAttribute('cite',"https://ko-kr.facebook.com"+response.permalink_url);
+	        //document.getElementById('liveA').setAttribute('href',"https://ko-kr.facebook.com"+response.permalink_url);
 	      }
 	    },{access_token: '<%=token%>'});
-/* 	    FB.api(
-	    		  '/112550532676347',
-	    		  'GET',
-	    		  {"fields":"permalink_url"},
-	    		  function(response) {
-	    		      // Insert your code here
-	    		  }
-	    		); */
  }
  
 function press(event){
  	 if(event.keyCode == 13 || event.charCode == 13){
- 		// alert("test");
  		 sendMessage();
  	 }
   }
@@ -97,35 +86,12 @@ firebase.database().ref('<%=video_id%>').limitToLast(1).on('child_added',functio
 		document.getElementById("messageTextArea").value += data.val().message + "\n";
 		document.getElementById("textMessage").value = "";
 		if(data.val().status == "off"){
-			document.getElementById("messageTextArea").value += "이미 종료된 채팅입니다.\n";
-			document.getElementById("textMessage").value = "";
+			alert("방송이 종료되어 창이 종료됩니다.");
+			window.close();
 		}
 	
 });	
 	
-function deleteLive(){
-	alert('방송을 종료합니다.');
-	 firebase.database().ref('<%=video_id%>').push({
-			userId: '<%=id%>',
-			message: "채팅이 종료되었습니다.",
-			status: 'off',
-		});
-	FB.api(
-			'<%=video_id%>',
-			  'POST',
-			  {"end_live_video":"true"},
-			  function(response) {
-				  console.log(response);
-				  if (response && !response.error) {
-				 	 location.href="LiveDelete.li?video_id=<%=video_id%>&product_num=<%=product_num%>";
-				  }
-			  },{access_token: '<%=token%>'}
-			);
- }
- 
-$(document).ready(function(){
-    $('.iframe').css('width','300px');
-});	
 window.onunload = function(e) {
 	  var dialogText = 'Dialog text here';
 	  e.returnValue = dialogText;
@@ -140,7 +106,8 @@ function myFunction(){
 <button onclick="deleteLive()">방송 그만하기</button>
 <button onclick="window.opener.location.href='ProductDetail.pr?product_num=<%=product_num%>'">물건 구경하러 가기</button>
 <div id="title"><%=title %></div>
-<div id="live" style="width: 300px" data-width="500"></div>
+<!-- <div id="live" style="width: 300px" data-width="500"></div> -->
+<div class="fb-video" id="liveDiv" data-href="" data-width="500" data-show-text="false"><blockquote cite="" id = "bq" class="fb-xfbml-parse-ignore"><a href="" id="liveA"></a><p></p><a href="https://www.facebook.com/people/Sunju-Jung/100017642026723">Sunju Jung</a>에 의해 게시 됨 2017년 6월 7일 수요일</blockquote></div>
 <!-- 송신 메시지 작성하는 창 -->
 <input id="textMessage" type="text"  onkeyup="press(event)" >
 <!-- 송신 버튼 -->

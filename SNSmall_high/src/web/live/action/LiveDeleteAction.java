@@ -13,7 +13,7 @@ public class LiveDeleteAction implements Action{
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		PrintWriter out = response.getWriter();
 		String video_id = request.getParameter("video_id");
-		int product_num = Integer.parseInt(request.getParameter("video_id"));
+		int product_num = Integer.parseInt(request.getParameter("product_num"));
 		LiveDAO ldao = new LiveDAO();
 		ldao.deleteLive(video_id);
 		ldao.productOffUpdate(product_num);

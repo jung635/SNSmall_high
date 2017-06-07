@@ -348,20 +348,20 @@ function productSearch_exe(){
 				</ul><!--/#portfolio-filter-->
 				<div class="portfolio-items">
 					<%
-					List<ProductBean> product_list = (List<ProductBean>)request.getAttribute("product_list");
+					List product_list = (List)request.getAttribute("product_list");
 					if(product_list.size()==0){%>
 						리스트가 없습니다.
 					<%}else{
 					for(int i=0; i<product_list.size(); i++){
-						ProductBean prob = product_list.get(i);
+						ProductBean prob = (ProductBean)product_list.get(i);
 					%>
 					<div class="col-sm-3 col-xs-12 portfolio-item <%=prob.getCategory()%>">
 						<div class="view efffect">
 							<div class="portfolio-image">
-								<%if(prob.getMain_img()==null){ %>
-    	            		    		<img src="./qna_img/default.jpg" style="" alt=""></div>
+								<%if(prob.getMain_img()!=null){ %>
+    	            		    		<img src="./vendor_img/<%=prob.getMain_img() %>" alt=""></div>
         			            <%} else{%>
-										<img id="mainimg_item" src="./vendor_img/<%=prob.getMain_img() %>" alt=""></div>
+										<img id="mainimg_item" src="./qna_img/default.jpg" alt=""></div>
 								<%} %> 
 						<div class="mask text-center">
 							<h3>Novel</h3>

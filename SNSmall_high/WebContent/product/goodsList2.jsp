@@ -23,6 +23,7 @@
 <%
 	String id = (String)session.getAttribute("id");
 	String type = (String)session.getAttribute("type");
+	if(id==null){type = "client";}
 	String pageNum = (String)request.getAttribute("pageNum");
 	String category = (String)request.getAttribute("category");
 	String order = (String)request.getAttribute("order");

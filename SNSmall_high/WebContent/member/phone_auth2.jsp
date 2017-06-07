@@ -5,10 +5,26 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>인증정보 입력-다날 본인확인</title>
-<link href="../css/member.css" rel="stylesheet"> 
-<link href="../css/font-awesome.min.css" rel="stylesheet">
-<script src="../js/jquery.js"></script>
+<link href="./css/member.css" rel="stylesheet"> 
+<link href="./css/font-awesome.min.css" rel="stylesheet">
+<script src="./js/jquery.js"></script>
 <script type="text/javascript">
+
+var authMailClicked=false;
+var authCheckChecked=false;
+var authNumCheck=false;
+var authnum =(Math.floor)(Math.random()*1000000);
+
+function sendmail(){
+	 authMailClicked=true;
+	 if(document.ph_fr.email.value==""){
+			alert("이메일을 입력하세요");
+			document.ph_fr.email.focus();
+			return;
+		}
+	 var email = document.ph_fr.email.value;
+	 window.open("./mailAction.cl?email="+email+"&authNum="+authnum,"","height=400 width=400");
+}
 
 $(document).ready(function(){
 	$('#woman').click(function(event){ 
@@ -66,10 +82,15 @@ $(document).ready(function(){
 </script>
 </head>
 <body>
+<%
+	String id = (String) session.getAttribute("id");
+%>
+
 <i class="fa fa-envelope-o" aria-hidden="true"></i>&nbsp;휴대폰 본인 확인(문자)
 
-<form action="" name="fr" id="ph_fr">
+<form action="./SearchPassAction.cl" name="fr" id="ph_fr">
 <table class="phone_back">
+<input type="hidden" name="id" value="<%=id%>">
 <tr> 
 <td>이름</td>
 <td> <input type="text" name="name" id="name" class="ph_txt_box"> </td>
@@ -122,7 +143,7 @@ $(document).ready(function(){
 
 </table>
 
-<input type="reset" value="취소" class="ph-cancle">
+<input type="reset" value="취소" class="ph-cancle" onclick="history.back()">
 <input type="submit" value="확인" class="ph-oks">
 
 </form>

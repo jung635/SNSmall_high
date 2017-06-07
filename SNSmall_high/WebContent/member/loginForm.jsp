@@ -45,7 +45,11 @@
 		return false;
 	}
 	
-}
+	}
+	
+	function SearchPass(){
+		window.open("./SearchPass.cl","","height=500 width=450");
+	}
 
 	</script>
 	
@@ -127,7 +131,7 @@
 					<a href="./common_join.sn" >회원가입</a>&nbsp;|
 					<a href="./login.cl" >로그인</a>&nbsp;|
 					<a href="./SearchId.cl">아이디 찾기</a>&nbsp;|
-					<a href="./SearchPass.cl">비밀번호 찾기</a><br>
+					<a href="javascript:SearchPass()">비밀번호 찾기</a><br>
 					<a href="./SearchIdForSns.cl">SNS 아이디 찾기</a>
 					</div>
 					

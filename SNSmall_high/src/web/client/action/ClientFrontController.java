@@ -52,8 +52,14 @@ public class ClientFrontController extends HttpServlet{
 			
 		}else if (command.equals("/SearchPass.cl")) {
 			forward = new ActionForward();
-			forward.setPath("./member/SearchPass.jsp");
+			forward.setPath("./member/phone_auth1.jsp");
 			forward.setRedirect(false);
+			
+		}else if(command.equals("/SearchPass_IdSend.cl")){
+			action = new SearchPass_IdSend();
+			try{
+				forward = action.execute(request, response);
+			}catch(Exception e){e.printStackTrace();}
 			
 		}else if(command.equals("/SearchPassAction.cl")){
 			action = new SearchPassAction();

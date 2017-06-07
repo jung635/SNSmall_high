@@ -49,7 +49,8 @@ function getLive(){
   	 FB.api('<%=video_id%>?fields=permalink_url',function (response) {
 	      if (response && !response.error) {
 	        console.log(response);
-	        document.getElementById('liveDiv').setAttribute('data-href',"https://www.facebook.com"+response.permalink_url);
+	        //document.getElementById('liveDiv').setAttribute('data-href',"https://www.facebook.com"+response.permalink_url);
+	        document.getElementById('liveDiv').setAttribute('data-href','https://www.facebook.com/100017642026723/videos/113069105957823/');
 	        //document.getElementById('bq').setAttribute('cite',"https://ko-kr.facebook.com"+response.permalink_url);
 	        //document.getElementById('liveA').setAttribute('href',"https://ko-kr.facebook.com"+response.permalink_url);
 	      }
@@ -107,7 +108,8 @@ function myFunction(){
 <button onclick="window.opener.location.href='ProductDetail.pr?product_num=<%=product_num%>'">물건 구경하러 가기</button>
 <div id="title"><%=title %></div>
 <!-- <div id="live" style="width: 300px" data-width="500"></div> -->
-<div class="fb-video" id="liveDiv" data-href="" data-width="500" data-show-text="false"><blockquote cite="" id = "bq" class="fb-xfbml-parse-ignore"><a href="" id="liveA"></a><p></p><a href="https://www.facebook.com/people/Sunju-Jung/100017642026723">Sunju Jung</a>에 의해 게시 됨 2017년 6월 7일 수요일</blockquote></div>
+<!-- <div class="fb-video"  data-href="" data-width="500" data-show-text="false"><blockquote cite="" id = "bq" class="fb-xfbml-parse-ignore"><a href="" id="liveA"></a><p></p><a href="https://www.facebook.com/people/Sunju-Jung/100017642026723">Sunju Jung</a>에 의해 게시 됨 2017년 6월 7일 수요일</blockquote></div> -->
+<div class="fb-video" id="liveDiv" data-href="" data-width="500" data-show-text="false"><blockquote cite="https://ko-kr.facebook.com/100017642026723/videos/113069105957823/" class="fb-xfbml-parse-ignore"><a href="https://ko-kr.facebook.com/100017642026723/videos/113069105957823/"></a><p></p><a href="https://www.facebook.com/people/Sunju-Jung/100017642026723">Sunju Jung</a>에 의해 게시 됨 2017년 6월 7일 수요일</blockquote></div>
 <!-- 송신 메시지 작성하는 창 -->
 <input id="textMessage" type="text"  onkeyup="press(event)" >
 <!-- 송신 버튼 -->

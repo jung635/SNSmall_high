@@ -52,7 +52,7 @@ function getLive(){
 	      if (response && !response.error) {
 	        //alert(response);
 	        console.log(response);
-	       // document.getElementById('live').innerHTML=response.embed_html;
+	        document.getElementById('live').innerHTML=response.embed_html;
 	        
 	      }
 	    },{access_token: '<%=token%>'});
@@ -96,11 +96,9 @@ firebase.database().ref('<%=video_id%>').limitToLast(1).on('child_added',functio
 	document.getElementById("messageTextArea").value += data.val().message + "\n";
 	document.getElementById("textMessage").value = "";
 });	
-window.onbeforeunload = deleteLive;
 	
 function deleteLive(){
 	alert('방송을 종료합니다.');
-	<%System.out.println("꺄륵");%>
 	FB.api(
 			'<%=video_id%>',
 			  'POST',

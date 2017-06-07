@@ -44,7 +44,7 @@ window.fbAsyncInit = function() {
  }(document, 'script', 'facebook-jssdk'));
 
 function getLive(){
-  	 FB.api('<%=video_id%>', {"fields":"permalink_url"},function (response) {
+  	 FB.api('me/<%=video_id%>', {"fields":"permalink_url"},function (response) {
 	    	//console.log(response);
 	    	//console.log(token);
 	    	 // alert(accessToken);
@@ -88,17 +88,28 @@ function sendMessage(){
 	firebase.database().ref('<%=video_id%>').push({
 		userId: '<%=id%>',
 		message: "<%=id%>:" +  document.getElementById("textMessage").value,
+		status: 'on',
 	});
 }
 
 firebase.database().ref('<%=video_id%>').limitToLast(1).on('child_added',function(data, prevChildKey){
 	console.log(data.val()); 
-	document.getElementById("messageTextArea").value += data.val().message + "\n";
-	document.getElementById("textMessage").value = "";
+		document.getElementById("messageTextArea").value += data.val().message + "\n";
+		document.getElementById("textMessage").value = "";
+		if(data.val().status == "off"){
+			document.getElementById("messageTextArea").value += "이미 종료된 채팅입니다.\n";
+			document.getElementById("textMessage").value = "";
+		}
+	
 });	
 	
 function deleteLive(){
 	alert('방송을 종료합니다.');
+	 firebase.database().ref('<%=video_id%>').push({
+			userId: '<%=id%>',
+			message: "채팅이 종료되었습니다.",
+			status: 'off',
+		});
 	FB.api(
 			'<%=video_id%>',
 			  'POST',
@@ -106,15 +117,24 @@ function deleteLive(){
 			  function(response) {
 				  console.log(response);
 				  if (response && !response.error) {
-				 	 //location.href="LiveDelete.li?video_id=<%=video_id%>&product_num=<%=product_num%>";
+				 	 location.href="LiveDelete.li?video_id=<%=video_id%>&product_num=<%=product_num%>";
 				  }
 			  },{access_token: '<%=token%>'}
 			);
  }
  
 $(document).ready(function(){
-    $('iframe').css('width','300px');
+    $('.iframe').css('width','300px');
 });	
+window.onunload = function(e) {
+	  var dialogText = 'Dialog text here';
+	  e.returnValue = dialogText;
+	  return dialogText;
+	  myFunction();
+	};
+function myFunction(){
+	<%System.out.println("test");%>
+}
 
 </script>
 <button onclick="deleteLive()">방송 그만하기</button>

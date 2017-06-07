@@ -395,3 +395,8 @@ a.list-group-item:hover, a.list-group-item:focus {
     text-align: center;
     width: 30px;
 }
+#product_detail_img img{
+	display: block;
+	height: auto;
+	width: 100% !important;
+}

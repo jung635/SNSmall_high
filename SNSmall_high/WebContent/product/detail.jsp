@@ -329,12 +329,12 @@
                 <h3 class="page-header">상 세 내 용</h3>
             </div>
 
-            <div class="col-sm-3 col-xs-6" id="product_detail_img">
+            <div class="" id="product_detail_img">
                 <a href="#">
                 <%if(productbean.getDetail_img()==null){ %>
                     <img class="img-responsive portfolio-item" src="http://placehold.it/500x300" alt="">
                     <%} else{%>
-                    <img class="img-responsive portfolio-item" src="./vendor_img/<%=productbean.getDetail_img() %>" style="width: 100% !important;" alt="">
+                    <img class="img-responsive portfolio-item" src="./vendor_img/<%=productbean.getDetail_img() %>" alt="">
                     <% }%>
                 </a>
             </div>

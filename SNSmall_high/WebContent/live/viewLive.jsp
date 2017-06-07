@@ -44,17 +44,26 @@ window.fbAsyncInit = function() {
  }(document, 'script', 'facebook-jssdk'));
 
 function getLive(){
- 	 FB.api('<%=video_id%>', function (response) {
-	    	console.log(response);
-	    	console.log(token);
+  	 FB.api('sunju635/<%=video_id%>', {"fields":"permalink_url"},function (response) {
+	    	//console.log(response);
+	    	//console.log(token);
 	    	 // alert(accessToken);
 	    	//alert(response.status);
 	      if (response && !response.error) {
 	        //alert(response);
-	        document.getElementById('live').innerHTML=response.embed_html;
+	        console.log(response);
+	       // document.getElementById('live').innerHTML=response.embed_html;
 	        
 	      }
 	    },{access_token: '<%=token%>'});
+/* 	    FB.api(
+	    		  '/112550532676347',
+	    		  'GET',
+	    		  {"fields":"permalink_url"},
+	    		  function(response) {
+	    		      // Insert your code here
+	    		  }
+	    		); */
  }
  
 function press(event){

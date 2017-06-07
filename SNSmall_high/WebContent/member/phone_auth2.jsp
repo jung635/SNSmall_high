@@ -23,6 +23,9 @@ $(document).ready(function(){
 		$('#gender').val("남");
 	});
 	
+	$('input:text[name=birth]').keyup(function(){
+		$(this).val( $(this).val().replace(/[^0-9]/g,"") );
+	});
 	
 	$('#ph_fr').submit(function(){
 		

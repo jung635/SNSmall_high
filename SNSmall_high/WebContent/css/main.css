@@ -462,6 +462,32 @@ h1, h2, h3, h4, h5, h6 {
 	text-transform: uppercase;
 	position:relative
 }
+.title-one-green {
+	color: #fc7700;
+	display: inline-block;
+	font-size: 32px;
+	font-weight: 600;
+	padding-bottom:10px;
+	text-align: center;
+	text-transform: uppercase;
+	position:relative
+}
+
+.title-one-green:after {
+	color: #B2D8AC;
+	content: "||";
+	position: absolute;
+	right: -40px;
+	top: -2px;
+}
+
+.title-one-green:before {
+	color: #B2D8AC;
+	content: "||";
+	left: -40px;
+	position: absolute;
+	top: 0;
+}
 
 .title-one:after {
 	color: #fc7700;
@@ -685,13 +711,14 @@ h1, h2, h3, h4, h5, h6 {
 
 .single-member {
 	height:430px;
-    background-color: rgb(255, 155, 32);
+    background-color: rgb(255, 255, 255);
 	color: black;
 	padding: 18px;
 	text-align:center;
 	overflow:hidden;
 	margin-bottom: 16px;
-	height: 375px ;
+	height: 300px ;
+	border-top-right-radius:50px;
 }
 
 .single-member img {
@@ -706,7 +733,7 @@ h1, h2, h3, h4, h5, h6 {
 #our-team .socials i {
 	background-color:#fff;
 	border-radius: 50%;
-	color: #43484E;
+	color: #fff;
 	display: inline-block;
 	font-size:16px;
 	height: 30px;
@@ -1575,8 +1602,13 @@ h1, h2, h3, h4, h5, h6 {
     position: relative;
 }
 #star_list_detail{
-    min-height: 85px;
-    max-height: 85px;
+    min-height: 60px;
+    max-height: 60px;
+    display: inline;
+    position: absolute;
+    width:100%;
+    top:90px;
+    background-color: rgba(255,255,255,0.5);
 }
 
 #our-team .socials a .fa-facebook{
@@ -1626,14 +1658,18 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .single-member a{
-    color: #f6f6f6;
+    color: #43484E;
+    font-size: 25px;
+    font-weight: bold;
 }
-.single-member small{
-    color: #fd0101;
+.single-member .cate_rank{
+    color: #43484E;
+    font-size: 12px;
+    font-style: italic;
 }
 #ranking_sns{
 	display: inline;
-    padding: .2em .6em .3em;
+/*     padding: .2em .6em .3em; */
     font-size: 75%;
     font-weight: bold;
     line-height: 1;
@@ -1642,12 +1678,21 @@ h1, h2, h3, h4, h5, h6 {
     white-space: nowrap;
     vertical-align: baseline;
     border-radius: .25em;
-    background-color: #5cb85c;
+/*     background-color: #5cb85c; */
     position: absolute;
+    top:-12px;
+    left:-12px;
+}
+.ranking_sns_rk{
+	display: inline;
+	 position: absolute;
+	 top:3px;
+	 left:13px;
+	 font-size: 13px;
 }
 #ranking_sns_first{
     display: inline;
-    padding: .2em .6em .3em;
+/*     padding: .2em .6em .3em; */
     font-size: 2em;
     font-weight: bold;
     line-height: 1;
@@ -1656,8 +1701,10 @@ h1, h2, h3, h4, h5, h6 {
     white-space: nowrap;
     vertical-align: baseline;
     border-radius: .25em;
-    background-color: #a0fd05;
+/*     background-color: #B2D8AC; */
     position: absolute;
+    top:-12px;
+    left: -12px;
 }
 /*main search btn*/
 .Sns_SearchBtn{

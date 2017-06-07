@@ -30,9 +30,10 @@ function submitCheck(){
 	String email = (String)session.getAttribute("email");
 	String id = (String)session.getAttribute("id");
 	String name = (String)session.getAttribute("name");
+	String home = (String)session.getAttribute("home");
 %>
 <i class="fa fa-envelope-o" aria-hidden="true"></i>&nbsp;휴대폰 본인 확인(문자)
-<form action="./SearchPassAction.cl" name="fr" id="ph_auth_fr" onsubmit="return submitCheck()">
+<form action="./SearchIdForSnsAction.cl" name="fr" id="ph_auth_fr" onsubmit="return submitCheck()">
 <table class="phone_back">
 
 <tr> 
@@ -45,6 +46,7 @@ function submitCheck(){
 <input type="hidden" name="email" value="<%=email%>">
 <input type="hidden" name="id" value="<%=id%>">
 <input type="hidden" name="name" value="<%=name%>">
+<input type="hidden" name="home" value="<%=home%>">
 <td><input type="text" name="authNum" class="ph_txt_box" style="width: 200px; padding-right: 50px;"></td> 
 </tr>
 

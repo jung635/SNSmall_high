@@ -36,6 +36,10 @@ function submitCheck(){
 		alert("이메일을 입력하세요");
 		document.fr.email.focus();
 		return false;
+	}else if(home==""){
+		alert("홈페이지 주소를 입력하세요");
+		document.fr.home.focus();
+		return false;
 	}
 }
 
@@ -71,7 +75,7 @@ $(document).ready(function(){
 
 <i class="fa fa-envelope-o" aria-hidden="true"></i>&nbsp;휴대폰 본인 확인(문자)
 
-<form action="./mailActionForPass.cl" name="fr" id="ph_fr" onsubmit="return submitCheck()">
+<form action="./mailActionForSnsId.cl" name="fr" id="ph_fr" onsubmit="return submitCheck()">
 <table class="phone_back">
 <input type="hidden" name="id" value="<%=id%>">
 <tr> 
@@ -102,6 +106,12 @@ $(document).ready(function(){
 <td>이메일</td>
 <td colspan="2">
 <input type="text" name="email" id="email" class="ph_txt_box" style="width: 220px;">
+</td>
+</tr>
+<tr> 
+<td>홈페이지</td>
+<td colspan="2">
+<input type="text" name="home" id="home" class="ph_txt_box" style="width: 220px;">
 </td>
 </tr>
 

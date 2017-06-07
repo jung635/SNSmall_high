@@ -71,7 +71,7 @@ $(document).ready(function(){
 
 <i class="fa fa-envelope-o" aria-hidden="true"></i>&nbsp;휴대폰 본인 확인(문자)
 
-<form action="./mailActionForPass.cl" name="fr" id="ph_fr" onsubmit="return submitCheck()">
+<form action="./mailActionForId.cl" name="fr" id="ph_fr" onsubmit="return submitCheck()">
 <table class="phone_back">
 <input type="hidden" name="id" value="<%=id%>">
 <tr> 

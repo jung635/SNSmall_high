@@ -38,10 +38,10 @@ public class SearchPassAction implements Action{
 				PrintWriter out = response.getWriter();
 				out.println("<script>");
 				out.println("alert('메일발송하였습니다!');");
-				out.println("history.back();");
+				out.println("window.close();");
 				out.println("</script>");
 				out.close();
-				return null;				
+				return null;
 			}else{
 				response.setContentType("text/html; charset=UTF-8"); // 서버에서 클라이언트로 보내는 내용 타입 설정
 				PrintWriter out = response.getWriter();
@@ -61,6 +61,6 @@ public class SearchPassAction implements Action{
 			out.println("</script>");
 			out.close();
 			return null;
-		}		
+		}
 	}
 }

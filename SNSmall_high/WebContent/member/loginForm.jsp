@@ -50,6 +50,14 @@
 	function SearchPass(){
 		window.open("./SearchPass.cl","","height=500 width=450");
 	}
+	
+	function SearchId(){
+		window.open("./SearchId.cl","","height=500 width=450");
+	}
+	
+	function SearchIdForSns(){
+		window.open("./SearchIdForSns.cl","","height=500 width=450");
+	}
 
 	</script>
 	
@@ -130,9 +138,9 @@
 					<div class="sub_member">
 					<a href="./common_join.sn" >회원가입</a>&nbsp;|
 					<a href="./login.cl" >로그인</a>&nbsp;|
-					<a href="./SearchId.cl">아이디 찾기</a>&nbsp;|
+					<a href="javascript:SearchId()">아이디 찾기</a>&nbsp;|
 					<a href="javascript:SearchPass()">비밀번호 찾기</a><br>
-					<a href="./SearchIdForSns.cl">SNS 아이디 찾기</a>
+					<a href="javascript:SearchIdForSns()">SNS 아이디 찾기</a>
 					</div>
 					
 					<div class="clear"></div>

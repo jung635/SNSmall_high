@@ -8,8 +8,11 @@
 <script src="https://www.gstatic.com/firebasejs/4.1.1/firebase.js"></script>
 </head>
 <body>
+<%String id="Test";
+String video_id="video_idid";
+%>
 	<script>
-		var config = {
+ 		var config = {
 				apiKey: "AIzaSyAJ04h5-aCRcg_FoDyNRq93Z9EWB0ebUgQ",
 				authDomain: "snsmall-6f75b.firebaseapp.com",
 				databaseURL: "https://snsmall-6f75b.firebaseio.com",
@@ -37,7 +40,7 @@
 		  		// alert("test");
 		  		 sendMessage();
 		  	 }
-		   }
+		   } 
 	</script>
 	<!-- 송신 메시지 작성하는 창 -->
 	<input id="textMessage" type="text" onkeydown="press()">

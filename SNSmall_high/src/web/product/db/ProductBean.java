@@ -18,6 +18,7 @@ public class ProductBean {
 	private int amount;
 	private int count;
 	private Date date;
+	private String live_state;
 	
 	public int getProduct_num() {
 		return product_num;
@@ -102,6 +103,12 @@ public class ProductBean {
 	}
 	public void setDate(Date date) {
 		this.date = date;
+	}
+	public String getLive_state() {
+		return live_state;
+	}
+	public void setLive_state(String live_state) {
+		this.live_state = live_state;
 	}
 	
 	

@@ -6,6 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <script src="https://www.gstatic.com/firebasejs/4.1.1/firebase.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
 </head>
 <body>
 <%
@@ -18,6 +19,8 @@ if(id==null){%>
 <%}
 String video_id = request.getParameter("video_id");
 String token = request.getParameter("token");
+String title = request.getParameter("title");
+int product_num = Integer.parseInt(request.getParameter("product_num"));
 %>
 <script>
 var token;
@@ -41,7 +44,7 @@ window.fbAsyncInit = function() {
  }(document, 'script', 'facebook-jssdk'));
 
 function getLive(){
-	 FB.api('<%=video_id%>', function (response) {
+ 	 FB.api('<%=video_id%>', function (response) {
 	    	console.log(response);
 	    	console.log(token);
 	    	 // alert(accessToken);
@@ -54,18 +57,13 @@ function getLive(){
 	    },{access_token: '<%=token%>'});
  }
  
-function press(){
- 	 if(event.keyCode == 13){
+function press(event){
+ 	 if(event.keyCode == 13 || event.charCode == 13){
  		// alert("test");
  		 sendMessage();
  	 }
   }
-  
-$(window).bind("beforeunload", function (){
-
-	        alert("테스트");//chrome 브라우저에서는 alert창을 먹어버린다
-
-});  
+   
 var config = {
 		apiKey: "AIzaSyAJ04h5-aCRcg_FoDyNRq93Z9EWB0ebUgQ",
 		authDomain: "snsmall-6f75b.firebaseapp.com",
@@ -80,21 +78,44 @@ function sendMessage(){
 	console.log('sendMessage');
 	firebase.database().ref('<%=video_id%>').push({
 		userId: '<%=id%>',
-		message: document.getElementById("textMessage").value,
+		message: "<%=id%>:" +  document.getElementById("textMessage").value,
 	});
 }
 
 firebase.database().ref('<%=video_id%>').limitToLast(1).on('child_added',function(data, prevChildKey){
 	console.log(data.val()); 
-	document.getElementById("messageTextArea").value += "<%=id%>:" +  data.val().message + "\n";
+	document.getElementById("messageTextArea").value += data.val().message + "\n";
+	document.getElementById("textMessage").value = "";
 });	
-   
+window.onbeforeunload = deleteLive;
+	
+function deleteLive(){
+	alert('방송을 종료합니다.');
+	<%System.out.println("꺄륵");%>
+	FB.api(
+			'<%=video_id%>',
+			  'POST',
+			  {"end_live_video":"true"},
+			  function(response) {
+				  console.log(response);
+				  if (response && !response.error) {
+				 	 //location.href="LiveDelete.li?video_id=<%=video_id%>&product_num=<%=product_num%>";
+				  }
+			  },{access_token: '<%=token%>'}
+			);
+ }
+ 
+$(document).ready(function(){
+    $('iframe').css('width','300px');
+});	
+
 </script>
-<button id="getLiveinfo" onclick="getLive()">내 방송화면 보기</button>
-<button id="getLiveinfo" onclick="deleteLive()">방송 그만하기</button>
-<div id="live" style="width: 300px"></div>
+<button onclick="deleteLive()">방송 그만하기</button>
+<button onclick="window.opener.location.href='ProductDetail.pr?product_num=<%=product_num%>'">물건 구경하러 가기</button>
+<div id="title"><%=title %></div>
+<div id="live" style="width: 300px" data-width="500"></div>
 <!-- 송신 메시지 작성하는 창 -->
-<input id="textMessage" type="text"  onkeyup="press()" >
+<input id="textMessage" type="text"  onkeyup="press(event)" >
 <!-- 송신 버튼 -->
 <input onclick="sendMessage()" value="Send" type="button">
 <!-- 종료 버튼 -->

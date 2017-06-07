@@ -12,7 +12,10 @@
 <%
 String id = (String)session.getAttribute("id");
 String video_id = (String)request.getAttribute("video_id");
-String token = (String)request.getAttribute("token");%>
+String token = (String)request.getAttribute("token");
+String title = (String)request.getAttribute("title");
+int product_num = (Integer)request.getAttribute("product_num");
+%>
 <script>
 var token;
 var video_id;
@@ -65,7 +68,7 @@ function deleteLive(){
 			  {"end_live_video":"true"},
 			  function(response) {
 				  if (response && !response.error) {
-				 	 location.href="LiveDelete.li?video_id=<%=video_id%>";
+				 	 location.href="LiveDelete.li?video_id=<%=video_id%>&product_num=<%=product_num%>";
 				  }
 			  },{access_token: '<%=token%>'}
 			);
@@ -83,19 +86,24 @@ function sendMessage(){
 	console.log('sendMessage');
 	firebase.database().ref('<%=video_id%>').push({
 		userId: '<%=id%>',
-		message: document.getElementById("textMessage").value,
+		message: "<%=id%>:" +  document.getElementById("textMessage").value,
 	});
 }
 
 firebase.database().ref('<%=video_id%>').limitToLast(1).on('child_added',function(data, prevChildKey){
 	console.log(data.val()); 
-	document.getElementById("messageTextArea").value += "<%=id%>:" + data.val().message + "\n";
+	document.getElementById("messageTextArea").value += data.val().message + "\n";
+	document.getElementById("textMessage").value = "";
 });
-	
+
+$(document).ready(function(){
+    $(".iframe").css('width','300px');
+});	
    
 </script>
 <button id="getLiveinfo" onclick="getLive()">내 방송화면 보기</button>
 <button id="getLiveinfo" onclick="deleteLive()">방송 그만하기</button>
+<div id="title"><%=title %></div>
 <div id="live" style="width: 300px"></div>
      <!-- 송신 메시지 작성하는 창 -->
      <input id="textMessage" type="text"  onkeyup="press()" >

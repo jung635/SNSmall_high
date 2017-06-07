@@ -1,10 +1,14 @@
 package web.live.db;
 
+import java.sql.Timestamp;
+
 public class LiveBean {
 	private String sns_id;
 	private String video_id;
 	private int product_num;
 	private String token;
+	private Timestamp date;
+	private String title;
 	
 	public int getProduct_num() {
 		return product_num;
@@ -37,5 +41,21 @@ public class LiveBean {
 
 	public void setSns_id(String sns_id) {
 		this.sns_id = sns_id;
+	}
+
+	public Timestamp getDate() {
+		return date;
+	}
+
+	public void setDate(Timestamp date) {
+		this.date = date;
+	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
 	}
 }

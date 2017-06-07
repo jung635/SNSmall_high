@@ -31,65 +31,6 @@
 	int currentPage = Integer.parseInt(pageNum);
 	List productList = (List)request.getAttribute("productList");
 %>
-<script>
-var token;
-var video_id;
-window.fbAsyncInit = function() {
-	FB.init({
-      appId            : '1685211914841647',
-      autoLogAppEvents : true,
-      xfbml            : true,
-      version          : 'v2.9'
-    });
-    FB.AppEvents.logPageView();
-};
-
-(function(d, s, id) {
-   var js, fjs = d.getElementsByTagName(s)[0];
-   if (d.getElementById(id)) return;
-   js = d.createElement(s); js.id = id;
-   js.src = "//connect.facebook.net/ko_KR/sdk.js#xfbml=1&version=v2.9&appId=1685211914841647";
-   fjs.parentNode.insertBefore(js, fjs);
- }(document, 'script', 'facebook-jssdk'));
-  
-function checkLoginState(id, product_num) {
-	FB.login(function(response) {
-		if (response.status === 'connected') {
-		    console.log(response.authResponse.accessToken);
-		    token = response.authResponse.accessToken;
-		    makeLive(id, product_num);
-	}	 else {
-	     console.log('User cancelled login or did not fully authorize.');
-	    }
-	}, { scope:'publish_actions,user_videos' });
-} 
-
-function makeLive(id, product_num) {
-  FB.ui({
-    display: 'popup',
-    method: 'live_broadcast',
-    phase: 'create',
-}, function(response) {
-    if (!response.id) {
-      alert('dialog canceled');
-      return;
-    }
-    FB.ui({
-      display: 'popup',
-      method: 'live_broadcast',
-      phase: 'publish',
-      broadcast_data: response,
-    }, function(response) {
-    	console.log(response);
-    video_id = response.id;
-    window.open("LiveOpen.li?sns_id="+id+"&video_id="+response.id+"&token="+token+"&product_num="+product_num, "live_view" , "width=800,height=800");
-    });
-  });
-};
-
- 
-
-</script>
 	<jsp:include page="../inc/header.jsp"/>
   <!-- Page Content -->
   <div class="container">
@@ -136,9 +77,6 @@ function makeLive(id, product_num) {
                 <h3>
                     <a href="./ProductDetail.pr?product_num=<%=pb.getProduct_num() %>&pageNum=<%=pageNum%>"><%=pb.getSubject() %></a>
                 </h3>
-                <%if(type.equals("sns")){ %>
-                <button id="login" onclick="checkLoginState('<%=id%>','<%=pb.getProduct_num()%>')">라이브 방송 시작하기</button>
-                <%}else{} %>
                 <p><%=pb.getPrice() %>원</p>
                 <p><%=pb.getDate() %><a href="ZzimAddAction.zz?product_num=<%=pb.getProduct_num() %>&subject=<%=pb.getSubject() %>&price=<%=pb.getPrice() %>">
                 

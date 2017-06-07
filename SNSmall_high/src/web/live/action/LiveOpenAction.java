@@ -15,12 +15,15 @@ public class LiveOpenAction implements Action{
 		String sns_id = request.getParameter("sns_id");
 		String video_id = request.getParameter("video_id");
 		String token = request.getParameter("token");
+		String title = request.getParameter("title");
 		int product_num = Integer.parseInt(request.getParameter("product_num"));
 		LiveDAO ldao = new LiveDAO();
-		ldao.insertLive(sns_id, video_id, product_num, token);
+		ldao.insertLive(sns_id, video_id, product_num, token, title);
 		
 		request.setAttribute("video_id", video_id);
 		request.setAttribute("token", token);
+		request.setAttribute("product_num", product_num);
+		request.setAttribute("title", title);
 		ActionForward forward = new ActionForward();
 		forward.setPath("./live/liveIng.jsp");
 		forward.setRedirect(false);

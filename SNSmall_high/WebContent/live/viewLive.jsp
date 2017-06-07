@@ -44,7 +44,7 @@ window.fbAsyncInit = function() {
  }(document, 'script', 'facebook-jssdk'));
 
 function getLive(){
-  	 FB.api('sunju635/<%=video_id%>', {"fields":"permalink_url"},function (response) {
+  	 FB.api('<%=video_id%>', {"fields":"permalink_url"},function (response) {
 	    	//console.log(response);
 	    	//console.log(token);
 	    	 // alert(accessToken);

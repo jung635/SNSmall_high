@@ -304,11 +304,11 @@ Connection con = null;
 	// 메일 보내기
 	public boolean sendMail(String email, String content) throws com.sun.xml.internal.messaging.saaj.packaging.mime.MessagingException {
 		boolean check = false;
-		final String id = "sunju635";
-		final String pass = "Tjswn635*";
-		int port = 25;
-		String host = "smtp.naver.com";
-		String from = "sunju635@naver.com";
+		final String id = "sunju635@sunju635.cafe24.com";
+		final String pass = "tjswn635";
+		int port = 587;
+		String host = "smtp.cafe24.com";
+		String from = "sunju635@sunju635.cafe24.com";
 		
 		try {
 			Properties props = new Properties();
@@ -327,7 +327,7 @@ Connection con = null;
 			Message message = new MimeMessage(session);
 			message.setFrom(new InternetAddress(from));
 			message.setRecipient(Message.RecipientType.TO, new InternetAddress(email));
-			message.setSubject("인증메일입니다");
+			message.setSubject("SN# 입니다");
 			message.setContent(content, "text/html; charset=EUC-KR");
 			message.setText(content);
 
@@ -447,15 +447,15 @@ Connection con = null;
 		return clientList;
 	}
 	
-	// 메일 보내기
+	// 메일 보내기 ToUs
 		public boolean sendMail(String content, String email, String subject) throws com.sun.xml.internal.messaging.saaj.packaging.mime.MessagingException {
 
 			boolean check = false;
-			final String id = "sunju635";
-			final String pass = "Tjswn635*";
-			int port = 25;
-			String host = "smtp.naver.com";
-			String from = "sunju635@naver.com";
+			final String id = "sunju635@sunju635.cafe24.com";
+			final String pass = "tjswn635";
+			int port = 587;
+			String host = "smtp.cafe24.com";
+			String from = "sunju635@sunju635.cafe24.com";
 			
 			try {
 				Properties props = new Properties();
@@ -473,7 +473,7 @@ Connection con = null;
 				session.setDebug(true);
 				Message message = new MimeMessage(session);
 				message.setFrom(new InternetAddress(from));
-				message.setRecipient(Message.RecipientType.TO, new InternetAddress("sunju635@naver.com"));
+				message.setRecipient(Message.RecipientType.TO, new InternetAddress("sunju635@sunju635.cafe24.com"));
 				message.setSubject(subject);
 				message.setContent(content, "text/html; charset=EUC-KR");
 				message.setText(content);

@@ -17,7 +17,7 @@ SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm");
 			%>
 			<%if(list == null){
 				%>
-				nothing
+				메세지가 없습니다.
 				<%}else{
 					if(list.size()<20 || list.size()<limit) limit = list.size();%>
 					<h2>메시지</h2>

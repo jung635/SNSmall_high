@@ -52,6 +52,7 @@ public class ProductDAO {
 				pb.setAmount(rs.getInt("amount"));
 				pb.setCount(rs.getInt("count"));
 				pb.setDate(rs.getDate("date"));
+				pb.setLive_state(rs.getString("live_state"));
 			}
 			
 		} catch (Exception e) {e.printStackTrace();}
@@ -135,6 +136,7 @@ public class ProductDAO {
 				pb.setAmount(rs.getInt("amount"));
 				pb.setCount(rs.getInt("count"));
 				pb.setDate(rs.getDate("date"));
+				pb.setLive_state(rs.getString("live_state"));
 				productList.add(pb);
 			}
 			
@@ -211,6 +213,7 @@ public class ProductDAO {
 				pb.setAmount(rs.getInt("amount"));
 				pb.setCount(rs.getInt("count"));
 				pb.setDate(rs.getDate("date"));
+				pb.setLive_state(rs.getString("live_state"));
 				productList.add(pb);
 			}
 				
@@ -249,6 +252,7 @@ public class ProductDAO {
 				pb.setAmount(rs.getInt("amount"));
 				pb.setCount(rs.getInt("count"));
 				pb.setDate(rs.getDate("date"));
+				pb.setLive_state(rs.getString("live_state"));
 				productList.add(pb);
 			}
 				
@@ -270,8 +274,8 @@ public class ProductDAO {
 			rs = pstmt.executeQuery();
 			if(rs.next()) product_num = rs.getInt(1)+1;
 			sql = "insert into product(product_num,vendor_id,category,subject,content,"
-					+ "main_img,detail_img,option1,option2,option3,price,amount,count,date) "
-					+ "values(?,?,?,?,?,?,?,?,?,?,?,?,?,now())";
+					+ "main_img,detail_img,option1,option2,option3,price,amount,count,date, live_state) "
+					+ "values(?,?,?,?,?,?,?,?,?,?,?,?,?,now(),?)";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, product_num);
 			pstmt.setString(2, prb.getVendor_id());
@@ -286,6 +290,7 @@ public class ProductDAO {
 			pstmt.setInt(11, prb.getPrice());
 			pstmt.setInt(12, prb.getAmount());
 			pstmt.setInt(13, 0);
+			pstmt.setString(14, "off");
 			pstmt.executeUpdate();
 			
 		} catch (Exception e) {e.printStackTrace();}
@@ -391,6 +396,7 @@ public class ProductDAO {
 				prb.setAmount(rs.getInt(12));				
 				prb.setCount(rs.getInt(12));
 				prb.setDate(rs.getDate(14));
+				prb.setLive_state(rs.getString("live_state"));
 				productList.add(prb);
 			}
 
@@ -431,6 +437,7 @@ public class ProductDAO {
 					prb.setAmount(rs.getInt(12));				
 					prb.setCount(rs.getInt(12));
 					prb.setDate(rs.getDate(14));
+					prb.setLive_state(rs.getString("live_state"));
 					productList.add(prb);
 				}
 			} catch (Exception e) {e.printStackTrace();}

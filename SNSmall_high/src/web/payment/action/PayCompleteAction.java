@@ -53,6 +53,7 @@ public class PayCompleteAction implements Action {
 		String[] option3 = option3_str.split(",");
 		String method = request.getParameter("method");
 		String cart_str = request.getParameter("cart_str");
+		System.out.println("cart_str: "+cart_str);
 		String[] cart_num = cart_str.split(",");
 		String state = "";
 		if (method.equals("card")||method.equals("withPoint"))
@@ -132,8 +133,10 @@ public class PayCompleteAction implements Action {
 			pdao.subPoint(point_each, id);
 			//cart 제외
 			CartDAO cdao = new CartDAO();
-			System.out.println(cart_num[i]);
-			cdao.cartDelete(id, Integer.parseInt(cart_num[i]));
+			
+			if(!cart_num[i].equals("")){
+				cdao.cartDelete(id, Integer.parseInt(cart_num[i]));
+			}
 			
 			//amount 빼기
 			if(method.equals("deposit")){
@@ -143,30 +146,6 @@ public class PayCompleteAction implements Action {
 			if(method.equals("card")||method.equals("withPoint")){
 				SnsBean sb = sdao.getSnsDetail(pb.getSns_id());
 				if(sb != null){
-					if(sb.getRank().equals("basic")){
-						sns_profit = (int)(price_result*0.05)/10*10;
-					}else if(sb.getRank().equals("plus")){
-						sns_profit = (int)(price_result*0.1)/10*10;
-					}else{
-						sns_profit = (int)(price_result*0.2)/10*10;
-					}
-					
-				}
-				
-				add_point = (int)(price_result*0.01)/10*10;
-				company_profit = (int)(price_result*0.1)/10*10;
-				vendor_profit = ((prob.getPrice()*pb.getAmount())-company_profit-sns_profit);
-				//sns profit 주기
-
-				pdao.addSnsPay(sns_profit, pb.getAmount(), pb.getSns_id());
-				//vendor profit 주기
-				pdao.addVendorProfit(vendor_profit, vendor_id[i]);
-				//포인트 더하기
-				pdao.addPoint(add_point, id);
-				//amount 정리
-				pdao.calAmount(pb.getAmount(), pb.getProduct_num());
-				if(sb != null){
-				
 					//rank update 확인
 					list_sns = pdao.getSnsPaymentList(sns_id[i]);
 					for(int j=0; j<list_sns.size(); j++){
@@ -177,7 +156,7 @@ public class PayCompleteAction implements Action {
 						}
 					}
 					
-					long money = all_sns_sell+Math.round(price_result);
+					long money = all_sns_sell+pb.getPay_price();
 					AlarmBean ab = new AlarmBean();
 					AlarmDAO adao = new AlarmDAO();
 					if( sb.getRank().equals("basic")){
@@ -204,7 +183,28 @@ public class PayCompleteAction implements Action {
 							pdao.rankUpdate(sns_id[i], "premium");
 						}
 					}
+					if(sb.getRank().equals("basic")){
+						sns_profit = (int)(price_result*0.05)/10*10;
+					}else if(sb.getRank().equals("plus")){
+						sns_profit = (int)(price_result*0.1)/10*10;
+					}else{
+						sns_profit = (int)(price_result*0.2)/10*10;
+					}
+					
 				}
+				
+				add_point = (int)(price_result*0.01)/10*10;
+				company_profit = (int)(price_result*0.1)/10*10;
+				vendor_profit = ((prob.getPrice()*pb.getAmount())-company_profit-sns_profit);
+				//sns profit 주기
+
+				pdao.addSnsPay(sns_profit, pb.getAmount(), pb.getSns_id());
+				//vendor profit 주기
+				pdao.addVendorProfit(vendor_profit, vendor_id[i]);
+				//포인트 더하기
+				pdao.addPoint(add_point, id);
+				//amount 정리
+				pdao.calAmount(pb.getAmount(), pb.getProduct_num());
 					if(method.equals("withPoint")){
 						out.println("<script>");
 						out.println("alert('주문이 완료되었습니다.');");

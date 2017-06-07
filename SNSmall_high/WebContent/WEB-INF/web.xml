@@ -151,5 +151,14 @@
   	<url-pattern>*.bl</url-pattern>
   </servlet-mapping>
   
+  
+  	  <servlet>
+  	<servlet-name>LiveFrontController</servlet-name>
+  	<servlet-class>web.live.action.LiveFrontController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>LiveFrontController</servlet-name>
+  	<url-pattern>*.li</url-pattern>
+  </servlet-mapping>
 </web-app>
 

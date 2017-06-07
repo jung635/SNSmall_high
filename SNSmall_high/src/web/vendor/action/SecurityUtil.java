@@ -21,7 +21,6 @@ public class SecurityUtil {
     		//출력: 해쉬값을 16진수로 표현한 문자로 변환
     		for(int i = 0 ; i < byteData.length ; i++){
     			sb.append(Integer.toString((byteData[i]&0xff) + 0x100, 16).substring(1));
-    			System.out.println("byteData["+i+"] : " + byteData[i]);
     		}
 
     		sha = sb.toString();

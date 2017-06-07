@@ -3,7 +3,8 @@ function alarm_access(){
 	xhttp = new XMLHttpRequest();
 	xhttp.onreadystatechange = function() {
 		if (this.readyState == 4 && this.status == 200) {
-			var alarm_msg = this.responseText;  
+			var alarm_msg = this.responseText; 
+			alert(this.responseText.find("body"));
 			alert_view(alarm_msg);  
 		}
 	};
@@ -33,7 +34,10 @@ function alarm_view(){
 
 function alarm_inner(alarm_msg){
 	document.getElementById("alarm_list").innerHTML = alarm_msg;
-	count = document.getElementById("alarm_count_in").innerHTML;
+	count = 0;
+	if(document.getElementById("alarm_count_in") != null){
+		count = document.getElementById("alarm_count_in").innerHTML;
+	}
 	if(count==0){
 		document.getElementById("alarm_count").style.display = 'none';
 	}else{

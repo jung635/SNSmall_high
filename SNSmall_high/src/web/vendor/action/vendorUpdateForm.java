@@ -11,7 +11,6 @@ public class vendorUpdateForm implements Action{
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		System.out.println("vendorUpdateForm execute()");
 		
 		request.setCharacterEncoding("utf-8");
 		HttpSession session = request.getSession();

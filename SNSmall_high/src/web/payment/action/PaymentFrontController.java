@@ -98,7 +98,18 @@ public class PaymentFrontController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		}
+		}  else if (command.equals("/test.pa")) {
+			forward = new ActionForward();
+			forward.setPath("./pay/test.jsp");
+			forward.setRedirect(false);
+		}  else if (command.equals("/LiveLiew.pa")) {
+			action = new PayCancelPointAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}  
 
 		if (forward != null) {
 			if (forward.isRedirect()) {

@@ -13,7 +13,7 @@ public class SnsSale implements Action{
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		System.out.println("SnsSale execute()");
+		//System.out.println("SnsSale execute()");
 		
 		// 세션값 제어
 		HttpSession session=request.getSession();
@@ -26,8 +26,8 @@ public class SnsSale implements Action{
 		if(snsState==null){
 			snsState="";
 		}
-		System.out.println("snsState 1 : "+request.getParameter("snsState"));
-		System.out.println("snsState 2 : "+snsState);
+		//System.out.println("snsState 1 : "+request.getParameter("snsState"));
+		//System.out.println("snsState 2 : "+snsState);
 		// PaymentDAO padao 객체 생성
 		PaymentDAO padao = new PaymentDAO();
 		

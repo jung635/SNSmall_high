@@ -10,7 +10,6 @@ import javax.servlet.http.HttpSession;
 public class vendorLogout implements Action{
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response)throws Exception{
-		System.out.println("vendorLogout execute()");
 		
 		request.setCharacterEncoding("utf-8");
 		HttpSession session = request.getSession();

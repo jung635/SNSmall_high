@@ -48,6 +48,7 @@
 			<hr style="border: 0; height: 2px; background: #ddd;">
 			
 			<%
+			if(count!=0){
 			for(int i=0;i<categoryBlogList.size();i++){
 				BlogBean bb = (BlogBean)categoryBlogList.get(i);	
 			%>
@@ -98,6 +99,10 @@
                 <a class="btn btn-primary" href="./OurBlogPostAction.bl?num=<%=bb.getNum()%>&pageNum=<%=pageNum%>">Read More <span class="glyphicon glyphicon-chevron-right"></span></a>
 
                <hr style="border: 0; height: 2px; background: #e3e3e3;">
+        <%}
+        
+        }else{%>
+        해당 카테고리 포스팅이 없습니다.
         <%}%>
 
 <!-- Pager -->

@@ -66,14 +66,14 @@ $(document).ready(function(){
 </head>
 <body>
 <%
-	String id = (String) session.getAttribute("id");
+	String id = (String)request.getAttribute("id");
 %>
 
 <i class="fa fa-envelope-o" aria-hidden="true"></i>&nbsp;휴대폰 본인 확인(문자)
 
 <form action="./mailActionForPass.cl" name="fr" id="ph_fr" onsubmit="return submitCheck()">
 <table class="phone_back">
-<input type="hidden" name="id" value="<%=id%>">
+<%-- <input type="hidden" name="id" value="<%=id%>"> --%>
 <tr> 
 <td>이름</td>
 <td> <input type="text" name="name" id="name" class="ph_txt_box"> </td>

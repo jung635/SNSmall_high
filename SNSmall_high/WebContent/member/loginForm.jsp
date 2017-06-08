@@ -48,15 +48,15 @@
 	}
 	
 	function SearchPass(){
-		window.open("./SearchPass.cl","","height=500 width=450");
+		window.open("./SearchPass.cl","","height=500 width=450 top=180 left=725");
 	}
 	
 	function SearchId(){
-		window.open("./SearchId.cl","","height=500 width=450");
+		window.open("./SearchId.cl","","height=500 width=450 top=180 left=725");
 	}
 	
 	function SearchIdForSns(){
-		window.open("./SearchIdForSns.cl","","height=500 width=450");
+		window.open("./SearchIdForSns.cl","","height=500 width=450 top=180 left=725");
 	}
 
 	</script>

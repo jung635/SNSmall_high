@@ -16,8 +16,7 @@ public class SearchPass_IdSend implements Action{
 		
 		request.setCharacterEncoding("utf-8");
 		String id = request.getParameter("id");
-		HttpSession session = request.getSession();
-		session.setAttribute("id", id);
+		request.setAttribute("id", id);
 		ActionForward forward = new ActionForward();
 		forward.setPath("./member/phone_auth2.jsp");
 		forward.setRedirect(false);

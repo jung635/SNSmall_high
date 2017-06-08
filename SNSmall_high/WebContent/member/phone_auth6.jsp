@@ -69,15 +69,11 @@ $(document).ready(function(){
 </script>
 </head>
 <body>
-<%
-	String id = (String) session.getAttribute("id");
-%>
 
 <i class="fa fa-envelope-o" aria-hidden="true"></i>&nbsp;휴대폰 본인 확인(문자)
 
 <form action="./mailActionForSnsId.cl" name="fr" id="ph_fr" onsubmit="return submitCheck()">
 <table class="phone_back">
-<input type="hidden" name="id" value="<%=id%>">
 <tr> 
 <td>이름</td>
 <td> <input type="text" name="name" id="name" class="ph_txt_box"> </td>

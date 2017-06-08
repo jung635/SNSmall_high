@@ -26,11 +26,10 @@ function submitCheck(){
 </head>
 <body>
 <%
-	int authNum = (int)session.getAttribute("authNum");
-	String email = (String)session.getAttribute("email");
-	String id = (String)session.getAttribute("id");
-	String name = (String)session.getAttribute("name");
-	String home = (String)session.getAttribute("home");
+	int authNum = (int)request.getAttribute("authNum");
+	String email = (String)request.getAttribute("email");
+	String name = (String)request.getAttribute("name");
+	String home = (String)request.getAttribute("home");
 %>
 <i class="fa fa-envelope-o" aria-hidden="true"></i>&nbsp;휴대폰 본인 확인(문자)
 <form action="./SearchIdForSnsAction.cl" name="fr" id="ph_auth_fr" onsubmit="return submitCheck()">
@@ -44,7 +43,6 @@ function submitCheck(){
 <td>인증번호</td>
 <input type="hidden" name="authNum1" value="<%=authNum%>">
 <input type="hidden" name="email" value="<%=email%>">
-<input type="hidden" name="id" value="<%=id%>">
 <input type="hidden" name="name" value="<%=name%>">
 <input type="hidden" name="home" value="<%=home%>">
 <td><input type="text" name="authNum" class="ph_txt_box" style="width: 200px; padding-right: 50px;"></td> 

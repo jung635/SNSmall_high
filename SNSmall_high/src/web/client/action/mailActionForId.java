@@ -26,16 +26,13 @@ public class mailActionForId implements Action{
 		
 		
 		String content="인증번호는"+authNum+"입니다.";
-		String id = request.getParameter("id");
 		String name = request.getParameter("name");
 		String phone = request.getParameter("phone");
 		
-		HttpSession session = request.getSession();
-		session.setAttribute("authNum", authNum);
-		session.setAttribute("email", email);
-		session.setAttribute("id", id);
-		session.setAttribute("name", name);
-		session.setAttribute("phone", phone);
+		request.setAttribute("authNum", authNum);
+		request.setAttribute("email", email);
+		request.setAttribute("name", name);
+		request.setAttribute("phone", phone);
 		
 		ClientDAO cldao = new ClientDAO();
 		String idpassCheck = cldao.SearchId(name, phone);

@@ -26,10 +26,10 @@ function submitCheck(){
 </head>
 <body>
 <%
-	int authNum = (int)session.getAttribute("authNum");
-	String email = (String)session.getAttribute("email");
-	String id = (String)session.getAttribute("id");
-	String name = (String)session.getAttribute("name");
+	int authNum = (int)request.getAttribute("authNum");
+	String email = (String)request.getAttribute("email");
+	String id = (String)request.getAttribute("id");
+	String name = (String)request.getAttribute("name");
 %>
 <i class="fa fa-envelope-o" aria-hidden="true"></i>&nbsp;휴대폰 본인 확인(문자)
 <form action="./SearchPassAction.cl" name="fr" id="ph_auth_fr" onsubmit="return submitCheck()">
@@ -56,7 +56,7 @@ function submitCheck(){
 <li>연장하기는 최초 1회만 가능합니다.</li>
 </ul>
 
-<input type="reset" value="취소" class="ph-cancle">
+<input type="reset" value="취소" class="ph-cancle" onclick="history.back()">
 <input type="submit" value="확인" class="ph-oks">
 
 </form>

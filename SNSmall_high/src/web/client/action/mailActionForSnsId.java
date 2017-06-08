@@ -26,18 +26,15 @@ public class mailActionForSnsId implements Action{
 		
 		
 		String content="인증번호는"+authNum+"입니다.";
-		String id = request.getParameter("id");
 		String email = request.getParameter("email");
 		String name = request.getParameter("name");
 		String phone = request.getParameter("phone");
 		String home = request.getParameter("home");
 		
-		HttpSession session = request.getSession();
-		session.setAttribute("authNum", authNum);
-		session.setAttribute("email", email);
-		session.setAttribute("id", id);
-		session.setAttribute("name", name);
-		session.setAttribute("home", home);
+		request.setAttribute("authNum", authNum);
+		request.setAttribute("email", email);
+		request.setAttribute("name", name);
+		request.setAttribute("home", home);
 		
 		ClientDAO cldao = new ClientDAO();
 		String findId = cldao.SearchIdForSns(name, home);

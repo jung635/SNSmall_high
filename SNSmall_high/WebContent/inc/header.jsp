@@ -12,7 +12,7 @@ $(document).ready(function(){
     });
 });
 </script>
-<%
+<%	
 	String id = (String) session.getAttribute("id");
 	String name = (String) session.getAttribute("name");
 	String type = (String) session.getAttribute("type");

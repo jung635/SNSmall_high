@@ -16,11 +16,8 @@
 	<link href="css/header.css" rel="stylesheet">
 	<link href="css/inner.css" rel="stylesheet">
 	<link href="css/main.css" rel="stylesheet">
-<<<<<<< HEAD
 	<link href="css/product.css" rel="stylesheet">
 
-=======
->>>>>>> 141e631f67849412557b31f1e7ff8fbcc072e3f3
 <title>Insert title here</title>
 <script type="text/javascript">
 

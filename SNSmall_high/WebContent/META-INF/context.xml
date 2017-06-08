@@ -6,8 +6,7 @@
 		url="jdbc:mysql://192.168.2.27:3306/high"
 		username="hid"
 		password="hips"
-<<<<<<< HEAD
-	/>  
+		/>  
 	
 	<!--	절대 이부분은 커밋하지 말것 //개인용 -->
 <!-- 	<Resource   -->

@@ -45,12 +45,38 @@ window.fbAsyncInit = function() {
 }(document, 'script', 'facebook-jssdk'));
 
 function getLive(){
+	permalink_url = "";
   	 FB.api('<%=video_id%>?fields=embed_html,permalink_url',function (response) {
 	      if (response && !response.error) {
 	        console.log(response);
 	        document.getElementById('live').innerHTML = response.embed_html;
+	        permalink_url = response.permalink_url;
 	      }
 	    },{access_token: '<%=token%>'});
+  	 
+  	 return permalink_url;
+ }
+function deleteLive(){
+	alert('방송을 종료합니다.');
+	 firebase.database().ref('<%=video_id%>').push({
+			userId: '<%=id%>',
+			message: "채팅이 종료되었습니다.",
+			status: 'off',
+		});
+	FB.api(
+			'<%=video_id%>?end_live_video=true',
+			  'POST',
+			  function(response) {
+				  console.log(response);
+				  if (response && !response.error) {
+				 	 location.href="LiveDelete.li?video_id=<%=video_id%>&product_num=<%=product_num%>";
+				  }
+			  },{access_token: '<%=token%>'}
+			);
+ }
+ 
+ function check(){
+	 alert(getLive());
  }
  
 function press(event){
@@ -101,11 +127,12 @@ function myFunction(){
 
 </script>
 <button onclick="window.opener.location.href='ProductDetail.pr?product_num=<%=product_num%>'">물건 구경하러 가기</button>
+<button onclick="deleteLive()">방송끝</button>
 <div id="title"><%=title %></div>
 <div id="live"></div>
 <input id="textMessage" type="text"  onkeyup="press(event)" >
 <input onclick="sendMessage()" value="Send" type="button">
-<input onclick="disconnect()" value="Disconnect" type="button">
+<input onclick="check()" value="check" type="button">
 <br />
 <textarea id="messageTextArea" rows="10" cols="50"></textarea>
 </body>

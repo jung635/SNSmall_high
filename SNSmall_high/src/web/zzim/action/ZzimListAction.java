@@ -15,8 +15,6 @@ public class ZzimListAction implements Action{
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		// TODO Auto-generated method stub
-		System.out.println("ZzimListAction");
-		
 		
 		HttpSession session = request.getSession(); 
 		String id = (String)session.getAttribute("id"); 

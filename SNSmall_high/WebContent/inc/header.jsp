@@ -14,6 +14,9 @@ $(document).ready(function(){
 function openLiveWin(){
 	window.open("LiveList.li", "live_list" , "height=" + screen.height + ",width=" + screen.width + "fullscreen=yes")
 }
+function openVodWin(){
+	window.open("VodList.li", "live_list" , "height=" + screen.height + ",width=" + screen.width + "fullscreen=yes")
+}
 </script>
 <%
 	String id = (String) session.getAttribute("id");
@@ -102,6 +105,7 @@ function openLiveWin(){
 					</ul> 
 				</div> 
 				<button onclick='openLiveWin()'>방송 목록 보기</button>
+				<button onclick='openVodWin()'>종료된 인기 방송 목록 보기</button>
 			</div> 
 		</div><!--/navbar--> 
 	</header> <!--/#navigation--> 

@@ -9,6 +9,9 @@ public class LiveBean {
 	private String token;
 	private Timestamp date;
 	private String title;
+	private String state;
+	private String url;
+	private int view;
 	
 	public int getProduct_num() {
 		return product_num;
@@ -57,5 +60,29 @@ public class LiveBean {
 
 	public void setTitle(String title) {
 		this.title = title;
+	}
+
+	public String getState() {
+		return state;
+	}
+
+	public void setState(String state) {
+		this.state = state;
+	}
+
+	public String getUrl() {
+		return url;
+	}
+
+	public void setUrl(String url) {
+		this.url = url;
+	}
+
+	public int getView() {
+		return view;
+	}
+
+	public void setView(int view) {
+		this.view = view;
 	}
 }

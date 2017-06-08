@@ -60,16 +60,13 @@ function makeLive() {
     }, function(response) {
     	console.log(response);
     video_id = response.id;
-    //location.href="LiveList.li?sns_id=<%=id%>&video_id="+response.id+"&token="+token+"&proudct_num=<%=product_num%>";
-    window.open("LiveOpen.li?sns_id=<%=id%>&video_id="+response.id+"&token="+token+"&product_num=<%=product_num%>", "live_view" , "width=800,height=800");
+    //window.open("LiveOpen.li?sns_id=<%=id%>&video_id="+response.id+"&token="+token+"&product_num=<%=product_num%>", "live_view" , "width=800,height=800");
     });
   });
-};
-
-function getLive(){
-	  FB.api("110516479546419", function (response) {
-	    	console.log(response);
-	    	console.log(token);
+  
+  function getLive(){
+	  FB.api(video_id?fields=permalink_url, function (response) {
+	    	console.log(response.permalink_url);
 	    	 // alert(accessToken);
 	    	//alert(response.status);
 	      if (response && !response.error) {
@@ -78,6 +75,9 @@ function getLive(){
 	      }
 	    },{access_token: token}); 
  }
+};
+
+
 
  
 

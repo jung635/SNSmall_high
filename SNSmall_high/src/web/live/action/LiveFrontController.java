@@ -41,19 +41,29 @@ public class LiveFrontController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		}else if(command.equals("/Chatting.li")){
-			forward = new ActionForward();
-			forward.setPath("./live/chatting.jsp");
-			forward.setRedirect(false);
 		}else if(command.equals("/ViewLive.li")){
-			forward = new ActionForward();
-			forward.setPath("./live/viewLive.jsp");
-			forward.setRedirect(false);
+			action = new LiveVeiwAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}else if(command.equals("/LiveGo.li")){
 			forward = new ActionForward();
 			forward.setPath("./live/liveGo.jsp");
 			forward.setRedirect(false);
-		}  
+		}else if(command.equals("/VodList.li")){
+			action = new VodListAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}else if(command.equals("/ViewVod.li")){
+			forward = new ActionForward();
+			forward.setPath("./live/viewVod.jsp");
+			forward.setRedirect(false);
+		}
   
 
 		if (forward != null) {

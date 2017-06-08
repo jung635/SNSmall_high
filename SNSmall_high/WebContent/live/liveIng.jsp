@@ -57,6 +57,7 @@ function getLive(){
 	      }
 	    },{access_token: '<%=token%>'});
 }
+
  
 function deleteLive(){
 	alert('방송을 종료합니다.');
@@ -65,13 +66,20 @@ function deleteLive(){
 			message: "채팅이 종료되었습니다.",
 			status: 'off',
 		});
+ 	 FB.api('<%=video_id%>?fields=permalink_url',function (response) {
+	      if (response && !response.error) {
+	        console.log(response.permalink_url);
+	        permalink_url = response.permalink_url;
+	      }
+	    },{access_token: '<%=token%>'});
+	 
 	FB.api(
 			'<%=video_id%>?end_live_video=true',
 			  'POST',
 			  function(response) {
 				  console.log(response);
 				  if (response && !response.error) {
-				 	 location.href="LiveDelete.li?video_id=<%=video_id%>&product_num=<%=product_num%>";
+				 	 location.href="LiveDelete.li?video_id=<%=video_id%>&product_num=<%=product_num%>&url="+permalink_url;
 				  }
 			  },{access_token: '<%=token%>'}
 			);
@@ -79,7 +87,6 @@ function deleteLive(){
 
 function press(){
   	 if(event.keyCode == 13){
-  		// alert("test");
   		 sendMessage();
   	 }
    }

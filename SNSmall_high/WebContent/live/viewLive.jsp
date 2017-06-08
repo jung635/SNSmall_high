@@ -11,16 +11,10 @@
 <body>
 <%
 String id = (String)session.getAttribute("id");
-if(id==null){%>
-	<script>
-	alert("로그인을 해주세요");
-	history.back();
-	</script>
-<%}
-String video_id = request.getParameter("video_id");
-String token = request.getParameter("token");
-String title = request.getParameter("title");
-int product_num = Integer.parseInt(request.getParameter("product_num"));
+String video_id = (String)request.getAttribute("video_id");
+String token = (String)request.getAttribute("token");
+String title = (String)request.getAttribute("title");
+int product_num = (Integer)request.getAttribute("product_num");
 %>
 <script>
 var token;
@@ -45,10 +39,9 @@ window.fbAsyncInit = function() {
 }(document, 'script', 'facebook-jssdk'));
 
 function getLive(){
-	permalink_url = "";
   	 FB.api('<%=video_id%>?fields=embed_html,permalink_url',function (response) {
 	      if (response && !response.error) {
-	        console.log(response);
+	        console.log(response.permalink_url);
 	        document.getElementById('live').innerHTML = response.embed_html;
 	        permalink_url = response.permalink_url;
 	      }
@@ -56,27 +49,9 @@ function getLive(){
   	 
   	 return permalink_url;
  }
-function deleteLive(){
-	alert('방송을 종료합니다.');
-	 firebase.database().ref('<%=video_id%>').push({
-			userId: '<%=id%>',
-			message: "채팅이 종료되었습니다.",
-			status: 'off',
-		});
-	FB.api(
-			'<%=video_id%>?end_live_video=true',
-			  'POST',
-			  function(response) {
-				  console.log(response);
-				  if (response && !response.error) {
-				 	 location.href="LiveDelete.li?video_id=<%=video_id%>&product_num=<%=product_num%>";
-				  }
-			  },{access_token: '<%=token%>'}
-			);
- }
  
  function check(){
-	 alert(getLive());
+	 alert("https://www.facebook.com"+getLive());
  }
  
 function press(event){
@@ -127,7 +102,6 @@ function myFunction(){
 
 </script>
 <button onclick="window.opener.location.href='ProductDetail.pr?product_num=<%=product_num%>'">물건 구경하러 가기</button>
-<button onclick="deleteLive()">방송끝</button>
 <div id="title"><%=title %></div>
 <div id="live"></div>
 <input id="textMessage" type="text"  onkeyup="press(event)" >

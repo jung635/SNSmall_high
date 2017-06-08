@@ -67,6 +67,7 @@ function makeLive() {
     });
   });
 };
+
 </script>
 라이브 방송 제목 : <input type="text" id="title">
 <button id="login" onclick="checkLoginState()">라이브 방송 시작하기</button>

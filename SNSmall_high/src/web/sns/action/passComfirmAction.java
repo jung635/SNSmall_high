@@ -18,8 +18,6 @@ public class passComfirmAction implements Action{
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
-		System.out.println("sns_pass_confirmaction execute()");
-		
 		HttpSession session = request.getSession();
 		String id = (String)session.getAttribute("id");
 		
@@ -30,11 +28,11 @@ public class passComfirmAction implements Action{
 			return forward;
 		}
 		
-//		String pass = request.getParameter("pass");
+		String pass = request.getParameter("pass");
 		// 비밀번호 암호화 코드 추가
-		String npass = request.getParameter("pass");
-		SecurityUtil su = new SecurityUtil();
-		String pass = su.encryptSHA256(npass);		
+//		String npass = request.getParameter("pass");
+//		SecurityUtil su = new SecurityUtil();
+//		String pass = su.encryptSHA256(npass);		
 		// 비밀번호 암호화 코드 추가
 		
 		SnsDAO sdao = new SnsDAO();

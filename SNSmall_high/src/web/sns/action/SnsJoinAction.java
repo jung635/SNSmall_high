@@ -20,30 +20,33 @@ public class SnsJoinAction implements Action{
 		System.out.println("MemberJoinAction execute()");
 		
 		request.setCharacterEncoding("utf-8");
-		// 비밀번호 암호화 코드 추가
-		String npass = request.getParameter("pass");
-		SecurityUtil su = new SecurityUtil();
-		String pass = su.encryptSHA256(npass);		
-		// 비밀번호 암호화 코드 추가
+		
+		
 		String realPate = request.getRealPath("/sns_pro_upload");
 		System.out.println(realPate);
 		int maxSize=5*1024*1024;
 		MultipartRequest multi= new MultipartRequest(request, realPate,maxSize,"utf-8",new DefaultFileRenamePolicy());
 		
-		
+		// 비밀번호 암호화 코드 추가
+		String npass = multi.getParameter("pass");
+		SecurityUtil su = new SecurityUtil();
+		String pass = su.encryptSHA256(npass);		
+		// 비밀번호 암호화 코드 추가
+	
 		SnsDAO sdao = new SnsDAO();
 		String sns_id = multi.getParameter("sns_id");
 		
 		int check= sdao.joinIdCheck(sns_id);
 		
-		
+		response.setContentType("text/html; charset=UTF-8");
+		PrintWriter out=response.getWriter();
 		if(check==1){
-			response.setContentType("text/html; charset=UTF-8");
-			PrintWriter out=response.getWriter();
+			
 			out.println("<script>");
 			out.println("alert('다른 아이디를 입력하세요');");
 			out.println("history.back();");
 			out.println("</script>");
+			out.close();
 			return null;
 		}		
 		
@@ -65,12 +68,13 @@ public class SnsJoinAction implements Action{
 		
 		
 		sdao.insertMember_sns(sb);
-				
-		ActionForward forward = new ActionForward();
-		forward.setPath("./login.ve");
-		forward.setRedirect(true);
-				
-		return forward;
+		out.println("<script>");
+		out.println("alert('회원가입이 완료되었습니다.');");
+		out.println("location.href='./login.ve'");
+		out.println("</script>");
+		out.close();
+		
+		return null;
 	
 	}
 

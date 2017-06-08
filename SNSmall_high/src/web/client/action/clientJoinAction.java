@@ -34,6 +34,7 @@ public class clientJoinAction implements Action{
 			out.println("alert('다른 아이디를 입력하세요');");
 			out.println("history.back();");
 			out.println("</script>");
+			out.close();
 			return null;
 		}		
 		ClientBean clb = new ClientBean();
@@ -42,15 +43,16 @@ public class clientJoinAction implements Action{
 		clb.setName(request.getParameter("name"));
 		clb.setEmail(request.getParameter("email"));
 		clb.setPhone(request.getParameter("phone"));
-		String addre = request.getParameter("postcode")+", "+request.getParameter("address")+", "+request.getParameter("address2");
+		String addre = request.getParameter("postcode")+"/"+request.getParameter("address")+"/"+request.getParameter("address2");
 		clb.setAddress(addre);
 		
 		cldao.insertClient(clb);
-		
-		ActionForward forward = new ActionForward();
-		forward.setPath("./login.cl");
-		forward.setRedirect(true);
-		return forward;
+		out.println("<script>");
+		out.println("alert('회원가입이 완료되었습니다.');");
+		out.println("location.href='./login.cl'");
+		out.println("</script>");
+		out.close();
+		return null;
 	}
 		
 }

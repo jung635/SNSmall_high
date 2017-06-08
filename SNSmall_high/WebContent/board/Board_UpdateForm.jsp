@@ -35,7 +35,7 @@
   		<!-- Introduction Row -->
         <div class="row" style="margin-top: 43px">
             <div class="col-lg-12">
-                <h1 class="page-header">홍보게시판</h1>
+                <h1 class="page-header">매칭게시판</h1>
                 <p>
                 SNS 스타와 판매자들간의 매칭을 위한 공간입니다.<br>
                	매칭 외의 글 작성 시, 불이익이 생기니 주의해주시기 바랍니다.<br>

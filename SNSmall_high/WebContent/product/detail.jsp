@@ -19,7 +19,6 @@
 	<link href="css/inner.css" rel="stylesheet">
 	<link href="css/main.css" rel="stylesheet">
 <title>Insert title here</title>
-<%	ProductBean productbean = (ProductBean)request.getAttribute("productbean"); %>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script type="text/javascript">
 	$(document).ready(function(){
@@ -172,9 +171,7 @@
 	            break;
 	    }
 	}
-function LiveGoWin(){
-	window.open('LiveGo.li?product_num=<%=productbean.getProduct_num()%>', 'live_view' , 'height=' + screen.height + ',width=' + screen.width + 'fullscreen=yes')
-}	
+	
 </script>
 
 </head>
@@ -183,7 +180,8 @@ function LiveGoWin(){
 	<%
 	String returnUrl = request.getHeader("referer");
 	
-	String sns_id = (String)request.getAttribute("sns_id");
+	ProductBean productbean = (ProductBean)request.getAttribute("productbean");
+	String sns_id = (String)request.getAttribute("link_id");
 	if(sns_id == null){sns_id = "";}
 	
 	String id = (String)session.getAttribute("id");
@@ -310,7 +308,7 @@ function LiveGoWin(){
                 <a class="btn btn-success" onclick="gocart()">카트담기</a>
                 <a class="btn btn-success" onclick="return gobuy()">사러가기</a>
                 <% if(type.equals("sns")){%>
-                <button id="login" onclick="LiveGoWin()">라이브 방송 시작하기</button>
+                <button id="login" onclick="window.open('LiveGo.li?product_num=<%=productbean.getProduct_num()%>', 'live_view' , 'width=400,height=200')">라이브 방송 시작하기</button>
 				</div>
 				<br>
                 <div class="socials_pro">
@@ -331,12 +329,12 @@ function LiveGoWin(){
                 <h3 class="page-header">상 세 내 용</h3>
             </div>
 
-            <div class="col-sm-3 col-xs-6" id="product_detail_img">
+            <div class="" id="product_detail_img">
                 <a href="#">
                 <%if(productbean.getDetail_img()==null){ %>
                     <img class="img-responsive portfolio-item" src="http://placehold.it/500x300" alt="">
                     <%} else{%>
-                    <img class="img-responsive portfolio-item" src="./vendor_img/<%=productbean.getDetail_img() %>" style="width: 100% !important;" alt="">
+                    <img class="img-responsive portfolio-item" src="./vendor_img/<%=productbean.getDetail_img() %>" alt="">
                     <% }%>
                 </a>
             </div>
@@ -366,7 +364,8 @@ function LiveGoWin(){
 			<%} %>
 					<hr>
 					
-					<%for(int i=0; i<qnaList.size(); i++){
+			<%if(qnaList != null){
+					for(int i=0; i<qnaList.size(); i++){
 						QnaBean qnabean = (QnaBean)qnaList.get(i);
 						String qInsertUrl = "./QnaPopular.qn?product_num="+productbean.getProduct_num()+"&pageNum="+pageNum+"&q_num="+qnabean.getQ_num();
 						String qDelUrl = "./QnaDelete.qn?product_num="+productbean.getProduct_num()+"&pageNum="+pageNum+"&q_num="+qnabean.getQ_num();
@@ -382,10 +381,12 @@ function LiveGoWin(){
 									<span class="glyphicon glyphicon-star-empty"></span>
 							<%}}%>
 							<%=qnabean.getClient_id() %> / <%=qnabean.getPopular() %>
-							<input type="button" value="++" onclick="location.href='<%=qInsertUrl%>'">
-							<%if(id.equals(qnabean.getClient_id())){%>
-							<input type="button" value="del" onclick="location.href='<%=qDelUrl%>'">
-							<%} %>
+							<%if(id != null){
+									if(id.equals(qnabean.getClient_id())){%>
+										<input type="button" value="del" onclick="location.href='<%=qDelUrl%>'">
+							<%}else{%>
+										<input type="button" value="++" onclick="location.href='<%=qInsertUrl%>'">							
+							<%}} %>
 							<span class="pull-right"><%=qnabean.getDate() %></span>
 							<p><%=qnabean.getContent() %></p>
 							<%if(qnabean.getQ_img()!=null){ %>
@@ -393,7 +394,7 @@ function LiveGoWin(){
 							<%} %>
 						</div>
 					</div>
-					<%} %>
+					<%}} %>
 				</div>
 				<a name="policy_info"></a>
 		<div id="policy_info_box">

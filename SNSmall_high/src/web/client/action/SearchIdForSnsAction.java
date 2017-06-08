@@ -29,7 +29,7 @@ public class SearchIdForSnsAction implements Action{
 				PrintWriter out = response.getWriter();
 				out.println("<script>");
 				out.println("alert('메일발송하였습니다!');");
-				out.println("history.back();");
+				out.println("window.close();");
 				out.println("</script>");
 				out.close();
 				return null;				

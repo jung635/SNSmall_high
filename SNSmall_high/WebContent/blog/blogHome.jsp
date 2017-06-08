@@ -23,8 +23,9 @@
 <title>Insert title here</title>
 </head>
 <body>
-	
+
 <jsp:include page="../inc/header.jsp"/>
+
   <!-- Page Content -->
 	<div class="container">
 		<div class="content">
@@ -51,6 +52,7 @@ int pageCount = ((Integer)request.getAttribute("pageCount")).intValue();
 		 &nbsp;전체보기 &nbsp;(<%=count %>)
 		<hr>
 <%
+if(count!=0){
 for(int i=0;i<blogList.size();i++){
 	BlogBean bb = (BlogBean)blogList.get(i);	
 %>
@@ -103,7 +105,17 @@ for(int i=0;i<blogList.size();i++){
                 <a class="btn btn-primary" href="./OurBlogPostAction.bl?num=<%=bb.getNum()%>&pageNum=<%=pageNum%>">Read More <span class="glyphicon glyphicon-chevron-right"></span></a>
   
                <hr style="border: 0; height: 2px; background: #e3e3e3;">
-        <%}%>
+        <%}
+        
+        }else{%>
+        
+        
+        <div class="col-md-4"></div>
+        <div class="col-md-4" style="margin-top: 100px;">
+        	포스팅이 존재하지 않습니다
+        </div>
+        <div class="col-md-4"></div>
+       <% }%>
 
 <!-- Pager -->
 <%

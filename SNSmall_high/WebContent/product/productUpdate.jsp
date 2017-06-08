@@ -16,7 +16,18 @@
 	<link href="./css/main.css" rel="stylesheet"> 
 	<link href="./css/product.css" rel="stylesheet"> 
 <title>Insert title here</title>
+<script src="./js/jquery-3.2.0.js"></script>
 <script type="text/javascript">
+	// 가격, 수량에 숫자만 입력
+	$(document).ready(function(){
+		$('input:text[name=price]').keyup(function(){
+			$(this).val( $(this).val().replace(/[^0-9]/g,"") );
+		});
+		$('input:text[name=amount]').keyup(function(){
+			$(this).val( $(this).val().replace(/[^0-9]/g,"") );
+		});
+	});
+	
 	function submitCheck(){		
 		if(document.fr.price.value==""){
 	 		alert("판매가를 입력해 주세요!");
@@ -52,24 +63,7 @@
 		
 	}
 	
-	function numkeyCheck(){
-// 		var keyValue = event.keyCode;
-// 		if(!(keyValue==8||keyValue==9||keyValue==13||keyValue==46||keyValue==144||
-// 			      (keyValue>=48&&keyValue<=57)||keyValue==110||keyValue==190)) {
-// 			      event.returnValue = false;
-// 		}
-		var regNumber = /^[0-9]*$/;
-		var inputNumber = document.fr.price.value;
-		var inputNumber2 = document.fr.amount.value;
-		if(!regNumber.test(inputNumber)){
-			alert('숫자만 입력해주세요.');
-			return false;
-		}
-		if(!regNumber.test(inputNumber2)){
-			alert('숫자만 입력해주세요.');
-			return false;
-		}
-	}
+
 </script>
 </head>
 <body>
@@ -152,11 +146,11 @@ String opt_name3 = (String)request.getAttribute("opt_name3");
 							</div>
 							<div class="col-md-3 product-tit">판매가</div>
 							<div class="col-md-9 product-con">
-								<input type="text" name="price" onkeyup="return numkeyCheck()" style="ime-mode:disabled;" value=<%=prb.getPrice() %>>
+								<input type="text" name="price" style="ime-mode:disabled;" value=<%=prb.getPrice() %>>
 							</div>
 							<div class="col-md-3 product-tit">수량</div>
 							<div class="col-md-9 product-con">
-								<input type="text" name="amount" onkeyup="return numkeyCheck()" style="ime-mode:disabled;" value=<%=prb.getAmount() %>>
+								<input type="text" name="amount" style="ime-mode:disabled;" value=<%=prb.getAmount() %>>
 							</div>
 							
 							<div class="col-md-12">

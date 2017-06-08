@@ -33,6 +33,24 @@ public class ClientFrontController extends HttpServlet{
 				forward = action.execute(request, response);
 			} catch (Exception e) {e.printStackTrace();}
 			
+		}else if (command.equals("/mailActionForPass.cl")) {
+			action = new mailActionForPass();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {e.printStackTrace();}
+			
+		}else if (command.equals("/mailActionForId.cl")) {
+			action = new mailActionForId();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {e.printStackTrace();}
+			
+		}else if (command.equals("/mailActionForSnsId.cl")) {
+			action = new mailActionForSnsId();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {e.printStackTrace();}
+			
 		}else if (command.equals("/clientJoinAction.cl")) {
 			action = new clientJoinAction();
 			try {
@@ -52,8 +70,14 @@ public class ClientFrontController extends HttpServlet{
 			
 		}else if (command.equals("/SearchPass.cl")) {
 			forward = new ActionForward();
-			forward.setPath("./member/SearchPass.jsp");
+			forward.setPath("./member/phone_auth1.jsp");
 			forward.setRedirect(false);
+			
+		}else if(command.equals("/SearchPass_IdSend.cl")){
+			action = new SearchPass_IdSend();
+			try{
+				forward = action.execute(request, response);
+			}catch(Exception e){e.printStackTrace();}
 			
 		}else if(command.equals("/SearchPassAction.cl")){
 			action = new SearchPassAction();
@@ -61,9 +85,24 @@ public class ClientFrontController extends HttpServlet{
 				forward = action.execute(request, response);
 			}catch(Exception e){e.printStackTrace();}
 			
+		}else if (command.equals("/SearchPassAuthen.cl")) {
+			forward = new ActionForward();
+			forward.setPath("./member/phone_auth3.jsp");
+			forward.setRedirect(false);
+			
+		}else if (command.equals("/SearchIdAuthen.cl")) {
+			forward = new ActionForward();
+			forward.setPath("./member/phone_auth5.jsp");
+			forward.setRedirect(false);
+			
+		}else if (command.equals("/SearchSnsIdAuthen.cl")) {
+			forward = new ActionForward();
+			forward.setPath("./member/phone_auth7.jsp");
+			forward.setRedirect(false);
+			
 		}else if (command.equals("/SearchId.cl")) {
 			forward = new ActionForward();
-			forward.setPath("./member/SearchId.jsp");
+			forward.setPath("./member/phone_auth4.jsp");
 			forward.setRedirect(false);
 			
 		}else if(command.equals("/SearchIdAction.cl")){
@@ -74,7 +113,7 @@ public class ClientFrontController extends HttpServlet{
 			
 		}else if (command.equals("/SearchIdForSns.cl")) {
 			forward = new ActionForward();
-			forward.setPath("./member/SearchIdForSns.jsp");
+			forward.setPath("./member/phone_auth6.jsp");
 			forward.setRedirect(false);
 			
 		}else if(command.equals("/SearchIdForSnsAction.cl")){

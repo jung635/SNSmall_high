@@ -16,7 +16,12 @@
 	<link href="css/header.css" rel="stylesheet">
 	<link href="css/inner.css" rel="stylesheet">
 	<link href="css/main.css" rel="stylesheet">
+	<link href="css/product.css" rel="stylesheet">
+
 <title>Insert title here</title>
+<script type="text/javascript">
+
+</script>
 
 </head>
 <body>
@@ -24,6 +29,7 @@
 <%
 	String id = (String)session.getAttribute("id");
 	String type = (String)session.getAttribute("type");
+	if(id==null){type = "client";}
 	String pageNum = (String)request.getAttribute("pageNum");
 	String category = (String)request.getAttribute("category");
 	String order = (String)request.getAttribute("order");
@@ -42,9 +48,11 @@
                 <h1 class="page-header">Product List
                     <small>Amazing goods</small>
                 </h1>
-           <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sint, explicabo dolores ipsam aliquam inventore corrupti eveniet quisquam quod totam laudantium repudiandae obcaecati ea consectetur debitis velit facere nisi expedita vel?</p>
-            </div>
-        </div>
+                
+                
+ 
+        
+        
         
         <!-- Team Members Row -->
         <div class="row">
@@ -152,9 +160,9 @@
     </div>
   </div>
     <!-- /.container -->
-
+	<script src="js/jquery.js"></script>
     <!-- jQuery -->
-    <script src="js/jquery.js"></script>
+    
 
     <!-- Bootstrap Core JavaScript -->
     <script src="js/bootstrap.min.js"></script>

@@ -15,11 +15,14 @@ public class SearchPassAction implements Action{
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
 		request.setCharacterEncoding("utf-8");
+		HttpSession session = request.getSession();
 		RandomPass rp = new RandomPass();
 		ClientDAO cldao = new ClientDAO();
-		String id = request.getParameter("id");
-		String name = request.getParameter("name");
-		String email = request.getParameter("email");
+		
+		String id = (String)session.getAttribute("id");
+		String name = (String)session.getAttribute("name");
+		String email = (String)session.getAttribute("email");
+		
 		//아이디랑 이름으로 가입유무 조회
 		boolean passcheck = cldao.SearchPass(id, name);
 		// 있으면 임시비번 발송 후 디비에 임시버번으로  update
@@ -36,12 +39,13 @@ public class SearchPassAction implements Action{
 				cldao.updatePass(id, name, pass);
 				response.setContentType("text/html; charset=UTF-8"); // 서버에서 클라이언트로 보내는 내용 타입 설정
 				PrintWriter out = response.getWriter();
+				session.invalidate();
 				out.println("<script>");
 				out.println("alert('메일발송하였습니다!');");
-				out.println("history.back();");
+				out.println("window.close();");
 				out.println("</script>");
 				out.close();
-				return null;				
+				return null;
 			}else{
 				response.setContentType("text/html; charset=UTF-8"); // 서버에서 클라이언트로 보내는 내용 타입 설정
 				PrintWriter out = response.getWriter();
@@ -61,6 +65,6 @@ public class SearchPassAction implements Action{
 			out.println("</script>");
 			out.close();
 			return null;
-		}		
+		}
 	}
 }

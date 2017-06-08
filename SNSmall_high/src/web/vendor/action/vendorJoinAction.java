@@ -34,6 +34,7 @@ public class vendorJoinAction implements Action{
 			out.println("alert('다른 아이디를 입력하세요');");
 			out.println("history.back();");
 			out.println("</script>");
+			out.close();
 			return null;
 		}
 		
@@ -47,10 +48,12 @@ public class vendorJoinAction implements Action{
 		vb.setAddress(addre);
 		vdao.insertVendor(vb);
 		
-		ActionForward forward = new ActionForward();
-		forward.setPath("./login.ve");
-		forward.setRedirect(true);
-		return forward;
+		out.println("<script>");
+		out.println("alert('회원가입이 완료되었습니다.');");
+		out.println("location.href='./login.ve'");
+		out.println("</script>");
+		out.close();
+		return null;
 	}
 		
 }

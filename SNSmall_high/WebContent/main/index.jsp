@@ -14,7 +14,7 @@
 	<meta name="description" content="Creative One Page Parallax Template">
 	<meta name="keywords" content="Creative, Onepage, Parallax, HTML5, Bootstrap, Popular, custom, personal, portfolio" /> 
 	<meta name="author" content=""> 
-	<title>HIMU - OnePage HTML Parallax template</title> 
+	<title>Sn# shop</title> 
 	<link href="./css/bootstrap.min.css" rel="stylesheet">
 	<link href="./css/prettyPhoto.css" rel="stylesheet"> 
 	<link href="./css/font-awesome.min.css" rel="stylesheet"> 
@@ -119,6 +119,156 @@ function productSearch_exe(){
 
 </section><!--/#home-->
 
+<section id="our-team">
+			<div class="container">
+				<div class="row text-center">
+					<div class="col-sm-8 col-sm-offset-2">
+						<h2 class="title-one-green" style="color: #fc7700;">BEST SNS STARS</h2>
+						<p>가장 판매를 많이 한 SNS STAR들입니다! STAR들이 판매하는 물건들을 구경해보세요.<br> STAR들과 연락을 통해 더 많은 홍보를 할 수도 있습니다.!!</p>
+					</div>
+				</div>
+				<div id="team-carousel" class="carousel slide" data-interval="false">
+					<a class="member-left" href="#team-carousel" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a>
+					<a class="member-right" href="#team-carousel" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>
+					<div class="carousel-inner team-members">
+						<div class="row item active">
+							<%List<SnsBean> list = (List<SnsBean>)request.getAttribute("list");
+							int length = 0;
+							if(list.size()==0){%>
+								리스트가 없습니다.
+							<%}else{
+								if(list.size()<4) length = list.size();
+								else length = 4;
+								for(int i=0; i<length; i++){
+									SnsBean sb = list.get(i);%>
+									<div class="col-sm-6 col-md-3">
+										<div class="single-member">
+											<div id="profile_img_wrap">
+												<%if(i==0){%>
+													<span id="ranking_sns_first">
+														<img src="./images/ranking/rank_1st.gif">
+													</span>
+												<%}else{ %>
+													<span id="ranking_sns">
+													<span class="ranking_sns_rk"><%=i+1 %></span>
+													<img src="./images/ranking/rank_2st.gif">
+													</span>
+												<%} %>
+												<span id="star_list_detail">
+												<a href="SnsDetailAction.sn?sns_id=<%=sb.getSns_id()%>"><%=sb.getName() %></a><br>
+												<span class="cate_rank">.<%=sb.getCategory() %></span>
+												</span>
+												<img src="./sns_pro_upload/<%=sb.getProfile_img() %>" alt="BestImage" style="border-top-right-radius:50px; height: 250px; border-bottom-left-radius:20px;" />
+											</div>
+											
+											<div class="col-sm-12 col-md-12 socials">
+												<%if(sb.getFacebook().trim().length()!=0){%>
+													<a href="<%=sb.getFacebook()%>"><i class="fa fa-facebook"></i></a>
+												<%}if(sb.getTwitter().trim().length()!=0){%>							
+												<a href="<%=sb.getTwitter()%>"><i class="fa fa-twitter"></i></a>
+												<%}if(sb.getInstagram().trim().length()!=0){%>			
+												<a href="<%=sb.getInstagram()%>"><i class="fa fa-instagram"></i></a>
+												<%}if(sb.getBlog().trim().length()!=0){%>	
+												<a href="<%=sb.getBlog()%>"><i class="fa fa-bold"></i></a>
+												<%}if(sb.getEtc().trim().length()!=0){%>	
+												<a href="<%=sb.getEtc()%>"><i class="fa fa-smile-o"></i></a>
+												<%} %>
+											</div>
+										</div>
+									</div>
+								<%} %>
+							</div>
+							<div class="row item">
+								<%
+								if(list.size()>4){
+									if(list.size()<8) length = list.size();
+									else length = 8;
+									for(int i=4; i<8; i++){
+										SnsBean sb = list.get(i);%>
+										<div class="col-sm-6 col-md-3">
+											<div class="single-member">
+												<div id="profile_img_wrap">
+													<%if(i==0){%>
+														<span id="ranking_sns_first">
+															<img src="./images/ranking/rank_1st.gif">
+														</span>
+													<%}else{ %>
+														<span id="ranking_sns">
+														<span class="ranking_sns_rk"><%=i+1 %></span>
+														<img src="./images/ranking/rank_2st.gif">
+														</span>
+													<%} %>	
+													<span id="star_list_detail">
+												<a href="SnsDetailAction.sn?sns_id=<%=sb.getSns_id()%>"><%=sb.getName() %></a><br>
+												<span class="cate_rank">.<%=sb.getCategory() %></span>
+												</span>
+									
+													<img src="./sns_pro_upload/<%=sb.getProfile_img() %>" alt="BestImage" style="border-top-right-radius:50px; height: 250px; border-bottom-left-radius:20px;" />
+												
+												
+												</div>
+												
+												<div class="col-sm-12 col-md-12 socials">
+													<%if(sb.getFacebook().trim().length()!=0){%>
+														<a href="<%=sb.getFacebook()%>"><i class="fa fa-facebook"></i></a>
+													<%}if(sb.getTwitter().trim().length()!=0){%>							
+													<a href="<%=sb.getTwitter()%>"><i class="fa fa-twitter"></i></a>
+													<%}if(sb.getInstagram().trim().length()!=0){%>			
+													<a href="<%=sb.getInstagram()%>"><i class="fa fa-instagram"></i></a>
+													<%}if(sb.getBlog().trim().length()!=0){%>	
+													<a href="<%=sb.getBlog()%>"><i class="fa fa-bold"></i></a>
+													<%}if(sb.getEtc().trim().length()!=0){%>	
+													<a href="<%=sb.getEtc()%>"><i class="fa fa-smile-o"></i></a>
+													<%} %>
+												</div>
+											</div>
+										</div>
+								<%}}} %>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section><!--/#Our-Team-->
+
+	<section id="services" class="parallax-section">
+		<div class="container">
+			<div class="row text-center">
+				<div class="col-sm-8 col-sm-offset-2">
+					<h2 class="title-one" style="color:#43484E;">Services</h2>
+					<p style="color:#43484E; font-weight: bold;">우리는 SNS STAR, 판매자, 구매자 모드에게 최고의 혜택을 드리기위해 노력하고있습니다. 실제로 많은 고객님들이 이러한 혜택들을 누리고 있습니다!</p>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-12">
+					<div class="our-service">
+						<div class="services row">
+							<div class="col-sm-4">
+								<div class="single-service">
+									<i class="fa fa-star"></i>
+									<h2>SNS STAR</h2>
+									<p>SNS STAR는 더 유명해질 수 있는 기회를 얻고, 본인의 장점을 살려 이익을 낼 수 있습니다. 본인이 판매자가 되어 물건을 팔고, SNS STAR로써 홍보한다면 개인 쇼핑몰의 효과도 누릴 수 있습니다! 더이상 개인적으로 오는 상품문의에 일일히 답하실 필요가 없습니다. 우리의 서비스를 통해 이익과 편리함을 챙기세요</p>
+								</div>
+							</div>
+							<div class="col-sm-4">
+								<div class="single-service">
+									<i class="fa fa-shopping-cart"></i>
+									<h2>VENDOR</h2>
+									<p>SNS는 최고의 광고효과를 내고있습니다. 인기 많은 SNS STAR들에게 광고를 요청해보세요. 효과가 있을지 없을지 모르는 광고에 돈을 쏟지 않고, 확실한 경로를 통해 광고효과가 있을 때만 돈을 지불하는 시스템이 될 것입니다. 투명하게 나의 광고비가 어디에 소비되고 있는지 확인해보세요. 우리 서비스의 장점을 확인하실 수 있을 것입니다.</p>
+								</div>
+							</div>
+							<div class="col-sm-4">
+								<div class="single-service">
+									<i class="fa fa-users"></i>
+									<h2>CLIENT</h2>
+									<p>SNS STAR들이 쓰고있는 물건이 무엇인지, 어디서 살 수 있는지 알아보기 귀찮으셨을 겁니다. 클릭 한번으로 그들처럼 될 수 있습니다. 뿐만 아니라 우리 쇼핑몰에서만 만날 수 있는 SNS STAR들의 물건들을 쇼핑해보세요! 초특급 레어템들이 기다리고있습니다. 항상 준비중인 이벤트와 포인트 폭탄은 덤입니다. </p>
+								</div>
+							</div></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section><!--/#service-->
+
 <section id="about-us">
 	<div class="container">
 		<div class="text-center">
@@ -199,142 +349,7 @@ function productSearch_exe(){
 		</div>
 	</section><!--/#about-us-->
 
-	<section id="services" class="parallax-section">
-		<div class="container">
-			<div class="row text-center">
-				<div class="col-sm-8 col-sm-offset-2">
-					<h2 class="title-one" style="color:#43484E;">Services</h2>
-					<p style="color:#43484E; font-weight: bold;">우리는 SNS STAR, 판매자, 구매자 모드에게 최고의 혜택을 드리기위해 노력하고있습니다. 실제로 많은 고객님들이 이러한 혜택들을 누리고 있습니다!</p>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-sm-12">
-					<div class="our-service">
-						<div class="services row">
-							<div class="col-sm-4">
-								<div class="single-service">
-									<i class="fa fa-star"></i>
-									<h2>SNS STAR</h2>
-									<p>SNS STAR는 더 유명해질 수 있는 기회를 얻고, 본인의 장점을 살려 이익을 낼 수 있습니다. 본인이 판매자가 되어 물건을 팔고, SNS STAR로써 홍보한다면 개인 쇼핑몰의 효과도 누릴 수 있습니다! 더이상 개인적으로 오는 상품문의에 일일히 답하실 필요가 없습니다. 우리의 서비스를 통해 이익과 편리함을 챙기세요</p>
-								</div>
-							</div>
-							<div class="col-sm-4">
-								<div class="single-service">
-									<i class="fa fa-shopping-cart"></i>
-									<h2>VENDOR</h2>
-									<p>SNS는 최고의 광고효과를 내고있습니다. 인기 많은 SNS STAR들에게 광고를 요청해보세요. 효과가 있을지 없을지 모르는 광고에 돈을 쏟지 않고, 확실한 경로를 통해 광고효과가 있을 때만 돈을 지불하는 시스템이 될 것입니다. 투명하게 나의 광고비가 어디에 소비되고 있는지 확인해보세요. 우리 서비스의 장점을 확인하실 수 있을 것입니다.</p>
-								</div>
-							</div>
-							<div class="col-sm-4">
-								<div class="single-service">
-									<i class="fa fa-users"></i>
-									<h2>CLIENT</h2>
-									<p>SNS STAR들이 쓰고있는 물건이 무엇인지, 어디서 살 수 있는지 알아보기 귀찮으셨을 겁니다. 클릭 한번으로 그들처럼 될 수 있습니다. 뿐만 아니라 우리 쇼핑몰에서만 만날 수 있는 SNS STAR들의 물건들을 쇼핑해보세요! 초특급 레어템들이 기다리고있습니다. 항상 준비중인 이벤트와 포인트 폭탄은 덤입니다. </p>
-								</div>
-							</div></div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</section><!--/#service-->
-
-		<section id="our-team">
-			<div class="container">
-				<div class="row text-center">
-					<div class="col-sm-8 col-sm-offset-2">
-						<h2 class="title-one">BEST SNS STARS</h2>
-						<p>가장 판매를 많이한 SNS STAR들입니다! STAR들이 판매하는 물건들을 구경해보세요. STAR들과 연락을 통해 더 많은 홍보를 할 수도 있습니다.!!</p>
-					</div>
-				</div>
-				<div id="team-carousel" class="carousel slide" data-interval="false">
-					<a class="member-left" href="#team-carousel" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a>
-					<a class="member-right" href="#team-carousel" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>
-					<div class="carousel-inner team-members">
-						<div class="row item active">
-							<%List<SnsBean> list = (List<SnsBean>)request.getAttribute("list");
-							int length = 0;
-							if(list.size()==0){%>
-								리스트가 없습니다.
-							<%}else{
-								if(list.size()<4) length = list.size();
-								else length = 4;
-								for(int i=0; i<length; i++){
-									SnsBean sb = list.get(i);%>
-									<div class="col-sm-6 col-md-3">
-										<div class="single-member">
-											<div id="profile_img_wrap">
-												<%if(i==0){%>
-													<span id="ranking_sns_first">1등!</span>
-												<%}else{ %>
-													<span id="ranking_sns"><%=i+1 %>등</span>
-												<%} %>
-												<img src="./sns_pro_upload/<%=sb.getProfile_img() %>" alt="team member" />
-											</div>
-											<div id="star_list_detail">
-												<h3><a href="SnsDetailAction.sn?sns_id=<%=sb.getSns_id()%>"><%=sb.getName() %></a>
-												<small><%=sb.getCategory() %>/<%=sb.getRank() %></small></h3>
-												<p><%=sb.getContent() %></p>
-											</div>
-											<div class="socials">
-												<%if(sb.getFacebook().trim().length()!=0){%>
-													<a href="<%=sb.getFacebook()%>"><i class="fa fa-facebook"></i></a>
-												<%}if(sb.getTwitter().trim().length()!=0){%>							
-												<a href="<%=sb.getTwitter()%>"><i class="fa fa-twitter"></i></a>
-												<%}if(sb.getInstagram().trim().length()!=0){%>			
-												<a href="<%=sb.getInstagram()%>"><i class="fa fa-instagram"></i></a>
-												<%}if(sb.getBlog().trim().length()!=0){%>	
-												<a href="<%=sb.getBlog()%>"><i class="fa fa-bold"></i></a>
-												<%}if(sb.getEtc().trim().length()!=0){%>	
-												<a href="<%=sb.getEtc()%>"><i class="fa fa-smile-o"></i></a>
-												<%} %>
-											</div>
-										</div>
-									</div>
-								<%} %>
-							</div>
-							<div class="row item">
-								<%
-								if(list.size()>4){
-									if(list.size()<8) length = list.size();
-									else length = 8;
-									for(int i=4; i<8; i++){
-										SnsBean sb = list.get(i);%>
-										<div class="col-sm-6 col-md-3">
-											<div class="single-member">
-												<div id="profile_img_wrap">
-													<%if(i==0){%>
-														<span id="ranking_sns_first">1등!</span>
-													<%}else{ %>
-														<span id="ranking_sns"><%=i+1 %>등</span>
-													<%} %>										
-													<img src="./sns_pro_upload/<%=sb.getProfile_img() %>" alt="team member" />
-												</div>
-												<div id="star_list_detail">
-													<h3><a href="SnsDetailAction.sn?sns_id=<%=sb.getSns_id()%>"><%=sb.getName() %></a>
-													<small><%=sb.getCategory() %>/<%=sb.getRank() %></small></h3>
-													<p><%=sb.getContent() %></p>
-												</div>
-												<div class="socials">
-													<%if(sb.getFacebook().trim().length()!=0){%>
-														<a href="<%=sb.getFacebook()%>"><i class="fa fa-facebook"></i></a>
-													<%}if(sb.getTwitter().trim().length()!=0){%>							
-													<a href="<%=sb.getTwitter()%>"><i class="fa fa-twitter"></i></a>
-													<%}if(sb.getInstagram().trim().length()!=0){%>			
-													<a href="<%=sb.getInstagram()%>"><i class="fa fa-instagram"></i></a>
-													<%}if(sb.getBlog().trim().length()!=0){%>	
-													<a href="<%=sb.getBlog()%>"><i class="fa fa-bold"></i></a>
-													<%}if(sb.getEtc().trim().length()!=0){%>	
-													<a href="<%=sb.getEtc()%>"><i class="fa fa-smile-o"></i></a>
-													<%} %>
-												</div>
-											</div>
-										</div>
-								<%}}} %>
-						</div>
-					</div>
-				</div>
-			</div>
-		</section><!--/#Our-Team-->
+		
 
 		<section id="portfolio">
 			<div class="container">
@@ -355,20 +370,20 @@ function productSearch_exe(){
 				</ul><!--/#portfolio-filter-->
 				<div class="portfolio-items">
 					<%
-					List<ProductBean> product_list = (List<ProductBean>)request.getAttribute("product_list");
+					List product_list = (List)request.getAttribute("product_list");
 					if(product_list.size()==0){%>
 						리스트가 없습니다.
 					<%}else{
 					for(int i=0; i<product_list.size(); i++){
-						ProductBean prob = product_list.get(i);
+						ProductBean prob = (ProductBean)product_list.get(i);
 					%>
 					<div class="col-sm-3 col-xs-12 portfolio-item <%=prob.getCategory()%>">
 						<div class="view efffect">
 							<div class="portfolio-image">
-								<%if(prob.getMain_img()==null){ %>
-    	            		    		<img src="./qna_img/default.jpg" style="" alt=""></div>
+								<%if(prob.getMain_img()!=null){ %>
+    	            		    		<img src="./vendor_img/<%=prob.getMain_img() %>" alt=""></div>
         			            <%} else{%>
-										<img id="mainimg_item" src="./vendor_img/<%=prob.getMain_img() %>" alt=""></div>
+										<img id="mainimg_item" src="./qna_img/default.jpg" alt=""></div>
 								<%} %> 
 						<div class="mask text-center">
 							<h3>Novel</h3>
@@ -461,46 +476,58 @@ function productSearch_exe(){
 							  int pageSize = 3;
 							  List blogList = null;
 							  
-							  if(count!=0){
+							 
 								  blogList=bdao.getBlogList(startRow, pageSize);
 							  
 							  
-							  for(int i=0;i<blogList.size();i++){
-								  BlogBean bb = (BlogBean)blogList.get(i);
+							  for(int i=0;i<3;i++){
+									  
+									  BlogBean bb = null;
+									  if(i<blogList.size()){
+									  bb = (BlogBean)blogList.get(i); }
 											%>
 								<div class="col-sm-4">
 									<div class="single-blog">
-									  <%if(bb.getFile()!=null){ %>
+									  <%if(bb!=null && bb.getFile()!=null){ %>
 										<img src="./blog_upload/<%=bb.getFile()%>" style="border-radius:5px; height: 210px;"></img>
 										<%} %>
+									  <%if(bb!=null){ %>
 										<h2><%=bb.getSubject() %></h2>
 										<ul class="post-meta">
 											<li><i class="fa fa-pencil-square-o"></i><strong> Posted By:</strong> admin</li>
 											<li><i class="fa fa-clock-o"></i><strong> Posted On:</strong><%=sdf.format(bb.getDate())%></li>
 										</ul>
-										<%if(bb.getFile()!=null){ %>
+										<%} %>
+										<%if(bb!=null &&bb.getFile()!=null){ %>
 										<div class="blog-content">
 											<div class="blog-content-limit">
 												<%=bb.getContent() %>
 											</div>
 											
 										</div>
-										<%}else if(bb.getFile()==null){%>
+										<%}else if(bb!=null && bb.getFile()==null){%>
 										<div class="blog-content-long">
 											<p class="blog-content-long-limit"><%=bb.getContent() %></p>
 										</div>
+										<%}else if(bb==null){ %>
+										<div class="blog-content-long">
+											<p>포스팅이 존재하지 않습니다</p>
+										</div>
 										<%} %>
+										<%if(bb!=null){ %>
 										<a href="" class="btn btn-primary" data-toggle="modal" data-target="#blog-detail<%=i%>">Read More</a>
+										<%} %>
 									</div>
 									<div class="modal fade" id="blog-detail<%=i %>" tabindex="-1" role="dialog" aria-hidden="true">
 										<div class="modal-dialog">
 											<div class="modal-content">
 												<div class="modal-body">
 													<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-													<%if(bb.getFile()!=null){ %>
+													<%if(bb!=null&&bb.getFile()!=null){ %>
 													<div class="modal-in-img" style="background-image: url('./blog_upload/<%=bb.getFile()%>');">
 													</div>
-													<%} %>
+													<%}%>
+													<%if(bb!=null){ %>
 													<h2><%=bb.getSubject() %></h2>
 													<%	String content = bb.getContent();
 													
@@ -508,15 +535,14 @@ function productSearch_exe(){
 													content = bb.getContent().replace("\r\n", "<br>");
 													} %>
 													<p><%=content %></p>
+													<%} %>
 												</div> 
 											</div>
 										</div>
 									</div>
 								</div>
-								<%} 
+								<%
 								
-								}else{
-								%>�������� �������� �ʽ��ϴ�.<%
 								}%>
 
 								</div> 

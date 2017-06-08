@@ -16,8 +16,17 @@
 <link href="./css/main.css" rel="stylesheet">
 <link href="./css/member.css" rel="stylesheet">  
 
+<script src='https://www.google.com/recaptcha/api.js'></script>
+<!-- <script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit" async defer></script> -->
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <script type="text/javascript">
+/*  var onloadCallback = function(){
+	greCAPTCHA.render('html_element',{
+		'sitekey' : '6Lf_KyQUAAAAAB40DEHrPNa5X9ScueVN-a__pwYl',
+		'theme' : 'light'
+	}); 
+ }; */
+ 
  var authMailClicked=false;
  var authCheckChecked=false;
  var authNumCheck=false;
@@ -158,7 +167,12 @@ var pass_reg =/^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[~,!,@,#,$,*,(,),=,+,_,.,|]).{8,20
 		document.fr.authInputNum.focus();
 		alert("인증번호가 맞지 않습니다.");
 		return false;
-	}
+	}/* else if(typeof(greCAPTCHA) != 'undefined'){
+		if(greCAPTCHA.getResponse()==""){
+			alert("스팸방지코드를 확인해 주세요.");
+			return false;
+		}
+	} */
  }
 
 //비밀번호 일치 체크 디스플레이
@@ -311,7 +325,7 @@ var pass_reg =/^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[~,!,@,#,$,*,(,),=,+,_,.,|]).{8,20
 							</tr>
 						</table>
 								</fieldset>
-
+								<div class="g-recaptcha" data-sitekey="6Lf_KyQUAAAAAB40DEHrPNa5X9ScueVN-a__pwYl"></div>
 								<div class="clear"></div>
 						<hr>
 							<div class="col-md-1"></div>

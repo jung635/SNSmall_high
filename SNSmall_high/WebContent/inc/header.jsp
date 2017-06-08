@@ -18,7 +18,7 @@ function openVodWin(){
 	window.open("VodList.li", "live_list" , "height=" + screen.height + ",width=" + screen.width + "fullscreen=yes")
 }
 </script>
-<%
+<%	
 	String id = (String) session.getAttribute("id");
 	String name = (String) session.getAttribute("name");
 	String type = (String) session.getAttribute("type");

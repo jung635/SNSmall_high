@@ -155,6 +155,41 @@ public class LiveDAO {
 		return map;
 	}
 	
+	public List<LiveBean> getLive(int product_num) {
+		List<LiveBean> list = new ArrayList<>();
+		LiveBean lb = null;
+		ProductBean prob = null;
+		ProductDAO prodao = new ProductDAO();
+		try {
+			con = getConnection();
+			sql = "select * from live where state = 'LIVE' where product_num = ?order by date desc";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, product_num);
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				lb = new LiveBean();
+				lb.setSns_id(rs.getString("id"));
+				lb.setVideo_id(rs.getString("video_id"));
+				lb.setProduct_num(rs.getInt("product_num"));
+				lb.setToken(rs.getString("token"));
+				lb.setDate(rs.getTimestamp("date"));
+				lb.setTitle(rs.getString("title"));
+				lb.setUrl(rs.getString("url"));
+				lb.setState(rs.getString("state"));
+				lb.setView(rs.getInt("view"));
+				
+				list.add(lb);
+			}
+
+		} catch(Exception e){e.printStackTrace();}
+		finally{if(rs!=null){try{rs.close();}catch(SQLException ex){}}
+		if(pstmt!=null){try{pstmt.close();}catch(SQLException ex){}}
+		if(con!=null){try{con.close();}catch(SQLException ex){}}}
+
+		return list;
+	}
+	
 	public void deleteLive(String video_id, String url){
 		try {
 			con = getConnection();

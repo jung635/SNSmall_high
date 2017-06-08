@@ -119,12 +119,12 @@
 	}
 	
 	function sendSns(sns, url, txt){
-		alert(sns+", "+url+", "+txt);
 	    var o;
 	    var _url = encodeURIComponent(url);
 	    var _txt = encodeURIComponent(txt);
 	    var _br  = encodeURIComponent('\r\n');
-	 
+	    
+		
 	    switch(sns){
 	        case 'facebook':
 	            o = {
@@ -145,7 +145,36 @@
 	                method:'popup',
 	                url:"http://blog.naver.com/openapi/share?url=" + _url + "&title=" + _txt
 	            };
-	            break; 
+	            break;
+	            
+	         case 'line':
+	             o = {
+	                 method:'popup',
+	                 url:"http://line.me/R/msg/text/?url=" + _url + " " + _txt
+	             };
+	             break;
+	             
+	         case 'kakaotalk':
+	             o = {
+	                 method:'web2app',
+	                 param:'sendurl?msg=' + _txt + '&url=' + _url + '&type=link&apiver=2.0.1&appver=2.0&appid=dev.epiloum.net&appname=' + encodeURIComponent('Epiloum 개발노트'),
+	                 a_store:'itms-apps://itunes.apple.com/app/id362057947?mt=8',
+	                 g_store:'market://details?id=com.kakao.talk',
+	                 a_proto:'kakaolink://',
+	                 g_proto:'scheme=kakaolink;package=com.kakao.talk'
+	             };
+	             break;
+	  
+	         case 'band':
+	             o = {
+	                 method:'web2app',
+	                 param:'create/post?text=' + _txt + _br + _url,
+	                 a_store:'itms-apps://itunes.apple.com/app/id542613198?mt=8',
+	                 g_store:'market://details?id=com.nhn.android.band',
+	                 a_proto:'bandapp://',
+	                 g_proto:'scheme=bandapp;package=com.nhn.android.band'
+	             };
+	             break;
 	 
 	        default:
 	            alert('지원하지 않는 SNS입니다.');
@@ -172,10 +201,58 @@
 	            break;
 	    }
 	}
-function LiveGoWin(){
-	window.open('LiveGo.li?product_num=<%=productbean.getProduct_num()%>', 'live_view' , 'height=' + screen.height + ',width=' + screen.width + 'fullscreen=yes')
-}
 	
+	function CopyToClipboard ( tagToCopy, textarea ){ 
+
+        textarea.parentNode.style.display = "block"; 
+
+        var textToClipboard = ""; 
+        if ( "value" in tagToCopy ){    textToClipboard = tagToCopy.value;    } 
+        else {    textToClipboard = ( tagToCopy.innerText ) ? tagToCopy.innerText : tagToCopy.textContent;    } 
+
+        var success = false; 
+
+        if ( window.clipboardData ){ 
+                window.clipboardData.setData ( "Text", textToClipboard ); 
+                success = true; 
+        } 
+        else { 
+                textarea.value = textToClipboard; 
+
+                var rangeToSelect = document.createRange(); 
+
+                rangeToSelect.selectNodeContents( textarea ); 
+
+                var selection = window.getSelection(); 
+                selection.removeAllRanges(); 
+                selection.addRange( rangeToSelect ); 
+
+                success = true; 
+
+                try { 
+                    if ( window.netscape && (netscape.security && netscape.security.PrivilegeManager) ){ 
+                        netscape.security.PrivilegeManager.enablePrivilege( "UniversalXPConnect" ); 
+                    } 
+
+                    textarea.select(); 
+                    success = document.execCommand( "copy", false, null ); 
+                } 
+                catch ( error ){ 
+                    success = false; 
+                    console.log( error ); 
+                } 
+        } 
+
+        textarea.parentNode.style.display = "none"; 
+        textarea.value = ""; 
+
+        if ( success ){ alert( ' 클립보드에 복사되었습니다. \n "Ctrl+v"를 사용하여 원하는 곳에 붙여넣기 하세요. ' ); } 
+        else {    alert( " 복사하지 못했습니다. " );    } 
+
+	}
+	function LiveGoWin(){
+		window.open('LiveGo.li?product_num=<%=productbean.getProduct_num()%>', 'live_view' , 'height=' + screen.height + ',width=' + screen.width + 'fullscreen=yes')
+	}	
 </script>
 
 </head>
@@ -184,9 +261,12 @@ function LiveGoWin(){
 	<%
 	String returnUrl = request.getHeader("referer");
 	
-	String sns_id = (String)request.getAttribute("link_id");
+
+	//String sns_id = (String)request.getAttribute("sns_id");
+	String sns_id = (String)session.getAttribute("link_id");
 	if(sns_id == null){sns_id = "";}
 	
+		
 	String id = (String)session.getAttribute("id");
 	if(id==null){response.sendRedirect("./login.cl?returnUrl="+returnUrl+"&product_num="+productbean.getProduct_num()+"&sns_id="+sns_id);}
 	
@@ -277,49 +357,63 @@ function LiveGoWin(){
   						<%} %>
   				</select>
   				</div>
-                 <br>
-                 <%}%>
-                 <script type="text/javascript">
-                 	function plus(){
-                		if(document.gfr.amount.value<<%=peace%>){
-                			document.gfr.amount.value++;
+				<%}%>
+				<script type="text/javascript">
+					function plus(){
+						if(document.gfr.amount.value<<%=peace%>){
+							document.gfr.amount.value++;
 							document.getElementById("allprice").value=<%=allprice%>*document.gfr.amount.value;
-                		}
-                	}
-                	function minus(){
-                		if(document.gfr.amount.value>1){
-                			document.gfr.amount.value--;
-                			document.getElementById("allprice").value=<%=allprice%>*document.gfr.amount.value;
-                		}
-                	}
-                	</script>
-                <div>
-				잔여수량: <input type="text" name="rest_amount" value="<%=peace%> / <%=productbean.getAmount()%>"><br>
+						}
+					}
+					function minus(){
+						if(document.gfr.amount.value>1){
+							document.gfr.amount.value--;
+							document.getElementById("allprice").value=<%=allprice%>*document.gfr.amount.value;
+						}
+					}
+				</script>
+				<br>
+				<div>
+				잔여수량: <input type="text" name="rest_amount" value="<%=peace%>"><br>
 				<%
 				if(peace==0){%>
 					<h2>SOLD OUT</h2>
 				<%}else{%>
-				선택수량: <input type="text" name="amount" value="1">
-				<button type="button" onclick="plus()">+</button>
-				<button type="button" onclick="minus()">-</button><br>
-				구매가격: <input type="text" id="allprice" name="allprice" value="<%=productbean.getPrice()%>">
+					선택수량: <input type="text" name="amount" value="1">
+					<button type="button" onclick="plus()">+</button>
+					<button type="button" onclick="minus()">-</button><br>
+					구매가격: <input type="text" id="allprice" name="allprice" value="<%=productbean.getPrice()%>">
 				<%} %>
 				</div>
 				<br>
+				<%if(peace!=0 && type.equals("client")){%>
 				<div>
-				<%if(peace!=0){%>
-                <a class="btn btn-success" onclick="gocart()">카트담기</a>
-                <a class="btn btn-success" onclick="return gobuy()">사러가기</a>
-                <% if(type.equals("sns")){%>
-                <button onclick="LiveGoWin()">라이브 방송 시작하기</button>
-				</div>
-				<br>
-                <div class="socials_pro">
-				<a href="#" onclick="sendSns('facebook', 'http://sunju635.cafe24.com/SNSmall_high/ProductDetail.pr?product_num=<%=productbean.getProduct_num()%>&sns_id=<%=sns_id %>', '안녕')"><i class="fa fa-facebook"></i></a>
-				<a href="#" onclick="sendSns('twitter', 'http://sunju635.cafe24.com/SNSmall_high/ProductDetail.pr?product_num=<%=productbean.getProduct_num()%>&sns_id=<%=sns_id %>', '안녕')"><i class="fa fa-twitter"></i></a>
-				<a href="#" onclick="sendSns('blog', 'http://sunju635.cafe24.com/SNSmall_high/ProductDetail.pr?product_num=<%=productbean.getProduct_num()%>&sns_id=<%=sns_id %>', '안녕')"><i class="fa fa-bold"></i></a>
-                <%}} %>
+                	<a class="btn btn-success" onclick="gocart()">카트담기</a>
+                	<a class="btn btn-success" onclick="return gobuy()">사러가기</a>
                 </div>
+                <%} %>
+                <br>
+                <%
+                String url_link = "?product_num="+productbean.getProduct_num()+"&sns_id="+sns_id;
+                if(type.equals("sns")){%>
+                <button id="login" onclick="LiveGoWin()">라이브 방송 시작하기</button>
+                <div class="socials_pro">
+                	<ul>
+                	<li class="scroll dropbtn"><i class="fa fa-share"></i>
+                		<div class="dropdown-content">
+							<a href="#" onclick="sendSns('facebook', 'http://sunju635.cafe24.com/SNSmall_high/ProductDetail.pr?product_num=<%=productbean.getProduct_num()%>&sns_id=<%=sns_id %>', '안녕')"><i class="fa fa-facebook"></i>Facebook</a>
+							<a href="#" onclick="sendSns('twitter', 'http://sunju635.cafe24.com/SNSmall_high/ProductDetail.pr?product_num=<%=productbean.getProduct_num()%>&sns_id=<%=sns_id %>', '안녕')"><i class="fa fa-twitter"></i>Twitter</a>
+							<a href="#" onclick="sendSns('blog', 'http://sunju635.cafe24.com/SNSmall_high/ProductDetail.pr?product_num=<%=productbean.getProduct_num()%>&sns_id=<%=sns_id %>', '안녕')"><i class="fa fa-bold"></i>Blog</a>
+							<a href="#" onclick="sendSns('line', 'http://sunju635.cafe24.com/SNSmall_high/ProductDetail.pr?product_num=<%=productbean.getProduct_num()%>&sns_id=<%=sns_id %>', '안녕')"><i class="fa fa-linkedin-square"></i>Line</a>
+							<a href="#" onclick="sendSns('kakaotalk', 'http://sunju635.cafe24.com/SNSmall_high/ProductDetail.pr?product_num=<%=productbean.getProduct_num()%>&sns_id=<%=sns_id %>', '안녕')"><i class="fa fa-globe"></i>Kakao</a>
+							<a href="#" onclick="sendSns('band', 'http://sunju635.cafe24.com/SNSmall_high/ProductDetail.pr?product_num=<%=productbean.getProduct_num()%>&sns_id=<%=sns_id %>', '안녕')"><i class="fa fa-github-alt"></i>Band</a>
+							<div style="display: none;"><textarea id="myClipboard"></textarea></div>
+							<input type="text" onclick="CopyToClipboard(this, myClipboard)" value="http://sunju635.cafe24.com/SNSmall_high/ProductDetail.pr?product_num=<%=productbean.getProduct_num()%>&sns_id=<%=sns_id %>" style="background-color: #e2e2e2;"/>
+						</div>
+                	</li>
+                	</ul>
+                </div>
+                <%} %>
             </div>
 			</form>
         </div>
@@ -332,7 +426,7 @@ function LiveGoWin(){
                 <h3 class="page-header">상 세 내 용</h3>
             </div>
 
-            <div class="" id="product_detail_img">
+            <div class="col-sm-3 col-xs-6" id="product_detail_img" style="width: 100%; margin: auto;">
                 <a href="#">
                 <%if(productbean.getDetail_img()==null){ %>
                     <img class="img-responsive portfolio-item" src="http://placehold.it/500x300" alt="">
@@ -367,8 +461,7 @@ function LiveGoWin(){
 			<%} %>
 					<hr>
 					
-			<%if(qnaList != null){
-					for(int i=0; i<qnaList.size(); i++){
+					<%for(int i=0; i<qnaList.size(); i++){
 						QnaBean qnabean = (QnaBean)qnaList.get(i);
 						String qInsertUrl = "./QnaPopular.qn?product_num="+productbean.getProduct_num()+"&pageNum="+pageNum+"&q_num="+qnabean.getQ_num();
 						String qDelUrl = "./QnaDelete.qn?product_num="+productbean.getProduct_num()+"&pageNum="+pageNum+"&q_num="+qnabean.getQ_num();
@@ -384,12 +477,10 @@ function LiveGoWin(){
 									<span class="glyphicon glyphicon-star-empty"></span>
 							<%}}%>
 							<%=qnabean.getClient_id() %> / <%=qnabean.getPopular() %>
-							<%if(id != null){
-									if(id.equals(qnabean.getClient_id())){%>
-										<input type="button" value="del" onclick="location.href='<%=qDelUrl%>'">
-							<%}else{%>
-										<input type="button" value="++" onclick="location.href='<%=qInsertUrl%>'">							
-							<%}} %>
+							<input type="button" value="++" onclick="location.href='<%=qInsertUrl%>'">
+							<%if(id.equals(qnabean.getClient_id())){%>
+							<input type="button" value="del" onclick="location.href='<%=qDelUrl%>'">
+							<%} %>
 							<span class="pull-right"><%=qnabean.getDate() %></span>
 							<p><%=qnabean.getContent() %></p>
 							<%if(qnabean.getQ_img()!=null){ %>
@@ -397,18 +488,18 @@ function LiveGoWin(){
 							<%} %>
 						</div>
 					</div>
-					<%}} %>
+					<%} %>
 				</div>
 				<a name="policy_info"></a>
 		<div id="policy_info_box">
-			<div><h3>교환 / 반품 제한사항</h3></div>
+			<div><h3>배송정보</h3></div>
 			<div>
 				<table border="1">
 					<tr><th>배송방법</th><td>순차배송</td><th rowspan="2">배송비</th><td rowspan="2">무료배송<br>  - 도서산간 지역의 경우, 추가비용 발생가능</td></tr>
 					<tr><th>배송사</th><td>CJ GLS</td></tr>
 					<tr><th>묶음배송 여부</th><td colspan="3">가능</td></tr>
 				</table>
-				<br>
+				<div><h3>교환 / 반품 제한사항</h3></div>
 				<ul>
 					<li>주문/제작 상품의 경우, 상품의 제작이 이미 진행된 경우</li>
 					<li>고객의 사용, 시간경과, 일부 소비에 의하여 상품의 가치가 현저히 감소한 경우</li>

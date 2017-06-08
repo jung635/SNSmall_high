@@ -8,6 +8,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import sun.java2d.pipe.OutlineTextRenderer;
+
 
 public class AdminFrontController extends HttpServlet {
 	protected void doProcess(HttpServletRequest request, HttpServletResponse response)
@@ -135,6 +137,24 @@ public class AdminFrontController extends HttpServlet {
 				e.printStackTrace();
 			}
 
+		}else if(command.equals("/OurBlogPosting.ad")){
+			forward = new ActionForward();
+			forward.setPath("./admin/blogPostWrite.jsp");
+			forward.setRedirect(false);
+		}else if(command.equals("/OurBlogSearchAction.ad")){
+			action = new BlogSearchAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}else if(command.equals("/OurBlogCategory.ad")){
+			action = new BlogCategoryAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 
 		if (forward != null) {

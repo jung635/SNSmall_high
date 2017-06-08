@@ -32,7 +32,7 @@ public class BlogPostingAction implements Action{
 		bdao.blogPostWrite(bb);
 		
 		ActionForward forward = new ActionForward();
-		forward.setPath("./OurBlog.bl");
+		forward.setPath("./OurBlog.ad");
 		forward.setRedirect(true);
 				
 		return forward;

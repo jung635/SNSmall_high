@@ -21,7 +21,7 @@ public class BlogUpdate implements Action{
 		request.setAttribute("pageNum", pageNum);
 		
 		ActionForward forward = new ActionForward();
-		forward.setPath("./blog/blogUpdate.jsp");
+		forward.setPath("./admin/blogUpdate.jsp");
 		forward.setRedirect(false);
 		return forward;
 		

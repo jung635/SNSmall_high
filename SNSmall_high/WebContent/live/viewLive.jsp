@@ -5,6 +5,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<link href="./css/live.css" rel="stylesheet">
+<link href="./css/font-awesome.min.css" rel="stylesheet"> 
 <script src="https://www.gstatic.com/firebasejs/4.1.1/firebase.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
 </head>
@@ -44,14 +46,15 @@ window.fbAsyncInit = function() {
  }(document, 'script', 'facebook-jssdk'));
 
 function getLive(){
-  	 FB.api('<%=video_id%>', {"fields":"permalink_url"},function (response) {
+  	 FB.api('<%=video_id%>',function (response) {
 	    	//console.log(response);
 	    	//console.log(token);
 	    	 // alert(accessToken);
 	    	//alert(response.status);
+	    	console.log(response);
 	      if (response && !response.error) {
 	        //alert(response);
-	        console.log(response);
+	        
 	        document.getElementById('live').innerHTML=response.embed_html;
 	        
 	      }
@@ -120,15 +123,15 @@ $(document).ready(function(){
 <button onclick="deleteLive()">방송 그만하기</button>
 <button onclick="window.opener.location.href='ProductDetail.pr?product_num=<%=product_num%>'">물건 구경하러 가기</button>
 <div id="title"><%=title %></div>
-<div id="live" style="width: 300px" data-width="500"></div>
+<div id="live" style="width: 300px"></div>
 <!-- 송신 메시지 작성하는 창 -->
-<input id="textMessage" type="text"  onkeyup="press(event)" >
+<input id="textMessage" type="text"  onkeyup="press(event)" class="messageGo">
 <!-- 송신 버튼 -->
 <input onclick="sendMessage()" value="Send" type="button">
 <!-- 종료 버튼 -->
 <input onclick="disconnect()" value="Disconnect" type="button">
 <br />
 <!-- 결과 메시지 보여주는 창 -->
-<textarea id="messageTextArea" rows="10" cols="50"></textarea>
+<textarea id="messageTextArea" rows="10" cols="50" readonly="readonly"></textarea>
 </body>
 </html>

@@ -18,6 +18,7 @@
 	<link href="css/header.css" rel="stylesheet">
 	<link href="css/inner.css" rel="stylesheet">
 	<link href="css/main.css" rel="stylesheet">
+	<link href="css/product.css" rel="stylesheet">
 <title>Insert title here</title>
 <%	ProductBean productbean = (ProductBean)request.getAttribute("productbean"); %>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -300,16 +301,19 @@
         <!-- Portfolio Item Heading -->
         <div class="row">
             <div class="col-lg-12">
-                <h1 class="page-header"><%=productbean.getSubject() %>
-                    <small><%=productbean.getCategory() %></small>
-                </h1>
+           	<br><br><br>
+           	<hr>
+                <div class="detail-header">
+                SN# Home　<b>></b>　<%=productbean.getCategory() %>　<b>></b>　<%=productbean.getSubject() %>
+                </div>
+                <hr>
             </div>
         </div>
         <!-- /.row -->
         <!-- Portfolio Item Row -->
         <div class="row">
 
-            <div class="col-md-8" >
+            <div class="col-md-6" >
             <%
             if(productbean.getMain_img()==null){
             	%>
@@ -327,37 +331,18 @@
 			<input type="hidden" name="sns_id" value="<%=sns_id%>">
 			<input type="hidden" name="vendor_id" value="<%=productbean.getVendor_id()%>">
 			
-            <div class="col-md-4" id="ourproduct">
+            <div class="col-md-6" id="ourproduct" style="background-color: red;">
             	<div>
-                <h3><%=productbean.getSubject() %></h3>
-                <p><%=content %></p>
-                
-                 <select name="option1">
- 					<option value=""><%=o1[0] %> 선택하세요</option>
- 					<%for(int i=1; i<o1.length; i++){ %>
-						<option value="<%=o1[i]%>"><%=o1[i] %></option>
-					<%} %>
- 				</select>
-  				<br>
-				<%if(productbean.getOption2() != null){ 
-				String [] o2 = productbean.getOption2().split(",");%>
-				<select name="option2">
- 					<option value=""><%=o2[0] %> 선택하세요</option>
- 						<%for(int i=1; i<o2.length; i++){ %>
-	 						<option value="<%=o2[i]%>"><%=o2[i] %></option>
- 						<%} %>
- 				</select>
- 				<br>
-				<%}if(productbean.getOption3() != null){ 
-				String [] o3 = productbean.getOption3().split(",");%>
- 				<select name="option3">
- 					<option value=""><%=o3[0] %> 선택하세요</option>
- 						<%for(int i=1; i<o3.length; i++){ %>
-  							<option value="<%=o3[i]%>"><%=o3[i] %></option>
-  						<%} %>
-  				</select>
-  				</div>
-				<%}%>
+                <div class="de-tit">
+                <%=productbean.getSubject() %>
+                </div>
+                <hr style="border: 2px solid #e3e3e3;">
+                <div class="de-price"><b><%=productbean.getPrice()%>원</b></div>
+                <hr>
+                <p class="de-conte"><%=content %></p>
+            
+                </div>
+
 				<script type="text/javascript">
 					function plus(){
 						if(document.gfr.amount.value<<%=peace%>){
@@ -372,47 +357,129 @@
 						}
 					}
 				</script>
+				
 				<br>
 				<div>
-				잔여수량: <input type="text" name="rest_amount" value="<%=peace%>"><br>
+				  <div class="de-count">
+				  	<input type="text" name="rest_amount" class="de-Remain" value="<%=peace%>　개 남음" readonly="readonly">
+				  </div>
+				  <br>
+				<select name="option1" class="form-control de-opt">
+ 					<option value=""><%=o1[0] %> 선택하세요</option>
+ 					<%for(int i=1; i<o1.length; i++){ %>
+						<option value="<%=o1[i]%>"><%=o1[i] %></option>
+					<%} %>
+ 				</select>
+ 				
+				<%if(productbean.getOption2() != null){ 
+				String [] o2 = productbean.getOption2().split(",");%>
+				<select name="option2" class="form-control de-opt">
+ 					<option value=""><%=o2[0] %> 선택하세요</option>
+ 						<%for(int i=1; i<o2.length; i++){ %>
+	 						<option value="<%=o2[i]%>"><%=o2[i] %></option>
+ 						<%} %>
+ 				</select>
+				<%}if(productbean.getOption3() != null){ 
+				String [] o3 = productbean.getOption3().split(",");%>
+ 				<select name="option3" class="form-control de-opt">
+ 					<option value=""><%=o3[0] %> 선택하세요</option>
+ 						<%for(int i=1; i<o3.length; i++){ %>
+  							<option value="<%=o3[i]%>"><%=o3[i] %></option>
+  						<%} %>
+  				</select>
+  				
+				<%}%>
+				
+				
 				<%
 				if(peace==0){%>
-					<h2>SOLD OUT</h2>
+					<div class="de-count"> <h2>SOLD OUT</h2> </div>
 				<%}else{%>
-					선택수량: <input type="text" name="amount" value="1">
-					<button type="button" onclick="plus()">+</button>
-					<button type="button" onclick="minus()">-</button><br>
-					구매가격: <input type="text" id="allprice" name="allprice" value="<%=productbean.getPrice()%>">
+				<hr>
+				<div style="text-align:right;">
+					<button type="button" onclick="minus()" class="plus-minus-btn">
+						<b><i class="fa fa-minus" aria-hidden="true"></i></b>
+					</button>
+					  	<div style="width: 80px; display: inline-block;">
+							<input type="text" name="amount" value="1" class="form-control" readonly="readonly" style="background-color: #fff; cursor: default; text-align: right;">
+						</div>				
+					<button type="button" onclick="plus()" class="plus-minus-btn">
+						<i class="fa fa-plus" aria-hidden="true"></i>
+					</button><br>
+					<hr>
+					<b>총 상품금액 :　</b> <input type="text" id="allprice" name="allprice" value="<%=productbean.getPrice()%>" class="de-total-price" readonly="readonly"><span class="min-font">원</span>
+				<hr>
+				</div>
 				<%} %>
 				</div>
 				<br>
 				<%if(peace!=0 && type.equals("client")){%>
-				<div>
-                	<a class="btn btn-success" onclick="gocart()">카트담기</a>
-                	<a class="btn btn-success" onclick="return gobuy()">사러가기</a>
+				<div class="col-md-12">
+					<div class="col-md-1 col-sm-1"></div>
+					<a class="col-md-5 col-sm-5 btn btn-cart-buy" onclick="gocart()" style="color:#fff !important;">카트담기</a>
+					<div class="col-md-1 col-sm-1"></div>
+                	<a class="col-md-5 col-sm-5 btn btn-cart-buy" onclick="return gobuy()" style="color:#fff !important;">사러가기</a>
                 </div>
                 <%} %>
                 <br>
                 <%
                 String url_link = "?product_num="+productbean.getProduct_num()+"&sns_id="+sns_id;
                 if(type.equals("sns")){%>
-                <button id="login" onclick="LiveGoWin()">라이브 방송 시작하기</button>
-                <div class="socials_pro">
-                	<ul>
-                	<li class="scroll dropbtn"><i class="fa fa-share"></i>
-                		<div class="dropdown-content">
-							<a href="#" onclick="sendSns('facebook', 'http://sunju635.cafe24.com/SNSmall_high/ProductDetail.pr?product_num=<%=productbean.getProduct_num()%>&sns_id=<%=sns_id %>', '안녕')"><i class="fa fa-facebook"></i>Facebook</a>
-							<a href="#" onclick="sendSns('twitter', 'http://sunju635.cafe24.com/SNSmall_high/ProductDetail.pr?product_num=<%=productbean.getProduct_num()%>&sns_id=<%=sns_id %>', '안녕')"><i class="fa fa-twitter"></i>Twitter</a>
-							<a href="#" onclick="sendSns('blog', 'http://sunju635.cafe24.com/SNSmall_high/ProductDetail.pr?product_num=<%=productbean.getProduct_num()%>&sns_id=<%=sns_id %>', '안녕')"><i class="fa fa-bold"></i>Blog</a>
-							<a href="#" onclick="sendSns('line', 'http://sunju635.cafe24.com/SNSmall_high/ProductDetail.pr?product_num=<%=productbean.getProduct_num()%>&sns_id=<%=sns_id %>', '안녕')"><i class="fa fa-linkedin-square"></i>Line</a>
-							<a href="#" onclick="sendSns('kakaotalk', 'http://sunju635.cafe24.com/SNSmall_high/ProductDetail.pr?product_num=<%=productbean.getProduct_num()%>&sns_id=<%=sns_id %>', '안녕')"><i class="fa fa-globe"></i>Kakao</a>
-							<a href="#" onclick="sendSns('band', 'http://sunju635.cafe24.com/SNSmall_high/ProductDetail.pr?product_num=<%=productbean.getProduct_num()%>&sns_id=<%=sns_id %>', '안녕')"><i class="fa fa-github-alt"></i>Band</a>
-							<div style="display: none;"><textarea id="myClipboard"></textarea></div>
-							<input type="text" onclick="CopyToClipboard(this, myClipboard)" value="http://sunju635.cafe24.com/SNSmall_high/ProductDetail.pr?product_num=<%=productbean.getProduct_num()%>&sns_id=<%=sns_id %>" style="background-color: #e2e2e2;"/>
+                <div class="col-md-12">
+                	
+                	<div class="col-md-6">
+                		<button id="login" onclick="LiveGoWin()" class="de-live-start-btn">Live 방송 시작하기</button>
+               	 	</div>
+                	
+                	<div class="col-md-6">
+                		<div class="socials_pro">
+                	<ul style="list-style: none;">
+                	<li class="scroll dropbtn"><div class="de-shared-btn"><i class="fa fa-share"></i></div>　공유하기 / URL복사
+                		<div class="dropdown-shared">
+                			<table class="shared-box">
+	                			<tr>
+	                				<td>
+	                					<a href="#" onclick="sendSns('facebook', 'http://sunju635.cafe24.com/SNSmall_high/ProductDetail.pr?product_num=<%=productbean.getProduct_num()%>&sns_id=<%=sns_id %>', '안녕')"><i class="fa fa-facebook"></i>Facebook</a>
+	                				</td>
+	                				<td>
+	                					<a href="#" onclick="sendSns('twitter', 'http://sunju635.cafe24.com/SNSmall_high/ProductDetail.pr?product_num=<%=productbean.getProduct_num()%>&sns_id=<%=sns_id %>', '안녕')"><i class="fa fa-twitter"></i>Twitter</a>
+	                				</td>
+	                			</tr>
+	                			<tr>
+	                				<td>
+	                					<a href="#" onclick="sendSns('blog', 'http://sunju635.cafe24.com/SNSmall_high/ProductDetail.pr?product_num=<%=productbean.getProduct_num()%>&sns_id=<%=sns_id %>', '안녕')"><i class="fa fa-bold"></i>Blog</a>
+	                				</td>
+	                				<td>
+	                					<a href="#" onclick="sendSns('line', 'http://sunju635.cafe24.com/SNSmall_high/ProductDetail.pr?product_num=<%=productbean.getProduct_num()%>&sns_id=<%=sns_id %>', '안녕')"><i class="fa fa-linkedin-square"></i>Line</a>
+	                				</td>
+	                			</tr>
+	                			<tr>
+	                				<td>
+	                					<a href="#" onclick="sendSns('kakaotalk', 'http://sunju635.cafe24.com/SNSmall_high/ProductDetail.pr?product_num=<%=productbean.getProduct_num()%>&sns_id=<%=sns_id %>', '안녕')"><i class="fa fa-globe"></i>Kakao</a>
+	                				</td>
+	                				<td>
+	                					<a href="#" onclick="sendSns('band', 'http://sunju635.cafe24.com/SNSmall_high/ProductDetail.pr?product_num=<%=productbean.getProduct_num()%>&sns_id=<%=sns_id %>', '안녕')"><i class="fa fa-github-alt"></i>Band</a>
+	                				</td>
+	                			</tr>
+	                			<tr>
+	                				<td colspan="2">
+	                					<div style="display: none;"><textarea id="myClipboard"></textarea></div>
+										<input type="text" class="form-control" onclick="CopyToClipboard(this, myClipboard)" value="http://sunju635.cafe24.com/SNSmall_high/ProductDetail.pr?product_num=<%=productbean.getProduct_num()%>&sns_id=<%=sns_id %>" style="background-color: #f1f1f1;" />
+	                				</td>
+	                			</tr>	
+							</table>
 						</div>
                 	</li>
                 	</ul>
                 </div>
+                	</div>
+                
+                 
+                	
+                </div>
+                
+               
+                
                 <%} %>
             </div>
 			</form>
@@ -423,7 +490,9 @@
         <div class="row">
 
             <div class="col-lg-12">
-                <h3 class="page-header">상 세 내 용</h3>
+            <hr style="border: 2px solid #e3e3e3;">
+                <h3>상 세 내 용</h3>
+            <hr style="border: 2px solid #e3e3e3;">
             </div>
 
             <div class="col-sm-3 col-xs-6" id="product_detail_img" style="width: 100%; margin: auto;">
@@ -445,17 +514,17 @@
                     	 	<form action="./QnaInsertAction.qn?product_num=<%=productbean.getProduct_num() %>&pageNum=<%=pageNum%>&vendor_id=<%=productbean.getVendor_id() %>" method="post" enctype="multipart/form-data">
 								<input type="hidden" name="client_id" value="<%=id%>">
 								<input type="hidden" name="stars" value="">
-								<div><textarea rows="3" cols="120" name="content" style="width: 100%;"></textarea><br></div>
+								<div><textarea rows="3" cols="120" name="content" class="form-control"></textarea><br></div>
 								<div id="qnastar"><span class="glyphicon glyphicon-star"></span>
 								<span id="star1" class="glyphicon glyphicon-star-empty"></span>
 								<span id="star2" class="glyphicon glyphicon-star-empty"></span>
 								<span id="star3" class="glyphicon glyphicon-star-empty"></span>
 								<span id="star4" class="glyphicon glyphicon-star-empty"></span></div>
 								<input type="file" name="q_img">
-								<input type="submit" value="submit">
+								<input type="submit" value="submit" class="">
 							</form>
 						</div>
-						<a class="btn btn-success reviewbtn">Leave a Review</a>
+						<a class="btn de-review-btn reviewbtn" style="color:#fff !important;">Leave a Review</a>
 					</div>
 				<%} %>
 			<%} %>

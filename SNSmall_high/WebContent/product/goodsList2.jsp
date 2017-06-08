@@ -16,8 +16,11 @@
 	<link href="css/header.css" rel="stylesheet">
 	<link href="css/inner.css" rel="stylesheet">
 	<link href="css/main.css" rel="stylesheet">
+<<<<<<< HEAD
 	<link href="css/product.css" rel="stylesheet">
 
+=======
+>>>>>>> 141e631f67849412557b31f1e7ff8fbcc072e3f3
 <title>Insert title here</title>
 <script type="text/javascript">
 
@@ -25,8 +28,11 @@
 
 </head>
 <body>
+
 <%
 	String id = (String)session.getAttribute("id");
+	String type = (String)session.getAttribute("type");
+	if(id==null){type = "client";}
 	String pageNum = (String)request.getAttribute("pageNum");
 	String category = (String)request.getAttribute("category");
 	String order = (String)request.getAttribute("order");
@@ -80,13 +86,16 @@
                     <%} %>
                 </a>
                 <h3>
-                    <a href="./ProductDetail.pr?product_num=<%=pb.getProduct_num() %>&pageNum=<%=pageNum%>"><%=pb.getSubject() %></a>
+                    <a href="./ProductDetail.pr?product_num=<%=pb.getProduct_num() %>&pageNum=<%=pageNum%>"><%=pb.getSubject() %><%=pb.getLive_state() %></a>
                 </h3>
                 <p><%=pb.getPrice() %>원</p>
                 <p><%=pb.getDate() %><a href="ZzimAddAction.zz?product_num=<%=pb.getProduct_num() %>&subject=<%=pb.getSubject() %>&price=<%=pb.getPrice() %>">
-                <%if(check==0){ %>찜하기<img src="./vendor_img/zzimheart.jpg" height="20px;">
-                <%}else if(check==1){ %>찜한상품<img src="./vendor_img/zzimfullheart.jpg" height="20px"><%} %></a></p>
-            </div>
+                
+				<%if(type.equals("client")){
+						if(check==0){ %>찜하기<img src="./vendor_img/zzimheart.jpg">
+				<%}else if(check==1){ %>찜한상품<img src="./vendor_img/zzimfullheart.jpg"><%} %></a></p>
+				<%}else{}%>
+		  </div>	
 		<%}} %>
 
 		<div class="clear"></div>

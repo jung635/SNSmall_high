@@ -45,7 +45,15 @@ public class LiveFrontController extends HttpServlet {
 			forward = new ActionForward();
 			forward.setPath("./live/chatting.jsp");
 			forward.setRedirect(false);
-		}      
+		}else if(command.equals("/ViewLive.li")){
+			forward = new ActionForward();
+			forward.setPath("./live/viewLive.jsp");
+			forward.setRedirect(false);
+		}else if(command.equals("/LiveGo.li")){
+			forward = new ActionForward();
+			forward.setPath("./live/liveGo.jsp");
+			forward.setRedirect(false);
+		}  
   
 
 		if (forward != null) {

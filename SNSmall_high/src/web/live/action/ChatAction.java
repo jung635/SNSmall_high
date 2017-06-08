@@ -2,10 +2,14 @@ package web.live.action;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashSet;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
-import java.util.Set;
+import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.websocket.OnClose;
 import javax.websocket.OnError;
 import javax.websocket.OnMessage;
@@ -13,54 +17,55 @@ import javax.websocket.OnOpen;
 import javax.websocket.Session;
 import javax.websocket.server.ServerEndpoint;
 
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+
 @ServerEndpoint("/websocket")
 public class ChatAction{
-	static List<Session> sessionUsers = Collections.synchronizedList(new ArrayList<>());
 
+	static Map<Session, String> users = Collections.synchronizedMap(new HashMap<>());
+	 JSONObject obj = null;
+	 String username = "";
+	 String send_mesg = "";
+	 String id = "";
 		@OnOpen
 	    public void handleOpen(Session session){
-	        System.out.println("client is now connected...");
-			System.out.println("session:"+session.toString());
-			clients.add(session);
+			System.out.println("session:"+session.getId());
 	    }
 	    @OnMessage
 	    public void handleMessage(String message, Session session){
-	       
-/*	        String replymessage = "";
-	        
-	        synchronized (clients) {
-				// Iterate over the connected sessions
-				// and broadcast the received message
-				//for (Session client : clients) {
-					//if (!client.equals(session)) {
-						 System.out.println("receive from client : "+message);
-						replymessage = "echo "+message;
-						System.out.println("send to client : "+replymessage);
-					//}
-				//}
-			}
-	        return replymessage;*/
-	    	 String username = (String)userSession.getUserProperties().get("username");
-	         //세션 프로퍼티에 username이 없으면 username을 선언하고 해당 세션을으로 메시지를 보낸다.(json 형식이다.)
-	         //최초 메시지는 username설정
-	         if(username == null){
-	             userSession.getUserProperties().put("username", message);
-	             userSession.getBasicRemote().sendText(buildJsonData("System", "you are now connected as " + message));
-	             return;
-	         }
-	         //username이 있으면 전체에게 메시지를 보낸다.
-	         Iterator<Session> iterator = sessionUsers.iterator();
-	         while(iterator.hasNext()){
-	             iterator.next().getBasicRemote().sendText(buildJsonData(username,message));
-	         }
-
-
-	 출처: http://nowonbun.tistory.com/286 [명월 일지]
+	    	
+	    	 username = (String)session.getUserProperties().get("id");
+	    	 
+	    	 try{
+	    		 JSONObject json = (JSONObject)new JSONParser().parse(message);
+	    		 System.out.println(json.get("video_id"));
+	    		 users.put(session, (String)json.get("video_id"));
+		         if(username == null){
+		             session.getUserProperties().put("id", session.getId());
+		             username = (String)session.getUserProperties().get("id");
+		             send_mesg = json.get("id")+"님 입장";
+		             session.getBasicRemote().sendText(send_mesg);
+		         }else{
+			         send_mesg = json.get("id") + ":" + (String)json.get("message");
+			         Iterator<Session> iterator = users.keySet().iterator();
+			         int i=0;
+			         while(iterator.hasNext()){
+			        	 Session key = iterator.next();
+			        	if(users.get(key).equals((String)json.get("video_id")))
+			             key.getBasicRemote().sendText(send_mesg);
+			        	 i++;
+			         }
+		         }
+	    	 }catch(Exception e){
+	    		 e.printStackTrace();
+	    	 }
 	    }
+
 	    @OnClose
 	    public void handleClose(Session session){
-	    	clients.remove(session);
-	        System.out.println("client is now disconnected...");
+	 	    	users.remove(session);
+		        System.out.println("client is now disconnected...");
 	    }
 	    @OnError
 	    public void handleError(Throwable t){
@@ -68,3 +73,5 @@ public class ChatAction{
 	    }
 
 }
+
+

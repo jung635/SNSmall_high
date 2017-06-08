@@ -9,7 +9,6 @@ public class QnaPopular implements Action{
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		System.out.println("QnaPopular execute()");
 		
 		int product_num = Integer.parseInt(request.getParameter("product_num"));
 		String pageNum = request.getParameter("pageNum");

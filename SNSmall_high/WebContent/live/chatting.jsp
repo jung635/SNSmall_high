@@ -1,55 +1,55 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+    pageEncoding="utf-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>Insert title here</title>
+<script src="https://www.gstatic.com/firebasejs/4.1.1/firebase.js"></script>
 </head>
 <body>
-    <form>
-        <!-- ¼Û½Å ¸Þ½ÃÁö ÀÛ¼ºÇÏ´Â Ã¢ -->
-        <input id="textMessage" type="text">
-        <!-- ¼Û½Å ¹öÆ° -->
-        <input onclick="sendMessage()" value="Send" type="button">
-        <!-- Á¾·á ¹öÆ° -->
-        <input onclick="disconnect()" value="Disconnect" type="button">
-    </form>
-    <br />
-    <!-- °á°ú ¸Þ½ÃÁö º¸¿©ÁÖ´Â Ã¢ -->
-    <textarea id="messageTextArea" rows="10" cols="50"></textarea>
-     
-    <script type="text/javascript">
-        var webSocket = new WebSocket("ws://localhost:8080/SNSmall_high/websocket");
-        var messageTextArea = document.getElementById("messageTextArea");
-
-        webSocket.onopen = function(message){
-            messageTextArea.value += "Server connect...\n";
-        };
-
-        webSocket.onclose = function(message){
-            messageTextArea.value += "Server Disconnect...\n";
-        };
-
-        webSocket.onerror = function(message){
-            messageTextArea.value += "error...\n";
-        };
-
-        webSocket.onmessage = function(message){
-            messageTextArea.value += "Recieve From Server => "+message.data+"\n";
-        };
-
-        function sendMessage(){
-            var message = document.getElementById("textMessage");
-            messageTextArea.value += "Send to Server => "+message.value+"\n";
-           // message=["¹Ý°©½À´Ï´Ù","test"];
-            webSocket.send(message.value);
-            //webSocket.send(message.value);
-            message.value = "";
-        }
-        function disconnect(){
-            webSocket.close();
-        }
-    </script>
+<%String id="Test";
+String video_id="video_idid";
+%>
+	<script>
+ 		var config = {
+				apiKey: "AIzaSyAJ04h5-aCRcg_FoDyNRq93Z9EWB0ebUgQ",
+				authDomain: "snsmall-6f75b.firebaseapp.com",
+				databaseURL: "https://snsmall-6f75b.firebaseio.com",
+				projectId: "snsmall-6f75b",
+				storageBucket: "snsmall-6f75b.appspot.com",
+				messagingSenderId: "856975526156"
+		};
+		firebase.initializeApp(config);
+		
+		function sendMessage(){
+			console.log('sendMessage');
+			firebase.database().ref('1').push({
+				userId: 'id',
+				message: document.getElementById("textMessage").value,
+			});
+		}
+		
+		firebase.database().ref('1').limitToLast(1).on('child_added',function(data, prevChildKey){
+			console.log(data.val());
+			document.getElementById("messageTextArea").value += data.val().message + "\n";
+		});
+		
+		function press(){
+		  	 if(event.keyCode == 13){
+		  		// alert("test");
+		  		 sendMessage();
+		  	 }
+		   } 
+	</script>
+	<!-- ì†¡ì‹  ë©”ì‹œì§€ ìž‘ì„±í•˜ëŠ” ì°½ -->
+	<input id="textMessage" type="text" onkeydown="press()">
+	<!-- ì†¡ì‹  ë²„íŠ¼ -->
+	<input onclick="sendMessage()" value="Send" type="button">
+	<!-- ì¢…ë£Œ ë²„íŠ¼ -->
+	<input onclick="disconnect()" value="Disconnect" type="button">
+	<br/>
+	<!-- ê²°ê³¼ ë©”ì‹œì§€ ë³´ì—¬ì£¼ëŠ” ì°½ -->
+	<textarea id="messageTextArea" rows="10" cols="50"></textarea>
 </body>
 </html>

@@ -1,17 +1,25 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+    pageEncoding="utf-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>Insert title here</title>
+<script src="https://www.gstatic.com/firebasejs/4.1.1/firebase.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
 </head>
 <body>
-<%String video_id = (String)request.getAttribute("video_id");
-String token = (String)request.getAttribute("token");%>
+<%
+String id = (String)session.getAttribute("id");
+String video_id = (String)request.getAttribute("video_id");
+String token = (String)request.getAttribute("token");
+String title = (String)request.getAttribute("title");
+int product_num = (Integer)request.getAttribute("product_num");
+%>
 <script>
 var token;
 var video_id;
+
 window.fbAsyncInit = function() {
 	FB.init({
       appId            : '1685211914841647',
@@ -30,6 +38,16 @@ window.fbAsyncInit = function() {
    fjs.parentNode.insertBefore(js, fjs);
  }(document, 'script', 'facebook-jssdk'));
 
+var config = {
+		apiKey: "AIzaSyAJ04h5-aCRcg_FoDyNRq93Z9EWB0ebUgQ",
+		authDomain: "snsmall-6f75b.firebaseapp.com",
+		databaseURL: "https://snsmall-6f75b.firebaseio.com",
+		projectId: "snsmall-6f75b",
+		storageBucket: "snsmall-6f75b.appspot.com",
+		messagingSenderId: "856975526156"
+};
+firebase.initializeApp(config);
+
 function getLive(){
 	 FB.api('<%=video_id%>', function (response) {
 	    	console.log(response);
@@ -43,24 +61,58 @@ function getLive(){
  }
  
 function deleteLive(){
-	alert('πÊº€¿ª ¡æ∑·«’¥œ¥Ÿ.');
+	alert('Î∞©ÏÜ°ÏùÑ Ï¢ÖÎ£åÌï©ÎãàÎã§.');
 	FB.api(
-		'<%=video_id%>',
-		'POST',
-		{"end_live_video":"true"},
-			function(response) {
-			console.log(response);
-				 if (response && !response.error) {
-	    		     location.href="LiveDelete.li?video_id=<%=video_id%>";
-	    		 }
-	    },{access_token: '<%=token%>'}
-	);
+			'<%=video_id%>',
+			  'POST',
+			  {"end_live_video":"true"},
+			  function(response) {
+				  if (response && !response.error) {
+				 	 location.href="LiveDelete.li?video_id=<%=video_id%>&product_num=<%=product_num%>";
+				  }
+			  },{access_token: '<%=token%>'}
+			);
  }
  
+function press(){
+  	 if(event.keyCode == 13){
+  		// alert("test");
+  		 sendMessage();
+  	 }
+   }
 
+
+function sendMessage(){
+	console.log('sendMessage');
+	firebase.database().ref('<%=video_id%>').push({
+		userId: '<%=id%>',
+		message: "<%=id%>:" +  document.getElementById("textMessage").value,
+	});
+}
+
+firebase.database().ref('<%=video_id%>').limitToLast(1).on('child_added',function(data, prevChildKey){
+	console.log(data.val()); 
+	document.getElementById("messageTextArea").value += data.val().message + "\n";
+	document.getElementById("textMessage").value = "";
+});
+
+$(document).ready(function(){
+    $(".iframe").css('width','300px');
+});	
+   
 </script>
-<button id="getLiveinfo" onclick="getLive()">≥ª πÊº€»≠∏È ∫∏±‚</button>
-<button id="getLiveinfo" onclick="deleteLive()">πÊº€ ±◊∏∏«œ±‚</button>
+<button id="getLiveinfo" onclick="getLive()">ÎÇ¥ Î∞©ÏÜ°ÌôîÎ©¥ Î≥¥Í∏∞</button>
+<button id="getLiveinfo" onclick="deleteLive()">Î∞©ÏÜ° Í∑∏ÎßåÌïòÍ∏∞</button>
+<div id="title"><%=title %></div>
 <div id="live" style="width: 300px"></div>
+     <!-- ÏÜ°Ïã† Î©îÏãúÏßÄ ÏûëÏÑ±ÌïòÎäî Ï∞Ω -->
+     <input id="textMessage" type="text"  onkeyup="press()" >
+     <!-- ÏÜ°Ïã† Î≤ÑÌäº -->
+     <input onclick="sendMessage()" value="Send" type="button">
+     <!-- Ï¢ÖÎ£å Î≤ÑÌäº -->
+     <input onclick="disconnect()" value="Disconnect" type="button">
+ <br />
+ <!-- Í≤∞Í≥º Î©îÏãúÏßÄ Î≥¥Ïó¨Ï£ºÎäî Ï∞Ω -->
+ <textarea id="messageTextArea" rows="10" cols="50"></textarea>
 </body>
 </html>

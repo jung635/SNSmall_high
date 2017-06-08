@@ -181,7 +181,7 @@
 	String returnUrl = request.getHeader("referer");
 	
 	ProductBean productbean = (ProductBean)request.getAttribute("productbean");
-	String sns_id = (String)request.getAttribute("sns_id");
+	String sns_id = (String)request.getAttribute("link_id");
 	if(sns_id == null){sns_id = "";}
 	
 	String id = (String)session.getAttribute("id");
@@ -364,7 +364,8 @@
 			<%} %>
 					<hr>
 					
-					<%for(int i=0; i<qnaList.size(); i++){
+			<%if(qnaList != null){
+					for(int i=0; i<qnaList.size(); i++){
 						QnaBean qnabean = (QnaBean)qnaList.get(i);
 						String qInsertUrl = "./QnaPopular.qn?product_num="+productbean.getProduct_num()+"&pageNum="+pageNum+"&q_num="+qnabean.getQ_num();
 						String qDelUrl = "./QnaDelete.qn?product_num="+productbean.getProduct_num()+"&pageNum="+pageNum+"&q_num="+qnabean.getQ_num();
@@ -380,10 +381,12 @@
 									<span class="glyphicon glyphicon-star-empty"></span>
 							<%}}%>
 							<%=qnabean.getClient_id() %> / <%=qnabean.getPopular() %>
-							<input type="button" value="++" onclick="location.href='<%=qInsertUrl%>'">
-							<%if(id.equals(qnabean.getClient_id())){%>
-							<input type="button" value="del" onclick="location.href='<%=qDelUrl%>'">
-							<%} %>
+							<%if(id != null){
+									if(id.equals(qnabean.getClient_id())){%>
+										<input type="button" value="del" onclick="location.href='<%=qDelUrl%>'">
+							<%}else{%>
+										<input type="button" value="++" onclick="location.href='<%=qInsertUrl%>'">							
+							<%}} %>
 							<span class="pull-right"><%=qnabean.getDate() %></span>
 							<p><%=qnabean.getContent() %></p>
 							<%if(qnabean.getQ_img()!=null){ %>
@@ -391,7 +394,7 @@
 							<%} %>
 						</div>
 					</div>
-					<%} %>
+					<%}} %>
 				</div>
 				<a name="policy_info"></a>
 		<div id="policy_info_box">

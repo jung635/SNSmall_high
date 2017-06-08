@@ -1,3 +1,4 @@
+<%@page import="web.live.db.LiveBean"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -11,11 +12,7 @@
 <body>
 <%
 String id = (String)session.getAttribute("id");
-String sns_id = (String)request.getAttribute("sns_id");
-String video_id = (String)request.getAttribute("video_id");
-String token = (String)request.getAttribute("token");
-String title = (String)request.getAttribute("title");
-int product_num = (Integer)request.getAttribute("product_num");
+LiveBean lb = (LiveBean)request.getAttribute("lb");
 %>
 <script>
 var token;
@@ -40,13 +37,13 @@ window.fbAsyncInit = function() {
 }(document, 'script', 'facebook-jssdk'));
 
 function getLive(){
-  	 FB.api('<%=video_id%>?fields=embed_html,permalink_url',function (response) {
+  	 FB.api('<%=lb.getVideo_id()%>?fields=embed_html,permalink_url',function (response) {
 	      if (response && !response.error) {
 	        console.log(response.permalink_url);
 	        document.getElementById('live').innerHTML = response.embed_html;
 	        permalink_url = response.permalink_url;
 	      }
-	    },{access_token: '<%=token%>'});
+	    },{access_token: '<%=lb.getToken()%>'});
   	 
   	 return permalink_url;
  }
@@ -73,14 +70,14 @@ firebase.initializeApp(config);
 
 function sendMessage(){
 	console.log('sendMessage');
-	firebase.database().ref('<%=video_id%>').push({
+	firebase.database().ref('<%=lb.getVideo_id()%>').push({
 		userId: '<%=id%>',
 		message: "<%=id%>:" +  document.getElementById("textMessage").value,
 		status: 'on',
 	});
 }
 
-firebase.database().ref('<%=video_id%>').limitToLast(1).on('child_added',function(data, prevChildKey){
+firebase.database().ref('<%=lb.getVideo_id()%>').limitToLast(1).on('child_added',function(data, prevChildKey){
 	console.log(data.val()); 
 		document.getElementById("messageTextArea").value += data.val().message + "\n";
 		document.getElementById("textMessage").value = "";
@@ -102,8 +99,8 @@ function myFunction(){
 }
 
 </script>
-<button onclick="window.opener.location.href='ProductDetail.pr?product_num=<%=product_num%>&live_id=<%=sns_id%>'">물건 구경하러 가기</button>
-<div id="title"><%=title %></div>
+<button onclick="window.opener.location.href='ProductDetail.pr?product_num=<%=lb.getProduct_num()%>&live_id=<%=lb.getSns_id()%>'">물건 구경하러 가기</button>
+<div id="title"><%=lb.getTitle() %></div>
 <div id="live"></div>
 <input id="textMessage" type="text"  onkeyup="press(event)" >
 <input onclick="sendMessage()" value="Send" type="button">

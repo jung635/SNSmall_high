@@ -9,7 +9,7 @@ import javax.servlet.http.HttpSession;
 import web.live.db.LiveBean;
 import web.live.db.LiveDAO;
 
-public class LiveVeiwAction implements Action {
+public class VodViewAction implements Action{
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -27,15 +27,14 @@ public class LiveVeiwAction implements Action {
 			out.close();
 		}else{
 			id = (String)session.getAttribute("id");
-		
-			String video_id = request.getParameter("video_id");
 			LiveDAO ldao = new LiveDAO();
-			LiveBean lb = ldao.getLive(video_id);
+			String video_id = request.getParameter("video_id");
+			LiveBean lb = ldao.getSnsLive(video_id);
 			ldao.viewUp(video_id);
 			
 			request.setAttribute("lb", lb);
 			forward = new ActionForward();
-			forward.setPath("./live/viewLive.jsp");
+			forward.setPath("./live/viewVod.jsp");
 			forward.setRedirect(false);
 		}
 		return forward;

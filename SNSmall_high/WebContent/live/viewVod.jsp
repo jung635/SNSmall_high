@@ -1,3 +1,4 @@
+<%@page import="web.live.db.LiveBean"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -11,19 +12,9 @@
 <body>
 <div id="fb-root"></div>
 <%
-String id = (String)session.getAttribute("id");
-if(id==null){%>
-	<script>
-	alert("로그인을 해주세요");
-	history.back();
-	</script>
-<%}
-String title = request.getParameter("title");
-String sns_id = request.getParameter("sns_id");
-int product_num = Integer.parseInt(request.getParameter("product_num"));
-String url= request.getParameter("url");
-String href = "https://www.facebook.com"+url;
-String cite = "https://ko-kr.facebook.com"+url;
+LiveBean lb = (LiveBean)request.getAttribute("lb");
+String href = "https://www.facebook.com"+lb.getUrl();
+String cite = "https://ko-kr.facebook.com"+lb.getUrl();
 %>
 <script>
 var token;
@@ -35,8 +26,8 @@ var token;
   fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));
 </script>
-<button onclick="window.opener.location.href='ProductDetail.pr?product_num=<%=product_num%>&live_id=<%=sns_id%>'">물건 구경하러 가기</button>
-<div id="title"><%=title %></div>
+<button onclick="window.opener.location.href='ProductDetail.pr?product_num=<%=lb.getProduct_num()%>&live_id=<%=lb.getSns_id()%>'">물건 구경하러 가기</button>
+<div id="title"><%=lb.getTitle() %></div>
 <div class="fb-video" data-href="<%=href %>" data-width="500" data-show-text="false"><blockquote cite="<%=cite %>" class="fb-xfbml-parse-ignore"><a href="<%=cite %>"></a></blockquote></div>
 </body>
 </html>

@@ -288,5 +288,68 @@ public class LiveDAO {
 		return lb;
 	}
 	
+	public LiveBean getVodLive(String video_id) {
+		LiveBean lb = null;
+		ProductDAO prodao = new ProductDAO();
+		try {
+			con = getConnection();
+			sql = "select * from live where state = 'VOD and video_id=?' order by date desc";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, video_id);
+			rs = pstmt.executeQuery();
+			
+			while (rs.next()) {
+				lb = new LiveBean();
+				lb.setSns_id(rs.getString("id"));
+				lb.setVideo_id(rs.getString("video_id"));
+				lb.setProduct_num(rs.getInt("product_num"));
+				lb.setToken(rs.getString("token"));
+				lb.setDate(rs.getTimestamp("date"));
+				lb.setTitle(rs.getString("title"));
+				lb.setUrl(rs.getString("url"));
+				lb.setState(rs.getString("state"));
+				lb.setView(rs.getInt("view"));
+				
+			}
+			
+		} catch(Exception e){e.printStackTrace();}
+		finally{if(rs!=null){try{rs.close();}catch(SQLException ex){}}
+		if(pstmt!=null){try{pstmt.close();}catch(SQLException ex){}}
+		if(con!=null){try{con.close();}catch(SQLException ex){}}}
+		
+		return lb;
+	}
+	public LiveBean getLive(String video_id) {
+		LiveBean lb = null;
+		ProductDAO prodao = new ProductDAO();
+		try {
+			con = getConnection();
+			sql = "select * from live where state = 'VOD and video_id=?' order by date desc";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, video_id);
+			rs = pstmt.executeQuery();
+			
+			while (rs.next()) {
+				lb = new LiveBean();
+				lb.setSns_id(rs.getString("id"));
+				lb.setVideo_id(rs.getString("video_id"));
+				lb.setProduct_num(rs.getInt("product_num"));
+				lb.setToken(rs.getString("token"));
+				lb.setDate(rs.getTimestamp("date"));
+				lb.setTitle(rs.getString("title"));
+				lb.setUrl(rs.getString("url"));
+				lb.setState(rs.getString("state"));
+				lb.setView(rs.getInt("view"));
+				
+			}
+			
+		} catch(Exception e){e.printStackTrace();}
+		finally{if(rs!=null){try{rs.close();}catch(SQLException ex){}}
+		if(pstmt!=null){try{pstmt.close();}catch(SQLException ex){}}
+		if(con!=null){try{con.close();}catch(SQLException ex){}}}
+		
+		return lb;
+	}
+	
 	
 }

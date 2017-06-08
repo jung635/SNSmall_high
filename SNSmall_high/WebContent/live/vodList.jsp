@@ -29,7 +29,7 @@ if(map.size()==0){%>
 			<td><%=rank %></td>
 			<td><%=lb.getSns_id() %></td>
 			<td><%=prob.getSubject() %></td>
-			<td><%=lb.getTitle() %></td><td><button onclick="location.href='ViewVod.li?url=<%=lb.getUrl()%>&product_num=<%=lb.getProduct_num()%>&title=<%=lb.getTitle()%>&sns_id=<%=lb.getSns_id()%>'">방송 보러 가기</button></td>
+			<td><%=lb.getTitle() %></td><td><button onclick="location.href='ViewVod.li?video_id=<%=lb.getVideo_id()%>'">방송 보러 가기</button></td>
 			<td><%=lb.getView() %></td>
 		</tr>
 	</table>

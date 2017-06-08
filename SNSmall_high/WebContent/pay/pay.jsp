@@ -186,7 +186,7 @@ function pointChanged(price, myPoint){
 	}else{
 		document.getElementById('price_result').innerText = price-point;
 		document.getElementById('myPoint').innerText = myPoint-point;
-		document.getElementById('withPoint').checked = true;
+		document.getElementById('withPoint').checked = false;
 	}
 }
 

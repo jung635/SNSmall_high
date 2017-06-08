@@ -144,8 +144,9 @@ public class PayCompleteAction implements Action {
 			}
 
 			if(method.equals("card")||method.equals("withPoint")){
-				SnsBean sb = sdao.getSnsDetail(pb.getSns_id());
-				if(sb != null){
+				
+				if(pb.getSns_id() != null){
+					SnsBean sb = sdao.getSnsDetail(pb.getSns_id());
 					//rank update 확인
 					list_sns = pdao.getSnsPaymentList(sns_id[i]);
 					for(int j=0; j<list_sns.size(); j++){

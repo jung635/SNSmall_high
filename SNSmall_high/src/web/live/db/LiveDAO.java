@@ -162,7 +162,7 @@ public class LiveDAO {
 		ProductDAO prodao = new ProductDAO();
 		try {
 			con = getConnection();
-			sql = "select * from live where state = 'LIVE' where product_num = ?order by date desc";
+			sql = "select * from live where state = 'LIVE' and product_num = ? order by date desc";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, product_num);
 			rs = pstmt.executeQuery();

@@ -6,6 +6,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import web.live.db.LiveBean;
+import web.live.db.LiveDAO;
 import web.product.db.ProductBean;
 import web.product.db.ProductDAO;
 import web.qna.db.QnaBean;
@@ -40,7 +42,8 @@ public class ProductDetailAction implements Action{
 		ProductDAO productdao = new ProductDAO();
 		ProductBean productbean = productdao.getProduct(product_num);
 		QnaDAO qdao = new QnaDAO();
-		
+		LiveDAO ldao = new LiveDAO();
+		List<LiveBean> live_list = ldao.getLive(product_num);		
 //		int count = qdao.getQnaCount();
 //		int pageSize = 20;
 //		int currentPage = Integer.parseInt(pageNum);
@@ -61,6 +64,7 @@ public class ProductDetailAction implements Action{
 //		request.setAttribute("startPage", startPage);
 //		request.setAttribute("endPage", endPage);
 		
+		request.setAttribute("live_lis", live_list);
 		request.setAttribute("pageNum", pageNum);
 		request.setAttribute("qnaList", qnaList);
 		request.setAttribute("productbean", productbean);

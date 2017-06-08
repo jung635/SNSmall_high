@@ -1,3 +1,4 @@
+<%@page import="web.live.db.LiveBean"%>
 <%@page import="javax.crypto.interfaces.PBEKey"%>
 <%@page import="web.qna.db.QnaBean"%>
 <%@page import="java.util.List"%>
@@ -250,8 +251,11 @@
         else {    alert( " 복사하지 못했습니다. " );    } 
 
 	}
-	function LiveGoWin(){
+	function liveGoWin(){
 		window.open('LiveGo.li?product_num=<%=productbean.getProduct_num()%>', 'live_view' , 'height=' + screen.height + ',width=' + screen.width + 'fullscreen=yes')
+	}	
+	function product_live(){
+		window.open('ProductLiveList.li?product_num=<%=productbean.getProduct_num()%>', 'live_view' , 'height=' + screen.height + ',width=' + screen.width + 'fullscreen=yes')
 	}	
 </script>
 
@@ -260,8 +264,6 @@
 
 	<%
 	String returnUrl = request.getHeader("referer");
-	
-
 	//String sns_id = (String)request.getAttribute("sns_id");
 	String sns_id = (String)session.getAttribute("link_id");
 	if(sns_id == null){sns_id = "";}
@@ -303,6 +305,9 @@
                 <h1 class="page-header"><%=productbean.getSubject() %>
                     <small><%=productbean.getCategory() %></small>
                 </h1>
+                <%if(productbean.getLive_state().equals("on")){ %>
+                    	<button onclick="product_live()">방송중인 라이브 방송 보기</button>
+                    <%} %>
             </div>
         </div>
         <!-- /.row -->
@@ -396,7 +401,7 @@
                 <%
                 String url_link = "?product_num="+productbean.getProduct_num()+"&sns_id="+sns_id;
                 if(type.equals("sns")){%>
-                <button id="login" onclick="LiveGoWin()">라이브 방송 시작하기</button>
+                <button id="login" onclick="liveGoWin()">라이브 방송 시작하기</button>
                 <div class="socials_pro">
                 	<ul>
                 	<li class="scroll dropbtn"><i class="fa fa-share"></i>

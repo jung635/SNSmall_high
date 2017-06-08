@@ -9,7 +9,6 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
 </head>
 <body>
-<div id="fb-root"></div>
 <%
 String id = (String)session.getAttribute("id");
 if(id==null){%>
@@ -46,13 +45,10 @@ window.fbAsyncInit = function() {
 }(document, 'script', 'facebook-jssdk'));
 
 function getLive(){
-  	 FB.api('<%=video_id%>?fields=permalink_url',function (response) {
+  	 FB.api('<%=video_id%>?fields=embed_html,permalink_url',function (response) {
 	      if (response && !response.error) {
 	        console.log(response);
-	        //document.getElementById('liveDiv').setAttribute('data-href',"https://www.facebook.com"+response.permalink_url);
-	        document.getElementById('liveDiv').setAttribute('data-href','https://www.facebook.com/100017642026723/videos/113069105957823/');
-	        //document.getElementById('bq').setAttribute('cite',"https://ko-kr.facebook.com"+response.permalink_url);
-	        //document.getElementById('liveA').setAttribute('href',"https://ko-kr.facebook.com"+response.permalink_url);
+	        document.getElementById('live').innerHTML = response.embed_html;
 	      }
 	    },{access_token: '<%=token%>'});
  }
@@ -104,20 +100,13 @@ function myFunction(){
 }
 
 </script>
-<button onclick="deleteLive()">방송 그만하기</button>
 <button onclick="window.opener.location.href='ProductDetail.pr?product_num=<%=product_num%>'">물건 구경하러 가기</button>
 <div id="title"><%=title %></div>
-<!-- <div id="live" style="width: 300px" data-width="500"></div> -->
-<!-- <div class="fb-video"  data-href="" data-width="500" data-show-text="false"><blockquote cite="" id = "bq" class="fb-xfbml-parse-ignore"><a href="" id="liveA"></a><p></p><a href="https://www.facebook.com/people/Sunju-Jung/100017642026723">Sunju Jung</a>에 의해 게시 됨 2017년 6월 7일 수요일</blockquote></div> -->
-<div class="fb-video" id="liveDiv" data-href="" data-width="500" data-show-text="false"><blockquote cite="https://ko-kr.facebook.com/100017642026723/videos/113069105957823/" class="fb-xfbml-parse-ignore"><a href="https://ko-kr.facebook.com/100017642026723/videos/113069105957823/"></a><p></p><a href="https://www.facebook.com/people/Sunju-Jung/100017642026723">Sunju Jung</a>에 의해 게시 됨 2017년 6월 7일 수요일</blockquote></div>
-<!-- 송신 메시지 작성하는 창 -->
+<div id="live"></div>
 <input id="textMessage" type="text"  onkeyup="press(event)" >
-<!-- 송신 버튼 -->
 <input onclick="sendMessage()" value="Send" type="button">
-<!-- 종료 버튼 -->
 <input onclick="disconnect()" value="Disconnect" type="button">
 <br />
-<!-- 결과 메시지 보여주는 창 -->
 <textarea id="messageTextArea" rows="10" cols="50"></textarea>
 </body>
 </html>

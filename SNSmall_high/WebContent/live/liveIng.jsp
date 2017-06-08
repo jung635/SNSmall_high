@@ -50,12 +50,10 @@ var config = {
 firebase.initializeApp(config);
 
 function getLive(){
- 	 FB.api('<%=video_id%>?fields=permalink_url',function (response) {
+ 	 FB.api('<%=video_id%>?fields=embed_html,permalink_url',function (response) {
 	      if (response && !response.error) {
 	        console.log(response);
-	        document.getElementById('liveDiv').setAttribute('data-href',"https://www.facebook.com"+response.permalink_url);
-	        document.getElementById('bq').cite = "https://ko-kr.facebook.com"+response.permalink_url;
-	        document.getElementById('liveA').href = "https://ko-kr.facebook.com"+response.permalink_url;
+	        document.getElementById('live').innerHTML = response.embed_html;
 	      }
 	    },{access_token: '<%=token%>'});
 }
@@ -109,16 +107,11 @@ $(document).ready(function(){
 <button id="getLiveinfo" onclick="getLive()">내 방송화면 보기</button>
 <button id="getLiveinfo" onclick="deleteLive()">방송 그만하기</button>
 <div id="title"><%=title %></div>
-<!-- <div id="live" style="width: 300px" data-width="500"></div> -->
-<div class="fb-video" id="liveDiv" data-href="" data-width="500" data-show-text="false"><blockquote cite="" id = "bq" class="fb-xfbml-parse-ignore"><a href="" id="liveA"></a><p></p><a href="https://www.facebook.com/people/Sunju-Jung/100017642026723">Sunju Jung</a>에 의해 게시 됨 2017년 6월 7일 수요일</blockquote></div>
-<!-- 송신 메시지 작성하는 창 -->
+<div id="live"></div>
 <input id="textMessage" type="text"  onkeyup="press(event)" >
-<!-- 송신 버튼 -->
 <input onclick="sendMessage()" value="Send" type="button">
-<!-- 종료 버튼 -->
 <input onclick="disconnect()" value="Disconnect" type="button">
 <br />
-<!-- 결과 메시지 보여주는 창 -->
 <textarea id="messageTextArea" rows="10" cols="50"></textarea>
 </body>
 </html>

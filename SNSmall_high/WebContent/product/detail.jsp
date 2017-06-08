@@ -19,6 +19,7 @@
 	<link href="css/inner.css" rel="stylesheet">
 	<link href="css/main.css" rel="stylesheet">
 <title>Insert title here</title>
+<%	ProductBean productbean = (ProductBean)request.getAttribute("productbean"); %>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script type="text/javascript">
 	$(document).ready(function(){
@@ -171,7 +172,9 @@
 	            break;
 	    }
 	}
-	
+function LiveGoWin(){
+	window.open('LiveGo.li?product_num=<%=productbean.getProduct_num()%>', 'live_view' , 'height=' + screen.height + ',width=' + screen.width + 'fullscreen=yes')
+}	
 </script>
 
 </head>
@@ -180,7 +183,6 @@
 	<%
 	String returnUrl = request.getHeader("referer");
 	
-	ProductBean productbean = (ProductBean)request.getAttribute("productbean");
 	String sns_id = (String)request.getAttribute("sns_id");
 	if(sns_id == null){sns_id = "";}
 	
@@ -308,7 +310,7 @@
                 <a class="btn btn-success" onclick="gocart()">카트담기</a>
                 <a class="btn btn-success" onclick="return gobuy()">사러가기</a>
                 <% if(type.equals("sns")){%>
-                <button id="login" onclick="window.open('LiveGo.li?product_num=<%=productbean.getProduct_num()%>', 'live_view' , 'width=400,height=200')">라이브 방송 시작하기</button>
+                <button id="login" onclick="LiveGoWin()">라이브 방송 시작하기</button>
 				</div>
 				<br>
                 <div class="socials_pro">

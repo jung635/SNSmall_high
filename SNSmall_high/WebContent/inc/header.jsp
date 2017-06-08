@@ -11,6 +11,9 @@ $(document).ready(function(){
         $("#alarm_list").toggle();
     });
 });
+function openLiveWin(){
+	window.open("LiveList.li", "live_list" , "height=" + screen.height + ",width=" + screen.width + "fullscreen=yes")
+}
 </script>
 <%
 	String id = (String) session.getAttribute("id");
@@ -98,7 +101,7 @@ $(document).ready(function(){
 						<li class="scroll"><a href="Price.cl">Price</a></li>
 					</ul> 
 				</div> 
-				<button onclick='window.open("LiveList.li", "live_list" , "width=800,height=800");'>방송 목록 보기</button>
+				<button onclick='openLiveWin()'>방송 목록 보기</button>
 			</div> 
 		</div><!--/navbar--> 
 	</header> <!--/#navigation--> 

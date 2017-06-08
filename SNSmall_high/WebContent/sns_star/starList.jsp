@@ -17,6 +17,7 @@
 	<link href="./css/bootstrap.min.css" rel="stylesheet">
 	<link href="./css/header.css" rel="stylesheet">
 	<link href="./css/inner.css" rel="stylesheet">
+	<link href="./css/snsList.css" rel="stylesheet">
 	<link href="./css/main.css" rel="stylesheet">
 </head>
 <body>
@@ -70,14 +71,14 @@ List<SnsBean> list = (List<SnsBean>)request.getAttribute("list");
 	            <div class="col-sm-6 col-md-3">
 					<div class="single-member">
 						<div id="profile_img_wrap">
-							<img src="./sns_pro_upload/<%=sb.getProfile_img() %>" alt="team member" />
+							<img src="./sns_pro_upload/<%=sb.getProfile_img() %>" alt="SNS star " style="border-top-right-radius:50px; height: 300px;" />
 						</div>
-						<div id="star_list_detail">
+						<div id="star_list_detail star_list_detail2">
 							<h3><a href="SnsDetailAction.sn?sns_id=<%=sb.getSns_id()%>"><%=sb.getName() %></a>
 							<small><%=sb.getCategory() %>/<%=sb.getRank() %></small></h3>
 							<p><%=sb.getContent() %></p>
 						</div>
-						<div class="socials">
+						<div class="socials" style="">
 							<%if(sb.getFacebook().trim().length()!=0){%>
 								<a href="<%=sb.getFacebook()%>"><i class="fa fa-facebook"></i></a>
 							<%}if(sb.getTwitter().trim().length()!=0){%>							

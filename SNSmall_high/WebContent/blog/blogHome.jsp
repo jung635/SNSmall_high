@@ -23,8 +23,9 @@
 <title>Insert title here</title>
 </head>
 <body>
-	
+
 <jsp:include page="../inc/header.jsp"/>
+
   <!-- Page Content -->
 	<div class="container">
 		<div class="content">

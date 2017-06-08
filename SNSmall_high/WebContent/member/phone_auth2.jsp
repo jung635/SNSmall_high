@@ -95,7 +95,7 @@ $(document).ready(function(){
 </tr>
 <tr> 
 <td>휴대폰번호</td>
-<td> <input type="text" name="phone" id="phone" class="ph_txt_box"> </td>
+<td> <input type="text" name="phone" id="phone" class="ph_txt_box" placeholder="ex. 010-1234-5678"> </td>
 <td> <span style="text-decoration: underline; font-size: 12px;">안심키보드전환</span> </td> 
 </tr>
 <tr> 

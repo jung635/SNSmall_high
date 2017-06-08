@@ -27,6 +27,7 @@ public class LiveVeiwAction implements Action {
 		}else{
 			id = (String)session.getAttribute("id");
 		
+		String sns_id = request.getParameter("sns_id");
 		String video_id = request.getParameter("video_id");
 		String token = request.getParameter("token");
 		String title = request.getParameter("title");
@@ -35,6 +36,7 @@ public class LiveVeiwAction implements Action {
 		LiveDAO ldao = new LiveDAO();
 		ldao.viewUp(video_id);
 		
+		request.setAttribute("sns_id", sns_id);
 		request.setAttribute("id", id);
 		request.setAttribute("video_id", video_id);
 		request.setAttribute("token", token);

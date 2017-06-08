@@ -20,6 +20,7 @@
 	<link href="./css/main.css" rel="stylesheet"> 
 	<link href="./css/font-awesome.min.css" rel="stylesheet"> 
 <title>Insert title here</title>
+<%SnsBean sb= (SnsBean)request.getAttribute("sb"); %>
 <style>
 #our-team{
 	float: right;
@@ -115,9 +116,16 @@ function showSlides(n, full_length) {
 		}
 	}
 } 
+
+function star_live(){
+	window.open('StarLiveList.li?sns_id=<%=sb.getSns_id()%>', 'star_live_view' , 'height=' + screen.height + ',width=' + screen.width + 'fullscreen=yes');
+}
+
 function memopen(id){
 	window.open("./MemoWrite.me?toId="+id, "쪽지쓰기", "width=550, height=525, top=100, left=100");
 }
+
+
 </script>
 </head>
 <body>
@@ -126,7 +134,6 @@ function memopen(id){
 String type = "";
 if((String)session.getAttribute("type") != null)
 type= (String)session.getAttribute("type");
-SnsBean sb= (SnsBean)request.getAttribute("sb");
 int latest_size = (Integer)request.getAttribute("latest_size");
 int popular_size = (Integer)request.getAttribute("popular_size");
 int all_price_rank = (Integer)request.getAttribute("all_price_rank");
@@ -154,6 +161,7 @@ ProductBean pb;
                 <h1 class="page-header"><%=sb.getName() %>
                     <small><%=sb.getCategory() %>/<%=sb.getRank() %></small>
                 </h1>
+                <button onclick="star_live()">스타 방송 보기</button>
             </div>
         </div>
         <!-- /.row -->

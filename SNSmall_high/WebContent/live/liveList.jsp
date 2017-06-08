@@ -27,10 +27,9 @@ if(map.size()==0){%>
 		<tr>
 			<td><%=lb.getSns_id() %></td>
 			<td><%=prob.getSubject() %></td>
-			<td><%=lb.getTitle() %></td><td><button onclick="location.href='ViewLive.li?video_id=<%=lb.getVideo_id()%>&token=<%=lb.getToken()%>&product_num=<%=lb.getProduct_num()%>&title=<%=lb.getTitle()%>'">방송 보러 가기</button></td>
+			<td><%=lb.getTitle() %></td><td><button onclick="location.href='ViewLive.li?video_id=<%=lb.getVideo_id()%>&token=<%=lb.getToken()%>&product_num=<%=lb.getProduct_num()%>&title=<%=lb.getTitle()%>&sns_id=<%=lb.getSns_id()%>'">방송 보러 가기</button></td>
 		</tr>
 	</table>
 	<%} %>
-<div id="live"></div>
 </body>
 </html>

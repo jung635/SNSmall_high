@@ -11,6 +11,7 @@
 <body>
 <%
 String id = (String)session.getAttribute("id");
+String sns_id = (String)request.getAttribute("sns_id");
 String video_id = (String)request.getAttribute("video_id");
 String token = (String)request.getAttribute("token");
 String title = (String)request.getAttribute("title");
@@ -101,7 +102,7 @@ function myFunction(){
 }
 
 </script>
-<button onclick="window.opener.location.href='ProductDetail.pr?product_num=<%=product_num%>'">물건 구경하러 가기</button>
+<button onclick="window.opener.location.href='ProductDetail.pr?product_num=<%=product_num%>&live_id=<%=sns_id%>'">물건 구경하러 가기</button>
 <div id="title"><%=title %></div>
 <div id="live"></div>
 <input id="textMessage" type="text"  onkeyup="press(event)" >

@@ -19,6 +19,7 @@ if(id==null){%>
 	</script>
 <%}
 String title = request.getParameter("title");
+String sns_id = request.getParameter("sns_id");
 int product_num = Integer.parseInt(request.getParameter("product_num"));
 String url= request.getParameter("url");
 String href = "https://www.facebook.com"+url;
@@ -34,7 +35,7 @@ var token;
   fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));
 </script>
-<button onclick="window.opener.location.href='ProductDetail.pr?product_num=<%=product_num%>'">물건 구경하러 가기</button>
+<button onclick="window.opener.location.href='ProductDetail.pr?product_num=<%=product_num%>&live_id=<%=sns_id%>'">물건 구경하러 가기</button>
 <div id="title"><%=title %></div>
 <div class="fb-video" data-href="<%=href %>" data-width="500" data-show-text="false"><blockquote cite="<%=cite %>" class="fb-xfbml-parse-ignore"><a href="<%=cite %>"></a></blockquote></div>
 </body>

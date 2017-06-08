@@ -266,6 +266,9 @@
 	String returnUrl = request.getHeader("referer");
 	//String sns_id = (String)request.getAttribute("sns_id");
 	String sns_id = (String)session.getAttribute("link_id");
+	if(request.getParameter("live_id") != null){
+		sns_id = request.getParameter("live_id");
+	}
 	if(sns_id == null){sns_id = "";}
 	
 		

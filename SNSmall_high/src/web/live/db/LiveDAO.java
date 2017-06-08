@@ -261,7 +261,7 @@ public class LiveDAO {
 		ProductDAO prodao = new ProductDAO();
 		try {
 			con = getConnection();
-			sql = "select * from live where id=? and state = 'LIVE' order by date desc";
+			sql = "select * from live where id=? and state = 'LIVE'";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, sns_id);
 			rs = pstmt.executeQuery();
@@ -290,10 +290,9 @@ public class LiveDAO {
 	
 	public LiveBean getVodLive(String video_id) {
 		LiveBean lb = null;
-		ProductDAO prodao = new ProductDAO();
 		try {
 			con = getConnection();
-			sql = "select * from live where state = 'VOD and video_id=?' order by date desc";
+			sql = "select * from live where state = 'VOD' and video_id=?'";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, video_id);
 			rs = pstmt.executeQuery();
@@ -324,7 +323,7 @@ public class LiveDAO {
 		ProductDAO prodao = new ProductDAO();
 		try {
 			con = getConnection();
-			sql = "select * from live where state = 'VOD and video_id=?' order by date desc";
+			sql = "select * from live where state = 'LIVE' and video_id=?'";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, video_id);
 			rs = pstmt.executeQuery();

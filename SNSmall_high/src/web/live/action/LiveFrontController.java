@@ -60,9 +60,12 @@ public class LiveFrontController extends HttpServlet {
 				e.printStackTrace();
 			}
 		}else if(command.equals("/ViewVod.li")){
-			forward = new ActionForward();
-			forward.setPath("./live/viewVod.jsp");
-			forward.setRedirect(false);
+			action = new VodViewAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}else if(command.equals("/ProductLiveList.li")){
 			action = new ProductLiveListAction();
 			try {

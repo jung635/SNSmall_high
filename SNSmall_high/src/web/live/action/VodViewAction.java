@@ -29,7 +29,7 @@ public class VodViewAction implements Action{
 			id = (String)session.getAttribute("id");
 			LiveDAO ldao = new LiveDAO();
 			String video_id = request.getParameter("video_id");
-			LiveBean lb = ldao.getSnsLive(video_id);
+			LiveBean lb = ldao.getVodLive(video_id);
 			ldao.viewUp(video_id);
 			
 			request.setAttribute("lb", lb);

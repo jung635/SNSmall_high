@@ -89,13 +89,13 @@ firebase.database().ref('<%=lb.getVideo_id()%>').limitToLast(1).on('child_added'
 
 </script>
 <button onclick="window.opener.location.href='ProductDetail.pr?product_num=<%=lb.getProduct_num()%>&live_id=<%=lb.getSns_id()%>'">물건 구경하러 가기</button>
-<div id="title"><h1><%=lb.getTitle() %></h1></div>
+<div id="title"><h1><%=lb.getTitle()%></h1></div>
 <div id="live" style="float: left;"></div>
 <div id="chat" style="float: right; margin-right: 10px;">
+<textarea id="messageTextArea" rows="10" cols="50" style="width: 600px;height: 690px;"></textarea>
+<br />
 <input id="textMessage" type="text"  onkeyup="press(event)" style="width: 547px;">
 <input onclick="sendMessage()" value="Send" type="button">
-<br />
-<textarea id="messageTextArea" rows="10" cols="50" style="width: 600px;height: 690px;"></textarea>
 </div>
 </body>
 </html>

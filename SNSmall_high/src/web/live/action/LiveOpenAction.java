@@ -31,8 +31,9 @@ public class LiveOpenAction implements Action{
 			out.println("window.close();");
 			out.println("</script>");
 		}else{
-			lb = ldao.getLive(video_id);
+			
 			ldao.insertLive(sns_id, video_id, product_num, token, title);
+			lb = ldao.getLive(video_id);
 			ldao.productOnUpdate(product_num);
 			request.setAttribute("lb", lb);
 			forward = new ActionForward();

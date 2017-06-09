@@ -6,7 +6,7 @@
 		url="jdbc:mysql://192.168.2.27:3306/high"
 		username="hid"
 		password="hips"
-	/ -->>
+	/> -->
 <!--        	<Resource name="jdbc/mysqlDB"
 		auth="Container"
 		type="javax.sql.DataSource"
@@ -22,5 +22,5 @@
 		url="jdbc:mysql://localhost/sunju635"
 		username="sunju635"
 		password="tjswn635" 
-	/>
+	/> -->
 </Context>

@@ -1,3 +1,4 @@
+<%@page import="web.live.db.LiveDAO"%>
 <%@page import="web.live.db.LiveBean"%>
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
@@ -14,6 +15,21 @@
 <%
 String id = (String)session.getAttribute("id");
 LiveBean lb = (LiveBean)request.getAttribute("lb");
+int product_num = lb.getProduct_num();
+String video_id = lb.getVideo_id();
+/* String video_id = null;
+LiveDAO ldao = new LiveDAO();
+int product_num = 0;
+if(request.getAttribute("lb")==null){
+	video_id = (String)request.getAttribute("video_id");
+	lb = ldao.getLive(video_id);
+	product_num = lb.getProduct_num();
+}else{
+	lb = (LiveBean)request.getAttribute("lb");
+	product_num = lb.getProduct_num();
+	video_id = lb.getVideo_id();
+} */
+
 %>
 <script>
 var token;
@@ -64,23 +80,19 @@ function deleteLive(){
 			message: "채팅이 종료되었습니다.",
 			status: 'off',
 		});
- 	 FB.api('<%=lb.getVideo_id()%>?fields=permalink_url',function (response) {
-	      if (response && !response.error) {
-	        console.log(response.permalink_url);
-	        permalink_url = response.permalink_url;
-	      }
-	    },{access_token: '<%=lb.getToken()%>'});
-	 
-	FB.api(
-			'<%=lb.getVideo_id()%>?end_live_video=true',
-			  'POST',
-			  function(response) {
-				  if (response && !response.error) {
-				 	 //location.href="LiveDelete.li?video_id=<%=lb.getVideo_id()%>&product_num=<%=lb.getProduct_num()%>&url="+permalink_url;
-				  }
-			  },{access_token: '<%=lb.getToken()%>'}
-			);
-	location.href="LiveDelete.li?video_id=<%=lb.getVideo_id()%>&product_num=<%=lb.getProduct_num()%>&url="+permalink_url;
+	 	 FB.api('<%=lb.getVideo_id()%>?fields=permalink_url',function (response) {
+		      if (response && !response.error) {
+		    	  console.log(response.permalink_url);
+		        permalink_url = response.permalink_url;
+		      }
+		    },{access_token: '<%=lb.getToken()%>'});
+		
+		FB.api('<%=lb.getVideo_id()%>?end_live_video=true','POST',function (response) {
+					 console.log(response);
+					 location.href="LiveDelete.li?video_id=<%=lb.getVideo_id()%>&product_num=<%=lb.getProduct_num()%>&url="+permalink_url;
+					  if (response && !response.error) {
+					  }
+				  },{access_token: '<%=lb.getToken()%>'});
  }
 
 function press(){
@@ -104,20 +116,17 @@ firebase.database().ref('<%=lb.getVideo_id()%>').limitToLast(1).on('child_added'
 	document.getElementById("messageTextArea").value += data.val().message + "\n";
 });
 
-$(document).ready(function(){
-    $(".iframe").css('width','300px');
-});	
    
 </script>
 <button id="getLiveinfo" onclick="getLive()">내 방송화면 보기</button>
 <button id="getLiveinfo" onclick="deleteLive()">방송 그만하기</button>
-<div id="title"><%=lb.getTitle()%></div>
+<div id="title"><h1><%=lb.getTitle()%></h1></div>
 <div id="live" style="float: left;"></div>
 <div id="chat" style="float: right; margin-right: 10px;">
+<textarea id="messageTextArea" rows="10" cols="50" style="width: 600px;height: 690px;"></textarea>
+<br />
 <input id="textMessage" type="text"  onkeyup="press(event)" style="width: 547px;">
 <input onclick="sendMessage()" value="Send" type="button">
-<br />
-<textarea id="messageTextArea" rows="10" cols="50" style="width: 600px;height: 690px;"></textarea>
 </div>
 </body>
 </html>

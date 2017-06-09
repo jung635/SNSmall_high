@@ -114,7 +114,7 @@ function d_confirm(){
                 <div class="col-lg-4">
                 <%if(pageNum!=null){ %>
              			<input type="button" value="List View" class="btn_submit"
-             			onclick="location.href='./OurBlog.ad?pageNum=<%=pageNum%>&returnUrl=<%=returnUrl%>'">
+             			onclick="location.href='<%=returnUrl%>'">
              			<%} %>
              	
              	</div>

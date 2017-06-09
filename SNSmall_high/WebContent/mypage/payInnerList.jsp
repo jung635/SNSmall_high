@@ -15,7 +15,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-	<link href="./css/Pay.css?ver=20" rel="stylesheet"> 
+	<link href="./css/Pay.css?ver=2122" rel="stylesheet"> 
 </head>
 <body>
 <%
@@ -52,7 +52,7 @@ String content="";
 							String date = format.format(pb.getDate());
 							String subject;
 							if(prob==null){
-								%><tr><td colspan="8">삭제된 상품 입니다. 상품정보에 대한 문의는 회사를 통해주시기 바랍니다.(<%=pb.getOrder_num() %>)</td>
+								%><tr><td colspan="9">삭제된 상품 입니다. 상품정보에 대한 문의는 회사를 통해주시기 바랍니다.(<%=pb.getOrder_num() %>)</td>
 								<td><%
 							//구매자 일때 취소 및 환불
 							if(type.equals("client")){
@@ -123,7 +123,7 @@ String content="";
 	<%}else{
 		pay_list = (List<PaymentBean>)request.getAttribute("pay_list2");
 	%>
-		<table id="mypay_table">
+		<table id="mypay_table" style="width:1000px; height: 120px;">
 			<tr><th>사진</th><th>이름</th><th>상품 정보</th><th>가격</th><th>주문일</th><th>배송 상태</th><th>주문 상세 조회</th><th>주문 번호</th>
 			<th><%if(type.equals("vendor")){
 				if(method.equals("delivery")){%>배송 확인<%
@@ -132,14 +132,13 @@ String content="";
 			%></th></tr>
 			<%
 
-				System.out.println("pay_list size : "+pay_list.size());
 			for(int i=0; i<pay_list.size(); i++){
 					PaymentBean pb = pay_list.get(i);
 					merchant_uid = pb.getOrder_num();
 				ProductBean prob = prodao.getProduct(pb.getProduct_num());
 				SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 				String date = format.format(pb.getDate());
-				System.out.println("pb.getstate : "+pb.getState());
+				if(pb.getSns_id()==null ||pb.getSns_id().equals(" ") ||pb.getSns_id().equals("null")){pb.setSns_id("없음");}
 				if(prob.getContent().length()>3){content =prob.getContent().substring(0,4)+"...";}
 											if(prob==null){
 								%><tr><td colspan="8">삭제된 상품 입니다. 상품정보에 대한 문의는 회사를 통해주시기 바랍니다.(<%=pb.getOrder_num() %>)</td><td><input type="button" onclick="location.href='PayCancel.pa?num=<%=pb.getNum() %>&merchant_uid=<%=pb.getOrder_num()%>'" value="주문 취소"></td></tr> <%

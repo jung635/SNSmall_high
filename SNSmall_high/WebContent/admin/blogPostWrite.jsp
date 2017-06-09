@@ -25,10 +25,11 @@ String id = (String)session.getAttribute("id");
 if(id==null || !id.equals("admin")){
 	response.sendRedirect("./login.cl");}
 %>
-<jsp:include page="../inc/header.jsp"/>
+
   <!-- Page Content -->
   <div class="container">
     <div class="content">
+    <jsp:include page="../inc/admin_left.jsp"/>
 		<div class="row">
 		
             <div class="col-lg-8">

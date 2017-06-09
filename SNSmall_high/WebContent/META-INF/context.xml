@@ -7,6 +7,14 @@
 		username="hid"
 		password="hips"
 	/>
+<!--          	<Resource name="jdbc/mysqlDB" -->
+<!-- 		auth="Container" -->
+<!-- 		type="javax.sql.DataSource" -->
+<!-- 		driverClassName="com.mysql.jdbc.Driver" -->
+<!-- 		url="jdbc:mysql://localhost/high" -->
+<!-- 		username="hid" -->
+<!-- 		password="hips" -->
+<!-- 	/> -->
 <!--        	<Resource name="jdbc/mysqlDB"
 		auth="Container"
 		type="javax.sql.DataSource"

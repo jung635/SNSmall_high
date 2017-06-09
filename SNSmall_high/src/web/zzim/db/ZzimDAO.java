@@ -157,6 +157,8 @@ Connection con = null;
 			rs = pstmt.executeQuery();
 			if(rs.next()){
 				check=1;
+			}else{
+				check=0;
 			}
 		}catch(Exception e){
 			e.printStackTrace();

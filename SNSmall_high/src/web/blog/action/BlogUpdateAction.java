@@ -57,7 +57,7 @@ public class BlogUpdateAction implements Action{
 		bdao.blogPostUpdate(bb);
 		
 		forward = new ActionForward();
-		forward.setPath("./OurBlogPostAction.bl?num="+num);
+		forward.setPath("./OurBlogPostAction.ad?num="+num);
 		forward.setRedirect(true);
 		
 		return forward;		 

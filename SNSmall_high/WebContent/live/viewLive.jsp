@@ -100,7 +100,7 @@ function myFunction(){
 
 </script>
 <button onclick="window.opener.location.href='ProductDetail.pr?product_num=<%=lb.getProduct_num()%>&live_id=<%=lb.getSns_id()%>'">물건 구경하러 가기</button>
-<div id="title"><%=lb.getTitle() %></div>
+<div id="title"><h1><%=lb.getTitle() %></h1></div>
 <div id="live"></div>
 <input id="textMessage" type="text"  onkeyup="press(event)" >
 <input onclick="sendMessage()" value="Send" type="button">

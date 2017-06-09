@@ -292,7 +292,7 @@ public class LiveDAO {
 		LiveBean lb = null;
 		try {
 			con = getConnection();
-			sql = "select * from live where state = 'VOD' and video_id=?'";
+			sql = "select * from live where state = 'VOD' and video_id=?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, video_id);
 			rs = pstmt.executeQuery();
@@ -323,7 +323,7 @@ public class LiveDAO {
 		ProductDAO prodao = new ProductDAO();
 		try {
 			con = getConnection();
-			sql = "select * from live where state = 'LIVE' and video_id=?'";
+			sql = "select * from live where state = 'LIVE' and video_id=?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, video_id);
 			rs = pstmt.executeQuery();

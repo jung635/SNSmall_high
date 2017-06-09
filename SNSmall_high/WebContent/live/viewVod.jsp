@@ -27,7 +27,7 @@ var token;
 }(document, 'script', 'facebook-jssdk'));
 </script>
 <button onclick="window.opener.location.href='ProductDetail.pr?product_num=<%=lb.getProduct_num()%>&live_id=<%=lb.getSns_id()%>'">물건 구경하러 가기</button>
-<div id="title"><%=lb.getTitle() %></div>
-<div class="fb-video" data-href="<%=href %>" data-width="500" data-show-text="false"><blockquote cite="<%=cite %>" class="fb-xfbml-parse-ignore"><a href="<%=cite %>"></a></blockquote></div>
+<div id="title"><h1><%=lb.getTitle() %></h1></div>
+<div class="fb-video" data-href="<%=href %>" data-width="1000" data-show-text="false"><blockquote cite="<%=cite %>" class="fb-xfbml-parse-ignore"><a href="<%=cite %>"></a></blockquote></div>
 </body>
 </html>

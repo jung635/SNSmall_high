@@ -111,6 +111,7 @@ table {
 table tr {
 	border: 1px solid red;
 }
+
 table tr:hover {
 	background-color: #acf;
 	border: 1px solid blue;
@@ -121,6 +122,17 @@ table tr td{
 	width: 250px;
 	height: 40px;
 	border: 1px solid gray;
+}
+
+table tr td:hover {
+	background-color: #fcf1cf;
+
+}
+
+table tr td li{
+	list-style:none;
+	text-align: left;
+	padding: 5px;
 }
 
 table tr td.num{

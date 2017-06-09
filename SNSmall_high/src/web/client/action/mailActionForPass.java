@@ -29,7 +29,6 @@ public class mailActionForPass implements Action{
 		String id = request.getParameter("id");
 		String name = request.getParameter("name");
 		
-		request.setAttribute("authNum", authNum);
 		request.setAttribute("email", email);
 		request.setAttribute("id", id);
 		request.setAttribute("name", name);
@@ -43,7 +42,7 @@ public class mailActionForPass implements Action{
 				PrintWriter out = response.getWriter();				
 				out.println("<script>");
 				out.println("alert('인증번호를 발송하였습니다!');");
-				out.println("location.href='./SearchPassAuthen.cl'");
+				out.println("location.href='./member/phone_auth3.jsp'");
 				out.println("</script>");
 				out.close();
 				return null;

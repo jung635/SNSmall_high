@@ -586,8 +586,49 @@ public class SnsDAO {
 			return paymentList;
 		}//getPaymentList()
 		
-		
+	//판매내역 삭제 ------------------------------------------------------------------------	
+	public int deleteSnsSale(int num){
+			
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		String sql="";
+		ResultSet rs=null;
+		int check=-1;
+		System.out.println("num : "+num);
+		try{
+			//예외가 발생할 것 같은 명령문
+			//1단계 드라이버로더			//2단계 디비연결
+			con=getConnection();
+				
+			sql="select * from payment where num=?";
+			pstmt=con.prepareStatement(sql);
+			pstmt.setInt(1, num);
+			//4단계 실행
+			rs=pstmt.executeQuery();
+				
+			if(rs.next()){
+				sql="delete from payment where num=?";
+				pstmt=con.prepareStatement(sql);
+				pstmt.setInt(1, num);
+				pstmt.executeUpdate();
+						
+				check=1;
+			}else{
+				
+				check=-1;
+			}
+		}
+		catch(Exception e){
+			e.printStackTrace();
+		}finally{
+			//예외 상관없이 마무리 작업
+			//객체 생성 닫기
+			if(rs!=null){try{rs.close();}catch(SQLException ex){}}
+			if(pstmt!=null){try{pstmt.close();}catch(SQLException ex){}}
+			if(con!=null){try{con.close();}catch(SQLException ex){}}
+		}
+		return check;
+	}//deleteMemo() class		
 
-		
 	
 }

@@ -41,11 +41,8 @@ function getLive(){
 	      if (response && !response.error) {
 	        console.log(response.permalink_url);
 	        document.getElementById('live').innerHTML = response.embed_html;
-	        permalink_url = response.permalink_url;
 	      }
 	    },{access_token: '<%=lb.getToken()%>'});
-  	 
-  	 return permalink_url;
  }
  
  function check(){
@@ -75,37 +72,30 @@ function sendMessage(){
 		message: "<%=id%>:" +  document.getElementById("textMessage").value,
 		status: 'on',
 	});
+	document.getElementById("textMessage").value = "";
 }
 
 firebase.database().ref('<%=lb.getVideo_id()%>').limitToLast(1).on('child_added',function(data, prevChildKey){
 	console.log(data.val()); 
 		document.getElementById("messageTextArea").value += data.val().message + "\n";
-		document.getElementById("textMessage").value = "";
+
 		if(data.val().status == "off"){
 			alert("방송이 종료되어 창이 종료됩니다.");
 			window.close();
 		}
 	
 });	
-	
-window.onunload = function(e) {
-	  var dialogText = 'Dialog text here';
-	  e.returnValue = dialogText;
-	  return dialogText;
-	  myFunction();
-	};
-function myFunction(){
-	<%System.out.println("test");%>
-}
+
 
 </script>
 <button onclick="window.opener.location.href='ProductDetail.pr?product_num=<%=lb.getProduct_num()%>&live_id=<%=lb.getSns_id()%>'">물건 구경하러 가기</button>
 <div id="title"><h1><%=lb.getTitle() %></h1></div>
-<div id="live"></div>
-<input id="textMessage" type="text"  onkeyup="press(event)" >
+<div id="live" style="float: left;"></div>
+<div id="chat" style="float: right; margin-right: 10px;">
+<input id="textMessage" type="text"  onkeyup="press(event)" style="width: 547px;">
 <input onclick="sendMessage()" value="Send" type="button">
-<input onclick="check()" value="check" type="button">
 <br />
-<textarea id="messageTextArea" rows="10" cols="50"></textarea>
+<textarea id="messageTextArea" rows="10" cols="50" style="width: 600px;height: 690px;"></textarea>
+</div>
 </body>
 </html>

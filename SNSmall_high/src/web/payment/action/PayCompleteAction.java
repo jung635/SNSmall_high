@@ -163,8 +163,7 @@ public class PayCompleteAction implements Action {
 							ab.setMove("RankUp.al?rank=" + "premium");
 							adao.insertAlarm(ab);
 							pdao.rankUpdate(sns_id[i], "premium");
-						} else if (money >= 30000) {// 테스트용
-							// }else if(money>=500000){
+						 }else if(money>=500000){
 							ab.setContent("등급이 plsu로 상승하셨습니다!");
 							ab.setId(sns_id[i]);
 							ab.setMove("RankUp.al?rank=" + "plus");
@@ -187,6 +186,7 @@ public class PayCompleteAction implements Action {
 					} else {
 						sns_profit = (int) (price_result * 0.2);
 					}
+					
 
 				}
 

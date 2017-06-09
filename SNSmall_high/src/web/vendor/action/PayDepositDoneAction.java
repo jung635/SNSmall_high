@@ -41,7 +41,6 @@ public class PayDepositDoneAction implements Action{
 		List<PaymentBean> list_sns = new ArrayList<>();
 		
 		pdao.depositPay(num);
-		//double price_result =  pb.getPay_price();
 		
 		SnsBean sb = sdao.getSnsDetail(pb.getSns_id());
 		if(sb != null){
@@ -53,7 +52,6 @@ public class PayDepositDoneAction implements Action{
 					all_sns_sell += pb_sns.getPay_price();
 				}
 			}
-			//pdao.rankUpdate(pb.getSns_id(), all_sns_sell+Math.round(price_result), sb_sns.getRank());
 			long money = all_sns_sell+pb.getPay_price();
 
 				if( sb.getRank().equals("basic")){
@@ -63,8 +61,7 @@ public class PayDepositDoneAction implements Action{
 						ab.setMove("RankUp.al?rank="+"premium");
 						adao.insertAlarm(ab);
 						pdao.rankUpdate(pb.getSns_id(), "premium");
-					}else if(money>=90000){//테스트용
-					//}else if(money>=500000){
+					}else if(money>=500000){
 						ab.setContent("등급이 plsu로 상승하셨습니다!");
 						ab.setId(pb.getSns_id());
 						ab.setMove("RankUp.al?rank="+"plus");
@@ -80,17 +77,18 @@ public class PayDepositDoneAction implements Action{
 						pdao.rankUpdate(pb.getSns_id(), "premium");
 					}
 				}
+				System.out.println(sb.getRank());
 			if(sb.getRank().equals("basic")){
-				sns_profit = (int)(pb.getPay_price()*0.05)/100*100;
+				sns_profit = (int)(pb.getPay_price()*0.05);
+				
 			}else if(sb.getRank().equals("plus")){
-				sns_profit = (int)(pb.getPay_price()*0.1)/10*10;
+				sns_profit = (int)(pb.getPay_price()*0.1);
 			}else{
-				sns_profit = (int)(pb.getPay_price()*0.2/10*10);
+				sns_profit = (int)(pb.getPay_price()*0.2);
 			}
 		}
-		
-		add_point = (int)(pb.getPay_price()*0.01)/100*100;
-		company_profit = (int)(pb.getPay_price()*0.1)/10*10;
+		add_point = (int)(pb.getPay_price()*0.01);
+		company_profit = (int)(pb.getPay_price()*0.1);
 		vendor_profit = pb.getPay_price()-company_profit-sns_profit;
 		pdao.addSnsPay(sns_profit, pb.getAmount(), pb.getSns_id());
 		pdao.addVendorProfit(vendor_profit, pb.getVendor_id());

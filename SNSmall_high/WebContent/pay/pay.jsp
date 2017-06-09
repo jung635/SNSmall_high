@@ -171,21 +171,22 @@ function pointChanged(price, myPoint){
 		document.getElementById('price_result').innerText = price-point;
 		document.getElementById('myPoint').innerText = myPoint-point;
 		document.getElementById('withPoint').checked = true;
-	}
-	if(price-point<0){
-		alert('포인트를 상품 가격 이상으로 사용하실 수 없습니다.');
-		document.getElementById('usingPoint').value = 0;
-		document.getElementById('myPoint').innerText = myPoint;
-		document.getElementById('withPoint').checked = false;
-	}else if(myPoint-point<0){
-		alert('포인트가 부족합니다.');
-		document.getElementById('usingPoint').value = 0;
-		document.getElementById('myPoint').innerText = myPoint;
-		document.getElementById('withPoint').checked = false;
 	}else{
-		document.getElementById('price_result').innerText = price-point;
-		document.getElementById('myPoint').innerText = myPoint-point;
-		document.getElementById('withPoint').checked = false;
+		if(price-point<0){
+			alert('포인트를 상품 가격 이상으로 사용하실 수 없습니다.');
+			document.getElementById('usingPoint').value = 0;
+			document.getElementById('myPoint').innerText = myPoint;
+			document.getElementById('withPoint').checked = false;
+		}else if(myPoint-point<0){
+			alert('포인트가 부족합니다.');
+			document.getElementById('usingPoint').value = 0;
+			document.getElementById('myPoint').innerText = myPoint;
+			document.getElementById('withPoint').checked = false;
+		}else{
+			document.getElementById('price_result').innerText = price-point;
+			document.getElementById('myPoint').innerText = myPoint-point;
+			document.getElementById('withPoint').checked = false;
+		}
 	}
 }
 
@@ -203,6 +204,7 @@ function allPointPay(){
 		document.getElementById('price_result').innerText = 0;
 		document.getElementById('myPoint').innerText = myPoint-price;
 		document.getElementById('usingPoint').value =price;
+		
 	}
 	
 	
@@ -253,7 +255,7 @@ String address = cdao.getMember(id).getAddress();
 %>
 
 <div class="container">
-	<div class="content">
+	<div class="more_content">
 		<form action="" name="fr">
 		<input type="hidden" name="amount_str" value='<%=amount_str %>'>
 		<input type="hidden" name="product_str" value='<%=product_str %>'>

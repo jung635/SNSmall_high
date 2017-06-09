@@ -117,7 +117,7 @@ public class PayCompleteAction implements Action {
 				pb.setPay_price(price_result.intValue());
 			} else {
 				price_result = (double) prob.getPrice() * (double) pb.getAmount();
-				point_each = (int) ((price_result / (double) price) * point) / 10 * 10;
+				point_each = (int) ((price_result / (double) price) * point);
 				usedPoint_each -= point_each;
 				pb.setPay_price(price_result.intValue());
 			}
@@ -139,9 +139,9 @@ public class PayCompleteAction implements Action {
 			}
 
 			if (method.equals("card") || method.equals("withPoint")) {
-
-				if (pb.getSns_id() != null) {
-					SnsBean sb = sdao.getSnsDetail(pb.getSns_id());
+				SnsBean sb = sdao.getSnsDetail(pb.getSns_id());
+				if (sb != null) {
+					
 					// rank update 확인
 					list_sns = pdao.getSnsPaymentList(sns_id[i]);
 					for (int j = 0; j < list_sns.size(); j++) {
@@ -181,17 +181,17 @@ public class PayCompleteAction implements Action {
 						}
 					}
 					if (sb.getRank().equals("basic")) {
-						sns_profit = (int) (price_result * 0.05) / 10 * 10;
+						sns_profit = (int) (price_result * 0.05);
 					} else if (sb.getRank().equals("plus")) {
-						sns_profit = (int) (price_result * 0.1) / 10 * 10;
+						sns_profit = (int) (price_result * 0.1);
 					} else {
-						sns_profit = (int) (price_result * 0.2) / 10 * 10;
+						sns_profit = (int) (price_result * 0.2);
 					}
 
 				}
 
-				add_point = (int) (price_result * 0.01) / 10 * 10;
-				company_profit = (int) (price_result * 0.1) / 10 * 10;
+				add_point = (int) (price_result * 0.01);
+				company_profit = (int) (price_result * 0.1);
 				vendor_profit = ((prob.getPrice() * pb.getAmount()) - company_profit - sns_profit);
 				// sns profit 주기
 

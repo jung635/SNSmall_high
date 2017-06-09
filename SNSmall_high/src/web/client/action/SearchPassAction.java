@@ -15,13 +15,12 @@ public class SearchPassAction implements Action{
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
 		request.setCharacterEncoding("utf-8");
-		HttpSession session = request.getSession();
 		RandomPass rp = new RandomPass();
 		ClientDAO cldao = new ClientDAO();
 		
-		String id = (String)session.getAttribute("id");
-		String name = (String)session.getAttribute("name");
-		String email = (String)session.getAttribute("email");
+		String id = (String)request.getAttribute("id");
+		String name = (String)request.getAttribute("name");
+		String email = (String)request.getAttribute("email");
 		
 		//아이디랑 이름으로 가입유무 조회
 		boolean passcheck = cldao.SearchPass(id, name);
@@ -39,7 +38,6 @@ public class SearchPassAction implements Action{
 				cldao.updatePass(id, name, pass);
 				response.setContentType("text/html; charset=UTF-8"); // 서버에서 클라이언트로 보내는 내용 타입 설정
 				PrintWriter out = response.getWriter();
-				session.invalidate();
 				out.println("<script>");
 				out.println("alert('메일발송하였습니다!');");
 				out.println("window.close();");

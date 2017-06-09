@@ -18,10 +18,9 @@ public class SearchPassAction implements Action{
 		RandomPass rp = new RandomPass();
 		ClientDAO cldao = new ClientDAO();
 		
-		String id = (String)request.getAttribute("id");
-		String name = (String)request.getAttribute("name");
-		String email = (String)request.getAttribute("email");
-		
+		String id = (String)request.getParameter("id");
+		String name = (String)request.getParameter("name");
+		String email = (String)request.getParameter("email");
 		//아이디랑 이름으로 가입유무 조회
 		boolean passcheck = cldao.SearchPass(id, name);
 		// 있으면 임시비번 발송 후 디비에 임시버번으로  update

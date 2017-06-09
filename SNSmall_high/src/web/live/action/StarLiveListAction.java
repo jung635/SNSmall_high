@@ -5,6 +5,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import web.live.db.LiveBean;
 import web.live.db.LiveDAO;
@@ -17,7 +18,17 @@ public class StarLiveListAction implements Action{
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		String sns_id = request.getParameter("sns_id");
+		ActionForward forward = new ActionForward();
+		HttpSession session = request.getSession();
+		String sns_id = "";
+		if(request.getParameter("sns_id")==null){
+			sns_id = (String)session.getAttribute("id");
+			forward.setPath("./mypage/snsLiveList.jsp");
+		}else{
+			sns_id = request.getParameter("sns_id");
+			forward.setPath("./live/starLiveList.jsp");
+		}
+
 		LiveDAO ldao = new LiveDAO();
 		ProductDAO prodao = new ProductDAO();
 		LiveBean lb = ldao.getSnsLive(sns_id);
@@ -34,8 +45,7 @@ public class StarLiveListAction implements Action{
 		request.setAttribute("prob", prob);
 		request.setAttribute("lb", lb);
 		request.setAttribute("vod_map", vod_map);
-		ActionForward forward = new ActionForward();
-		forward.setPath("./live/starLiveList.jsp");
+		
 		forward.setRedirect(false);
 		return forward;
 	}

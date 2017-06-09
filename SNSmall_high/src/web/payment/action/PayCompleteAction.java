@@ -28,7 +28,7 @@ public class PayCompleteAction implements Action {
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		HttpSession session = request.getSession();
-		String id = (String)session.getAttribute("id");
+		String id = (String) session.getAttribute("id");
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html; charset=utf-8");
 		PrintWriter out = response.getWriter();
@@ -53,10 +53,9 @@ public class PayCompleteAction implements Action {
 		String[] option3 = option3_str.split(",");
 		String method = request.getParameter("method");
 		String cart_str = request.getParameter("cart_str");
-		System.out.println("cart_str: "+cart_str);
 		String[] cart_num = cart_str.split(",");
 		String state = "";
-		if (method.equals("card")||method.equals("withPoint"))
+		if (method.equals("card") || method.equals("withPoint"))
 			state = "payDone";
 		else if (method.equals("deposit"))
 			state = "waiting";
@@ -71,11 +70,9 @@ public class PayCompleteAction implements Action {
 		SnsDAO sdao = new SnsDAO();
 		int usedPoint_each = point;
 
-
 		List<PaymentBean> list_pb = new ArrayList<>();
 		List<PaymentBean> list_sns = new ArrayList<>();
 
-		
 		for (int i = 0; i < amount.length; i++) {
 			Double price_result = 0d;
 			long all_sns_sell = 0L;
@@ -92,141 +89,140 @@ public class PayCompleteAction implements Action {
 			pb.setOrder_num(merchant_uid);
 			pb.setProduct_num(Integer.parseInt(product[i]));
 			pb.setAddress(address);
-			if(i>=sns_id.length){
+			if (i >= sns_id.length) {
 				pb.setSns_id("");
-			}else{
+			} else {
 				pb.setSns_id(sns_id[i]);
 			}
-			if(i>=option1.length){
+			if (i >= option1.length) {
 				pb.setOption1("");
-			}else{
+			} else {
 				pb.setOption1(option1[i]);
 			}
-			if(i>=option2.length){
+			if (i >= option2.length) {
 				pb.setOption2("");
-			}else{
+			} else {
 				pb.setOption2(option2[i]);
 			}
-			if(i>=option3.length){
+			if (i >= option3.length) {
 				pb.setOption3("");
-			}else{
+			} else {
 				pb.setOption3(option3[i]);
 			}
 			pb.setVendor_id(vendor_id[i]);
-			
-			
-			
-			if(i==amount.length-1){
+
+			if (i == amount.length - 1) {
 				point_each = usedPoint_each;
-				price_result = (double)prob.getPrice()*(double)pb.getAmount();
+				price_result = (double) prob.getPrice() * (double) pb.getAmount();
 				pb.setPay_price(price_result.intValue());
-			}else{
-				price_result = (double)prob.getPrice()*(double)pb.getAmount();
-				point_each = (int)((price_result/(double)price)*point)/10*10;
+			} else {
+				price_result = (double) prob.getPrice() * (double) pb.getAmount();
+				point_each = (int) ((price_result / (double) price) * point) / 10 * 10;
 				usedPoint_each -= point_each;
 				pb.setPay_price(price_result.intValue());
 			}
-			//사용된 포인트 각 물건에 주기
+			// 사용된 포인트 각 물건에 주기
 			pb.setUsedPoint(point_each);
 			list_pb.add(pb);
-			//사용한 포인트 빼기
+			// 사용한 포인트 빼기
 			pdao.subPoint(point_each, id);
-			//cart 제외
+			// cart 제외
 			CartDAO cdao = new CartDAO();
-			
-			if(!cart_num[i].equals("")){
+
+			if (!cart_num[i].equals("")) {
 				cdao.cartDelete(id, Integer.parseInt(cart_num[i]));
 			}
-			
-			//amount 빼기
-			if(method.equals("deposit")){
+
+			// amount 빼기
+			if (method.equals("deposit")) {
 				pdao.subAmount(pb.getAmount(), pb.getProduct_num());
 			}
 
-			if(method.equals("card")||method.equals("withPoint")){
-				
-				if(pb.getSns_id() != null){
+			if (method.equals("card") || method.equals("withPoint")) {
+
+				if (pb.getSns_id() != null) {
 					SnsBean sb = sdao.getSnsDetail(pb.getSns_id());
-					//rank update 확인
+					// rank update 확인
 					list_sns = pdao.getSnsPaymentList(sns_id[i]);
-					for(int j=0; j<list_sns.size(); j++){
+					for (int j = 0; j < list_sns.size(); j++) {
 						pb_sns = list_sns.get(j);
 						prob_sns = prodao.getProduct(pb_sns.getProduct_num());
-						if(pb_sns.getState().equals("payDone") || pb_sns.getState().equals("done") || pb_sns.getState().equals("delivery")){
-							all_sns_sell += (long)prob_sns.getPrice()*(long)pb_sns.getAmount();
+						if (pb_sns.getState().equals("payDone") || pb_sns.getState().equals("done")
+								|| pb_sns.getState().equals("delivery")) {
+							all_sns_sell += (long) prob_sns.getPrice() * (long) pb_sns.getAmount();
 						}
 					}
-					
-					long money = all_sns_sell+pb.getPay_price();
+
+					long money = all_sns_sell + pb.getPay_price();
 					AlarmBean ab = new AlarmBean();
 					AlarmDAO adao = new AlarmDAO();
-					if( sb.getRank().equals("basic")){
-						if(money>=10000000){
+					if (sb.getRank().equals("basic")) {
+						if (money >= 10000000) {
 							ab.setContent("등급이  premium으로 상승하셨습니다!");
 							ab.setId(sns_id[i]);
-							ab.setMove("RankUp.al?rank="+"premium");
+							ab.setMove("RankUp.al?rank=" + "premium");
 							adao.insertAlarm(ab);
 							pdao.rankUpdate(sns_id[i], "premium");
-						}else if(money>=30000){//테스트용
-						//}else if(money>=500000){
+						} else if (money >= 30000) {// 테스트용
+							// }else if(money>=500000){
 							ab.setContent("등급이 plsu로 상승하셨습니다!");
 							ab.setId(sns_id[i]);
-							ab.setMove("RankUp.al?rank="+"plus");
+							ab.setMove("RankUp.al?rank=" + "plus");
 							adao.insertAlarm(ab);
 							pdao.rankUpdate(sns_id[i], "plus");
 						}
-					}else if( sb.getRank().equals("plus")){
-						if(money>=10000000){
+					} else if (sb.getRank().equals("plus")) {
+						if (money >= 10000000) {
 							ab.setContent("등급이  premium으로 상승하셨습니다!");
 							ab.setId(sns_id[i]);
-							ab.setMove("RankUp.al?rank="+"premium");
+							ab.setMove("RankUp.al?rank=" + "premium");
 							adao.insertAlarm(ab);
 							pdao.rankUpdate(sns_id[i], "premium");
 						}
 					}
-					if(sb.getRank().equals("basic")){
-						sns_profit = (int)(price_result*0.05)/10*10;
-					}else if(sb.getRank().equals("plus")){
-						sns_profit = (int)(price_result*0.1)/10*10;
-					}else{
-						sns_profit = (int)(price_result*0.2)/10*10;
+					if (sb.getRank().equals("basic")) {
+						sns_profit = (int) (price_result * 0.05) / 10 * 10;
+					} else if (sb.getRank().equals("plus")) {
+						sns_profit = (int) (price_result * 0.1) / 10 * 10;
+					} else {
+						sns_profit = (int) (price_result * 0.2) / 10 * 10;
 					}
-					
+
 				}
-				
-				add_point = (int)(price_result*0.01)/10*10;
-				company_profit = (int)(price_result*0.1)/10*10;
-				vendor_profit = ((prob.getPrice()*pb.getAmount())-company_profit-sns_profit);
-				//sns profit 주기
+
+				add_point = (int) (price_result * 0.01) / 10 * 10;
+				company_profit = (int) (price_result * 0.1) / 10 * 10;
+				vendor_profit = ((prob.getPrice() * pb.getAmount()) - company_profit - sns_profit);
+				// sns profit 주기
 
 				pdao.addSnsPay(sns_profit, pb.getAmount(), pb.getSns_id());
-				//vendor profit 주기
+				// vendor profit 주기
 				pdao.addVendorProfit(vendor_profit, vendor_id[i]);
-				//포인트 더하기
+				// 포인트 더하기
 				pdao.addPoint(add_point, id);
-				//amount 정리
+				// amount 정리
 				pdao.calAmount(pb.getAmount(), pb.getProduct_num());
-					if(method.equals("withPoint")){
-						out.println("<script>");
-						out.println("alert('주문이 완료되었습니다.');");
-						out.println("location.href='PayDone.pa?merchant_uid=" + merchant_uid + "';");
-						out.println("window.close();");
-						out.println("</script>");
-					}
-				
+				if (method.equals("withPoint")) {
+					out.println("<script>");
+					out.println("alert('주문이 완료되었습니다.');");
+					out.println("location.href='PayDone.pa?merchant_uid=" + merchant_uid + "';");
+					out.println("window.close();");
+					out.println("</script>");
+				}
+
 			}
 		}
-		
-		if(method.equals("deposit")){
+
+		if (method.equals("deposit")) {
 			Timer timer = new Timer();
 			TimerTask t_task = new TimerTask() {
 				@Override
 				public void run() {
-					for(int i=0; i<product.length; i++){
+					for (int i = 0; i < product.length; i++) {
 						List<PaymentBean> list_depositPb = pdao.getPaymentByOrderNum(merchant_uid);
-						for(int j=0; j<list_depositPb.size(); j++){
+						for (int j = 0; j < list_depositPb.size(); j++) {
 							PaymentBean pb_deposit = list_depositPb.get(j);
-							if(pb_deposit.getState().equals("waiting")){
+							if (pb_deposit.getState().equals("waiting")) {
 								pdao.deletePay(pb_deposit.getNum());
 								pdao.addPoint(pb_deposit.getUsedPoint(), pb_deposit.getClient_id());
 								pdao.addAmount(pb_deposit.getAmount(), pb_deposit.getProduct_num());
@@ -241,8 +237,8 @@ public class PayCompleteAction implements Action {
 					}
 				}
 			};
-			timer.schedule(t_task, (long) (1000 * 60 * 60 * 24) - (1000 * 60 *2));
-			
+			timer.schedule(t_task, (long) (1000 * 60 * 60 * 24) - (1000 * 60 * 2));
+
 			out.println("<script>");
 			out.println("alert('주문이 완료되었습니다.');");
 			out.println("window.opener.location.href='PayDone.pa?merchant_uid=" + merchant_uid + "';");

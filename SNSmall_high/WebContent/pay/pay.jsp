@@ -31,7 +31,6 @@ String cart_str = "";
 if(request.getParameter("cart_num") != null){
 	cart_str = request.getParameter("cart_num");
 }
-System.out.println("cart_num: "+ cart_str);
 String option1_str = "";
 String option2_str = "";
 String option3_str = "";

@@ -12,21 +12,19 @@ public class BlogDeleteAction implements Action{
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
-		System.out.println("BoardDeleteAction execute()");
-		
-		int num = Integer.parseInt(request.getParameter("num")); 
-		
+		int num = Integer.parseInt(request.getParameter("num"));
+
 		BlogDAO bdao = new BlogDAO();
 		bdao.blogPostDelete(num);
-		
+
 		response.setContentType("text/html; charset=UTF-8");
-			PrintWriter out=response.getWriter();
-			out.println("<script>");
-			out.println("alert('삭제되었습니다');");
-			out.println("location.href='OurBlog.bl';");
-			out.println("</script>");
-			out.close();
-		
+		PrintWriter out = response.getWriter();
+		out.println("<script>");
+		out.println("alert('삭제되었습니다');");
+		out.println("location.href='OurBlog.bl';");
+		out.println("</script>");
+		out.close();
+
 		return null;
 	}
 

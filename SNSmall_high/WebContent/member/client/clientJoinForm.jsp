@@ -325,7 +325,7 @@ var pass_reg =/^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[~,!,@,#,$,*,(,),=,+,_,.,|]).{8,20
 							</tr>
 						</table>
 								</fieldset>
-								<div class="g-recaptcha" data-sitekey="6Lf_KyQUAAAAAB40DEHrPNa5X9ScueVN-a__pwYl"></div>
+<!-- 								<div class="g-recaptcha" data-sitekey="6Lf_KyQUAAAAAB40DEHrPNa5X9ScueVN-a__pwYl"></div> -->
 								<div class="clear"></div>
 						<hr>
 							<div class="col-md-1"></div>

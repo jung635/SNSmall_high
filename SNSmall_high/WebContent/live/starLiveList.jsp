@@ -34,7 +34,7 @@ SnsBean sb = (SnsBean)request.getAttribute("sb");
 		<tr>
 			<td><%=lb.getSns_id() %></td>
 			<td><%=prob.getSubject() %></td>
-			<td><%=lb.getTitle() %></td><td><button onclick="location.href='ViewLive.li?video_id=<%=lb.getVideo_id()%>&token=<%=lb.getToken()%>&product_num=<%=lb.getProduct_num()%>&title=<%=lb.getTitle()%>&sns_id=<%=lb.getSns_id()%>'">방송 보러 가기</button></td>
+			<td><%=lb.getTitle() %></td><td><button onclick="location.href='ViewLive.li?video_id=<%=lb.getVideo_id()%>'">방송 보러 가기</button></td>
 		</tr>
 	</table>
 <%} %>
@@ -52,7 +52,7 @@ if(map.size()==0){%>
 		<tr>
 			<td><%=lb_vod.getSns_id() %></td>
 			<td><%=prob_vod.getSubject() %></td>
-			<td><%=lb_vod.getTitle() %></td><td><button onclick="location.href='ViewVod.li?url=<%=lb_vod.getUrl()%>&product_num=<%=lb_vod.getProduct_num()%>&title=<%=lb_vod.getTitle()%>&sns_id=<%=lb_vod.getSns_id()%>'">방송 보러 가기</button></td>
+			<td><%=lb_vod.getTitle() %></td><td><button onclick="location.href='ViewVod.li?video_id=<%=lb_vod.getVideo_id()%>'">방송 보러 가기</button></td>
 		</tr>
 	</table>
 	<%} %>

@@ -18,5 +18,6 @@
 		</div>
 	</div>
 	<a href="AlarmListView.al" class="list-group-item">메시지 리스트</a>
+	<a href="StarLiveList.li" class="list-group-item">라이브 방송 리스트</a>
 </div>
   

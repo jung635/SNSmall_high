@@ -320,7 +320,6 @@ public class LiveDAO {
 	}
 	public LiveBean getLive(String video_id) {
 		LiveBean lb = null;
-		ProductDAO prodao = new ProductDAO();
 		try {
 			con = getConnection();
 			sql = "select * from live where state = 'LIVE' and video_id=?";
@@ -348,6 +347,27 @@ public class LiveDAO {
 		if(con!=null){try{con.close();}catch(SQLException ex){}}}
 		
 		return lb;
+	}
+	
+	public boolean isLiving(String sns_id) {
+		boolean isliving = false;
+		try {
+			con = getConnection();
+			sql = "select * from live where state = 'LIVE' and id=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, sns_id);
+			rs = pstmt.executeQuery();
+			
+			if (rs.next()) {
+				isliving = true;
+			}
+			
+		} catch(Exception e){e.printStackTrace();}
+		finally{if(rs!=null){try{rs.close();}catch(SQLException ex){}}
+		if(pstmt!=null){try{pstmt.close();}catch(SQLException ex){}}
+		if(con!=null){try{con.close();}catch(SQLException ex){}}}
+		
+		return isliving;
 	}
 	
 	

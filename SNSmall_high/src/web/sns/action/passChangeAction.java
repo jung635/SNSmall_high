@@ -9,33 +9,29 @@ import javax.servlet.http.HttpSession;
 import web.client.action.SecurityUtil;
 import web.sns.db.SnsDAO;
 
-public class passChangeAction implements Action{
+public class passChangeAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		
-		
-		//세션제어
+
+		// 세션제어
 		HttpSession session = request.getSession();
-		String id= (String)session.getAttribute("id");
-		
+		String id = (String) session.getAttribute("id");
+
 		ActionForward forward = new ActionForward();
-		if(id==null){
+		if (id == null) {
 			forward.setPath("./login.ve");
 			forward.setRedirect(true);
 			return forward;
 		}
-		
-//		String pass=request.getParameter("newpass");
+
+		// String pass=request.getParameter("newpass");
 		// 비밀번호 암호화 코드 추가
 		String npass = request.getParameter("newpass");
 		SecurityUtil su = new SecurityUtil();
-		String pass = su.encryptSHA256(npass);		
+		String pass = su.encryptSHA256(npass);
 		// 비밀번호 암호화 코드 추가
-		
-		
-		System.out.println(pass);
-		System.out.println(id);
+
 		SnsDAO sdao = new SnsDAO();
 		sdao.passChange(id, pass);
 		response.setContentType("text/html; charset=UTF-8");
@@ -46,8 +42,8 @@ public class passChangeAction implements Action{
 		out.println("</script>");
 		out.close();
 
-		return null;		 
-		
+		return null;
+
 	}
 
 }

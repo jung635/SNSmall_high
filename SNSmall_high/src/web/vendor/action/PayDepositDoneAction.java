@@ -81,7 +81,7 @@ public class PayDepositDoneAction implements Action{
 					}
 				}
 			if(sb.getRank().equals("basic")){
-				sns_profit = (int)(pb.getPay_price()*0.05)/10*10;
+				sns_profit = (int)(pb.getPay_price()*0.05)/100*100;
 			}else if(sb.getRank().equals("plus")){
 				sns_profit = (int)(pb.getPay_price()*0.1)/10*10;
 			}else{
@@ -89,12 +89,12 @@ public class PayDepositDoneAction implements Action{
 			}
 		}
 		
-		add_point = (int)(pb.getPay_price()*0.01)/10*10;
+		add_point = (int)(pb.getPay_price()*0.01)/100*100;
 		company_profit = (int)(pb.getPay_price()*0.1)/10*10;
 		vendor_profit = pb.getPay_price()-company_profit-sns_profit;
 		pdao.addSnsPay(sns_profit, pb.getAmount(), pb.getSns_id());
 		pdao.addVendorProfit(vendor_profit, pb.getVendor_id());
-		pdao.addPoint(add_point, id);
+		pdao.addPoint(add_point, pb.getClient_id());
 		pdao.addCount(pb.getAmount(), pb.getProduct_num());
 		
 		

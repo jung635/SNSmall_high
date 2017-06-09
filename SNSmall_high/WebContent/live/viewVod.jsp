@@ -25,6 +25,17 @@ var token;
   js.src = "//connect.facebook.net/ko_KR/sdk.js#xfbml=1&version=v2.9&appId=1185421938235757";
   fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));
+
+$(window).load(function() { <%System.out.println("test");%>});
+/* window.onunload = function(e) {
+  var dialogText = 'Dialog text here';
+  e.returnValue = dialogText;
+  return dialogText;
+  myFunction();
+}; */
+function myFunction(){
+<%System.out.println("test");%>
+}
 </script>
 <button onclick="window.opener.location.href='ProductDetail.pr?product_num=<%=lb.getProduct_num()%>&live_id=<%=lb.getSns_id()%>'">물건 구경하러 가기</button>
 <div id="title"><h1><%=lb.getTitle() %></h1></div>

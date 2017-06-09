@@ -16,25 +16,25 @@ public class BlogPostingAction implements Action{
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
 		String realPate = request.getRealPath("/blog_upload");
-		
-		System.out.println(realPate);
-		int maxSize=20*1024*1024;
-		MultipartRequest multi= new MultipartRequest(request, realPate,maxSize,"utf-8",new DefaultFileRenamePolicy());
-		
+
+		int maxSize = 20 * 1024 * 1024;
+		MultipartRequest multi = new MultipartRequest(request, realPate, maxSize, "utf-8",
+				new DefaultFileRenamePolicy());
+
 		BlogBean bb = new BlogBean();
-		
+
 		bb.setSubject(multi.getParameter("subject"));
 		bb.setCategory(multi.getParameter("category"));
 		bb.setFile(multi.getFilesystemName("file"));
 		bb.setContent(multi.getParameter("content"));
-		
+
 		BlogDAO bdao = new BlogDAO();
 		bdao.blogPostWrite(bb);
-		
+
 		ActionForward forward = new ActionForward();
 		forward.setPath("./OurBlog.ad");
 		forward.setRedirect(true);
-				
+
 		return forward;
 		
 	}

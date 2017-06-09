@@ -26,10 +26,10 @@ function submitCheck(){
 </head>
 <body>
 <%
-	int authNum = (int)request.getAttribute("authNum");
-	String email = (String)request.getAttribute("email");
-	String name = (String)request.getAttribute("name");
-	String phone = (String)request.getAttribute("phone");
+	String authNum = (String)request.getParameter("authNum");
+	String email = (String)request.getParameter("email");
+	String name = (String)request.getParameter("name");
+	String phone = (String)request.getParameter("phone");
 %>
 <i class="fa fa-envelope-o" aria-hidden="true"></i>&nbsp;휴대폰 본인 확인(문자)
 <form action="./SearchIdAction.cl" name="fr" id="ph_auth_fr" onsubmit="return submitCheck()">

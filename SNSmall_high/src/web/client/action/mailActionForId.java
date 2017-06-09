@@ -29,11 +29,6 @@ public class mailActionForId implements Action{
 		String name = request.getParameter("name");
 		String phone = request.getParameter("phone");
 		
-		request.setAttribute("authNum", authNum);
-		request.setAttribute("email", email);
-		request.setAttribute("name", name);
-		request.setAttribute("phone", phone);
-		
 		ClientDAO cldao = new ClientDAO();
 		String idpassCheck = cldao.SearchId(name, phone);
 				
@@ -44,7 +39,7 @@ public class mailActionForId implements Action{
 				PrintWriter out = response.getWriter();
 				out.println("<script>");
 				out.println("alert('인증번호를 발송하였습니다!');");
-				out.println("location.href='./SearchIdAuthen.cl'");
+				out.println("location.href='./SearchIdAuthen.cl?phone="+phone+"&name="+name+"&authNum="+authNum+"&email="+email+"'");
 				out.println("</script>");
 				out.close();
 				return null;

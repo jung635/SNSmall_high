@@ -30,7 +30,7 @@ if(map.size()==0){%>
 		<td>Sns아이디</td><td>Sns사진</td><td>판매 물품 이름</td><td>방송 제목</td>
 		<tr>
 			<td><%=lb.getSns_id() %></td>
-			<td><%=sb.getProfile_img()%></td>
+			<td><img src="./sns_pro_upload/<%=sb.getProfile_img()%>"></td>
 			<td><%=prob.getSubject() %></td>
 			<td><%=lb.getTitle() %></td><td><button onclick="location.href='ViewLive.li?video_id=<%=lb.getVideo_id()%>'">방송 보러 가기</button></td>
 		</tr>

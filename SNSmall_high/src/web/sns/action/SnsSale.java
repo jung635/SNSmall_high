@@ -7,13 +7,14 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import web.payment.db.PaymentDAO;
+import web.product.db.ProductDAO;
 
 
 public class SnsSale implements Action{
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		//System.out.println("SnsSale execute()");
+		System.out.println("SnsSale execute()");
 		
 		// 세션값 제어
 		HttpSession session=request.getSession();
@@ -30,6 +31,7 @@ public class SnsSale implements Action{
 		//System.out.println("snsState 2 : "+snsState);
 		// PaymentDAO padao 객체 생성
 		PaymentDAO padao = new PaymentDAO();
+		ProductDAO prdao = new ProductDAO();
 		
 //-----------------------------------------------------		
 		//판매내역 전체 개수
@@ -37,7 +39,7 @@ public class SnsSale implements Action{
 		int count = padao.getPaymentCount(snsState, id);
 		
 		//한 페이지에 보여줄 글의 개수
-		int pageSize=5;
+		int pageSize=8;
 		//현페이지가 몇 페이지인지 가져오기
 		String pageNum = request.getParameter("pageNum");
 		if(pageNum==null){  // pageNum없으면
@@ -53,7 +55,7 @@ public class SnsSale implements Action{
 		
 		// List paymentList = 매서드 호출 getPaymentList()
 		List paymentList = (List)padao.getPaymentList(snsState, id, startRow, pageSize);
-
+		
 		//전체 페이지 수 구하기   게시판글  50개 한 화면에 보여줄 글개수 10 => 5 페이지
 		//						56개 한 화면에 보여줄 글개수 10 => 5 페이지 + 1(나머지) =>6
 		int pageCount =count/pageSize + (count%pageSize==0 ? 0 : 1);

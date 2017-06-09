@@ -55,7 +55,7 @@ function check(){
 
 	if(confirm("쪽지를 보내시겠습니까?")){
 		
-		window.close();
+		/* window.close(); */
 	}else{
 		document.wfr.reset();
 		return false;

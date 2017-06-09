@@ -32,22 +32,6 @@ function snsStatefn() {
     
     document.frmSearch.submit();
 }
-
-function fncheckdelete(para_getNum){
-	
-	if(confirm("판매내역을 삭제하시겠습니까?")){
-		if(para_getNum!=""){
-			document.frmdelete.num.value=para_getNum;
-			/* document.write("document.frmdelete.num.value : " +document.frmdelete.num.value); */
-			document.frmdelete.submit();
-		}else{
-			alert("판매내역이 이상");
-			return;
-		}
-	}else{
-		return;
-	}
-}
 </script>
 
 </head>
@@ -116,80 +100,46 @@ SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd");
   <option value="cancel" <%if(snsState.equals("cancel")){ %> selected <%}  %>>주문취소</option>
   <option value="cancelHold" <%if(snsState.equals("cancelHold")){ %> selected <%}  %>>취소신청</option>
   <option value="waiting" <%if(snsState.equals("waiting")){ %> selected <%}  %>>무통장입금</option>
-</select><br><br>
+</select><br><br><!-- <div id="snselected"></div> -->
 </form>
 
 	<table>
-<!-- 		<tr bgcolor="orange">
-		<td>상품</td><td>상품</td>
-		<td>상품</td><td>상품</td>
-		<td>날짜</td><td>주문번호</td>
-		<td>옵션1</td><td>옵션2</td><td>옵션3</td>
-		<td>사용된포인트</td><td>상태표시</td>
-		</tr> -->
+		<tr bgcolor="orange">
+		<td>번호</td><td>아이디</td><td>수량</td><td>메시지</td>
+		<td>날짜</td><td>주문번호</td><td>옵션1</td><td>옵션2</td><td>옵션3</td>
+		<td>사용된포인트</td><td>상태표시</td></tr>
 
 <%
-	//String snsState="";
-	try{
-		if(paymentList.size()!=0){
-			for(int pay=0; pay < paymentList.size(); pay++){
-				//PaymentBean pab= 한칸의 데이터 가져와서 저장 .get()
-				PaymentBean pab = (PaymentBean)paymentList.get(pay);
-				//System.out.println("pay : "+pay);
-				if(pay==0||pay%4==0){%>
-			<tr>
-			<%}%>
-				<td id="product">
-				  <ul>
-					<li>상품번호 : <%=pab.getProduct_num()%></li>
-					<%
-					ProductBean prb= new ProductBean();
-					ProductDAO prdao = new ProductDAO();
-					prb = prdao.getProduct(pab.getProduct_num());
-					//System.out.println("Payment_num() : "+pab.getProduct_num());
-					//System.out.println("Product_num() : "+prb.getProduct_num());
-					
-					%>
-					<%-- <li>아이디 : <%=pab.getSns_id()%></li> --%>
-					<%-- <li>메인 이미지 : <img src="./vendor_img/<%=prb.getMain_img() %>" ></li>
-					<li>디테일이미지 : <img src="./vendor_img/<%=prb.getDetail_img() %>" ></li> --%>
-					<li>수량 : <%=pab.getAmount()%></li>
-					<li>메시지 : <%=pab.getMessage()%></li>
-					<li>날짜 : <%=sdf.format(pab.getDate())%></li>
-					<li>주문번호 : <%=pab.getOrder_num()%></li>
-					<li>옵션1 : <%=pab.getOption1()%></li>
-					<li>옵션2 : <%=pab.getOption2()%></li>
-					<li>옵션3 : <%=pab.getOption3()%></li>
-					<li>사용된포인트 : <%=pab.getUsedPoint()%></li>
-					<%-- <li>상태표시 : <%=pab.getState()%></li> --%>
-						<input type="button" value="상세보기" onclick="location.href='SnsSaleDetailAction.sn?num=<%=pab.getProduct_num()%>'">
-						<input type="button" value="삭제하기" onclick="javascript:fncheckdelete(<%=pab.getProduct_num()%>);">
-					
-  				</ul>
-				</td>
-			<%if(pay%4==3){ %>
-			</tr>
-			<%
-			}}
-		}else{
-		%>
-		<tr><td colspan=4>판매내역이 없습니다.</td></tr>
-		<%
+	//String snsState=""; 
+	if(paymentList.size()!=0){
+		for(int i=0; i < paymentList.size(); i++){
+			//PaymentBean pab= 한칸의 데이터 가져와서 저장 .get()
+			PaymentBean pab = (PaymentBean)paymentList.get(i);
+			//부모                                                      자식
+			//System.out.println("i : "+i);
+			addPoint+=pab.getUsedPoint();
+		//	snsState = pab.getState();
+		//	System.out.println("snsState >>> : "+snsState);
+%>
+	<tr bgcolor="#ffeecc">
+		<td><%=pab.getProduct_num()%></td><td><%=pab.getSns_id()%></td><td><%=pab.getAmount()%></td><td><%=pab.getMessage()%></td>
+		<td><%=sdf.format(pab.getDate()) %></td><td><%=pab.getOrder_num()%></td><td><%=pab.getOption1()%></td><td><%=pab.getOption2()%></td>
+		<td><%=pab.getOption3()%></td><td><%=pab.getUsedPoint()%></td><td><%=pab.getState()%></td>
+	</tr>
+<%
 		}
-	}catch(Exception e){e.printStackTrace();}	
+	}else{
+	%>
+	<tr><td colspan=11>판매내역이 없습니다.</td></tr>
+	<%
+	}
 	//System.out.println("addPoint : "+addPoint);
 %>
-<%-- 		<tr align="center">
-			<td id="accPoint">누적<br>포인트</td>
-			<td></td>
-			<td><%=addPoint %>P</td>
-			<td><%=count %>개</td>
-		</tr> --%>
-	</table>
-	
-	<form action="./snsSaleDeleteAction.sn?pageNum=<%=pageNum %>" method="post" name="frmdelete" >
-       <input type="hidden" name="num" value="">
-	</form>
+		<tr align="center">
+		<td id="accPoint">누적<br>포인트</td><td colspan=8></td><td><%=addPoint %>P</td>
+		<td><%=count %>개</td>
+		</tr>
+</table>
     <!-- /.container -->
 <!--     <div class="container"> -->
     

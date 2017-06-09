@@ -612,7 +612,7 @@ Connection con = null;
 			con=getConnection();
 			//3. sql member 모든 데이터 가져오기
 			if(!snsState.equals("")){
-				sql="select * from payment where state=? and sns_id=? limit ?,?";
+				sql="select * from payment where state=? and sns_id=? and datediff(now(), date)>7 limit ?,?";
 				//System.out.println("snsState : "+snsState);
 				//System.out.println("id : "+id);
 				pstmt=con.prepareStatement(sql);

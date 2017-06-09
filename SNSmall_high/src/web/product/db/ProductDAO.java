@@ -337,6 +337,7 @@ public class ProductDAO {
 		return productList;
 	} //getProductList() end 
 	
+	
 	//검색어 지정 등록상품 리스트
 		public List<ProductBean> getSearchProductList(String search, int startRow, int pageSize){
 			List<ProductBean> productList = new ArrayList<ProductBean>();

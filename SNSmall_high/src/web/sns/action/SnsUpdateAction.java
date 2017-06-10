@@ -19,7 +19,7 @@ public class SnsUpdateAction implements Action {
 
 		String realPath = request.getRealPath("/sns_pro_upload");
 		int maxSize = 5 * 1024 * 1024;
-
+		System.out.println(realPath);
 		MultipartRequest multi = new MultipartRequest(request, realPath, maxSize, "utf-8",
 				new DefaultFileRenamePolicy());
 
@@ -51,15 +51,23 @@ public class SnsUpdateAction implements Action {
 		if (multi.getFilesystemName("file") == null) {
 			sb.setProfile_img(multi.getParameter("one_file"));
 		} else {
-			sb.setProfile_img(multi.getFilesystemName("file"));
-			File file = new File(realPath + "\\" + multi.getParameter("one_file"));
-			file.delete();
+			File file_new = new File(realPath + "\\" + multi.getFilesystemName("file").toLowerCase());
+			boolean isExists = file_new.exists();
+			if(isExists){
+				System.out.println("파일 존재");
+				sb.setProfile_img(multi.getFilesystemName("file").toLowerCase());
+			}else{
+				System.out.println("존재 안함");
+				sb.setProfile_img(multi.getFilesystemName("file").toLowerCase());
+				File file = new File(realPath + "\\" + multi.getParameter("one_file"));
+				file.delete();
+			}
 		}
 
 		if (multi.getFilesystemName("files") == null) {
 			sb.setDetail_img(multi.getParameter("orgin_file_names"));
 		} else {
-			sb.setDetail_img(multi.getParameter("file_names"));
+			sb.setDetail_img(multi.getParameter("file_names").toLowerCase());
 
 			String[] array;
 			String s = multi.getParameter("orgin_file_names");

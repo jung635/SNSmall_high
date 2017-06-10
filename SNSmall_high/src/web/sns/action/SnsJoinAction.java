@@ -52,8 +52,8 @@ public class SnsJoinAction implements Action {
 		sb.setSns_id(multi.getParameter("sns_id"));
 		sb.setPass(pass);
 		sb.setName(multi.getParameter("name"));
-		sb.setProfile_img(multi.getFilesystemName("file"));
-		sb.setDetail_img(multi.getParameter("file_names"));
+		sb.setProfile_img(multi.getFilesystemName("file").toLowerCase());
+		sb.setDetail_img(multi.getParameter("file_names").toLowerCase());
 		sb.setCategory(multi.getParameter("myselect"));
 		sb.setContent(multi.getParameter("content"));
 		sb.setInstagram(multi.getParameter("instagram_ac"));

@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <div class="list-group">
 	<div id="showbtn">
-		<a href="PayList.pa" class="list-group-item showbtn">내 정보</a>
+		<a href="./clientView.cl" class="list-group-item showbtn">내 정보</a>
 		<div id="show_content">
 			<a href="./clientView.cl"  class="list-group-item">내 정보 확인</a>
 			<a href="./passCheck.cl"  class="list-group-item">내 정보 수정</a>

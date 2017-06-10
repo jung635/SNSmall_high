@@ -265,9 +265,11 @@
 
 	//String sns_id = (String)request.getAttribute("sns_id");
 	String sns_id = (String)session.getAttribute("link_id");
+	if(request.getParameter("live_id")!=null){
+		sns_id = (String)request.getParameter("live_id");
+	}
 	if(sns_id == null){sns_id = "";}
 	
-		
 	String id = (String)session.getAttribute("id");
 	if(id==null){response.sendRedirect("./login.cl?returnUrl="+returnUrl+"&product_num="+productbean.getProduct_num()+"&sns_id="+sns_id);}
 	
@@ -283,7 +285,7 @@
 	int amount = productbean.getAmount();
 	int allprice = productbean.getPrice();
 	String content = productbean.getContent().replace("\r\n", "<br>");
-	int peace = productbean.getAmount()-productbean.getCount();
+	int peace = productbean.getAmount();
 	
 	List qnaList = (List)request.getAttribute("qnaList");
 // 	int count = ((Integer)request.getAttribute("count")).intValue();

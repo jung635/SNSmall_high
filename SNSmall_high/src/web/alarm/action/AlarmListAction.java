@@ -22,14 +22,12 @@ public class AlarmListAction implements Action {
 		Map<String, Object> map = null;
 		List<Map<String, Object>> list = adao.alarmList(id, limit);
 		ActionForward forward = null;
-		if (!list.isEmpty()) {
 			request.setAttribute("list", list);
 			request.setAttribute("limit", limit);
 			forward = new ActionForward();
 			forward.setPath("./mypage/alarmInnerList.jsp");
 			forward.setRedirect(false);
 			
-		}
 		return forward;
 
 	}

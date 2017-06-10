@@ -4,7 +4,6 @@ function alarm_access(){
 	xhttp.onreadystatechange = function() {
 		if (this.readyState == 4 && this.status == 200) {
 			var alarm_msg = this.responseText; 
-			alert(this.responseText.find("body"));
 			alert_view(alarm_msg);  
 		}
 	};

@@ -171,21 +171,22 @@ function pointChanged(price, myPoint){
 		document.getElementById('price_result').innerText = price-point;
 		document.getElementById('myPoint').innerText = myPoint-point;
 		document.getElementById('withPoint').checked = true;
-	}
-	if(price-point<0){
-		alert('포인트를 상품 가격 이상으로 사용하실 수 없습니다.');
-		document.getElementById('usingPoint').value = 0;
-		document.getElementById('myPoint').innerText = myPoint;
-		document.getElementById('withPoint').checked = false;
-	}else if(myPoint-point<0){
-		alert('포인트가 부족합니다.');
-		document.getElementById('usingPoint').value = 0;
-		document.getElementById('myPoint').innerText = myPoint;
-		document.getElementById('withPoint').checked = false;
 	}else{
-		document.getElementById('price_result').innerText = price-point;
-		document.getElementById('myPoint').innerText = myPoint-point;
-		document.getElementById('withPoint').checked = false;
+		if(price-point<0){
+			alert('포인트를 상품 가격 이상으로 사용하실 수 없습니다.');
+			document.getElementById('usingPoint').value = 0;
+			document.getElementById('myPoint').innerText = myPoint;
+			document.getElementById('withPoint').checked = false;
+		}else if(myPoint-point<0){
+			alert('포인트가 부족합니다.');
+			document.getElementById('usingPoint').value = 0;
+			document.getElementById('myPoint').innerText = myPoint;
+			document.getElementById('withPoint').checked = false;
+		}else{
+			document.getElementById('price_result').innerText = price-point;
+			document.getElementById('myPoint').innerText = myPoint-point;
+			document.getElementById('withPoint').checked = false;
+		}
 	}
 }
 
@@ -203,6 +204,7 @@ function allPointPay(){
 		document.getElementById('price_result').innerText = 0;
 		document.getElementById('myPoint').innerText = myPoint-price;
 		document.getElementById('usingPoint').value =price;
+		
 	}
 	
 	
@@ -253,7 +255,7 @@ String address = cdao.getMember(id).getAddress();
 %>
 
 <div class="container">
-	<div class="content">
+	<div class="more_content">
 		<form action="" name="fr">
 		<input type="hidden" name="amount_str" value='<%=amount_str %>'>
 		<input type="hidden" name="product_str" value='<%=product_str %>'>
@@ -271,7 +273,7 @@ String address = cdao.getMember(id).getAddress();
 		<div id="user_info">
 	  		<div id="title_in"><h2>구매자 정보</h2></div>
 			<table id="buyer" border="1">
-				<tr><td style="width: 150px;">이름</td><td>정선주</td></tr>
+				<tr><td style="width: 150px;">이름</td><td><%=cb.getName() %></td></tr>
 				<tr><td>배송주소</td><td><input type="text" name="address" id="address" value="<%=address%>"><input type="button" onclick="addressFind()" value="우편번호 찾기"></td></tr>
 				<tr><td>연락처</td><td>010-000-0000</td></tr>
 				<tr><td>배송 요청 메세지</td><td><input type="text" id="message" name="message"></td></tr>

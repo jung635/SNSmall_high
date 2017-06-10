@@ -6,10 +6,12 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<link href="./css/font-awesome.min.css" rel="stylesheet"> 
+<link href="./css/live.css" rel="stylesheet">
 <script src="https://www.gstatic.com/firebasejs/4.1.1/firebase.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
 </head>
-<body>
+<body style="background-color: #e3e3e3;">
 <%
 String id = (String)session.getAttribute("id");
 LiveBean lb = (LiveBean)request.getAttribute("lb");
@@ -86,16 +88,35 @@ firebase.database().ref('<%=lb.getVideo_id()%>').limitToLast(1).on('child_added'
 	
 });	
 
-
+function goProduct(){
+	alert('기존의 창에서 확인하실수 있습니다');
+	window.opener.location.href='ProductDetail.pr?product_num=<%=lb.getProduct_num()%>&live_id=<%=lb.getSns_id()%>';
+}
 </script>
-<button onclick="window.opener.location.href='ProductDetail.pr?product_num=<%=lb.getProduct_num()%>&live_id=<%=lb.getSns_id()%>'">물건 구경하러 가기</button>
-<div id="title"><h1><%=lb.getTitle()%></h1></div>
-<div id="live" style="float: left;"></div>
-<div id="chat" style="float: right; margin-right: 10px;">
-<textarea id="messageTextArea" rows="10" cols="50" style="width: 600px;height: 690px;"></textarea>
-<br />
-<input id="textMessage" type="text"  onkeyup="press(event)" style="width: 547px;">
-<input onclick="sendMessage()" value="Send" type="button">
+<div id="title">
+<br>
+<span class="tit-bg">
+<i class="fa fa-angle-double-right" aria-hidden="true"></i>
+<%=lb.getTitle()%>
+</span>
 </div>
+<hr style="margin: 30px 20px 50px 10px;">
+<div style="position: relative; width: 1650px; height: 740px;">
+<div id="chat">
+
+	<div id="chat-in">
+		<button class="go-shopping" onclick="goProduct()">상품 구경하러 가기</button>
+		<button onclick="location.href='LiveList.li'">방송 목록 보기</button>
+		<br>
+		<textarea id="messageTextArea" rows="10" cols="50"></textarea>
+		<br>
+		<input id="textMessage" type="text"  onkeyup="press(event)">
+		<input onclick="sendMessage()" value="Send" class="sendBtn" type="button">
+	</div>
+</div>
+<div id="live" style="margin-left: 10px; float: left;"></div>
+</div>
+
+
 </body>
 </html>

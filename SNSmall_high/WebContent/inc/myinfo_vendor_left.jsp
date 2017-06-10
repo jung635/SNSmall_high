@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <div class="list-group">
 	<div id="showbtn">
-		<a href="#" class="list-group-item showbtn">내 정보</a>
+		<a href="./vendorView.ve" class="list-group-item showbtn">내 정보</a>
 		<div id="show_content">
 			<a href="./vendorView.ve"  class="list-group-item">내 정보 확인</a>
 			<a href="./passCheck.ve"  class="list-group-item">내 정보 수정</a>

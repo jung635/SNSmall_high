@@ -19,7 +19,6 @@ public class SnsUpdateAction implements Action {
 
 		String realPath = request.getRealPath("/sns_pro_upload");
 		int maxSize = 5 * 1024 * 1024;
-
 		MultipartRequest multi = new MultipartRequest(request, realPath, maxSize, "utf-8",
 				new DefaultFileRenamePolicy());
 
@@ -47,20 +46,23 @@ public class SnsUpdateAction implements Action {
 		sb.setEtc(multi.getParameter("etc_ac"));
 
 		session.setAttribute("name", multi.getParameter("name"));
-
+		
 		if (multi.getFilesystemName("file") == null) {
 			sb.setProfile_img(multi.getParameter("one_file"));
 		} else {
-			sb.setProfile_img(multi.getFilesystemName("file"));
-			File file = new File(realPath + "\\" + multi.getParameter("one_file"));
-			file.delete();
+			System.out.println("profile: "+multi.getFilesystemName("file"));
+				
+				File file = new File(realPath + "\\" + multi.getParameter("one_file"));
+				file.delete();
+				sb.setProfile_img(multi.getFilesystemName("file"));
 		}
 
 		if (multi.getFilesystemName("files") == null) {
 			sb.setDetail_img(multi.getParameter("orgin_file_names"));
 		} else {
-			sb.setDetail_img(multi.getParameter("file_names"));
-
+			
+			System.out.println("sub: "+multi.getFilesystemName("files"));
+			System.out.println("sub: "+multi.getParameter("file_names"));
 			String[] array;
 			String s = multi.getParameter("orgin_file_names");
 			array = s.split(",");
@@ -69,6 +71,8 @@ public class SnsUpdateAction implements Action {
 				File file = new File(realPath + "\\" + array[i]);
 				file.delete();
 			}
+			
+			sb.setDetail_img(multi.getParameter("file_names"));
 		}
 
 		sdao.SnsUpdate(sb, id);

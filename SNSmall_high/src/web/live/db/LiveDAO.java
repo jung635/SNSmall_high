@@ -243,9 +243,6 @@ public class LiveDAO {
 				lb.setState(rs.getString("state"));
 				lb.setView(rs.getInt("view"));
 				prob = prodao.getProduct(lb.getProduct_num());
-				
-				
-				map.put(lb, prob);
 			}
 
 		} catch(Exception e){e.printStackTrace();}

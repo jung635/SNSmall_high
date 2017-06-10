@@ -52,8 +52,18 @@ public class PayCompleteAction implements Action {
 		String option3_str = request.getParameter("option3_str");
 		String[] option3 = option3_str.split(",");
 		String method = request.getParameter("method");
-		String cart_str = request.getParameter("cart_str");
-		String[] cart_num = cart_str.split(",");
+		String cart_str = request.getParameter("num_input");
+		String[] cart_num = {};
+		if(cart_str != null){
+			cart_num = cart_str.split(",");
+			// cart 제외
+			CartDAO cdao = new CartDAO();
+			for(int i=0; i<cart_num.length; i++){
+				if (!cart_num[i].equals("")) {
+					cdao.cartDelete(id, Integer.parseInt(cart_num[i]));
+				}
+			}
+		}
 		String state = "";
 		if (method.equals("card") || method.equals("withPoint"))
 			state = "payDone";
@@ -126,12 +136,7 @@ public class PayCompleteAction implements Action {
 			list_pb.add(pb);
 			// 사용한 포인트 빼기
 			pdao.subPoint(point_each, id);
-			// cart 제외
-			CartDAO cdao = new CartDAO();
 
-			if (!cart_num[i].equals("")) {
-				cdao.cartDelete(id, Integer.parseInt(cart_num[i]));
-			}
 
 			// amount 빼기
 			if (method.equals("deposit")) {
@@ -152,8 +157,9 @@ public class PayCompleteAction implements Action {
 							all_sns_sell += (long) prob_sns.getPrice() * (long) pb_sns.getAmount();
 						}
 					}
-
+					
 					long money = all_sns_sell + pb.getPay_price();
+					System.out.println(money);
 					AlarmBean ab = new AlarmBean();
 					AlarmDAO adao = new AlarmDAO();
 					if (sb.getRank().equals("basic")) {
@@ -163,8 +169,7 @@ public class PayCompleteAction implements Action {
 							ab.setMove("RankUp.al?rank=" + "premium");
 							adao.insertAlarm(ab);
 							pdao.rankUpdate(sns_id[i], "premium");
-						} else if (money >= 30000) {// 테스트용
-							// }else if(money>=500000){
+						 }else if(money>=500000){
 							ab.setContent("등급이 plsu로 상승하셨습니다!");
 							ab.setId(sns_id[i]);
 							ab.setMove("RankUp.al?rank=" + "plus");
@@ -187,6 +192,7 @@ public class PayCompleteAction implements Action {
 					} else {
 						sns_profit = (int) (price_result * 0.2);
 					}
+					
 
 				}
 

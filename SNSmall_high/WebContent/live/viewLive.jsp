@@ -93,18 +93,6 @@ function goProduct(){
 	window.opener.location.href='ProductDetail.pr?product_num=<%=lb.getProduct_num()%>&live_id=<%=lb.getSns_id()%>';
 }
 </script>
-<<<<<<< .merge_file_a07308
-<button onclick="goProduct()">물건 구경하러 가기</button>
-<button onclick="location.href='LiveList.li'">방송 목록 보기</button>
-<div id="title"><h1><%=lb.getTitle()%></h1></div>
-<div id="live" style="float: left;"></div>
-<div id="chat" style="float: right; margin-right: 10px;">
-<textarea id="messageTextArea" rows="10" cols="50" style="width: 600px;height: 690px;"></textarea>
-<br />
-<input id="textMessage" type="text"  onkeyup="press(event)" style="width: 547px;">
-<input onclick="sendMessage()" value="Send" type="button">
-=======
-
 <div id="title">
 <br>
 <span class="tit-bg">
@@ -117,13 +105,14 @@ function goProduct(){
 <div id="chat">
 
 	<div id="chat-in">
-		<button class="go-shopping" onclick="window.opener.location.href='ProductDetail.pr?product_num=<%=lb.getProduct_num()%>&live_id=<%=lb.getSns_id()%>'">상품 구경하러 가기</button><br>
+		<button class="go-shopping" onclick="goProduct()">상품 구경하러 가기</button>
+		<button onclick="location.href='LiveList.li'">방송 목록 보기</button>
+		<br>
 		<textarea id="messageTextArea" rows="10" cols="50"></textarea>
 		<br>
 		<input id="textMessage" type="text"  onkeyup="press(event)">
 		<input onclick="sendMessage()" value="Send" class="sendBtn" type="button">
 	</div>
->>>>>>> .merge_file_a12996
 </div>
 <div id="live" style="margin-left: 10px; float: left;"></div>
 </div>

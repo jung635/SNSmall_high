@@ -46,7 +46,7 @@ public class mailActionForSnsId implements Action{
 				PrintWriter out = response.getWriter();
 				out.println("<script>");
 				out.println("alert('인증번호를 발송하였습니다!');");
-				out.println("location.href='./SearchSnsIdAuthen.cl'");
+				out.println("location.href='./SearchSnsIdAuthen.cl?home="+home+"&name="+name+"&authNum="+authNum+"&email="+email+"'");
 				out.println("</script>");
 				out.close();
 				return null;

@@ -157,7 +157,7 @@ String opt_name3 = (String)request.getAttribute("opt_name3");
 							<hr>
 							</div>
 							<div class="col-md-6">
-								<input type="submit" class="pro-in-btn" value="상품등록">
+								<input type="submit" class="pro-in-btn" value="수정완료">
 							</div>
 							<div class="col-md-6">
 								<input type="reset" class="pro-in-btn" value="초기화">	

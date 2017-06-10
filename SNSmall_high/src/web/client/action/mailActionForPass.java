@@ -35,14 +35,11 @@ public class mailActionForPass implements Action{
 		if (idpassCheck){
 			boolean check = cldao.sendMail(email,content);
 			if(check){
-				System.out.println("여기까지111");
-				System.out.println(id+name+email);
-				System.out.println("location.href='./SearchPassAuthen.cl?id='"+id+"'&name='"+name+"'&email='"+email+"'");
 				response.setContentType("text/html; charset=UTF-8"); // 서버에서 클라이언트로 보내는 내용 타입 설정
 				PrintWriter out = response.getWriter();				
 				out.println("<script>");
 				out.println("alert('인증번호를 발송하였습니다!');");
-				out.println("location.href='./SearchPassAuthen.cl?id="+id+"&name="+name+"&email="+email+"'");
+				out.println("location.href='./SearchPassAuthen.cl?id="+id+"&name="+name+"&authNum="+authNum+"&email="+email+"'");
 				out.println("</script>");
 				out.close();
 				return null;

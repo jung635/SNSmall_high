@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -31,7 +32,7 @@ Connection con = null;
 	ResultSet rs = null;
 	
 	public List<Map<String, Object>> showAlarm(String id){
-		Map<String, Object> map = null;
+		Map<String, Object> map = new LinkedHashMap<String, Object>();
 		List<Map<String, Object>> list = new ArrayList<>();
 		try{
 			con = getConnection();
@@ -41,7 +42,7 @@ Connection con = null;
 			pstmt.setString(2, id);
 			rs = pstmt.executeQuery();
 			while(rs.next()){
-				map = new HashMap<>();
+				map = new LinkedHashMap<String, Object>();
 				map.put("id", id);
 				map.put("content", rs.getString("content"));
 				map.put("num", rs.getInt("num"));
@@ -58,7 +59,7 @@ Connection con = null;
 		return list;
 	}
 	public List<Map<String, Object>> alarmList(String id, int limit){
-		Map<String, Object> map = null;
+		Map<String, Object> map = new LinkedHashMap<String, Object>();
 		List<Map<String, Object>> list = new ArrayList<>();
 		try{
 			con = getConnection();
@@ -68,7 +69,7 @@ Connection con = null;
 			pstmt.setInt(2, limit);
 			rs = pstmt.executeQuery();
 			while(rs.next()){
-				map = new HashMap<>();
+				map = new LinkedHashMap<String, Object>();
 				map.put("id", id);
 				map.put("content", rs.getString("content"));
 				map.put("num", rs.getInt("num"));
@@ -85,7 +86,7 @@ Connection con = null;
 		return list;
 	}
 	public List<Map<String, Object>> alarmList(String id){
-		Map<String, Object> map = null;
+		Map<String, Object> map = new LinkedHashMap<String, Object>();
 		List<Map<String, Object>> list = new ArrayList<>();
 		try{
 			con = getConnection();
@@ -94,7 +95,7 @@ Connection con = null;
 			pstmt.setString(1, id);
 			rs = pstmt.executeQuery();
 			while(rs.next()){
-				map = new HashMap<>();
+				map = new LinkedHashMap<String, Object>();
 				map.put("id", id);
 				map.put("content", rs.getString("content"));
 				map.put("num", rs.getInt("num"));
@@ -112,7 +113,7 @@ Connection con = null;
 	}
 	
 	public List<Map<String, Object>> alertAlarm(String id){
-		Map<String, Object> map = null;
+		Map<String, Object> map = new LinkedHashMap<String, Object>();
 		List<Map<String, Object>> list = new ArrayList<>();
 		try{
 			con = getConnection();
@@ -121,7 +122,7 @@ Connection con = null;
 			pstmt.setString(1, id);
 			rs = pstmt.executeQuery();
 			while(rs.next()){
-				map = new HashMap<>();
+				map = new LinkedHashMap<String, Object>();
 				map.put("id", id);
 				map.put("content", rs.getString("content"));
 				map.put("num", rs.getInt("num"));

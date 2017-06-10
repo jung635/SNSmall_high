@@ -12,10 +12,12 @@ $(document).ready(function(){
     });
 });
 function openLiveWin(){
-	window.open("LiveList.li", "live_list" , "height=" + screen.height + ",width=" + screen.width + "fullscreen=yes")
+// 	window.open("LiveList.li", "live_list" , "height=" + screen.height + ",width=" + screen.width + "fullscreen=yes")
+	window.open("LiveList.li", "live_list" , "height=830 ,width=1500,top=0,left=0")
 }
 function openVodWin(){
-	window.open("VodList.li", "live_list" , "height=" + screen.height + ",width=" + screen.width + "fullscreen=yes")
+// 	window.open("VodList.li", "live_list" , "height=" + screen.height + ",width=" + screen.width + "fullscreen=yes")
+	window.open("VodList.li", "live_list" , "height=830 ,width=1500,top=0,left=0")
 }
 </script>
 <%	
@@ -104,8 +106,16 @@ function openVodWin(){
 						<li class="scroll"><a href="Price.cl">Price</a></li>
 					</ul> 
 				</div> 
-				<button onclick='openLiveWin()'>방송 목록 보기</button>
-				<button onclick='openVodWin()'>종료된 인기 방송 목록 보기</button>
+				<div style="float: right;">
+					<button onclick='openLiveWin()' class="main-live-btn">
+					<i class="fa fa-play" aria-hidden="true"></i>
+					LIVE
+					</button>
+					<button onclick='openVodWin()' class="main-live-btn">
+					<i class="fa fa-video-camera" aria-hidden="true"></i>
+					Popular VOD
+					</button>
+				</div>
 			</div> 
 		</div><!--/navbar--> 
 	</header> <!--/#navigation--> 

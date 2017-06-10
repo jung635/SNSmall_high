@@ -66,7 +66,7 @@ $(document).ready(function(){
 					option3+=$('input[name=option3_input]').eq(i).val()+",";
 					$('input[name=option3]').val(option3);	
 					
-					num+=$('input[name=num_unput]').eq(i).val()+",";
+					num+=$('input[name=num_input]').eq(i).val()+",";
 					$('input[name=num]').val(num);	
 					
 				}
@@ -165,7 +165,7 @@ String type = (String)session.getAttribute("type");
 					<%sum = sum+price;}%>
 					<br>
 					총가격 :<input type="text" name="price" value="0" readonly>
-					<input type="hidden" name = "num" id="num" value="<%=num%>">
+					<input type="hidden" name = "cart_num" id="num" value="<%=num%>">
 					<input type="hidden" name = "client_id" id="client_id" value="<%=client_id%>">
 					<input type="hidden" name = "product_num" id="product_num" value="<%=product_num%>">
 					<input type="hidden" name = "amount" id="amount" value="<%=amount%>">

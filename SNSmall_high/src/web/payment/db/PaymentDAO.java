@@ -765,13 +765,13 @@ public class PaymentDAO {
 		try {
 			con = getConnection();
 			if (method.equals("payDone")) {
-				sql.append("state = 'payDone' or state = 'delivery' or state = 'cancelHold' or state = 'waiting' or state = 'cancel' or state = 'w_cancelHold'");
+				sql.append("(state = 'payDone' or state = 'delivery' or state = 'cancelHold' or state = 'waiting' or state = 'cancel' or state = 'w_cancelHold')");
 			} else if (method.equals("done")) {
 				sql.append("state = 'done'");
 			} else if (method.equals("delivery")) {
 				sql.append("state = 'delivery'");
 			} else if (method.equals("cancelHold")) {
-				sql.append("state = 'cancelHold' or state = 'cancel' or state = 'w_cancelHold'");
+				sql.append("(state = 'cancelHold' or state = 'cancel' or state = 'w_cancelHold')");
 			} else if (method.equals("waiting")) {
 				sql.append("state = 'waiting'");
 			}

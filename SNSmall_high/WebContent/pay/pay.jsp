@@ -273,7 +273,7 @@ String address = cdao.getMember(id).getAddress();
 		<div id="user_info">
 	  		<div id="title_in"><h2>구매자 정보</h2></div>
 			<table id="buyer" border="1">
-				<tr><td style="width: 150px;">이름</td><td>정선주</td></tr>
+				<tr><td style="width: 150px;">이름</td><td><%=cb.getName() %></td></tr>
 				<tr><td>배송주소</td><td><input type="text" name="address" id="address" value="<%=address%>"><input type="button" onclick="addressFind()" value="우편번호 찾기"></td></tr>
 				<tr><td>연락처</td><td>010-000-0000</td></tr>
 				<tr><td>배송 요청 메세지</td><td><input type="text" id="message" name="message"></td></tr>

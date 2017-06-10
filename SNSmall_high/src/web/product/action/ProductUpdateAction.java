@@ -1,9 +1,11 @@
 package web.product.action;
 
 import java.io.File;
+import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
@@ -23,7 +25,13 @@ public class ProductUpdateAction implements Action {
 				new DefaultFileRenamePolicy());
 		ProductBean prb = new ProductBean();
 		ProductDAO prdao = new ProductDAO();
-
+		int index = 0;
+		String realFileName ="";
+		File file = new File("");
+		File file_new = new File("");
+		HttpSession session = request.getSession();
+		String id = (String) session.getAttribute("id");
+		
 		prb.setProduct_num(Integer.parseInt(multi.getParameter("product_num")));
 		prb.setCategory(multi.getParameter("category"));
 		prb.setSubject(multi.getParameter("subject"));
@@ -55,18 +63,34 @@ public class ProductUpdateAction implements Action {
 		prb.setAmount(Integer.parseInt(multi.getParameter("amount")));
 
 		// 파일변경 시 기존 파일 삭제 {
-		if (main_img != null && !main_img.equals(pre_main_img)) {
-			File file = new File(realPath + "\\" + pre_main_img);
+		if (main_img != null) {
+			//메인 이미지 등록
+			index = multi.getFilesystemName("main_img").lastIndexOf(".");
+			realFileName = id + new Date().getTime() + multi.getFilesystemName("main_img").substring(index, multi.getFilesystemName("main_img").length());
+			file = new File(realPath + "\\" + multi.getFilesystemName("main_img"));
+			file_new = new File(realPath + "\\" + realFileName);
+			file.renameTo(file_new);
+			String profile_img = realFileName;
+			
+
+			file = new File(realPath + "\\" + pre_main_img);
 			file.delete();
-			prb.setMain_img(multi.getFilesystemName("main_img"));
+			prb.setMain_img(profile_img);
 		} else {
 			prb.setMain_img(multi.getParameter("pre_main_img"));
 		}
 
-		if (detail_img != null && !detail_img.equals(pre_detail_img)) {
-			File file = new File(realPath + "\\" + pre_detail_img);
+		if (detail_img != null) {
+			//디테일 이미지 등록
+			index = multi.getFilesystemName("detail_img").lastIndexOf(".");
+			realFileName = id + new Date().getTime() + multi.getFilesystemName("detail_img").substring(index, multi.getFilesystemName("detail_img").length());
+			file = new File(realPath + "\\" + multi.getFilesystemName("detail_img"));
+			file_new = new File(realPath + "\\" + realFileName);
+			file.renameTo(file_new);
+			String detail_img = realFileName;
+			file = new File(realPath + "\\" + pre_detail_img);
 			file.delete();
-			prb.setDetail_img(multi.getFilesystemName("detail_img"));
+			prb.setDetail_img(detail_img);
 		} else {
 			prb.setDetail_img(multi.getParameter("pre_detail_img"));
 		}

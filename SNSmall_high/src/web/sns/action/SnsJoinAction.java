@@ -50,39 +50,26 @@ public class SnsJoinAction implements Action {
 			return null;
 		}
 		
-		//sns스타 프로필 사진 등록
 		int index = 0;
 		String realFileName ="";
-		File file = new File("");;
+		File file = new File("");
 		File file_new = new File("");
-		//사진 확장자(.jpg 등등) 추출
 		index = multi.getFilesystemName("file").lastIndexOf(".");
-		//우리가 사용할 사진 이름을 정함(sns id + 절대시간 + 확장자)
 		realFileName = sns_id + new Date().getTime() + multi.getFilesystemName("file").substring(index, multi.getFilesystemName("file").length());
-		//기존 사진 file 객체 생성
 		file = new File(realPate + "\\" + multi.getFilesystemName("file"));
-		//우리가 저장할 사진 file 객체 생성
 		file_new = new File(realPate + "\\" + realFileName);
-		//기존 사진 이름을 우리가 사용할 사진 이름으로 변경
 		file.renameTo(file_new);
-		//db에 저장할 사진 이름
 		String profile=realFileName;
 		
 		//sns스타 서브 사진 등록
 		String s_new = multi.getParameter("file_names");
 		String[] array_new = s_new.split(",");
 		for(int i=0; i<array_new.length; i++){
-			//사진 확장자(.jpg 등등) 추출
 			index = array_new[i].lastIndexOf(".");
-			//우리가 사용할 사진 이름을 정함(sns id + 절대시간 + 확장자)
 			realFileName = sns_id + new Date().getTime() + array_new[i].substring(index, array_new[i].length());
-			//기존 사진 file 객체 생성
 			file = new File(realPate + "\\" + array_new[i]);
-			//우리가 저장할 사진 file 객체 생성
 			file_new = new File(realPate + "\\" + realFileName);
-			//기존 사진 이름을 우리가 사용할 사진 이름으로 변경
 			file.renameTo(file_new);
-			//db에 저장할 사진 이름
 			array_new[i]=realFileName;
 		}
 		String realFileNames = Arrays.toString(array_new).substring(1, Arrays.toString(array_new).length()-1).replace(" ", "");

@@ -92,6 +92,7 @@ function goProduct(){
 }
 </script>
 <button onclick="goProduct()">물건 구경하러 가기</button>
+<button onclick="location.href='LiveList.li'">방송 목록 보기</button>
 <div id="title"><h1><%=lb.getTitle()%></h1></div>
 <div id="live" style="float: left;"></div>
 <div id="chat" style="float: right; margin-right: 10px;">

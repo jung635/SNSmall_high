@@ -64,6 +64,11 @@
 </head><!--/head-->
 <body>
 <%
+	String id=(String) session.getAttribute("id");
+	if(id != null){
+		response.sendRedirect("./Main.cl");
+	}
+
 	String url = "";
 	String returnUrl = request.getParameter("returnUrl");
 	if(returnUrl==null){returnUrl = request.getHeader("referer");}

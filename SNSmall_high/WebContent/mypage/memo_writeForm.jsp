@@ -55,7 +55,7 @@ function check(){
 
 	if(confirm("쪽지를 보내시겠습니까?")){
 		
-		window.close();
+		/* window.close(); */
 	}else{
 		document.wfr.reset();
 		return false;
@@ -68,7 +68,7 @@ function check(){
 <%-- <jsp:include page="../inc/header.jsp"/> --%>
 <%
 String id = (String)session.getAttribute("id");
-String toId = (String)request.getParameter("toId");
+
 %>
 
 <h3>쪽지 보내기</h3>
@@ -77,7 +77,7 @@ String toId = (String)request.getParameter("toId");
 	<fieldset>
 	<form action="./MemoWriteAction.me" method="post" name="wfr" onsubmit="return check()">
 		<label for="from_id">보낸사람 </label> <input type="text" name="from_id" id="from_id" class="from_id" value="<%=id%>" readonly><br>
-		<label for="to_id">받는사람</label> <input type="text" name="to_id"  id="to_id" class="to_id" value="<%=toId%>"><br>
+		<label for="to_id">받는사람</label> <input type="text" name="to_id"  id="to_id" class="to_id"><br>
 		<label for="subject">제 목 </label> <input type="text" name="subject" id="subject" class="subject"><br>
 		<label for="content">내 용 </label> <textarea rows="10" cols="50" name="content" id="content" class="content"></textarea><br>
 		<input type="submit" value="쪽지 쓰기" class="submit">

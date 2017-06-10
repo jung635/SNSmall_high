@@ -16,10 +16,16 @@ public class loginProductAction implements Action{
 		
 		request.setCharacterEncoding("utf-8");
 		String id = request.getParameter("id");
-		String pass = request.getParameter("pass");
+//		String pass = request.getParameter("pass");
 		//int product_num = Integer.parseInt(request.getParameter("product_num"));
 		String product_num = request.getParameter("product_num");
 		String sns_id = request.getParameter("sns_id");
+		
+		// 비밀번호 암호화 코드 추가
+		String npass = request.getParameter("pass");
+		SecurityUtil su = new SecurityUtil();
+		String pass = su.encryptSHA256(npass);	
+		// 비밀번호 암호화 코드 추가
 		
 		ClientDAO cldao = new ClientDAO();
 		MemberTypeBean mtb = (MemberTypeBean)cldao.idCheck(id,pass);

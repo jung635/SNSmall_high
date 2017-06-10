@@ -1,0 +1,52 @@
+@CHARSET "UTF-8";
+
+.tit-bg{
+	font-size: 25px;
+	margin-left: 40px;
+	color: #fc7700;
+}
+
+#chat{
+	position: relative;
+}
+#chat-in{
+	position: absolute;
+	right: 10px;
+}
+		.go-shopping{
+		margin: 0 0 10px 10px;
+		padding: 10px 107px 10px 107px;
+		background-color: #fff;
+		border: none;
+		cursor: pointer;
+		font-weight: bold;
+		}
+		#messageTextArea{
+		width: 310px !important;height: 600px !important;
+		margin-left: 10px;
+		background-color: #fff;
+		border: none;
+		font-size: 15px;
+		font-weight: bold;
+		padding: 10px;
+		margin-bottom: 5px;
+		}
+		#textMessage{
+		width: 240px !important;
+		margin-left: 10px;
+		font-size: 15px;
+		font-weight: bold;
+		padding: 10px;
+		border: 1px solid #e3e3e3;
+		width: 250px !important;
+		}
+		.sendBtn{
+		padding: 10px;
+		border: 1px solid #e3e3e3;
+		background-color: #fff;
+		}
+		.sendBtn:hover, .go-shopping:hover{
+		cursor: pointer;
+		background-color: #fc7700;
+		color:#fff;
+		}

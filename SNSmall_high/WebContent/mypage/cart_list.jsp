@@ -67,7 +67,7 @@ $(document).ready(function(){
 					$('input[name=option3]').val(option3);	
 					
 					num+=$('input[name=num_input]').eq(i).val()+",";
-					$('input[name=num]').val(num);	
+					$('input[name=cart_num]').val(num);	
 					
 				}
 		});

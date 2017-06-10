@@ -137,7 +137,6 @@ String type = (String)session.getAttribute("type");
 					<input type="hidden" name = "option1_input" value="<%=cb.getOption1()%>">
 					<input type="hidden" name = "option2_input" value="<%=cb.getOption2()%>">
 					<input type="hidden" name = "option3_input" value="<%=cb.getOption3()%>">
-					<input type="hidden" name = "cart_num" value="<%=cb.getNum()%>">
 					<input type="checkbox" name="check" id="check" value="<%=cb.getPrice()%>" onchange="myfunction()">
 					
 					<!-- 장바구니 정보 -->

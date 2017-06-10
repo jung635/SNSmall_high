@@ -285,7 +285,7 @@
 	int amount = productbean.getAmount();
 	int allprice = productbean.getPrice();
 	String content = productbean.getContent().replace("\r\n", "<br>");
-	int peace = productbean.getAmount()-productbean.getCount();
+	int peace = productbean.getAmount();
 	
 	List qnaList = (List)request.getAttribute("qnaList");
 // 	int count = ((Integer)request.getAttribute("count")).intValue();

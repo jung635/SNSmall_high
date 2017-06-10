@@ -52,11 +52,8 @@ public class PayCompleteAction implements Action {
 		String option3_str = request.getParameter("option3_str");
 		String[] option3 = option3_str.split(",");
 		String method = request.getParameter("method");
-		String cart_str = request.getParameter("cart_str");
+		String cart_str = request.getParameter("num_input");
 		System.out.println(cart_str);
-		System.out.println(option1_str);
-		System.out.println(option2_str);
-		System.out.println(option3_str);
 		String[] cart_num = cart_str.split(",");
 		String state = "";
 		if (method.equals("card") || method.equals("withPoint"))

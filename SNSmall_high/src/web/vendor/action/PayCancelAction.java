@@ -59,22 +59,23 @@ public class PayCancelAction implements Action {
 				}
 				
 				long money = all_sns_sell+pb.getPay_price();
+				System.out.println(money);
 				if( sb.getRank().equals("premium")){
-					if(money<5000000){
-						ab.setContent("등급이 plus으로 내려가셨어요ㅠㅠ");
-						ab.setId(pb.getSns_id());
-						ab.setMove("RankDown.al?rank="+"basic");
-						adao.insertAlarm(ab);
-						pdao.rankUpdate(pb.getSns_id(), "basic");
-					}
-				}else{
 					if(money<10000000){
-						ab.setContent("등급이  plus로 내려가셨어요ㅠㅠ");
+						ab.setContent("등급이 plus으로 내려가셨어요ㅠㅠ");
 						ab.setId(pb.getSns_id());
 						ab.setMove("RankDown.al?rank="+"plus");
 						adao.insertAlarm(ab);
 						pdao.rankUpdate(pb.getSns_id(), "plus");
 					}else if(money<5000000){
+						ab.setContent("등급이 basic으로 내려가셨어요ㅠㅠ");
+						ab.setId(pb.getSns_id());
+						ab.setMove("RankDown.al?rank="+"basic");
+						adao.insertAlarm(ab);
+						pdao.rankUpdate(pb.getSns_id(), "basic");
+					}
+				}else if( sb.getRank().equals("plus")){
+					if(money<5000000){
 						ab.setContent("등급이 basic으로 내려가셨어요ㅠㅠ");
 						ab.setId(pb.getSns_id());
 						ab.setMove("RankDown.al?rank="+"basic");
@@ -106,7 +107,6 @@ public class PayCancelAction implements Action {
 			adao.insertAlarm(ab);
 		}
 		
-		System.out.println(ab.getContent());
 		out.println("<script>");
 		out.println("alert('취소가 완료되었습니다.');");
 		out.println("location.href='PayList.pa';");

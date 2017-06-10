@@ -36,8 +36,12 @@ $(window).load(function() { <%System.out.println("test");%>});
 function myFunction(){
 <%System.out.println("test");%>
 }
+function goProduct(){
+	alert('기존의 창에서 확인하실수 있습니다');
+	window.opener.location.href='ProductDetail.pr?product_num=<%=lb.getProduct_num()%>&live_id=<%=lb.getSns_id()%>';
+}
 </script>
-<button onclick="window.opener.location.href='ProductDetail.pr?product_num=<%=lb.getProduct_num()%>&live_id=<%=lb.getSns_id()%>'">물건 구경하러 가기</button>
+<button onclick="goProduct()">물건 구경하러 가기</button>
 <div id="title"><h1><%=lb.getTitle() %></h1></div>
 <div class="fb-video" data-href="<%=href %>" data-width="1000" data-show-text="false"><blockquote cite="<%=cite %>" class="fb-xfbml-parse-ignore"><a href="<%=cite %>"></a></blockquote></div>
 </body>

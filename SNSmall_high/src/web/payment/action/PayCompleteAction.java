@@ -53,6 +53,10 @@ public class PayCompleteAction implements Action {
 		String[] option3 = option3_str.split(",");
 		String method = request.getParameter("method");
 		String cart_str = request.getParameter("cart_str");
+		System.out.println(cart_str);
+		System.out.println(option1_str);
+		System.out.println(option2_str);
+		System.out.println(option3_str);
 		String[] cart_num = cart_str.split(",");
 		String state = "";
 		if (method.equals("card") || method.equals("withPoint"))
@@ -152,8 +156,9 @@ public class PayCompleteAction implements Action {
 							all_sns_sell += (long) prob_sns.getPrice() * (long) pb_sns.getAmount();
 						}
 					}
-
+					
 					long money = all_sns_sell + pb.getPay_price();
+					System.out.println(money);
 					AlarmBean ab = new AlarmBean();
 					AlarmDAO adao = new AlarmDAO();
 					if (sb.getRank().equals("basic")) {

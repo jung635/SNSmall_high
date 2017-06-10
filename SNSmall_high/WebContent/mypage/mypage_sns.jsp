@@ -107,14 +107,7 @@ array=s.split(",");
 						</div>
 						<div class="col-md-8 pass-conf-text"><%=sb.getContent() %></div>
 					</div>
-					
-					<div class="col-md-12 table-liner">
-						<div class="col-md-4 table-colorBg">
-						<span class="table-txt">소개글</span>
-						</div>
-						<div class="col-md-8 pass-conf-text"><%=sb.getContent() %></div>
-					</div>
-					
+													
 					<div class="col-md-12 table-liner">
 						<div class="col-md-4 table-colorBg">
 							<span class="table-txt">메인 이미지<br><br><br><br><br><br><br><br><br><br><br></span>

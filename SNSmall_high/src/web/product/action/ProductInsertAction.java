@@ -16,6 +16,8 @@ public class ProductInsertAction implements Action{
 		
 		String realPath = request.getRealPath("/vendor_img");
 		int maxSize = 5*1024*1024;
+		
+		
 		MultipartRequest multi = 
 				new MultipartRequest(request, realPath, maxSize, "utf-8", 
 						new DefaultFileRenamePolicy());
@@ -30,13 +32,13 @@ public class ProductInsertAction implements Action{
 		prb.setDetail_img(multi.getFilesystemName("detail_img"));
 		
 		if (multi.getParameter("opt_name1") != null && !multi.getParameter("opt_name1").equals("")){
-			opt1 = multi.getParameter("opt_name1")+","+multi.getParameter("option1");	
+			opt1 = multi.getParameter("opt_name1")+","+multi.getParameter("option1").replace(" ","");	
 		}
 		if (multi.getParameter("opt_name2") != null && !multi.getParameter("opt_name2").equals("")){
-			opt2 = multi.getParameter("opt_name2")+","+multi.getParameter("option2");
+			opt2 = multi.getParameter("opt_name2")+","+multi.getParameter("option2").replace(" ","");
 		}
 		if (multi.getParameter("opt_name3") != null && !multi.getParameter("opt_name3").equals("")){
-			opt3 = multi.getParameter("opt_name3")+","+multi.getParameter("option3");	
+			opt3 = multi.getParameter("opt_name3")+","+multi.getParameter("option3").replace(" ","");	
 		}
 		
 		prb.setOption1(opt1);

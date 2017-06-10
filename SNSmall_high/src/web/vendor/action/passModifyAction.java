@@ -18,10 +18,11 @@ public class passModifyAction implements Action{
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
 		request.setCharacterEncoding("utf-8");
-		String id = request.getParameter("id");
+		HttpSession session = request.getSession();
+		String id = (String) session.getAttribute("id");
 //		String pass = request.getParameter("pass");
 		// 비밀번호 암호화 코드 추가
-		String npass = request.getParameter("pass");
+		String npass = request.getParameter("newpass");
 		SecurityUtil su = new SecurityUtil();
 		String pass = su.encryptSHA256(npass);		
 		// 비밀번호 암호화 코드 추가
@@ -35,9 +36,6 @@ public class passModifyAction implements Action{
 		out.println("location.href='./vendorView.ve'");
 		out.println("</script>");
 		out.close();
-		
-		HttpSession session = request.getSession();
-		session.setAttribute("pass", pass);
 		
 		return null;
 	}

@@ -39,13 +39,13 @@ public class ProductUpdateAction implements Action {
 
 		// 옵션명, 옵션 합치기 {
 		if (multi.getParameter("opt_name1") != null && !multi.getParameter("opt_name1").equals("")) {
-			opt1 = multi.getParameter("opt_name1") + "," + multi.getParameter("option1");
+			opt1 = multi.getParameter("opt_name1") + "," + multi.getParameter("option1").replace(" ","");
 		}
 		if (multi.getParameter("opt_name2") != null && !multi.getParameter("opt_name2").equals("")) {
-			opt2 = multi.getParameter("opt_name2") + "," + multi.getParameter("option2");
+			opt2 = multi.getParameter("opt_name2") + "," + multi.getParameter("option2").replace(" ","");
 		}
 		if (multi.getParameter("opt_name3") != null && !multi.getParameter("opt_name3").equals("")) {
-			opt3 = multi.getParameter("opt_name3") + "," + multi.getParameter("option3");
+			opt3 = multi.getParameter("opt_name3") + "," + multi.getParameter("option3").replace(" ","");
 		} // } 옵션명, 옵션 합치기
 
 		prb.setOption1(opt1);

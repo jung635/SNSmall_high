@@ -170,11 +170,6 @@ public class ClientFrontController extends HttpServlet{
 				forward = action.execute(request, response);
 			}catch(Exception e){e.printStackTrace();}
 			
-		}else if (command.equals("/passModify.cl")) {
-			forward = new ActionForward();
-			forward.setPath("./member/client/passModify.jsp");
-			forward.setRedirect(false);
-			
 		}else if(command.equals("/passModifyAction.cl")){
 			action = new passModifyAction();
 			try{

@@ -18,7 +18,8 @@ public class vendorUpdateAction implements Action{
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
 		request.setCharacterEncoding("utf-8");
-		String id = request.getParameter("id");
+		HttpSession session = request.getSession();
+		String id = (String) session.getAttribute("id");
 		VendorDAO vdao = new VendorDAO();
 		response.setContentType("text/html; charset=UTF-8");
 		
@@ -32,7 +33,6 @@ public class vendorUpdateAction implements Action{
 		vb.setAddress(addre);
 		vdao.updateVendor(vb);
 		
-		HttpSession session = request.getSession();
 		session.setAttribute("name", vb.getPerson_name());
 		
 		ActionForward forward = new ActionForward();

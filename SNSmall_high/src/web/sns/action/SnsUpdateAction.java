@@ -1,6 +1,9 @@
 package web.sns.action;
 
 import java.io.File;
+import java.util.Arrays;
+import java.util.Date;
+import java.util.Enumeration;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -22,6 +25,8 @@ public class SnsUpdateAction implements Action {
 		MultipartRequest multi = new MultipartRequest(request, realPath, maxSize, "utf-8",
 				new DefaultFileRenamePolicy());
 
+		
+		
 		SnsBean sb = new SnsBean();
 		SnsDAO sdao = new SnsDAO();
 		// session
@@ -46,33 +51,57 @@ public class SnsUpdateAction implements Action {
 		sb.setEtc(multi.getParameter("etc_ac"));
 
 		session.setAttribute("name", multi.getParameter("name"));
+		int index = 0;
+		String realFileName ="";
+		File file = new File("");;
+		File file_new = new File("");
 		
 		if (multi.getFilesystemName("file") == null) {
 			sb.setProfile_img(multi.getParameter("one_file"));
 		} else {
-			System.out.println("profile: "+multi.getFilesystemName("file"));
-				
-				File file = new File(realPath + "\\" + multi.getParameter("one_file"));
-				file.delete();
-				sb.setProfile_img(multi.getFilesystemName("file"));
+			
+			index = multi.getFilesystemName("file").lastIndexOf(".");
+			realFileName = id + new Date().getTime() + multi.getFilesystemName("file").substring(index, multi.getFilesystemName("file").length());
+			file = new File(realPath + "\\" + multi.getFilesystemName("file"));
+			file_new = new File(realPath + "\\" + realFileName);
+			file.renameTo(file_new);
+			String profile=realFileName;
+			
+			file = new File(realPath + "\\" + multi.getParameter("one_file"));
+			file.delete();
+			sb.setProfile_img(profile);
 		}
 
 		if (multi.getFilesystemName("files") == null) {
 			sb.setDetail_img(multi.getParameter("orgin_file_names"));
 		} else {
-			
-			System.out.println("sub: "+multi.getFilesystemName("files"));
 			System.out.println("sub: "+multi.getParameter("file_names"));
+
+
+			
+			
+			String s_new = multi.getParameter("file_names");
+			String[] array_new = s_new.split(",");
+			for(int i=0; i<array_new.length; i++){
+				index = array_new[i].lastIndexOf(".");
+				realFileName = id + new Date().getTime() + array_new[i].substring(index, array_new[i].length());
+				file = new File(realPath + "\\" + array_new[i]);
+				file_new = new File(realPath + "\\" + realFileName);
+				file.renameTo(file_new);
+				array_new[i]=realFileName;
+			}
+			String realFileNames = Arrays.toString(array_new).substring(1, Arrays.toString(array_new).length()-1).replace(" ", "");
+			
 			String[] array;
 			String s = multi.getParameter("orgin_file_names");
 			array = s.split(",");
 
 			for (int i = 0; i < array.length; i++) {
-				File file = new File(realPath + "\\" + array[i]);
+				file = new File(realPath + "\\" + array[i]);
 				file.delete();
 			}
 			
-			sb.setDetail_img(multi.getParameter("file_names"));
+			sb.setDetail_img(realFileNames);
 		}
 
 		sdao.SnsUpdate(sb, id);

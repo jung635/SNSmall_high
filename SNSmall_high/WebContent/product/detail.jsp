@@ -269,7 +269,6 @@
 		sns_id = (String)request.getParameter("live_id");
 	}
 	if(sns_id == null){sns_id = "";}
-	
 	String id = (String)session.getAttribute("id");
 	if(id==null){response.sendRedirect("./login.cl?returnUrl="+returnUrl+"&product_num="+productbean.getProduct_num()+"&sns_id="+sns_id);}
 	

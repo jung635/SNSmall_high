@@ -84,15 +84,15 @@ public class PayCancelAction implements Action {
 					}
 				}
 				if(sb.getRank().equals("basic")){
-					sns_profit = (int)(pb.getPay_price()*0.05);
+					sns_profit = (int)(pb.getPay_price()*0.05)/10*10;
 				}else if(sb.getRank().equals("plus")){
-					sns_profit = (int)(pb.getPay_price()*0.1);
+					sns_profit = (int)(pb.getPay_price()*0.1)/10*10;
 				}else{
-					sns_profit = (int)(pb.getPay_price()*0.2);
+					sns_profit = (int)(pb.getPay_price()*0.2)/10*10;
 				}
 			}
-			add_point = (int)(pb.getPay_price()*0.01);
-			company_profit = (int)(pb.getPay_price()*0.1);
+			add_point = (int)(pb.getPay_price()*0.01)/10*10;
+			company_profit = (int)(pb.getPay_price()*0.1)/10*10;
 			vendor_profit = pb.getPay_price()-company_profit-sns_profit;
 	
 			pdao.subSnsPay(sns_profit, pb.getAmount(), pb.getSns_id());

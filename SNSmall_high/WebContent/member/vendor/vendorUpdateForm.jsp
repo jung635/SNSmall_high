@@ -62,7 +62,7 @@ function sample6_execDaumPostcode() {
             document.getElementById('address').value = fullAddr;
 
             // 커서를 상세주소 필드로 이동한다.
-            document.getElementById('phone').focus();
+            document.getElementById('address2').focus();
         }
     }).open();
 }

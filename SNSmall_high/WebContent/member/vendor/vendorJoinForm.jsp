@@ -233,7 +233,7 @@ var pass_reg =/^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[~,!,@,#,$,*,(,),=,+,_,.,|]).{8,20
              document.getElementById('address').value = fullAddr;
 
              // 커서를 상세주소 필드로 이동한다.
-             document.getElementById('phone').focus();
+             document.getElementById('address2').focus();
          }
      }).open();
  }

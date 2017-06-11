@@ -29,6 +29,30 @@
 	});
 	
 	function submitCheck() {
+		if (document.fr.main_img.value == "") {
+			alert("메인이미지를 선택해 주세요!");
+			document.fr.main_img.focus();
+			return false;
+		}
+		if (document.fr.detail_img.value == "") {
+			alert("상세이미지를 선택해 주세요!");
+			document.fr.detail_img.focus();
+			return false;
+		}
+		if (document.fr.opt_name1.value == ""
+			&& document.fr.opt_name2.value == ""
+			&& document.fr.opt_name3.value == "") {
+		alert("옵션을 하나이상은 입력해야합니다.");
+		document.fr.opt_name1.focus();
+		return false;
+		}
+		if (document.fr.option1.value == ""
+			&& document.fr.option2.value == ""
+			&& document.fr.option3.value == "") {
+		alert("옵션항목을 입력해 주세요.");
+		document.fr.option1.focus();
+		return false;
+		}
 		if (document.fr.price.value == "") {
 			alert("판매가를 입력해 주세요!");
 			document.fr.price.focus();
@@ -42,6 +66,7 @@
 				return false;
 			}
 		}
+		
 		if (document.fr.amount.value == "") {
 			alert("수량을 입력해 주세요!");
 			document.fr.amount.focus();
@@ -55,13 +80,7 @@
 				return false;
 			}
 		}
-		if (document.fr.opt_name1.value == ""
-				&& document.fr.opt_name2.value == ""
-				&& document.fr.opt_name3.value == "") {
-			alert("옵션을 하나이상은 입력해야합니다.");
-			document.fr.amount.focus();
-			return false;
-		}
+		
 
 	}
 

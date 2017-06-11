@@ -85,11 +85,10 @@ public class ProductDAO {
 					pstmt.setInt(1, startRow-1);
 					pstmt.setInt(2, pageSize);
 				}else{
-					sql = "select * from product order by ? desc limit ?,?";
+					sql = "select * from product order by date desc limit ?,?";
 					pstmt = con.prepareStatement(sql);
-					pstmt.setString(1, order);
-					pstmt.setInt(2, startRow-1);
-					pstmt.setInt(3, pageSize);
+					pstmt.setInt(1, startRow-1);
+					pstmt.setInt(2, pageSize);
 				}
 				
 			}else if(order.equals("price")){
@@ -111,12 +110,11 @@ public class ProductDAO {
 				pstmt.setInt(2, startRow-1);
 				pstmt.setInt(3, pageSize);
 			}else{
-				sql = "select * from product where category=? order by ? desc limit ?,?";
+				sql = "select * from product where category=? order by date desc limit ?,?";
 				pstmt = con.prepareStatement(sql);
 				pstmt.setString(1, category);
-				pstmt.setString(2, order);
-				pstmt.setInt(3, startRow-1);
-				pstmt.setInt(4, pageSize);
+				pstmt.setInt(2, startRow-1);
+				pstmt.setInt(3, pageSize);
 			}
 			rs = pstmt.executeQuery();
 			

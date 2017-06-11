@@ -7,7 +7,8 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>무통장 입금</title>
+<link href="./css/pay.css" rel="stylesheet">
 </head>
 <body>
 <%
@@ -57,11 +58,15 @@ SimpleDateFormat sdf = new SimpleDateFormat("yyyy년 MM월 dd일 hh시mm분 까�
 		<input type="hidden" name="method" value='<%=method %>'>
 		<input type="hidden" name="address" value='<%=address %>'>
 		<input type="hidden" name="cart_str" value='<%=cart_str %>'>
-<table>
+<hr>
+　무통장 입금
+<hr>
+<br>
+<table class="depo-table">
 	<tr>
-		<td>입금 은행</td>
+		<th>입금 은행</th>
   		<td>
-  		<select name="selectbox">
+  		<select name="selectbox" class="back">
 			<option value="kb">국민은행</option>  
 			<option value="nh">농협은행</option>  
 			<option value="bs">부산은행</option>  
@@ -69,17 +74,21 @@ SimpleDateFormat sdf = new SimpleDateFormat("yyyy년 MM월 dd일 hh시mm분 까�
   		</td>
 	</tr>
  	<tr>
- 		<td>입금 기한</td><td><%=sdf.format(tomorrow) %></td>
+ 		<th>입금 기한</th><td><%=sdf.format(tomorrow) %></td>
  	<tr>
 </table>
 
-<div>
-	 무통장입금 시 유의사항<br>
-	 무통장입금 결제 시 부분취소가 불가하며 전체취소 후 다시 주문하시기 바랍니다.<br>
- 	은행 이체 수수료가 발생될 수 있습니다. 입금시 수수료를 확인해주세요.<br>
+<div class="depo-att">
+	 무통장입금 시 유의사항
+	 <ul>
+		<li>무통장입금 결제 시 부분취소가 불가하며 전체취소 후 다시 주문하시기 바랍니다.</li>
+	 	<li>은행 이체 수수료가 발생될 수 있습니다. 입금시 수수료를 확인해주세요.</li>
+ 	</ul>
 </div>
-<input type="submit" value="확인">
-<button onclick="window.close()">취소</button>
+<div style="text-align: center;">
+<input type="submit" class="dep-btn" value="확인" style="margin-right: 10px;">
+<button class="dep-btn" onclick="window.close()">취소</button>
+</div>
 </form>
 </body>
 </html>

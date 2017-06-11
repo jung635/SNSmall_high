@@ -28,15 +28,12 @@ var token;
   fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));
 
-$(window).load(function() { <%System.out.println("test");%>});
-/* window.onunload = function(e) {
-  var dialogText = 'Dialog text here';
-  e.returnValue = dialogText;
-  return dialogText;
-  myFunction();
-}; */
-function myFunction(){
-<%System.out.println("test");%>
+function goVodProduct(){
+	alert('기존의 창을 확인해주세요');
+	window.opener.location.href='ProductDetail.pr?product_num=<%=lb.getProduct_num()%>&live_id=<%=lb.getSns_id()%>';
+}
+function goLiveList(){
+	location.href='VodList.li';
 }
 </script>
 
@@ -48,8 +45,11 @@ function myFunction(){
 <i class="fa fa-angle-double-right" aria-hidden="true"></i>
 <%=lb.getTitle()%>
 </span>
-<button class="vod-go-btn" onclick="window.opener.location.href='ProductDetail.pr?product_num=<%=lb.getProduct_num()%>&live_id=<%=lb.getSns_id()%>'">
+<button class="vod-go-btn" onclick="goVodProduct()">
 <i class="fa fa-shopping-cart" aria-hidden="true"></i>　상품 구경하러 가기
+</button>
+<button class="vod-go-btn" onclick="goLiveList()">
+<i class="fa fa-bars" aria-hidden="true"></i>　VOD 리스트 보기
 </button>
 </span>
 <hr style="margin: 30px 20px 50px 10px;">

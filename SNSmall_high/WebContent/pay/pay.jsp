@@ -152,14 +152,14 @@ function card(){
 //무통장 입금
 function deposit(){
 	window.open("about:blank", "deposit_view" , "width=500,height=500");
-	document.fr.action="Deposit.pa";
+	document.fr.action="./Deposit.pa";
 	document.fr.target="deposit_view";
 	document.fr.method="post";
 	document.fr.submit();
 }
 
 function withPoint(){
-	document.fr.action="PayCompleteAction.pa";
+	document.fr.action="./PayCompleteAction.pa";
 	document.fr.method="post";
 	document.fr.submit();
 }

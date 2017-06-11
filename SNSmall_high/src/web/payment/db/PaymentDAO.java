@@ -24,7 +24,7 @@ public class PaymentDAO {
 	private Connection getConnection() throws Exception{
 
 		Context init = new InitialContext();
-		DataSource ds = (DataSource)init.lookup("java:comp/env/jdbc/mysqlDB");
+		DataSource ds = (DataSource) init.lookup("java:comp/env/jdbc/mysqlDB");
 		con = ds.getConnection();
 		return con;
 	}	//getConnection()

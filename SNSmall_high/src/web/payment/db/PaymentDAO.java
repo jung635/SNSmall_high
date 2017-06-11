@@ -535,7 +535,7 @@ public class PaymentDAO {
 			} else if (method.equals("delivery")) {
 				sql.append("state = 'delivery'");
 			} else if (method.equals("cancelHold")) {
-				sql.append("state = 'cancelHold' or state = 'cancel' or state = 'w_cancelHold'");
+				sql.append("(state = 'cancelHold' or state = 'cancel' or state = 'w_cancelHold')");
 			} else if (method.equals("waiting")) {
 				sql.append("state = 'waiting'");
 			}
@@ -585,7 +585,7 @@ public class PaymentDAO {
 			} else if (method.equals("delivery")) {
 				sql.append(" and state = 'delivery'");
 			} else if (method.equals("cancelHold")) {
-				sql.append(" and state = 'cancelHold' or state = 'cancel' or state = 'w_cancelHold'");
+				sql.append(" and (state = 'cancelHold' or state = 'cancel' or state = 'w_cancelHold')");
 			} else if (method.equals("waiting")) {
 				sql.append(" and state = 'waiting'");
 			}

@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -84,7 +85,7 @@ public class LiveDAO {
 	}
 	
 	public Map<LiveBean, ProductBean> getLive() {
-		Map<LiveBean, ProductBean> map = new HashMap<>();
+		Map<LiveBean, ProductBean> map = new LinkedHashMap<>();
 		LiveBean lb = null;
 		ProductBean prob = null;
 		ProductDAO prodao = new ProductDAO();
@@ -120,7 +121,7 @@ public class LiveDAO {
 	}
 	
 	public Map<LiveBean, ProductBean> getVod() {
-		Map<LiveBean, ProductBean> map = new HashMap<>();
+		Map<LiveBean, ProductBean> map = new LinkedHashMap<>();
 		LiveBean lb = null;
 		ProductBean prob = null;
 		ProductDAO prodao = new ProductDAO();
@@ -220,7 +221,7 @@ public class LiveDAO {
 	}
 	
 	public Map<LiveBean, ProductBean> getSnsVod(String sns_id) {
-		Map<LiveBean, ProductBean> map = new HashMap<>();
+		Map<LiveBean, ProductBean> map = new LinkedHashMap<>();
 		LiveBean lb = null;
 		ProductBean prob = null;
 		ProductDAO prodao = new ProductDAO();
@@ -243,9 +244,6 @@ public class LiveDAO {
 				lb.setState(rs.getString("state"));
 				lb.setView(rs.getInt("view"));
 				prob = prodao.getProduct(lb.getProduct_num());
-				
-				
-				map.put(lb, prob);
 			}
 
 		} catch(Exception e){e.printStackTrace();}

@@ -17,19 +17,6 @@ String id = (String)session.getAttribute("id");
 LiveBean lb = (LiveBean)request.getAttribute("lb");
 int product_num = lb.getProduct_num();
 String video_id = lb.getVideo_id();
-/* String video_id = null;
-LiveDAO ldao = new LiveDAO();
-int product_num = 0;
-if(request.getAttribute("lb")==null){
-	video_id = (String)request.getAttribute("video_id");
-	lb = ldao.getLive(video_id);
-	product_num = lb.getProduct_num();
-}else{
-	lb = (LiveBean)request.getAttribute("lb");
-	product_num = lb.getProduct_num();
-	video_id = lb.getVideo_id();
-} */
-
 %>
 <script>
 var token;
@@ -84,6 +71,8 @@ function deleteLive(){
 		      if (response && !response.error) {
 		    	  console.log(response.permalink_url);
 		        permalink_url = response.permalink_url;
+		      }else{
+		    	  location.href="LiveDelete.li?video_id=<%=lb.getVideo_id()%>&product_num=<%=lb.getProduct_num()%>&url=err";
 		      }
 		    },{access_token: '<%=lb.getToken()%>'});
 		
@@ -93,6 +82,7 @@ function deleteLive(){
 					  if (response && !response.error) {
 					  }
 				  },{access_token: '<%=lb.getToken()%>'});
+
  }
 
 function press(){
@@ -116,7 +106,8 @@ firebase.database().ref('<%=lb.getVideo_id()%>').limitToLast(1).on('child_added'
 	document.getElementById("messageTextArea").value += data.val().message + "\n";
 });
 
-   
+chatBox = document.getElementById('messageTextArea');
+if(chatBox.scrollHeight>0) chatBox.scrollTop = chatBox.scrollHeight;
 </script>
 <button id="getLiveinfo" onclick="getLive()">내 방송화면 보기</button>
 <button id="getLiveinfo" onclick="deleteLive()">방송 그만하기</button>

@@ -36,8 +36,10 @@ function check(){
 		history.back();
 	}else if('<%=cancel_num.size()%>'<'<%=pb_list.size()%>'){
 		alert('이미 취소신청을 하거나 취소된 상품은 취소신청이 불가능 합니다.');
-	}
-	if('<%=usedPoint%>'>0){
+		if('<%=usedPoint%>'>0){
+			alert('포인트를 사용한 배송은 해당 상품 퍼센트에 해당하는 포인트만 돌려받을 수 있습니다.');
+		}
+	}else if('<%=usedPoint%>'>0){
 		alert('포인트를 사용한 배송은 해당 상품 퍼센트에 해당하는 포인트만 돌려받을 수 있습니다.');
 	}
 }

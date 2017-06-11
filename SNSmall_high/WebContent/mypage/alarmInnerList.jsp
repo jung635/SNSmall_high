@@ -15,7 +15,7 @@ SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm");
 			String color = "";
 			int limit = (int)request.getAttribute("limit");
 			%>
-			<%if(list == null){
+			<%if(list.size() == 0){
 				%>
 				메세지가 없습니다.
 				<%}else{

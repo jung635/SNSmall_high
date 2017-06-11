@@ -1,6 +1,9 @@
 package web.sns.action;
 
+import java.io.File;
 import java.io.PrintWriter;
+import java.util.Arrays;
+import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -46,14 +49,40 @@ public class SnsJoinAction implements Action {
 			out.close();
 			return null;
 		}
-
+		
+		int index = 0;
+		String realFileName ="";
+		File file = new File("");
+		File file_new = new File("");
+		index = multi.getFilesystemName("file").lastIndexOf(".");
+		realFileName = sns_id + new Date().getTime() + multi.getFilesystemName("file").substring(index, multi.getFilesystemName("file").length());
+		file = new File(realPate + "/" + multi.getFilesystemName("file"));
+		file_new = new File(realPate + "/" + realFileName);
+		file.renameTo(file_new);
+		String profile=realFileName;
+		
+		//sns스타 서브 사진 등록
+		String s_new = multi.getParameter("file_names");
+		String[] array_new = s_new.split(",");
+		for(int i=0; i<array_new.length; i++){
+			index = array_new[i].lastIndexOf(".");
+			realFileName = sns_id + new Date().getTime() + array_new[i].substring(index, array_new[i].length());
+			file = new File(realPate + "/" + array_new[i]);
+			file_new = new File(realPate + "/" + realFileName);
+			file.renameTo(file_new);
+			array_new[i]=realFileName;
+		}
+		String realFileNames = Arrays.toString(array_new).substring(1, Arrays.toString(array_new).length()-1).replace(" ", "");
+		
+		
+		
 		SnsBean sb = new SnsBean();
 
 		sb.setSns_id(multi.getParameter("sns_id"));
 		sb.setPass(pass);
 		sb.setName(multi.getParameter("name"));
-		sb.setProfile_img(multi.getFilesystemName("file"));
-		sb.setDetail_img(multi.getParameter("file_names"));
+		sb.setProfile_img(profile);
+		sb.setDetail_img(realFileNames);
 		sb.setCategory(multi.getParameter("myselect"));
 		sb.setContent(multi.getParameter("content"));
 		sb.setInstagram(multi.getParameter("instagram_ac"));

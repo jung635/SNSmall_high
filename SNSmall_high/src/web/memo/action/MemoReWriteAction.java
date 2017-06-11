@@ -1,5 +1,7 @@
 package web.memo.action;
 
+import java.io.PrintWriter;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -44,6 +46,14 @@ public class MemoReWriteAction implements Action{
 		
 		AlarmDAO adao = new AlarmDAO();
 		adao.insertAlarm(ab);
+		
+		response.setContentType("text/html; charset=UTF-8");
+		PrintWriter out = response.getWriter();
+		out.println("<script>");
+		out.println("alert('쪽지를 보냈습니다.');"); //세미콜론이 문장의 끝과 엔터기 역활을 함.
+		out.println("window.close();");
+		out.println("</script>");
+		out.close();		
 		
 		//이동 ./MemoList.me
 		ActionForward forward = new ActionForward();

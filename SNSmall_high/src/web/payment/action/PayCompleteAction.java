@@ -53,7 +53,18 @@ public class PayCompleteAction implements Action {
 		String[] option3 = option3_str.split(",");
 		String method = request.getParameter("method");
 		String cart_str = request.getParameter("cart_str");
-		String[] cart_num = cart_str.split(",");
+		String[] cart_num = {};
+		System.out.println(cart_str);
+		if(cart_str != null){
+			cart_num = cart_str.split(",");
+			// cart 제외
+			CartDAO cdao = new CartDAO();
+			for(int i=0; i<cart_num.length; i++){
+				if (!cart_num[i].equals("")) {
+					cdao.cartDelete(id, Integer.parseInt(cart_num[i]));
+				}
+			}
+		}
 		String state = "";
 		if (method.equals("card") || method.equals("withPoint"))
 			state = "payDone";
@@ -126,12 +137,7 @@ public class PayCompleteAction implements Action {
 			list_pb.add(pb);
 			// 사용한 포인트 빼기
 			pdao.subPoint(point_each, id);
-			// cart 제외
-			CartDAO cdao = new CartDAO();
 
-			if (!cart_num[i].equals("")) {
-				cdao.cartDelete(id, Integer.parseInt(cart_num[i]));
-			}
 
 			// amount 빼기
 			if (method.equals("deposit")) {
@@ -152,8 +158,9 @@ public class PayCompleteAction implements Action {
 							all_sns_sell += (long) prob_sns.getPrice() * (long) pb_sns.getAmount();
 						}
 					}
-
+					
 					long money = all_sns_sell + pb.getPay_price();
+					System.out.println(money);
 					AlarmBean ab = new AlarmBean();
 					AlarmDAO adao = new AlarmDAO();
 					if (sb.getRank().equals("basic")) {
@@ -163,8 +170,7 @@ public class PayCompleteAction implements Action {
 							ab.setMove("RankUp.al?rank=" + "premium");
 							adao.insertAlarm(ab);
 							pdao.rankUpdate(sns_id[i], "premium");
-						} else if (money >= 30000) {// 테스트용
-							// }else if(money>=500000){
+						 }else if(money>=500000){
 							ab.setContent("등급이 plsu로 상승하셨습니다!");
 							ab.setId(sns_id[i]);
 							ab.setMove("RankUp.al?rank=" + "plus");
@@ -181,17 +187,18 @@ public class PayCompleteAction implements Action {
 						}
 					}
 					if (sb.getRank().equals("basic")) {
-						sns_profit = (int) (price_result * 0.05);
+						sns_profit = (int) (price_result * 0.05)/10*10;
 					} else if (sb.getRank().equals("plus")) {
-						sns_profit = (int) (price_result * 0.1);
+						sns_profit = (int) (price_result * 0.1)/10*10;
 					} else {
-						sns_profit = (int) (price_result * 0.2);
+						sns_profit = (int) (price_result * 0.2)/10*10;
 					}
+					
 
 				}
 
-				add_point = (int) (price_result * 0.01);
-				company_profit = (int) (price_result * 0.1);
+				add_point = (int) (price_result * 0.01)/10*10;
+				company_profit = (int) (price_result * 0.1)/10*10;
 				vendor_profit = ((prob.getPrice() * pb.getAmount()) - company_profit - sns_profit);
 				// sns profit 주기
 

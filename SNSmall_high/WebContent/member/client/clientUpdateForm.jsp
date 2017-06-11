@@ -20,7 +20,10 @@
 	<link href="./css/member.css" rel="stylesheet"> 
 <title>Insert title here</title>
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+<script src="./js/jquery.js"></script>
 <script type="text/javascript">
+var pass_reg = /^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[~,!,@,#,$,*,(,),=,+,_,.,|]).{10,20}$/;
+
 //우편번호 검색
 function sample6_execDaumPostcode() {
     new daum.Postcode({
@@ -59,10 +62,66 @@ function sample6_execDaumPostcode() {
             document.getElementById('address').value = fullAddr;
 
             // 커서를 상세주소 필드로 이동한다.
-            document.getElementById('phone').focus();
+            document.getElementById('address2').focus();
         }
     }).open();
 }
+
+	//비밀번호변경
+	$(document).ready(function() {
+		$('#passChange').click(function() {
+			$('#passChWall').toggle('fast',function(){
+			});
+			$(this).next().toggle('fast', function() {
+			});
+		});
+	});
+
+	function passCheckSubmit(){
+	//////비밀번호 유형 체크
+		if (document.pr.newpass.value == "") {
+			alert("비밀번호를 입력해주세요");
+			document.pr.newpass.focus();
+			return false;
+		} else if (!pass_reg.test(document.pr.newpass.value)) {
+			alert("비밀번호는 영문, 숫자, 특수문자 조합 10-20자리로 구성해주세요.");
+			document.pr.newpass.focus();
+			return false;
+		}
+		//////비밀번호 일치 체크
+		if (document.pr.newpass2.value == "") {
+			alert("비밀번호를 다시한번 입력해주세요");
+			document.pr.newpass2.focus();
+			return false;
+		}else if(document.pr.newpass.value != document.pr.newpass2.value) {
+			alert("비밀번호가 일치하지 않습니다");
+			document.pr.newpass2.focus();
+			return false;
+		}
+	}
+
+	//비밀번호 일치 체크 디스플레이
+	function passCheck() {
+		if (document.pr.newpass.value == document.pr.newpass2.value) {
+			document.getElementById("passdbCheckDisplay").innerHTML = "비밀번호가 일치합니다";
+		} else {
+			document.getElementById("passdbCheckDisplay").innerHTML = "비밀번호가 일치하지 않습니다.";
+		}
+		
+		
+	}
+
+	//비밀번호 유형 체크 디스플레이
+	function passFormCheck() {
+		var pwd = document.pr.newpass.value;
+
+		if (!pass_reg.test(pwd)) {
+			document.getElementById("passCheckDisplay").innerHTML = "영문,숫자,특수문자 조합 10-20자리로 구성해주세요.";
+		} else {
+			document.getElementById("passCheckDisplay").innerHTML = "OK!";
+
+		}
+	}
 </script>
 </head>
 <body>
@@ -93,8 +152,7 @@ function sample6_execDaumPostcode() {
             <div class="col-md-9">
                <div style="margin: 50px 0 50px 0">
 					<div class="top-subject">내 정보 수정</div>
-						<form action="./clientUpdateAction.cl" id="client" method="post"
-							name="fr">
+						
 
 							<div class="col-md-12 table-liner-top">
 								<div class="col-md-4 table-colorBg-top">
@@ -106,24 +164,39 @@ function sample6_execDaumPostcode() {
 
 							<div class="col-md-12 table-liner">
 								<div class="col-md-4 table-colorBg">
-									<span class="table-txt">이름</span>
+									<span class="table-txt">비밀번호</span><span id="passChWall"
+										style="display: none;"><br><br><br><br><br><br><br><br><br>
+									<br></span>
 								</div>
-								<div class="col-md-4 pass-conf-txt">
-									<input type="text" name="name value="<%=clb.getName()%>" class="form-control">
-								</div>
-								<div class="col-md-4"></div>
-							</div>
-					
-							<div class="col-md-12 table-liner">
-								<div class="col-md-4 table-colorBg">
-									<span class="table-txt">비밀번호</span>
-								</div>
-								<div class="col-md-4 pass-conf-txt">
-									<input type="button" onclick="location.href='./passModify.cl'" value="변경하기" class="dup4">
+								<div class="col-md-4 pass-conf-text">
+									<input type="button" id="passChange" value="비밀번호 변경" class="dup4" style="margin-top: 0px;">
+									<div style="display: none;">
+									<form action="./passModifyAction.cl" name="pr" onsubmit="return passCheckSubmit()">
+											new password &nbsp;&nbsp; <input type="password"
+												name="newpass" id="newpass" onkeyup="passFormCheck()"><br>
+											<span id="passCheckDisplay"></span><br> retype password<input
+												type="password" id="newpass2" name="newpass2"
+												onkeyup="passCheck()"><br> <span
+												id="passdbCheckDisplay"></span><br> <input
+												type="submit" value="변경" class="dup4">
+										</form>
+									</div>
 								</div>
 								<div class="col-md-4"></div>
 							</div>
 
+						<form action="./clientUpdateAction.cl" id="client" method="post"
+								name="fr">
+								
+							<div class="col-md-12 table-liner">
+								<div class="col-md-4 table-colorBg">
+									<span class="table-txt">이름</span>
+								</div>
+								<div class="col-md-4 pass-conf-txt">
+									<input type="text" name="name" value="<%=clb.getName()%>" class="form-control">
+								</div>
+								<div class="col-md-4"></div>
+							</div>
 							<div class="col-md-12 table-liner">
 								<div class="col-md-4 table-colorBg">
 									<span class="table-txt">주소</span>

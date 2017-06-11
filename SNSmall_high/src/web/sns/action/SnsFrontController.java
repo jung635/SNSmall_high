@@ -87,9 +87,9 @@ public class SnsFrontController extends HttpServlet{
 	 		
 		}else if(command.equals("/SnsSale.sn")){
 			action = new SnsSale();
-			try {
-				forward = action.execute(request, response);
-			} catch (Exception e) {e.printStackTrace();}
+			try{
+	 			forward=action.execute(request, response);
+	 		}catch(Exception e){e.printStackTrace();}
 			
 		}else if(command.equals("/SearchSnsList.sn")){
 			action = new SearchSnsListAction();

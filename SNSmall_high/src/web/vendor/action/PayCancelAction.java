@@ -59,18 +59,10 @@ public class PayCancelAction implements Action {
 				}
 				
 				long money = all_sns_sell+pb.getPay_price();
-				if( sb.getRank().equals("plus")){
-					if(money<277360){//테스트
-					//if(money<5000000){
-						ab.setContent("등급이 basic으로 내려가셨어요ㅠㅠ");
-						ab.setId(pb.getSns_id());
-						ab.setMove("RankDown.al?rank="+"basic");
-						adao.insertAlarm(ab);
-						pdao.rankUpdate(pb.getSns_id(), "basic");
-					}
-				}else{
+				System.out.println(money);
+				if( sb.getRank().equals("premium")){
 					if(money<10000000){
-						ab.setContent("등급이  plus로 내려가셨어요ㅠㅠ");
+						ab.setContent("등급이 plus으로 내려가셨어요ㅠㅠ");
 						ab.setId(pb.getSns_id());
 						ab.setMove("RankDown.al?rank="+"plus");
 						adao.insertAlarm(ab);
@@ -82,16 +74,24 @@ public class PayCancelAction implements Action {
 						adao.insertAlarm(ab);
 						pdao.rankUpdate(pb.getSns_id(), "basic");
 					}
+				}else if( sb.getRank().equals("plus")){
+					if(money<5000000){
+						ab.setContent("등급이 basic으로 내려가셨어요ㅠㅠ");
+						ab.setId(pb.getSns_id());
+						ab.setMove("RankDown.al?rank="+"basic");
+						adao.insertAlarm(ab);
+						pdao.rankUpdate(pb.getSns_id(), "basic");
+					}
 				}
 				if(sb.getRank().equals("basic")){
-					sns_profit = (int)(pb.getPay_price()*0.05)/100*100;
+					sns_profit = (int)(pb.getPay_price()*0.05)/10*10;
 				}else if(sb.getRank().equals("plus")){
 					sns_profit = (int)(pb.getPay_price()*0.1)/10*10;
 				}else{
-					sns_profit = (int)(pb.getPay_price()*0.2/10*10);
+					sns_profit = (int)(pb.getPay_price()*0.2)/10*10;
 				}
 			}
-			add_point = (int)(pb.getPay_price()*0.01)/100*100;
+			add_point = (int)(pb.getPay_price()*0.01)/10*10;
 			company_profit = (int)(pb.getPay_price()*0.1)/10*10;
 			vendor_profit = pb.getPay_price()-company_profit-sns_profit;
 	

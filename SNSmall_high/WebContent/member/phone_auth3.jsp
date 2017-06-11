@@ -26,7 +26,7 @@ function submitCheck(){
 </head>
 <body>
 <%
-// 	int authNum = (int)request.getAttribute("authNum");
+	String authNum = (String)request.getParameter("authNum");
 	String email = (String)request.getParameter("email");
 	String id = (String)request.getParameter("id");
 	String name = (String)request.getParameter("name");
@@ -41,7 +41,7 @@ function submitCheck(){
 </tr>
 <tr> 
 <td>인증번호</td>
-<%-- <input type="hidden" name="authNum1" value="<%=authNum%>"> --%>
+<input type="hidden" name="authNum1" value="<%=authNum%>">
 <input type="hidden" name="email" value="<%=email%>">
 <input type="hidden" name="id" value="<%=id%>">
 <input type="hidden" name="name" value="<%=name%>">

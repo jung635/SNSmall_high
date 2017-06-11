@@ -61,13 +61,18 @@ $(document).ready(function(){
 					
 					option1+=$('input[name=option1_input]').eq(i).val()+",";
 					$('input[name=option1]').val(option1);	
-
+					if($('input[name=option2_input]').eq(null)){
+						option2+=" ,";
+					}else{
 					option2+=$('input[name=option2_input]').eq(i).val()+",";
 					$('input[name=option2]').val(option2);
-					
+					}
+					if($('input[name=option3_input]').eq(null)){
+						option3+=" ,";
+					}else{
 					option3+=$('input[name=option3_input]').eq(i).val()+",";
 					$('input[name=option3]').val(option3);	
-					
+					}
 					num+=$('input[name=num_input]').eq(i).val()+",";
 					$('input[name=cart_num]').val(num);	
 					

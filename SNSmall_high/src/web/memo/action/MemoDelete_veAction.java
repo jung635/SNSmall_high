@@ -7,14 +7,12 @@ import javax.servlet.http.HttpServletResponse;
 
 import web.memo.db.MemoDAO;
 
-
-public class MemoDeleteAction implements Action{
+public class MemoDelete_veAction implements Action{
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		
-		//System.out.println("Memo Delete execute()");
-		
+		//System.out.println("Memo Delete_ve execute()");
+
 		//한글처리
 		request.setCharacterEncoding("utf-8");
 
@@ -39,7 +37,7 @@ public class MemoDeleteAction implements Action{
 			PrintWriter out = response.getWriter();
 			out.println("<script>");
 			out.println("alert('삭제성공');"); //세미콜론이 문장의 끝과 엔터기 역활을 함.
-			out.println("location.href='./MemoList.me?pageNum="+pageNum+"';");
+			out.println("location.href='./MemoList_ve.me?pageNum="+pageNum+"';");
 			out.println("</script>");
 			out.close();
 		return null;

@@ -55,7 +55,7 @@ function check(){
 	
 	if(confirm("답글를 보내시겠습니까?")){
 		
-		window.close();
+		/* window.close(); */
 	}else{
 		document.fr.reset();
 		return false;
@@ -72,14 +72,10 @@ String id = (String)session.getAttribute("id");
 
 %>
 <%
-//  num   re_ref   re_lev   re_seq 파라미터 가져오기
 String to_id = request.getParameter("to_id");
 String from_id = request.getParameter("from_id");
-//int num = Integer.parseInt(request.getParameter("num"));
 String num = request.getParameter("num");
-//int re_ref = Integer.parseInt(request.getParameter("re_ref"));
-//int re_lev = Integer.parseInt(request.getParameter("re_lev"));
-//int re_seq = Integer.parseInt(request.getParameter("re_seq"));
+
 
 %>
 

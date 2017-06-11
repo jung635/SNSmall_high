@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <div class="list-group">
 	<div id="showbtn">
-		<a href="./vendorView.ve" class="list-group-item showbtn">내 정보</a>
+		<a href="#" class="list-group-item showbtn">내 정보</a>
 		<div id="show_content">
 			<a href="./vendorView.ve"  class="list-group-item">내 정보 확인</a>
 			<a href="./passCheck.ve"  class="list-group-item">내 정보 수정</a>
@@ -13,12 +13,12 @@
 	<a href="PayList.pa" class="list-group-item">판매목록</a>
 	<a href="./ProductInsert.pr" class="list-group-item">상품등록</a>
 	<a href="AlarmListView.al" class="list-group-item">메시지 리스트</a>
-	<div id="showbtn">		
-		<a href="./MemoListAll.me" class="list-group-item">쪽지함</a>
-		<div id="show_content">
-			<a href="MemoListAll.me"  class="list-group-item">전체 쪽지함</a>
-			<a href="MemoListGet.me"  class="list-group-item">받은 쪽지함</a>
-			<a href="MemoList.me"  class="list-group-item">보낸 쪽지함</a>
+	
+	<div id="showbtn1">		
+		<a href="MemoListGet_ve.me" class="list-group-item showbtn">쪽지함</a>
+		<div id="show1_content">
+			<a href="MemoListGet_ve.me"  class="list-group-item">받은 쪽지함</a>
+			<a href="MemoList_ve.me"  class="list-group-item">보낸 쪽지함</a>
 		</div>
 	</div>
 	

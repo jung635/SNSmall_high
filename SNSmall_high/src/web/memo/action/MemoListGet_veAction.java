@@ -8,20 +8,20 @@ import javax.servlet.http.HttpSession;
 
 import web.memo.db.MemoDAO;
 
-public class MemoListGetAction implements Action{
+public class MemoListGet_veAction implements Action{
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		//System.out.println("Memo List Get execute()");
+		//System.out.println("Memo List Get_ve execute()");
 		
 		// 세션값 제어
 		HttpSession session=request.getSession();
 		String id = (String)session.getAttribute("id");
-		
+				
 		//System.out.println("id : "+id);
 		// MemoDAO medao 객체 생성
 		MemoDAO medao = new MemoDAO();
-				
+						
 		// 메모 전체글 개수
 		// int count = medao.getMemoCount() 메서드 호출
 		int count = medao.getMemoCountGet(id);
@@ -43,7 +43,7 @@ public class MemoListGetAction implements Action{
 
 		// List memoList = 매서드 호출 getMemoList(시작행, 몇개)
 		List memoListGet=medao.getMemoListGet(id, startRow, pageSize);
-				
+						
 		//전체 페이지 수 구하기   게시판글  50개 한 화면에 보여줄 글개수 10 => 5 페이지
 		//						56개 한 화면에 보여줄 글개수 10 => 5 페이지 + 1(나머지) =>6
 		int pageCount =count/pageSize + (count%pageSize==0 ? 0 : 1);
@@ -56,9 +56,9 @@ public class MemoListGetAction implements Action{
 		if(endPage > pageCount){
 			endPage=pageCount;
 		}
-			
+					
 		// 데이터 저장 count   boardList   pageCount   pageNum   pageBlock   startPage   endPage
-				
+						
 		request.setAttribute("memoListGet", memoListGet); // 리스트형
 		request.setAttribute("pageNum", pageNum); // String형
 		request.setAttribute("count", count); // int형
@@ -66,10 +66,10 @@ public class MemoListGetAction implements Action{
 		request.setAttribute("pageBlock", pageBlock); // int형
 		request.setAttribute("startPage", startPage); // int형
 		request.setAttribute("endPage", endPage); // int형
-				
+						
 		// 이동  ./mypage/memo_list.jsp
 		ActionForward forward = new ActionForward();
-		forward.setPath("./mypage/memo_list_get.jsp");
+		forward.setPath("./mypage/memo_list_get_ve.jsp");
 		forward.setRedirect(false);
 		return forward;
 

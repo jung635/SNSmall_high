@@ -5,11 +5,13 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>인기 VOD</title>
 <script src="https://www.gstatic.com/firebasejs/4.1.1/firebase.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+<link href="./css/font-awesome.min.css" rel="stylesheet"> 
+<link href="./css/live.css" rel="stylesheet">
 </head>
-<body>
+<body style="background-color: #e3e3e3;">
 <div id="fb-root"></div>
 <%
 LiveBean lb = (LiveBean)request.getAttribute("lb");
@@ -36,15 +38,23 @@ $(window).load(function() { <%System.out.println("test");%>});
 function myFunction(){
 <%System.out.println("test");%>
 }
-function goProduct(){
-	alert('기존의 창에서 확인하실수 있습니다');
-	window.opener.location.href='ProductDetail.pr?product_num=<%=lb.getProduct_num()%>&live_id=<%=lb.getSns_id()%>';
-}
-
 </script>
-<button onclick="goProduct()">물건 구경하러 가기</button>
-<button onclick="location.href='VodList.li'">방송 목록 보기</button>
-<div id="title"><h1><%=lb.getTitle() %></h1></div>
-<div class="fb-video" data-href="<%=href %>" data-width="1000" data-show-text="false"><blockquote cite="<%=cite %>" class="fb-xfbml-parse-ignore"><a href="<%=cite %>"></a></blockquote></div>
+
+<br>
+<div id="title">
+
+<span class="sub-vod">
+<span class="sub-let">
+<i class="fa fa-angle-double-right" aria-hidden="true"></i>
+<%=lb.getTitle()%>
+</span>
+<button class="vod-go-btn" onclick="window.opener.location.href='ProductDetail.pr?product_num=<%=lb.getProduct_num()%>&live_id=<%=lb.getSns_id()%>'">
+<i class="fa fa-shopping-cart" aria-hidden="true"></i>　상품 구경하러 가기
+</button>
+</span>
+<hr style="margin: 30px 20px 50px 10px;">
+</div>
+
+<div class="fb-video" data-href="<%=href %>" data-width="1300" data-show-text="false"><blockquote cite="<%=cite %>" class="fb-xfbml-parse-ignore"><a href="<%=cite %>"></a></blockquote></div>
 </body>
 </html>

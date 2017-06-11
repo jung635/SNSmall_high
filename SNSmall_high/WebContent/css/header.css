@@ -159,3 +159,10 @@ img {
     height: 20px;
     line-height: 18px;
 }
+.main-live-btn{
+	background-color: #fc7700;
+	padding: 3px 10px 3px 10px;
+	border: none;
+	color: #fff;
+	border-radius:5px;
+}

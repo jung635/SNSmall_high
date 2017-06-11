@@ -57,38 +57,14 @@ $(document).ready(function(){
 						$('input[name=sns_id]').val(sns_id);						
 					}
 					
-					if($('input[name=option1_input]').eq(i).val()==null){
-						option1+=",";
-						$('input[name=option1]').val(option1);							
-					}else{
-						option1+=$('input[name=option1_input]').eq(i).val()+",";
-						$('input[name=option1]').val(option1);
-					}
-					
-					if($('input[name=option2_input]').eq(i).val()==null){
-						option2+=",";
-						$('input[name=option2]').val(option2);							
-					}else{
-						option2+=$('input[name=option2_input]').eq(i).val()+",";
-						$('input[name=option2]').val(option2);
-					}
-					
-					if($('input[name=option3_input]').eq(i).val()==null){
-						option3+=",";
-						$('input[name=option3]').val(option3);							
-					}else{
-						option3+=$('input[name=option3_input]').eq(i).val()+",";
-						$('input[name=option3]').val(option3);
-					}
-					
-/* 					option1+=$('input[name=option1_input]').eq(i).val()+",";
+					option1+=$('input[name=option1_input]').eq(i).val()+",";
 					$('input[name=option1]').val(option1);	
 
 					option2+=$('input[name=option2_input]').eq(i).val()+",";
 					$('input[name=option2]').val(option2);
 					
 					option3+=$('input[name=option3_input]').eq(i).val()+",";
-					$('input[name=option3]').val(option3);	 */
+					$('input[name=option3]').val(option3);	
 					
 					num+=$('input[name=num_input]').eq(i).val()+",";
 					$('input[name=cart_num]').val(num);	

@@ -54,12 +54,21 @@
 	color: #fc7700;
 }
 
-#chat-in{
+#chat{
 	float: right;
+	margin-right: 18px;
 }
-		.go-shopping{
+		.gobtn{
 		margin: 0 0 10px 10px;
-		padding: 10px 11% 10px 11%;
+		padding: 10px 52px 10px 52px;
+		background-color: #fff;
+		border: none;
+		cursor: pointer;
+		font-weight: bold;
+		}
+		.gobtn_ing{
+		margin: 0 0 10px 10px;
+		padding: 10px 70px 10px 70px;
 		background-color: #fff;
 		border: none;
 		cursor: pointer;
@@ -77,13 +86,12 @@
 		line-height: 25px;
 		}
 		#textMessage{
-		width: 500px !important;
+		width: 430px !important;
 		margin-left: 10px;
 		font-size: 15px;
 		font-weight: bold;
 		padding: 10px;
 		border: 1px solid #e3e3e3;
-		width: 250px !important;
 		}
 		.sendBtn{
 		padding: 10px;

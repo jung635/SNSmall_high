@@ -71,7 +71,9 @@ List<SnsBean> list = (List<SnsBean>)request.getAttribute("list");
 	            <div class="col-sm-6 col-md-3">
 					<div class="single-member">
 						<div id="profile_img_wrap">
+							<a href="SnsDetailAction.sn?sns_id=<%=sb.getSns_id()%>">
 							<img src="./sns_pro_upload/<%=sb.getProfile_img() %>" alt="SNS star " style="border-top-right-radius:50px; height: 300px;" />
+							</a>
 						</div>
 						<div id="star_list_detail star_list_detail2">
 							<h3><a href="SnsDetailAction.sn?sns_id=<%=sb.getSns_id()%>"><%=sb.getName() %></a>

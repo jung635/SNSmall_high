@@ -7,10 +7,12 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>Insert title here</title>
+<link href="./css/font-awesome.min.css" rel="stylesheet"> 
+<link href="./css/live.css" rel="stylesheet">
 <script src="https://www.gstatic.com/firebasejs/4.1.1/firebase.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
 </head>
-<body>
+<body style="background-color: #e3e3e3;">
 <div id="fb-root"></div>
 <%
 String id = (String)session.getAttribute("id");
@@ -99,25 +101,38 @@ function sendMessage(){
 		message: "<%=id%>:" +  document.getElementById("textMessage").value,
 	});
 	document.getElementById("textMessage").value = "";
+	document.getElementById("messageTextArea").scrollTop = document.getElementById("messageTextArea").scrollHeight;
 }
 
 firebase.database().ref('<%=lb.getVideo_id()%>').limitToLast(1).on('child_added',function(data, prevChildKey){
 	console.log(data.val()); 
 	document.getElementById("messageTextArea").value += data.val().message + "\n";
+	document.getElementById("messageTextArea").scrollTop = document.getElementById("messageTextArea").scrollHeight;
 });
 
 chatBox = document.getElementById('messageTextArea');
 if(chatBox.scrollHeight>0) chatBox.scrollTop = chatBox.scrollHeight;
 </script>
-<button id="getLiveinfo" onclick="getLive()">내 방송화면 보기</button>
-<button id="getLiveinfo" onclick="deleteLive()">방송 그만하기</button>
-<div id="title"><h1><%=lb.getTitle()%></h1></div>
-<div id="live" style="float: left;"></div>
-<div id="chat" style="float: right; margin-right: 10px;">
-<textarea id="messageTextArea" rows="10" cols="50" style="width: 600px;height: 690px;"></textarea>
-<br />
-<input id="textMessage" type="text"  onkeyup="press(event)" style="width: 547px;">
-<input onclick="sendMessage()" value="Send" type="button">
+<div id="title">
+<br>
+<span class="tit-bg">
+<i class="fa fa-angle-double-right" aria-hidden="true"></i>
+<%=lb.getTitle()%>
+</span>
 </div>
+<hr style="margin: 30px 20px 50px 10px;">
+<div id="live" style="margin-left: 10px; float: left;"></div>
+<div style="clear:both"></div>
+ <div id="chat">
+	<div id="chat-in">
+		<button class="gobtn_ing" onclick="getLive()"><i class="fa fa-play" aria-hidden="true"></i>내 방송화면 보기</button>
+		<button class="gobtn_ing" onclick="deleteLive()"><i class="fa fa-stop" aria-hidden="true"></i>방송 그만하기</button><br>
+		<textarea id="messageTextArea" rows="10" cols="50"></textarea>
+		<br>
+		<input id="textMessage" type="text"  onkeyup="press(event)" style="width: 500px">
+		<input onclick="sendMessage()" value="Send" class="sendBtn" type="button">
+	</div>
+</div>
+
 </body>
 </html>

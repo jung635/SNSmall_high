@@ -233,6 +233,7 @@ public class LiveDAO {
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
+				map = new LinkedHashMap<>();
 				lb = new LiveBean();
 				lb.setSns_id(rs.getString("id"));
 				lb.setVideo_id(rs.getString("video_id"));
@@ -244,6 +245,7 @@ public class LiveDAO {
 				lb.setState(rs.getString("state"));
 				lb.setView(rs.getInt("view"));
 				prob = prodao.getProduct(lb.getProduct_num());
+				map.put(lb, prob);
 			}
 
 		} catch(Exception e){e.printStackTrace();}

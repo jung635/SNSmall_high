@@ -13,6 +13,7 @@
 	<meta name="author" content=""> 
 	<title>HIMU - OnePage HTML Parallax template</title> 
 	<link href="css/bootstrap.min.css" rel="stylesheet">
+	<link href="./css/font-awesome.min.css" rel="stylesheet"> 
 	<link href="css/header.css" rel="stylesheet">
 	<link href="css/inner.css" rel="stylesheet">
 	<link href="css/main.css" rel="stylesheet">
@@ -45,14 +46,29 @@
         <!-- Page Header -->
         <div class="row" style="margin-top: 43px">
             <div class="col-lg-12">
-                <h1 class="page-header">Product List
-                    <small>Amazing goods</small>
-                </h1>
-                
-                
- 
+             <br>
+            <hr>    
+			<div class="detail-header">
+			<div style="display: inline-block; padding-top:7px;">
+                SN# Home　<b>>　</b>
+                <b>
+                <%if(category.equals("not")){ %>
+                		상품 전체 보기 <%}else{ %>
+                <%=category %>
+                <%} %>
+                </b>
+            </div>
+                <div class="li-search-box">
+				<form action="./ProductSearchList.pr">
+					<input type="text" name="search">
+					<i class="fa fa-search" aria-hidden="true"><input type="submit" value=""></i>
+	    	   	</form>
+				</div>
+              </div>
+              <div class="clear"></div>
+        <hr>
         
-        
+       
         
         <!-- Team Members Row -->
         <div class="row">
@@ -74,25 +90,39 @@
 			int check = zdao.ZzimCheckAction(id,product_num);
 			
 		%>
-            <div class="col-md-4 portfolio-item">
+            <div class="col-md-3 portfolio-item pro-item">
+            <div class="pro-item-in">
                 <a href="./ProductDetail.pr?product_num=<%=pb.getProduct_num() %>&pageNum=<%=pageNum%>">
                     <%if(pb.getMain_img()==null){ %>
-                    <img class="img-responsive" src="./qna_img/default.jpg" style="height: 300px !important; background-image: url('./qna_img/default.jpg');" alt="">
+                    <img class="img-responsive" src="./qna_img/default.jpg" style="height: 250px !important; width:100%; background-image: url('./qna_img/default.jpg');" alt="">
                     <%} else{%>
-                    <img class="img-responsive" src="./vendor_img/<%=pb.getMain_img() %>" style="height: 300px !important;" alt="">
+                    <img class="img-responsive" src="./vendor_img/<%=pb.getMain_img() %>" style="height: 250px !important; width:100%;"  alt="">
                     <%} %>
                 </a>
-                <h3>
-                    <a href="./ProductDetail.pr?product_num=<%=pb.getProduct_num() %>&pageNum=<%=pageNum%>"><%=pb.getSubject() %><%=pb.getLive_state() %></a>
-                </h3>
-                <p><%=pb.getPrice() %>원</p>
+                <div class="pro-list-con">
+                <div class="pro-list-sub">
+                    <a href="./ProductDetail.pr?product_num=<%=pb.getProduct_num() %>&pageNum=<%=pageNum%>">
+                    <div style="height: 60px; overflow: hidden;"><%=pb.getSubject() %></div>
+                    <span class="pro-live-state">
+                    <%
+                    String state=pb.getLive_state();
+                    if(state.equals("on")){%><span class="on">Live on</span>
+                    <%}else{ %><span class="off">Live off</span><%} %>
+                    </span>
+                    </a>
+                </div>
+                <p class="pro-list-pri"><b><%=pb.getPrice() %>원</b></p>
                 <p><%=pb.getDate() %><a href="ZzimAddAction.zz?product_num=<%=pb.getProduct_num() %>&subject=<%=pb.getSubject() %>&price=<%=pb.getPrice() %>">
-                
-				<%if(type.equals("client")){
-						if(check==0){ %>찜하기<img src="./vendor_img/zzimheart.jpg">
-				<%}else if(check==1){ %>찜한상품<img src="./vendor_img/zzimfullheart.jpg"><%} %></a></p>
-				<%}else{}%>
-		  </div>	
+                <hr>
+                	<div style="text-align: right;">
+						<%if(type.equals("client")){
+						if(check==0){ %><i class="fa fa-heart-o" aria-hidden="true"></i> 찜하기
+					<%}else if(check==1){ %> <span style="color: red;"><i class="fa fa-heart" aria-hidden="true"></i></span> 찜한상품<%} %></a></p>
+					<%}else{}%>
+				</div>
+				</div>
+			</div>
+		  </div>
 		<%}} %>
 
 		<div class="clear"></div>
@@ -136,12 +166,7 @@
                 </ul>
 			</div>
 			<div class="clear"></div>
-			<div>
-				<form action="./ProductSearchList.pr">
-					<input type="text" name="search">
-					<input type="submit" value="검색">
-	    	   	</form>
-			</div>
+			
 			</div>
 		</div>
 	</div>

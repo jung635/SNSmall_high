@@ -161,13 +161,14 @@ String id = (String)session.getAttribute("id");
 							<div class="col-md-12">
 							<hr>
 							</div>
+							<div class="col-md-12">
 							<div class="col-md-6">
 								<input type="submit" class="pro-in-btn" value="상품등록">
 							</div>
 							<div class="col-md-6">
 								<input type="reset" class="pro-in-btn" value="초기화">	
 							</div>
-						
+							</div>
 						</form>
 					</div>
 				<!-- 마이페이지 메인 -->

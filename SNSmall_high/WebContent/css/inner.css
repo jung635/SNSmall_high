@@ -278,18 +278,6 @@ a{
     display: block;
 }
 
-/* pay */
-#buyer, #product, #pay{
-    width: 900px;
-    margin: auto;
-}
-#policy{
-    margin-top: 55px;
-}
-#policy1{
-    border: 1px solid;
-}
-
 /* Mypage */
 #show_content {
 	 display: none;  

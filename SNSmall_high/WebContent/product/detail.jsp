@@ -304,8 +304,8 @@
             <div class="col-lg-12">
            	<br><br><br>
            	<hr>
-                <div class="detail-header">
-                SN# Home　<b>></b>　<%=productbean.getCategory() %>　<b>></b>　<%=productbean.getSubject() %>
+                <div class="detail-header" style="padding:5px 0 5px 0;">
+                SN# Home　<b>></b>　<%=productbean.getCategory() %>　<b>></b>　<b><%=productbean.getSubject() %></b>
                 </div>
                 <hr>
             </div>

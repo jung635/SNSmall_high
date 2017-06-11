@@ -1811,3 +1811,8 @@ h1, h2, h3, h4, h5, h6 {
 	background-color:#43484E;
 	color:#fff;
 }
+.portfolio-image img{
+	width: 300px;
+	height: 250px;
+	margin: 0 3px 0 3px; 
+}

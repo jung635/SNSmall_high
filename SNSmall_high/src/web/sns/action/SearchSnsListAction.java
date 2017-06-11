@@ -16,7 +16,9 @@ public class SearchSnsListAction implements Action{
 		if(category == null) category = "all";
 		String order = request.getParameter("order");
 		if(order == null) order = "sell";
-		int count = sdao.getListCount(category, search);
+		String rank = request.getParameter("rank");
+		if(rank == null) order = "all";
+		int count = sdao.getListCountForSearch(category, search);
 		String pageNum = request.getParameter("pageNum");
 		if(pageNum == null) pageNum="1";
 		int currentPage=Integer.parseInt(pageNum);
@@ -51,7 +53,7 @@ public class SearchSnsListAction implements Action{
 	 	request.setAttribute("search", search);
 	 	
 	 	ActionForward forward = new ActionForward();
-	 	forward.setPath("./sns_star/searchStarList.jsp");
+	 	forward.setPath("./sns_star/starList.jsp");
 	 	forward.setRedirect(false);
 		return forward;
 	}

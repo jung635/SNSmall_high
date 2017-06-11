@@ -97,7 +97,68 @@
   	<url-pattern>*.qn</url-pattern>
   </servlet-mapping>
   
-
+  <servlet>
+  	<servlet-name>BoardFrontController</servlet-name>
+  	<servlet-class>web.board.action.BoardFrontController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>BoardFrontController</servlet-name>
+  	<url-pattern>*.bo</url-pattern>
+  </servlet-mapping>
   
+  <servlet>
+  	<servlet-name>ReplyFrontController</servlet-name>
+  	<servlet-class>web.reply.action.ReplyFrontController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>ReplyFrontController</servlet-name>
+  	<url-pattern>*.re</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+  	<servlet-name>AlarmFrontController</servlet-name>
+  	<servlet-class>web.alarm.action.AlarmFrontController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>AlarmFrontController</servlet-name>
+  	<url-pattern>*.al</url-pattern>
+  </servlet-mapping>  
+  
+    <servlet>
+  	<servlet-name>AdminFrontController</servlet-name>
+  	<servlet-class>web.admin.action.AdminFrontController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>AdminFrontController</servlet-name>
+  	<url-pattern>*.ad</url-pattern>
+  </servlet-mapping> 
+  	<servlet>
+		<servlet-name>MemoFrontController</servlet-name>
+		<servlet-class>web.memo.action.MemoFrontController</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>MemoFrontController</servlet-name>
+		<url-pattern>*.me</url-pattern>
+	</servlet-mapping>   
+	
+	
+	  <servlet>
+  	<servlet-name>BlogFrontController</servlet-name>
+  	<servlet-class>web.blog.action.BlogFrontController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>BlogFrontController</servlet-name>
+  	<url-pattern>*.bl</url-pattern>
+  </servlet-mapping>
+  
+  
+  	  <servlet>
+  	<servlet-name>LiveFrontController</servlet-name>
+  	<servlet-class>web.live.action.LiveFrontController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>LiveFrontController</servlet-name>
+  	<url-pattern>*.li</url-pattern>
+  </servlet-mapping>
 </web-app>
 

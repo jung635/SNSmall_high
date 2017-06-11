@@ -17,7 +17,8 @@
 	<link href="./css/bootstrap.min.css" rel="stylesheet">
 	<link href="./css/header.css" rel="stylesheet">
 	<link href="./css/inner.css" rel="stylesheet">
-	<link href="./css/main.css" rel="stylesheet"> 
+	<link href="./css/main.css" rel="stylesheet">
+	<link href="./css/member.css" rel="stylesheet"> 
 <title>Insert title here</title>
 </head>
 <body>
@@ -46,48 +47,65 @@
                 <jsp:include page="../../inc/myinfo_vendor_left.jsp"/>               
             </div>
             <div class="col-md-9">
-                <div class="thumbnail">
-						
-
-							<table>
-								<tr>
-									<td class="left"><label>아이디</label></td>
-									<td class="left"><%=id%></td>
-								</tr>
-								<tr>
-									<td class="left"><label>이름</label></td>
-									<td class="left"><%=vb.getPerson_name()%></td>
-								</tr>
-								<tr>
-									<td class="left"><label>회사명</label></td>
-									<td class="left"><%=vb.getCompany_name()%></td>
-								</tr>
-								<tr>
-									<td class="left"><label>주소</label></td>
-									<td class="left"><%=postcode%></td></tr>
-								<tr>
-									<td class="left"></td><td><%=address%></td>
-								</tr>
-								<tr>
-									<td class="left"></td><td><%=address2%></td>
-								</tr>
-								<tr>
-									<td class="left"><label>연락처</label></td>
-									<td class="left"><%=vb.getPhone()%></td>
-								</tr>
-								<tr>
-									<td class="left"><label>판매금액</label></td>
-									<td class="left"><%=vb.getVendor_profit()%></td>
-								</tr>								
-							</table>
-							<input type="hidden" name="pass" value="<%=vb.getPass()%>">
-							<input type="hidden" name="id" value="<%=id%>">
-							
-							<div id="buttons">
-								<input type="button" value="확인" class="cancel" onclick="location.href='./MyPage.ve'">
-
+                <div style="margin: 50px 0 50px 0">
+                		
+                		<div class="top-subject">내 정보 보기</div>
+                		
+                		<div class="col-md-12 table-liner-top">
+							<div class="col-md-4 table-colorBg-top">
+								<span class="table-txt">아이디</span>
 							</div>
+							<div class="col-md-8 pass-conf-text"><%=id %></div>
+						</div>
 						
+						<div class="col-md-12 table-liner">
+							<div class="col-md-4 table-colorBg">
+								<span class="table-txt">이름</span>
+							</div>
+							<div class="col-md-8 pass-conf-text"><%=vb.getPerson_name()%></div>
+						</div>
+						
+						<div class="col-md-12 table-liner">
+							<div class="col-md-4 table-colorBg">
+								<span class="table-txt">회사명</span>
+							</div>
+							<div class="col-md-8 pass-conf-text"><%=vb.getCompany_name()%></div>
+						</div>
+						
+						<div class="col-md-12 table-liner">
+							<div class="col-md-4 table-colorBg">
+								<span class="table-txt">주소<br><br><br></span>
+							</div>
+							<div class="col-md-8 pass-conf-text">
+								<%=postcode%><br>
+								<%=address%><br>
+								<%=address2%>
+							</div>
+						</div>
+                		
+                		<div class="col-md-12 table-liner">
+							<div class="col-md-4 table-colorBg">
+								<span class="table-txt">연락처</span>
+							</div>
+							<div class="col-md-8 pass-conf-text"><%=vb.getPhone()%></div>
+						</div>
+						
+						<div class="col-md-12" style="margin-top: 50px;"><div class="top-subject" style="border-color: #B2D8AC">SN# 판매 정보</div></div>
+						
+						<div class="col-md-12 table-liner-top">
+							<div class="col-md-4 table-colorBg-top" style="background-color: #B2D8AC">
+							<span class="table-txt">판매금액</span>
+							</div>
+							<div class="col-md-8 pass-conf-text"><%=vb.getVendor_profit()%></div>
+						</div>
+						
+						<input type="hidden" name="pass" value="<%=vb.getPass()%>">
+						<input type="hidden" name="id" value="<%=id%>">
+						
+						
+						
+						</div>
+		
 					</div>
             </div>
         </div>

@@ -37,6 +37,12 @@ public class QnaFrontController extends HttpServlet{
 				forward = action.execute(request, response);
 			} catch (Exception e) {e.printStackTrace();}
 			
+		}else if(command.equals("/QnaDelete.qn")){
+			action = new QnaDeleteAction();
+			try{
+				forward = action.execute(request, response);
+			} catch (Exception e){e.printStackTrace();}
+			
 		}
 		
 		

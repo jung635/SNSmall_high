@@ -1,0 +1,107 @@
+@CHARSET "UTF-8";
+
+
+/* Board_List css */
+.board_table{
+	margin: auto;
+}
+.board_table th{
+	text-align: center;
+	width: 100px;
+	padding: 10px 5px 10px 5px;
+	border-bottom: 2px double #fff;
+	background-color: #ffc180;
+	border-left: 2px double white;
+	color:#43484E;
+}
+
+.board_table tr:hover{
+	background-color: #e3e3e3;
+}
+
+
+.board_table td{
+	padding: 8px;
+	border-bottom: 1px dotted #e3e3e3;
+}
+.board_table td{
+	padding: 8px;
+	border-bottom: 1px dotted #e3e3e3;
+}
+	
+.board_type{
+	text-align: center;
+}
+
+
+.board_subject{
+	text-align: left;
+	width: 350px;
+	padding-left: 10px;
+}
+.board_id{
+	width: 200px;
+
+}
+.board_date{
+	width: 200px;
+}
+
+.writeLink{
+	margin: 20px 5px 10px 0;
+	font-weight: 800;
+}
+
+.page-num{
+	margin: 15px;
+}
+.search-text-box{
+	border: none;
+	width: 220px;
+}
+.search-text-big-box{
+	background-color: white;
+	border-bottom: 2px double #e3e3e3;
+}
+.search-btn{
+	border: none;
+	background-color: white;
+}
+
+/* Board_WriteForm.jsp */
+
+.board-write-commit-btn, .board-write-cancel-btn{
+	padding:5px 80px 5px 80px;
+	background-color: #ffc180;
+	border: none;
+	margin:20px 20px 0 0;
+	font-weight: bold;
+	color:#43484E;
+}
+.board-write-subject-box{
+	border:none;
+	border-bottom: 2px double #ffc180;
+}
+
+/* Board_detail.jsp */
+
+.board-detail-subject{
+	padding:15px;
+	background-color: #ffc180;
+	border-bottom: 2px double #fff;
+	font-size: 15px;
+}
+.board-detail-subject2{
+	padding:10px;
+	background-color: #e3e3e3;
+	border-bottom: 2px double #fff;	
+}
+.board-detail-subjext-con{
+	padding:10px;
+	text-align: left;
+}
+.comment-submit-btn{
+	border: none;
+	padding: 22px 10px 22px 10px;
+	margin-left: 0px;
+}

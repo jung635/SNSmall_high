@@ -1,6 +1,5 @@
 @CHARSET "UTF-8";
 
-
 /*loginForm.jsp css*/
 .input_row {
     position: relative;
@@ -100,18 +99,295 @@
 }
 
 /*sns.snsjoin.jsp css*/
+
 .join_table td{
 	padding-bottom: 10px;
 }
+.dup{
+	border: none;
+	padding: 5px;
+	font-size: 10px;
+}
+.dup2{
+	border: none;
+	padding: 3px 12px 3px 12px;;
+	font-size: 11px;	
+}
 
 .join_subject{
-	font-size: 25px;
+	font-size: 30px;
 	margin: 50px 0 25px 10px;
+	font-weight: 700;
+	color:#fc7700;s
 }
 .Snsaccount{
-	background-color: #ddd;
+	background-color: #e3e3e3;
+	font-size: 16px;
 }
 .Snsaccount td{
 	padding:10px;
 	text-align: center;
+}
+.join-mini-subject{
+	background-color: #43484E;
+	border-top-right-radius: 30px;
+	color: #fff;
+}
+.join-btn{
+	background-color: #fc7700;
+	padding: 5px 100px 5px 100px;
+	color:#fff;
+	border: none;
+	margin-bottom: 30px;
+	border-radius: 5px;
+}
+.join-btn:hover{
+	background-color: #43484E;
+	
+}
+
+/*joinIdCheck.jsp*/
+.bg_gray{
+	background-color:#e3e3e3 !important;
+}
+
+.idCheckForm{
+	margin-bottom: 50px;
+}
+.idCheck{
+	color:#43484E;
+}
+.bigIdCheck{
+	background-color:#fff;
+	border:1px solid #fff; 
+	color: red;
+	position: relative;
+	top:50px;
+	text-align: center;
+	padding: 50px 10px 50px 10px;
+	border-radius:10px; 
+}
+.idCheckBtn{
+	border:none;
+	background-color: #fc7700;
+	padding: 10px 40px 10px 40px;
+	margin-top: 40px;
+	color: #fff;
+	border-radius: 5px;
+}
+.idCheckBtn:hover{
+	background-color: #43484E;
+}
+.idCheckTxt{
+	border: none;
+	border-bottom: 2px double #c3c3c3;
+}
+
+.idCheckbtn2{
+	border: none;
+	padding: 5px;
+	border-radius: 5px;
+	font-size: 11px;
+}
+/*vendorView.jsp*/
+.vendor_info{
+	margin: 10px 0 30px 50px;
+}
+
+.info-top-tit{
+	color:#fff;
+	font-size:25px;
+	background-color: #fc7700;
+	border-top-right-radius: 30px;
+	margin:30px 0 30px 20px;
+	padding: 5px 0 5px 0;
+}
+.ok-btn{
+	border: none;
+	background-color: #B2D8AC;
+	padding: 10px 50px 10px 50px;
+	color: #43484E;
+	font-weight:bold;
+	margin: 30px 0 50px 0;
+	border-radius:10px;
+	
+}
+.ok-btn:hover{
+	background-color: #43484E;
+	color: #fff;
+
+}
+/* mypage_sns.jsp */
+
+.mini-tit{
+	background-color: #e3e3e3;
+	padding: 10px;
+	border-radius: 5px; 
+}
+.img-bg{
+	background-color: #e3e3e3;
+	padding: 5px 15px 5px 15px;
+	width: 230px;
+}
+
+
+/*passConfirm.jsp*/
+.top-subject{
+font-size: 25px;
+font-weight: bold;
+margin: 0 0 20px 30px;
+border-top: 2px solid #ffc180;
+border-left:2px solid #ffc180;
+border-right:2px solid #ffc180;
+display: inline-block;
+padding: 10px 15px 0 15px;
+border-top-left-radius:10px;
+border-top-right-radius:10px;
+}
+
+.pass-conf-cont{
+	margin: 50px 10px 50px 50px;
+	font-size: 15px;
+}
+.pass-conf-txt{
+	padding: 10px 0 5px 20px;
+}
+.pass-conf-text{
+	padding: 18px 0 5px 20px;
+}
+.table-txt{
+	font-weight: bold;
+	margin: 18px 0 0 20px;
+}
+.table-liner-top{
+	border-top: 3px solid #ccc;
+	margin-bottom:0px;
+	border-bottom: 1px solid #ccc;
+}
+
+.table-liner{
+margin-bottom:0px;
+border-bottom: 1px solid #ccc;
+}
+.table-colorBg-top{
+	background-color: #ffc180;
+	padding: 15px 0 20px 20px;
+	color:#43484E;
+	font-size: 13px;
+	margin-left: 0px;
+	text-align: inherit;
+	border-right: 1px solid #ccc;
+	border-top: none;
+}
+.table-colorBg{
+	background-color: #ffc180;
+	padding: 15px 0 20px 20px;
+	color:#43484E;
+	font-size: 13px;
+	margin-left: 0px;
+	text-align: inherit;
+	border-right: 1px solid #ccc;
+	border-top: 1px solid #fff;
+}
+.colmd-4-btn{
+	border:none;
+	font-weight:bold;
+	background-color: #B2D8AC;
+	border-radius: 5px;
+	padding: 10px 70px 10px 70px;
+	color:#43484E;
+	margin: 30px 0 0 50px;
+}
+.colmd-4-btn:hover{
+	background-color: #43484E;
+	color: #fff;
+}
+.dup3{
+	border: none;
+	padding: 3px 12px 3px 12px;;
+	font-size: 11px;
+	margin: 15px;	
+}
+.dup4{
+	border: none;
+	padding: 3px 12px 3px 12px;;
+	font-size: 11px;
+	margin-top: 8px;
+}
+/* phone_auth1.jsp */
+.ph_back{
+	border: 1px solid #e3e3e3; 
+	margin: 20px 10px 10px 10px;
+	padding: 20px 20px 30px 20px;
+}
+.ph_top_tit{
+	font-size: 20px;
+	font-weight: bold;
+	margin: 30px 0 30px 10px;
+}
+.ph-txt-box{
+	padding:  9px 10px 9px 10px;
+	background-color: #ffc180;
+	border: 1px solid #fc7700;
+}
+.ph-txt-btn{
+	background-color: #fc7700;
+	border: none;
+	padding:  9px 20px 9px 20px;
+	border-radius:5px;
+	color:#fff;
+	margin-top: 10px;
+}
+
+/* phone_auth2.jsp */
+
+.phone_back{
+	background-color: #f5f5f5;
+	margin: 20px 10px 10px 10px;
+	padding: 17px;
+	border: 1px solid #e3e3e3;
+}
+.phone_back td{
+	font-size: 12px;
+	font-weight: bold;
+	padding: 5px;
+}
+.ph_txt_box{
+	border: 1px solid #c5c5c5;
+	height: 30px;
+	padding-left: 5px;
+	font-size: 12px;
+}
+.ph_mini_font{
+	font-size: 7px;
+}
+.ph_mini_btn{
+	border: 1px solid #c5c5c5;
+	background-color: #fff;
+	font-size: 11px;
+	color:#c5c5c5;
+	letter-spacing: 0px;
+	padding: 1px;
+}
+.ph_gender_box{
+	border: 1px solid #999;
+	background-color: white;
+	padding: 8px 12px 8px 12px;
+}
+.ph-oks{
+	border-radius:5px;
+	padding: 10px 100px 10px 100px;
+	background-color: #999;
+	border:none;
+	color: #fff;
+	font-weight: bold;
+}
+.ph-cancle{
+	padding: 10px 40px 10px 40px;
+	background-color: #fff;
+	color: #999;
+	border: 1px solid #999;
+	border-radius:5px;
+	margin: 10px 5px 0 30px;
+	font-weight: bold;
 }

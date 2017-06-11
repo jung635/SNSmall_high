@@ -1,5 +1,6 @@
 package web.zzim.action;
 
+import java.io.PrintWriter;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -14,13 +15,19 @@ public class ZzimListAction implements Action{
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		// TODO Auto-generated method stub
-		System.out.println("ZzimListAction");
-		
 		
 		HttpSession session = request.getSession(); 
 		String id = (String)session.getAttribute("id"); 
-		
-		id="test";		
+		response.setContentType("text/html; charset=UTF-8");
+		PrintWriter out = response.getWriter();
+		if(id==null){
+			out.println("<script>");
+			out.println("alert('로그인이 필요한 서비스 입니다.');");
+			out.println("history.back();");
+			out.println("</script>");
+			out.close();
+			return null;
+		}
 		
 		
 		ZzimDAO zdao = new ZzimDAO();  

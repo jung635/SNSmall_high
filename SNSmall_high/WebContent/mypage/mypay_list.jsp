@@ -53,7 +53,7 @@ function showCustomer(str) {
 }
 
 function more() {
-	page += 2;
+	page += 4;
 	var xhttp;    
 	if (method == "") {
     	document.getElementById("txtHint").innerHTML = "";
@@ -84,7 +84,7 @@ String id = (String)session.getAttribute("id");
             <div class="col-md-3">
                 <p class="lead"><%=id %></p>
                 <%if(type.equals("client")){ %>
-                <jsp:include page="../inc/myinfo_left.jsp"/>
+                <jsp:include page="../inc/myinfo_client_left.jsp"/>
                 <%}else if(type.equals("vendor")){ %>
                 <jsp:include page="../inc/myinfo_vendor_left.jsp"/>
                 <%} %>

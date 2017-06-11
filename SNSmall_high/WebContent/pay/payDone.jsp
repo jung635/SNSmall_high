@@ -36,46 +36,50 @@ List<PaymentBean> pb_list = pdao.getPayment(merchant_uid);
 int length = pb_list.size();
 int price = 0;
 int usedPoint = 0;
-String option_all = "";
+String address = pb_list.get(0).getAddress();
 %>
 <jsp:include page="../inc/header.jsp"/>
   <!-- Page Content -->
   <div class="container">
     <div class="more_content">
-
-<div id = "pay_check">
-<div><h2>결제 정보 확인</h2></div>
-<table border="1" style="width: 900px; margin: auto;">
-<tr><td rowspan="<%=length+1 %>" style="width: 150px;">주문번호<br><%=merchant_uid%></td><td>상품정보</td><td>가격</td><td>개수</td></tr>
-<%
-for(int i=0; i<length; i++){
-PaymentBean pb = pb_list.get(i);
-int product_num = pb.getProduct_num();
-ProductDAO prodao = new ProductDAO();
-ProductBean prob = prodao.getProduct(product_num);
-price += prob.getPrice()*pb.getAmount();
-usedPoint += pb.getUsedPoint();
-if(pb.getOption1() != null && !pb.getOption1().equals("") && !pb.getOption1().equals("null")) option_all += pb.getOption1()+"/";
-if(pb.getOption2() != null && !pb.getOption2().equals("") && !pb.getOption2().equals("null")) option_all += pb.getOption2()+"/";
-if(pb.getOption3() != null && !pb.getOption3().equals("") && !pb.getOption3().equals("null")) option_all += pb.getOption3()+"/";
-if(option_all.length()>0) option_all = option_all.substring(0,option_all.length()-1);
-%>
- <tr><td><%=prob.getSubject() %> (<%=option_all %>)</td><td><%=prob.getPrice() %></td><td><%=prob.getAmount() %></td></tr>
- <%} %>
- <tr><td colspan="4" style="text-align: right;">사용한 포인트: <%=usedPoint %></td></tr>
- <tr><td colspan="4" style="text-align: right;">총 결제 금액: <%=price-usedPoint %></td></tr>
-</table>
-</div>
-</div>
-<div id="pay_bottom">
-<input type="button" value="구매목록" onclick="location.href='PayList.pa'">
-<input type="button" value="주문 취소" onclick="location.href='PayMultipleCancel.pa?order_num=<%=merchant_uid%>'">
-<input type="button" value="확인">
-
-
+		<div id = "pay_check">
+			<div><h2>결제 정보 확인</h2></div>
+			<table border="1" style="width: 900px; margin: auto;">
+				<tr><td rowspan="<%=length+1 %>" style="width: 150px;">주문번호<br><%=merchant_uid%></td><td>상품정보</td><td>가격</td><td>개수</td></tr>
+				<%
+				for(int i=0; i<length; i++){
+					String option_all = "";
+					PaymentBean pb = pb_list.get(i);
+						int product_num = pb.getProduct_num();
+						ProductDAO prodao = new ProductDAO();
+						ProductBean prob = prodao.getProduct(product_num);
+						if(prob != null){
+						price += pb.getPay_price();
+						usedPoint += pb.getUsedPoint();
+						if(pb.getOption1().trim().length() != 0) option_all += pb.getOption1()+"/";
+						if(pb.getOption2().trim().length() != 0) option_all += pb.getOption2()+"/";
+						if(pb.getOption3().trim().length() != 0) option_all += pb.getOption3()+"/";
+						if(option_all.length()>0) option_all = option_all.substring(0,option_all.length()-1);
+						
+					%>
+					 <tr><td><%=prob.getSubject() %> (<%=option_all %>)</td><td><%=prob.getPrice() %></td><td><%=pb.getAmount() %></td></tr>
+				 <%}else{
+					 usedPoint += pb.getUsedPoint();
+					 price += pb.getPay_price(); %>
+					 <tr><td colspan="3">삭제된 상품입니다</td></tr>
+				 <%}} %>
+				 <tr><td>배송 주소</td><td colspan="3" style="text-align: right;"><%=address %></td></tr>
+				 <tr><td colspan="4" style="text-align: right;">총 금액: <%=price %></td></tr>
+				 <tr><td colspan="4" style="text-align: right;">사용한 포인트: <%=usedPoint %></td></tr>
+				 <tr><td colspan="4" style="text-align: right;">총 결제 금액: <%=price-usedPoint %></td></tr>
+			</table>
+		</div>
 	</div>
-	        <hr>
-
+	<div id="pay_bottom">
+	<input type="button" value="구매목록" onclick="location.href='PayList.pa'">
+	<input type="button" value="일괄 취소" onclick="location.href='PayMultipleCancel.pa?order_num=<%=merchant_uid%>'">
+	<input type="button" value="확인" onclick="location.href='Main.cl'">
+</div>
         <!-- Footer -->
         <footer>
             <div class="row">

@@ -4,6 +4,7 @@ import java.sql.Date;
 
 public class CartBean {
 
+	private int num;
 	private String sns_id;
 	private String client_id;
 	private String subject;
@@ -17,6 +18,13 @@ public class CartBean {
 	private String vendor_id;
 	private int product_num;
 	
+
+	public int getNum() {
+		return num;
+	}
+	public void setNum(int num) {
+		this.num = num;
+	}
 	public int getProduct_num() {
 		return product_num;
 	}
@@ -89,6 +97,5 @@ public class CartBean {
 	public void setDate(Date date) {
 		this.date = date;
 	}
-
 	
 }

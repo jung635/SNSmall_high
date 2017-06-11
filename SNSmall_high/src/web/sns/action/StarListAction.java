@@ -16,7 +16,9 @@ public class StarListAction implements Action{
 		if(category == null) category = "all";
 		String order = request.getParameter("order");
 		if(order == null) order = "sell";
-		int count = sdao.getListCount(category);
+		String rank = request.getParameter("rank");
+		if(rank == null) rank = "all";
+		int count = sdao.getListCount(category, rank);
 		String pageNum = request.getParameter("pageNum");
 		if(pageNum == null) pageNum="1";
 		int currentPage=Integer.parseInt(pageNum);

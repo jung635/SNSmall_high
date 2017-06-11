@@ -1,0 +1,121 @@
+@CHARSET "UTF-8";
+
+#buyer, #product, #pay{
+    margin: auto;
+}
+#buyer, #pay{
+	border-top:3px solid #ccc !important;
+}
+#policy{
+    margin-top: 55px;
+}
+#policy1{
+    border: 1px solid #ccc;
+    padding: 10px;
+}
+#buyer th,#pay th{
+	width: 150px;
+	padding: 10px 20px 10px 0;
+	text-align: right;
+	border-bottom:1px solid #ccc;border-right:1px solid #ccc; 
+	background-color: #f4f4f4;
+	font-weight: bolder;
+}
+#buyer input[type=text]{
+	padding: 5px;
+	border: 1px solid #ccc;
+	width: 300px;
+}
+#pay input[type=number]{
+	padding: 5px;
+	border: 1px solid #ccc;
+	width: 150px;
+	margin-right: 5px;
+}
+#buyer td,#pay td{
+	
+	text-align:left;
+	width: 1000px;
+	padding: 10px 0 10px 20px;
+	border-bottom:1px solid #ccc;
+	font-size: 14px;
+}
+#buyer input[type=button]{
+	padding: 5px;
+	border: none;
+	font-size: 12px;
+	background-color: #e3e3e3;
+	margin-left: 10px;
+}
+#product th{
+	padding: 10px;
+	border-bottom:1px solid #ccc;border-right:1px solid #ccc; 
+}
+#product{
+	border-bottom:1px solid #ccc;
+}
+.pro-sub, .pro-amo, .pro-pri{
+	text-align: center;
+	font-size: 12px;
+	border-bottom:1px solid #ccc;
+	border-top: 3px solid #ccc !important;
+	background-color: #f4f4f4;
+}
+
+.pro-sub{
+	width: 750px;
+	padding: 10px;
+	border-right:1px solid #ccc; 
+}
+
+.pro-amo{
+	width: 150px;
+	border-right:1px solid #ccc;
+}
+.pro-pri{
+	width: 200px;
+}
+#title_in{
+	padding-bottom: 10px;
+}
+.pay-go-btn{
+	background-color: #fc7700;
+	border: none;
+	padding: 15px 75px 15px 75px;
+	color: #fff;
+	font-weight: bolder;
+}
+
+/* deposit.jsp */
+.depo-table{
+	margin: 20px;
+	border-top: 3px solid #ccc;
+	width: 500px;
+}
+.depo-table th, .depo-table td{
+	padding: 20px;
+	border-bottom: 1px solid #ccc;
+	font-size: 14px;
+}
+.depo-table th{
+	background-color: #eee;
+}
+.depo-att{
+	margin:10px;
+	padding: 10px;
+	font-size: 12px;
+	border: 1px solid #ccc;
+	border-radius:5px;
+}
+.back{
+	padding: 5px 15px 5px 5px;
+	height: 30px;
+}
+.dep-btn{
+	background-color: #43484E;
+	padding: 5px 20px 7px 20px;
+	border: none;
+	border-radius:5px;
+	font-weight: bold; 
+	color: #fff;
+}

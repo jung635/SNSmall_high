@@ -30,6 +30,8 @@ public class SnsDetailAction implements Action{
 		int all_amount_rank = 0;
 		int cat_amount_rank = 0;
 		int rank_percent = 0;
+		int latest_size = 0;
+		int popular_size = 0;
 		
 		SnsDAO sdao = new SnsDAO();
 	
@@ -42,20 +44,17 @@ public class SnsDetailAction implements Action{
 		
 		//전체 가격, 총 량 랭크 계산
 		List<PaymentBean> payment_list = sdao.snsProductList(sns_id);
-		ProductDAO pdao = new ProductDAO();
 		PaymentBean pb;
 		for(int i=0; i<payment_list.size(); i++){
 			pb = payment_list.get(i);
-			ProductBean prob = pdao.getProduct(pb.getProduct_num());
-			all_price += prob.getPrice()*pb.getAmount();
+			all_price += pb.getPay_price();
 			all_amount += pb.getAmount();
 		}
 
 		List<PaymentBean> payment_list_allstar = sdao.snsProductList();
 		for(int i=0; i<payment_list_allstar.size(); i++){
 			pb = payment_list_allstar.get(i);
-			ProductBean prob = pdao.getProduct(pb.getProduct_num());
-			all_price_allstar += prob.getPrice()*pb.getAmount();
+			all_price_allstar += pb.getPay_price();
 			all_amount_allstar += pb.getAmount();
 		}
 		
@@ -65,8 +64,7 @@ public class SnsDetailAction implements Action{
 		List<PaymentBean> payment_list_catstar = sdao.snsProductListByCat(sb.getCategory());
 		for(int i=0; i<payment_list_catstar.size(); i++){
 			pb = payment_list_catstar.get(i);
-			ProductBean prob = pdao.getProduct(pb.getProduct_num());
-			all_price_catstar += prob.getPrice()*pb.getAmount();
+			all_price_catstar += pb.getPay_price();
 			all_amount_catstar += pb.getAmount();
 		}
 		
@@ -83,9 +81,12 @@ public class SnsDetailAction implements Action{
 		}else{
 			rank_percent = 100;
 		}
-		
+		latest_size = (latest_list.size()>4) ? 4:latest_list.size();
+		popular_size = (popular_list.size()>4) ? 4:popular_list.size();
 
 		request.setAttribute("sb", sb);
+		request.setAttribute("latest_size", latest_size);
+		request.setAttribute("popular_size", popular_size);
 		request.setAttribute("all_price_rank", all_price_rank);
 		request.setAttribute("cat_price_rank", cat_price_rank);
 		request.setAttribute("all_amount_rank", all_amount_rank);

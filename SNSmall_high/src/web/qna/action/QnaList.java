@@ -12,7 +12,6 @@ public class QnaList implements Action{
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		System.out.println("QnaList execute()");
 		
 		request.setCharacterEncoding("utf-8");
 		

@@ -18,11 +18,13 @@
 	<link href="./css/header.css" rel="stylesheet">
 	<link href="./css/inner.css" rel="stylesheet">
 	<link href="./css/main.css" rel="stylesheet"> 
+	<link href="./css/font-awesome.min.css" rel="stylesheet"> 
+	<link href="./css/product.css" rel="stylesheet">
 <title>Insert title here</title>
 </head>
 <body>
 <jsp:include page="../inc/header.jsp"/>
-<%String id = "test";
+<%String id = (String)session.getAttribute("id");
 %>
   <!-- Page Content -->
   <div class="container">
@@ -32,42 +34,61 @@
         
             <div class="col-md-3">
                 <p class="lead"><%=id %></p>
-                <jsp:include page="../inc/myinfo_left.jsp"/>
+                <jsp:include page="../inc/myinfo_client_left.jsp"/>
             </div>
             <div class="col-md-9">
-<h1>찜 목록</h1>
-<form action="">
+            
+              <div style="margin: 50px 0 50px 0">
+				<div class="top-subject">
+				<span style="color: red;"><i class="fa fa-heart" aria-hidden="true"></i></span>
+				찜 리스트</div>
+
 <%
 List<ZzimBean> list=(List)request.getAttribute("list");
 ZzimBean zb = new ZzimBean();
+if(list.size()==0){
+	%>찜을 해주세요. <%
+}else{
 %>
-<table border="1">
-<tr><th>물품번호</th><th>물품명</th><th>가격</th><th>날짜</th><th>삭제</th></tr>
+<div class="col-md-12">
+ <div class="panel panel-default text-center" style="border-color: white;">
+<table class="zzim-table">
+
+<tr>
+<th>상품정보</th>
+<th>찜한 날짜</th>
+<th>관리</th></tr>
 <%
 for(int i=0;i<list.size();i++){
 	zb = list.get(i);
 	%>
-	<tr><a href="#"><td><%=zb.getProduct_num() %></td><td>aaa</td><td><%=zb.getPrice() %></td><td><%=zb.getDate() %></td></a><td>
-
-	<a href="./ZzimDeleteAction.zz?product_num=<%=zb.getProduct_num()%>"><input type="button" name="delete" value="삭제"></a></td></tr>
+	<tr>
+	<td class="zzim_subject" style="padding-left: 40px !important;">
+		<span class="zzim-sub"><%=zb.getSubject() %></span><br>
+		<span class="zzim-pri"><%=zb.getPrice() %><span style="font-size: 10px;">원</span></span>
+	</td>
+	<td class="zzim_date"><%=zb.getDate() %></td>
+	<td class="zzim_mang">
+	<a href="./ProductDetail.pr?product_num=<%=zb.getProduct_num()%>"><input type="button" class="zzim-pg-btn" value="해당 상품으로 이동"></a><br>
+	<a href="./ZzimDeleteAction.zz?product_num=<%=zb.getProduct_num()%>"><input type="button" class="zzim-pg-btn2" name="delete" value="삭제"></a>
+	</td>
+	</tr>
 
 	<%
+}
 }
 
 
 %>
-</a>
+
 </table>
-
-
-
-
- </form>
 </div>
 </div>
 </div>
 </div>
-
+</div>
+</div>
+</div>
 
 
 

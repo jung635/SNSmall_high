@@ -10,18 +10,18 @@ import javax.servlet.http.HttpSession;
 import web.client.db.ClientBean;
 import web.client.db.ClientDAO;
 
-
-
 public class clientUpdateAction implements Action{
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
 		request.setCharacterEncoding("utf-8");
-		String id = request.getParameter("id");
+		
+		HttpSession session = request.getSession();
+		String id = (String) session.getAttribute("id");
+		
 		ClientDAO cldao = new ClientDAO();
 		response.setContentType("text/html; charset=UTF-8");
-		
 		ClientBean clb = new ClientBean();
 		clb.setClient_id(id);
 		clb.setPass(request.getParameter("pass"));
@@ -31,7 +31,6 @@ public class clientUpdateAction implements Action{
 		clb.setAddress(addre);
 		cldao.updateClient(clb);
 		
-		HttpSession session = request.getSession();
 		session.setAttribute("name", clb.getName());
 		
 		ActionForward forward = new ActionForward();

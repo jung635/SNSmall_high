@@ -1,6 +1,7 @@
 package web.sns.action;
 
 import java.io.File;
+import java.io.PrintWriter;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.Enumeration;
@@ -24,8 +25,6 @@ public class SnsUpdateAction implements Action {
 		int maxSize = 5 * 1024 * 1024;
 		MultipartRequest multi = new MultipartRequest(request, realPath, maxSize, "utf-8",
 				new DefaultFileRenamePolicy());
-
-		
 		
 		SnsBean sb = new SnsBean();
 		SnsDAO sdao = new SnsDAO();
@@ -61,13 +60,14 @@ public class SnsUpdateAction implements Action {
 		} else {
 			
 			index = multi.getFilesystemName("file").lastIndexOf(".");
-			realFileName = id + new Date().getTime() + multi.getFilesystemName("file").substring(index, multi.getFilesystemName("file").length());
-			file = new File(realPath + "\\" + multi.getFilesystemName("file"));
-			file_new = new File(realPath + "\\" + realFileName);
+			realFileName = "profile" +  id + new Date().getTime() + multi.getFilesystemName("file").substring(index, multi.getFilesystemName("file").length());
+			file = new File(realPath + "/" + multi.getFilesystemName("file"));
+			file_new = new File(realPath + "/" + realFileName);
+			
 			file.renameTo(file_new);
 			String profile=realFileName;
 			
-			file = new File(realPath + "\\" + multi.getParameter("one_file"));
+			file = new File(realPath + "/" + multi.getParameter("one_file"));
 			file.delete();
 			sb.setProfile_img(profile);
 		}
@@ -84,9 +84,9 @@ public class SnsUpdateAction implements Action {
 			String[] array_new = s_new.split(",");
 			for(int i=0; i<array_new.length; i++){
 				index = array_new[i].lastIndexOf(".");
-				realFileName = id + new Date().getTime() + array_new[i].substring(index, array_new[i].length());
-				file = new File(realPath + "\\" + array_new[i]);
-				file_new = new File(realPath + "\\" + realFileName);
+				realFileName = "sub" + i + id + new Date().getTime() + array_new[i].substring(index, array_new[i].length());
+				file = new File(realPath + "/" + array_new[i]);
+				file_new = new File(realPath + "/" + realFileName);
 				file.renameTo(file_new);
 				array_new[i]=realFileName;
 			}
@@ -97,7 +97,7 @@ public class SnsUpdateAction implements Action {
 			array = s.split(",");
 
 			for (int i = 0; i < array.length; i++) {
-				file = new File(realPath + "\\" + array[i]);
+				file = new File(realPath + "/" + array[i]);
 				file.delete();
 			}
 			

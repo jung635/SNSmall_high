@@ -66,14 +66,14 @@ public class ProductUpdateAction implements Action {
 		if (main_img != null) {
 			//메인 이미지 등록
 			index = multi.getFilesystemName("main_img").lastIndexOf(".");
-			realFileName = id + new Date().getTime() + multi.getFilesystemName("main_img").substring(index, multi.getFilesystemName("main_img").length());
-			file = new File(realPath + "\\" + multi.getFilesystemName("main_img"));
-			file_new = new File(realPath + "\\" + realFileName);
+			realFileName = "main" + id + new Date().getTime() + multi.getFilesystemName("main_img").substring(index, multi.getFilesystemName("main_img").length());
+			file = new File(realPath + "/" + multi.getFilesystemName("main_img"));
+			file_new = new File(realPath + "/" + realFileName);
 			file.renameTo(file_new);
 			String profile_img = realFileName;
 			
 
-			file = new File(realPath + "\\" + pre_main_img);
+			file = new File(realPath + "/" + pre_main_img);
 			file.delete();
 			prb.setMain_img(profile_img);
 		} else {
@@ -83,12 +83,12 @@ public class ProductUpdateAction implements Action {
 		if (detail_img != null) {
 			//디테일 이미지 등록
 			index = multi.getFilesystemName("detail_img").lastIndexOf(".");
-			realFileName = id + new Date().getTime() + multi.getFilesystemName("detail_img").substring(index, multi.getFilesystemName("detail_img").length());
-			file = new File(realPath + "\\" + multi.getFilesystemName("detail_img"));
-			file_new = new File(realPath + "\\" + realFileName);
+			realFileName = "sub" + id + new Date().getTime() + multi.getFilesystemName("detail_img").substring(index, multi.getFilesystemName("detail_img").length());
+			file = new File(realPath + "/" + multi.getFilesystemName("detail_img"));
+			file_new = new File(realPath + "/" + realFileName);
 			file.renameTo(file_new);
 			String detail_img = realFileName;
-			file = new File(realPath + "\\" + pre_detail_img);
+			file = new File(realPath + "/" + pre_detail_img);
 			file.delete();
 			prb.setDetail_img(detail_img);
 		} else {

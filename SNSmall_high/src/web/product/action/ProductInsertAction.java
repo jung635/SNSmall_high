@@ -31,17 +31,17 @@ public class ProductInsertAction implements Action{
 		File file_new = new File("");
 		//메인 이미지 등록
 		index = multi.getFilesystemName("main_img").lastIndexOf(".");
-		realFileName = id + new Date().getTime() + multi.getFilesystemName("main_img").substring(index, multi.getFilesystemName("main_img").length());
-		file = new File(realPath + "\\" + multi.getFilesystemName("main_img"));
-		file_new = new File(realPath + "\\" + realFileName);
+		realFileName = "main" +  id + new Date().getTime() + multi.getFilesystemName("main_img").substring(index, multi.getFilesystemName("main_img").length());
+		file = new File(realPath + "/" + multi.getFilesystemName("main_img"));
+		file_new = new File(realPath + "/" + realFileName);
 		file.renameTo(file_new);
 		String profile_img = realFileName;
 		
 		//디테일 이미지 등록
 		index = multi.getFilesystemName("detail_img").lastIndexOf(".");
-		realFileName = id + new Date().getTime() + multi.getFilesystemName("detail_img").substring(index, multi.getFilesystemName("detail_img").length());
-		file = new File(realPath + "\\" + multi.getFilesystemName("detail_img"));
-		file_new = new File(realPath + "\\" + realFileName);
+		realFileName = "sub" + id + new Date().getTime() + multi.getFilesystemName("detail_img").substring(index, multi.getFilesystemName("detail_img").length());
+		file = new File(realPath + "/" + multi.getFilesystemName("detail_img"));
+		file_new = new File(realPath + "/" + realFileName);
 		file.renameTo(file_new);
 		String detail_img = realFileName;
 		

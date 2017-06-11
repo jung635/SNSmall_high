@@ -128,7 +128,7 @@ public class PayCompleteAction implements Action {
 				pb.setPay_price(price_result.intValue());
 			} else {
 				price_result = (double) prob.getPrice() * (double) pb.getAmount();
-				point_each = (int) ((price_result / (double) price) * point);
+				point_each = (int) ((price_result / (double) price) * point)/10*10;
 				usedPoint_each -= point_each;
 				pb.setPay_price(price_result.intValue());
 			}

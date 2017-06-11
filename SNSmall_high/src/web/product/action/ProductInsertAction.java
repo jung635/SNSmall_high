@@ -1,5 +1,8 @@
 package web.product.action;
 
+import java.io.File;
+import java.util.Date;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -21,6 +24,27 @@ public class ProductInsertAction implements Action{
 		MultipartRequest multi = 
 				new MultipartRequest(request, realPath, maxSize, "utf-8", 
 						new DefaultFileRenamePolicy());
+		String id = multi.getParameter("vendor_id");
+		int index = 0;
+		String realFileName ="";
+		File file = new File("");
+		File file_new = new File("");
+		//메인 이미지 등록
+		index = multi.getFilesystemName("main_img").lastIndexOf(".");
+		realFileName = id + new Date().getTime() + multi.getFilesystemName("main_img").substring(index, multi.getFilesystemName("main_img").length());
+		file = new File(realPath + "\\" + multi.getFilesystemName("main_img"));
+		file_new = new File(realPath + "\\" + realFileName);
+		file.renameTo(file_new);
+		String profile_img = realFileName;
+		
+		//디테일 이미지 등록
+		index = multi.getFilesystemName("detail_img").lastIndexOf(".");
+		realFileName = id + new Date().getTime() + multi.getFilesystemName("detail_img").substring(index, multi.getFilesystemName("detail_img").length());
+		file = new File(realPath + "\\" + multi.getFilesystemName("detail_img"));
+		file_new = new File(realPath + "\\" + realFileName);
+		file.renameTo(file_new);
+		String detail_img = realFileName;
+		
 		
 		ProductBean prb = new ProductBean();
 		ProductDAO prdao = new ProductDAO();
@@ -28,8 +52,8 @@ public class ProductInsertAction implements Action{
 		prb.setCategory(multi.getParameter("category"));
 		prb.setSubject(multi.getParameter("subject"));
 		prb.setContent(multi.getParameter("content"));
-		prb.setMain_img(multi.getFilesystemName("main_img"));
-		prb.setDetail_img(multi.getFilesystemName("detail_img"));
+		prb.setMain_img(profile_img);
+		prb.setDetail_img(detail_img);
 		
 		if (multi.getParameter("opt_name1") != null && !multi.getParameter("opt_name1").equals("")){
 			opt1 = multi.getParameter("opt_name1")+","+multi.getParameter("option1").replace(" ","");	

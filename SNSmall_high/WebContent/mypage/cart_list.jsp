@@ -164,6 +164,7 @@ String type = (String)session.getAttribute("type");
 					<br>
 					<%sum = sum+price;}%>
 					<br>
+					<%=num %>
 					총가격 :<input type="text" name="price" value="0" readonly>
 					<input type="hidden" name = "cart_num" id="num" value="<%=num%>">
 					<input type="hidden" name = "client_id" id="client_id" value="<%=client_id%>">

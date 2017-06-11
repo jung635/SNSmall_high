@@ -52,8 +52,9 @@ public class PayCompleteAction implements Action {
 		String option3_str = request.getParameter("option3_str");
 		String[] option3 = option3_str.split(",");
 		String method = request.getParameter("method");
-		String cart_str = request.getParameter("num_input");
+		String cart_str = request.getParameter("cart_str");
 		String[] cart_num = {};
+		System.out.println(cart_str);
 		if(cart_str != null){
 			cart_num = cart_str.split(",");
 			// cart 제외
@@ -186,18 +187,18 @@ public class PayCompleteAction implements Action {
 						}
 					}
 					if (sb.getRank().equals("basic")) {
-						sns_profit = (int) (price_result * 0.05);
+						sns_profit = (int) (price_result * 0.05)/10*10;
 					} else if (sb.getRank().equals("plus")) {
-						sns_profit = (int) (price_result * 0.1);
+						sns_profit = (int) (price_result * 0.1)/10*10;
 					} else {
-						sns_profit = (int) (price_result * 0.2);
+						sns_profit = (int) (price_result * 0.2)/10*10;
 					}
 					
 
 				}
 
-				add_point = (int) (price_result * 0.01);
-				company_profit = (int) (price_result * 0.1);
+				add_point = (int) (price_result * 0.01)/10*10;
+				company_profit = (int) (price_result * 0.1)/10*10;
 				vendor_profit = ((prob.getPrice() * pb.getAmount()) - company_profit - sns_profit);
 				// sns profit 주기
 

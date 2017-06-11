@@ -31,6 +31,7 @@ String cart_str = "";
 if(request.getParameter("cart_num") != null){
 	cart_str = request.getParameter("cart_num");
 }
+System.out.println(cart_str);
 String option1_str = "";
 String option2_str = "";
 String option3_str = "";
@@ -48,7 +49,7 @@ String snsId_str = request.getParameter("sns_id");
 ClientBean cb = new ClientBean();
 ClientDAO cdao = new ClientDAO();
 cb = cdao.getMember(id);
-String merchant_uid="high_" + new Date().getTime();
+String merchant_uid=id + new Date().getTime();
 %>
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>

@@ -92,6 +92,8 @@ function goProduct(){
 	alert('기존의 창에서 확인하실수 있습니다');
 	window.opener.location.href='ProductDetail.pr?product_num=<%=lb.getProduct_num()%>&live_id=<%=lb.getSns_id()%>';
 }
+chatBox = document.getElementById('messageTextArea');
+if(chatBox.scrollHeight>0) chatBox.scrollTop = chatBox.scrollHeight;
 </script>
 <div id="title">
 <br>
@@ -103,7 +105,6 @@ function goProduct(){
 <hr style="margin: 30px 20px 50px 10px;">
 <div style="position: relative; width: 1650px; height: 740px;">
 <div id="chat">
-
 	<div id="chat-in">
 		<button class="go-shopping" onclick="goProduct()">상품 구경하러 가기</button>
 		<button onclick="location.href='LiveList.li'">방송 목록 보기</button>

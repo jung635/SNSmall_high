@@ -106,7 +106,8 @@ firebase.database().ref('<%=lb.getVideo_id()%>').limitToLast(1).on('child_added'
 	document.getElementById("messageTextArea").value += data.val().message + "\n";
 });
 
-   
+chatBox = document.getElementById('messageTextArea');
+if(chatBox.scrollHeight>0) chatBox.scrollTop = chatBox.scrollHeight;
 </script>
 <button id="getLiveinfo" onclick="getLive()">내 방송화면 보기</button>
 <button id="getLiveinfo" onclick="deleteLive()">방송 그만하기</button>

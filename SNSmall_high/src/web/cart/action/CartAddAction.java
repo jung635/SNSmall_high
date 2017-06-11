@@ -19,7 +19,7 @@ public class CartAddAction implements Action{
 		
 		HttpSession session = request.getSession();
 		String client_id = (String)session.getAttribute("id");
-		String sns_id = (String)session.getAttribute("link_id");
+		String sns_id = (String)request.getParameter("sns_id");
 		ActionForward forward = new ActionForward();
 		
 		response.setContentType("text/html; charset=UTF-8");

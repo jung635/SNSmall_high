@@ -12,8 +12,7 @@ List<Map<String, Object>> list = (List)request.getAttribute("list");
 Map<String, Object> map = new HashMap<String, Object>();
 String color = "";
 int limit = 0;%>
-<%if(list == null){
-%>
+<%if(list == null){%>
 <%}else{
 	if(list.size()<5) limit = list.size();
 	else limit = 5;%>

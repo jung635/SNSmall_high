@@ -4,7 +4,11 @@ function alarm_access(){
 	xhttp.onreadystatechange = function() {
 		if (this.readyState == 4 && this.status == 200) {
 			var alarm_msg = this.responseText; 
-			alert_view(alarm_msg);  
+			try{
+				alert_view(alarm_msg);
+			}catch(err){
+				
+			}
 		}
 	};
 	xhttp.open("GET", 'Alarm.al', true);
@@ -20,7 +24,11 @@ function alarm_view(){
 	xhttp.onreadystatechange = function() {
 		if (this.readyState == 4 && this.status == 200) {
 			var alarm_msg = this.responseText;  
-			alarm_inner(alarm_msg);  
+			try{
+				alarm_inner(alarm_msg);
+			}catch(err){
+				
+			} 
 		}
 	};
 	xhttp.open("GET", 'AlarmView.al', true);

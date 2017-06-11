@@ -289,7 +289,7 @@ function productSearch_exe(){
 					<li><a class="btn btn-default" href="#" data-filter=".etc">Etc</a></li>
 				</ul><!--/#portfolio-filter-->
 				<div class="portfolio-items">
-					<%
+					<%//a
 					List product_list = (List)request.getAttribute("product_list");
 					if(product_list.size()==0){%>
 						리스트가 없습니다.

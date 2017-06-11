@@ -775,7 +775,7 @@ public class PaymentDAO {
 			} else if (method.equals("waiting")) {
 				sql.append("state = 'waiting'");
 			}
-			sql.append(" group by order_num order by date desc limit ? ");
+			sql.append(" order by date desc limit ? ");
 			pstmt = con.prepareStatement(sql.toString());
 			pstmt.setString(1, vendor_id);
 			pstmt.setInt(2, pageSize);

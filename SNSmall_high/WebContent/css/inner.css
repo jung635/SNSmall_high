@@ -55,6 +55,8 @@ a{
 /* SnsDetail */
 #bigimg_active{
 	text-align: center;
+    margin-top: 30px;
+    margin-bottom: 20px;
 }
 #bigimg_active img{
     max-width: 500px;

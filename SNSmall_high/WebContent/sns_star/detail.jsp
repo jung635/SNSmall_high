@@ -121,8 +121,8 @@ function star_live(){
 	window.open('StarLiveList.li?sns_id=<%=sb.getSns_id()%>', 'star_live_view' , 'height=' + screen.height + ',width=' + screen.width + 'fullscreen=yes');
 }
 
-function memopen(id){
-	window.open("./MemoWrite.me?toId="+id, "쪽지쓰기", "width=550, height=525, top=100, left=100");
+function memopen(id, name){
+	window.open("./MemoWrite.me?toId="+id+"&toName="+name, "쪽지쓰기", "width=550, height=525, top=100, left=100");
 }
 
 
@@ -182,7 +182,7 @@ ProductBean pb;
             </div>
             <section id="our-team">
             	<%if(type.equals("vendor")){ %>
-            	<div><input type="button" value="쪽지보내기" style="float:right" onclick="memopen('<%=sb.getSns_id()%>')"></div>
+            	<div><input type="button" value="쪽지보내기" style="float:right" onclick="memopen('<%=sb.getSns_id()%>','<%=sb.getName()%>')"></div>
             	<%} %>
 				<div class="socials">
 						<%if(sb.getFacebook().trim().length()!=0){%>

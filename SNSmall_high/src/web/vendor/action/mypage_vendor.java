@@ -19,7 +19,7 @@ public class mypage_vendor implements Action{
 		
 			ProductDAO prdao = new ProductDAO(); 
 			int count = prdao.getProductCount(id);
-			int pageSize = 3;
+			int pageSize = 5;
 			
 			String pageNum = request.getParameter("pageNum");
 			if(pageNum==null) pageNum="1";
@@ -27,7 +27,7 @@ public class mypage_vendor implements Action{
 			int startRow = (currentPage-1)*pageSize+1;
 			int endRow = currentPage*pageSize;
 			int pageCount = 0;
-			int pageBlock = 3;
+			int pageBlock = 5;
 			int startPage = 0;
 			int endPage = 0;
 			

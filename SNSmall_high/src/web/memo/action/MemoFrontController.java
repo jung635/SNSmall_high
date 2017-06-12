@@ -95,31 +95,53 @@ public class MemoFrontController extends HttpServlet{
 			try {
 				forward=action.execute(request, response);
 			} catch (Exception e) {e.printStackTrace();}
-		}else if(command.equals("/MemoListAll.me")){
+		}else if(command.equals("/MemoList_ve.me")){
 			//   MemoListAction   execute()
-			action = new MemoListAllAction();
+			action = new MemoList_veAction();
 			try {
 				forward=action.execute(request, response);
 			} catch (Exception e) {e.printStackTrace();}
-		}else if(command.equals("/MemoContentAll.me")){
+		}else if(command.equals("/MemoListGet_ve.me")){
+			//   MemoListAction   execute()
+			action = new MemoListGet_veAction();
+			try {
+				forward=action.execute(request, response);
+			} catch (Exception e) {e.printStackTrace();}
+		}else if(command.equals("/MemoContent_ve.me")){
 			// BoardContentAction execute()
-			action = new MemoContentAllAction();
+			action = new MemoContent_veAction();
 			try {
 				forward=action.execute(request, response);
 			} catch (Exception e) {e.printStackTrace();}
-		}else if(command.equals("/MemoDeleteAllAction.me")){
+		}else if(command.equals("/MemoContentGet_ve.me")){
+			// BoardContentAction execute()
+			action = new MemoContentGet_veAction();
+			try {
+				forward=action.execute(request, response);
+			} catch (Exception e) {e.printStackTrace();}
+		}else if(command.equals("/MemoDelete_veAction.me")){
 			// MemoDeleteAction 생성 execute() 메서드 호출
-			action = new MemoDeleteAllAction();
+			action = new MemoDelete_veAction();
 			try{
 				forward = action.execute(request, response);
 			}catch(Exception e){e.printStackTrace();}
-		}else if(command.equals("/MemoDeleteAll.me")){
+		}else if(command.equals("/MemoDelete_ve.me")){
 			// MemoDeleteAction 생성 execute() 메서드 호출
 			forward = new ActionForward();
-			forward.setPath("./mypage/memo_deleteFormAll.jsp");
+			forward.setPath("./mypage/memo_deleteForm_ve.jsp");
+			forward.setRedirect(false);
+		}else if(command.equals("/MemoDeleteGet_veAction.me")){
+			// MemoDeleteAction 생성 execute() 메서드 호출
+			action = new MemoDeleteGet_veAction();
+			try{
+				forward = action.execute(request, response);
+			}catch(Exception e){e.printStackTrace();}
+		}else if(command.equals("/MemoDeleteGet_ve.me")){
+			// MemoDeleteAction 생성 execute() 메서드 호출
+			forward = new ActionForward();
+			forward.setPath("./mypage/memo_deleteFormGet_ve.jsp");
 			forward.setRedirect(false);
 		}
-		
 		
 		
 		

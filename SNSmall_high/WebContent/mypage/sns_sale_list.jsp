@@ -156,11 +156,12 @@ SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd");
 					<li>수량 : <%=pab.getAmount()%></li>
 					<li>메시지 : <%=pab.getMessage()%></li>
 					<li>날짜 : <%=sdf.format(pab.getDate())%></li>
-					<li>주문번호 : <%=pab.getOrder_num()%></li>
+					<li></li>
+					<%-- <li>주문번호 : <%=pab.getOrder_num()%></li>
 					<li>옵션1 : <%=pab.getOption1()%></li>
 					<li>옵션2 : <%=pab.getOption2()%></li>
 					<li>옵션3 : <%=pab.getOption3()%></li>
-					<li>사용된포인트 : <%=pab.getUsedPoint()%></li>
+					<li>사용된포인트 : <%=pab.getUsedPoint()%></li> --%>
 					<%-- <li>상태표시 : <%=pab.getState()%></li> --%>
 						<input type="button" value="상세보기" onclick="location.href='SnsSaleDetailAction.sn?num=<%=pab.getProduct_num()%>'">
 						<input type="button" value="삭제하기" onclick="javascript:fncheckdelete(<%=pab.getProduct_num()%>);">

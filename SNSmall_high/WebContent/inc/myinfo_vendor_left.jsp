@@ -14,5 +14,13 @@
 	<a href="./ProductInsert.pr" class="list-group-item">상품등록</a>
 	<a href="AlarmListView.al" class="list-group-item">메시지 리스트</a>
 	
+	<div id="showbtn1">		
+		<a href="MemoListGet_ve.me" class="list-group-item showbtn">쪽지함</a>
+		<div id="show1_content">
+			<a href="MemoListGet_ve.me"  class="list-group-item">받은 쪽지함</a>
+			<a href="MemoList_ve.me"  class="list-group-item">보낸 쪽지함</a>
+		</div>
+	</div>
+	
 </div>
   

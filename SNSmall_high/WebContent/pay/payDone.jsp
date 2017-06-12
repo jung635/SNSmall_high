@@ -13,7 +13,7 @@
 	<meta name="description" content="Creative One Page Parallax Template">
 	<meta name="keywords" content="Creative, Onepage, Parallax, HTML5, Bootstrap, Popular, custom, personal, portfolio" /> 
 	<meta name="author" content=""> 
-	<title>HIMU - OnePage HTML Parallax template</title> 
+	<title>SN#</title> 
 	<link href="css/bootstrap.min.css" rel="stylesheet">
 	<link href="css/main.css" rel="stylesheet">
 	<link href="css/inner.css" rel="stylesheet">
@@ -79,7 +79,7 @@ String address = pb_list.get(0).getAddress();
 					 <tr><td colspan="3">삭제된 상품입니다</td></tr>
 				 <%}} %>
 				 
-				 <tr><td><b>배송 주소</b></td><td colspan="3" style="text-align: left; padding-left: 20px;"><%=address %></td></tr>
+				 <tr><td style="background-color: #f5f5f5;"><b>배송 주소</b></td><td colspan="3" style="text-align: left; padding-left: 20px;"><%=address %></td></tr>
 				 
 				 </table>
 				 

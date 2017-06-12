@@ -8,7 +8,7 @@
 	<meta name="description" content="Creative One Page Parallax Template">
 	<meta name="keywords" content="Creative, Onepage, Parallax, HTML5, Bootstrap, Popular, custom, personal, portfolio" /> 
 	<meta name="author" content=""> 
-	<title>HIMU - OnePage HTML Parallax template</title> 
+	<title>SN#</title> 
 	<link href="./css/bootstrap.min.css" rel="stylesheet">
 	<link href="./css/prettyPhoto.css" rel="stylesheet"> 
 	<link href="./css/font-awesome.min.css" rel="stylesheet"> 
@@ -104,7 +104,7 @@
 			<div class="col-sm-3"></div>
 			<div class="col-sm-6">
 			
-				 <div class="login_subject">comming soon Logo</div> 
+				 <div class="login_subject"><img src="./images/logo2.gif" alt="logo" width="150px;" height="80px;"> </div> 
 				<form action="<%=url %>" id="join" name="fr" onsubmit="return confirmSubmit()">
 					<input type="hidden" name="returnUrl" value="<%=returnUrl%>">
 					<input type="hidden" name="product_num" value="<%=product_num%>">

@@ -12,12 +12,12 @@ $(document).ready(function(){
     });
 });
 function openLiveWin(){
-	window.open("LiveList.li", "live_list")
-	//window.open("LiveList.li", "live_list" , "height=830 ,width=1500,top=0,left=0")
+	//window.open("LiveList.li", "live_list")
+	window.open("LiveList.li", "live_list" , "height=830 ,width=1500,top=0,left=0")
 }
 function openVodWin(){
-	window.open("VodList.li", "live_list")
-	//window.open("VodList.li", "live_list" , "height=830 ,width=1500,top=0,left=0")
+	//window.open("VodList.li", "live_list")
+	window.open("VodList.li", "live_list" , "height=830 ,width=1500,top=0,left=0")
 }
 </script>
 <%	

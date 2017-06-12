@@ -45,7 +45,7 @@ function productSearch_exe(){
 </script>
 </head><!--/head-->
 <body>
-<script type="text/javascript" src=".main/alarm.js"></script> 
+<script type="text/javascript" src="./inc/alarm.js"></script> 
 	<div class="preloader">
 		<div class="preloder-wrap">
 			<div class="preloder-inner"> 
@@ -183,7 +183,7 @@ function productSearch_exe(){
 								if(list.size()>4){
 									if(list.size()<8) length = list.size();
 									else length = 8;
-									for(int i=4; i<8; i++){
+									for(int i=4; i<length; i++){
 										SnsBean sb = list.get(i);%>
 										<div class="col-sm-6 col-md-3">
 											<div class="single-member">

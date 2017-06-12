@@ -55,7 +55,7 @@ public class SnsJoinAction implements Action {
 		File file = new File("");
 		File file_new = new File("");
 		index = multi.getFilesystemName("file").lastIndexOf(".");
-		realFileName = sns_id + new Date().getTime() + multi.getFilesystemName("file").substring(index, multi.getFilesystemName("file").length());
+		realFileName = "profile" +  sns_id + new Date().getTime() + multi.getFilesystemName("file").substring(index, multi.getFilesystemName("file").length());
 		file = new File(realPate + "/" + multi.getFilesystemName("file"));
 		file_new = new File(realPate + "/" + realFileName);
 		file.renameTo(file_new);
@@ -66,7 +66,7 @@ public class SnsJoinAction implements Action {
 		String[] array_new = s_new.split(",");
 		for(int i=0; i<array_new.length; i++){
 			index = array_new[i].lastIndexOf(".");
-			realFileName = sns_id + new Date().getTime() + array_new[i].substring(index, array_new[i].length());
+			realFileName = "sub" + i + sns_id + new Date().getTime() + array_new[i].substring(index, array_new[i].length());
 			file = new File(realPate + "/" + array_new[i]);
 			file_new = new File(realPate + "/" + realFileName);
 			file.renameTo(file_new);

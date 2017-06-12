@@ -318,10 +318,10 @@ String address = cdao.getMember(id).getAddress().replace("/"," ");
 		<div id="product_info">
 			<div id="title_in"><h3>결제 정보</h3></div>
 			<table id="pay">
-				<tr><th>상품가격</th><td><%=price %> 원</td></tr>
-				<tr><th>포인트사용</th><td><input type="number" id="usingPoint" name="point" onkeyup="pointChanged(<%=price%>,<%=cb.getPoint()%>)">point <span id="myPoint" style="margin-left: 20px;">보유 :<b><%=cb.getPoint() %></b> p</span></td></tr>
-				<tr><th>총 금액</th><td><span id="price"><%=price %> 원</span></td></tr>
-				<tr><th>결제 할 금액</th><td><span id="price_result"><%=price %> 원</span></td></tr>
+				<tr><th>상품가격</th><td><%=price %></td></tr>
+				<tr><th>포인트사용</th><td><input type="number" id="usingPoint" name="point" onkeyup="pointChanged(<%=price%>,<%=cb.getPoint()%>)"><span id="myPoint" style="margin-left: 20px;"><b><%=cb.getPoint() %></b></span></td></tr>
+				<tr><th>총 금액</th><td><span id="price"><%=price %></span></td></tr>
+				<tr><th>결제 할 금액</th><td><span id="price_result"><%=price %></span></td></tr>
 				<tr><th>결제방법</th>
 					<td><input type="radio" value="card" name="method">신용카드　
 	            		<input type="radio" value="deposit" name="method">무통장입금　

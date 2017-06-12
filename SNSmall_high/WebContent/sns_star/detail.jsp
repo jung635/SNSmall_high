@@ -31,7 +31,9 @@
 </style>
 <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
 <script type="text/javascript">
-
+$(document).ready(function(){
+	plusSlides(0,8);
+});
 //scroll menu
 window.onscroll = changePos;
 function changePos() {

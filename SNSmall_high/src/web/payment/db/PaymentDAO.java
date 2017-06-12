@@ -810,23 +810,7 @@ public class PaymentDAO {
 		if(pstmt != null){try {pstmt.close();}catch(Exception ex){}}
 		if(con != null){try {con.close();}catch(Exception ex) {}}}
 	}
-	
-	public void PayWaitingAction(String num){
-		
-		try{
-			con = getConnection();
-			sql = "update payment set state='payDone' where num=?";
-			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, num);
-			pstmt.executeUpdate();
-	
-			
-		} catch (Exception e) {e.printStackTrace();}
-		finally {if(rs != null){try {rs.close();} catch (Exception ex) {}}
-		if(pstmt != null){try {pstmt.close();}catch(Exception ex){}}
-		if(con != null){try {con.close();}catch(Exception ex) {}}}
-	}
-	
+
 	public void rankUpdate(String sns_id, String rank){
 		try{
 			con = getConnection();
@@ -926,5 +910,20 @@ public class PaymentDAO {
 		return detailList;
 	}
 	
+	public void PayTodeliveryAction(String num){
+		
+		try{
+			con = getConnection();
+			sql = "update payment set state='delivery' where num=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, num);
+			pstmt.executeUpdate();
+	
+			
+		} catch (Exception e) {e.printStackTrace();}
+		finally {if(rs != null){try {rs.close();} catch (Exception ex) {}}
+		if(pstmt != null){try {pstmt.close();}catch(Exception ex){}}
+		if(con != null){try {con.close();}catch(Exception ex) {}}}
+	}
 	
 }

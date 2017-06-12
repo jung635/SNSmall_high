@@ -115,6 +115,8 @@ String content="";
 								}else if(pb.getState().equals("waiting")){//무통장 입금시
 									%><input type="button" value="입금 확인" onclick="location.href='PayDepositDone.ve?num=<%=pb.getNum()%>'"><%
 
+								}else if(pb.getState().equals("payDone")){
+									%><input type="button" value="배송 하기" onclick="location.href='todelivery.pa?num=<%=pb.getNum()%>'"><%
 								}else{
 									%>비고<%
 								}

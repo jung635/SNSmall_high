@@ -30,7 +30,6 @@ public class ProductUpdateForm implements Action{
 			request.setAttribute("opt_name3", opt_name3);
 		}				
 		request.setAttribute("prb", prb);
-			
 		ActionForward forward=new ActionForward();
 		forward.setPath("./product/productUpdate.jsp");
 		forward.setRedirect(false);

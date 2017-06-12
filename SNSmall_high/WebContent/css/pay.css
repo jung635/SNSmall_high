@@ -190,3 +190,49 @@
 	font-weight: 1000;
 	border-radius:5px;
 }
+
+/* payDone.jsp */
+
+.pay-ord-num{
+	padding: 10px;
+	width: 300px;
+	background-color: #43484E;
+	color: #fff;
+	font-weight: bolder;
+}
+.pro-info td{
+	padding: 10px;
+}
+.pay-ord-info{
+	padding: 10px;
+	width: 500px;
+}
+.pay-ord-pri{
+	padding: 10px;
+	width: 150px;
+}
+.total-pri{
+	margin-top: 100px;
+	border:1px solid #ffc180;
+	background-color: #ffc180;
+}
+
+.total-pri th{
+	width: 500px;
+	padding: 10px;
+	font-size: 20px;
+	color:#fff;
+}
+.total-pri td{
+	font-size: 35px;
+	text-align: right;
+	padding: 20px;
+}
+#pay_bottom input[type=button]{
+	border: none;
+	background-color: #ccc;
+	padding: 10px 40px 10px 40px;
+	margin: 10px;
+	font-size: 15px;
+	font-weight: bold;
+}

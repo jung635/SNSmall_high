@@ -18,6 +18,7 @@
 	<link href="./css/main.css" rel="stylesheet">
 	<link href="./css/inner.css" rel="stylesheet">
 	<link href="./css/header.css" rel="stylesheet">
+	<link href="./css/pay.css" rel="stylesheet">
 <title>Insert title here</title>
 <%
 List<PaymentBean> pb_list = (List<PaymentBean>)request.getAttribute("pb_list");
@@ -60,10 +61,22 @@ String cancel_num_str = "";
   <!-- Page Content -->
   <div class="container">
     <div class="more_content">
+     <div class="col-md-12">
+    <div class="panel panel-default text-center" style="border-color: white;">
 		<div id = "pay_check">
-		<div><h2>결제 정보 확인</h2></div>
-		<table border="1" style="width: 900px; margin: auto;">
-			<tr><td rowspan="<%=length+1 %>" style="width: 150px;">주문번호<br><%=merchant_uid%></td><td>상품정보</td><td>가격</td><td>갯수</td><td>총 금액</td></tr>
+		<div style="text-align: left;"><h3>결제 정보 확인</h3></div>
+		
+		<hr style="border-color: #7ABE90;">
+			<br><br>
+		
+		
+		<table border="1" style="margin: auto;" class="pro-info">
+			<tr><td rowspan="<%=length+1 %>" class="pay-ord-num">주문번호<br><div style="word-break:break-all;"><%=merchant_uid%></div></td>
+			<td class="pay-ord-info2">상품정보</td>
+			<td class="pay-ord-pri2" >가격</td>
+			<td class="pay-ord-pri2">개수</td>
+			<td class="pay-ord-pri">금액</td>
+			</tr>
 			<%for(int i=0; i<length; i++){
 				PaymentBean pb = pb_list.get(i);
 				boolean isCancel = false;
@@ -77,7 +90,7 @@ String cancel_num_str = "";
 						}
 					}
 					if(isCancel){%>
-						<tr style="font-style: italic; font-weight: bold;"><td><%=prob.getSubject() %>(취소상품)</td><td><%=prob.getPrice() %></td><td><%=pb.getAmount() %></td><td><%=pb.getAmount()*prob.getPrice() %></td></tr>
+						<tr style="font-style: italic; font-weight: bold; color:#ae0000;"><td><%=prob.getSubject() %>　(취소상품)</td><td><%=prob.getPrice() %></td><td><%=pb.getAmount() %></td><td><%=pb.getAmount()*prob.getPrice() %></td></tr>
 				<%}else{%>
 					<tr><td><%=prob.getSubject() %></td><td><%=prob.getPrice() %></td><td><%=pb.getAmount() %></td><td><%=pb.getAmount()*prob.getPrice() %></td></tr>
 				 <%}
@@ -93,12 +106,23 @@ String cancel_num_str = "";
 					<%}else{%>
 						<tr><td colspan="4">삭제된 상품입니다.</td></tr>
 			 <%}}}%>
-			
-			<tr><td colspan="5" style="text-align: right;">총 금액: <%=price %></td></tr>
-			<tr><td colspan="5" style="text-align: right;">사용한 포인트: <%=usedPoint %></td></tr>
-	 		<tr><td colspan="5" style="text-align: right; font-style: italic; font-weight: bold; "> 회수 받을 포인트: <%=cancel_point %></td></tr>
-	 		<tr><td colspan="5" style="text-align: right;">총 결제 금액: <%=price-usedPoint %></td></tr>
-		</table>
+			</table>
+			<table class="total-pri2">
+			<tr>
+				<th class="pri-22">총 금액</th>
+				<th class="pri-11">사용한 포인트</th>
+				<th class="pri-22">회수 받을 포인트</th>
+				<th class="pri-3" style="font-size: 25px;">총 취소 금액</th>
+			</tr>
+			<tr>
+				<td class="pri-22"><%=price %> 원</td>
+				<td class="pri-11">- <%=usedPoint %> P</td>
+				<td class="pri-22">+ <%=cancel_point %> P</td>
+				<td class="pri-3" style="font-size: 30px;"><b><%=price-usedPoint %> 원</b></td>
+			</tr>
+			</table>
+		</div>
+		</div>
 		</div>
 	</div>
 	<div id="pay_bottom">

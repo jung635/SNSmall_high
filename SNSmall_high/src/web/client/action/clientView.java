@@ -16,9 +16,17 @@ public class clientView implements Action{
 		String id = (String)session.getAttribute("id");
 		ClientDAO cldao = new ClientDAO();
 		ClientBean clb = cldao.getMember(id);
-		String postcode = clb.getAddress().split("/")[0];
-		String address = clb.getAddress().split("/")[1];
-		String address2 = clb.getAddress().split("/")[2];
+		
+		String postcode = "";
+		String address = "";
+		String address2 = "";
+		try{
+			postcode = clb.getAddress().split("/")[0];
+			address = clb.getAddress().split("/")[1];
+			address2 = clb.getAddress().split("/")[2];
+		}catch(Exception e){
+			e.printStackTrace();
+		}
 		
 		request.setAttribute("postcode", postcode);
 		request.setAttribute("address", address);

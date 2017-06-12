@@ -30,7 +30,7 @@ a{
 }
 .business-header {
     height: 400px;
-    background: url('http://placehold.it/1920x400') center center no-repeat scroll;
+    background: url('../images/services/service02.jpg') center center no-repeat scroll;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     background-size: cover;
@@ -55,6 +55,8 @@ a{
 /* SnsDetail */
 #bigimg_active{
 	text-align: center;
+    margin-top: 30px;
+    margin-bottom: 20px;
 }
 #bigimg_active img{
     max-width: 500px;
@@ -172,6 +174,12 @@ a{
     padding: 18px !important;
     height: 375px !important;
 }
+.single-member a{
+	color: rgb(255, 210, 106) !important;
+}
+.single-member small{
+    color: #999 !important;
+}
 #profile_img_wrap{
     min-height: 140px;
     max-height: 169px;
@@ -272,18 +280,6 @@ a{
     display: block;
 }
 
-/* pay */
-#buyer, #product, #pay{
-    width: 900px;
-    margin: auto;
-}
-#policy{
-    margin-top: 55px;
-}
-#policy1{
-    border: 1px solid;
-}
-
 /* Mypage */
 #show_content {
 	 display: none;  
@@ -308,6 +304,35 @@ a{
 #showbtn:hover #show_content{
      display: block; 
 }
+
+
+
+#show1_content {
+	 display: none;  
+    position: absolute;
+    background-color: #f9f9f9;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    left: 212px;
+    width: 237px;
+    top: 150px;
+   border-top-right-radius: 4px;
+    border-top-left-radius: 4px;
+}
+#show1_content a{
+    line-height: 30px;
+    padding: 7px 30% !important;
+	text-align: center;
+}
+#show1_content a:hover {
+    background-color: rgba(234, 232, 232, 0.61) !important;
+}
+#showbtn1:hover #show1_content{
+     display: block; 
+}
+
+
+
 .list-group {
     position: relative;
 }
@@ -322,3 +347,75 @@ a.list-group-item:hover, a.list-group-item:focus {
     line-height: 50px;
 }
 
+/* PayCancel */
+#pay_bottom{
+	text-align: center;
+}
+#pay_check{
+	margin-bottom: 63px;
+}
+
+/* Product Detail */
+#ourproduct{
+	background-color: #ffffff !important;
+	padding: 43px 0;
+}
+#ourproduct .socials_pro a .fa-facebook{
+	background: #3B5997 !important;
+}
+#ourproduct .socials_pro a .fa-twitter{
+	background: #29C5F6 !important;
+}
+#ourproduct .socials_pro a .fa-bold{
+	background: #FF5C93 !important;
+}
+#ourproduct .socials_pro a .fa-linkedin-square {
+    background: #D13D2F !important;
+}
+#ourproduct .socials_pro a .fa-github-alt {
+    background: #C12DFF !important;
+}
+#ourproduct .socials_pro a .fa-globe {
+    background: #828282 !important;
+}
+#ourproduct .socials_pro a .fa-facebook:hover{
+	border-radius: 0px;
+    border: solid 1px !important;
+}
+#ourproduct .socials_pro a .fa-twitter:hover{
+	border-radius: 0px;
+    border: solid 1px !important;
+}
+#ourproduct .socials_pro a .fa-bold:hover{
+	border-radius: 0px;
+    border: solid 1px !important;
+}
+#ourproduct .socials_pro a .fa-linkedin-square:hover{
+	border-radius: 0px;
+    border: solid 1px !important;
+}
+#ourproduct .socials_pro a .fa-github-alt:hover{
+	border-radius: 0px;
+    border: solid 1px !important;
+}
+#ourproduct .socials_pro a .fa-globe:hover{
+	border-radius: 0px;
+    border: solid 1px !important;
+}
+#ourproduct .socials_pro a i{
+	opacity: 1 !important;
+    color: #080808 !important;
+    border: 0px !important;
+    display: inline-block;
+    font-size: 16px;
+    height: 30px;
+    line-height: 28px;
+    margin-right: 5px;
+    text-align: center;
+    width: 30px;
+}
+#product_detail_img img{
+	display: block;
+	height: auto;
+	width: 100% !important;
+}

@@ -15,8 +15,14 @@ public class passModifyAction implements Action{
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
 		request.setCharacterEncoding("utf-8");
-		String id = request.getParameter("id");
-		String pass = request.getParameter("pass");
+		HttpSession session = request.getSession();
+		String id = (String) session.getAttribute("id");
+//		String pass = request.getParameter("pass");
+		// 비밀번호 암호화 코드 추가
+		String npass = request.getParameter("newpass");
+		SecurityUtil su = new SecurityUtil();
+		String pass = su.encryptSHA256(npass);		
+		// 비밀번호 암호화 코드 추가
 		ClientDAO cldao = new ClientDAO();
 		cldao.passModify(id,pass);
 		
@@ -24,12 +30,9 @@ public class passModifyAction implements Action{
 		PrintWriter out = response.getWriter(); // 자바api 중 하나 PrintWriter
 		out.println("<script>");
 		out.println("alert('비밀번호가 변경되었습니다.');"); // (;) 이 엔터키 역할
-		out.println("location.href='./clientView.cl'");
+		out.println("history.back();");
 		out.println("</script>");
 		out.close();
-		
-		HttpSession session = request.getSession();
-		session.setAttribute("pass", pass);
 		
 		return null;
 	}

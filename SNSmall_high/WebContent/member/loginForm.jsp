@@ -1,14 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html lang="en">
+<html lang="UTF-8">
 <head> 
 	<meta charset="UTF-8"> 
 	<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
 	<meta name="description" content="Creative One Page Parallax Template">
 	<meta name="keywords" content="Creative, Onepage, Parallax, HTML5, Bootstrap, Popular, custom, personal, portfolio" /> 
 	<meta name="author" content=""> 
-	<title>HIMU - OnePage HTML Parallax template</title> 
+	<title>SN#</title> 
 	<link href="./css/bootstrap.min.css" rel="stylesheet">
 	<link href="./css/prettyPhoto.css" rel="stylesheet"> 
 	<link href="./css/font-awesome.min.css" rel="stylesheet"> 
@@ -45,12 +45,44 @@
 		return false;
 	}
 	
-}
+	}
+	
+	function SearchPass(){
+		window.open("./SearchPass.cl","","height=500 width=450 top=180 left=725");
+	}
+	
+	function SearchId(){
+		window.open("./SearchId.cl","","height=500 width=450 top=180 left=725");
+	}
+	
+	function SearchIdForSns(){
+		window.open("./SearchIdForSns.cl","","height=500 width=450 top=180 left=725");
+	}
 
 	</script>
 	
 </head><!--/head-->
 <body>
+<%
+	String id=(String) session.getAttribute("id");
+	if(id != null){
+		response.sendRedirect("./Main.cl");
+	}
+
+	String url = "";
+	String returnUrl = request.getParameter("returnUrl");
+	if(returnUrl==null){returnUrl = request.getHeader("referer");}
+
+	String product_num = request.getParameter("product_num");
+	if(product_num==null){product_num="0";}
+	String sns_id = request.getParameter("sns_id");
+	if(sns_id==null){
+		url = "./loginAction.cl";
+	}else{
+		url = "./loginProductAction.cl";
+	}
+
+%>
 	<div class="preloader">
 		<div class="preloder-wrap">
 			<div class="preloder-inner"> 
@@ -72,10 +104,11 @@
 			<div class="col-sm-3"></div>
 			<div class="col-sm-6">
 			
-				 <div class="login_subject">comming soon Logo</div> 
-		
-				<form action="./loginAction.cl" id="join" name="fr" onsubmit="return confirmSubmit()">
-			
+				 <div class="login_subject"><img src="./images/logo2.gif" alt="logo" width="150px;" height="80px;"> </div> 
+				<form action="<%=url %>" id="join" name="fr" onsubmit="return confirmSubmit()">
+					<input type="hidden" name="returnUrl" value="<%=returnUrl%>">
+					<input type="hidden" name="product_num" value="<%=product_num%>">
+					<input type="hidden" name="sns_id" value="<%=sns_id%>">
 					<fieldset class="login_form">
 					
 					<div class="input_row" id="id_area">
@@ -86,6 +119,7 @@
 <!-- 						<button type="button" disabled="" title="delete" id="id_clear" class="wrg">삭제</button> -->
 					</div>
 					<div  id="err_empty_id" class="error" style="display:none; ">아이디를 입력해주세요.</div>
+					
 					<div class="input_row" id="pw_area">
 						<span class="input_box">
 							<label for="pw" id="label_pw_area"  class="lbl">비밀번호</label>
@@ -107,9 +141,11 @@
 					<legend class="blind"></legend>
 					
 					<div class="sub_member">
-					<a href="#" >회원가입</a>&nbsp;|
-					<a href="#">아이디 찾기</a>&nbsp;|
-					<a href="#">비밀번호 찾기</a>
+					<a href="./common_join.sn" >회원가입</a>&nbsp;|
+					<a href="./login.cl" >로그인</a>&nbsp;|
+					<a href="javascript:SearchId()">아이디 찾기</a>&nbsp;|
+					<a href="javascript:SearchPass()">비밀번호 찾기</a><br>
+					<a href="javascript:SearchIdForSns()">SNS 아이디 찾기</a>
 					</div>
 					
 					<div class="clear"></div>

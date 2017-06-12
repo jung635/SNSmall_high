@@ -4,7 +4,10 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import web.live.db.LiveBean;
+import web.live.db.LiveDAO;
 import web.product.db.ProductBean;
 import web.product.db.ProductDAO;
 import web.qna.db.QnaBean;
@@ -14,9 +17,18 @@ public class ProductDetailAction implements Action{
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		System.out.println("ProductDetailAction execute()");
 		
 		request.setCharacterEncoding("utf-8");
+		
+		HttpSession session = request.getSession();
+		String id = (String)session.getAttribute("id");
+		String type = (String)session.getAttribute("type");
+		String sns_id = request.getParameter("sns_id");
+		if(sns_id == null){
+			sns_id = "";
+		}else{
+			session.setAttribute("link_id", sns_id);
+		}
 		
 		int product_num = Integer.parseInt(request.getParameter("product_num"));
 		String pageNum = request.getParameter("pageNum");
@@ -26,12 +38,12 @@ public class ProductDetailAction implements Action{
 			pageNum = (String)request.getAttribute("pageNum");
 		}
 		if(pageNum==null){pageNum="1";}
-		
+
 		ProductDAO productdao = new ProductDAO();
 		ProductBean productbean = productdao.getProduct(product_num);
-		
 		QnaDAO qdao = new QnaDAO();
-		
+		LiveDAO ldao = new LiveDAO();
+		List<LiveBean> live_list = ldao.getLive(product_num);		
 //		int count = qdao.getQnaCount();
 //		int pageSize = 20;
 //		int currentPage = Integer.parseInt(pageNum);
@@ -46,16 +58,19 @@ public class ProductDetailAction implements Action{
 //		int endPage = startPage+pageBlock-1;
 //		if(endPage > pageCount){endPage=pageCount;}
 
-		request.setAttribute("pageNum", pageNum);
-		request.setAttribute("qnaList", qnaList);
 //		request.setAttribute("count", count);
 //		request.setAttribute("pageCount", pageCount);
 //		request.setAttribute("pageBlock", pageBlock);
 //		request.setAttribute("startPage", startPage);
 //		request.setAttribute("endPage", endPage);
 		
+		request.setAttribute("live_lis", live_list);
+		request.setAttribute("pageNum", pageNum);
+		request.setAttribute("qnaList", qnaList);
 		request.setAttribute("productbean", productbean);
 		request.setAttribute("pageNum", pageNum);
+		request.setAttribute("id", id);
+		request.setAttribute("type", type);
 		
 		ActionForward forward = new ActionForward();
 		forward.setPath("./product/detail.jsp");

@@ -46,7 +46,7 @@ ResultSet rs = null;
 			
 			
 			pstmt.executeUpdate();
-		} catch (Exception e) {System.out.println("DB연결 실패" + e);
+		} catch (Exception e) {e.printStackTrace();
 		} finally {if (con != null) {try {con.close();} catch (Exception e) {e.printStackTrace();}	}
 			if (pstmt != null) {try {pstmt.close();} catch (Exception e) {	e.printStackTrace();}}
 			if (rs != null) {try {rs.close();} catch (Exception e) {e.printStackTrace();}}}
@@ -87,13 +87,36 @@ ResultSet rs = null;
 				return check;
 			}
 			
-		} catch (Exception e) {System.out.println("DB연결 실패" + e);
+		} catch (Exception e) {e.printStackTrace();
 		} finally {if (con != null) {try {con.close();} catch (Exception e) {e.printStackTrace();}	}
 			if (pstmt != null) {try {pstmt.close();} catch (Exception e) {	e.printStackTrace();}}
 			if (rs != null) {try {rs.close();} catch (Exception e) {e.printStackTrace();}}}
 		
 		return check;
 	} // idDupCheck()
+	
+	// 비번 확인
+	public int  passConfirm(String id,String pass) {
+			int check = 0;
+			
+			try {
+				con = getConnection();
+				sql = "select pass from vendor where vendor_id=? and pass = ?";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, id);
+				pstmt.setString(2, pass);
+				rs = pstmt.executeQuery();
+				if(rs.next()){
+				if (pass.equals(rs.getString("pass"))) {
+					check=1;
+					return check; // 패스워드일치
+				}}				
+			} catch (Exception e) {e.printStackTrace();
+			} finally {if (con != null) {try {con.close();} catch (Exception e) {e.printStackTrace();}	}
+				if (pstmt != null) {try {pstmt.close();} catch (Exception e) {	e.printStackTrace();}}
+				if (rs != null) {try {rs.close();} catch (Exception e) {e.printStackTrace();}}}
+			return check;
+		} // 비번 확인
 			
 	// 판매자정보 불러오기
 	public VendorBean getVendor(String id) {
@@ -218,7 +241,7 @@ ResultSet rs = null;
 				pb = new PaymentBean();
 				pb.setAmount(rs.getInt("amount"));
 				pb.setClient_id(rs.getString("client_id"));
-				pb.setDate(rs.getDate("date"));
+				pb.setDate(rs.getTimestamp("date"));
 				pb.setMessage(rs.getString("message"));
 				pb.setNum(rs.getInt("num"));
 				pb.setOption1(rs.getString("option1"));
@@ -272,7 +295,7 @@ ResultSet rs = null;
 				pb = new PaymentBean();
 				pb.setAmount(rs.getInt("amount"));
 				pb.setClient_id(rs.getString("client_id"));
-				pb.setDate(rs.getDate("date"));
+				pb.setDate(rs.getTimestamp("date"));
 				pb.setMessage(rs.getString("message"));
 				pb.setNum(rs.getInt("num"));
 				pb.setOption1(rs.getString("option1"));
@@ -326,7 +349,7 @@ ResultSet rs = null;
 				pb = new PaymentBean();
 				pb.setAmount(rs.getInt("amount"));
 				pb.setClient_id(rs.getString("client_id"));
-				pb.setDate(rs.getDate("date"));
+				pb.setDate(rs.getTimestamp("date"));
 				pb.setMessage(rs.getString("message"));
 				pb.setNum(rs.getInt("num"));
 				pb.setOption1(rs.getString("option1"));
@@ -365,5 +388,105 @@ ResultSet rs = null;
 
 	}
 	
-	
+	//회원수 구하기
+		public int getListCount(){
+			int num = 0;
+
+			try {
+				con = getConnection();
+				sql = "select count(*) from vendor";
+				pstmt = con.prepareStatement(sql);
+				rs = pstmt.executeQuery();
+				if (rs.next()) {
+					num = rs.getInt(1);
+				}
+
+			} catch (Exception e) {e.printStackTrace();
+			} finally {if (rs != null) {try {rs.close();} catch (Exception ex) {}}
+				if (pstmt != null) {try {pstmt.close();} catch (Exception ex) {}}
+				if (con != null) {try {con.close();} catch (Exception ex) {}}}
+
+			return num;	
+		}
+		
+		// 검색된 회원수 구하기
+		public int getListCount(String search){
+			int num = 0;
+
+			try {
+				con = getConnection();
+				sql = "select count(*) from vendor where person_name like ?";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, "%"+search+"%");
+				rs = pstmt.executeQuery();
+				if (rs.next()) {
+					num = rs.getInt(1);
+				}
+
+			} catch (Exception e) {e.printStackTrace();
+			} finally {if (rs != null) {try {rs.close();} catch (Exception ex) {}}
+				if (pstmt != null) {try {pstmt.close();} catch (Exception ex) {}}
+				if (con != null) {try {con.close();} catch (Exception ex) {}}}
+
+			return num;	
+		}
+		
+		// 회원정보 목록 불러오기
+		public List<VendorBean> getVendorList(int startRow, int pageSize){
+			List<VendorBean> vendorList = new ArrayList<VendorBean>();
+			try{
+				con = getConnection();
+				sql = "select * from vendor order by vendor_id desc limit ?,?";
+				pstmt=con.prepareStatement(sql);
+				pstmt.setInt(1, startRow-1);
+				pstmt.setInt(2, pageSize);
+				rs = pstmt.executeQuery();
+				while(rs.next()){
+					VendorBean vb = new VendorBean();
+					vb.setVendor_id(rs.getString("vendor_id"));
+					vb.setPass(rs.getString("pass"));
+					vb.setAddress(rs.getString("address"));
+					vb.setPhone(rs.getString("phone"));
+					vb.setPerson_name(rs.getString("person_name"));
+					vb.setCompany_name(rs.getString("company_name"));
+					vb.setVendor_profit(rs.getInt("vendor_profit"));
+					vb.setDate(rs.getDate("date"));
+					vendorList.add(vb);
+				}
+			}catch(Exception e){e.printStackTrace();}
+			finally {if(rs != null){try {rs.close();}catch(Exception ex){}}
+			if(pstmt != null){try {pstmt.close();}catch(Exception ex){}}
+			if(con != null){try {con.close();}catch(Exception ex) {}}}
+			return vendorList;
+		}
+		
+		// 검색된 회원정보 목록 불러오기
+		public List<VendorBean> getVendorList(int startRow, int pageSize, String search){
+			List<VendorBean> vendorList = new ArrayList<VendorBean>();
+			try{
+				con = getConnection();
+				sql = "select * from vendor where person_name like ? order by vendor_id desc limit ?,?";
+				pstmt=con.prepareStatement(sql);
+				pstmt.setString(1, "%"+search+"%");
+				pstmt.setInt(2, startRow-1);
+				pstmt.setInt(3, pageSize);
+				rs = pstmt.executeQuery();
+				while(rs.next()){
+					VendorBean vb = new VendorBean();
+					vb.setVendor_id(rs.getString("vendor_id"));
+					vb.setPass(rs.getString("pass"));
+					vb.setAddress(rs.getString("address"));
+					vb.setPhone(rs.getString("phone"));
+					vb.setPerson_name(rs.getString("person_name"));
+					vb.setCompany_name(rs.getString("company_name"));
+					vb.setVendor_profit(rs.getInt("vendor_profit"));
+					vb.setDate(rs.getDate("date"));
+					vendorList.add(vb);
+				}
+			}catch(Exception e){e.printStackTrace();}
+			finally {if(rs != null){try {rs.close();}catch(Exception ex){}}
+			if(pstmt != null){try {pstmt.close();}catch(Exception ex){}}
+			if(con != null){try {con.close();}catch(Exception ex) {}}}
+			return vendorList;
+		}		
 }

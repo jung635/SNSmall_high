@@ -11,8 +11,6 @@ import web.client.db.ClientDAO;
 import web.vendor.db.VendorBean;
 import web.vendor.db.VendorDAO;
 
-
-
 public class clientJoinAction implements Action{
 
 	@Override
@@ -20,6 +18,13 @@ public class clientJoinAction implements Action{
 
 		request.setCharacterEncoding("utf-8");
 		String id = request.getParameter("id");
+		
+		// 비밀번호 암호화 코드 추가
+		String npass = request.getParameter("pass");
+		SecurityUtil su = new SecurityUtil();
+		String pass = su.encryptSHA256(npass);		
+		// 비밀번호 암호화 코드 추가
+		
 		ClientDAO cldao = new ClientDAO();
 		response.setContentType("text/html; charset=UTF-8");
 		PrintWriter out = response.getWriter();
@@ -29,23 +34,25 @@ public class clientJoinAction implements Action{
 			out.println("alert('다른 아이디를 입력하세요');");
 			out.println("history.back();");
 			out.println("</script>");
+			out.close();
 			return null;
 		}		
 		ClientBean clb = new ClientBean();
 		clb.setClient_id(request.getParameter("id"));
-		clb.setPass(request.getParameter("pass"));
+		clb.setPass(pass);
 		clb.setName(request.getParameter("name"));
 		clb.setEmail(request.getParameter("email"));
 		clb.setPhone(request.getParameter("phone"));
-		String addre = request.getParameter("postcode")+", "+request.getParameter("address")+", "+request.getParameter("address2");
+		String addre = request.getParameter("postcode")+"/"+request.getParameter("address")+"/"+request.getParameter("address2");
 		clb.setAddress(addre);
 		
 		cldao.insertClient(clb);
-		
-		ActionForward forward = new ActionForward();
-		forward.setPath("./login.cl");
-		forward.setRedirect(true);
-		return forward;
+		out.println("<script>");
+		out.println("alert('회원가입이 완료되었습니다.');");
+		out.println("location.href='./login.cl'");
+		out.println("</script>");
+		out.close();
+		return null;
 	}
 		
 }

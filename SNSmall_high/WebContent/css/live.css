@@ -1,0 +1,134 @@
+@CHARSET "UTF-8";
+
+/* liveList.jsp */
+.live-tit{
+	font-size: 15px;
+	padding-left: 20px;
+	font-weight: bold;
+	color: #43484E;
+}
+.liveList{
+	border: 1px solid #fff;
+	margin-bottom: 10px;
+	background-color: #fff;
+}
+.img-bg{
+	height: 250px;
+	background-size:cover;
+	background-repeat: no-repeat;
+	border-radius:10em;
+	margin-top:10px;
+}
+.liveListCon1{
+	text-align: center;
+	margin-top: 10px;
+	font-size: 20px;
+/* 	font-weight: bold; */
+	color:#ffc180;
+}
+.live-pro{
+	text-align: right;
+	font-size: 10px;
+	font-weight: bold;
+}
+.go-live-btn{
+	background-color: #ffc180;
+	border-radius:5px;
+	border: none;
+	padding-top: 10px;
+	padding-bottom:10px;
+	font-size: 15px;
+	font-weight: bold;
+	margin: 10px 0 10px 0;
+	color:#fff;
+}
+.go-live-btn:hover{
+	background-color: #ffc180;
+	color: #43484E;
+}
+
+/* viewLive.jsp */
+.tit-bg{
+	font-size: 25px;
+	margin-left: 40px;
+	color: #fc7700;
+}
+
+#chat{
+	float: right;
+	margin-right: 18px;
+}
+		.gobtn{
+		margin: 0 0 10px 10px;
+		padding: 10px 52px 10px 52px;
+		background-color: #fff;
+		border: none;
+		cursor: pointer;
+		font-weight: bold;
+		}
+		.gobtn_ing{
+		margin: 0 0 10px 10px;
+		padding: 10px 70px 10px 70px;
+		background-color: #fff;
+		border: none;
+		cursor: pointer;
+		font-weight: bold;
+		}
+		#messageTextArea{
+		width: 500px !important;
+		height: 600px !important;
+		margin-left: 10px;
+		background-color: #fff;
+		border: none;
+		font-size: 15px;
+		font-weight: bold;
+		margin-bottom: 5px;
+		line-height: 25px;
+		}
+		#textMessage{
+		width: 430px !important;
+		margin-left: 10px;
+		font-size: 15px;
+		font-weight: bold;
+		padding: 10px;
+		border: 1px solid #e3e3e3;
+		}
+		.sendBtn{
+		padding: 10px;
+		border: 1px solid #e3e3e3;
+		background-color: #fff;
+		}
+		.sendBtn:hover, .go-shopping:hover{
+		cursor: pointer;
+		background-color: #fc7700;
+		color:#fff;
+		}
+		
+.live-rank{
+	background-color: #7ABE90;
+	padding: 10px 1px 10px 1px;
+	text-align: center;
+	font-weight: bolder;
+	color:#fff;
+}
+.live-view{
+	text-align: right;
+	line-height: 40px;
+	font-size: 8px;
+	font-weight: bolder;
+}
+.sub-vod{
+	font-size: 20px;
+	margin: 30px;
+}
+.sub-let{
+	margin-right: 30px;
+}
+.vod-go-btn{
+	padding: 10px 30px 10px 30px;
+	border: none;
+	background-color: #fff;
+	cursor: pointer;
+	font-weight: bold;
+	color:#43484E;
+}

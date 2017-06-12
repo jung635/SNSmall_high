@@ -54,7 +54,7 @@ public class SnsFrontController extends HttpServlet{
 		}else if(command.equals("/MyPage.sn")){
 			action = new Snsinfo();
 	 		try{
-	 			forward=action.execute(request, response);
+	 		forward=action.execute(request, response);
 	 		}catch(Exception e){e.printStackTrace();}
 	 		
 		}else if(command.equals("/passConfirm.sn")){
@@ -79,7 +79,7 @@ public class SnsFrontController extends HttpServlet{
 	 			forward=action.execute(request, response);
 	 		}catch(Exception e){e.printStackTrace();}
 	 		
-		}else if(command.equals("/passChangeAction")){
+		}else if(command.equals("/passChangeAction.sn")){
 			action = new passChangeAction();
 	 		try{
 	 			forward=action.execute(request, response);
@@ -87,9 +87,9 @@ public class SnsFrontController extends HttpServlet{
 	 		
 		}else if(command.equals("/SnsSale.sn")){
 			action = new SnsSale();
-			try {
-				forward = action.execute(request, response);
-			} catch (Exception e) {e.printStackTrace();}
+			try{
+	 			forward=action.execute(request, response);
+	 		}catch(Exception e){e.printStackTrace();}
 			
 		}else if(command.equals("/SearchSnsList.sn")){
 			action = new SearchSnsListAction();
@@ -97,6 +97,23 @@ public class SnsFrontController extends HttpServlet{
 				forward = action.execute(request, response);
 			} catch (Exception e) {e.printStackTrace();}
 			
+		}else if(command.equals("/snsSaleDeleteAction.sn")){
+			// MemoDeleteAction 생성 execute() 메서드 호출
+			action = new snsSaleDeleteAction();
+			try{
+				forward = action.execute(request, response);
+			}catch(Exception e){e.printStackTrace();}
+		}else if(command.equals("/SnsSaleDelete.sn")){
+			// MemoDeleteAction 생성 execute() 메서드 호출
+			forward = new ActionForward();
+			forward.setPath("./mypage/snsSale_deleteForm.jsp");
+			forward.setRedirect(false);
+		}else if(command.equals("/SnsSaleDetailAction.sn")){
+			// SnsSaleDetailAction execute()
+			action = new SnsSaleDetailAction();
+			try {
+				forward=action.execute(request, response);
+			} catch (Exception e) {e.printStackTrace();}
 		}
 
 		

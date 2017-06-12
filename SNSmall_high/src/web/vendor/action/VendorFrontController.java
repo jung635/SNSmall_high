@@ -57,6 +57,12 @@ public class VendorFrontController extends HttpServlet{
 				forward = action.execute(request, response);
 			}catch(Exception e){e.printStackTrace();}
 			
+		}else if(command.equals("/VendorPassConfirm.ve")){
+			action = new VendorPassConfirm();
+			try{
+				forward = action.execute(request, response);
+			}catch(Exception e){e.printStackTrace();}
+			
 		}else if (command.equals("/passCheck.ve")) {
 			forward = new ActionForward();
 			forward.setPath("./member/vendor/passCheck.jsp");
@@ -68,24 +74,12 @@ public class VendorFrontController extends HttpServlet{
 				forward = action.execute(request, response);
 			}catch(Exception e){e.printStackTrace();}
 			
-		}else if (command.equals("/passModify.ve")) {
-			forward = new ActionForward();
-			forward.setPath("./member/vendor/passModify.jsp");
-			forward.setRedirect(false);
-			
 		}else if(command.equals("/passModifyAction.ve")){
 			action = new passModifyAction();
 			try{
 				forward = action.execute(request, response);
 			}catch(Exception e){e.printStackTrace();}
 			
-		} else if (command.equals("/CancelList.ve")) {
-			action = new CancelListAction();
-			try {
-				forward = action.execute(request, response);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
 		} else if (command.equals("/PayCancel.ve")) {
 			action = new PayCancelAction();
 			try {
@@ -101,21 +95,7 @@ public class VendorFrontController extends HttpServlet{
 			forward = new ActionForward();
 			forward.setPath("./member/loginForm.jsp");
 			forward.setRedirect(false);
-		}else if (command.equals("/DepositList.ve")) {
-			action = new DepositListAction();
-			try {
-				forward = action.execute(request, response);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}  else if (command.equals("/PayCancelPoint.ve")) {
-			action = new PayCancelPointAction();
-			try {
-				forward = action.execute(request, response);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}  else if (command.equals("/PayDepositDone.ve")) {
+		} else if (command.equals("/PayDepositDone.ve")) {
 			action = new PayDepositDoneAction();
 			try {
 				forward = action.execute(request, response);

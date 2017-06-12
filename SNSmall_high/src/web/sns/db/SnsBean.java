@@ -15,56 +15,13 @@ public class SnsBean {
 	private int sell;
 	private Date date;
 	private String type;
-<<<<<<< HEAD
-	private String Instagram;
-	private String facebook;
-	private String twitter;
-	private String blog;
-=======
 	private String facebook;
 	private String instagram;
 	private String blog;
 	private String twitter;
->>>>>>> feature/snsList_personal
 	private String etc;
 	private String rank;
-	
-	public String getInstagram() {
-		return Instagram;
-	}
-	public void setInstagram(String instagram) {
-		Instagram = instagram;
-	}
-	public String getFacebook() {
-		return facebook;
-	}
-	public void setFacebook(String facebook) {
-		this.facebook = facebook;
-	}
-	public String getTwitter() {
-		return twitter;
-	}
-	public void setTwitter(String twitter) {
-		this.twitter = twitter;
-	}
-	public String getBlog() {
-		return blog;
-	}
-	public void setBlog(String blog) {
-		this.blog = blog;
-	}
-	public String getEtc() {
-		return etc;
-	}
-	public void setEtc(String etc) {
-		this.etc = etc;
-	}
-	public String getRank() {
-		return rank;
-	}
-	public void setRank(String rank) {
-		this.rank = rank;
-	}
+
 	public String getSns_id() {
 		return sns_id;
 	}
@@ -101,6 +58,12 @@ public class SnsBean {
 	public void setContent(String content) {
 		this.content = content;
 	}
+	public String getCategory() {
+		return category;
+	}
+	public void setCategory(String category) {
+		this.category = category;
+	}
 	public int getSns_profit() {
 		return sns_profit;
 	}
@@ -118,12 +81,6 @@ public class SnsBean {
 	}
 	public void setDate(Date date) {
 		this.date = date;
-	}
-	public String getCategory() {
-		return category;
-	}
-	public void setCategory(String category) {
-		this.category = category;
 	}
 	public String getType() {
 		return type;
@@ -161,12 +118,13 @@ public class SnsBean {
 	public void setEtc(String etc) {
 		this.etc = etc;
 	}
-	
 	public String getRank() {
 		return rank;
 	}
 	public void setRank(String rank) {
 		this.rank = rank;
 	}
+	
+
 	
 }

@@ -199,7 +199,7 @@ var pass_reg =/^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[~,!,@,#,$,*,(,),=,+,_,.,|]).{8,20
  	var pwd=document.fr.pass.value;
  	
  	if(!pass_reg.test(pwd)){
- 		document.getElementById("passCheckDisplay").innerHTML="영문자, 숫자, 특수문자 조합 10-20자리로 구성해주세요.";	
+ 		document.getElementById("passCheckDisplay").innerHTML="영문자, 숫자, 특수문자 조합 8-20자리로 구성해주세요.";	
  	}else{
  		document.getElementById("passCheckDisplay").innerHTML="OK!";	
  		

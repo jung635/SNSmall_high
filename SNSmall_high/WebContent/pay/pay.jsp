@@ -152,7 +152,7 @@ function card(){
 
 //무통장 입금
 function deposit(){
-	window.open("about:blank", "deposit_view" , "width=500,height=500");
+	window.open("about:blank", "deposit_view" , "width=600,height=500");
 	document.fr.action="./Deposit.pa";
 	document.fr.target="deposit_view";
 	document.fr.method="post";

@@ -107,7 +107,7 @@ String opt_name3 = (String)request.getAttribute("opt_name3");
 							
 							<div class="col-md-3 product-tit">상품명</div>
 							<div class="col-md-9 product-con">
-								<input type="text" name="subject" value=<%=prb.getSubject() %> width="100">
+								<input type="text" name="subject" value="<%=prb.getSubject() %>" width="100">
 							</div>
 							
 							<div class="col-md-3 product-tit">제품정보</div>
@@ -121,14 +121,14 @@ String opt_name3 = (String)request.getAttribute("opt_name3");
 							<div class="col-md-9 product-con"><input type="file" name="detail_img" value=<%=prb.getDetail_img() %>><%=prb.getDetail_img() %></div>
 							<div class="col-md-3 product-tit">옵션1</div>
 							<div class="col-md-9 product-con">
-								옵션명　<input type="text" name="opt_name1" placeholder="ex)사이즈" value=<%=opt_name1 %>>
-								옵션　<input type="text" name="option1" placeholder="ex)small,medium,large" value=<%=prb.getOption1() %>>
+								옵션명　<input type="text" name="opt_name1" placeholder="ex)사이즈" value="<%=opt_name1 %>">
+								옵션　<input type="text" name="option1" placeholder="ex)small,medium,large" value="<%=prb.getOption1() %>">
 							</div>
 							<div class="col-md-3 product-tit">옵션2</div>
 							<div class="col-md-9 product-con">
 								<%if(opt_name2 != null){ %>
-								옵션명　<input type="text" name="opt_name2" placeholder="ex)사이즈" value=<%=opt_name2 %>>
-								옵션　<input type="text" name="option2" placeholder="ex)220,225,230,235" value=<%=prb.getOption2() %>>
+								옵션명　<input type="text" name="opt_name2" placeholder="ex)사이즈" value="<%=opt_name2 %>">
+								옵션　<input type="text" name="option2" placeholder="ex)220,225,230,235" value="<%=prb.getOption2() %>">
 								<%}else{ %>
 								옵션명　<input type="text" name="opt_name2" placeholder="ex)사이즈">
 								옵션　<input type="text" name="option2" placeholder="ex)220,225,230,235">
@@ -137,8 +137,8 @@ String opt_name3 = (String)request.getAttribute("opt_name3");
 							<div class="col-md-3 product-tit">옵션3</div>
 							<div class="col-md-9 product-con">
 								<%if(opt_name3 != null){ %>
-								옵션명　<input type="text" name="opt_name3" placeholder="ex)세트" value=<%=opt_name3 %>>
-								옵션　<input type="text" name="option3" placeholder="ex)A,B,C" value=<%=prb.getOption3() %>>
+								옵션명　<input type="text" name="opt_name3" placeholder="ex)세트" value="<%=opt_name3 %>">
+								옵션　<input type="text" name="option3" placeholder="ex)A,B,C" value="<%=prb.getOption3() %>">
 								<%}else{ %>
 								옵션명　<input type="text" name="opt_name3" placeholder="ex)세트">
 								옵션　<input type="text" name="option3" placeholder="ex)A,B,C">
@@ -146,11 +146,11 @@ String opt_name3 = (String)request.getAttribute("opt_name3");
 							</div>
 							<div class="col-md-3 product-tit">판매가</div>
 							<div class="col-md-9 product-con">
-								<input type="text" name="price" style="ime-mode:disabled;" value=<%=prb.getPrice() %>>
+								<input type="text" name="price" style="ime-mode:disabled;" value="<%=prb.getPrice() %>">
 							</div>
 							<div class="col-md-3 product-tit">수량</div>
 							<div class="col-md-9 product-con">
-								<input type="text" name="amount" style="ime-mode:disabled;" value=<%=prb.getAmount() %>>
+								<input type="text" name="amount" style="ime-mode:disabled;" value="<%=prb.getAmount() %>">
 							</div>
 							
 							<div class="col-md-12">

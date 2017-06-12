@@ -137,9 +137,15 @@ String content="";
 	<%}else{
 		pay_list = (List<PaymentBean>)request.getAttribute("pay_list2");
 	%>
-		<table id="mypay_table" style="width:1000px; height: 120px;">
-			<tr><th>사진</th><th>이름</th><th>상품 정보</th><th>가격</th><th>주문일</th><th>배송 상태</th><th>주문 상세 조회</th><th>주문 번호</th>
-			<th><%if(type.equals("vendor")){
+		<div class="panel panel-default" style="padding: 10px;">
+		<table id="pay-state-table">
+			<tr>
+			<th class="state-ord-num">주문 번호</th>
+			<th colspan="2" style="width: 350px;">상품 정보</th>
+			<th style="width: 100px;">주문일</th>
+			<th style="width: 120px;">주문 상세 조회</th>
+			
+			<th class="state-conf-can"><%if(type.equals("vendor")){
 				if(method.equals("delivery")){%>배송 확인<%
 					}else{%>취소 및 환불 확인<%}
 			}else if(type.equals("client")){ %>취소 신청<%}
@@ -159,14 +165,15 @@ String content="";
 							}%>
 			
 			<tr>
-				<td><img src="./vendor_img/<%=prob.getMain_img() %>" style="width: 130px; height: 90px"></td>
-				<td><%=prob.getSubject() %></td>
-				<td><%=content %></td>
-				<td><%=prob.getPrice() %></td>
-				<td><%=date %></td>
-				<td><%=pb.getState() %></td>
-				<td><%=pb.getOrder_num() %></td>
-				<td><input type="button" onclick="location.href='PayOneDone.pa?num=<%=pb.getNum() %>&merchant_uid=<%=merchant_uid%>'" value="주문 상세 조회"></td>
+				<td style="border-right: 1px solid #ccc;"><div style="word-break:break-all;"><%=pb.getOrder_num() %></div></td>
+				<td style="background-color: #f7f7f7;"><img src="./vendor_img/<%=prob.getMain_img() %>" style="width: 90px; height: 90px"></td>
+				<td style="text-align: left; border-right: 1px solid #ccc; background-color: #f7f7f7;">
+					<div class="ord-sub-in"><%=prob.getSubject() %></div>
+					<div class="ord-pri"><%=prob.getPrice() %> 원</div>	
+					<div class="ord-con"><%=content %></div>	
+				</td>
+				<td style="border-right: 1px solid #ccc;"><%=date %></td>
+				<td style="border-right: 1px solid #ccc; background-color: #f7f7f7;"><input type="button" onclick="location.href='PayOneDone.pa?num=<%=pb.getNum() %>&merchant_uid=<%=merchant_uid%>'" value="주문 상세 조회"></td>
 				<td><%
 							//구매자 일때 취소 및 환불
 							if(type.equals("client")){
@@ -200,6 +207,7 @@ String content="";
 			</tr>
 			<%} %>
 		</table>
+	</div>
 	<%}%>    	
 </body>
 </html>

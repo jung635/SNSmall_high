@@ -75,7 +75,7 @@ String cancel_num_str = "";
 			<td class="pay-ord-info2">상품정보</td>
 			<td class="pay-ord-pri2" >가격</td>
 			<td class="pay-ord-pri2">개수</td>
-			<td class="pay-ord-pri">금액</td>
+			<td class="pay-ord-pri">취소 금액</td>
 			</tr>
 			<%for(int i=0; i<length; i++){
 				PaymentBean pb = pb_list.get(i);
@@ -113,6 +113,7 @@ String cancel_num_str = "";
 				<th class="pri-11">사용한 포인트</th>
 				<th class="pri-22">회수 받을 포인트</th>
 				<th class="pri-3" style="font-size: 25px;">총 취소 금액</th>
+				
 			</tr>
 			<tr>
 				<td class="pri-22"><%=price %> 원</td>
@@ -128,7 +129,7 @@ String cancel_num_str = "";
 	<div id="pay_bottom">
 		<input type="button" value="구매목록" onclick="location.href='PayList.pa'">
 		<input type="button" value="주문 취소" onclick="location.href='PayCancelPoint.pa?num=<%=cancel_num_str%>'">
-		<input type="button" value="확인">
+		<input type="button" value="확인" onclick="location.href='Main.cl'">
 		<%} %>
 	</div>
 		

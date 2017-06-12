@@ -124,10 +124,10 @@ table tr td{
 	border: 1px solid gray;
 }
 
-table tr td:hover {
+/* table tr td:hover {
 	background-color: #fcf1cf;
 
-}
+} */
 
 table tr td li{
 	list-style:none;

@@ -117,7 +117,7 @@ Connection con = null;
 			//1, 2 디비연결 메서드 호출
 			con=getConnection();	
 			//3. sql함수 count(*) 구하기
-			sql = "select count(*) from memo where to_id=?";
+			sql = "select count(*) from memo where to_id=? and from_del='N' ";
 			pstmt=con.prepareStatement(sql);
 			pstmt.setString(1, id); //
 			//System.out.println("id get : "+id);

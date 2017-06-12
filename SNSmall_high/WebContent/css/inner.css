@@ -304,6 +304,35 @@ a{
 #showbtn:hover #show_content{
      display: block; 
 }
+
+
+
+#show1_content {
+	 display: none;  
+    position: absolute;
+    background-color: #f9f9f9;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    left: 212px;
+    width: 237px;
+    top: 150px;
+   border-top-right-radius: 4px;
+    border-top-left-radius: 4px;
+}
+#show1_content a{
+    line-height: 30px;
+    padding: 7px 30% !important;
+	text-align: center;
+}
+#show1_content a:hover {
+    background-color: rgba(234, 232, 232, 0.61) !important;
+}
+#showbtn1:hover #show1_content{
+     display: block; 
+}
+
+
+
 .list-group {
     position: relative;
 }

@@ -180,7 +180,7 @@ ProductBean pb;
                     <li>등급: <%=sb.getRank() %></li>
                 </ul>
                  <h3>자기 소개</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae. Sed dui lorem, adipiscing in adipiscing et, interdum nec metus. Mauris ultricies, justo eu convallis placerat, felis enim.</p>
+                <p><%=sb.getContent() %></p>
             </div>
             <section id="our-team">
             	<%if(type.equals("vendor")){ %>

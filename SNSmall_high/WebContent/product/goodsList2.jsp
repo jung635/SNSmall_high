@@ -102,14 +102,14 @@
                 <div class="pro-list-con">
                 <div class="pro-list-sub">
                     <a href="./ProductDetail.pr?product_num=<%=pb.getProduct_num() %>&pageNum=<%=pageNum%>">
-                    <div style="height: 60px; overflow: hidden;"><%=pb.getSubject() %></div>
+                    <div style="height: 60px; overflow: hidden;"><%=pb.getSubject() %></div></a>
                     <span class="pro-live-state">
                     <%
                     String state=pb.getLive_state();
-                    if(state.equals("on")){%><span class="on">Live on</span>
+                    if(state.equals("on")){%><span class="on" onclick="window.open('ProductLiveList.li?product_num=<%=pb.getProduct_num() %>', 'live_list' , 'height=' + screen.height + ',width=' + screen.width + 'fullscreen=yes')">Live on</span>
                     <%}else{ %><span class="off">Live off</span><%} %>
                     </span>
-                    </a>
+                    
                 </div>
                 <p class="pro-list-pri"><b><%=pb.getPrice() %>원</b></p>
                 <p><%=pb.getDate() %><a href="ZzimAddAction.zz?product_num=<%=pb.getProduct_num() %>&subject=<%=pb.getSubject() %>&price=<%=pb.getPrice() %>">

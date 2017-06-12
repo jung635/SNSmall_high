@@ -497,13 +497,11 @@
             </div>
 
             <div class="col-sm-3 col-xs-6" id="product_detail_img" style="width: 100%; margin: auto;">
-                <a href="#">
                 <%if(productbean.getDetail_img()==null){ %>
                     <img class="img-responsive portfolio-item" src="http://placehold.it/500x300" alt="">
                     <%} else{%>
                     <img class="img-responsive portfolio-item" src="./vendor_img/<%=productbean.getDetail_img() %>" alt="">
                     <% }%>
-                </a>
             </div>
 
         </div>
@@ -514,7 +512,7 @@
                      	<div id="writing" style="margin-bottom: 14px; display: none;">
                     	 	<form action="./QnaInsertAction.qn?product_num=<%=productbean.getProduct_num() %>&pageNum=<%=pageNum%>&vendor_id=<%=productbean.getVendor_id() %>" method="post" enctype="multipart/form-data">
 								<input type="hidden" name="client_id" value="<%=id%>">
-								<input type="hidden" name="stars" value="">
+								<input type="hidden" name="stars" value="1">
 								<div><textarea rows="3" cols="120" name="content" class="form-control"></textarea><br></div>
 								<div id="qnastar"><span class="glyphicon glyphicon-star"></span>
 								<span id="star1" class="glyphicon glyphicon-star-empty"></span>

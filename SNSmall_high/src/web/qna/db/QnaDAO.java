@@ -145,14 +145,14 @@ public class QnaDAO {
 	
 	
 	//checkClientId()
-	public int checkClientId(String client_id){
+	public int checkClientId(String client_id, int product_num){
 		int check = 0;
 		
 		try {
 			con = getConnection();
-			sql = "select client_id from payment where client_id=?";
+			sql = "select client_id from payment where product_num=?";
 			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, client_id);
+			pstmt.setInt(1, product_num);;
 			rs = pstmt.executeQuery();
 			
 			if(rs.next()){check = 1;}

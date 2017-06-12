@@ -38,7 +38,7 @@ public class QnaInsertAction implements Action{
 		qnabean.setStars(stars);
 		
 		QnaDAO qnadao = new QnaDAO();
-		int check = qnadao.checkClientId(client_id);
+		int check = qnadao.checkClientId(client_id, product_num);
 		
 		//alarm 설정
 		AlarmBean ab = new AlarmBean();

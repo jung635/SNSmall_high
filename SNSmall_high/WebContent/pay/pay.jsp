@@ -168,6 +168,7 @@ function withPoint(){
 //포인트 변경
 function pointChanged(price, myPoint){
 	point =  document.getElementById('usingPoint').value;
+	
 	if(price==point){
 		alert('전액을 포인트로 계산합니다.');
 		document.getElementById('price_result').innerText = price-point;
@@ -253,7 +254,7 @@ String[] amount = amount_str.split(",");
 String[] product_num = product_str.split(",");
 ProductDAO pdao = new ProductDAO();
 int price=0;
-String address = cdao.getMember(id).getAddress();
+String address = cdao.getMember(id).getAddress().replace("/"," ");
 %>
 
 <div class="container">

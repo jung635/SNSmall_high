@@ -59,7 +59,7 @@ public class ReplyDAO {
 		List<ReplyBean>  replyList = new ArrayList<ReplyBean>();
 		try{
 			con = getConnection();
-			sql = "select * from reply where re_ref=? order by num desc";
+			sql = "select * from reply where re_ref=? order by num asc";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, num);
 			rs = pstmt.executeQuery();

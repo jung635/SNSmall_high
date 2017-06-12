@@ -80,7 +80,7 @@ String content="";
 					
 							price = pb.getAmount()*prob.getPrice();
 								if(prob.getContent().length()>30){content =prob.getContent().substring(0,31)+"...";}%>
-							<td class="ord-num" style="width: 50px;"><span style="text-align: center;">주문번호</span><br><%=pb.getOrder_num() %></td>
+							<td class="ord-num" style="width: 100px !important; word-break:break-all;"><div style="text-align: center;">주문번호</div><div style="word-break:break-all;"><%=pb.getOrder_num() %></div></td>
 							<td><img src="./vendor_img/<%=prob.getMain_img() %>" style="width: 90px; height: 90px;"></div></td>
 							<td class="ord-sub">
 							<div class="ord-sub-in"><%=subject %></div>
@@ -115,6 +115,8 @@ String content="";
 								}else if(pb.getState().equals("waiting")){//무통장 입금시
 									%><input type="button" value="입금 확인" onclick="location.href='PayDepositDone.ve?num=<%=pb.getNum()%>'"><%
 
+								}else if(pb.getState().equals("payDone")){
+									%><input type="button" value="배송 하기" onclick="location.href='todelivery.pa?num=<%=pb.getNum()%>'"><%
 								}else{
 									%>비고<%
 								}

@@ -19,12 +19,14 @@
 	<link href="./css/bootstrap.min.css" rel="stylesheet">
 	<link href="./css/header.css" rel="stylesheet">
 	<link href="./css/inner.css" rel="stylesheet">
-	<link href="./css/main.css" rel="stylesheet"> 
+	<link href="./css/main.css" rel="stylesheet">
+	<link href="./css/pay.css" rel="stylesheet">
+	<link href="./css/product.css" rel="stylesheet">
 <title>Insert title here</title>
 <style>
 table,th,td {
-  border : 1px solid black;
-  border-collapse: collapse;
+/*   border : 1px solid black; */
+  	 border-collapse: collapse; 
 }
 th,td {
   padding: 5px;
@@ -101,7 +103,7 @@ String id = (String)session.getAttribute("id");
 				</form>
 				<div id="txtHint"></div>
 				<div class="clear"></div>
-				<div style="text-align: center;"><button onclick="more()">더보기</button></div>
+				<div style="text-align: center;"><button class="more-btn" onclick="more()">더보기</button></div>
             </div>
    		</div>
     <!-- /.container -->

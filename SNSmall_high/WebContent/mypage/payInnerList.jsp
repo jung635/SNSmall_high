@@ -15,7 +15,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-	<link href="./css/Pay.css?ver=2122" rel="stylesheet"> 
+	<link href="./css/bootstrap.min.css" rel="stylesheet">
+	<link href="./css/pay.css" rel="stylesheet"> 
 </head>
 <body>
 <%
@@ -41,8 +42,9 @@ String content="";
 					<%for(int i=0; i<pay_list_done.size(); i++){
 
 				pay_list_reult = pay_list_done.get(i);%>
-				<div class="well">
-					<table style="width:800px;">
+				<div class="col-md-12">
+				<div class="panel panel-default" style="padding: 10px;">
+					<table class="pay-done-table">
 						<%for(int j=0; j<pay_list_reult.size(); j++){
 							PaymentBean pb = pay_list_reult.get(j);
 							merchant_uid = pb.getOrder_num();
@@ -68,19 +70,26 @@ String content="";
 							}
 							}else{
 								subject = prob.getSubject();
-						%><tr><%
+								
+						%>
+						<%if(j==0){ %>
+						<tr><td colspan="6" class="ord-dat"><%=date %></td> </tr>
+						<%} %>
+						
+						<tr><%
 					
 							price = pb.getAmount()*prob.getPrice();
-								if(prob.getContent().length()>3){content =prob.getContent().substring(0,4)+"...";}%>
-							<td><img src="./vendor_img/<%=prob.getMain_img() %>" style="width: 130px; height: 90px"></div></td>
-							<td><%=subject %></td>
-							<td><%=content %></td>
-							<td><%=price %></td>
-							<td><%=date %></td>
-							<td><%=pb.getState() %></td>
-							<td><%=pb.getOrder_num() %></td>
-							<td><input type="button" onclick="location.href='PayOneDone.pa?num=<%=pb.getNum()%>&merchant_uid=<%=merchant_uid%>'" value="주문 상세 조회"></td>
-							<td><%
+								if(prob.getContent().length()>30){content =prob.getContent().substring(0,31)+"...";}%>
+							<td class="ord-num" style="width: 50px;"><span style="text-align: center;">주문번호</span><br><%=pb.getOrder_num() %></td>
+							<td><img src="./vendor_img/<%=prob.getMain_img() %>" style="width: 90px; height: 90px;"></div></td>
+							<td class="ord-sub">
+							<div class="ord-sub-in"><%=subject %></div>
+							<div class="ord-con"><%=content %></div>
+							<div class="ord-pri"><%=price %> 원</div>
+							</td>
+							<td class="ord-sta"><%=pb.getState() %></td>
+							<td style="text-align: center;"><input type="button" onclick="location.href='PayOneDone.pa?num=<%=pb.getNum()%>&merchant_uid=<%=merchant_uid%>'" value="주문 상세 조회"><br>
+							<%
 							//구매자 일때 취소 및 환불
 							if(type.equals("client")){
 								if(pb.getState().equals("delivery")){
@@ -114,10 +123,13 @@ String content="";
 						<%}%>
 					</table>
 					<%if(type.equals("client")){ %>
-					<input type="button" value="일괄 조회" onclick="location.href='PayDone.pa?merchant_uid=<%=merchant_uid%>'"> 
+					<div class="group-search-btns">
+					<input type="button" value="일괄 조회" onclick="location.href='PayDone.pa?merchant_uid=<%=merchant_uid %>'"> 
 					<input type="button" value="일괄 취소" onclick="location.href='PayMultipleCancel.pa?order_num=<%=merchant_uid%>'">
-				<%} %>
+					</div>
+				<%}%>
 				</div>
+			</div>
 				<%} %>
 		
 	<%}else{
@@ -143,6 +155,7 @@ String content="";
 											if(prob==null){
 								%><tr><td colspan="8">삭제된 상품 입니다. 상품정보에 대한 문의는 회사를 통해주시기 바랍니다.(<%=pb.getOrder_num() %>)</td><td><input type="button" onclick="location.href='PayCancel.pa?num=<%=pb.getNum() %>&merchant_uid=<%=pb.getOrder_num()%>'" value="주문 취소"></td></tr> <%
 							}%>
+			
 			<tr>
 				<td><img src="./vendor_img/<%=prob.getMain_img() %>" style="width: 130px; height: 90px"></td>
 				<td><%=prob.getSubject() %></td>

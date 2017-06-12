@@ -18,6 +18,7 @@
 	<link href="css/main.css" rel="stylesheet">
 	<link href="css/inner.css" rel="stylesheet">
 	<link href="css/header.css" rel="stylesheet">
+	<link href="css/pay.css" rel="stylesheet">
 <title>Insert title here</title>
 <style>
 #pay_bottom{
@@ -45,6 +46,9 @@ String option_all = "";
 
 <div id = "pay_check">
 <div><h2>결제 정보 확인</h2></div>
+
+<hr>
+
 <table border="1" style="width: 900px; margin: auto;">
 <tr><td style="width: 150px;">주문번호</td><td>상품정보</td><td>가격</td><td>개수</td></tr>
 <%

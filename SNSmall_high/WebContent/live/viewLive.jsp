@@ -47,10 +47,6 @@ function getLive(){
 	    },{access_token: '<%=lb.getToken()%>'});
  }
  
- function check(){
-	 alert("https://www.facebook.com"+getLive());
- }
- 
 function press(event){
  	 if(event.keyCode == 13 || event.charCode == 13){
  		 sendMessage();
@@ -75,19 +71,26 @@ function sendMessage(){
 		status: 'on',
 	});
 	document.getElementById("textMessage").value = "";
+	document.getElementById("messageTextArea").scrollTop = document.getElementById("messageTextArea").scrollHeight;
 }
 
 firebase.database().ref('<%=lb.getVideo_id()%>').limitToLast(1).on('child_added',function(data, prevChildKey){
 	console.log(data.val()); 
 		document.getElementById("messageTextArea").value += data.val().message + "\n";
-
+		document.getElementById("messageTextArea").scrollTop = document.getElementById("messageTextArea").scrollHeight;
 		if(data.val().status == "off"){
 			alert("방송이 종료되어 창이 종료됩니다.");
 			window.close();
 		}
 	
 });	
-
+function goProduct(){
+	alert('기존의 창을 확인해주세요');
+	window.opener.location.href='ProductDetail.pr?product_num=<%=lb.getProduct_num()%>&live_id=<%=lb.getSns_id()%>';
+}
+function goLiveList(){
+	location.href='LiveList.li';
+}
 
 </script>
 
@@ -99,18 +102,18 @@ firebase.database().ref('<%=lb.getVideo_id()%>').limitToLast(1).on('child_added'
 </span>
 </div>
 <hr style="margin: 30px 20px 50px 10px;">
-<div style="position: relative; width: 1650px; height: 740px;">
-<div id="chat">
-
+<div>
+<div id="live" style="margin-left: 10px; float: left;"></div>
+ <div id="chat">
 	<div id="chat-in">
-		<button class="go-shopping" onclick="window.opener.location.href='ProductDetail.pr?product_num=<%=lb.getProduct_num()%>&live_id=<%=lb.getSns_id()%>'"><i class="fa fa-shopping-cart" aria-hidden="true"></i>　상품 구경하러 가기</button><br>
+		<button class="gobtn" onclick="goProduct()"><i class="fa fa-shopping-cart" aria-hidden="true"></i>　상품 구경하러 가기</button>
+		<button class="gobtn" onclick="goLiveList()"><i class="fa fa-bars" aria-hidden="true"></i>　라이브 리스트 보기</button><br>
 		<textarea id="messageTextArea" rows="10" cols="50"></textarea>
 		<br>
-		<input id="textMessage" type="text"  onkeyup="press(event)">
+		<input id="textMessage" type="text"  onkeyup="press(event)" style="width: 500px">
 		<input onclick="sendMessage()" value="Send" class="sendBtn" type="button">
 	</div>
 </div>
-<div id="live" style="margin-left: 10px; float: left;"></div>
 </div>
 
 

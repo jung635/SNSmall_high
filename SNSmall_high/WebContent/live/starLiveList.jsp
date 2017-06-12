@@ -41,7 +41,7 @@ SnsBean sb = (SnsBean)request.getAttribute("sb");
 <h3>방송 종료</h3>
 <%
 if(map.size()==0){%>
-	리스트가 없습니다.
+	종료된 방송이 없습니다.
 <%}else
 	for(LiveBean key : map.keySet()){
 		LiveBean lb_vod = key;

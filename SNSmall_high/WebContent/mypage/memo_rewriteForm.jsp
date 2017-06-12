@@ -34,12 +34,12 @@ th,td {
 <script type="text/javascript">
 function check(){
 
-	if(document.fr.to_id.value==""){
+/* 	if(document.fr.to_id.value==""){
 		//받는사람 아이디를 입력하세요. 커서 깜박 되돌아가기
 		alert("받는사람 아이디를 입력하세요");
 		document.fr.to_id.focus();
 		return false;
-	}
+	} */
 	if(document.fr.subject.value==""){
 		//제목을 입력하세요. 커서 깜박 되돌아가기
 		alert("제목를 입력하세요");
@@ -86,7 +86,7 @@ String num = request.getParameter("num");
 <form action="./MemoReWriteAction.me" method="post" name="fr" onsubmit="return check()">
 <input type="hidden" name="num" value="<%=num%>">
 <input type="hidden" name="from_id" value="<%=to_id %>">
-<label for="to_id">받는사람 </label> <input type="text" name="to_id" value="<%=from_id%>"   id="to_id" class="to_id"><br>
+<label for="to_id">받는사람 </label> <input type="text" name="to_id" value="<%=from_id%>"   id="to_id" class="to_id" readonly><br>
 <label for="subject">제목 </label> <input type="text" name="subject" value="[답글]"  id="subject" class="subject"><br>
 <label for="content">내용 </label> <textarea rows="10" cols="50" name="content"  id="content" class="content"></textarea><br>
 <input type="submit" value="쪽지 답하기" class="submit">

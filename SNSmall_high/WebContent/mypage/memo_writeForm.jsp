@@ -34,12 +34,12 @@ th,td {
 <script type="text/javascript">
 function check(){
 
-	if(document.wfr.to_id.value==""){
+/* 	if(document.wfr.to_id.value==""){
 		//받는사람 아이디를 입력하세요. 커서 깜박 되돌아가기
 		alert("받는사람 아이디를 입력하세요");
 		document.wfr.to_id.focus();
 		return false;
-	}
+	} */
 	if(document.wfr.subject.value==""){
 		//제목을 입력하세요. 커서 깜박 되돌아가기
 		alert("제목를 입력하세요");
@@ -68,6 +68,8 @@ function check(){
 <%-- <jsp:include page="../inc/header.jsp"/> --%>
 <%
 String id = (String)session.getAttribute("id");
+String toId = request.getParameter("toId");
+String toName = request.getParameter("toName");
 
 %>
 
@@ -77,7 +79,8 @@ String id = (String)session.getAttribute("id");
 	<fieldset>
 	<form action="./MemoWriteAction.me" method="post" name="wfr" onsubmit="return check()">
 		<label for="from_id">보낸사람 </label> <input type="text" name="from_id" id="from_id" class="from_id" value="<%=id%>" readonly><br>
-		<label for="to_id">받는사람</label> <input type="text" name="to_id"  id="to_id" class="to_id"><br>
+		<label for="to_id">받는사람</label> <input type="text" id="to_id" class="to_id" value="<%=toName%>" readonly><br>
+		<input type="hidden" name="to_id"  id="to_id" class="to_id" value="<%=toId%>"><br>
 		<label for="subject">제 목 </label> <input type="text" name="subject" id="subject" class="subject"><br>
 		<label for="content">내 용 </label> <textarea rows="10" cols="50" name="content" id="content" class="content"></textarea><br>
 		<input type="submit" value="쪽지 쓰기" class="submit">

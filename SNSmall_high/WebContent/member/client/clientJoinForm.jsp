@@ -15,7 +15,7 @@
 <link href="./css/inner.css" rel="stylesheet">
 <link href="./css/main.css" rel="stylesheet">
 <link href="./css/member.css" rel="stylesheet">  
-
+<script src="./js/jquery-3.2.0.js"></script>
 <script src='https://www.google.com/recaptcha/api.js'></script>
 <!-- <script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit" async defer></script> -->
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
@@ -35,6 +35,16 @@
 //  var pass_reg =/^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[~,!,@,#,$,*,(,),=,+,_,.,|]).{10,20}$/;
 var pass_reg =/^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[~,!,@,#,$,*,(,),=,+,_,.,|]).{8,20}$/;
  var authnum =(Math.floor)(Math.random()*1000000);
+	
+ 	//전화번호 숫자만
+ 	$(document).ready(function(){
+		$('input:text[name=phone]').keyup(function(){
+			$(this).val( $(this).val().replace(/[^0-9]/g,"") );
+		});
+	});
+
+
+
 
  //이메일 전송
  function sendmail(){

@@ -104,7 +104,6 @@ String type = (String)session.getAttribute("type");
     <!-- Page Content -->
         <div class="row">
             <div class="col-md-3">
-                <p class="lead"><%=id %></p>
                 <%if(type.equals("client")){ %>
                 <jsp:include page="../inc/myinfo_client_left.jsp"/>
                 <%}else if(type.equals("vendor")){ %>

@@ -10,7 +10,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-	<title>HIMU - OnePage HTML Parallax template</title> 
+	<title>SN#</title> 
 	<link href="./css/bootstrap.min.css" rel="stylesheet">
 	<link href="./css/header.css" rel="stylesheet">
 	<link href="./css/inner.css" rel="stylesheet">
@@ -123,9 +123,9 @@ String type = (String)session.getAttribute("type");
 				<table class="cart-table">
 				<tr>
 						
-						<th colspan="3">상품정보</th>
-						<th>수량</th>
-						<th colspan="2">상품금액</th>
+						<th colspan="3" style="width: 600px;">상품정보</th>
+						<th class="cart-pr-amount" width="100px;">수량</th>
+						<th colspan="2" style="width: 150px;">상품금액</th>
 						</tr>
 				
 					<%
@@ -142,6 +142,11 @@ String type = (String)session.getAttribute("type");
 					List cl = (List)request.getAttribute("CartList"); 
 					
 					ProductDAO pdao = new ProductDAO();
+					
+					if(cl.size()==0){%>
+					<tr><td colspan="3" style="border: none; padding: 40px 0 0 80px;;"><i class="fa fa-check" aria-hidden="true"></i>
+					 장바구니가 비었습니다.</td><tr>
+					<% }
 					
 					for(int i=0;i<cl.size();i++){
 						CartBean cb = (CartBean)cl.get(i);

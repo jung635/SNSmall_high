@@ -309,7 +309,7 @@ String address = cdao.getMember(id).getAddress();
 			<table id="buyer">
 				<tr><th>이름</th><td><%=cb.getName() %></td></tr>
 				<tr><th>배송주소</th><td><input type="text" name="address" id="address" value="<%=address%>"><input type="button" onclick="addressFind()" value="우편번호 찾기"></td></tr>
-				<tr><th>연락처</th><td>010-000-0000</td></tr>
+				<tr><th>연락처</th><td><%=cb.getPhone() %></td></tr>
 				<tr><th>배송 요청 메세지</th><td><input type="text" id="message" name="message"></td></tr>
 			</table>
 		</div>

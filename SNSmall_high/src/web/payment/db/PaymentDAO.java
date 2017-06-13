@@ -815,7 +815,7 @@ public class PaymentDAO {
 		try{
 			con = getConnection();
 			sql = "update sns set rank = ? and prev_rank = ? where sns_id = ?";
-			pstmt = con.prepareStatement(sql.toString());
+			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, rank);
 			pstmt.setString(2, prev_rank);
 			pstmt.setString(3, sns_id);

@@ -146,19 +146,23 @@ SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd");
 					ProductBean prb= new ProductBean();
 					ProductDAO prdao = new ProductDAO();
 					prb = prdao.getProduct(pab.getProduct_num());
+					
+					int price = pab.getAmount()*prb.getPrice();
 					//System.out.println("Payment_num() : "+pab.getProduct_num());
 					//System.out.println("Product_num() : "+prb.getProduct_num());
 					
 					%>
 					<%-- <li>아이디 : <%=pab.getSns_id()%></li> --%>
-					<%-- <li>메인 이미지 : <img src="./vendor_img/<%=prb.getMain_img() %>" ></li>
-					<li>디테일이미지 : <img src="./vendor_img/<%=prb.getDetail_img() %>" ></li> --%>
+					<li>제 목 : <%=prb.getSubject() %>" ></li>
+					<li>내 용 : <%=prb.getContent() %>" ></li>
+					<li>메인 이미지 : <img src="./vendor_img/<%=prb.getMain_img() %>" width="200" height="200"></li>
+					<%-- <li>디테일이미지 : <img src="./vendor_img/<%=prb.getDetail_img() %>" ></li> --%>
 					<li>수량 : <%=pab.getAmount()%></li>
-					<li>메시지 : <%=pab.getMessage()%></li>
-					<li>날짜 : <%=sdf.format(pab.getDate())%></li>
-					<li></li>
-					<%-- <li>주문번호 : <%=pab.getOrder_num()%></li>
-					<li>옵션1 : <%=pab.getOption1()%></li>
+					<li>금액 : <%= price %>원</li>
+					<%-- <li>메시지 : <%=pab.getMessage()%></li> --%>
+					<%-- <li>날짜 : <%=sdf.format(pab.getDate())%></li> --%>
+					<%-- <li>주문번호 : <%=pab.getOrder_num()%></li> --%>
+					<%-- <li>옵션1 : <%=pab.getOption1()%></li>
 					<li>옵션2 : <%=pab.getOption2()%></li>
 					<li>옵션3 : <%=pab.getOption3()%></li>
 					<li>사용된포인트 : <%=pab.getUsedPoint()%></li> --%>

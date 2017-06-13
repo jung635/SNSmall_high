@@ -137,6 +137,14 @@ public class AdminFrontController extends HttpServlet {
 				e.printStackTrace();
 			}
 
+		} else if (command.equals("/LogOut.ad")) {
+			action = new logOutAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+
 		}else if(command.equals("/OurBlogPosting.ad")){
 			forward = new ActionForward();
 			forward.setPath("./admin/blogPostWrite.jsp");

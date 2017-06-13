@@ -21,5 +21,6 @@
 	<a href="ProductList.ad" class="list-group-item">상품 관리</a>
 	<a href="OurBlog.ad" class="list-group-item">블로그 관리</a>
 	<a href="BoardList.ad" class="list-group-item">홍보 게시판 관리</a>
+	<a href="LogOut.ad" class="list-group-item">로그아웃</a>
 </div>
   

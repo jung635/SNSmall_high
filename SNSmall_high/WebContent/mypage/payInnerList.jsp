@@ -184,7 +184,7 @@ String content="";
 								}else if(pb.getState().equals("cancelHold")||pb.getState().equals("w_cancelHold")){
 									%>취소 대기중<%
 								}else{
-									%><input type="button" onclick="location.href='PayCancel.pa?num=<%=pb.getNum() %>'" value="주문 취소"><%
+									%><input type="button" onclick="location.href='PayCancel.pa?num=<%=pb.getNum() %>&merchant_uid=<%=merchant_uid %>'" value="주문 취소"><%
 								}
 							
 							}	

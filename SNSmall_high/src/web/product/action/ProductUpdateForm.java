@@ -9,7 +9,6 @@ import web.product.db.ProductDAO;
 public class ProductUpdateForm implements Action{
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		System.out.println("ProductUpdateForm execute()");
 		
 		int product_num=Integer.parseInt(request.getParameter("product_num"));
 		ProductDAO prdao=new ProductDAO();
@@ -31,7 +30,6 @@ public class ProductUpdateForm implements Action{
 			request.setAttribute("opt_name3", opt_name3);
 		}				
 		request.setAttribute("prb", prb);
-			
 		ActionForward forward=new ActionForward();
 		forward.setPath("./product/productUpdate.jsp");
 		forward.setRedirect(false);

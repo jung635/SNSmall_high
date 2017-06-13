@@ -14,7 +14,7 @@ import javax.sql.DataSource;
 
 public class QnaDAO {
 
-Connection con = null;
+	Connection con = null;
 	
 	private Connection getConnection() throws Exception{
 
@@ -39,7 +39,7 @@ Connection con = null;
 			rs = pstmt.executeQuery();
 			if(rs.next()){q_num = rs.getInt(1)+1;}
 			
-			sql = "insert into qna values(?,?,?,?,?,?,now())";
+			sql = "insert into qna values(?,?,?,?,?,?,?,now())";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, q_num);
 			pstmt.setString(2, qb.getClient_id());
@@ -47,6 +47,7 @@ Connection con = null;
 			pstmt.setString(4, qb.getContent());
 			pstmt.setString(5, qb.getQ_img());
 			pstmt.setInt(6, 0);
+			pstmt.setInt(7, qb.getStars());
 			pstmt.executeUpdate();
 			
 		} catch (Exception e) {e.printStackTrace();}
@@ -97,6 +98,7 @@ Connection con = null;
 			qb.setContent(rs.getString("content"));
 			qb.setQ_img(rs.getString("q_img"));
 			qb.setPopular(rs.getInt("popular"));
+			qb.setStars(rs.getInt("stars"));
 			qb.setDate(rs.getDate("date"));
 			qnaList.add(qb);
 		}
@@ -143,14 +145,14 @@ Connection con = null;
 	
 	
 	//checkClientId()
-	public int checkClientId(String client_id){
+	public int checkClientId(String client_id, int product_num){
 		int check = 0;
 		
 		try {
 			con = getConnection();
-			sql = "select client_id from payment where client_id=?";
+			sql = "select client_id from payment where product_num=?";
 			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, client_id);
+			pstmt.setInt(1, product_num);;
 			rs = pstmt.executeQuery();
 			
 			if(rs.next()){check = 1;}

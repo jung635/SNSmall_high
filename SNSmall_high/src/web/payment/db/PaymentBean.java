@@ -1,6 +1,6 @@
 package web.payment.db;
 
-import java.sql.Date;
+import java.sql.Timestamp;
 
 public class PaymentBean {
 
@@ -12,12 +12,14 @@ public class PaymentBean {
 	private String client_id;
 	private int amount;
 	private String message;
-	private Date date;
+	private Timestamp date;
 	private String option1;
 	private String option2;
 	private String option3;
 	private String state;
 	private int usedPoint;
+	private String address;
+	private int pay_price;
 
 	public int getProduct_num() {
 		return product_num;
@@ -65,14 +67,6 @@ public class PaymentBean {
 
 	public void setMessage(String message) {
 		this.message = message;
-	}
-
-	public Date getDate() {
-		return date;
-	}
-
-	public void setDate(Date date) {
-		this.date = date;
 	}
 
 	public String getOption1() {
@@ -129,6 +123,30 @@ public class PaymentBean {
 
 	public void setUsedPoint(int usedPoint) {
 		this.usedPoint = usedPoint;
+	}
+
+	public Timestamp getDate() {
+		return date;
+	}
+
+	public void setDate(Timestamp date) {
+		this.date = date;
+	}
+
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+	public int getPay_price() {
+		return pay_price;
+	}
+
+	public void setPay_price(int pay_price) {
+		this.pay_price = pay_price;
 	}
 
 }

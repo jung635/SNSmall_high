@@ -18,7 +18,6 @@ public class ZzimFrontController extends HttpServlet{
 		String command = requestURI.substring(contextPath.length());
 		ActionForward forward = null;
 		Action action = null;
-		System.out.println(command);
 		
 		if(command.equals("/ZzimList.zz")){
 			action = new ZzimListAction();

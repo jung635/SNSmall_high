@@ -11,7 +11,6 @@ public class dupIdCheck implements Action{
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		System.out.println("dupIdCheck execute()");
 		
 		// 중복아이디체크
 		request.setCharacterEncoding("utf-8");

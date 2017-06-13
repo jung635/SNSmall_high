@@ -1,13 +1,9 @@
-<%@page import="web.product.db.ProductBean"%>
-<%@page import="java.util.List"%>
-<%@page import="web.client.db.ClientDAO"%>
-<%@page import="web.client.db.ClientBean"%>
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
 	<meta name="description" content="Creative One Page Parallax Template">
 	<meta name="keywords" content="Creative, Onepage, Parallax, HTML5, Bootstrap, Popular, custom, personal, portfolio" /> 
@@ -17,68 +13,62 @@
 	<link href="./css/header.css" rel="stylesheet">
 	<link href="./css/inner.css" rel="stylesheet">
 	<link href="./css/main.css" rel="stylesheet"> 
+	<link href="./css/member.css" rel="stylesheet"> 
 <title>Insert title here</title>
 <script type="text/javascript">
- 		function fun1() {
-		if (document.fr.pass2.value != document.fr.pass.value) {
-			alert("ºñ¹Ğ¹øÈ£°¡ ÀÏÄ¡ÇÏÁö ¾Ê½À´Ï´Ù.");
-			document.fr.pass2.focus();
-		return false;		
- 		}
- 		}
- </script>
+function submitpassCheck(){
+	if(document.fr.pass.value==""){
+ 		alert("ë¹„ë°€ë²ˆí˜¸ë¥¼ ì…ë ¥í•´ ì£¼ì„¸ìš”");
+ 		document.fr.pass.focus();
+ 		return false;
+ 	}	
+}
+</script>
+
 </head>
 <body>
+<%String id = (String)session.getAttribute("id");
+  if(id==null){
+	  response.sendRedirect("./login.cl");  
+  }
+%>
 <jsp:include page="../../inc/header.jsp"/>
-	<%
-		String pass = (String) session.getAttribute("pass");
-	%>
-	<!-- Page Content -->
-  <div class="container">
-    <div class="more_content">
-    <!-- Page Content -->
-        <div class="row">
-        
-            <div class="col-md-3">
-<%--                 <p class="lead"><%=id %></p> --%>
-                <jsp:include page="../../inc/myinfo_left.jsp"/>               
-            </div>
-            <div class="col-md-9">
-                <!-- ¸ŞÀÎ ³»¿ë -->
-                <div class="thumbnail">
-						<form action="./clientUpdateForm.cl" id="join" method="post"
-							name="fr" onsubmit="return fun1()">
-							<fieldset>
-								<legend>ºñ¹Ğ¹øÈ£ È®ÀÎ</legend>
-								<input type="hidden" name="pass" value="<%=pass%>">
-								<label>ÇöÀç ºñ¹Ğ¹øÈ£</label> <input type="password" name="pass2"
-									required><br>
+<div class="container">
+ 
+  <div class="more_content">
+     <div class="col-md-3">
+   <jsp:include page="../../inc/myinfo_client_left.jsp"/>
+     </div>
+     <div class="col-md-9">
 
-							</fieldset>
-
-							<div id="buttons">
-								<input type="submit" value="È®ÀÎ" class="submit"> <input
-									type="reset" value="Ãë¼Ò" class="cancel" onclick="location.href='./MyPage.cl'">
-							</div>
-						</form>
+        <div style="margin: 50px 0 50px 0">
+    <div class="top-subject">íšŒì› ì •ë³´ í™•ì¸</div>
+    <br>    
+     ã€€<span style="color:#fc7700"><%=id %></span>ã€€ë‹˜ì˜ ì •ë³´ë¥¼ ì•ˆì „í•˜ê²Œ ë³´í˜¸í•˜ê¸° ìœ„í•´ ë¹„ë°€ë²ˆí˜¸ë¥¼ ë‹¤ì‹œ í•œë²ˆ í™•ì¸ í•©ë‹ˆë‹¤.
+     <hr style="border-color: white; margin: 4px;">
+			<form onsubmit="return submitpassCheck()" name="fr" action="./ClientPassConfirm.cl">
+				<div class="col-md-12 table-liner-top">
+				<div class="col-md-4 table-colorBg-top"><span class="table-txt">ê³„ì •</span></div>
+				<div class="col-md-4 pass-conf-text"><%=id %></div>
+				<div class="col-md-4"></div>
 				</div>
-				<!-- ¸ŞÀÎ ³»¿ë -->
-            </div>
-        </div>
-    </div>
-    <!-- /.container -->
-    <div class="container">
-        <hr>
-        <!-- Footer -->
-        <footer>
-            <div class="row">
-                <div class="col-lg-12">
-                    <p>Copyright &copy; Your Website 2014</p>
-                </div>
-            </div>
-        </footer>
-    </div>
-  </div>
-    <!-- /.container -->
+				<div class="col-md-12 table-liner" style="border-top: none;">
+				<div class="col-md-4 table-colorBg"><span class="table-txt">ë¹„ë°€ë²ˆí˜¸</span></div>
+				<div class="col-md-4 pass-conf-txt">
+				<input type="password" name="pass" id="pass" class="form-control">
+				</div>
+				<div class="col-md-4"></div>
+				</div>
+				
+				<div class="col-md-5"></div>
+				<div class="col-md-2"><input type="submit" value="í™•ì¸" class="ok-btn"></div>
+				
+				<div class="col-md-5"></div>
+			</form>
+		
+	</div> 
+
+
+</div></div></div>
 </body>
 </html>

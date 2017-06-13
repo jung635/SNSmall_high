@@ -1,6 +1,6 @@
 package web.payment.action;
 
-import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -15,18 +15,38 @@ public class PayMultipleCancelAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		request.setCharacterEncoding("utf-8");
-		response.setContentType("text/html; charset=utf-8");
-		PrintWriter out = response.getWriter();
 		PaymentDAO pdao = new PaymentDAO();
 		String order_num = request.getParameter("order_num");
-		pdao.deletePayRequest(order_num);
-		out.println("<script>");
-		out.println("alert('취소 신청이 완료되었습니다.');");
-		out.println("location.href='PayList.pa';");
-		out.println("</script>");
+		List<PaymentBean> pb_list = pdao.getPayment(order_num);
+		PaymentBean pb = null;
+		int cancel_point = 0;
+		int price = 0;
+		int usedPoint = 0;
+		List<Integer> cancel_num = new ArrayList<>();
+		ActionForward forward = new ActionForward();
 
-		return null;
+		for (int i = 0; i < pb_list.size(); i++) {
+			pb = pb_list.get(i);
+			price += pb.getPay_price();
+			usedPoint += pb.getUsedPoint();
+			
+			if (pb.getState().equals("cancel") || pb.getState().equals("cancelHold")
+					|| pb.getState().equals("w_cancelHold")) {
+			} else {
+				cancel_num.add(pb.getNum());
+				cancel_point += pb.getUsedPoint();
+			}
+		}
+
+		request.setAttribute("pb_list", pb_list);
+		request.setAttribute("cancel_num", cancel_num);
+		request.setAttribute("cancel_point", cancel_point);
+		request.setAttribute("price", price);
+		request.setAttribute("usedPoint", usedPoint);
+		forward.setPath("./pay/payCancel.jsp");
+		forward.setRedirect(false);
+
+		return forward;
 	}
 
 }

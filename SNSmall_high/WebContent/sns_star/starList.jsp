@@ -2,8 +2,10 @@
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
-<!DOCTYPE html>
-<html>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<html class="csstransforms csstransforms3d csstransitions">
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
@@ -15,21 +17,11 @@
 	<link href="./css/bootstrap.min.css" rel="stylesheet">
 	<link href="./css/header.css" rel="stylesheet">
 	<link href="./css/inner.css" rel="stylesheet">
+	<link href="./css/snsList.css" rel="stylesheet">
 	<link href="./css/main.css" rel="stylesheet">
-	
-	<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
-	<script type="text/javascript">
-	$(document).ready(function() {
-		$('.scroll').click(function(){
-			//alert('hi');
-			  //$('.active').removeClass('active');
-			  $(this).addClass('active');  
-			});
-	}); 
-	
-	</script>
 </head>
 <body>
+<jsp:include page="../inc/header.jsp"/>
 <%
 String category = (String)request.getAttribute("category");
 String order = (String)request.getAttribute("order");
@@ -42,7 +34,6 @@ int start = (Integer)request.getAttribute("start");
 int end = (Integer)request.getAttribute("end");
 List<SnsBean> list = (List<SnsBean>)request.getAttribute("list");
 %>
-<jsp:include page="../inc/header.jsp"/>
 <!-- Page Content -->
 <div class="container">
 	<div class="content">
@@ -80,24 +71,26 @@ List<SnsBean> list = (List<SnsBean>)request.getAttribute("list");
 	            <div class="col-sm-6 col-md-3">
 					<div class="single-member">
 						<div id="profile_img_wrap">
-							<img src="./sns_pro_upload/<%=sb.getProfile_img() %>" alt="team member" />
+							<a href="SnsDetailAction.sn?sns_id=<%=sb.getSns_id()%>">
+							<img src="./sns_pro_upload/<%=sb.getProfile_img() %>" alt="SNS star " style="border-top-right-radius:50px; height: 300px;" />
+							</a>
 						</div>
-						<div id="star_list_detail">
+						<div id="star_list_detail star_list_detail2">
 							<h3><a href="SnsDetailAction.sn?sns_id=<%=sb.getSns_id()%>"><%=sb.getName() %></a>
 							<small><%=sb.getCategory() %>/<%=sb.getRank() %></small></h3>
 							<p><%=sb.getContent() %></p>
 						</div>
-						<div class="socials">
-							<%if(sb.getFacebook()!=null){%>
+						<div class="socials" style="">
+							<%if(sb.getFacebook().trim().length()!=0){%>
 								<a href="<%=sb.getFacebook()%>"><i class="fa fa-facebook"></i></a>
-							<%}if(sb.getTwitter()!=null){%>							
-							<a href="<%=sb.getTwitter()%>"><i class="fa fa-twitter"></i></a>
-							<%}if(sb.getInstagram()!=null){%>			
-							<a href="<%=sb.getInstagram()%>"><i class="fa fa-instagram"></i></a>
-							<%}if(sb.getBlog()!=null){%>	
-							<a href="<%=sb.getBlog()%>"><i class="fa fa-bold"></i></a>
-							<%}if(sb.getEtc()!=null){%>	
-							<a href="<%=sb.getEtc()%>"><i class="fa fa-smile-o"></i></a>
+							<%}if(sb.getTwitter().trim().length()!=0){%>							
+								<a href="<%=sb.getTwitter()%>"><i class="fa fa-twitter"></i></a>
+							<%}if(sb.getInstagram().trim().length()!=0){%>			
+								<a href="<%=sb.getInstagram()%>"><i class="fa fa-instagram"></i></a>
+							<%}if(sb.getBlog().trim().length()!=0){%>	
+								<a href="<%=sb.getBlog()%>"><i class="fa fa-bold"></i></a>
+							<%}if(sb.getEtc().trim().length()!=0){%>	
+								<a href="<%=sb.getEtc()%>"><i class="fa fa-smile-o"></i></a>
 							<%} %>
 						</div>
 					</div>

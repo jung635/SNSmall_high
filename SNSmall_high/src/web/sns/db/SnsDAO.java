@@ -56,6 +56,7 @@ public class SnsDAO {
 				sb.setBlog(rs.getString("blog"));
 				sb.setEtc(rs.getString("etc"));
 				sb.setRank(rs.getString("rank"));
+				sb.setSns_id(rs.getString("sns_id"));
 			}
 		} catch (Exception e) {e.printStackTrace();
 		} finally {if (rs != null) {try {rs.close();} catch (Exception ex) {}}
@@ -66,7 +67,7 @@ public class SnsDAO {
 	}
 
 	// sns star list 개수
-	public int getListCount(String category) {
+	public int getListCount(String category, String rank) {
 		int num = 0;
 
 		try {
@@ -84,7 +85,23 @@ public class SnsDAO {
 				sql.append("where category = 'gym'");
 			}else if(category.equals("etc")){
 				sql.append("where category = 'etc'");
+				if(category.equals("basic")){
+					sql.append("and rank = 'basic'");
+				}else if(category.equals("plus")){
+					sql.append("and category = 'plus'");
+				}else if(category.equals("premium")){
+					sql.append("and category = 'premium'");
+				}
+			}else{
+				if(category.equals("basic")){
+					sql.append("where rank = 'basic'");
+				}else if(category.equals("plus")){
+					sql.append("where rank = 'plus'");
+				}else if(category.equals("premium")){
+					sql.append("where rank = 'premium'");
+				}
 			}
+			
 			
 			pstmt = con.prepareStatement(sql.toString());
 			rs = pstmt.executeQuery();
@@ -100,12 +117,12 @@ public class SnsDAO {
 		return num;
 	}
 	// sns star search list 개수
-	public int getListCount(String category, String search) {
+	public int getListCountForSearch(String category, String search) {
 		int num = 0;
 		
 		try {
 			con = getConnection();
-			StringBuffer sql = new StringBuffer("select count(sns_id) from sns where sns_id like ? ");
+			StringBuffer sql = new StringBuffer("select count(sns_id) from sns where name like ? ");
 			if(category.equals("fashion")){
 				sql.append("and category = 'fashion'");
 			}else if(category.equals("beauty")){
@@ -168,7 +185,7 @@ public class SnsDAO {
 			}else if(order.equals("date")){
 				sql.append(" order by date desc");
 			}else if(order.equals("sns_profit")){
-				sql.append(" order by sell desc");
+				sql.append(" order by sns_profit desc");
 			}
 			
 			sql.append(" limit ?,?;");
@@ -207,7 +224,7 @@ public class SnsDAO {
 	// sns search 리스트 get
 	public List<Object> snsList(int start, int pageSize, String category, String order, String search) {
 		List<Object> list = new ArrayList<Object>();
-		StringBuffer sql = new StringBuffer("select * from sns where sns_id like ? ");
+		StringBuffer sql = new StringBuffer("select * from sns where name like ? ");
 		SnsBean sb = null;
 		
 		try {
@@ -413,6 +430,7 @@ public class SnsDAO {
 					pb = new PaymentBean();
 					pb.setProduct_num(rs.getInt("product_num"));
 					pb.setAmount(rs.getInt("amount"));
+					pb.setPay_price(rs.getInt("pay_price"));
 					list.add(pb);
 			}
 		}catch(Exception e){e.printStackTrace();}
@@ -436,6 +454,7 @@ public class SnsDAO {
 					pb = new PaymentBean();
 					pb.setProduct_num(rs.getInt("product_num"));
 					pb.setAmount(rs.getInt("amount"));
+					pb.setPay_price(rs.getInt("pay_price"));
 					list.add(pb);
 			}
 		}catch(Exception e){e.printStackTrace();}
@@ -461,11 +480,14 @@ public class SnsDAO {
 			while (rs.next()) {
 				try{
 					sb = sdao.getSnsDetail(rs.getString("sns_id"));
-					if (category.equals(sb.getCategory())) {
-						pb = new PaymentBean();
-						pb.setProduct_num(rs.getInt("product_num"));
-						pb.setAmount(rs.getInt("amount"));
-						list.add(pb);
+					if( sb != null){
+						if (category.equals(sb.getCategory())) {
+							pb = new PaymentBean();
+							pb.setProduct_num(rs.getInt("product_num"));
+							pb.setAmount(rs.getInt("amount"));
+							pb.setPay_price(rs.getInt("pay_price"));
+							list.add(pb);
+						}
 					}
 				}catch(Exception e){
 					e.printStackTrace();
@@ -485,22 +507,26 @@ public class SnsDAO {
 		
 		try{
 			con = getConnection();
-			sql = "update sns set name=?,category=?,content=?,"
-					+ "profile_img=?,detail_img=? where sns_id=?";					
+			sql = "update sns set name=?,category=?,content=?,instagram=?,facebook=?,twitter=?,blog=?,etc=?,"
+				+"profile_img=?,detail_img=? where sns_id=?";					
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, sb.getName());
 			pstmt.setString(2, sb.getCategory());
 			pstmt.setString(3, sb.getContent());
-			pstmt.setString(4, sb.getProfile_img());
-			pstmt.setString(5, sb.getDetail_img());
-			pstmt.setString(6, id);
+			pstmt.setString(4, sb.getInstagram());
+			pstmt.setString(5, sb.getFacebook());
+			pstmt.setString(6, sb.getTwitter());
+			pstmt.setString(7, sb.getBlog());
+			pstmt.setString(8, sb.getEtc());
+			pstmt.setString(9, sb.getProfile_img());
+			pstmt.setString(10, sb.getDetail_img());
+			pstmt.setString(11, id);
 			//4. 실행
 			pstmt.executeUpdate();
 			
 		}catch(Exception e){
 			e.printStackTrace();
 		}finally{
-//			if(rs!=null){try {rs.close();}catch(SQLException ex){}}
 			if(pstmt!=null){try{ pstmt.close(); }catch(SQLException ex){}}
 			if(con!=null){try {con.close();}catch(SQLException ex){}}}
 	}
@@ -509,9 +535,12 @@ public class SnsDAO {
 		
 		try{
 			con = getConnection();
+			
 			sql="update sns set pass=? where sns_id=?";
-			pstmt.setString(1, id);
-			pstmt.setString(2, pass);
+			
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, pass);
+			pstmt.setString(2, id);
 			
 			pstmt.executeUpdate();
 			
@@ -539,7 +568,7 @@ public class SnsDAO {
 					pab.setProduct_num(rs.getInt("num"));
 					pab.setAmount(rs.getInt("amount"));
 					pab.setMessage(rs.getString("message"));
-					pab.setDate(rs.getDate("date"));
+					pab.setDate(rs.getTimestamp("date"));
 					pab.setOrder_num(rs.getString("order_num"));
 					pab.setOption1(rs.getString("option1"));
 					pab.setOption2(rs.getString("option2"));
@@ -557,8 +586,49 @@ public class SnsDAO {
 			return paymentList;
 		}//getPaymentList()
 		
-		
+	//판매내역 삭제 ------------------------------------------------------------------------	
+	public int deleteSnsSale(int num){
+			
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		String sql="";
+		ResultSet rs=null;
+		int check=-1;
+		System.out.println("num : "+num);
+		try{
+			//예외가 발생할 것 같은 명령문
+			//1단계 드라이버로더			//2단계 디비연결
+			con=getConnection();
+				
+			sql="select * from payment where num=?";
+			pstmt=con.prepareStatement(sql);
+			pstmt.setInt(1, num);
+			//4단계 실행
+			rs=pstmt.executeQuery();
+				
+			if(rs.next()){
+				sql="delete from payment where num=?";
+				pstmt=con.prepareStatement(sql);
+				pstmt.setInt(1, num);
+				pstmt.executeUpdate();
+						
+				check=1;
+			}else{
+				
+				check=-1;
+			}
+		}
+		catch(Exception e){
+			e.printStackTrace();
+		}finally{
+			//예외 상관없이 마무리 작업
+			//객체 생성 닫기
+			if(rs!=null){try{rs.close();}catch(SQLException ex){}}
+			if(pstmt!=null){try{pstmt.close();}catch(SQLException ex){}}
+			if(con!=null){try{con.close();}catch(SQLException ex){}}
+		}
+		return check;
+	}//deleteMemo() class		
 
-		
 	
 }

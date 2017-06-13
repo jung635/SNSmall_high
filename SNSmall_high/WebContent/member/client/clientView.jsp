@@ -17,6 +17,7 @@
 	<link href="./css/header.css" rel="stylesheet">
 	<link href="./css/inner.css" rel="stylesheet">
 	<link href="./css/main.css" rel="stylesheet"> 
+	<link href="./css/member.css" rel="stylesheet"> 
 <title>Insert title here</title>
 </head>
 <body>
@@ -42,48 +43,60 @@
         
             <div class="col-md-3">
 <%--                 <p class="lead"><%=id %></p> --%>
-                <jsp:include page="../../inc/myinfo_left.jsp"/>               
+                <jsp:include page="../../inc/myinfo_client_left.jsp"/>               
             </div>
             <div class="col-md-9">
-                <div class="thumbnail">
-						
+            
+            <div style="margin: 50px 0 50px 0">
+				<div class="top-subject">내 정보 보기</div>
 
-							<table>
-								<tr>
-									<td class="left"><label>아이디</label></td>
-									<td class="left"><%=id%></td>
-								</tr>
-								<tr>
-									<td class="left"><label>이름</label></td>
-									<td class="left"><%=clb.getName()%></td>
-								</tr>
-								<tr>
-									<td class="left"><label>주소</label></td>
-									<td class="left"><%=postcode%></td></tr>
-								<tr>
-									<td class="left"></td><td><%=address%></td>
-								</tr>
-								<tr>
-									<td class="left"></td><td><%=address2%></td>
-								</tr>
-								<tr>
-									<td class="left"><label>연락처</label></td>
-									<td class="left"><%=clb.getPhone()%></td>
-								</tr>
-								<tr>
-									<td class="left"><label>포인트</label></td>
-									<td class="left"><%=clb.getPoint()%></td>
-								</tr>								
-							</table>
+					<div class="col-md-12 table-liner-top">
+						<div class="col-md-4 table-colorBg-top">
+						<span class="table-txt">아이디</span>
+						</div>
+						<div class="col-md-8 pass-conf-text"><%=id %></div>
+					</div>
+					
+					<div class="col-md-12 table-liner">
+						<div class="col-md-4 table-colorBg">
+						<span class="table-txt">이름</span>
+						</div>
+						<div class="col-md-8 pass-conf-text"><%=clb.getName()%></div>
+					</div>
+					
+					<div class="col-md-12 table-liner">
+						<div class="col-md-4 table-colorBg">
+						<span class="table-txt">연락처</span>
+						</div>
+						<div class="col-md-8 pass-conf-text"><%=clb.getPhone()%></div>
+					</div>
+					
+					<div class="col-md-12 table-liner">
+						<div class="col-md-4 table-colorBg">
+						<span class="table-txt">주소<br><br><br></span>
+						</div>
+						<div class="col-md-8 pass-conf-text">
+						<%=postcode%><br>
+						<%=address%><br>
+						<%=address2%>
+						</div>
+					</div>
+			
+				
+				<div class="col-md-12" style="margin-top: 50px;"><div class="top-subject" style="border-color: #B2D8AC">SN# 개인 정보</div></div>
+				
+					<div class="col-md-12 table-liner-top">
+						<div class="col-md-4 table-colorBg-top" style="background-color: #B2D8AC">
+						<span class="table-txt">포인트</span>
+						</div>
+						<div class="col-md-8 pass-conf-text"><%=clb.getPoint()%></div>
+					</div>
 							<input type="hidden" name="pass" value="<%=clb.getPass()%>">
 							<input type="hidden" name="id" value="<%=id%>">
 							
-							<div id="buttons">
-								<input type="button" value="확인" class="cancel" onclick="location.href='./MyPage.cl'">
-
-							</div>
 						
 					</div>
+					
             </div>
         </div>
     </div>

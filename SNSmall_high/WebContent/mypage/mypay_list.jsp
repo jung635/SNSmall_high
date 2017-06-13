@@ -19,12 +19,14 @@
 	<link href="./css/bootstrap.min.css" rel="stylesheet">
 	<link href="./css/header.css" rel="stylesheet">
 	<link href="./css/inner.css" rel="stylesheet">
-	<link href="./css/main.css" rel="stylesheet"> 
+	<link href="./css/main.css" rel="stylesheet">
+	<link href="./css/pay.css" rel="stylesheet">
+	<link href="./css/product.css" rel="stylesheet">
 <title>Insert title here</title>
 <style>
 table,th,td {
-  border : 1px solid black;
-  border-collapse: collapse;
+/*   border : 1px solid black; */
+  	 border-collapse: collapse; 
 }
 th,td {
   padding: 5px;
@@ -53,7 +55,7 @@ function showCustomer(str) {
 }
 
 function more() {
-	page += 2;
+	page += 4;
 	var xhttp;    
 	if (method == "") {
     	document.getElementById("txtHint").innerHTML = "";
@@ -82,16 +84,15 @@ String id = (String)session.getAttribute("id");
     <!-- Page Content -->
         <div class="row">
             <div class="col-md-3">
-                <p class="lead"><%=id %></p>
                 <%if(type.equals("client")){ %>
-                <jsp:include page="../inc/myinfo_left.jsp"/>
+                <jsp:include page="../inc/myinfo_client_left.jsp"/>
                 <%}else if(type.equals("vendor")){ %>
                 <jsp:include page="../inc/myinfo_vendor_left.jsp"/>
                 <%} %>
             </div>
             <div class="col-md-9">
 				<form action=""> 
-					<select name="order" onchange="showCustomer(this.value)">
+					<select name="order" onchange="showCustomer(this.value)" style="height: 30px;">
 						<option value="">정렬방법을 선택하세요</option>
 						<option value="payDone">주문 내역</option>
 						<option value="waiting">입금 대기</option>
@@ -102,7 +103,8 @@ String id = (String)session.getAttribute("id");
 				</form>
 				<div id="txtHint"></div>
 				<div class="clear"></div>
-				<div style="text-align: center;"><button onclick="more()">더보기</button></div>
+				<br>
+				<div style="text-align: center;"><button class="more-btn" onclick="more()">더보기</button></div>
             </div>
    		</div>
     <!-- /.container -->

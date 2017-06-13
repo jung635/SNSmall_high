@@ -21,7 +21,6 @@ public class SnsBean {
 	private String twitter;
 	private String etc;
 	private String rank;
-	private String prev_rank;
 
 	public String getSns_id() {
 		return sns_id;
@@ -124,12 +123,6 @@ public class SnsBean {
 	}
 	public void setRank(String rank) {
 		this.rank = rank;
-	}
-	public String getPrev_rank() {
-		return prev_rank;
-	}
-	public void setPrev_rank(String prev_rank) {
-		this.prev_rank = prev_rank;
 	}
 	
 

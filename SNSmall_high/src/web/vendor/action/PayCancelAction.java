@@ -66,13 +66,13 @@ public class PayCancelAction implements Action {
 						ab.setId(pb.getSns_id());
 						ab.setMove("RankDown.al?rank="+"plus");
 						adao.insertAlarm(ab);
-						pdao.rankUpdate(pb.getSns_id(), "plus");
+						pdao.rankUpdate(pb.getSns_id(), "plus", "premium");
 					}else if(money<5000000){
 						ab.setContent("등급이 basic으로 내려가셨어요ㅠㅠ");
 						ab.setId(pb.getSns_id());
 						ab.setMove("RankDown.al?rank="+"basic");
 						adao.insertAlarm(ab);
-						pdao.rankUpdate(pb.getSns_id(), "basic");
+						pdao.rankUpdate(pb.getSns_id(), "basic", "premium");
 					}
 				}else if( sb.getRank().equals("plus")){
 					if(money<5000000){
@@ -80,12 +80,12 @@ public class PayCancelAction implements Action {
 						ab.setId(pb.getSns_id());
 						ab.setMove("RankDown.al?rank="+"basic");
 						adao.insertAlarm(ab);
-						pdao.rankUpdate(pb.getSns_id(), "basic");
+						pdao.rankUpdate(pb.getSns_id(), "basic", "premium");
 					}
 				}
-				if(sb.getRank().equals("basic")){
+				if(sb.getPrev_rank().equals("basic")){
 					sns_profit = (int)(pb.getPay_price()*0.05)/10*10;
-				}else if(sb.getRank().equals("plus")){
+				}else if(sb.getPrev_rank().equals("plus")){
 					sns_profit = (int)(pb.getPay_price()*0.1)/10*10;
 				}else{
 					sns_profit = (int)(pb.getPay_price()*0.2)/10*10;

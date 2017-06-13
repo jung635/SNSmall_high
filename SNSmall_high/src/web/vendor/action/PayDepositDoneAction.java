@@ -61,13 +61,13 @@ public class PayDepositDoneAction implements Action{
 						ab.setId(pb.getSns_id());
 						ab.setMove("RankUp.al?rank="+"premium");
 						adao.insertAlarm(ab);
-						pdao.rankUpdate(pb.getSns_id(), "premium");
+						pdao.rankUpdate(pb.getSns_id(), "premium", "basic");
 					}else if(money>=5000000){
 						ab.setContent("등급이 plsu로 상승하셨습니다!");
 						ab.setId(pb.getSns_id());
 						ab.setMove("RankUp.al?rank="+"plus");
 						adao.insertAlarm(ab);
-						pdao.rankUpdate(pb.getSns_id(), "plus");
+						pdao.rankUpdate(pb.getSns_id(), "plus", "basic");
 					}
 				}else if( sb.getRank().equals("plus")){
 					if(money>=10000000){
@@ -75,7 +75,7 @@ public class PayDepositDoneAction implements Action{
 						ab.setId(pb.getSns_id());
 						ab.setMove("RankUp.al?rank="+"premium");
 						adao.insertAlarm(ab);
-						pdao.rankUpdate(pb.getSns_id(), "premium");
+						pdao.rankUpdate(pb.getSns_id(), "premium", "plus");
 					}
 				}
 			if(sb.getRank().equals("basic")){

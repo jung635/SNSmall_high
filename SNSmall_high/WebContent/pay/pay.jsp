@@ -193,7 +193,7 @@ function pointChanged(price, myPoint){
 	}
 }
 
-function allPointPay(){
+function allPointPay(realPoint){
 	point =  document.getElementById('usingPoint').value;
 	myPoint = document.getElementById('myPoint').innerText;
 	price = document.getElementById('price').innerText;
@@ -202,6 +202,7 @@ function allPointPay(){
 		alert('포인트가 부족합니다.');
 		document.getElementById('usingPoint').value = 0;
 		document.getElementById('withPoint').checked = false;
+		document.getElementById('myPoint').innerText = realPoint;
 	}else{
 		alert('전액을 포인트로 계산합니다.');
 		document.getElementById('price_result').innerText = 0;
@@ -319,13 +320,13 @@ String address = cdao.getMember(id).getAddress().replace("/"," ");
 			<div id="title_in"><h3>결제 정보</h3></div>
 			<table id="pay">
 				<tr><th>상품가격</th><td><%=price %></td></tr>
-				<tr><th>포인트사용</th><td><input type="number" id="usingPoint" name="point" onkeyup="pointChanged(<%=price%>,<%=cb.getPoint()%>)"><span id="myPoint" style="margin-left: 20px;"><b><%=cb.getPoint() %></b></span></td></tr>
+				<tr><th>포인트사용</th><td><input type="number" id="usingPoint" name="point" onkeyup="pointChanged('<%=price%>','<%=cb.getPoint()%>')"><span id="myPoint" style="margin-left: 20px;"><b><%=cb.getPoint() %></b></span></td></tr>
 				<tr><th>총 금액</th><td><span id="price"><%=price %></span></td></tr>
 				<tr><th>결제 할 금액</th><td><span id="price_result"><%=price %></span></td></tr>
 				<tr><th>결제방법</th>
 					<td><input type="radio" value="card" name="method">신용카드　
 	            		<input type="radio" value="deposit" name="method">무통장입금　
-	            		<input type="radio" value="withPoint" id="withPoint" name="method" onclick="allPointPay()">전액 포인트 결제
+	            		<input type="radio" value="withPoint" id="withPoint" name="method" onclick="allPointPay('<%=cb.getPoint()%>')">전액 포인트 결제
 				</tr>
 			</table>
 			<input type="hidden" name="price" value='<%=price %>'>

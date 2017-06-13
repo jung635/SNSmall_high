@@ -58,7 +58,7 @@ public class PayCancelAction implements Action {
 					}
 				}
 				
-				long money = all_sns_sell+pb.getPay_price();
+				long money = all_sns_sell;
 				System.out.println(money);
 				if( sb.getRank().equals("premium")){
 					if(money<10000000){

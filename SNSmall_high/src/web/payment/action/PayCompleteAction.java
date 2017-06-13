@@ -159,8 +159,7 @@ public class PayCompleteAction implements Action {
 						}
 					}
 					
-					long money = all_sns_sell + pb.getPay_price();
-					System.out.println(money);
+					long money = all_sns_sell;
 					AlarmBean ab = new AlarmBean();
 					AlarmDAO adao = new AlarmDAO();
 					if (sb.getRank().equals("basic")) {
@@ -169,13 +168,13 @@ public class PayCompleteAction implements Action {
 							ab.setId(sns_id[i]);
 							ab.setMove("RankUp.al?rank=" + "premium");
 							adao.insertAlarm(ab);
-							pdao.rankUpdate(sns_id[i], "premium");
+							pdao.rankUpdate(sns_id[i], "premium", "basic");
 						 }else if(money>=500000){
 							ab.setContent("등급이 plsu로 상승하셨습니다!");
 							ab.setId(sns_id[i]);
 							ab.setMove("RankUp.al?rank=" + "plus");
 							adao.insertAlarm(ab);
-							pdao.rankUpdate(sns_id[i], "plus");
+							pdao.rankUpdate(sns_id[i], "plus", "basic");
 						}
 					} else if (sb.getRank().equals("plus")) {
 						if (money >= 10000000) {
@@ -183,7 +182,7 @@ public class PayCompleteAction implements Action {
 							ab.setId(sns_id[i]);
 							ab.setMove("RankUp.al?rank=" + "premium");
 							adao.insertAlarm(ab);
-							pdao.rankUpdate(sns_id[i], "premium");
+							pdao.rankUpdate(sns_id[i], "premium", "plus");
 						}
 					}
 					if (sb.getRank().equals("basic")) {

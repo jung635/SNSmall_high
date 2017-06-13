@@ -811,13 +811,14 @@ public class PaymentDAO {
 		if(con != null){try {con.close();}catch(Exception ex) {}}}
 	}
 
-	public void rankUpdate(String sns_id, String rank){
+	public void rankUpdate(String sns_id, String rank, String prev_rank){
 		try{
 			con = getConnection();
-			sql = "update sns set rank = ? where sns_id = ?";
+			sql = "update sns set rank = ? and prev_rank = ? where sns_id = ?";
 			pstmt = con.prepareStatement(sql.toString());
 			pstmt.setString(1, rank);
-			pstmt.setString(2, sns_id);
+			pstmt.setString(2, prev_rank);
+			pstmt.setString(3, sns_id);
 			pstmt.executeUpdate();
 	
 			

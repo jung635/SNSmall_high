@@ -150,7 +150,7 @@ public class QnaDAO {
 		
 		try {
 			con = getConnection();
-			sql = "select client_id from payment where product_num=?";
+			sql = "select client_id from payment where product_num=? and state='done'";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, product_num);;
 			rs = pstmt.executeQuery();

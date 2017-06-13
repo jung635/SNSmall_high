@@ -50,10 +50,11 @@ public class PayDepositDoneAction implements Action{
 				pb_sns = list_sns.get(j);
 				if(pb_sns.getState().equals("payDone") || pb_sns.getState().equals("done") || pb_sns.getState().equals("delivery")){
 					all_sns_sell += pb_sns.getPay_price();
+					System.out.println(all_sns_sell);
 				}
 			}
-			long money = all_sns_sell+pb.getPay_price();
-
+			
+			long money = all_sns_sell;
 				if( sb.getRank().equals("basic")){
 					if(money>=10000000){
 						ab.setContent("등급이  premium으로 상승하셨습니다!");
@@ -61,7 +62,7 @@ public class PayDepositDoneAction implements Action{
 						ab.setMove("RankUp.al?rank="+"premium");
 						adao.insertAlarm(ab);
 						pdao.rankUpdate(pb.getSns_id(), "premium");
-					}else if(money>=500000){
+					}else if(money>=5000000){
 						ab.setContent("등급이 plsu로 상승하셨습니다!");
 						ab.setId(pb.getSns_id());
 						ab.setMove("RankUp.al?rank="+"plus");
@@ -77,7 +78,6 @@ public class PayDepositDoneAction implements Action{
 						pdao.rankUpdate(pb.getSns_id(), "premium");
 					}
 				}
-				System.out.println(sb.getRank());
 			if(sb.getRank().equals("basic")){
 				sns_profit = (int)(pb.getPay_price()*0.05)/10*10;
 				

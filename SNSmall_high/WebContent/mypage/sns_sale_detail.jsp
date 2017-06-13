@@ -1,3 +1,4 @@
+<%@page import="web.payment.db.PaymentBean"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="web.product.db.ProductBean"%>
 <%@page import="web.product.db.ProductDAO"%>
@@ -59,12 +60,17 @@ if(id ==null ){
 // request에 저장된 memberList 가져오기
 //List paymentList = (List)request.getAttribute("paymentList");
 ProductBean prb = (ProductBean)request.getAttribute("prb");
+PaymentBean pab = new PaymentBean();
+
+ProductDAO prdao = new ProductDAO();
+
 
 System.out.println("prb.getProduct_num()"+prb.getProduct_num());
 //String content = prb.getContent();
 //if(content !=null){
 //	content=prb.getContent().replace("\r\n", "<br>");
 //}
+
 %>
 <div class="row">
     <div class="col-lg-12">
@@ -77,21 +83,44 @@ System.out.println("prb.getProduct_num()"+prb.getProduct_num());
 
 
 	<table>
-		<tr bgcolor="orange">
-		<td>상품번호</td><td>판매자ID</td><td>카테고리</td><td>제목</td>
-		<td>내용</td><td>메인이미지</td><td>디테일 이미지</td><td>옵션1</td><td>옵션2</td>
-		<td>옵션3</td><td>가격</td>
-		<td>수량</td>
+		<tr >
+			<td>상품번호 : <%=prb.getProduct_num() %></td><td colspan=2>판매자ID : <%=prb.getVendor_id() %></td>
+		</tr>
+		<tr>
+			<td>카테고리 : <%=prb.getCategory() %></td><td colspan=2>제목 : <%=prb.getSubject() %></td>
+		</tr>
+		<tr>
+			<td colspan=3>내용 : <%=prb.getSubject() %></td>
+		</tr>
+		
+		<tr>
+			<td colspan=3>메인이미지 : <img src="./vendor_img/<%=prb.getMain_img() %>" width="200" height="200"></td>
+		</tr>
+		<tr>
+			<td colspan=3>디테일 이미지 : <img src="./vendor_img/<%=prb.getDetail_img() %>" width="200" height="200"></td>
+		<tr>
+			<td>옵션1 : <%=prb.getOption1() %></td><td>옵션2 : <%=prb.getOption2() %></td><td>옵션3 : <%=prb.getOption3() %></td>
+		</tr>
+		<tr>
+
+<%
+int price = pab.getAmount()*prb.getPrice();
+%>
+			<td>가격 : <%=prb.getPrice() %></td>
+			<td>수량 : <%=pab.getAmount() %></td>
+			<td>금액 : <%=price %></td>
 		</tr>
 
 <%
+
+
 %>
-	<tr bgcolor="#ffeecc">
+	<%-- <tr bgcolor="#ffeecc">
 		<td><%=prb.getProduct_num() %></td><td><%=prb.getVendor_id() %></td><td><%=prb.getCategory() %></td><td><%=prb.getSubject() %></td>
 		<td><%=prb.getContent() %></td><td><%=prb.getMain_img() %></td><td><%=prb.getDetail_img() %></td><td><%=prb.getOption1() %></td><td><%=prb.getOption2() %></td>
 		<td><%=prb.getOption3() %></td><td><%=prb.getPrice() %></td>
 		<td><%=prb.getAmount() %></td>
-		</tr>
+	</tr> --%>
 
 </table>
     <!-- /.container -->

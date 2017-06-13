@@ -13,7 +13,7 @@
 	<meta name="description" content="Creative One Page Parallax Template">
 	<meta name="keywords" content="Creative, Onepage, Parallax, HTML5, Bootstrap, Popular, custom, personal, portfolio" /> 
 	<meta name="author" content=""> 
-	<title>HIMU - OnePage HTML Parallax template</title> 
+	<title>SN#</title> 
 	<link href="css/bootstrap.min.css" rel="stylesheet">
 	<link href="css/main.css" rel="stylesheet">
 	<link href="css/inner.css" rel="stylesheet">
@@ -79,20 +79,20 @@ String address = pb_list.get(0).getAddress();
 					 <tr><td colspan="3">삭제된 상품입니다</td></tr>
 				 <%}} %>
 				 
-				 <tr><td><b>배송 주소</b></td><td colspan="3" style="text-align: left; padding-left: 20px;"><%=address %></td></tr>
+				 <tr><td style="background-color: #f5f5f5;"><b>배송지</b></td><td colspan="3" style="text-align: left; padding-left: 20px;"><%=address %></td></tr>
 				 
 				 </table>
 				 
 				 <table class="total-pri">
 				 <tr>
-					 <th>총 상품 금액</th>
-					 <th style="background-color: #fff; color:#fc7700;">사용한 포인트</th>
-					 <th style="color:#ae0000;">총 결제 금액</th>
+					 <th class="pri-1">총 상품 금액</th>
+					 <th class="pri-2">사용한 포인트</th>
+					 <th class="pri-3" style="font-size: 25px;">총 결제 금액</th>
 				 </tr>
 				 <tr>
-					 <td style="color:#fff;"><%=price %> 원</td>
-					 <td  style="background-color: #fff; color:#fc7700;">- <%=usedPoint %> P</td>
-					 <td style="color: #ae0000;"><%=price-usedPoint %> 원</td>
+					 <td class="pri-1"><%=price %> 원</td>
+					 <td class="pri-2">- <%=usedPoint %> P</td>
+					 <td class="pri-3" style="font-size: 30px;"><b><%=price-usedPoint %> 원</b></td>
 				 </tr>
 				</table>
 		</div>

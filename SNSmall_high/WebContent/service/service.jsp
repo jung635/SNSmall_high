@@ -26,7 +26,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="tagline">ShopName</h1>
+                    <h1 class="tagline">SN#</h1>
                 </div>
             </div>
         </div>
@@ -35,10 +35,11 @@
         <div class="row">
             <div class="col-sm-8">
                 <h2>What We Do</h2>
-                <p>우리는 SNS STAR, 판매자, 구매자 모드에게 최고의 혜택을 드리기위해 노력하고있습니다. 실제로 많은 고객님들이 이러한 혜택들을 누리고 있습니다!</p>
-                <p>모든 고객분들과 소통하며 더 나은 서비스를 제공하기위해 노력중입니다. 요구사항이나 궁금한 점이 있으면 편하게 연락주시기 바랍니다.</p>
+                <p style="padding: 10px; font-size: 15px;">우리는 SNS STAR, 판매자, 구매자 모드에게 최고의 혜택을 드리기위해 노력하고있습니다.<br> 실제로 많은 고객님들이 이러한 혜택들을 누리고 있습니다!<br>
+              	  모든 고객분들과 소통하며 더 나은 서비스를 제공하기위해 노력중입니다.<br>
+              	  요구사항이나 궁금한 점이 있으면 편하게 연락주시기 바랍니다.</p>
             </div>
-            <div class="col-sm-4">
+            <div class="col-sm-4" style="border: 1px solid #fc7700; border-radius:5px;">
                 <h2>Contact Us</h2>
                 <address>
                     <strong>ITWILL</strong>
@@ -58,20 +59,33 @@
         <hr>
 
         <div class="row">
-            <div class="col-sm-4">
-                <img class="img-circle img-responsive img-center" src="images/join/sns2.gif" alt="">
-                <h2>SNS STAR</h2>
-                <p>SNS STAR는 더 유명해질 수 있는 기회를 얻고, 본인의 장점을 살려 이익을 낼 수 있습니다. 본인이 판매자가 되어 물건을 팔고, SNS STAR로써 홍보한다면 개인 쇼핑몰의 효과도 누릴 수 있습니다! 더이상 개인적으로 오는 상품문의에 일일히 답하실 필요가 없습니다. 우리의 서비스를 통해 이익과 편리함을 챙기세요.</p>
+       
+         
+          <div class="col-sm-12" style="background-color: #e3e3e3; padding: 10px;">
+            <div class="col-sm-3">
+                <img class="img-circle " src="images/join/sns2.gif" style="width: 100px; height: 100px;"  alt=""><b style="margin-left: 20px;">SNS STAR</b>
             </div>
-            <div class="col-sm-4">
-                <img class="img-circle img-responsive img-center" src="images/join/vendor2.gif" alt="">
-                <h2>VENDOR</h2>
-                <p>SNS는 최고의 광고효과를 내고있습니다. 인기 많은 SNS STAR들에게 광고를 요청해보세요. 효과가 있을지 없을지 모르는 광고에 돈을 쏟지 않고, 확실한 경로를 통해 광고효과가 있을 때만 돈을 지불하는 시스템이 될 것입니다. 투명하게 나의 광고비가 어디에 소비되고 있는지 확인해보세요. 우리 서비스의 장점을 확인하실 수 있을 것입니다. </p>
+            <div class="col-sm-9">
+               <div style="padding-top: 10px;">&nbsp;SNS STAR는 더 유명해질 수 있는 기회를 얻고, 본인의 장점을 살려 이익을 낼 수 있습니다.<br> 본인이 판매자가 되어 물건을 팔고, SNS STAR로써 홍보한다면 개인 쇼핑몰의 효과도 누릴 수 있습니다!<br> 더 이상 개인적으로 오는 상품문의에 일일히 답하실 필요가 없습니다.<br> 우리의 서비스를 통해 이익과 편리함을 챙기세요.</div>
             </div>
-            <div class="col-sm-4">
-                <img class="img-circle img-responsive img-center" src="images/join/custom2.gif" alt="">
-                <h2>CLIENT</h2>
-                <p>SNS STAR들이 쓰고있는 물건이 무엇인지, 어디서 살 수 있는지 알아보기 귀찮으셨을 겁니다. 클릭 한번으로 그들처럼 될 수 있습니다. 뿐만 아니라 우리 쇼핑몰에서만 만날 수 있는 SNS STAR들의 물건들을 쇼핑해보세요! 초특급 레어템들이 기다리고있습니다. 항상 준비중인 이벤트와 포인트 폭탄은 덤입니다. </p>
+            </div>
+            
+            <div class="col-sm-12" style="padding: 10px;">
+            <div class="col-sm-3" style="padding-top: 10px;">
+                <img class="img-circle" src="images/join/vendor2.gif" style="width: 100px; height: 100px;" alt=""><b style="margin-left: 20px;">VENDOR</b>
+            </div>
+            <div class="col-sm-9">
+                <p style="padding-top: 10px;">&nbsp;SNS는 최고의 광고효과를 내고있습니다.<br> 인기 많은 SNS STAR들에게 광고를 요청해보세요.<br> 효과가 있을지 없을지 모르는 광고에 돈을 쏟지 않고, 확실한 경로를 통해 광고효과가 있을 때만 돈을 지불하는 시스템이 될 것입니다.<br> 투명하게 나의 광고비가 어디에 소비되고 있는지 확인해보세요. <br>우리 서비스의 장점을 확인하실 수 있을 것입니다. </p>
+            </div>
+            </div>
+            
+             <div class="col-sm-12" style="background-color: #e3e3e3; padding: 10px !important;">
+            <div class="col-sm-3">
+                <img class="img-circle" src="images/join/custom2.gif" style="width: 100px; height: 100px;" alt=""><b style="margin-left: 20px;">CLIENT</b>
+            </div>
+            <div class="col-sm-9">
+                <p style="padding-top: 10px;">&nbsp;SNS STAR들이 쓰고있는 물건이 무엇인지, 어디서 살 수 있는지 알아보기 귀찮으셨을 겁니다.<br> 클릭 한번으로 그들처럼 될 수 있습니다. 뿐만 아니라 우리 쇼핑몰에서만 만날 수 있는 SNS STAR들의 물건들을 쇼핑해보세요!<br> 초특급 레어템들이 기다리고있습니다. 항상 준비중인 이벤트와 포인트 폭탄은 덤입니다. </p>
+            </div>
             </div>
         </div>
         <!-- /.row -->

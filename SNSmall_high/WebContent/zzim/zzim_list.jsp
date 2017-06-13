@@ -39,14 +39,17 @@
             
               <div style="margin: 50px 0 50px 0">
 				<div class="top-subject">
-				<span style="color: red;"><i class="fa fa-heart" aria-hidden="true"></i></span>
+				<span style="color: red; font-size: 15px; vertical-align: middle;"><i class="fa fa-heart" aria-hidden="true"></i></span>
 				찜 리스트</div>
 
 <%
 List<ZzimBean> list=(List)request.getAttribute("list");
 ZzimBean zb = new ZzimBean();
 if(list.size()==0){
-	%>찜을 해주세요. <%
+	%>
+	<hr>
+	<div style="padding: 30px 0 50px 80px;"><i class="fa fa-check" aria-hidden="true"></i>
+	 　찜리스트가 없습니다.</div> <%
 }else{
 %>
 <div class="col-md-12">

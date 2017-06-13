@@ -92,7 +92,7 @@ String id = (String)session.getAttribute("id");
             </div>
             <div class="col-md-9">
 				<form action=""> 
-					<select name="order" onchange="showCustomer(this.value)">
+					<select name="order" onchange="showCustomer(this.value)" style="height: 30px;">
 						<option value="">정렬방법을 선택하세요</option>
 						<option value="payDone">주문 내역</option>
 						<option value="waiting">입금 대기</option>
@@ -103,6 +103,7 @@ String id = (String)session.getAttribute("id");
 				</form>
 				<div id="txtHint"></div>
 				<div class="clear"></div>
+				<br>
 				<div style="text-align: center;"><button class="more-btn" onclick="more()">더보기</button></div>
             </div>
    		</div>

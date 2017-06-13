@@ -13,7 +13,7 @@
 	<meta name="description" content="Creative One Page Parallax Template">
 	<meta name="keywords" content="Creative, Onepage, Parallax, HTML5, Bootstrap, Popular, custom, personal, portfolio" /> 
 	<meta name="author" content=""> 
-	<title>HIMU - OnePage HTML Parallax template</title> 
+	<title>SN#</title> 
 	<link href="css/bootstrap.min.css" rel="stylesheet">
 	<link href="css/main.css" rel="stylesheet">
 	<link href="css/inner.css" rel="stylesheet">
@@ -43,14 +43,20 @@ String option_all = "";
   <!-- Page Content -->
   <div class="container">
     <div class="more_content">
+    	<div class="col-md-12">
+    		<div class="panel panel-default text-center" style="border-color: white;">
 
 <div id = "pay_check">
-<div><h2>결제 정보 확인</h2></div>
+<div style="text-align: left;"><h3>결제 정보 확인</h3></div>
+<hr style="border-color: #fc7700;">
+			<br><br>
 
-<hr>
-
-<table border="1" style="width: 900px; margin: auto;">
-<tr><td style="width: 150px;">주문번호</td><td>상품정보</td><td>가격</td><td>개수</td></tr>
+<table border="1" style="margin: auto;" class="pro-info">
+<tr><td rowspan="2" class="pay-ord-num"><b>주문번호</b><br><div style="word-break:break-all;"><%=merchant_uid%></div></td>
+<td class="pay-ord-info"><b>상품정보</b></td>
+<td class="pay-ord-pri"><b>가격</b></td>
+<td class="pay-ord-pri"><b>개수</b></td>
+</tr>
 <%
 if(pb_list!=null){
 PaymentBean pb = (PaymentBean)pb_list.get(0);
@@ -66,14 +72,28 @@ if(pb.getOption2() != null && !pb.getOption2().equals("") && !pb.getOption2().eq
 if(pb.getOption3() != null && !pb.getOption3().equals("") && !pb.getOption3().equals("null")) option_all += pb.getOption3()+"/";
 if(option_all.length()>0) option_all = option_all.substring(0,option_all.length()-1);
 %>
- <tr><td><%=merchant_uid%></td><td><%=prob.getSubject() %> (<%=option_all %>)</td><td><%=prob.getPrice() %></td><td><%=pb.getAmount() %></td></tr>
+ <tr><td><%=prob.getSubject() %> (<%=option_all %>)</td><td><%=prob.getPrice() %></td><td><%=pb.getAmount() %></td></tr>
 
- <tr><td>배송지</td><td colspan="3" style="text-align: left;"><%=pb.getAddress() %></td></tr>
- <%} %>
- <tr><td colspan="4" style="text-align: right;">사용한 포인트: <%=usedPoint %></td></tr>
- <tr><td colspan="4" style="text-align: right;">총 결제 금액: <%=totalprice %></td></tr>
+ <tr><td><b>배송지</b></td><td colspan="3" style="text-align: left;"><%=pb.getAddress() %></td></tr>
+ 
+ 
 </table>
+
+<table class="total-pri">
+<tr>
+					 <th class="pri-1">상품 금액</th>
+					 <th class="pri-2">사용한 포인트</th>
+					 <th class="pri-3" style="font-size: 25px;">총 결제 금액</th>
+				 </tr>
+				 <tr>
+					 <td class="pri-1"><%=prob.getPrice() %> 원</td>
+					 <td class="pri-2">- <%=usedPoint %> P</td>
+					 <td class="pri-3" style="font-size: 30px;"><b><%=totalprice %> 원</b></td>
+				 </tr>
+</table>
+<%} %>
 </div>
+</div></div>
 </div>
 <div id="pay_bottom">
 <input type="button" value="구매목록" onclick="location.href='PayList.pa'">

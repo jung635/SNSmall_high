@@ -126,7 +126,7 @@
 	margin: auto;
 	border-bottom: 1px solid #ccc;
 }
-.pay-done-table input[type=button]{
+.pay-done-table input[type=button], #pay-state-table input[type=button]{
 	padding: 3px;
 	background-color: #f5f5f5;
 	border: 1px solid #43484E;
@@ -206,28 +206,79 @@
 .pay-ord-info{
 	padding: 10px;
 	width: 500px;
+	background-color: #f5f5f5;
+}
+.pay-ord-info2{
+	padding: 10px;
+	width: 400px;
+	background-color: #f5f5f5;
 }
 .pay-ord-pri{
 	padding: 10px;
 	width: 150px;
+	background-color: #f5f5f5;
+}
+.pay-ord-pri2{
+	padding: 10px;
+	width: 150px;
+	background-color: #f5f5f5;
 }
 .total-pri{
 	margin-top: 100px;
 	border:1px solid #ffc180;
-	background-color: #ffc180;
+	background-color: #ffe2cc;
+	min-height: 250px;
+}
+.total-pri2{
+	margin-top: 100px;
+	border:1px solid #7ABE90;
+	background-color: #dfefdc;
+	min-height: 250px;
+}
+.pri-1{
+	color: #43484E; 
+	border-right: 1px solid #ffc180;
+}
+.pri-11{
+	color: #43484E; 
+	border-right: 1px solid #7ABE90;
+}
+.pri-2{
+	color:#fc7700;
+	background-color: #fff;
+	border-right: 1px solid #ffc180;
+}
+.pri-22{
+	color:#5eaf50;
+	background-color: #fff;
+	border-right: 1px solid #7fbf73;
+}
+.pri-3{
+	color: #ae0000;
 }
 
 .total-pri th{
 	width: 500px;
-	padding: 10px;
-	font-size: 20px;
-	color:#fff;
+	padding: 30px;
+	font-size: 15px;
 }
 .total-pri td{
-	font-size: 35px;
+	font-size: 30px;
 	text-align: right;
 	padding: 20px;
 }
+
+.total-pri2 th{
+	width: 350px;
+	padding: 30px;
+	font-size: 15px;
+}
+.total-pri2 td{
+	font-size: 30px;
+	text-align: right;
+	padding: 20px;
+}
+
 #pay_bottom input[type=button]{
 	border: none;
 	background-color: #ccc;
@@ -236,3 +287,28 @@
 	font-size: 15px;
 	font-weight: bold;
 }
+
+#pay-state-table th{
+	background-color: #43484E;
+	color:#fff;
+	text-align: center;
+	padding: 12px;
+	border:1px solid #fff;
+	font-size: 12px;
+	font-weight: bold;
+}
+#pay-state-table td{
+	text-align: center;
+	border-bottom: 1px solid #ccc;
+}
+.state-ord-num{
+	width: 100px;
+	border-top-left-radius:10px;
+}
+.state-conf-can{
+	width: 180px;
+	text-align: center;
+	border-top-right-radius:10px;
+}
+
+.
